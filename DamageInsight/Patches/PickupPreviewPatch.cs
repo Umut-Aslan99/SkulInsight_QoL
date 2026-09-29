@@ -14,12 +14,13 @@ namespace DamageInsight.Patches;
 [HarmonyPatch(typeof(GearPopup), nameof(GearPopup.Set), typeof(Item))]
 public static class PickupPreviewPatch
 {
-    private static void Prefix(Item item)
-    {
-        var items = Singleton<Service>.Instance?.levelManager?.player?.playerComponents?.inventory?.item?.items;
-        if (item != null && items != null && !items.Contains(item))
-            PickupPreview.Begin(item);
-    }
+    private static void Prefix(Item item) =>
+        Guard.Run("Pickup preview", () =>
+        {
+            var items = Singleton<Service>.Instance?.levelManager?.player?.playerComponents?.inventory?.item?.items;
+            if (item != null && items != null && !items.Contains(item))
+                PickupPreview.Begin(item);
+        });
 
     private static void Finalizer() => PickupPreview.End();
 }

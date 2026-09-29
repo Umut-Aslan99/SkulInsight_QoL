@@ -6,7 +6,7 @@
     <Product>SkulInsight QoL</Product>
     <Description>Real damage numbers, a combat log with per-hit calculations and build planning for Skul: The Hero Slayer.</Description>
     <Authors>DocRun</Authors>
-    <Version>0.9.2</Version>
+    <Version>0.9.3</Version>
     <BepInExPluginGuid>docrun.skulinsight_qol</BepInExPluginGuid>
   </PropertyGroup>
 

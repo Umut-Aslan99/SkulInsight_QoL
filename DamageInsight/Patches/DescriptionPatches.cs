@@ -17,39 +17,34 @@ public static class DescriptionPatches
     [HarmonyPatch(typeof(Gear), nameof(Gear.description), MethodType.Getter)]
     public static class GearDescription
     {
-        private static void Postfix(Gear __instance, ref string __result)
-        {
-            switch (__instance)
+        private static void Postfix(Gear __instance, ref string __result) =>
+            __result += Guard.Text("Gear description numbers", () => __instance switch
             {
-                case Weapon weapon:
-                    __result += GearDescriptions.ForWeapon(weapon);
-                    break;
-                case Item item:
-                    __result += GearDescriptions.ForItem(item);
-                    break;
-            }
-        }
+                Weapon weapon => GearDescriptions.ForWeapon(weapon),
+                Item item => GearDescriptions.ForItem(item),
+                _ => "",
+            });
     }
 
     [HarmonyPatch(typeof(Weapon), nameof(Weapon.activeDescription), MethodType.Getter)]
     public static class SwapDescription
     {
         private static void Postfix(Weapon __instance, ref string __result) =>
-            __result += GearDescriptions.ForSwap(__instance);
+            __result += Guard.Text("Swap description numbers", () => GearDescriptions.ForSwap(__instance));
     }
 
     [HarmonyPatch(typeof(Quintessence), nameof(Quintessence.activeDescription), MethodType.Getter)]
     public static class QuintessenceDescription
     {
         private static void Postfix(Quintessence __instance, ref string __result) =>
-            __result += GearDescriptions.ForQuintessence(__instance);
+            __result += Guard.Text("Essence description numbers", () => GearDescriptions.ForQuintessence(__instance));
     }
 
     [HarmonyPatch(typeof(Inscription), nameof(Inscription.GetDescription), typeof(int))]
     public static class InscriptionDescription
     {
         private static void Postfix(Inscription __instance, int step, ref string __result) =>
-            __result += GearDescriptions.ForInscription(__instance, step);
+            __result += Guard.Text("Inscription description numbers", () => GearDescriptions.ForInscription(__instance, step));
     }
 
     /// <summary>
@@ -59,25 +54,25 @@ public static class DescriptionPatches
     [HarmonyPatch(typeof(Inscription), nameof(Inscription.GetSuperDescription), typeof(Inscription.Key))]
     public static class TunedBoxDescription
     {
-        private static void Postfix(Inscription.Key key, ref string __result)
-        {
-            var inscriptions = Singletons.Singleton<Services.Service>.Instance?.levelManager?.player?.playerComponents?.inventory?.synergy?.inscriptions;
-            if (inscriptions != null)
-                __result += GearDescriptions.ForInscriptionSuper(inscriptions[key]);
-        }
+        private static void Postfix(Inscription.Key key, ref string __result) =>
+            __result += Guard.Text("Tuned box numbers", () =>
+            {
+                var inscriptions = Singletons.Singleton<Services.Service>.Instance?.levelManager?.player?.playerComponents?.inventory?.synergy?.inscriptions;
+                return inscriptions != null ? GearDescriptions.ForInscriptionSuper(inscriptions[key]) : "";
+            });
     }
 
     [HarmonyPatch(typeof(Inscription), nameof(Inscription.GetSuperDescription), new System.Type[0])] // the instance overload, not the static (Key) one
     public static class InscriptionSuperDescription
     {
         private static void Postfix(Inscription __instance, ref string __result) =>
-            __result += GearDescriptions.ForInscriptionSuper(__instance);
+            __result += Guard.Text("Tuned description numbers", () => GearDescriptions.ForInscriptionSuper(__instance));
     }
 
     [HarmonyPatch(typeof(SkillInfo), nameof(SkillInfo.description), MethodType.Getter)]
     public static class SkillDescription
     {
         private static void Postfix(SkillInfo __instance, ref string __result) =>
-            __result += GearDescriptions.ForSkill(__instance);
+            __result += Guard.Text("Skill description numbers", () => GearDescriptions.ForSkill(__instance));
     }
 }

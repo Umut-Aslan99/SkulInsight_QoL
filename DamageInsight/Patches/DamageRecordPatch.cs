@@ -33,6 +33,6 @@ public static class DamageRecordPatch
     [HarmonyPatch(typeof(LevelManager), nameof(LevelManager.InvokeOnMapChanged))]
     public static class MapChangedPatch
     {
-        private static void Postfix() => DamageLog.StartRoom();
+        private static void Postfix() => Guard.Run("Combat log room change", DamageLog.StartRoom);
     }
 }

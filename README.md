@@ -7,7 +7,7 @@ picking up an item would do to your build.
 A quality-of-life mod: it changes nothing about the game's balance or saves. It only shows information the game
 already uses internally. Every feature can be switched off in the config.
 
-> **Version 0.9.2: first public beta.** Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
+> **Version 0.9.3: first public beta.** Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
 <!-- SCREENSHOT: overview (fight with damage numbers + combat log) -->
 

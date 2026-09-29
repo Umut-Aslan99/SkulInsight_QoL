@@ -48,8 +48,12 @@ public class HealthNumberLabel : MonoBehaviour
         text.overflowMode = TextOverflowModes.Overflow;
         text.raycastTarget = false;
         text.color = Color.white;
-        text.outlineWidth = 0.2f;
-        text.outlineColor = new Color32(0, 0, 0, 255);
+        // The outline lives in the font material, which a bar created during a cutscene may not have yet.
+        if (text.font != null && text.fontSharedMaterial != null)
+        {
+            text.outlineWidth = 0.2f;
+            text.outlineColor = new Color32(0, 0, 0, 255);
+        }
 
         var label = go.AddComponent<HealthNumberLabel>();
         label._bar = bar;

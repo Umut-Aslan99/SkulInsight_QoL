@@ -18,7 +18,10 @@ public static class InscriptionTextFitPatch
     /// <summary>The font size each step text had before we touched it (the elements are reused).</summary>
     private static readonly Dictionary<int, float> OriginalSizes = new();
 
-    private static void Prefix(TextMeshProUGUI ____description, float ____maxHeight)
+    private static void Prefix(TextMeshProUGUI ____description, float ____maxHeight) =>
+        Guard.Run("Inscription text fit", () => Fit(____description, ____maxHeight));
+
+    private static void Fit(TextMeshProUGUI ____description, float ____maxHeight)
     {
         var text = ____description;
         if (text == null || ____maxHeight <= 0)

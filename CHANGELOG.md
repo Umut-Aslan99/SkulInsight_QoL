@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.3 (important fix)
+
+- Fixed: bosses whose intro opens their health bar during a cutscene (e.g. the chapter 1 boss) could stay invulnerable in phase 2 and show no health bar. The HP-number feature crashed inside the cutscene.
+- Every hook of the mod is now guarded: if something in the mod fails, it logs a warning and the game continues normally. An automated test makes sure this stays true.
+
 ## 0.9.2
 
 - Fixed an error that could make an attack fail when the combat log looked up which item dealt it (spirits, summons).

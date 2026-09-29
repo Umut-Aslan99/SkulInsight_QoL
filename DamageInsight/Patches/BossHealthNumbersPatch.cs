@@ -21,7 +21,10 @@ public static class BossHealthNumbersPatch
 {
     [HarmonyPostfix]
     [HarmonyPatch(nameof(CharacterHealthBar.Initialize))]
-    private static void AfterInitialize(CharacterHealthBar __instance)
+    private static void AfterInitialize(CharacterHealthBar __instance) =>
+        Guard.Run("Boss HP numbers", () => Attach(__instance));
+
+    private static void Attach(CharacterHealthBar __instance)
     {
         if (__instance._container == null || __instance.GetComponentInChildren<HealthNumberLabel>(true) != null)
             return;
