@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Tests for DamageInsight. Run with: dotnet test
+    - Unit tests: plain logic (filters, stats, log text, damage classification).
+    - Patch target tests: apply every Harmony patch against the real game code, without starting the game.
+  -->
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <DeployToSkul>false</DeployToSkul>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Real gear scans (from the in-game GearScan tool) used as test data. -->
+    <None Include="Fixtures\*.json;Fixtures\*.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DamageInsight\DamageInsight.csproj" />
+  </ItemGroup>
+
+  <!--
+    The mod only compiles against the game; at test time the real game DLLs must be loadable.
+    Copy them next to the tests (never the game's trimmed .NET system DLLs), plus the unstripped
+    UnityEngine DLLs and BepInEx/Harmony from the Skul install.
+  -->
+  <ItemGroup>
+    <GameRuntimeDll Include="$(SkulManaged)\*.dll"
+                    Exclude="$(SkulManaged)\mscorlib.dll;$(SkulManaged)\System*.dll;$(SkulManaged)\Mono.*.dll;$(SkulManaged)\Microsoft.*.dll;$(SkulManaged)\netstandard.dll" />
+    <GameRuntimeDll Include="$(SkulRoot)\BepInEx\unstripped_corlib\UnityEngine*.dll" />
+    <GameRuntimeDll Include="$(SkulRoot)\BepInEx\core\*.dll" />
+  </ItemGroup>
+
+  <Target Name="CopyGameRuntime" AfterTargets="Build">
+    <Error Condition="'$(SkulRoot)' == ''" Text="Skul installation not found; tests need the game's DLLs." />
+    <Copy SourceFiles="@(GameRuntimeDll)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+
+    <!--
+      NuGet's HarmonyX package references Mono.Cecil 0.11.4, so the SDK generates a binding redirect to it.
+      We run with the Cecil that BepInEx ships (0.10.4), so point the redirect there instead.
+    -->
+    <PropertyGroup>
+      <_TestConfig>$(OutDir)$(TargetFileName).config</_TestConfig>
+      <_TestConfigText Condition="Exists('$(_TestConfig)')">$([System.IO.File]::ReadAllText('$(_TestConfig)'))</_TestConfigText>
+    </PropertyGroup>
+    <WriteLinesToFile Condition="'$(_TestConfigText)' != ''" File="$(_TestConfig)" Overwrite="true"
+                      Lines="$(_TestConfigText.Replace('newVersion=&quot;0.11.4.0&quot;', 'newVersion=&quot;0.10.4.0&quot;'))" />
+  </Target>
+
+</Project>

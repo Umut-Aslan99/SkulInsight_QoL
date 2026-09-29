@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>DamageInsight</AssemblyName>
+    <RootNamespace>DamageInsight</RootNamespace>
+    <Product>SkulInsight QoL</Product>
+    <Description>Real damage numbers, a combat log with per-hit calculations and build planning for Skul: The Hero Slayer.</Description>
+    <Authors>DocRun</Authors>
+    <Version>0.9.2</Version>
+    <BepInExPluginGuid>docrun.skulinsight_qol</BepInExPluginGuid>
+  </PropertyGroup>
+
+  <!-- Developer tools (dev menu, test room, gear scan, diagnostics) only exist in Debug builds. -->
+  <PropertyGroup Condition="'$(Configuration)' != 'Release'">
+    <DefineConstants>$(DefineConstants);DEV</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <Compile Remove="Tools\Dev\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DamageInsight.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,76 @@
+<Project>
+  <!-- Shared settings for every mod project in this repo. -->
+
+  <PropertyGroup>
+    <!-- Path to the Skul installation. Override with: dotnet build -p:SkulRoot="D:\...\Skul" -->
+    <SkulRoot Condition="'$(SkulRoot)' == '' And Exists('$(MSBuildProgramFiles32)\Steam\steamapps\common\Skul\Skul.exe')">$(MSBuildProgramFiles32)\Steam\steamapps\common\Skul</SkulRoot>
+    <SkulRoot Condition="'$(SkulRoot)' == '' And Exists('D:\Steam\steamapps\common\Skul\Skul.exe')">D:\Steam\steamapps\common\Skul</SkulRoot>
+    <SkulManaged>$(SkulRoot)\Skul_Data\Managed</SkulManaged>
+
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>embedded</DebugType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- CS0436: the publicized game assembly can clash with its own types; harmless. -->
+    <NoWarn>$(NoWarn);CS0436</NoWarn>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.4.*" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2020.3.34" IncludeAssets="compile" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <!-- Makes private game fields/methods accessible at compile time. -->
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.*" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" Publicize="true">
+      <HintPath>$(SkulManaged)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass" Publicize="true">
+      <HintPath>$(SkulManaged)\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Plugins.Common" Publicize="true">
+      <HintPath>$(SkulManaged)\Plugins.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Plugins.Singletons" Publicize="true">
+      <HintPath>$(SkulManaged)\Plugins.Singletons.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(SkulManaged)\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>$(SkulManaged)\Unity.ResourceManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>$(SkulManaged)\Unity.Addressables.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(SkulManaged)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- After a build, copy the mod into the game's plugins folder so it's ready to test. -->
+  <Target Name="DeployToSkul" AfterTargets="Build" Condition="'$(SkulRoot)' != '' And '$(DeployToSkul)' != 'false'">
+    <!-- If Skul is running it locks the DLL; warn instead of failing so tests can still run. -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SkulRoot)\BepInEx\plugins\$(AssemblyName)" Retries="0" ContinueOnError="WarnAndContinue">
+      <Output TaskParameter="CopiedFiles" ItemName="_DeployedFiles" />
+    </Copy>
+    <Message Importance="high" Condition="'@(_DeployedFiles)' != ''" Text="Deployed $(AssemblyName) to $(SkulRoot)\BepInEx\plugins\$(AssemblyName)" />
+  </Target>
+</Project>

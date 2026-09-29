@@ -1,0 +1,13 @@
+# Build output
+bin/
+obj/
+*.user
+
+# IDE
+.vs/
+.idea/
+TestResults/
+.claude/
+
+# Release packages
+release/out/
