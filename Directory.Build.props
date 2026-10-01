@@ -63,6 +63,16 @@
       <HintPath>$(SkulManaged)\UnityEngine.UI.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <!-- Adventurers and some Dark Mirror bosses run BehaviorDesigner trees; the Codex reads their attacks from them. -->
+    <Reference Include="BehaviorDesigner.Runtime" Publicize="true">
+      <HintPath>$(SkulManaged)\BehaviorDesigner.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- Big bosses (Yggdrasil, ...) are Spine skeletons; the Codex poses copies of them for its pictures. -->
+    <Reference Include="spine-unity">
+      <HintPath>$(SkulManaged)\spine-unity.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <!-- After a build, copy the mod into the game's plugins folder so it's ready to test. -->

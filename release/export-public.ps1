@@ -1,5 +1,5 @@
 # Exports a clean copy of this repository for the public GitHub repo, with a fresh git history.
-# Left out: internal notes (docs/PROJECT_STATUS.md, docs/RELEASE_PLAN.md, docs/CODEX_PLAN.md) and the game data
+# Left out: internal notes (docs/PROJECT_STATUS.md, docs/RELEASE_PLAN.md, docs/CODEX_PLAN.md, docs/ATTACK_ANALYSIS.md) and the game data
 # test fixtures (the tests that need them skip themselves).
 # Usage: powershell -ExecutionPolicy Bypass -File release/export-public.ps1 -GitHubUser <name> -GitHubEmail <id+name@users.noreply.github.com>
 param(
@@ -14,7 +14,7 @@ if (-not $Target) { $Target = Join-Path (Split-Path -Parent $root) "SkulInsight_
 if (Test-Path (Join-Path $Target ".git")) { throw "$Target already has a git repository; update it by hand instead." }
 
 $exclude = @(
-    "docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md",
+    "docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "docs/ATTACK_ANALYSIS.md", "docs/GAME_KNOWLEDGE.md", "tools/*",
     "DamageInsight.Tests/Fixtures/*"
 )
 New-Item -ItemType Directory -Force $Target | Out-Null

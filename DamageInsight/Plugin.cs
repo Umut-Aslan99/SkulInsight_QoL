@@ -40,15 +40,23 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> CombatLogToFile;
     internal static ConfigEntry<bool> CooldownTicker;
     internal static ConfigEntry<float> CooldownTickerOpacity;
+    internal static ConfigEntry<bool> CodexEnabled;
+    internal static ConfigEntry<KeyboardShortcut> CodexKey;
+    internal static ConfigEntry<bool> CodexRecordFights;
+    internal static ConfigEntry<bool> CodexMoveCounter;   // bound in developer builds only (null otherwise)
+    internal static ConfigEntry<bool> CodexRunLog;        // bound in developer builds only (null otherwise)
 #if DEV
     internal static ConfigEntry<bool> DumpIcons;
     internal static ConfigEntry<bool> ScanGear;
+    internal static ConfigEntry<bool> ScanLevels;
     internal static ConfigEntry<bool> DarkEliteDiagnostics;
     internal static ConfigEntry<bool> DevToolsEnabled;
     internal static ConfigEntry<KeyboardShortcut> DevRoomKey;
+    internal static ConfigEntry<bool> CodexDevReveal;
 
     private bool _iconDumpRunning;
     private bool _gearScanRunning;
+    private bool _levelScanRunning;
 #endif
 
     private void Awake()
@@ -95,17 +103,35 @@ public class Plugin : BaseUnityPlugin
             "Show the remaining seconds on the item/ability icons at the bottom of the screen (83s, 2m+, 10m).");
         CooldownTickerOpacity = Config.Bind("Cooldown Ticker", "Opacity", 0.55f,
             "Opacity of the numbers (0-1).");
+        CodexEnabled = Config.Bind("Codex", "Enabled", true,
+            "Record your progress for the Codex (enemies met and killed, gear found) and capture enemy portraits.");
+        CodexKey = Config.Bind("Codex", "ToggleKey", new KeyboardShortcut(UnityEngine.KeyCode.K),
+            "Key that opens and closes the Codex book.");
+        CodexRecordFights = Config.Bind("Codex", "FilmBossAttacks", true,
+            "Film each boss attack once (a small picture 10 times a second, effects included) to show it in the Codex.");
 #if DEV
         DumpIcons = Config.Bind("Developer", "DumpIconsOnce", false,
             "Save the game's icons as PNGs to BepInEx\\DamageInsight\\IconDump when entering a run. Turns itself off afterwards.");
         ScanGear = Config.Bind("Developer", "ScanGearOnce", false,
             "Save every skull/item/quintessence's data as JSON to BepInEx\\DamageInsight\\GearScan when entering a run. Turns itself off afterwards.");
+        ScanLevels = Config.Bind("Developer", "ScanLevelsOnce", false,
+            "Codex balancing: read every chapter's stages and every map's enemy waves (normal and Dark Mirror groups) to " +
+            "Codex\\Debug\\levels.json when you are in the castle or a run. Turns itself off afterwards.");
         DarkEliteDiagnostics = Config.Bind("Developer", "DarkEliteDiagnostics", false,
             "Log how dark elites get their abilities ([DarkDiag] lines in LogOutput.log). For bug hunting; changes nothing in the game.");
         DevToolsEnabled = Config.Bind("Developer", "DevTools", true,
             "Unlock Skul's hidden developer menu (F2) and the test-map teleport (DevRoomKey). Cheats change your save (currencies, unlocks).");
         DevRoomKey = Config.Bind("Developer", "DevRoomKey", new KeyboardShortcut(UnityEngine.KeyCode.F7),
             "Teleport into the developers' test map (needs DevTools = true and a running game).");
+        CodexDevReveal = Config.Bind("Developer", "CodexRevealAllMet", true,
+            "Codex testing: everything you have met is fully revealed, and enemies are captured when first met instead of on a kill.");
+        CodexMoveCounter = Config.Bind("Developer", "CodexMoveCounter", true,
+            "Codex testing: under a boss's health bar, how many of its moves were seen and filmed, which are missing, " +
+            "and ALL MOVES SEEN once complete.");
+        CodexRunLog = Config.Bind("Developer", "CodexRunLog", true,
+            "Codex balancing: per run, every map's enemies (planned, appeared, killed) and time, to Codex\\Debug\\runs.");
+        DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
+        CodexDevReveal.SettingChanged += (_, _) => DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
 #endif
 
         // Apply every [HarmonyPatch] class one by one, so a patch broken by a game update only
@@ -116,6 +142,9 @@ public class Plugin : BaseUnityPlugin
 
         gameObject.AddComponent<DamageInsight.UI.CombatLogWindow>();
         gameObject.AddComponent<DamageInsight.UI.MiniLog>();
+        gameObject.AddComponent<DamageInsight.Codex.CodexWindow>();
+        gameObject.AddComponent<DamageInsight.Codex.FightRecorder>();
+        UnityEngine.Application.quitting += () => DamageInsight.Codex.CodexTracker.SaveIfNeeded(force: true);
 #if DEV
         gameObject.AddComponent<DevTranslator>();
 #endif
@@ -125,12 +154,16 @@ public class Plugin : BaseUnityPlugin
 
     private void Update()
     {
-        bool inRun = Singleton<Service>.Instance?.levelManager?.player != null;
+        var player = Singleton<Service>.Instance?.levelManager?.player;
+        bool inRun = player != null;
+        DamageInsight.Codex.CodexTracker.Tick(player);
         if (inRun)
             SelfTest.CheckRun();
 #if DEV
         if (inRun && DevToolsEnabled.Value && DevRoomKey.Value.IsDown())
             DevTools.EnterTestMap();
+        if (inRun && UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F8))
+            StartCoroutine(ProbeAtEndOfFrame());
 
         if (DumpIcons.Value && !_iconDumpRunning && inRun)
         {
@@ -141,6 +174,18 @@ public class Plugin : BaseUnityPlugin
                 Log.LogInfo($"Icon dump finished: {count} icons saved");
                 DumpIcons.Value = false;
                 _iconDumpRunning = false;
+            }));
+        }
+        else if (ScanLevels.Value && !_levelScanRunning && inRun)
+        {
+            _levelScanRunning = true;
+            ShowAbovePlayer("Level scan started - please wait");
+            StartCoroutine(DamageInsight.Tools.LevelScan.Run(text => Log.LogInfo(text), result =>
+            {
+                Log.LogInfo($"Level scan finished: {result}");
+                ShowAbovePlayer("Level scan finished!");
+                ScanLevels.Value = false;
+                _levelScanRunning = false;
             }));
         }
         else if (ScanGear.Value && !_gearScanRunning && !_iconDumpRunning && inRun)
@@ -160,6 +205,13 @@ public class Plugin : BaseUnityPlugin
     }
 
 #if DEV
+    private static System.Collections.IEnumerator ProbeAtEndOfFrame()
+    {
+        yield return new UnityEngine.WaitForEndOfFrame();
+        CaptureProbe.Run();
+        ShowAbovePlayer("Capture probe done - close the game and tell Claude");
+    }
+
     /// <summary>Floating message above the player (like the game's buff texts).</summary>
     private static void ShowAbovePlayer(string text)
     {

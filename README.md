@@ -73,6 +73,20 @@ stats**, e.g. `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk)`.
 Item and ability icons at the bottom of the screen show their remaining cooldown, WoW style:
 `83s`, `2m+`, `10m`.
 
+### Codex (bestiary), new in 0.10
+Press **K** for a book with every enemy, boss, adventurer, skull, item, essence and inscription you have met.
+- **Unlocked by playing:** met = ink outline, then a black silhouette, then colour and animations. Common enemies
+  need more kills than rare ones, so every entry takes about the same number of runs (★★ after about one run's
+  worth of that enemy, ★★★ after about five). Bosses and adventurers: 1 and 3 wins.
+- **Boss move lists read from the game's own AI:** every boss and adventurer shows its complete list of moves, grouped
+  by fight phase. Moves you haven't seen yet are shown as a black **???**, so you know what is still missing.
+- **Fight films:** the first time a boss does a move, the mod films it (small picture, 10 per second). Switch between
+  posed **Animations** and **Attacks (filmed)** in the book; "Refilm" replaces a take you don't like.
+- **Dark Mirror** versions of bosses are kept separately (switch in the book).
+- Everything is created on your own PC while you play; the mod ships no game art.
+
+<!-- SCREENSHOT: codex -->
+
 ## Installation
 
 ### With a mod manager (recommended)
@@ -110,6 +124,8 @@ The settings file is created on the first start:
 | Combat Log | UseDialogueBackground / BackgroundOpacity | on / 0.85 | Look of the log window |
 | Mini Log | Enabled, Lines, HideAfterSeconds, ShowPie, GapAboveMinimap | off, 4, 5, on, 40 | Small log above the minimap |
 | Cooldown Ticker | Enabled / Opacity | on / 0.55 | Seconds on HUD icons |
+| Codex | Enabled / ToggleKey | on / K | The Codex book |
+| Codex | FilmBossAttacks | on | Film each boss move once for the Codex |
 
 ## Compatibility
 - Made for Skul: The Hero Slayer **1.9.x** (Steam, Windows) with BepInExPack Skul (BepInEx 5.4.21+).
@@ -124,11 +140,18 @@ The settings file is created on the first start:
 - The pickup preview covers item stats and plain stat inscriptions. Conditional buffs and bonus-inscription items
   are not included yet. Skulls and essences on the ground have no preview yet.
 - Shock and ember damage from some sources may be labelled with a generic tag.
+- Codex, first version:
+  - Dark Mirror: the Dark Skul's second phase and King Alexander are not fully analysed yet; some Dark Mirror-only
+    moves may be missing or split into parts.
+  - A few move names are still rough (e.g. some First Hero and First Dark Hero moves appear in parts, designer
+    notes like "(1.5)" in Dark Skul moves).
+  - Move descriptions exist only for some bosses; hints on how to trigger rare moves come later.
+  - Films can show effects of your own items around the boss.
 
 ## Roadmap
 - In-game options menu for all settings
-- **Codex / Bestiary:** a book with every enemy, boss, item and inscription, unlocked by playing (kill counters,
-  attack animations, boss patterns)
+- Codex: Dark Mirror page (levels, Darktech machines, elite abilities), hints for rare moves, move descriptions
+- Codex rewards (optional): tokens for skipped gear, adventurer coins for their legendary items, Omen coins
 
 ## Feedback / bug reports
 Please open an issue on GitHub: <REPO_URL>/issues. Attach

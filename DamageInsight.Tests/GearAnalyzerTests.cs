@@ -61,3 +61,21 @@ public class GearAnalyzerTests
         Assert.Equal("Magic", hit.Attribute);
     }
 }
+
+public class SelfReferenceTests
+{
+    /// <summary>
+    /// The Eternal Werewolf's Hunt has a ToObject operation targeting the skull's own object; following it pulled
+    /// every other action (swap, combo, other skills) into Hunt and the passive. Hunt is one bite of 400%.
+    /// </summary>
+    [FixtureFact]
+    public void EternalWerewolf_HuntIsOnlyItsBite()
+    {
+        var b = Fixture.Analyze("WereWolf_4.json");
+        var hunt = System.Linq.Enumerable.Single(b.Sections, s => s.Key == "Hunting_4");
+        var hit = System.Linq.Enumerable.Single(System.Linq.Enumerable.SelectMany(hunt.Steps, st => st.Hits));
+        Assert.Equal(4.0, hit.MultMin, precision: 3);
+        var passive = System.Linq.Enumerable.Single(b.Sections, s => s.Kind == "Passive");
+        Assert.Equal(2, System.Linq.Enumerable.Count(System.Linq.Enumerable.SelectMany(passive.Steps, st => st.Hits)));
+    }
+}

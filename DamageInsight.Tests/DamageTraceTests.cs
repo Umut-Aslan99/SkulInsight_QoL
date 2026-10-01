@@ -40,7 +40,8 @@ public class DamageTraceTests
         var trace = new DamageTrace { Start = State(100) };
         trace.Dealt = 40; // e.g. the enemy only had 40 health left
         var last = trace.Explain().Last();
-        Assert.Equal("Dealt (shield or overkill)", last.Label);
+        Assert.Equal("Dealt: only 40 HP were left", last.Label);
+        Assert.Equal("overkill", last.Effect);
         Assert.Equal(40, last.Total);
     }
 

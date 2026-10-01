@@ -1,0 +1,55 @@
+{
+  "_note": "Hand-written Codex texts (our own, shipped with the mod). Keyed by the Codex entry key, then by the move label shown under the picture. 'draft' marks texts that still need checking in game.",
+  "entries": {
+    "Yggdrasil": {
+      "draft": true,
+      "about": "The ancient tree guarding the first chapter. It fights with its head and two giant hands, and awakens in a second phase once half of its health is gone.",
+      "moves": {
+        "Fist slam": {
+          "what": "Raises one hand high, follows your position for a moment and slams it down.",
+          "tip": "Keep moving until the hand drops, then dash sideways. The hand stays down for a moment after the impact: a safe window to hit back."
+        },
+        "Sweeping": {
+          "what": "One hand sweeps across the whole arena along the ground.",
+          "tip": "Wooden platforms rise when the sweep starts: jump onto one, or time a jump over the hand."
+        },
+        "Energy bomb": {
+          "what": "Charges energy in its head and fires bombs that explode where they land.",
+          "tip": "Watch where the bombs are aimed and leave that spot; the explosions are short, so you can walk back in right after."
+        },
+        "Laser": {
+          "what": "Gathers light in its head and fires a beam.",
+          "tip": "The charge-up is your warning. Get out of the beam's line before it fires instead of trying to dash through it."
+        },
+        "Groggy": {
+          "what": "Exhausted, the head sinks to the ground and the tree stops attacking for a few seconds.",
+          "tip": "Your biggest damage window: use your skills and strongest attacks on the head now."
+        },
+        "Phase 2 · Awakening": {
+          "what": "Dark quartz breaks out of the tree: phase 2 begins. Its attacks become harder and come in combinations.",
+          "tip": "Use the transformation to reposition and let your cooldowns recharge."
+        },
+        "Phase 2 · Fist power slam": {
+          "what": "A heavier slam that sends a wave of debris along the ground on impact.",
+          "tip": "Dodging the hand is not enough: jump or dash over the debris wave that follows."
+        },
+        "Phase 2 · Both fist power slam": {
+          "what": "Both hands slam down at once, covering a large part of the arena.",
+          "tip": "Stay near the middle and wait for both hands to commit before you dodge; the gap between them is your way out."
+        },
+        "Phase 2 · Sweeping combo": {
+          "what": "Two sweeps in a row: first from one side, then from the other.",
+          "tip": "Stay on a platform or ready another jump after the first sweep: the second one follows almost at once."
+        },
+        "Phase 2 · Energy corps": {
+          "what": "Summons a ring of energy orbs that fly at you one after another.",
+          "tip": "Keep moving in one direction so the orbs miss behind you; don't stop to attack until the last one has passed."
+        },
+        "Phase 2 · Groggy": {
+          "what": "Exhausted again: the head drops and the tree stops attacking.",
+          "tip": "Same as in phase 1: unload everything on the head."
+        }
+      }
+    }
+  }
+}

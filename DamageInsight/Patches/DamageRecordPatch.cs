@@ -27,6 +27,14 @@ public static class DamageRecordPatch
             {
                 Plugin.Log.LogError($"Could not record damage: {e}");
             }
+            try
+            {
+                DamageInsight.Codex.CodexTracker.OnHit(__instance.owner, damage, dealtDamage);
+            }
+            catch (Exception e)
+            {
+                Plugin.Log.LogWarning($"Codex: could not record a hit: {e.Message}");
+            }
         }
     }
 

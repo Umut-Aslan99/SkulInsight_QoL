@@ -439,6 +439,11 @@ public static class GearAnalyzer
                 return; // another gear or action: not part of this hit list
             if (type == "$character")
                 return; // summoned character: handled separately (minions)
+            // A reference to a whole object that contains the gear itself (e.g. the Werewolf's Hunt has a ToObject
+            // operation targeting the skull's own object): it lists every component of the gear, so following it
+            // would pull every other action's hits into this one.
+            if (!isRoot && node.Has("$prefab") && node.List("components").Any(c => c.Path == ""))
+                return;
 
             ctx = WithPathBase(ctx, node.Path);
             if (node.Path != null)

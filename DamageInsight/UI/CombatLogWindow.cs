@@ -73,7 +73,7 @@ public sealed class CombatLogWindow : MonoBehaviour
 
     private void Update()
     {
-        if (Plugin.CombatLogKey.Value.IsDown() || (IsOpen && Input.GetKeyDown(KeyCode.Escape)))
+        if (!DamageInsight.Codex.CodexWindow.IsTyping && (Plugin.CombatLogKey.Value.IsDown() || (IsOpen && Input.GetKeyDown(KeyCode.Escape))))
             SetOpen(!IsOpen);
         if (!IsOpen)
             return;

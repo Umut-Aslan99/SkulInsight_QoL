@@ -34,6 +34,9 @@ public sealed class GearDoc
     /// <summary>Parses any JSON value (e.g. the status settings) and returns it as a node.</summary>
     public static Node ParseNode(string json) => Parse("{\"value\":" + json + "}").Root.Child("value");
 
+    /// <summary>Plain JSON: objects → Dictionary, arrays → List, numbers → double, strings, bools, null.</summary>
+    internal static object ParseRaw(string json) => new JsonParser(json).ParseValue();
+
     internal object Resolve(object value)
     {
         if (value is Dictionary<string, object> d && d.Count == 1 && d.TryGetValue("$ref", out var r) && r is double id

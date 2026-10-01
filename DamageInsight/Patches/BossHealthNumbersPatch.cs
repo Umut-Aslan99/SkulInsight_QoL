@@ -21,8 +21,16 @@ public static class BossHealthNumbersPatch
 {
     [HarmonyPostfix]
     [HarmonyPatch(nameof(CharacterHealthBar.Initialize))]
-    private static void AfterInitialize(CharacterHealthBar __instance) =>
+    private static void AfterInitialize(CharacterHealthBar __instance, Character character)
+    {
         Guard.Run("Boss HP numbers", () => Attach(__instance));
+        // A boss bar opens when the fight starts: begin filming now, not only at the player's first hit.
+        Guard.Run("Codex film start", () =>
+        {
+            if (DamageInsight.Codex.BossAttacks.Covers(character) && DamageInsight.Codex.CodexTracker.EntryOf(character) is { } entry)
+                DamageInsight.Codex.FightRecorder.Watch(character, entry.key);
+        });
+    }
 
     private static void Attach(CharacterHealthBar __instance)
     {
@@ -38,6 +46,8 @@ public static class BossHealthNumbersPatch
         TMP_FontAsset font = existingText != null ? existingText.font : null;
 
         HealthNumberLabel.Attach(__instance, font);
+        if (Plugin.CodexMoveCounter != null)
+            MoveCounterLabel.Attach(__instance, font);
         Plugin.Log.LogInfo($"Added HP numbers to '{__instance.name}' ({panel.GetType().Name})");
     }
 

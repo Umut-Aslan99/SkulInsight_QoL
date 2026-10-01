@@ -52,6 +52,33 @@ public static class OwnerNames
         return owner;
     }
 
+    private static readonly Dictionary<object, Owner> ByProjectile = new();
+    private static Owner? _firing;
+
+    /// <summary>A FireProjectile operation starts: remember whose it is (projectiles fired now belong to it).</summary>
+    public static void BeginFiring(Component operation)
+    {
+        _firing = OfComponent(operation);
+        if (_firing == null && TryRebuild())
+            _firing = OfComponent(operation);
+    }
+
+    public static void EndFiring() => _firing = null;
+
+    /// <summary>A projectile was fired: link it to the operation that is firing right now.</summary>
+    public static void LinkProjectile(object projectile)
+    {
+        if (_firing is not { } owner || projectile == null)
+            return;
+        if (ByProjectile.Count > 5000)
+            ByProjectile.Clear();
+        ByProjectile[projectile] = owner; // pooled projectiles are reused: the latest firing wins
+    }
+
+    /// <summary>What fired a projectile, if known.</summary>
+    public static Owner? OfProjectile(object projectile) =>
+        projectile != null && ByProjectile.TryGetValue(projectile, out var owner) ? owner : (Owner?)null;
+
     /// <summary>What dealt a hit, from its HitInfo (registered when the attack's operations start).</summary>
     public static Owner? OfHitInfo(HitInfo hitInfo)
     {
@@ -115,12 +142,22 @@ public static class OwnerNames
         return null;
     }
 
-    /// <summary>Rebuilds the maps, at most every 2 seconds (FindObjectsOfType isn't free).</summary>
+    private static bool _dirty = true;
+
+    /// <summary>Gear, a dark ability or an inscription changed: the next unknown handler may rebuild the maps.</summary>
+    public static void MarkDirty() => _dirty = true;
+
+    /// <summary>
+    /// Rebuilds the maps when the player's gear changed, otherwise at most every 30 seconds. Scanning all gear
+    /// (FindObjectsOfType) takes a few milliseconds; handlers that belong to no gear (enemy buffs, the game's own
+    /// rules) would otherwise trigger it constantly and make the game stutter.
+    /// </summary>
     private static bool TryRebuild()
     {
-        if (Time.unscaledTime < _nextRebuild)
+        if (!_dirty && Time.unscaledTime < _nextRebuild)
             return false;
-        _nextRebuild = Time.unscaledTime + 2f;
+        _dirty = false;
+        _nextRebuild = Time.unscaledTime + 30f;
         RebuildAbilityMap();
         return true;
     }

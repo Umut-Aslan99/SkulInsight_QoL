@@ -11,7 +11,7 @@ if (-not (Test-Path (Join-Path $Target ".git"))) { throw "$Target is not a git r
 [xml]$project = Get-Content (Join-Path $root "DamageInsight/DamageInsight.csproj")
 $version = ($project.Project.PropertyGroup | Where-Object { $_.Version } | Select-Object -First 1).Version
 
-$exclude = @("docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "DamageInsight.Tests/Fixtures/*")
+$exclude = @("docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "docs/ATTACK_ANALYSIS.md", "docs/GAME_KNOWLEDGE.md", "tools/*", "DamageInsight.Tests/Fixtures/*")
 $keep = @(".git", "DamageInsight.Tests/Fixtures/README.md")
 
 # Remove files that no longer exist here (everything tracked in the public copy except the kept ones).

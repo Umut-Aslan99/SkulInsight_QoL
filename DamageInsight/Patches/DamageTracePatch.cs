@@ -147,7 +147,16 @@ public static class DamageTracePatch
             }
             else if (damage.attacker.projectile != null)
             {
-                trace.Origin = OwnerNames.Humanize(damage.attacker.projectile.gameObject.name);
+                // Named after what fired it (e.g. the spirit's item); else after the projectile itself.
+                if (OwnerNames.OfProjectile(damage.attacker.projectile) is { } fired)
+                {
+                    trace.Origin = fired.Name;
+                    trace.OriginIcon = fired.Icon;
+                }
+                else
+                {
+                    trace.Origin = OwnerNames.Humanize(damage.attacker.projectile.gameObject.name);
+                }
             }
             _pendingOrigin = null;
             AddStatParts(trace, __instance.stat, damage);

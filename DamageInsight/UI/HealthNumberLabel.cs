@@ -22,6 +22,7 @@ public class HealthNumberLabel : MonoBehaviour
     private CharacterHealthBar _bar;
     private RectTransform _rect;
     private TextMeshProUGUI _text;
+    private TextMeshProUGUI _shadow; // a dark copy slightly offset behind the number, instead of a material outline
     private double _lastCurrent = -1, _lastMax = -1, _lastShield = -1;
     private bool _loggedGeometry;
 
@@ -39,6 +40,37 @@ public class HealthNumberLabel : MonoBehaviour
         rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
         rect.SetAsLastSibling(); // draw on top of the bar graphics
 
+        // TMP's outline needs its own material instance, which can't be made while a boss intro cutscene sets the
+        // bar up (it crashed there). A dark copy of the text, offset by 2 pixels, needs no material at all.
+        var shadowGo = new GameObject("Shadow", typeof(RectTransform));
+        shadowGo.layer = go.layer;
+        var shadowRect = (RectTransform)shadowGo.transform;
+        shadowRect.SetParent(rect, worldPositionStays: false);
+        shadowRect.anchorMin = Vector2.zero;
+        shadowRect.anchorMax = Vector2.one;
+        shadowRect.offsetMin = new Vector2(2, -2);
+        shadowRect.offsetMax = new Vector2(2, -2);
+        var shadow = MakeText(shadowGo, font, new Color(0f, 0f, 0f, 0.85f));
+
+        var textGo = new GameObject("Text", typeof(RectTransform));
+        textGo.layer = go.layer;
+        var textRect = (RectTransform)textGo.transform;
+        textRect.SetParent(rect, worldPositionStays: false);
+        textRect.anchorMin = Vector2.zero;
+        textRect.anchorMax = Vector2.one;
+        textRect.offsetMin = textRect.offsetMax = Vector2.zero;
+        var text = MakeText(textGo, font, Color.white);
+
+        var label = go.AddComponent<HealthNumberLabel>();
+        label._bar = bar;
+        label._rect = rect;
+        label._text = text;
+        label._shadow = shadow;
+        return label;
+    }
+
+    private static TextMeshProUGUI MakeText(GameObject go, TMP_FontAsset font, Color color)
+    {
         var text = go.AddComponent<TextMeshProUGUI>();
         if (font != null)
             text.font = font;
@@ -47,26 +79,18 @@ public class HealthNumberLabel : MonoBehaviour
         text.enableWordWrapping = false;
         text.overflowMode = TextOverflowModes.Overflow;
         text.raycastTarget = false;
-        text.color = Color.white;
-        // The outline lives in the font material, which a bar created during a cutscene may not have yet.
-        if (text.font != null && text.fontSharedMaterial != null)
-        {
-            text.outlineWidth = 0.2f;
-            text.outlineColor = new Color32(0, 0, 0, 255);
-        }
-
-        var label = go.AddComponent<HealthNumberLabel>();
-        label._bar = bar;
-        label._rect = rect;
-        label._text = text;
-        return label;
+        text.color = color;
+        return text;
     }
 
     private void LateUpdate()
     {
         bool enabled = Plugin.BossHealthNumbers.Value;
         if (_text.enabled != enabled)
+        {
             _text.enabled = enabled;
+            _shadow.enabled = enabled;
+        }
         if (!enabled)
             return;
 
@@ -98,6 +122,7 @@ public class HealthNumberLabel : MonoBehaviour
         float localHeight = height > 1f ? height / ownScale.y : FallbackBarHeight;
         _rect.sizeDelta = new Vector2(Mathf.Max(width / ownScale.x, 200f), localHeight);
         _text.fontSize = Mathf.Clamp(localHeight * 0.85f, MinFontSize, MaxFontSize);
+        _shadow.fontSize = _text.fontSize;
 
         if (!_loggedGeometry)
         {
@@ -113,7 +138,7 @@ public class HealthNumberLabel : MonoBehaviour
         var health = _bar._health;
         if (health == null)
         {
-            _text.text = "";
+            _text.text = _shadow.text = "";
             return;
         }
 
@@ -132,5 +157,6 @@ public class HealthNumberLabel : MonoBehaviour
         if (shield >= 1)
             text += $"  <color=#BFE9FF>(+{System.Math.Ceiling(shield):N0})</color>";
         _text.text = text;
+        _shadow.text = System.Text.RegularExpressions.Regex.Replace(text, "</?color[^>]*>", ""); // stays dark
     }
 }

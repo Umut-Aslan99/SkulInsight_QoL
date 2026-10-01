@@ -132,7 +132,10 @@ public sealed class DamageTrace
         double exact = previous.Amount(Critical);
         double computed = Math.Ceiling(exact - 1e-9);
         if (Dealt > 0 && Math.Abs(computed - Dealt) >= 1)
-            rows.Add(new TraceRow(Dealt < computed ? "Dealt (shield or overkill)" : "Dealt", "", Dealt));
+            // Less than computed: the target had fewer HP left (overkill), or a shield absorbed part of it.
+            rows.Add(Dealt < computed
+                ? new TraceRow($"Dealt: only {Dealt.ToString("N0", CultureInfo.InvariantCulture)} HP were left", "overkill", Dealt)
+                : new TraceRow("Dealt", "", Dealt));
         else if (Math.Abs(exact - computed) > 1e-6)
             rows.Add(new TraceRow("Rounded up", "", computed));
         return rows;
