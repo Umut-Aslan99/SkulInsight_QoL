@@ -9,6 +9,13 @@ namespace DamageInsight.UI;
 /// </summary>
 public static class CooldownFormat
 {
+    /// <summary>
+    /// Real seconds left on a cooldown the game counts down by deltaTime x speed (skill, swap or quintessence
+    /// cooldown speed stat; 1 = normal, 1.5 = +50%). A speed of 0 or less never finishes: nothing to show.
+    /// </summary>
+    public static double RealSeconds(double remain, double speed) =>
+        remain > 0 && speed > 0.01 ? remain / speed : 0;
+
     public static string Format(double seconds)
     {
         if (double.IsNaN(seconds) || double.IsInfinity(seconds) || seconds <= 0)

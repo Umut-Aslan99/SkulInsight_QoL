@@ -1,10 +1,11 @@
 using Characters;
 using Characters.Abilities;
+using Characters.Cooldowns;
+using Characters.Player;
 using DamageInsight.UI;
 using HarmonyLib;
-using TMPro;
 using UI.Hud;
-using UnityEngine;
+using UnityEngine.UI;
 
 namespace DamageInsight.Patches;
 
@@ -16,8 +17,6 @@ namespace DamageInsight.Patches;
 [HarmonyPatch(typeof(AbilityIconDisplay), "Update")]
 public static class CooldownTickerPatch
 {
-    private const string LabelName = "DamageInsight Cooldown";
-
     private static bool _failed;
 
     private static void Postfix(AbilityIcon[] ____icons, Character ____character)
@@ -46,9 +45,7 @@ public static class CooldownTickerPatch
                 continue;
             IAbilityInstance instance = NextWithIcon(____character, ref index);
             string text = enabled && instance != null ? CooldownFormat.Format(CooldownReader.Remaining(instance)) : "";
-            var label = LabelOf(icon, create: text.Length > 0);
-            if (label != null && label.text != text)
-                label.text = text;
+            CooldownLabel.Set(icon.transform, text, icon._stackText != null ? icon._stackText.font : null);
         }
     }
 
@@ -63,35 +60,67 @@ public static class CooldownTickerPatch
         }
         return null;
     }
+}
 
-    private static TextMeshProUGUI LabelOf(AbilityIcon icon, bool create)
+/// <summary>
+/// The same seconds on the skill icons of both skulls (the small ones next to the swap icon too) and on the
+/// quintessence icon; ActionIcon and EssenceIcon both run IconWithCooldown.Update. A time cooldown counts
+/// remainTime down by deltaTime x its own speed (skill or quintessence cooldown speed stat), so the real
+/// seconds left are remainTime / speed. Streaks and gauge cooldowns show nothing (the game shows no fill).
+/// </summary>
+[HarmonyPatch(typeof(global::UI.IconWithCooldown), "Update")]
+public static class SkillCooldownTickerPatch
+{
+    private static bool _failed;
+
+    private static void Postfix(global::UI.IconWithCooldown __instance)
     {
-        var existing = icon.transform.Find(LabelName);
-        if (existing != null)
-            return existing.GetComponent<TextMeshProUGUI>();
-        if (!create)
-            return null;
+        if (_failed || __instance == null || __instance._cooldownMask == null)
+            return;
+        try
+        {
+            var cooldown = __instance.cooldown;
+            double seconds = 0;
+            if (Plugin.CooldownTicker.Value && cooldown != null && cooldown.type == CooldownSerializer.Type.Time
+                && cooldown.time != null && cooldown.remainPercent > 0.001f)
+                seconds = CooldownFormat.RealSeconds(cooldown.time.remainTime, cooldown.time.GetCooldownSpeed());
+            var font = __instance._remainStreaks != null ? __instance._remainStreaks.font : null;
+            CooldownLabel.Set(__instance._cooldownMask.transform, CooldownFormat.Format(seconds), font);
+        }
+        catch (System.Exception e)
+        {
+            _failed = true;
+            Plugin.Log.LogWarning($"Skill cooldown ticker switched off after an error: {e}");
+        }
+    }
+}
 
-        var go = new GameObject(LabelName, typeof(RectTransform));
-        go.transform.SetParent(icon.transform, false);
-        var rect = (RectTransform)go.transform;
-        rect.anchorMin = Vector2.zero;
-        rect.anchorMax = Vector2.one;
-        rect.offsetMin = rect.offsetMax = Vector2.zero;
+/// <summary>
+/// Seconds on the swap icon. WeaponInventory counts _remainCooldown (8 s) down by deltaTime x the swap
+/// cooldown speed stat, so the real seconds left are _remainCooldown / speed.
+/// </summary>
+[HarmonyPatch(typeof(HeadupDisplay), "Update")]
+public static class SwapCooldownTickerPatch
+{
+    private static bool _failed;
 
-        var text = go.AddComponent<TextMeshProUGUI>();
-        if (icon._stackText != null)
-            text.font = icon._stackText.font;
-        text.alignment = TextAlignmentOptions.Center;
-        text.enableWordWrapping = false;
-        text.raycastTarget = false;
-        text.enableAutoSizing = true;
-        text.fontSizeMin = 4;
-        text.fontSizeMax = 40;
-        text.margin = new Vector4(1, 1, 1, 1);
-        text.color = new Color(1f, 1f, 1f, Mathf.Clamp01(Plugin.CooldownTickerOpacity.Value));
-        text.outlineWidth = 0.25f;
-        text.outlineColor = new Color32(0, 0, 0, 255);
-        return text;
+    private static void Postfix(Image ____changeWeaponCooldown, WeaponInventory ____weaponInventory, Character ____character,
+        global::UI.ActionIcon[] ____skills)
+    {
+        if (_failed || ____changeWeaponCooldown == null)
+            return;
+        try
+        {
+            double seconds = 0;
+            if (Plugin.CooldownTicker.Value && ____character != null && ____weaponInventory != null && ____weaponInventory.next != null)
+                seconds = CooldownFormat.RealSeconds(____weaponInventory._remainCooldown, ____character.stat.GetSwapCooldownSpeed());
+            var streaks = ____skills != null && ____skills.Length > 0 && ____skills[0] != null ? ____skills[0]._remainStreaks : null;
+            CooldownLabel.Set(____changeWeaponCooldown.transform, CooldownFormat.Format(seconds), streaks != null ? streaks.font : null);
+        }
+        catch (System.Exception e)
+        {
+            _failed = true;
+            Plugin.Log.LogWarning($"Swap cooldown ticker switched off after an error: {e}");
+        }
     }
 }

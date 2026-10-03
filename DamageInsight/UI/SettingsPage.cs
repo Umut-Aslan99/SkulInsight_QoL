@@ -560,6 +560,10 @@ public sealed class SettingsPage : global::UI.Dialogue
             button.onClick.AddListener(() => Guard.Run("Settings page (button)", () => Pressed(row)));
         }
 
+        // The game's PlaySoundOnSelected on every row is an EventTrigger: it takes the mouse wheel and drops it,
+        // so scrolling stuck whenever the pointer was over a row. Hand the wheel on to the list.
+        go.AddComponent<WheelToList>().List = _scroll;
+
         ShowValue(row);
         _rows.Add(row);
         _rowsByObject[go] = row;
@@ -845,5 +849,17 @@ public sealed class SettingsPage : global::UI.Dialogue
         public PauseSelection Selection;
 
         public void OnSubmit(BaseEventData eventData) => Selection?.MoveRight();
+    }
+
+    /// <summary>Passes the mouse wheel from a row on to the list (see AddRow).</summary>
+    private sealed class WheelToList : MonoBehaviour, IScrollHandler
+    {
+        public ScrollRect List;
+
+        public void OnScroll(PointerEventData eventData)
+        {
+            if (List != null)
+                List.OnScroll(eventData);
+        }
     }
 }

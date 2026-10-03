@@ -7,10 +7,10 @@ picking up an item would do to your build.
 A quality-of-life mod: it changes nothing about the game's balance or saves. It only shows information the game
 already uses internally. Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.10.1: every setting in the game (Esc → SkulInsight QoL) and all of the game's languages.** Please report
+> **Version 0.10.2: cooldown seconds on your skills, swap and quintessence too (a player request).** Please report
 > bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
-<!-- SCREENSHOT: overview (fight with damage numbers + combat log) -->
+![A boss fight with the mod: damage numbers with their source, boss HP and the mini log](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
 
 ## Features
 
@@ -20,10 +20,12 @@ already uses internally. Every feature can be switched off in the game: pause (E
   - Poison, burn, bleed and other statuses
 - Numbers stay on screen a little longer and fade out smoothly (both configurable).
 
-<!-- SCREENSHOT: damage numbers -->
+![A basic attack (left) and a skill (right), each with its source icon](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/damage-numbers.png)
 
 ### HP numbers on big health bars
 Bosses, dark elites, veterans and the adventurer party show `current / max` HP (and shields) on their health bars.
+
+![Boss HP](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/boss-hp.png)
 
 ### Real numbers in every description (League-of-Legends style)
 Descriptions of skulls, skills, swaps, items, essences and inscriptions show the damage **with your current
@@ -40,7 +42,17 @@ stats**, e.g. `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk)`.
   - the **tuned** (upgraded) versions, including the witch's "Tuned" box
 - Explains mechanics the game only hints at, e.g. how Strike's "deadlier strikes" really multiply crit damage.
 
-<!-- SCREENSHOT: item description with numbers -->
+A skull's basic combo and jump attack, each hit with its real numbers:
+
+![Skull description with the damage of every hit](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/skull-description.png)
+
+Every skill shows its damage:
+
+![Skill description with its damage](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/skill-description.png)
+
+Even inscription damage is calculated, step by step (here Arms armaments and Excessive Bleeding's bleed):
+
+![An item's inscriptions with their damage per step](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/inscription-description.png)
 
 ### Pickup and swap preview
 - Items on the ground and in shops show their numbers **as if you had already picked them up**. The item's
@@ -49,7 +61,10 @@ stats**, e.g. `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk)`.
   `If picked up: Arms 1 > 2 · Courage 1 > 2 · Phys. atk 191% > 355.2%`
 - With a full inventory, the swap menu shows the numbers **after swapping** the selected item.
 
-<!-- SCREENSHOT: pickup preview -->
+This makes planning a build much easier: you see what an item would do right at the item, without switching to
+the stat sheet and back.
+
+![Pickup preview: the item's numbers as if picked up, with the inscription and stat changes](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/pickup-preview.png)
 
 ### Combat log (press `L`)
 - Every hit, grouped by room, updated live.
@@ -68,11 +83,17 @@ stats**, e.g. `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk)`.
   closing the game.
 - Optional mini log: a few fading lines above the minimap.
 
-<!-- SCREENSHOT: combat log with calculation tooltip -->
+![Hovering a hit shows its full calculation: every item, inscription and effect with its multiplier](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/combat-calculation.png)
+
+![The mini log above the minimap](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/mini-log.png)
+
+![The combat log with filters and the pie chart by source](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/combat-log.png)
 
 ### Cooldown ticker
-Item and ability icons at the bottom of the screen show their remaining cooldown, WoW style:
-`83s`, `2m+`, `10m`.
+The skill icons of both skulls, the swap icon, the quintessence and the item and ability icons show their remaining
+cooldown in real seconds, WoW style: `83s`, `2m+`, `10m`. Your cooldown speed bonuses are included.
+
+![Seconds left on a skill icon](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/cooldown-ticker.png)
 
 ### Codex (bestiary), new in 0.10
 Press **K** for a book with every enemy, boss, adventurer, skull, item, essence and inscription you have met.
@@ -86,12 +107,24 @@ Press **K** for a book with every enemy, boss, adventurer, skull, item, essence 
 - **Dark Mirror** versions of bosses are kept separately (switch in the book).
 - Everything is created on your own PC while you play; the mod ships no game art.
 
-<!-- SCREENSHOT: codex -->
+![A boss page playing the moves the mod filmed, with notes on how to deal with them](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-film.gif)
+
+![An enemy page: its animations and your stats against it](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-enemy.png)
+
+![A Dark Mirror boss page playing a filmed move](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-boss.png)
+
+![An inscription page with every step](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-inscription.png)
 
 ### Settings in the game
 Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings: every setting of the mod in one list, styled
 like the game's options, with keyboard, mouse and controller. The right side explains the selected setting and its
 default. Changes apply at once and are saved right away.
+
+![The SkulInsight QoL button in the pause menu](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-menu.png)
+
+![The settings page: every option with its explanation and default](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-page.png)
+
+![Choosing the icon for each damage source](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-icons.png)
 
 ### All game languages
 The mod's texts follow the game's language (English, 한국어, 日本語, 简体中文, 繁體中文, Deutsch, Español, Português (Brasil), Русский, Polski, Français) and switch live when you change it.
@@ -169,9 +202,12 @@ The same settings are in the settings file (created on the first start):
   are very welcome (see *All game languages*). The config file and the developer tools stay English.
 
 ## Roadmap
-- Codex: Dark Mirror page (levels 0–10 with the game's values, Darktech machines, elite abilities), more move
-  descriptions
-- Codex rewards (optional): tokens for skipped gear, adventurer coins for their legendary items, Omen coins
+- **0.11:** Codex films and animations cleaned up (complete boss moves, effects and projectiles of enemies)
+- **0.12:** full Codex entries for skulls, items, essences, inscriptions and dark abilities (lore, skills, all
+  numbers), unlocked by playing; a character page with your whole build
+- **0.13:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics
+- **0.14:** Dark Mirror page (levels 0–10 with the game's values, Darktech machines, elite abilities)
+- **0.15:** optional Codex rewards (tokens for skipped gear, adventurer coins, Omen coins)
 
 ## Feedback / bug reports
 Please open an issue on GitHub: <REPO_URL>/issues. Attach

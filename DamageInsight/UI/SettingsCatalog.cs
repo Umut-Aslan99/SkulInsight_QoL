@@ -173,7 +173,7 @@ public static class SettingsCatalog
         ["Mini Log/GapAboveMinimap"] = Number(Loc.N("Gap above map"), 0, 300, 5, Unit.Plain,
             Loc.N("Distance between the minimap and the mini log (in pixels at 1920x1080).")),
         ["Cooldown Ticker/Enabled"] = On(Loc.N("Show seconds"),
-            Loc.N("Show the remaining seconds on the item and ability icons at the bottom of the screen (83s, 2m+, 10m).")),
+            Loc.N("Show the remaining seconds on the skill, swap, quintessence, item and ability icons (83s, 2m+, 10m). Cooldown speed bonuses are included.")),
         ["Cooldown Ticker/Opacity"] = Number(Loc.N("Opacity"), 0, 1, 0.05, Unit.Percent, Loc.N("How strongly the seconds are drawn.")),
         ["Codex/Enabled"] = On(Loc.N("Record progress"),
             Loc.N("Record your progress for the Codex (enemies met and killed, gear found) and capture enemy pictures.")),

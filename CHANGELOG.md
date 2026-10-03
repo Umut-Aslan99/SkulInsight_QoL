@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.2 (cooldown seconds everywhere, screenshots)
+
+- **Player request:** cooldown seconds now also on the **skill icons** of both skulls, the **swap** icon and the
+  **quintessence** icon, with your cooldown speed bonuses included (the number is real seconds, not the base cooldown).
+- Cooldown opacity changes without a restart.
+- Settings page: the mouse wheel now scrolls the list while the pointer is over a setting too (it stuck there).
+- README and guide: screenshots.
+
 ## 0.10.1 (settings in the game, all game languages)
 
 - New: **the mod speaks every language the game has** (English, 한국어, 日本語, 简体中文, 繁體中文, Deutsch, Español, Português (Brasil), Русский, Polski, Français). It follows the game's
@@ -7,7 +15,7 @@
   combat log, calculations, damage tags, the Codex (incl. boss move names and hints) and the settings page are
   translated, using the game's own terms. Translations can be corrected without an update: put a file with your
   changes into `BepInEx/DamageInsight/Lang/<code>.json` (see the guide).
-- New: **settings page in the game.** Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings. Every
+- New (**player request**): **settings page in the game.** Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings. Every
   setting of the mod in one list, styled like the game's options, with keyboard, mouse and controller. The right
   side explains the selected setting and shows its default. Changes apply at once and are saved right away; a key
   is changed by selecting it and pressing the new key. Also: reset the combat log window position, reset everything.

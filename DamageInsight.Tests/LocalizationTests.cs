@@ -35,8 +35,11 @@ public class LocalizationTests
         var template = Template.Load();
         if (Environment.GetEnvironmentVariable("UPDATE_LANG_TEMPLATE") == "1")
         {
+            // Names are only added: the Codex data on this PC can lose some (a reset moves films away), but those
+            // moves still exist in the game. Remove a name that is really gone by hand (then lang.py prune).
             var names = DataNames(out bool found);
-            template = new Template(code, found ? names.Where(n => !code.Contains(n)).OrderBy(n => n, StringComparer.Ordinal).ToList() : template.Names);
+            template = new Template(code, found ? names.Union(template.Names).Where(n => !code.Contains(n)).Distinct()
+                .OrderBy(n => n, StringComparer.Ordinal).ToList() : template.Names);
             template.Save();
         }
         var missing = code.Where(k => !template.Strings.Contains(k)).ToList();

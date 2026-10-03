@@ -48,6 +48,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> CodexMoveHints;
     internal static ConfigEntry<bool> CodexMoveCounter;   // bound in developer builds only (null otherwise)
     internal static ConfigEntry<bool> CodexRunLog;        // bound in developer builds only (null otherwise)
+    internal static ConfigEntry<bool> PreferNewMoves;     // bound in developer builds only (null otherwise)
 #if DEV
     internal static ConfigEntry<bool> DumpIcons;
     internal static ConfigEntry<bool> ScanGear;
@@ -109,7 +110,7 @@ public class Plugin : BaseUnityPlugin
         MiniLogOffsetY = Config.Bind("Mini Log", "GapAboveMinimap", 40f,
             "Distance between the minimap and the mini log (reference pixels at 1920x1080).");
         CooldownTicker = Config.Bind("Cooldown Ticker", "Enabled", true,
-            "Show the remaining seconds on the item/ability icons at the bottom of the screen (83s, 2m+, 10m).");
+            "Show the remaining seconds on the skill, swap, quintessence, item and ability icons (83s, 2m+, 10m). Cooldown speed bonuses are included.");
         CooldownTickerOpacity = Config.Bind("Cooldown Ticker", "Opacity", 0.55f,
             "Opacity of the numbers (0-1).");
         CodexEnabled = Config.Bind("Codex", "Enabled", true,
@@ -143,6 +144,9 @@ public class Plugin : BaseUnityPlugin
             "and ALL MOVES SEEN once complete.");
         CodexRunLog = Config.Bind("Developer", "CodexRunLog", true,
             "Codex balancing: per run, every map's enemies (planned, appeared, killed) and time, to Codex\\Debug\\runs.");
+        PreferNewMoves = Config.Bind("Developer", "PreferNewMoves", false,
+            "Codex testing: bosses pick moves the Codex hasn't seen yet first, then moves they haven't done in this fight, " +
+            "so every move shows up (and is filmed) quickly. Their conditions (HP range, distance, cooldowns) still apply.");
         DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
         CodexDevReveal.SettingChanged += (_, _) => DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
 #endif

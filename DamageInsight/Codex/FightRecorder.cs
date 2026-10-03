@@ -52,6 +52,42 @@ public sealed class FightRecorder : MonoBehaviour
         public bool Dark;                           // a Dark Mirror fight
         public List<string> Moves = new();          // every move it has (for the move counter), once known
         public HashSet<string> Seen = new();        // moves seen in this mode, this fight and earlier ones
+        public readonly HashSet<string> Done = new(); // moves started in this fight (Developer/PreferNewMoves)
+        private readonly Dictionary<string, (int tries, float at)> _steered = new(); // PreferNewMoves tries per move
+
+        /// <summary>
+        /// Whether steering towards a move still missing (unseen or unfilmed) is worth it: 3 tries, then a 15 s pause.
+        /// A move locked behind an HP range, or one only ever filmed inside a bigger move, must not pull forever.
+        /// </summary>
+        public bool Worth(string move) =>
+            !_steered.TryGetValue(move, out var t) || t.tries < 3 || Time.unscaledTime - t.at > 15f;
+
+        public void Steered(string move)
+        {
+            _steered.TryGetValue(move, out var t);
+            if (Time.unscaledTime - t.at > 15f)
+                t.tries = 0;
+            _steered[move] = (t.tries + 1, Time.unscaledTime);
+        }
+
+        public bool Missing(string move) => !Seen.Contains(move) || !Recorded.Contains(move);
+        private Dictionary<object, AttackGraph.Unit> _unitOf;
+        private readonly Dictionary<AttackGraph.Unit, List<string>> _below = new();
+
+        /// <summary>The moves a node of the boss's tree can lead to (null: not a node of this boss).</summary>
+        public List<string> MovesBelow(object node)
+        {
+            if (Graph == null)
+                return null;
+            _unitOf ??= Graph.Units.Where(u => u.Owner.Value != null).GroupBy(u => u.Owner.Value).ToDictionary(g => g.Key, g => g.First());
+            if (!_unitOf.TryGetValue(node, out var unit))
+                return null;
+            if (!_below.TryGetValue(unit, out var moves))
+                _below[unit] = moves = Graph.Attacks
+                    .Where(a => !a.IsTail && Moves.Contains(a.Label) && a.Units.Any(u => u == unit || AttackGraph.Reaches(unit, u)))
+                    .Select(a => a.Label).Distinct().ToList();
+            return moves;
+        }
 
         /// <summary>Notes that the boss did this move (kept in the progress, per mode).</summary>
         public void Saw(string label)
@@ -204,6 +240,53 @@ public sealed class FightRecorder : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Developer/PreferNewMoves: how much a node of a filmed boss's tree is wanted as the AI's next pick. 2: it leads to
+    /// a move the Codex hasn't seen in this mode or has no film of (a few tries at a time, see Film.Worth); 1: to a move
+    /// not done in this fight yet (once every seen move was done, a new round starts); 0: neither, or not a node of a
+    /// boss being filmed.
+    /// </summary>
+    public static int Want(object node)
+    {
+        if (_instance == null || node == null)
+            return 0;
+        foreach (var film in _instance._films)
+        {
+            var moves = film.MovesBelow(node);
+            if (moves == null)
+                continue;
+            if (moves.Any(m => film.Missing(m) && film.Worth(m)))
+                return 2;
+            // The round covers the moves seen so far: one never seen (a setup step, a locked phase) would keep it open.
+            var seen = film.Moves.Where(film.Seen.Contains).ToList();
+            if (seen.Count > 0 && seen.All(film.Done.Contains))
+                film.Done.Clear();
+            return moves.Any(m => film.Seen.Contains(m) && !film.Done.Contains(m)) ? 1 : 0;
+        }
+        return 0;
+    }
+
+    /// <summary>PreferNewMoves steered the AI to this node: counts a try for each missing move below it.</summary>
+    public static void NoteSteered(object node)
+    {
+        foreach (var film in _instance != null ? _instance._films : new List<Film>())
+            if (film.MovesBelow(node) is { } moves)
+            {
+                foreach (var move in moves.Where(film.Missing))
+                    film.Steered(move);
+                return;
+            }
+    }
+
+    /// <summary>For the PreferNewMoves log: the boss and the moves a tree node leads to ("FirstHero1@DM: Rush, Dash").</summary>
+    public static string MovesText(object node)
+    {
+        foreach (var film in _instance != null ? _instance._films : new List<Film>())
+            if (film.MovesBelow(node) is { } moves)
+                return $"{film.Key}: {string.Join(", ", moves.Take(4))}{(moves.Count > 4 ? $" (+{moves.Count - 4})" : "")}";
+        return "?";
+    }
+
     private void Begin(Character boss, string key)
     {
         // Moves already on film are skipped, unless the player marked them for a new take ("Refilm").
@@ -298,6 +381,7 @@ public sealed class FightRecorder : MonoBehaviour
             return; // a helper or a tail on its own (an escape at the start of a phase): nothing to film
         film.Attack = attack;
         film.Segment = attack.Label;
+        film.Done.Add(attack.Label);
         // Seen once one of its actions actually plays (Update): an AI that only checks whether it could do the move
         // ("can Phoenix landing happen?") hasn't shown it. Moves made of animations only count at once.
         if (!attack.Steps.Any(s => s is Characters.Actions.Action))

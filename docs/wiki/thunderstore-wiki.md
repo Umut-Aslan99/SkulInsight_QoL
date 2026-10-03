@@ -8,7 +8,7 @@ record yourself.
 It is a quality-of-life mod: it changes nothing about balance, drops or saves, and every feature can be switched
 off. It is safe to add or remove at any time.
 
-![Overview](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.png)
+![Overview](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
 
 ---
 
@@ -22,6 +22,10 @@ off. It is safe to add or remove at any time.
 Everything else works on its own while you play. **Settings:** pause the game (Esc) → **SkulInsight QoL**, right
 under the game's own Settings. Every option is there with an explanation; changes apply at once. (They are also in
 r2modman / Gale → *Config editor* → `docrun.skulinsight_qol`.)
+
+![Pause menu](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-menu.png)
+
+![Settings page](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-page.png)
 
 ---
 
@@ -62,7 +66,11 @@ stats**, for example `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk
 - Mechanics the game only hints at are spelled out, e.g. how Strike's "deadlier strikes" really multiply crit
   damage.
 
-![Item description](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/description.png)
+![Skull description](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/skull-description.png)
+
+![Skill description](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/skill-description.png)
+
+![Inscription damage](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/inscription-description.png)
 </details>
 
 <details>
@@ -72,6 +80,7 @@ stats**, for example `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk
   inscription step they would activate.
 - The popup lists what changes: `If picked up: Arms 1 > 2 · Courage 1 > 2 · Phys. atk 191% > 355.2%`
 - With a full inventory, the swap menu shows the numbers **after swapping** the selected item.
+- Plan your build right at the item, without switching to the stat sheet and back.
 
 ![Pickup preview](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/pickup-preview.png)
 </details>
@@ -88,14 +97,20 @@ stats**, for example `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk
 - Each session is saved to `BepInEx/DamageInsight/CombatLogs/` so you can look at a run afterwards.
 - Optional **mini log**: a few fading lines above the minimap (*Mini Log → Enabled*).
 
+![Calculation of a hit](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/combat-calculation.png)
+
 ![Combat log](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/combat-log.png)
+
+![Mini log](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/mini-log.png)
 </details>
 
 <details>
 <summary><b>Cooldown ticker</b></summary>
 
-Item and ability icons at the bottom of the screen show their remaining cooldown, WoW style: `83s`, `2m+`,
-`10m`.
+The skill icons of both skulls, the swap icon, the quintessence and the item and ability icons show their remaining
+cooldown in real seconds, WoW style: `83s`, `2m+`, `10m`. Your cooldown speed bonuses are included.
+
+![Cooldown seconds](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/cooldown-ticker.png)
 </details>
 
 ---
@@ -117,7 +132,7 @@ A book with every enemy, boss, adventurer, skull, item, essence and inscription 
 dealt and taken, deaths, and descriptions. Nothing is shipped with the mod: every picture and film is created on
 your own PC while you play.
 
-![Codex book](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-book.png)
+![Codex enemy page](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-enemy.png)
 
 <details>
 <summary><b>How entries unlock (★ / ★★ / ★★★)</b></summary>
@@ -143,7 +158,9 @@ shows what's next.
   know how many moves are still missing.
 - A move counts as seen once the boss actually performs it in front of you.
 
-![Move list with ???](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-moves.png)
+![Codex boss page](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-boss.png)
+
+![Codex inscription page](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-inscription.png)
 </details>
 
 <details>
@@ -156,7 +173,7 @@ shows what's next.
 - Don't like a take? Press **Refilm**: the next time the boss does that move, it is filmed again.
 - Filming can be switched off (*Codex → FilmBossAttacks*).
 
-![Fight film](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-film.png)
+![Fight films](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-film.gif)
 </details>
 
 <details>
@@ -234,8 +251,8 @@ are in `BepInEx/LogOutput.log` as `[SelfTest]` lines. Please report it.
 <details>
 <summary><b>Known gaps in this version</b></summary>
 
-- Dark Mirror: the Dark Skul's second phase and King Alexander are not fully analysed yet; some Dark Mirror-only
-  moves may be missing or split into parts.
+- King Alexander's second phase is not in the Codex yet (its moves are not recognized); some Dark Mirror films are
+  cut too short or split into parts (Dark Skul's bone rains, javelins, ...). Fixes come in 0.11.
 - Some move names are still rough (a few First Hero and First Dark Hero moves appear in parts).
 - Translations are not checked by native speakers yet; corrections are welcome (see *All game languages*).
 - Move descriptions exist only for some bosses so far.
@@ -253,6 +270,8 @@ Open an issue on [GitHub](https://github.com/Umut-Aslan99/SkulInsight_QoL/issues
 
 ## Coming next
 
-- Codex: Dark Mirror page (levels 0–10 with the game's values, Darktech machines, elite abilities), more move
-  descriptions.
-- Optional Codex rewards: tokens for skipped gear, adventurer coins for their legendary items, Omen coins.
+- **0.11:** Codex films and animations cleaned up (complete boss moves, effects and projectiles of enemies).
+- **0.12:** full Codex entries for skulls, items, essences, inscriptions and dark abilities, unlocked by playing; a
+  character page with your whole build.
+- **0.13:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics.
+- **0.14:** Dark Mirror page. **0.15:** optional Codex rewards.
