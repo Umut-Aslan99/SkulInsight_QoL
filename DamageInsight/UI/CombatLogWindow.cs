@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Characters;
+using DamageInsight.Patches;
+using Guard = DamageInsight.Patches.Guard;
 using DamageInsight.Recording;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DamageInsight.Lang;
+using DamageInsight.Describe;
 
 namespace DamageInsight.UI;
 
@@ -71,9 +75,51 @@ public sealed class CombatLogWindow : MonoBehaviour
         public readonly List<(UiKit.Chip chip, float width)> Chips = new();
     }
 
+    private Image _panelImage;
+    private TextMeshProUGUI _hint;
+    private bool _rebuild;
+
+    private void Awake()
+    {
+        // The settings page changes these while the game runs.
+        Plugin.CombatLogUseDialogueBackground.SettingChanged += (_, _) => Guard.Run("Combat log background", Restyle);
+        Plugin.CombatLogOpacity.SettingChanged += (_, _) => Guard.Run("Combat log background", Restyle);
+        Plugin.CombatLogWindowRect.SettingChanged += (_, _) => Guard.Run("Combat log position", () => _frame?.MoveTo(SavedEdges()));
+        Plugin.CombatLogKey.SettingChanged += (_, _) => Guard.Run("Combat log hint", () =>
+        {
+            if (_hint != null)
+                _hint.text = HintText();
+        });
+        Loc.Changed += () => _rebuild = true; // every label is built once: build the window again
+    }
+
+    /// <summary>Builds the window again in the current language (keeps whether it is open; filters are shared).</summary>
+    private void Rebuild()
+    {
+        _rebuild = false;
+        if (_canvas == null)
+            return;
+        bool open = IsOpen;
+        Destroy(_canvas.gameObject);
+        _canvas = null;
+        _frame = null;
+        _tooltip = null;
+        _pinned = null;
+        _hoverLine = _pinnedLine = -1;
+        _chipRefreshers.Clear();
+        _groups.Clear();
+        _lineMap.Clear();
+        IsOpen = false;
+        if (open)
+            SetOpen(true);
+    }
+
     private void Update()
     {
-        if (!DamageInsight.Codex.CodexWindow.IsTyping && (Plugin.CombatLogKey.Value.IsDown() || (IsOpen && Input.GetKeyDown(KeyCode.Escape))))
+        if (_rebuild)
+            Guard.Run("Combat log (language)", Rebuild);
+        if (!DamageInsight.Codex.CodexWindow.IsTyping && !SettingsPage.IsOpen &&
+            (Plugin.CombatLogKey.Value.IsDown() || (IsOpen && Input.GetKeyDown(KeyCode.Escape))))
             SetOpen(!IsOpen);
         if (!IsOpen)
             return;
@@ -128,42 +174,42 @@ public sealed class CombatLogWindow : MonoBehaviour
         _canvas = UiKit.OverlayCanvas("DamageInsight_CombatLog", 5000);
         _canvas.gameObject.AddComponent<GraphicRaycaster>();
 
-        var panel = UiKit.Image("Panel", _canvas.transform, new Color32(0x1B, 0x12, 0x24, 0xEB));
+        var panel = UiKit.Image("Panel", _canvas.transform, PlainBackground);
         _panel = panel.rectTransform;
+        _panelImage = panel;
         ApplyBackground(panel);
 
-        Vector2 screen = UiKit.CanvasSize;
-        if (!WindowFrame.TryParse(Plugin.CombatLogWindowRect.Value, out var initial))
-            initial = new Edges(screen.x - 40f - DefaultWidth, (screen.y - DefaultHeight) / 2f, DefaultWidth, DefaultHeight);
-        _frame = WindowFrame.Attach(_panel, initial, minWidth: 560f, minHeight: 440f);
+        _frame = WindowFrame.Attach(_panel, SavedEdges(), minWidth: 560f, minHeight: 440f);
         Transform p = _panel;
 
         // Header
-        UiKit.Text("Title", p, "Combat Log", 30).rectTransform.Place(28, 12, 360, 40);
-        UiKit.Text("Hint", p, $"Drag here to move · corners to resize · {Plugin.CombatLogKey.Value}/Esc to close", 13,
-            TextAlignmentOptions.TopLeft, UiKit.DimTextColor).rectTransform.Place(28, 48, 520, 20);
-        var clear = new UiKit.Chip(p, "Clear", 0, 0, 80, () => { DamageLog.Clear(); Filter.Changed(); });
-        clear.Background.rectTransform.PlaceTopRight(28, 16, 80, 28);
-        var mini = new UiKit.Chip(p, "Mini log", 0, 0, 100, () =>
+        UiKit.Text("Title", p, Loc.T("Combat Log"), 30).rectTransform.Place(28, 12, 360, 40);
+        _hint = UiKit.Text("Hint", p, HintText(), 13, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
+        _hint.rectTransform.Place(28, 48, 520, 20);
+        string clearText = Loc.T("Clear"), miniText = Loc.T("Mini log");
+        float clearWidth = Mathf.Max(80f, UiKit.ChipWidth(clearText)), miniWidth = Mathf.Max(100f, UiKit.ChipWidth(miniText));
+        var clear = new UiKit.Chip(p, clearText, 0, 0, clearWidth, () => { DamageLog.Clear(); Filter.Changed(); });
+        clear.Background.rectTransform.PlaceTopRight(28, 16, clearWidth, 28);
+        var mini = new UiKit.Chip(p, miniText, 0, 0, miniWidth, () =>
         {
             Plugin.MiniLogEnabled.Value = !Plugin.MiniLogEnabled.Value;
             RefreshChips();
         });
-        mini.Background.rectTransform.PlaceTopRight(28 + 80 + 8, 16, 100, 28);
+        mini.Background.rectTransform.PlaceTopRight(28 + clearWidth + 8, 16, miniWidth, 28);
         _chipRefreshers.Add(() => mini.SetOn(Plugin.MiniLogEnabled.Value));
 
         // Filters (positions are set by Relayout, so they flow with the window width)
-        var show = Group(p, "Show");
-        Radio(show, p, new[] { ("Dealt", LogDirection.Dealt), ("Taken", LogDirection.Taken), ("All", LogDirection.All) },
+        var show = Group(p, Loc.T("Show"));
+        Radio(show, p, new[] { (Loc.T("Dealt"), LogDirection.Dealt), (Loc.T("Taken"), LogDirection.Taken), (Loc.T("All"), LogDirection.All) },
             () => Filter.Direction, v => Filter.Direction = v);
 
-        var scope = Group(p, "Scope");
-        Radio(scope, p, new[] { ("This room", LogScope.Room), ("All rooms", LogScope.All) },
+        var scope = Group(p, Loc.T("Scope"));
+        Radio(scope, p, new[] { (Loc.T("This room"), LogScope.Room), (Loc.T("All rooms"), LogScope.All) },
             () => Filter.Scope, v => Filter.Scope = v);
 
-        var extra = Group(p, "Filter");
-        Toggle(extra, p, "Crits only", () => Filter.CritsOnly, v => Filter.CritsOnly = v);
-        var minChip = AddChip(extra, p, "Min: any", 100, () =>
+        var extra = Group(p, Loc.T("Filter"));
+        Toggle(extra, p, Loc.T("Crits only"), () => Filter.CritsOnly, v => Filter.CritsOnly = v);
+        var minChip = AddChip(extra, p, Loc.T("Min: any"), Mathf.Max(100f, UiKit.ChipWidth(Loc.T("Min: any"))), () =>
         {
             _minDamageIndex = (_minDamageIndex + 1) % LogFilter.MinDamageSteps.Length;
             Filter.MinDamage = LogFilter.MinDamageSteps[_minDamageIndex];
@@ -173,19 +219,19 @@ public sealed class CombatLogWindow : MonoBehaviour
         _chipRefreshers.Add(() =>
         {
             int min = LogFilter.MinDamageSteps[_minDamageIndex];
-            minChip.Label.text = min == 0 ? "Min: any" : $"Min: {min}";
+            minChip.Label.text = min == 0 ? Loc.T("Min: any") : Loc.F("Min: {0}", min);
             minChip.SetOn(min > 0);
         });
 
-        var enemy = Group(p, "Enemy");
+        var enemy = Group(p, Loc.T("Enemy"));
         foreach (var (label, kinds) in new[]
         {
-            ("Regular", new[] { EntityKind.TrashMob }),
-            ("Elites", new[] { EntityKind.Elite }),
-            ("Adventurers", new[] { EntityKind.Adventurer }),
-            ("Bosses", new[] { EntityKind.Boss }),
-            ("Summons", new[] { EntityKind.Summoned }),
-            ("Other", new[] { EntityKind.Trap, EntityKind.Other, EntityKind.PlayerMinion }),
+            (Loc.T("Regular"), new[] { EntityKind.TrashMob }),
+            (Loc.T("Elites"), new[] { EntityKind.Elite }),
+            (Loc.T("Adventurers"), new[] { EntityKind.Adventurer }),
+            (Loc.T("Bosses"), new[] { EntityKind.Boss }),
+            (Loc.T("Summons"), new[] { EntityKind.Summoned }),
+            (Loc.T("Other"), new[] { EntityKind.Trap, EntityKind.Other, EntityKind.PlayerMinion }),
         })
         {
             Toggle(enemy, p, label, () => kinds.All(Filter.EnemyKinds.Contains), on =>
@@ -195,16 +241,16 @@ public sealed class CombatLogWindow : MonoBehaviour
             });
         }
 
-        var type = Group(p, "Type");
+        var type = Group(p, Loc.T("Type"));
         foreach (Damage.Attribute attribute in Enum.GetValues(typeof(Damage.Attribute)))
-            Toggle(type, p, attribute.ToString(), () => Filter.Attributes.Contains(attribute),
+            Toggle(type, p, DescriptionFormatter.AttributeName(attribute.ToString()), () => Filter.Attributes.Contains(attribute),
                 on => Set(Filter.Attributes, attribute, on), DamageSources.AttributeColor(attribute));
 
-        var chart = Group(p, "Chart");
-        Radio(chart, p, new[] { ("By source", ChartMode.Source), ("By type", ChartMode.Type) },
+        var chart = Group(p, Loc.T("Chart"));
+        Radio(chart, p, new[] { (Loc.T("By source"), ChartMode.Source), (Loc.T("By type"), ChartMode.Type) },
             () => _chartMode, v => _chartMode = v, changesFilter: false);
 
-        var source = Group(p, "Source");
+        var source = Group(p, Loc.T("Source"));
         foreach (DamageSource s in Enum.GetValues(typeof(DamageSource)))
             Toggle(source, p, DamageSources.Title(s), () => Filter.Sources.Contains(s),
                 on => Set(Filter.Sources, s, on), DamageSources.Color(s));
@@ -226,7 +272,8 @@ public sealed class CombatLogWindow : MonoBehaviour
     private void Relayout()
     {
         float width = _frame.Current.Width;
-        const float left = 28f, labelWidth = 70f, rowHeight = 34f, gap = 6f, groupGap = 22f;
+        const float left = 28f, rowHeight = 34f, gap = 6f, groupGap = 22f;
+        float labelWidth = Mathf.Max(70f, _groups.Count == 0 ? 0f : _groups.Max(g => g.Label.preferredWidth) + 10f);
         float right = width - 28f;
         float x = left, y = 80f;
         bool lineEmpty = true;
@@ -336,6 +383,30 @@ public sealed class CombatLogWindow : MonoBehaviour
             }
         }
         return best;
+    }
+
+    private static readonly Color PlainBackground = new Color32(0x1B, 0x12, 0x24, 0xEB);
+
+    private static string HintText() => Loc.F("Drag here to move · corners to resize · {0}/Esc to close", Plugin.CombatLogKey.Value);
+
+    /// <summary>The saved window place, or the default one (right side, centred) if none is saved.</summary>
+    private static Edges SavedEdges()
+    {
+        if (WindowFrame.TryParse(Plugin.CombatLogWindowRect.Value, out var saved))
+            return saved;
+        Vector2 screen = UiKit.CanvasSize;
+        return new Edges(screen.x - 40f - DefaultWidth, (screen.y - DefaultHeight) / 2f, DefaultWidth, DefaultHeight);
+    }
+
+    private void Restyle()
+    {
+        var panel = _panelImage;
+        if (panel == null)
+            return;
+        panel.sprite = null;
+        panel.type = Image.Type.Simple;
+        panel.color = PlainBackground;
+        ApplyBackground(panel);
     }
 
     /// <summary>Uses the NPC dialogue box sprite as the panel background, if we can find it.</summary>
@@ -495,11 +566,11 @@ public sealed class CombatLogWindow : MonoBehaviour
             ? DamageStats.FromTotals(Feed.TotalBySource)
                 .Select(s => (label: DamageSources.Title(s.Key), s.Value, s.Percent, color: DamageSources.Color(s.Key))).ToList()
             : DamageStats.FromTotals(Feed.TotalByAttribute)
-                .Select(s => (label: s.Key.ToString(), s.Value, s.Percent, color: DamageSources.AttributeColor(s.Key))).ToList();
+                .Select(s => (label: DescriptionFormatter.AttributeName(s.Key.ToString()), s.Value, s.Percent, color: DamageSources.AttributeColor(s.Key))).ToList();
 
         _pie.Draw(slices.Select(s => (s.Value, s.color)).ToList());
         double total = slices.Sum(s => s.Value);
-        _pieCenterText.text = total > 0 ? $"<size=70%><color=#A89F94>Total</color></size>\n{total:N0}" : "";
+        _pieCenterText.text = total > 0 ? $"<size=70%><color=#A89F94>{Loc.T("Total")}</color></size>\n{total:N0}" : "";
 
         var sb = new StringBuilder();
         foreach (var s in slices)

@@ -4,6 +4,7 @@ using System.Linq;
 using Characters.Gear.Synergy.Inscriptions;
 using GameResources;
 using UnityEngine;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Codex;
 
@@ -64,7 +65,8 @@ public static class CodexCatalog
         {
             Id = id, Key = key, Name = name,
             Category = adventurer ? CodexCategory.Bosses : category,
-            Group = veteran ? "Veteran adventurers" : adventurer ? "Adventurers" : category == CodexCategory.Bosses ? "Boss (Dark Mirror)" : "Other",
+            Group = veteran ? Loc.N("Veteran adventurers") : adventurer ? Loc.N("Adventurers")
+                : category == CodexCategory.Bosses ? Loc.N("Boss (Dark Mirror)") : Loc.N("Other"),
             Order = (veteran ? 80000 : adventurer ? 79000 : 90000) + index,
         };
     }
@@ -76,7 +78,12 @@ public static class CodexCatalog
     public static readonly Dictionary<string, string> TwinOf = new() { ["enemy:LeianaLongHair"] = "enemy:LeianaShortHair" };
 
     /// <summary>The name of a page that shows several entries.</summary>
-    private static readonly Dictionary<string, string> PageNames = new() { ["enemy:LeianaShortHair"] = "Leiana sisters" };
+    private static readonly Dictionary<string, string> PageNames = new() { ["enemy:LeianaShortHair"] = Loc.N("Leiana sisters") };
+
+    static CodexCatalog() => Loc.Changed += () => _entries = null; // names come from the game's texts: list them again
+
+    /// <summary>The gear groups (rarities) as shown; listed here so they get translated.</summary>
+    private static readonly string[] RarityNames = { Loc.N("Common"), Loc.N("Rare"), Loc.N("Unique"), Loc.N("Legendary") };
 
     /// <summary>A page's members: the page's own entry first, then the entries shown on it.</summary>
     public static List<CodexEntry> MembersOf(CodexEntry page) =>
@@ -132,7 +139,7 @@ public static class CodexCatalog
                 continue;
             list.Add(new CodexEntry
             {
-                Id = InscriptionId(key), Category = CodexCategory.Inscriptions, Group = "Inscription",
+                Id = InscriptionId(key), Category = CodexCategory.Inscriptions, Group = Loc.N("Inscription"),
                 Order = order++, Key = key.ToString(), Name = name,
             });
         }
@@ -153,7 +160,7 @@ public static class CodexCatalog
                     list.Add(new CodexEntry
                     {
                         Id = DarkId(reference.name), Category = CodexCategory.DarkAbilities,
-                        Group = reference.type == Characters.Gear.Upgrades.UpgradeObject.Type.Cursed ? "Cursed" : "Dark ability",
+                        Group = reference.type == Characters.Gear.Upgrades.UpgradeObject.Type.Cursed ? Loc.N("Cursed") : Loc.N("Dark ability"),
                         Order = reference.orderInShop * 10 + list.Count % 10, Key = reference.name, Name = name,
                     });
                 }
@@ -172,7 +179,7 @@ public static class CodexCatalog
 
         foreach (var entry in list)
             if (PageNames.TryGetValue(entry.Id, out var pageName))
-                entry.Name = pageName;
+                entry.Name = Loc.T(pageName);
 
         Plugin.Log.LogInfo($"Codex catalog: {list.Count} entries " +
                            string.Join(", ", list.GroupBy(e => e.Category).Select(g => $"{g.Key} {g.Count()}")));

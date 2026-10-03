@@ -5,6 +5,7 @@ using Characters.Operations;
 using DamageInsight.Recording;
 using HarmonyLib;
 using UnityEngine;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Patches;
 
@@ -181,16 +182,16 @@ public static class DamageTracePatch
                     trace.StatParts.Add((label, value));
             }
             if (damage.attribute == Damage.Attribute.Physical)
-                Part("Phys. atk", stat.GetFinal(Stat.Kind.PhysicalAttackDamage));
+                Part(Loc.N("Phys. atk"), stat.GetFinal(Stat.Kind.PhysicalAttackDamage));
             else if (damage.attribute == Damage.Attribute.Magic)
-                Part("Magic atk", stat.GetFinal(Stat.Kind.MagicAttackDamage));
+                Part(Loc.N("Magic atk"), stat.GetFinal(Stat.Kind.MagicAttackDamage));
             if (damage.attackType == Damage.AttackType.Projectile)
-                Part("Projectile atk", stat.GetFinal(Stat.Kind.ProjectileAttackDamage));
+                Part(Loc.N("Projectile atk"), stat.GetFinal(Stat.Kind.ProjectileAttackDamage));
             if (damage.motionType == Damage.MotionType.Basic)
-                Part("Basic atk", stat.GetFinal(Stat.Kind.BasicAttackDamage));
+                Part(Loc.N("Basic atk"), stat.GetFinal(Stat.Kind.BasicAttackDamage));
             else if (damage.motionType == Damage.MotionType.Skill)
-                Part("Skill atk", stat.GetFinal(Stat.Kind.SkillAttackDamage));
-            Part("Total atk", stat.GetFinal(Stat.Kind.AttackDamage));
+                Part(Loc.N("Skill atk"), stat.GetFinal(Stat.Kind.SkillAttackDamage));
+            Part(Loc.N("Total atk"), stat.GetFinal(Stat.Kind.AttackDamage));
         }
     }
 

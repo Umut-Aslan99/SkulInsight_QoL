@@ -412,6 +412,7 @@ public static class BossAttacks
             string path = Path.Combine(CodexTracker.Folder, "Debug", key + "_attacks.txt");
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             File.WriteAllText(path, sb.ToString(), new UTF8Encoding(false));
+            MoveHints.Write(key, graph);
             // The graph as the rules read it, to fix naming rules offline (AttackGraph.FromSnapshot).
             File.WriteAllText(Path.Combine(CodexTracker.Folder, "Debug", key + "_graph.json"),
                 graph.SnapshotJson(StepKeyOf, StepName, step => Describe(graph, step)), new UTF8Encoding(false));

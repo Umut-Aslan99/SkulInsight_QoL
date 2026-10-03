@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Describe;
 
@@ -45,9 +46,11 @@ public static class WeaponRefiner
 
             var guard = doc.Components.FirstOrDefault(c => c.Is("OperationOnGuardMotionComponent") && stackable.Path.StartsWith(c.Path + "/"));
             int maxStacks = guard.IsNull ? (int)ability.Num("_maxStack") : (int)guard.Child("_ability").Num("_operationOnGuardMaxCount");
-            string how = guard.IsNull ? "per stack" : "per hit you take while it runs";
-            string cap = maxStacks > 0 ? FormattableString.Invariant($" (max {maxStacks} = +{percent * maxStacks * 100:0}%, x{1 + percent * maxStacks:0.#} damage)") : "";
-            string note = FormattableString.Invariant($"+{percent * 100:0}% {how}{cap}");
+            string how = guard.IsNull ? Loc.T("per stack") : Loc.T("per hit you take while it runs");
+            string cap = maxStacks > 0
+                ? " " + Loc.F("(max {0} = +{1}%, x{2} damage)", maxStacks, Fmt(percent * maxStacks * 100, "0"), Fmt(1 + percent * maxStacks, "0.#"))
+                : "";
+            string note = Loc.F("+{0}% {1}", Fmt(percent * 100, "0"), how) + cap;
 
             foreach (var section in b.Sections.Where(s => s.Steps.SelectMany(st => st.Hits).Any(h => h.Key == key)))
                 if (!section.Notes.Contains(note))
@@ -65,10 +68,12 @@ public static class WeaponRefiner
         string direction = constraints.FirstOrDefault(c => c.Is("DirectionConstraint")).Str("_direcion"); // sic, the game's field name
         var extras = new[] { state, direction }
             .Where(x => !string.IsNullOrEmpty(x) && name.IndexOf(x, System.StringComparison.OrdinalIgnoreCase) < 0)
-            .Select(x => x.ToLowerInvariant() == "air" ? "in the air" : x.ToLowerInvariant() == "ground" ? "on the ground" : x.ToLowerInvariant());
+            .Select(x => x.ToLowerInvariant() == "air" ? Loc.T("in the air") : x.ToLowerInvariant() == "ground" ? Loc.T("on the ground") : Loc.Name(x.ToLowerInvariant()));
         string extra = string.Join(", ", extras);
-        return extra.Length > 0 ? $"{name} ({extra})" : name;
+        return extra.Length > 0 ? $"{Loc.Name(name)} ({extra})" : Loc.Name(name);
     }
+
+    private static string Fmt(double v, string format) => v.ToString(format, System.Globalization.CultureInfo.InvariantCulture);
 
     /// <summary>"PowerbombJumpAttack" / "Fire_Upward" / "ComboAttack(3)" → "Powerbomb jump attack" / "Fire upward" / "Combo attack".</summary>
     public static string Humanize(string name)

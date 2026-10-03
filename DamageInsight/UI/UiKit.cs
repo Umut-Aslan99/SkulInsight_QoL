@@ -67,7 +67,7 @@ public static class UiKit
     }
 
     /// <summary>A width that fits a chip's label.</summary>
-    public static float ChipWidth(string label) => Mathf.Max(64f, 22f + label.Length * 8.6f);
+    public static float ChipWidth(string label) => Mathf.Max(64f, 22f + label.Sum(c => c >= 0x2E80 ? 16f : 8.6f));
 
     /// <summary>Unity's built-in "UI" layer (5), looked up by name in case the game renamed it.</summary>
     public static int UiLayer

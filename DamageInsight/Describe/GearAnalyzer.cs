@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using DamageInsight.Lang;
+
 namespace DamageInsight.Describe;
 
 /// <summary>
@@ -157,7 +159,7 @@ public static class GearAnalyzer
         var plan = StepPlan(action);
         for (int i = 0; i < plan.Count; i++)
         {
-            var step = new Step { Label = plan[i].label };
+            var step = new Step { Label = plan[i].label, IsPart = plan[i].part };
             foreach (var motion in plan[i].motions)
                 walker.Walk(motion, step);
             if (i == 0)
@@ -175,7 +177,7 @@ public static class GearAnalyzer
         // Charge variants often share the same hits (e.g. the anticipation motion); drop empty steps.
         section.Steps.RemoveAll(st => st.Hits.Count == 0 && section.Steps.Count > 1);
         // A chain where only one part deals damage: "Part 3" means nothing to the player.
-        if (section.Steps.Count == 1 && section.Steps[0].Label.StartsWith("Part "))
+        if (section.Steps.Count == 1 && section.Steps[0].IsPart)
             section.Steps[0].Label = "";
     }
 
@@ -183,26 +185,26 @@ public static class GearAnalyzer
     /// Which motions make up each labelled step of an action: combo hits, chain parts,
     /// or the uncharged/charged releases of charge actions.
     /// </summary>
-    private static List<(string label, List<Node> motions)> StepPlan(Node action)
+    private static List<(string label, List<Node> motions, bool part)> StepPlan(Node action)
     {
-        var plan = new List<(string, List<Node>)>();
+        var plan = new List<(string, List<Node>, bool)>();
         List<Node> Of(params Node[] nodes) => nodes.Where(n => !n.IsNull).ToList();
 
         // Charge actions: released early vs. fully charged (ChargeAction).
         if (action.Has("_earlyFinish") && action.Has("_finish"))
         {
-            plan.Add(("Uncharged", Of(action.Child("_anticipation"), action.Child("_earlyFinish"))));
-            plan.Add(("Charged", Of(action.Child("_charged"), action.Child("_finish"))));
+            plan.Add((Loc.T("Uncharged"), Of(action.Child("_anticipation"), action.Child("_earlyFinish")), false));
+            plan.Add((Loc.T("Charged"), Of(action.Child("_charged"), action.Child("_finish")), false));
             return plan;
         }
         // Several charge levels (MultiChargeAction). The shared wind-up (_anticipation) is left out:
         // it can start the level-specific actions and would mix all levels together.
         if (action.Has("_chargeMotions"))
         {
-            plan.Add(("Uncharged", Of(action.Child("_earlyFinish"))));
+            plan.Add((Loc.T("Uncharged"), Of(action.Child("_earlyFinish")), false));
             int level = 1;
             foreach (var entry in action.List("_chargeMotions"))
-                plan.Add(($"Charge {level++}", Of(entry.Child("finish"))));
+                plan.Add((Loc.F("Charge {0}", level++), Of(entry.Child("finish")), false));
             return plan;
         }
         // Combo where every hit can be charged (ChargeComboAction).
@@ -211,26 +213,26 @@ public static class GearAnalyzer
         {
             for (int i = 0; i < infos.Count; i++)
             {
-                string hit = infos.Count > 1 ? $"Hit {i + 1}" : "Attack";
-                plan.Add((hit, Of(infos[i].Child("anticipation"), infos[i].Child("earlyFinish"))));
-                plan.Add(($"{hit} charged", Of(infos[i].Child("charged"), infos[i].Child("finish"))));
+                string hit = infos.Count > 1 ? Loc.F("Hit {0}", i + 1) : Loc.T("Attack");
+                plan.Add((hit, Of(infos[i].Child("anticipation"), infos[i].Child("earlyFinish")), false));
+                plan.Add((Loc.F("{0} charged", hit), Of(infos[i].Child("charged"), infos[i].Child("finish")), false));
             }
             return plan;
         }
         // Holding to charge: the normal motion(s), plus one extra motion per charge level.
         if (action.Has("_chargingMotions"))
         {
-            plan.Add(("", MotionsOf(action)));
+            plan.Add(("", MotionsOf(action), false));
             int level = 1;
             foreach (var motion in action.List("_chargingMotions"))
-                plan.Add(($"Charge {level++}", Of(motion)));
+                plan.Add((Loc.F("Charge {0}", level++), Of(motion), false));
             return plan;
         }
 
         var motions = MotionsOf(action);
         bool combo = action.Is("ComboAction") && motions.Count > 1;
         for (int i = 0; i < motions.Count; i++)
-            plan.Add((combo ? $"Hit {i + 1}" : motions.Count > 1 ? $"Part {i + 1}" : "", Of(motions[i])));
+            plan.Add((combo ? Loc.F("Hit {0}", i + 1) : motions.Count > 1 ? Loc.F("Part {0}", i + 1) : "", Of(motions[i]), !combo && motions.Count > 1));
         return plan;
     }
 
@@ -321,9 +323,9 @@ public static class GearAnalyzer
     /// <summary>Readable names for the parts of linked prefabs (Oberon's three attacks).</summary>
     private static readonly Dictionary<string, string> LinkedTitles = new()
     {
-        ["_attackOperationRunner"] = "Galaxy beam",
-        ["_thunderOperationRunner"] = "Spirit thunder",
-        ["_bombOperationRunner"] = "Spirit bomb",
+        ["_attackOperationRunner"] = Loc.N("Galaxy beam"),
+        ["_thunderOperationRunner"] = Loc.N("Spirit thunder"),
+        ["_bombOperationRunner"] = Loc.N("Spirit bomb"),
     };
 
     private static void AnalyzeLinked(GearDoc doc, Breakdown b, Walker walker)
@@ -338,7 +340,9 @@ public static class GearAnalyzer
             string stem = name.Replace("OperationRunner", "").Replace("Operations", "");
             var section = new Section { Kind = "Summon", Key = name, Cooldown = root.Num(stem + "Cooldown") };
             if (LinkedTitles.TryGetValue(name, out var title))
-                section.Title = section.Cooldown > 0 ? FormattableString.Invariant($"{title} (every {section.Cooldown:0.#} s)") : title;
+                section.Title = section.Cooldown > 0
+                    ? Loc.F("{0} (every {1} s)", Loc.T(title), section.Cooldown.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture))
+                    : Loc.T(title);
             var step = new Step();
             walker.WalkField(root, name, step);
             Collapse(step.Hits);

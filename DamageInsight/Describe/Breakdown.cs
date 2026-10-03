@@ -50,6 +50,7 @@ public sealed class Hit
 public sealed class Step
 {
     public string Label = "";
+    public bool IsPart;     // "Part N" of a chain: dropped when only one part deals damage
     public readonly List<Hit> Hits = new();
 }
 

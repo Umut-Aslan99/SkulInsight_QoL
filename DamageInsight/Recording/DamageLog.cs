@@ -6,6 +6,7 @@ using Level;
 using Services;
 using Singletons;
 using UnityEngine;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Recording;
 
@@ -128,12 +129,12 @@ public static class DamageLog
         else if (damage.attacker.trap != null)
         {
             attackerKind = EntityKind.Trap;
-            attackerName = "Trap";
+            attackerName = Loc.T("Trap");
         }
         else
         {
             attackerKind = EntityKind.Other;
-            attackerName = "Unknown";
+            attackerName = Loc.T("Unknown");
         }
 
         var record = new DamageRecord(
@@ -165,12 +166,14 @@ public static class DamageLog
 
     private static readonly Dictionary<string, string> NameCache = new();
 
+    static DamageLog() => Loc.Changed += NameCache.Clear;
+
     public static string NameOf(Character character)
     {
         if (character == null)
-            return "Unknown";
+            return Loc.T("Unknown");
         if (character.type == Character.Type.Player)
-            return "You";
+            return Loc.T("You");
 
         string key = character.key.ToString();
         if (!NameCache.TryGetValue(key, out var name))

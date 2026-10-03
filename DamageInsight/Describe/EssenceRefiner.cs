@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using DamageInsight.Lang;
+using System.Globalization;
 
 namespace DamageInsight.Describe;
 
@@ -40,7 +42,7 @@ public static class EssenceRefiner
             return;
         int maxStack = (int)quintessence.Child("_cooldown").Num("_maxStack", 1);
         if (maxStack > 1)
-            section.Notes.Add($"Charges: {maxStack}");
+            section.Notes.Add(Loc.F("Charges: {0}", maxStack));
     }
 
     /// <summary>SummonMinion / SummonDwarfTurret: describe count and lifetime; the minion's own damage isn't reliable data (see class doc).</summary>
@@ -53,7 +55,7 @@ public static class EssenceRefiner
         {
             var turret = op.Child("_dwarfTurret");
             double interval = turret.Num("_attackInterval");
-            string extra = interval > 0 ? FormattableString.Invariant($"; attacks every {interval:0.#} s") : "";
+            string extra = interval > 0 ? "; " + Loc.F("attacks every {0} s", interval.ToString("0.#", CultureInfo.InvariantCulture)) : "";
             AddMinionNote(turret.Child("_minion"), section, extra);
         }
     }
@@ -62,13 +64,14 @@ public static class EssenceRefiner
     {
         if (minion.IsNull)
             return;
-        string name = minion.Child("_character").Str("$character") ?? "a minion";
+        string character = minion.Child("_character").Str("$character");
+        string name = character != null ? Loc.Name(WeaponRefiner.Humanize(character)) : Loc.T("a minion");
         var setting = minion.Child("_defaultSetting");
         int maxCount = (int)setting.Num("maxCount", 1);
         double lifeTime = setting.Num("lifeTime");
-        string count = maxCount >= int.MaxValue ? "no limit" : $"up to {maxCount}";
-        string life = lifeTime >= 1e6 ? "lasts until you unequip the essence" : FormattableString.Invariant($"lasts {lifeTime:0.#} s");
-        string note = $"Summons {name} ({count}, {life}{extra}). Its attack damage isn't in this data.";
+        string count = maxCount >= int.MaxValue ? Loc.T("no limit") : Loc.F("up to {0}", maxCount);
+        string life = lifeTime >= 1e6 ? Loc.T("lasts until you unequip the essence") : Loc.F("lasts {0} s", lifeTime.ToString("0.#", CultureInfo.InvariantCulture));
+        string note = Loc.F("Summons {0} ({1}, {2}{3}). Its attack damage isn't in this data.", name, count, life, extra);
         if (!section.Notes.Contains(note))
             section.Notes.Add(note);
     }
@@ -78,8 +81,9 @@ public static class EssenceRefiner
     {
         foreach (var op in doc.Components.Where(c => c.Is("StartWeaponPolymorph")))
         {
-            string name = op.Child("_polymorphWeapon").Str("$go") ?? "a different weapon";
-            string note = $"Transforms your weapon into {name} with its own moveset; reverts when you swap weapons.";
+            string weapon = op.Child("_polymorphWeapon").Str("$go");
+            string name = weapon != null ? Loc.Name(WeaponRefiner.Humanize(weapon)) : Loc.T("a different weapon");
+            string note = Loc.F("Transforms your weapon into {0} with its own moveset; reverts when you swap weapons.", name);
             if (!section.Notes.Contains(note))
                 section.Notes.Add(note);
         }
@@ -97,12 +101,12 @@ public static class EssenceRefiner
             if (!ability.Has("_stat") || !ability.Has("_duration"))
                 continue;
             var values = ability.Child("_stat").List("values")
-                .Select(v => FormattableString.Invariant($"{SpaceCase(v.Str("$kind"))} x{v.Num("value"):0.##}"))
+                .Select(v => $"{Loc.Name(SpaceCase(v.Str("$kind")))} x{v.Num("value").ToString("0.##", CultureInfo.InvariantCulture)}")
                 .ToList();
             if (values.Count == 0)
                 continue;
             double duration = ability.Num("_duration");
-            string note = FormattableString.Invariant($"Applies for {duration:0.#} s: {string.Join(", ", values)} (raw data values).");
+            string note = Loc.F("Applies for {0} s: {1} (raw data values).", duration.ToString("0.#", CultureInfo.InvariantCulture), string.Join(", ", values));
             if (!section.Notes.Contains(note))
                 section.Notes.Add(note);
         }
@@ -124,8 +128,9 @@ public static class EssenceRefiner
             var attackDamage = doc.Components.FirstOrDefault(c => c.Is("AttackDamage") && c.Path == character.Path);
             if (attackDamage.IsNull)
                 continue;
-            string note = $"Summons a companion (base attack {attackDamage.Num("_minAttackDamage"):0}–{attackDamage.Num("_maxAttackDamage"):0}) " +
-                           "that fights using its own AI; its exact hits aren't in this data.";
+            string note = Loc.F("Summons a companion (base attack {0}–{1}) that fights using its own AI; its exact hits aren't in this data.",
+                attackDamage.Num("_minAttackDamage").ToString("0", CultureInfo.InvariantCulture),
+                attackDamage.Num("_maxAttackDamage").ToString("0", CultureInfo.InvariantCulture));
             if (!section.Notes.Contains(note))
                 section.Notes.Add(note);
         }

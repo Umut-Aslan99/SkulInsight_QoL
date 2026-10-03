@@ -1,0 +1,54 @@
+{
+  "_note": "Translation of codex_content.json (same keys; anything missing here comes from the English file).",
+  "entries": {
+    "Yggdrasil": {
+      "about": "El árbol ancestral que guarda el primer capítulo. Lucha con su cabeza y dos manos gigantes, y despierta en una segunda fase cuando pierde la mitad de su vida.",
+      "moves": {
+        "Fist slam": {
+          "what": "Alza una mano, sigue tu posición un momento y la estrella contra el suelo.",
+          "tip": "Sigue moviéndote hasta que caiga la mano y luego corre hacia un lado. La mano se queda en el suelo un momento tras el impacto: una ventana segura para contraatacar."
+        },
+        "Sweeping": {
+          "what": "Una mano barre todo el escenario a ras de suelo.",
+          "tip": "Al empezar el barrido surgen plataformas de madera: súbete a una o salta sobre la mano en el momento justo."
+        },
+        "Energy bomb": {
+          "what": "Carga energía en la cabeza y dispara bombas que explotan donde caen.",
+          "tip": "Mira adónde apuntan las bombas y sal de ese lugar; las explosiones son breves, así que puedes volver enseguida."
+        },
+        "Laser": {
+          "what": "Reúne luz en la cabeza y dispara un rayo.",
+          "tip": "La carga es tu aviso. Sal de la línea del rayo antes de que dispare en lugar de intentar cruzarlo corriendo."
+        },
+        "Groggy": {
+          "what": "Agotado, la cabeza se hunde en el suelo y el árbol deja de atacar unos segundos.",
+          "tip": "Tu mejor momento para hacer daño: usa ahora tus habilidades y tus ataques más fuertes en la cabeza."
+        },
+        "Phase 2 · Awakening": {
+          "what": "El cuarzo oscuro brota del árbol: empieza la fase 2. Sus ataques se vuelven más duros y llegan encadenados.",
+          "tip": "Aprovecha la transformación para recolocarte y recargar tus habilidades."
+        },
+        "Phase 2 · Fist power slam": {
+          "what": "Un golpe más pesado que lanza una ola de escombros por el suelo al impactar.",
+          "tip": "No basta con esquivar la mano: salta o corre por encima de la ola de escombros que le sigue."
+        },
+        "Phase 2 · Both fist power slam": {
+          "what": "Ambas manos golpean a la vez y cubren gran parte del escenario.",
+          "tip": "Quédate cerca del centro y espera a que ambas manos se comprometan antes de esquivar; el hueco entre ellas es tu salida."
+        },
+        "Phase 2 · Sweeping combo": {
+          "what": "Dos barridos seguidos: primero desde un lado y luego desde el otro.",
+          "tip": "Quédate en una plataforma o prepara otro salto tras el primer barrido: el segundo llega casi de inmediato."
+        },
+        "Phase 2 · Energy corps": {
+          "what": "Invoca un anillo de orbes de energía que vuelan hacia ti uno tras otro.",
+          "tip": "Muévete siempre en una dirección para que los orbes fallen por detrás; no te detengas a atacar hasta que pase el último."
+        },
+        "Phase 2 · Groggy": {
+          "what": "Agotado de nuevo: la cabeza cae y el árbol deja de atacar.",
+          "tip": "Igual que en la fase 1: descarga todo sobre la cabeza."
+        }
+      }
+    }
+  }
+}

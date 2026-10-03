@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Describe;
 
@@ -29,8 +30,8 @@ public static class StatusDescriptions
                 int ticks = (int)Math.Floor(duration / interval + 1e-6);
                 var tick = TickHit(p.Child("_hitInfo"), p.Num("_baseTickDamage"), neverCrits: true);
                 var (min, _) = DescriptionFormatter.FinalRange(tick, stats);
-                return $"Poison: {DescriptionFormatter.Amount(tick, stats)} every {Num(interval)} s for {Num(duration)} s"
-                       + Details(tick, stats, $"~{ticks} ticks = {Num(min * ticks)}");
+                return Loc.F("Poison: {0} every {1} s for {2} s", DescriptionFormatter.Amount(tick, stats), Num(interval), Num(duration))
+                       + Details(tick, stats, Loc.P("~{0} tick = {1}", "~{0} ticks = {1}", ticks, Num(min * ticks)));
             }
             case "Burn":
             {
@@ -41,10 +42,11 @@ public static class StatusDescriptions
                 var target = TickHit(b.Child("_hitInfo"), b.Num("_baseTargetTickDamage"), neverCrits: true);
                 var splash = TickHit(b.Child("_rangeHitInfo"), b.Num("_baseRangeTickDamage") * stats.EmberDamage, neverCrits: true);
                 double radius = b.Num("_rangeRadius") * stats.EmberDamage;
-                return $"Burn: {DescriptionFormatter.Amount(target, stats)} every {Num(b.Num("_tickInterval"))} s for {Num(b.Num("_duration"))} s"
+                return Loc.F("Burn: {0} every {1} s for {2} s", DescriptionFormatter.Amount(target, stats), Num(b.Num("_tickInterval")), Num(b.Num("_duration")))
                        + Details(target, stats)
                        + "\n"
-                       + $"Burn splash (ember): {DescriptionFormatter.Amount(splash, stats)} per tick to enemies within {Num(radius)} m of the burning enemy"
+                       + Loc.F("Burn splash (ember): {0} per tick to enemies within {1} m of the burning enemy",
+                           DescriptionFormatter.Amount(splash, stats), Num(radius))
                        + Details(splash, stats);
             }
             case "Bleed":
@@ -55,30 +57,45 @@ public static class StatusDescriptions
                 // Wound.GiveDamage: percentMultiplier x BleedDamage, x superBleedValue on a super bleed; it only
                 // crits with Excessive Bleeding 4 (canBleedCritical), using the normal crit chance and damage.
                 var hit = TickHit(bl.Child("_hitInfo"), bl.Num("_baseDamage") * stats.BleedDamage, neverCrits: !stats.BleedCanCrit);
-                double super = bl.Num("_superBleedValue", 1);
-                var superHit = TickHit(bl.Child("_hitInfo"), bl.Num("_baseDamage") * stats.BleedDamage * super, neverCrits: !stats.BleedCanCrit);
-                string text = $"Bleed (on the 2nd application): {DescriptionFormatter.Amount(hit, stats)}"
-                              + Details(hit, stats, Math.Abs(stats.BleedDamage - 1) > 1e-6 ? $"incl. x{Num(stats.BleedDamage)} bleed dmg" : "");
+                string text = Loc.F("Bleed (on the 2nd application): {0}", DescriptionFormatter.Amount(hit, stats))
+                              + Details(hit, stats, Math.Abs(stats.BleedDamage - 1) > 1e-6 ? Loc.F("incl. x{0} bleed dmg", Num(stats.BleedDamage)) : "");
                 if (stats.BleedCanCrit)
-                    text += $" · crit {Crit(hit, stats)}";
-                text += $"\nSuper bleed (x{Num(super)}): {DescriptionFormatter.Amount(superHit, stats)}";
-                if (stats.BleedCanCrit)
-                    text += $" · crit {Crit(superHit, stats)}";
-                return text;
+                    text += " · " + Loc.F("crit {0}", Crit(hit, stats));
+                return text + "\n" + SuperBleed(settings, stats, severe: false, null);
             }
             case "Freeze":
             {
                 var f = settings.Child("_freeze");
-                return f.IsNull ? "" : $"Freeze: {Num(f.Num("_duration") + stats.FreezeBonus)} s";
+                return f.IsNull ? "" : Loc.F("Freeze: {0} s", Num(f.Num("_duration") + stats.FreezeBonus));
             }
             case "Stun":
             {
                 var s = settings.Child("_stun");
-                return s.IsNull ? "" : $"Stun: {Num(s.Num("_duration") + stats.StunBonus)} s";
+                return s.IsNull ? "" : Loc.F("Stun: {0} s", Num(s.Num("_duration") + stats.StunBonus));
             }
             default:
                 return "";
         }
+    }
+
+    /// <summary>
+    /// The super bleed line, "Super bleed (x1.55): …"; <paramref name="severe"/>: the Excessive Bleeding true form's
+    /// wording, "Severe bleed (45% chance, x1.55): …" (without the chance if it is unknown). "" without bleed settings.
+    /// </summary>
+    public static string SuperBleed(Node settings, StatSnapshot stats, bool severe, double? chance)
+    {
+        var bl = settings.Child("_bleed");
+        if (bl.IsNull)
+            return "";
+        double super = bl.Num("_superBleedValue", 1);
+        var superHit = TickHit(bl.Child("_hitInfo"), bl.Num("_baseDamage") * stats.BleedDamage * super, neverCrits: !stats.BleedCanCrit);
+        string amount = DescriptionFormatter.Amount(superHit, stats);
+        string text = !severe ? Loc.F("Super bleed (x{0}): {1}", Num(super), amount)
+            : chance.HasValue ? Loc.F("Severe bleed ({0}% chance, x{1}): {2}", (chance.Value * 100).ToString("0", CultureInfo.InvariantCulture), Num(super), amount)
+            : Loc.F("Severe bleed (x{0}): {1}", Num(super), amount);
+        if (stats.BleedCanCrit)
+            text += " · " + Loc.F("crit {0}", Crit(superHit, stats));
+        return text;
     }
 
     /// <summary>The crit amount of a hit: the damage x the crit damage multiplier, rounded up like Damage.amount.</summary>
@@ -90,7 +107,7 @@ public static class StatusDescriptions
         var (min, max) = DescriptionFormatter.FinalRange(hit, stats);
         hit.MultMin /= stats.CritDamage;
         hit.MultMax /= stats.CritDamage;
-        return $"{DescriptionFormatter.Range(min, max)} (x{Num(stats.CritDamage)} crit dmg)";
+        return Loc.F("{0} (x{1} crit dmg)", DescriptionFormatter.Range(min, max), Num(stats.CritDamage));
     }
 
     /// <summary>The status an inscription is about, by the game's inscription key.</summary>

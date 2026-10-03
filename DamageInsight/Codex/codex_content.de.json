@@ -1,0 +1,54 @@
+{
+  "_note": "Translation of codex_content.json (same keys; anything missing here comes from the English file).",
+  "entries": {
+    "Yggdrasil": {
+      "about": "Der uralte Baum, der das erste Kapitel bewacht. Er kämpft mit seinem Kopf und zwei riesigen Händen und erwacht in einer zweiten Phase, sobald die Hälfte seiner LP weg ist.",
+      "moves": {
+        "Fist slam": {
+          "what": "Hebt eine Hand hoch, folgt kurz deiner Position und schlägt zu.",
+          "tip": "Bleib in Bewegung, bis die Hand fällt, dann sprinte zur Seite. Die Hand bleibt nach dem Aufprall kurz liegen: ein sicheres Fenster für einen Gegenangriff."
+        },
+        "Sweeping": {
+          "what": "Eine Hand fegt am Boden über die ganze Arena.",
+          "tip": "Beim Fegen steigen Holzplattformen auf: spring auf eine oder spring im richtigen Moment über die Hand."
+        },
+        "Energy bomb": {
+          "what": "Lädt Energie im Kopf auf und feuert Bomben, die beim Aufschlag explodieren.",
+          "tip": "Achte, wohin die Bomben zielen, und verlass die Stelle; die Explosionen sind kurz, du kannst gleich wieder hinein."
+        },
+        "Laser": {
+          "what": "Sammelt Licht im Kopf und feuert einen Strahl.",
+          "tip": "Das Aufladen ist deine Warnung. Verlass die Linie des Strahls, bevor er feuert, statt durchzusprinten."
+        },
+        "Groggy": {
+          "what": "Erschöpft sinkt der Kopf zu Boden und der Baum greift ein paar Sekunden nicht an.",
+          "tip": "Dein größtes Schadensfenster: setz jetzt deine Fertigkeiten und stärksten Angriffe auf den Kopf ein."
+        },
+        "Phase 2 · Awakening": {
+          "what": "Dunkler Quarz bricht aus dem Baum: Phase 2 beginnt. Seine Angriffe werden härter und kommen in Kombinationen.",
+          "tip": "Nutze die Verwandlung, um dich neu zu positionieren und deine Abklingzeiten aufzuladen."
+        },
+        "Phase 2 · Fist power slam": {
+          "what": "Ein schwererer Schlag, der beim Aufprall eine Trümmerwelle über den Boden schickt.",
+          "tip": "Der Hand auszuweichen reicht nicht: spring oder sprinte über die folgende Trümmerwelle."
+        },
+        "Phase 2 · Both fist power slam": {
+          "what": "Beide Hände schlagen gleichzeitig zu und decken einen großen Teil der Arena ab.",
+          "tip": "Bleib nahe der Mitte und warte, bis beide Hände festgelegt sind, bevor du ausweichst; die Lücke dazwischen ist dein Ausweg."
+        },
+        "Phase 2 · Sweeping combo": {
+          "what": "Zwei Fegeschläge hintereinander: erst von einer Seite, dann von der anderen.",
+          "tip": "Bleib auf einer Plattform oder halte einen weiteren Sprung bereit: der zweite folgt fast sofort."
+        },
+        "Phase 2 · Energy corps": {
+          "what": "Beschwört einen Ring aus Energiekugeln, die nacheinander auf dich zufliegen.",
+          "tip": "Lauf in eine Richtung weiter, damit die Kugeln hinter dir verfehlen; greif erst an, wenn die letzte vorbei ist."
+        },
+        "Phase 2 · Groggy": {
+          "what": "Wieder erschöpft: der Kopf sinkt und der Baum hört auf anzugreifen.",
+          "tip": "Wie in Phase 1: gib alles auf den Kopf."
+        }
+      }
+    }
+  }
+}

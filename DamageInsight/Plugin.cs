@@ -20,6 +20,8 @@ public class Plugin : BaseUnityPlugin
 {
     internal static ManualLogSource Log;
 
+    internal static ConfigEntry<string> Language;
+
     internal static ConfigEntry<bool> DamageSourceTags;
     internal static ConfigEntry<bool> DamageSourceIcons;
     internal static ConfigEntry<float> DamageNumberHoldTime;
@@ -43,6 +45,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> CodexEnabled;
     internal static ConfigEntry<KeyboardShortcut> CodexKey;
     internal static ConfigEntry<bool> CodexRecordFights;
+    internal static ConfigEntry<bool> CodexMoveHints;
     internal static ConfigEntry<bool> CodexMoveCounter;   // bound in developer builds only (null otherwise)
     internal static ConfigEntry<bool> CodexRunLog;        // bound in developer builds only (null otherwise)
 #if DEV
@@ -64,6 +67,12 @@ public class Plugin : BaseUnityPlugin
         Log = Logger;
 
         // Written to BepInEx\config\<plugin GUID>.cfg on first launch.
+        Language = Config.Bind("General", "Language", DamageInsight.Lang.LanguageWatcher.Auto, new ConfigDescription(
+            "Language of the mod's texts. auto = the game's language (changes with it); or one of: " +
+            string.Join(", ", System.Linq.Enumerable.Select(DamageInsight.Lang.Loc.Languages, l => l.code)) + ".",
+            new AcceptableValueList<string>(System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(
+                new[] { DamageInsight.Lang.LanguageWatcher.Auto }, System.Linq.Enumerable.Select(DamageInsight.Lang.Loc.Languages, l => l.code))))));
+        DamageInsight.Lang.Loc.OverrideFolder = System.IO.Path.Combine(Paths.BepInExRootPath, "DamageInsight", "Lang");
         DamageSourceTags = Config.Bind("Damage Numbers", "ShowSourceTag", true,
             "Mark damage numbers with where the damage came from (icon or ATK, SKILL, ITEM, ...).");
         DamageSourceIcons = Config.Bind("Damage Numbers", "UseIcons", true,
@@ -82,9 +91,9 @@ public class Plugin : BaseUnityPlugin
         CombatLogKey = Config.Bind("Combat Log", "ToggleKey", new KeyboardShortcut(UnityEngine.KeyCode.L),
             "Key that opens and closes the combat log.");
         CombatLogUseDialogueBackground = Config.Bind("Combat Log", "UseDialogueBackground", true,
-            "Use the NPC dialogue box artwork as the window background (false = plain dark panel). Applies after a game restart.");
+            "Use the NPC dialogue box artwork as the window background (false = plain dark panel).");
         CombatLogOpacity = Config.Bind("Combat Log", "BackgroundOpacity", 0.85f,
-            "Opacity of the dialogue background, 0 = invisible, 1 = solid. Applies after a game restart.");
+            "Opacity of the dialogue background, 0 = invisible, 1 = solid.");
         CombatLogWindowRect = Config.Bind("Combat Log", "WindowRect", "",
             "Position and size of the log window (left,top,width,height at 1920x1080). Saved automatically; empty = default.");
         CombatLogCalculations = Config.Bind("Combat Log", "RecordCalculations", true,
@@ -107,8 +116,12 @@ public class Plugin : BaseUnityPlugin
             "Record your progress for the Codex (enemies met and killed, gear found) and capture enemy portraits.");
         CodexKey = Config.Bind("Codex", "ToggleKey", new KeyboardShortcut(UnityEngine.KeyCode.K),
             "Key that opens and closes the Codex book.");
+        CodexMoveHints = Config.Bind("Codex", "ShowMoveHints", true,
+            "Under a boss move in the Codex: when the boss uses it (HP range, distance, cooldown...), read from its AI. " +
+            "Shown once you have beaten the boss.");
         CodexRecordFights = Config.Bind("Codex", "FilmBossAttacks", true,
             "Film each boss attack once (a small picture 10 times a second, effects included) to show it in the Codex.");
+        DamageInsight.Codex.CodexBalance.Bind(Config);
 #if DEV
         DumpIcons = Config.Bind("Developer", "DumpIconsOnce", false,
             "Save the game's icons as PNGs to BepInEx\\DamageInsight\\IconDump when entering a run. Turns itself off afterwards.");
@@ -154,6 +167,7 @@ public class Plugin : BaseUnityPlugin
 
     private void Update()
     {
+        DamageInsight.Lang.LanguageWatcher.Tick();
         var player = Singleton<Service>.Instance?.levelManager?.player;
         bool inRun = player != null;
         DamageInsight.Codex.CodexTracker.Tick(player);

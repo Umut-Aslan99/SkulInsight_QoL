@@ -5,9 +5,10 @@ item and skull descriptions with your actual damage, a combat log that explains 
 picking up an item would do to your build.
 
 A quality-of-life mod: it changes nothing about the game's balance or saves. It only shows information the game
-already uses internally. Every feature can be switched off in the config.
+already uses internally. Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.9.3: first public beta.** Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
+> **Version 0.10.1: every setting in the game (Esc → SkulInsight QoL) and all of the game's languages.** Please report
+> bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
 <!-- SCREENSHOT: overview (fight with damage numbers + combat log) -->
 
@@ -87,6 +88,18 @@ Press **K** for a book with every enemy, boss, adventurer, skull, item, essence 
 
 <!-- SCREENSHOT: codex -->
 
+### Settings in the game
+Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings: every setting of the mod in one list, styled
+like the game's options, with keyboard, mouse and controller. The right side explains the selected setting and its
+default. Changes apply at once and are saved right away.
+
+### All game languages
+The mod's texts follow the game's language (English, 한국어, 日本語, 简体中文, 繁體中文, Deutsch, Español, Português (Brasil), Русский, Polski, Français) and switch live when you change it.
+The settings page has a *Language* row to pick a different one. To fix a translation without waiting for an
+update, put a file `BepInEx/DamageInsight/Lang/<code>.json` with only your changes
+(`{"strings": {"English text": "your text"}}`; codes: en, ko, ja, zh-Hans, zh-Hant, de, es, pt-BR, ru, pl, fr), and
+please send it in so everyone gets it.
+
 ## Installation
 
 ### With a mod manager (recommended)
@@ -106,7 +119,11 @@ Press **K** for a book with every enemy, boss, adventurer, skull, item, essence 
 
 ## Configuration
 
-The settings file is created on the first start:
+**In the game:** pause (Esc) → **SkulInsight QoL** (right under the game's Settings). Every setting below is there,
+with an explanation and its default; changes apply at once and are saved right away. Keyboard, mouse and controller
+work like in the game's own menus.
+
+The same settings are in the settings file (created on the first start):
 - `BepInEx/config/docrun.skulinsight_qol.cfg`
 - in r2modman / Gale: *Config editor*
 
@@ -125,7 +142,9 @@ The settings file is created on the first start:
 | Mini Log | Enabled, Lines, HideAfterSeconds, ShowPie, GapAboveMinimap | off, 4, 5, on, 40 | Small log above the minimap |
 | Cooldown Ticker | Enabled / Opacity | on / 0.55 | Seconds on HUD icons |
 | Codex | Enabled / ToggleKey | on / K | The Codex book |
+| Codex | ShowMoveHints | on | Under a beaten boss's moves: when it uses them |
 | Codex | FilmBossAttacks | on | Film each boss move once for the Codex |
+| Codex balance | (unlock numbers) | | Runs / wins / pickups it takes to unlock ★★ and ★★★ in the Codex |
 
 ## Compatibility
 - Made for Skul: The Hero Slayer **1.9.x** (Steam, Windows) with BepInExPack Skul (BepInEx 5.4.21+).
@@ -143,14 +162,15 @@ The settings file is created on the first start:
 - Codex, first version:
   - Dark Mirror: the Dark Skul's second phase and King Alexander are not fully analysed yet; some Dark Mirror-only
     moves may be missing or split into parts.
-  - A few move names are still rough (e.g. some First Hero and First Dark Hero moves appear in parts, designer
-    notes like "(1.5)" in Dark Skul moves).
-  - Move descriptions exist only for some bosses; hints on how to trigger rare moves come later.
+  - A few move names are still rough (some First Hero and First Dark Hero moves appear in parts).
+  - Move descriptions exist only for some bosses so far ("When" hints exist for every boss move).
   - Films can show effects of your own items around the boss.
+- Translations were made with the help of the game's own terms but not checked by native speakers yet; corrections
+  are very welcome (see *All game languages*). The config file and the developer tools stay English.
 
 ## Roadmap
-- In-game options menu for all settings
-- Codex: Dark Mirror page (levels, Darktech machines, elite abilities), hints for rare moves, move descriptions
+- Codex: Dark Mirror page (levels 0–10 with the game's values, Darktech machines, elite abilities), more move
+  descriptions
 - Codex rewards (optional): tokens for skipped gear, adventurer coins for their legendary items, Omen coins
 
 ## Feedback / bug reports

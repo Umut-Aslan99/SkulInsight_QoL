@@ -9,6 +9,7 @@ using Characters.Gear.Synergy.Inscriptions;
 using Characters.Gear.Upgrades;
 using Characters.Operations;
 using UnityEngine;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Recording;
 
@@ -116,7 +117,7 @@ public static class OwnerNames
         switch (target)
         {
             case Characters.Stat:
-                return new Owner("Damage taken", null);
+                return new Owner(Loc.N("Damage taken"), null);
             case Component component when OfComponent(component) is { } gear:
                 return gear;
             case AbilityInstance instance:

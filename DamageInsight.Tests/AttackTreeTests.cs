@@ -29,10 +29,12 @@ public class AttackTreeTests
         }
     }
 
-    private static AttackGraph Build(System.Action<Tree> make, System.Func<object, string> stepKey = null)
+    private static AttackGraph Build(System.Action<Tree> make, System.Func<object, string> stepKey = null,
+        System.Func<object, string> stepLabel = null)
     {
         var tree = new Tree();
         tree.Graph.StepKey = stepKey;
+        tree.Graph.StepLabel = stepLabel;
         return tree.Graph.Build(Enumerable.Empty<AttackGraph.Node>(), addMore: _ => make(tree));
     }
 
@@ -284,6 +286,59 @@ public class AttackTreeTests
     }
 
     [Fact]
+    public void Fragments_and_aliases_of_one_move_become_that_move()
+    {
+        // First Hero: "Long slash" (+ its end motion on its own) and the block "Pierce" running the same actions;
+        // First Dark Hero: "Dimension rush ready / attack / finish" and "Double slash" + "Double slash end".
+        var g = Build(t =>
+        {
+            var pick = t.Add("Selector", Kind.Dispatcher, "Selector");
+            t.Under(pick, t.Add("ActionAttack", Kind.Plain, "Long slash", "longslash#1"));
+            t.Under(pick, t.Add("ActionAttack", Kind.Plain, "Long slash end motion", "longslash end#1"));
+            var pierce = t.Under(pick, t.Add("Sequence", Kind.Sequence, "Pierce"));
+            t.Under(pierce, t.Add("ActionAttack", Kind.Plain, "Long slash", "longslash#2"));
+            t.Under(pierce, t.Add("ActionAttack", Kind.Plain, "Long slash end motion", "longslash end#2"));
+            t.Under(pick, t.Add("Run", Kind.Plain, "Dimension rush ready", "roar"));
+            t.Under(pick, t.Add("Run", Kind.Plain, "Dimension rush attack", "slash4"));
+            t.Under(pick, t.Add("Run", Kind.Plain, "Dimension rush finish", "finish"));
+            t.Under(pick, t.Add("Run", Kind.Plain, "Double slash", "double"));
+            t.Under(pick, t.Add("Run", Kind.Plain, "Double slash end", "double end"));
+            t.Under(pick, t.Add("Run", Kind.Plain, "Upper attack", "upper"));
+            t.Under(pick, t.Add("Run", Kind.Plain, "Upper attack finish", "upper finish"));
+        }, step => step.ToString().Split('#')[0], step => step.ToString().StartsWith("longslash") ? "Long slash" : null);
+
+        var labels = g.Attacks.Where(a => !a.IsTail).Select(a => a.Label).OrderBy(l => l).ToList();
+        Assert.Equal(new[] { "Dimension rush", "Double slash", "Long slash", "Upper attack", "Upper attack finish" }, labels);
+    }
+
+    [Fact]
+    public void Move_hints_list_only_what_every_way_to_a_move_checks()
+    {
+        AttackGraph.Unit special = null, slash = null;
+        var g = Build(t =>
+        {
+            var loop = t.AddOf(typeof(Characters.AI.Behaviours.InfiniteLoop), "InfiniteLoop", Kind.Dispatcher, "Behaviours");
+            var pick = t.Under(loop, t.Add("Selector", Kind.Dispatcher, "Selector"));
+            // Phase b: a special move below 50 % HP with a 120 s cooldown, and a slash.
+            var phaseB = t.Under(pick, t.Add("Info", Kind.Plain, "Phase b ( 65% ~ 30% )"));
+            var cond = t.Under(phaseB, t.Add("Conditional", Kind.Dispatcher, "Success"));
+            cond.Note = "HealthCondition(compare=GreaterThan, percent=0.3, inverter=False)";
+            var inB = t.Under(cond, t.Add("Selector", Kind.Dispatcher, "Selector"));
+            var cool = t.Under(inB, t.Add("Conditional", Kind.Dispatcher, "Special"));
+            cool.Note = "CoolDown(coolTime=120, canUse=True, inverter=False)";
+            special = t.Under(cool, t.Add("RunAction", Kind.Plain, "Big slam", "slam"));
+            slash = t.Under(inB, t.Add("RunAction", Kind.Plain, "Slash", "slash"));
+            // The slash is also used in phase a: no HP range for it.
+            var phaseA = t.Under(pick, t.Add("Info", Kind.Plain, "Phase a ( 100% ~ 65% )"));
+            t.Under(phaseA, slash);
+        });
+
+        Assert.Equal("at 65–30 % HP · at most every 120 s", MoveHints.HintFor(special));
+        Assert.Equal("", MoveHints.HintFor(slash));
+        Assert.Single(MoveHints.Build(g)); // only the special move has a hint
+    }
+
+    [Fact]
     public void Designer_notes_and_idle_tails_are_cleaned_from_names()
     {
         Assert.Equal("Dash chase", AttackGraph.Tidy("Dash chase [ o ]"));
@@ -291,5 +346,8 @@ public class AttackTreeTests
         Assert.Equal("Dash after landing -> slam (end)", AttackGraph.Tidy("Dash after landing -> slam(end) -> skipable idle"));
         Assert.Equal("Light sword field", AttackGraph.Tidy("Light sword field 생성"));
         Assert.Equal("Arrow shot", AttackGraph.Tidy("ArrowShot"));
+        Assert.Equal("Upper attack", AttackGraph.Tidy("Upper attack (1.5)"));
+        Assert.Equal("Big bang", AttackGraph.Tidy("Big bang [new]"));
+        Assert.Equal("Dark seed (enhanced)", AttackGraph.Tidy("Dark Seed E"));
     }
 }

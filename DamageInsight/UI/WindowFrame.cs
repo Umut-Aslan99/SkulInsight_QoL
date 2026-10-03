@@ -99,6 +99,14 @@ public sealed class WindowFrame : MonoBehaviour
 
     internal void EndDrag() => DragEnded?.Invoke(Current);
 
+    /// <summary>Moves the window to <paramref name="e"/> (kept on screen), e.g. when its saved place was reset.</summary>
+    internal void MoveTo(Edges e)
+    {
+        var fitted = WindowMath.Fit(e, MinWidth, MinHeight, UiKit.CanvasSize.x, UiKit.CanvasSize.y);
+        if (!Same(fitted, Current))
+            Apply(fitted);
+    }
+
     private void Apply(Edges e)
     {
         bool sizeChanged = Math.Abs(e.Width - Current.Width) > 0.01f || Math.Abs(e.Height - Current.Height) > 0.01f;

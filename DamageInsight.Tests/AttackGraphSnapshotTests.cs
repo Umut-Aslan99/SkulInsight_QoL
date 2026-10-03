@@ -62,8 +62,12 @@ public class AttackGraphSnapshotTests
             sb.Append("== ").Append(Path.GetFileName(file).Replace("_graph.json", "")).Append(" (").Append(g.Attacks.Count(a => !a.IsTail))
               .Append(" moves)\n");
             foreach (var a in g.Attacks)
+            {
                 sb.Append(a.IsTail ? "   (tail) " : "   ").Append(a.Label).Append("  = ")
                   .Append(string.Join(", ", a.Steps.Select(g.StepText))).Append('\n');
+                if (!a.IsTail && a.Units.Count > 0 && MoveHints.HintFor(a.Units.Where(u => u.Entry).DefaultIfEmpty(a.Units[0])) is { Length: > 0 } hint)
+                    sb.Append("      when: ").Append(hint).Append('\n');
+            }
         }
         File.WriteAllText(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "graph-review.txt"), sb.ToString(), new UTF8Encoding(false));
     }

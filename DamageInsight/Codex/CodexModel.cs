@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using DamageInsight.Describe;
 using DamageInsight.Recording;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Codex;
 
@@ -166,15 +167,15 @@ public static class CodexGroups
     public static (CodexCategory category, string group)? ForEnemy(int key)
     {
         if (key >= 2000 && key < 3000)
-            return (CodexCategory.Bosses, "Boss");
+            return (CodexCategory.Bosses, Loc.N("Boss"));
         if (key >= 1000 && key < 2000)
-            return (CodexCategory.Enemies, "Adventurer mages");
+            return (CodexCategory.Enemies, Loc.N("Adventurer mages"));
         if (key >= 10000 && key < 60000)
         {
             int chapter = key / 10000;               // 1..4, 5 = Sentinel
             bool later = key % 10000 >= 5000;        // 15xxx, 25xxx, ...: added in later updates
             if (chapter >= 5)
-                return (CodexCategory.Enemies, "Special");
+                return (CodexCategory.Enemies, Loc.N("Special"));
             return (CodexCategory.Enemies, later ? $"Chapter {chapter} · more" : $"Chapter {chapter}");
         }
         return null;
@@ -217,16 +218,20 @@ public static class CodexTiers
         bool enemy = category is CodexCategory.Enemies or CodexCategory.Bosses;
         int kills = p?.Kills ?? 0, picks = p?.PickedUp ?? 0;
         if (tier == 0)
-            return (enemy ? "Encounter it to reveal it" : "Find it to reveal it", 0, 1);
+            return (enemy ? Loc.T("Encounter it to reveal it") : Loc.T("Find it to reveal it"), 0, 1);
         if (tier >= Max)
             return null;
         int need = Need(category, id, tier + 1);
-        string goal = tier == 1 ? "to learn more" : "to master it";
+        bool learn = tier == 1;
         return category switch
         {
-            CodexCategory.Bosses => (need == 1 ? $"Defeat it {goal}" : $"Defeat it {need} times {goal}", kills, need),
-            CodexCategory.Enemies => ($"Kill {need} {goal}", kills, need),
-            _ => (need == 1 ? $"Pick it up {goal}" : $"Pick it up {need} times {goal}", picks, need),
+            CodexCategory.Bosses => (learn
+                ? Loc.P("Defeat it to learn more", "Defeat it {0} times to learn more", need)
+                : Loc.P("Defeat it to master it", "Defeat it {0} times to master it", need), kills, need),
+            CodexCategory.Enemies => (learn ? Loc.F("Kill {0} to learn more", need) : Loc.F("Kill {0} to master it", need), kills, need),
+            _ => (learn
+                ? Loc.P("Pick it up to learn more", "Pick it up {0} times to learn more", need)
+                : Loc.P("Pick it up to master it", "Pick it up {0} times to master it", need), picks, need),
         };
     }
 }

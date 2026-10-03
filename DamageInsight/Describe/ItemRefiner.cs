@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Describe;
 
@@ -16,9 +18,25 @@ namespace DamageInsight.Describe;
 public static class ItemRefiner
 {
     // Game enums, in declaration order (the scan stores filters as bool arrays in this order).
-    private static readonly string[] MotionTypes = { "basic attacks", "skills", "items", "quintessences", "statuses", "dashes", "swaps", "dark abilities", "other" };
-    private static readonly string[] ActionTypes = { "dash", "basic attack", "jump attack", "jump", "skill", "swap", "custom" };
+    private static readonly string[] MotionTypes =
+    {
+        Loc.N("basic attacks"), Loc.N("skills"), Loc.N("items"), Loc.N("quintessences"), Loc.N("statuses"), Loc.N("dashes"),
+        Loc.N("swaps"), Loc.N("dark abilities"), Loc.N("other"),
+    };
+    private static readonly string[] ActionTypes =
+    {
+        Loc.N("dash"), Loc.N("basic attack"), Loc.N("jump attack"), Loc.N("jump"), Loc.N("skill"), Loc.N("swap"), Loc.N("custom"),
+    };
     private static readonly string[] StatusKinds = { "Stun", "Freeze", "Burn", "Wound", "Poison", "Unmoving" };
+    // "On hitting a stunned enemy": the status as an adjective, in StatusKinds order.
+    private static readonly string[] StatusAdjectives =
+    {
+        Loc.N("stunned"), Loc.N("frozen"), Loc.N("burning"), Loc.N("wounded"), Loc.N("poisoned"), Loc.N("rooted"),
+    };
+    private static readonly string[] StatusNames =
+    {
+        Loc.N("stun"), Loc.N("freeze"), Loc.N("burn"), Loc.N("wound"), Loc.N("poison"), Loc.N("root"),
+    };
 
     public static void Refine(GearDoc doc, Breakdown b)
     {
@@ -76,18 +94,15 @@ public static class ItemRefiner
     public static string Describe(Node owner)
     {
         if (owner.Has("_attackInterval"))
-            return $"Every {Num(owner.Num("_attackInterval"))} s (faster with spirit cooldown speed)";
+            return Loc.F("Every {0} s (faster with spirit cooldown speed)", Num(owner.Num("_attackInterval")));
 
         var own = owner.Child("_ability");
         if (!owner.Has("_triggerComponent") && HasOwnConditions(own))
         {
             // Same wording as an OnGaveDamage trigger, read from the ability itself.
-            string hit = own.Bool("_needCritical") ? "On critical hit" : "On hit";
-            string with = Filter(own.Child("_attackTypes"), MotionTypes);
-            if (with.Length > 0)
-                hit += " with " + with;
+            string hit = OnHit(own.Bool("_needCritical"), false, Filter(own.Child("_attackTypes"), MotionTypes));
             double cd = own.Num("_cooldownTime");
-            return cd > 0 ? $"{hit} ({Num(cd)} s cooldown)" : hit;
+            return cd > 0 ? $"{hit} ({Loc.F("{0} s cooldown", Num(cd))})" : hit;
         }
 
         var trigger = owner.Is("TriggerAbilityAttacher")
@@ -100,7 +115,7 @@ public static class ItemRefiner
         var details = new List<string>();
         double chance = trigger.Num("_possibility", 100);
         if (chance < 100)
-            details.Add($"{Num(chance)}% chance");
+            details.Add(Loc.F("{0}% chance", Num(chance)));
 
         // Cooldowns can sit on the trigger or on the ability that runs the operations.
         var ability = owner.Child("_ability");
@@ -110,18 +125,31 @@ public static class ItemRefiner
         if (trigger.ShortType == "OnUpdate" && trigger.Num("_cooldownTime") <= 0 && cooldown > 0)
         {
             // A trigger that checks every frame, limited by a cooldown: effectively a fixed interval.
-            when = $"Every {Num(cooldown)} s";
+            when = Loc.F("Every {0} s", Num(cooldown));
             cooldown = 0;
         }
         if (cooldown > 0)
-            details.Add($"{Num(cooldown)} s cooldown");
+            details.Add(Loc.F("{0} s cooldown", Num(cooldown)));
         int every = (int)ability.Num("_triggerCount");
         if (every > 0)
-            details.Add($"every {Ordinal(every + 1)} time");
+            details.Add(Loc.F("every {0} time", Loc.Ordinal(every + 1), every + 1));
 
         if (when.Length == 0)
             return details.Count > 0 ? string.Join(", ", details) : "";
         return details.Count > 0 ? $"{when} ({string.Join(", ", details)})" : when;
+    }
+
+    /// <summary>"On hit", "On critical hit from behind with skills"...</summary>
+    private static string OnHit(bool critical, bool fromBehind, List<string> with)
+    {
+        string types = Loc.Join(with.Select(Loc.T));
+        if (types.Length == 0)
+            return critical
+                ? fromBehind ? Loc.T("On critical hit from behind") : Loc.T("On critical hit")
+                : fromBehind ? Loc.T("On hit from behind") : Loc.T("On hit");
+        return critical
+            ? fromBehind ? Loc.F("On critical hit from behind with {0}", types) : Loc.F("On critical hit with {0}", types)
+            : fromBehind ? Loc.F("On hit from behind with {0}", types) : Loc.F("On hit with {0}", types);
     }
 
     private static string When(Node t)
@@ -129,78 +157,79 @@ public static class ItemRefiner
         switch (t.ShortType)
         {
             case "OnGaveDamage":
-            {
-                string hit = t.Bool("_needCritical") ? "On critical hit" : "On hit";
-                if (t.Bool("_backOnly"))
-                    hit += " from behind";
-                string with = Filter(t.Child("_attackTypes"), MotionTypes);
-                return with.Length > 0 ? $"{hit} with {with}" : hit;
-            }
+                return OnHit(t.Bool("_needCritical"), t.Bool("_backOnly"), Filter(t.Child("_attackTypes"), MotionTypes));
             case "OnUpdate":
             {
                 double interval = t.Num("_cooldownTime");
-                return interval > 0 ? $"Every {Num(interval)} s" : "Continuously";
+                return interval > 0 ? Loc.F("Every {0} s", Num(interval)) : Loc.T("Continuously");
             }
             case "OnAction":
             case "OnChargeAction":
             {
-                string types = Filter(t.Child("_types"), ActionTypes);
-                if (types == "basic attack and jump attack")
-                    types = "basic attack";
+                var types = Filter(t.Child("_types"), ActionTypes);
+                if (types.SequenceEqual(new[] { "basic attack", "jump attack" }))
+                    types = new List<string> { "basic attack" };
                 bool end = t.Str("_timing") == "End";
                 if (t.ShortType == "OnChargeAction")
-                    return end ? "After charging" : "When charging";
-                if (types == "swap")
-                    return end ? "After swapping" : "On swap";
-                if (types.Length == 0)
-                    return end ? "After an action" : "On any action";
-                return end ? $"After a {types}" : $"On {types}";
+                    return end ? Loc.T("After charging") : Loc.T("When charging");
+                if (types.SequenceEqual(new[] { "swap" }))
+                    return end ? Loc.T("After swapping") : Loc.T("On swap");
+                if (types.Count == 0)
+                    return end ? Loc.T("After an action") : Loc.T("On any action");
+                string names = Loc.Join(types.Select(Loc.T));
+                return end ? Loc.F("After a {0}", names) : Loc.F("On {0}", names);
             }
             case "OnApplyStatus":
-                return $"When you apply {t.Str("_kind") ?? "a status"}";
+            {
+                int kind = Array.IndexOf(StatusKinds, t.Str("_kind"));
+                return kind >= 0 ? Loc.F("When you apply {0}", Loc.T(StatusNames[kind])) : Loc.T("When you apply a status");
+            }
             case "OnGaveDamageStatusTarget":
             {
-                string statuses = Filter(t.Child("_characterStatusKinds"), StatusKinds, " or ");
-                return statuses.Length > 0 ? $"On hitting a {statuses}ed enemy" : "On hitting an enemy with a status";
+                var statuses = Filter(t.Child("_characterStatusKinds"), StatusAdjectives);
+                return statuses.Count > 0
+                    ? Loc.F("On hitting a {0} enemy", Loc.JoinOr(statuses.Select(Loc.T)))
+                    : Loc.T("On hitting an enemy with a status");
             }
             case "OnStatusTargetKilled":
-                return "On killing an enemy with a status";
+                return Loc.T("On killing an enemy with a status");
             case "OnKilled":
             {
                 int kills = (int)t.Num("_killCount", 1);
-                return kills > 1 ? $"Every {kills} kills" : "On kill";
+                return kills > 1 ? Loc.P("Every {0} kill", "Every {0} kills", kills) : Loc.T("On kill");
             }
             case "OnTookDamage":
             case "OnTakeDamage":
-                return "When you take damage";
-            case "OnSwap": return "On swap";
-            case "OnDashEvade": return "On evading with a dash";
-            case "OnGrounded": return "On landing";
-            case "OnBackAttack": return "On attacking from behind";
-            case "OnEnterMap": return "On entering a room";
-            case "OnGaugeFull": return "When the gauge is full";
-            case "OnHealed": return "When healed";
+                return Loc.T("When you take damage");
+            case "OnSwap": return Loc.T("On swap");
+            case "OnDashEvade": return Loc.T("On evading with a dash");
+            case "OnGrounded": return Loc.T("On landing");
+            case "OnBackAttack": return Loc.T("On attacking from behind");
+            case "OnEnterMap": return Loc.T("On entering a room");
+            case "OnGaugeFull": return Loc.T("When the gauge is full");
+            case "OnHealed": return Loc.T("When healed");
             case "OnHealthValue":
             case "OnHealthChanged":
-                return $"When HP is {(t.Str("_compareType") == "LessThan" ? "below" : "above")} {Num(t.Num("_amount"))}{(t.Str("_healthType") == "Percent" ? "%" : "")}";
+            {
+                string amount = Num(t.Num("_amount")) + (t.Str("_healthType") == "Percent" ? "%" : "");
+                return t.Str("_compareType") == "LessThan" ? Loc.F("When HP is below {0}", amount) : Loc.F("When HP is above {0}", amount);
+            }
             case "OnUseEssence":
             case "OnUseEssenceComponnet":
-                return "When using a quintessence";
+                return Loc.T("When using a quintessence");
             default:
                 return "";
         }
     }
 
-    /// <summary>Names of the enabled entries of a bool-array filter, if it's a narrow selection (1–2 entries).</summary>
-    private static string Filter(Node boolArray, string[] names, string separator = " and ")
+    /// <summary>The enabled entries of a bool-array filter (English names), if it's a narrow selection (1–2 entries).</summary>
+    private static List<string> Filter(Node boolArray, string[] names)
     {
         if (boolArray.IsNull || !(boolArray.Raw("_array") is List<object> values))
-            return "";
+            return new List<string>();
         var on = values.Select((v, i) => (v is bool b && b, i)).Where(x => x.Item1 && x.i < names.Length).Select(x => names[x.i]).ToList();
-        return on.Count is > 0 and <= 2 && on.Count < values.Count ? string.Join(separator, on) : "";
+        return on.Count is > 0 and <= 2 && on.Count < values.Count ? on : new List<string>();
     }
-
-    private static string Ordinal(int n) => n switch { 2 => "2nd", 3 => "3rd", _ => $"{n}th" };
 
     private static string Num(double v) => v.ToString(System.Math.Abs(v - System.Math.Round(v)) < 1e-6 ? "0" : "0.##", CultureInfo.InvariantCulture);
 }

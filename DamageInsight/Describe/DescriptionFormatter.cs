@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Describe;
 
@@ -72,16 +73,17 @@ public static class DescriptionFormatter
     public static string HitLine(Hit hit, StatSnapshot stats)
     {
         var sb = new StringBuilder();
-        sb.Append(Amount(hit, stats));
+        string amount = Amount(hit, stats);
         if (hit.Count > 1 && !UnknownBase(hit, stats))
         {
             // "16 hits of 6–8 Magic = 96–128" reads better than "16x 6–8".
             var (min, max) = FinalRange(hit, stats);
-            sb.Insert(0, $"{hit.Count} hits of ");
-            sb.Append($" = {Range(min * hit.Count, max * hit.Count)}");
+            sb.Append(Loc.P("{0} hit of {1} = {2}", "{0} hits of {1} = {2}", hit.Count, amount, Range(min * hit.Count, max * hit.Count)));
         }
         else if (hit.Count > 1)
-            sb.Insert(0, $"{hit.Count} hits of ");
+            sb.Append(Loc.P("{0} hit of {1}", "{0} hits of {1}", hit.Count, amount));
+        else
+            sb.Append(amount);
 
         sb.Append($"<color={DimColor}>");
         string breakdown = Breakdown(hit, stats);
@@ -99,11 +101,22 @@ public static class DescriptionFormatter
     {
         var (min, max) = FinalRange(hit, stats);
         string colour = hit.Attribute == "Magic" ? MagicColor : hit.Attribute == "Fixed" ? FixedColor : PhysicalColor;
-        string attribute = hit.AdaptiveForce ? "Physical/Magic" : hit.Attribute;
+        string attribute = AttributeName(hit);
         return UnknownBase(hit, stats)
-            ? $"<color={colour}>{Percent(hit.MultMin, hit.MultMax)} of skull damage, {attribute}</color>"
+            ? $"<color={colour}>{Loc.F("{0} of skull damage, {1}", Percent(hit.MultMin, hit.MultMax), attribute)}</color>"
             : $"<color={colour}>{Range(min, max)} {attribute}</color>";
     }
+
+    /// <summary>"Physical", "Magic", "Fixed" or (adaptive force) "Physical/Magic", in the current language.</summary>
+    public static string AttributeName(Hit hit) => hit.AdaptiveForce ? Loc.T("Physical/Magic") : AttributeName(hit.Attribute);
+
+    public static string AttributeName(string attribute) => attribute switch
+    {
+        "Magic" => Loc.T("Magic"),
+        "Fixed" => Loc.T("Fixed"),
+        "Physical" => Loc.T("Physical"),
+        _ => attribute,
+    };
 
     /// <summary>How the amount is made: "8–12 x 125% x 160% phys. atk", or "" if it's just the base.</summary>
     public static string Breakdown(Hit hit, StatSnapshot stats)
@@ -113,7 +126,7 @@ public static class DescriptionFormatter
         if (!UnknownBase(hit, stats))
         {
             var (baseMin, baseMax) = Base(hit, stats);
-            parts.Add(hit.UsesSkullDamage ? $"{Range(baseMin, baseMax)} skull dmg" : Range(baseMin, baseMax));
+            parts.Add(hit.UsesSkullDamage ? Loc.F("{0} skull dmg", Range(baseMin, baseMax)) : Range(baseMin, baseMax));
             if (Math.Abs(hit.MultMin - 1) > 1e-6 || Math.Abs(hit.MultMax - 1) > 1e-6)
             {
                 parts.Add(Percent(hit.MultMin, hit.MultMax));
@@ -131,20 +144,20 @@ public static class DescriptionFormatter
 
     /// <summary>Which attack stat scales a hit: "phys. atk", "magic atk" or (adaptive force) "higher atk".</summary>
     public static string AttackStatName(Hit hit) =>
-        hit.AdaptiveForce ? "higher atk" : hit.Attribute == "Magic" ? "magic atk" : "phys. atk";
+        hit.AdaptiveForce ? Loc.T("higher atk") : hit.Attribute == "Magic" ? Loc.T("magic atk") : Loc.T("phys. atk");
 
     /// <summary>Short remarks about a hit: chance, "can't crit", its trigger note...</summary>
-    public static List<string> Notes(Hit hit)
+    public static List<string> Notes(Hit hit, bool repeats = true)
     {
         var notes = new List<string>();
-        if (hit.Count == 0)
-            notes.Add("repeats");
+        if (hit.Count == 0 && repeats)
+            notes.Add(Loc.T("repeats"));
         if (hit.Chance < 0.999)
-            notes.Add(FormattableString.Invariant($"{hit.Chance * 100:0.#}% chance"));
+            notes.Add(Loc.F("{0}% chance", (hit.Chance * 100).ToString("0.#", CultureInfo.InvariantCulture)));
         if (!hit.CanCrit)
-            notes.Add("can't crit");
+            notes.Add(Loc.T("can't crit"));
         if (hit.UsesEnemyStats)
-            notes.Add("ignores your atk bonuses");
+            notes.Add(Loc.T("ignores your atk bonuses"));
         if (!string.IsNullOrEmpty(hit.Note))
             notes.Add(hit.Note);
         return notes;
@@ -165,7 +178,7 @@ public static class DescriptionFormatter
             if (step.Hits.Count == 0)
                 continue;
             string hits = section.Compact ? CompactHits(step.Hits, stats) : string.Join(" + ", step.Hits.Select(h => HitLine(h, stats)));
-            lines.Add(string.IsNullOrEmpty(step.Label) ? hits : $"{step.Label}: {hits}");
+            lines.Add(string.IsNullOrEmpty(step.Label) ? hits : Loc.F("{0}: {1}", step.Label, hits));
         }
         foreach (var note in section.Notes)
             lines.Add($"<color={DimColor}>{note}</color>");
@@ -190,16 +203,18 @@ public static class DescriptionFormatter
         }
         var first = hits[0];
         string colour = first.Attribute == "Magic" ? MagicColor : first.Attribute == "Fixed" ? FixedColor : PhysicalColor;
-        string attributes = string.Join("/", hits.Select(h => h.AdaptiveForce ? "Physical/Magic" : h.Attribute).Distinct());
+        string attributes = string.Join("/", hits.Select(AttributeName).Distinct());
 
         string percents = string.Join(" + ", hits.Select(h => (h.Count > 1 ? $"{h.Count}x " : "") + Percent(h.MultMin, h.MultMax)));
         var (baseMin, baseMax) = Base(first, stats);
-        string of = UnknownBase(first, stats) ? " skull dmg" : first.UsesSkullDamage ? $" of {Range(baseMin, baseMax)} skull dmg" : $" of {Range(baseMin, baseMax)}";
+        string of = UnknownBase(first, stats) ? Loc.T("skull dmg")
+            : first.UsesSkullDamage ? Loc.F("of {0} skull dmg", Range(baseMin, baseMax))
+            : Loc.F("of {0}", Range(baseMin, baseMax));
         double factor = stats.FactorFor(first);
         string atk = Math.Abs(factor - 1) > 1e-6 && first.Attribute != "Fixed" ? $", x{Percent(factor, factor)} {AttackStatName(first)}" : "";
-        var notes = Notes(first).Where(n => n != "repeats").ToList();
+        var notes = Notes(first, repeats: false);
         string amount = UnknownBase(first, stats) ? "" : $" = <color={colour}>{Range(min, max)} {attributes}</color>";
-        return $"{count} hits{amount}<color={DimColor}> ({percents}{of}{atk})" +
+        return $"{Loc.P("{0} hit", "{0} hits", count)}{amount}<color={DimColor}> ({percents} {of}{atk})" +
                (notes.Count > 0 ? " · " + string.Join(" · ", notes) : "") + "</color>";
     }
 

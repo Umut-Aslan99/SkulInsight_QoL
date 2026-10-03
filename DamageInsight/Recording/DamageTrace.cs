@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Recording;
 
@@ -83,11 +84,11 @@ public sealed class DamageTrace
         var rows = new List<TraceRow>();
         if (Start.Fixed)
         {
-            rows.Add(new TraceRow("Fixed damage", "", Start.Amount(false), OriginIcon));
+            rows.Add(new TraceRow(Loc.T("Fixed damage"), "", Start.Amount(false), OriginIcon));
         }
         else
         {
-            rows.Add(new TraceRow("Base damage", "", Start.Base, OriginIcon));
+            rows.Add(new TraceRow(Loc.T("Base damage"), "", Start.Base, OriginIcon));
             var raw = Start;
             raw.Multiplier = 1;
             raw.PercentMultiplier = 1;
@@ -103,17 +104,17 @@ public sealed class DamageTrace
             if (Math.Abs(Start.PercentMultiplier - 1) > 1e-9)
             {
                 total *= Start.PercentMultiplier;
-                rows.Add(new TraceRow("Damage bonus", X(Start.PercentMultiplier), total));
+                rows.Add(new TraceRow(Loc.T("Damage bonus"), X(Start.PercentMultiplier), total));
             }
             if (Critical)
             {
                 total *= Start.CritMultiplier;
-                rows.Add(new TraceRow("Critical hit", X(Start.CritMultiplier), total));
+                rows.Add(new TraceRow(Loc.T("Critical hit"), X(Start.CritMultiplier), total));
             }
             if (Start.ExtraFixed != 0)
             {
                 total += Start.ExtraFixed;
-                rows.Add(new TraceRow("Extra fixed damage", Plus(Start.ExtraFixed), total));
+                rows.Add(new TraceRow(Loc.T("Extra fixed damage"), Plus(Start.ExtraFixed), total));
             }
         }
 
@@ -121,10 +122,11 @@ public sealed class DamageTrace
         foreach (var step in Steps)
         {
             double before = previous.Amount(Critical), after = step.After.Amount(Critical);
-            string effect = step.After.Null && !previous.Null ? "blocked"
+            string effect = step.After.Null && !previous.Null ? Loc.T("blocked")
                 : before > 0 && Math.Abs(step.After.ExtraFixed - previous.ExtraFixed) < 1e-9 ? X(after / before)
                 : Plus(after - before);
-            rows.Add(new TraceRow(step.Label + (step.Stage == "take" ? " (on target)" : ""), effect, after, step.Icon));
+            string label = Loc.Name(step.Label);
+            rows.Add(new TraceRow(step.Stage == "take" ? Loc.F("{0} (on target)", label) : label, effect, after, step.Icon));
             previous = step.After;
         }
 
@@ -134,20 +136,20 @@ public sealed class DamageTrace
         if (Dealt > 0 && Math.Abs(computed - Dealt) >= 1)
             // Less than computed: the target had fewer HP left (overkill), or a shield absorbed part of it.
             rows.Add(Dealt < computed
-                ? new TraceRow($"Dealt: only {Dealt.ToString("N0", CultureInfo.InvariantCulture)} HP were left", "overkill", Dealt)
-                : new TraceRow("Dealt", "", Dealt));
+                ? new TraceRow(Loc.F("Dealt: only {0} HP were left", Dealt.ToString("N0", CultureInfo.InvariantCulture)), Loc.T("overkill"), Dealt)
+                : new TraceRow(Loc.T("Dealt"), "", Dealt));
         else if (Math.Abs(exact - computed) > 1e-6)
-            rows.Add(new TraceRow("Rounded up", "", computed));
+            rows.Add(new TraceRow(Loc.T("Rounded up"), "", computed));
         return rows;
     }
 
     private string StatLabel()
     {
         if (StatParts.Count == 0)
-            return "Attack stats";
+            return Loc.T("Attack stats");
         var parts = new List<string>();
         foreach (var (label, value) in StatParts)
-            parts.Add($"{label} {Pct(value)}");
+            parts.Add($"{Loc.T(label)} {Pct(value)}");
         return string.Join(", ", parts);
     }
 

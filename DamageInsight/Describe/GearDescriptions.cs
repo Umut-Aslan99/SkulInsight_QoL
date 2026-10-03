@@ -13,6 +13,7 @@ using Services;
 using Singletons;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Describe;
 
@@ -24,13 +25,23 @@ public static class GearDescriptions
 {
     private static readonly Dictionary<string, Breakdown> Cache = new();
 
+    static GearDescriptions()
+    {
+        // Analyses hold translated labels and notes: a new language analyses again.
+        Loc.Changed += () =>
+        {
+            Cache.Clear();
+            Summons.Clear();
+        };
+    }
+
     /// <summary>Extra text for a skull's passive description: basic combo, jump/dash attack and passive hits.</summary>
     public static string ForWeapon(Weapon weapon) =>
         Build(weapon, "weapons", b => Join(
-            Part(b, "Basic", "Basic attack"),
-            Part(b, "Jump", "Jump attack"),
-            Part(b, "Dash", "Dash attack"),
-            Part(b, "Passive", "Passive"),
+            Part(b, "Basic", Loc.T("Basic attack")),
+            Part(b, "Jump", Loc.T("Jump attack")),
+            Part(b, "Dash", Loc.T("Dash attack")),
+            Part(b, "Passive", Loc.T("Passive")),
             SummonParts(b)));
 
     public static string ForSwap(Weapon weapon) => Build(weapon, "weapons", b => Part(b, "Swap", null));
@@ -54,7 +65,7 @@ public static class GearDescriptions
         {
             var changes = PickupPreview.Preview().changes;
             return changes.Count == 0 ? ""
-                : $"\n<color={DescriptionFormatter.DimColor}>{(PickupPreview.Replacing != null ? "If swapped" : "If picked up")}: {string.Join(" · ", changes)}</color>";
+                : $"\n<color={DescriptionFormatter.DimColor}>{Loc.F("{0}: {1}", PickupPreview.Replacing != null ? Loc.T("If swapped") : Loc.T("If picked up"), string.Join(" · ", changes))}</color>";
         }
         catch (Exception e)
         {
@@ -68,10 +79,10 @@ public static class GearDescriptions
     {
         foreach (var upgrade in b.Upgrades)
         {
-            string header = $"<color={DescriptionFormatter.DimColor}>Becomes {ItemName(upgrade.TargetName)}";
-            if (upgrade.OwnItemName.Length > 0)
-                header += $" when you own {ItemName(upgrade.OwnItemName)}";
-            yield return header + ":</color>";
+            string header = upgrade.OwnItemName.Length > 0
+                ? Loc.F("Becomes {0} when you own {1}:", ItemName(upgrade.TargetName), ItemName(upgrade.OwnItemName))
+                : Loc.F("Becomes {0}:", ItemName(upgrade.TargetName));
+            yield return $"<color={DescriptionFormatter.DimColor}>{header}</color>";
 
             var target = AnalyzeItemByName(upgrade.TargetName);
             if (target != null)
@@ -189,17 +200,14 @@ public static class GearDescriptions
                 : bonusByStep != null && step >= 0 && step < bonusByStep.Length ? bonusByStep[step] : 0;
             var tuned = stats.Copy();
             tuned.PoisonTickReduction = stats.PoisonTickReduction - current + superBonus;
-            yield return $"<color={dim}>Tuned:</color> " + StatusDescriptions.Describe(StatusSettings(), "Poison", tuned);
+            yield return $"<color={dim}>{Loc.T("Tuned:")}</color> " + StatusDescriptions.Describe(StatusSettings(), "Poison", tuned);
         }
         else if (inscription.key == Inscription.Key.ExcessiveBleeding)
         {
             double? chance = InscriptionValue(inscription, (ExcessiveBleeding e) => (double)e._superBleedChance);
-            string severe = StatusDescriptions.Describe(StatusSettings(), "Bleed", stats)
-                .Split('\n').FirstOrDefault(l => l.StartsWith("Super bleed")) ?? "";
+            string severe = StatusDescriptions.SuperBleed(StatusSettings(), stats, severe: true, chance);
             if (severe.Length > 0)
-                yield return chance != null
-                    ? severe.Replace("Super bleed (", FormattableString.Invariant($"Severe bleed ({chance * 100:0}% chance, "))
-                    : severe.Replace("Super bleed", "Severe bleed");
+                yield return severe;
         }
     }
 
@@ -267,15 +275,16 @@ public static class GearDescriptions
                     // every damage you deal gets +x to its multiplier per Spirit item.
                     var component = oberon.GetComponentInChildren<Characters.Gear.Synergy.Inscriptions.FairyTaleSummon.Oberon>(true);
                     if (super && component != null && component._damageMultiplierBySuper > 0 && b.Sections.Count > 0)
-                        b.Sections[b.Sections.Count - 1].Notes.Add(FormattableString.Invariant(
-                            $"All your damage: +{component._damageMultiplierBySuper * 100:0}% atk per Spirit item you hold (added to your atk %)"));
+                        b.Sections[b.Sections.Count - 1].Notes.Add(Loc.F(
+                            "All your damage: +{0}% atk per Spirit item you hold (added to your atk %)",
+                            (component._damageMultiplierBySuper * 100).ToString("0", System.Globalization.CultureInfo.InvariantCulture)));
                 });
             });
             Cache[cacheKey] = b;
         }
         if (b == null)
             yield break;
-        yield return $"<color={DescriptionFormatter.DimColor}>{(dark ? "Dark Oberon" : "Oberon")}:</color>";
+        yield return $"<color={DescriptionFormatter.DimColor}>{Loc.F("{0}:", dark ? Loc.T("Dark Oberon") : Loc.T("Oberon"))}</color>";
         foreach (var section in b.Sections.Where(s => s.HasHits))
             yield return DescriptionFormatter.Section(section, stats, section.Title);
     }
@@ -383,7 +392,7 @@ public static class GearDescriptions
         // Several actions of one kind (e.g. ground and air combos) are listed one after another.
         return string.Join("\n", sections.Select((s, i) =>
             DescriptionFormatter.Section(s, stats, title == null ? null
-                : sections.Count > 1 ? (s.Title.Length > 0 ? $"{title}: {s.Title}" : $"{title} ({i + 1})")
+                : sections.Count > 1 ? (s.Title.Length > 0 ? Loc.F("{0}: {1}", title, s.Title) : $"{title} ({i + 1})")
                 : title)));
     }
 
@@ -442,9 +451,9 @@ public static class GearDescriptions
         var parts = new List<string>();
         foreach (var (name, summon) in summons)
         {
-            parts.Add($"<color={DescriptionFormatter.DimColor}>Summons {name}:</color>");
+            parts.Add($"<color={DescriptionFormatter.DimColor}>{Loc.F("Summons {0}:", name)}</color>");
             foreach (var section in summon.Sections.Where(sec => sec.HasHits))
-                parts.Add(DescriptionFormatter.Section(section, stats, section.Key));
+                parts.Add(DescriptionFormatter.Section(section, stats, Loc.Name(WeaponRefiner.Humanize(section.Key))));
         }
         return Join(parts.ToArray());
     }

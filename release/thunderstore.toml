@@ -6,7 +6,7 @@ schemaVersion = "0.0.1"
 namespace = "DocRun"
 name = "SkulInsight_QoL"
 versionNumber = "0.0.0"   # overridden with --package-version
-description = "A Codex bestiary with boss move lists and fight films, real damage numbers in descriptions, damage source tags, boss HP numbers, a combat log that explains every hit, pickup preview, cooldowns."
+description = "Codex bestiary with boss moves and fight films, real damage in descriptions, damage source tags, boss HP numbers, a combat log that explains every hit, pickup preview. In-game settings, all 11 game languages."
 websiteUrl = "https://github.com/Umut-Aslan99/SkulInsight_QoL"
 containsNsfwContent = false
 

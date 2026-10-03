@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.10.1 (settings in the game, all game languages)
+
+- New: **the mod speaks every language the game has** (English, 한국어, 日本語, 简体中文, 繁體中文, Deutsch, Español, Português (Brasil), Русский, Polski, Français). It follows the game's
+  language setting and switches live; the settings page has a *Language* row to pick another one. Descriptions,
+  combat log, calculations, damage tags, the Codex (incl. boss move names and hints) and the settings page are
+  translated, using the game's own terms. Translations can be corrected without an update: put a file with your
+  changes into `BepInEx/DamageInsight/Lang/<code>.json` (see the guide).
+- New: **settings page in the game.** Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings. Every
+  setting of the mod in one list, styled like the game's options, with keyboard, mouse and controller. The right
+  side explains the selected setting and shows its default. Changes apply at once and are saved right away; a key
+  is changed by selecting it and pressing the new key. Also: reset the combat log window position, reset everything.
+- The Codex unlock numbers (runs to ★★ / ★★★, boss wins, pickups) can now be changed by everyone (settings page or
+  the config section *Codex balance*).
+- Combat log background and opacity now change without a restart.
+- Codex: boss moves show **when** the boss uses them (HP range, distance, cooldown, chance...), read from its AI,
+  once you have beaten it (can be switched off: *Move hints*).
+- Codex: cleaner move names (designer notes removed, split parts of one move joined, "(enhanced)" versions).
+
 ## 0.10.0 (Codex)
 
 - New: **Codex** (key K), a bestiary of every enemy, boss, adventurer, skull, item, essence and inscription you have

@@ -1,0 +1,54 @@
+{
+  "_note": "Translation of codex_content.json (same keys; anything missing here comes from the English file).",
+  "entries": {
+    "Yggdrasil": {
+      "about": "Prastare drzewo strzegące pierwszego rozdziału. Walczy głową i dwiema ogromnymi dłońmi, a gdy straci połowę zdrowia, przebudza się w drugiej fazie.",
+      "moves": {
+        "Fist slam": {
+          "what": "Unosi wysoko jedną dłoń, przez chwilę śledzi twoją pozycję i uderza nią.",
+          "tip": "Ruszaj się, aż dłoń opadnie, potem zrób zryw w bok. Po uderzeniu dłoń zostaje chwilę na ziemi: bezpieczne okno na kontrę."
+        },
+        "Sweeping": {
+          "what": "Jedna dłoń zamiata przy ziemi całą arenę.",
+          "tip": "Gdy zaczyna się zamach, wyrastają drewniane platformy: wskocz na jedną albo przeskocz dłoń we właściwej chwili."
+        },
+        "Energy bomb": {
+          "what": "Gromadzi energię w głowie i wystrzeliwuje bomby, które wybuchają tam, gdzie spadną.",
+          "tip": "Patrz, gdzie celują bomby, i zejdź z tego miejsca; wybuchy są krótkie, więc możesz od razu wrócić."
+        },
+        "Laser": {
+          "what": "Zbiera światło w głowie i wystrzeliwuje promień.",
+          "tip": "Ładowanie to twoje ostrzeżenie. Zejdź z linii promienia przed strzałem, zamiast próbować przebić się zrywem."
+        },
+        "Groggy": {
+          "what": "Wyczerpana głowa opada na ziemię, a drzewo na kilka sekund przestaje atakować.",
+          "tip": "Twoje najlepsze okno na obrażenia: użyj teraz umiejętności i najsilniejszych ataków na głowę."
+        },
+        "Phase 2 · Awakening": {
+          "what": "Z drzewa wyrywa się czarny kryształ: zaczyna się faza 2. Ataki stają się cięższe i idą w kombinacjach.",
+          "tip": "Wykorzystaj przemianę, by zmienić pozycję i odnowić umiejętności."
+        },
+        "Phase 2 · Fist power slam": {
+          "what": "Cięższe uderzenie, które przy upadku posyła falę gruzu po ziemi.",
+          "tip": "Unik przed dłonią nie wystarczy: przeskocz lub przemknij zrywem nad falą gruzu, która nadchodzi."
+        },
+        "Phase 2 · Both fist power slam": {
+          "what": "Obie dłonie uderzają naraz, pokrywając dużą część areny.",
+          "tip": "Trzymaj się blisko środka i czekaj, aż obie dłonie ruszą, zanim zrobisz unik; luka między nimi to twoje wyjście."
+        },
+        "Phase 2 · Sweeping combo": {
+          "what": "Dwa zamachy z rzędu: najpierw z jednej strony, potem z drugiej.",
+          "tip": "Zostań na platformie albo przygotuj kolejny skok po pierwszym zamachu: drugi następuje niemal od razu."
+        },
+        "Phase 2 · Energy corps": {
+          "what": "Przyzywa krąg kul energii, które lecą na ciebie jedna po drugiej.",
+          "tip": "Biegnij w jednym kierunku, by kule chybiały za tobą; nie zatrzymuj się do ataku, dopóki nie minie ostatnia."
+        },
+        "Phase 2 · Groggy": {
+          "what": "Znowu wyczerpana: głowa opada, a drzewo przestaje atakować.",
+          "tip": "Tak jak w fazie 1: zrzuć wszystko na głowę."
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ using Characters.Gear.Synergy.Inscriptions;
 using Services;
 using Singletons;
 using UnityEngine;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Describe;
 
@@ -108,11 +109,11 @@ public static class PickupPreview
 
         var stats = GearDescriptions.Snapshot(preview, player);
         var now = GearDescriptions.CurrentStats(ignorePreview: true);
-        AddStatChange(changes, "Phys. atk", now.Physical, stats.Physical);
-        AddStatChange(changes, "Magic atk", now.Magic, stats.Magic);
-        AddStatChange(changes, "Total atk", now.AttackDamage, stats.AttackDamage);
-        AddStatChange(changes, "Skill atk", now.Skill, stats.Skill);
-        AddStatChange(changes, "Basic atk", now.Basic, stats.Basic);
+        AddStatChange(changes, Loc.T("Phys. atk"), now.Physical, stats.Physical);
+        AddStatChange(changes, Loc.T("Magic atk"), now.Magic, stats.Magic);
+        AddStatChange(changes, Loc.T("Total atk"), now.AttackDamage, stats.AttackDamage);
+        AddStatChange(changes, Loc.T("Skill atk"), now.Skill, stats.Skill);
+        AddStatChange(changes, Loc.T("Basic atk"), now.Basic, stats.Basic);
         return (stats, changes);
     }
 

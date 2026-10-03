@@ -1,4 +1,5 @@
 using System;
+using DamageInsight.Lang;
 
 namespace DamageInsight.UI;
 
@@ -15,8 +16,8 @@ public static class CooldownFormat
         // Round up, so the number only drops when a full second has passed and "1s" shows until the end.
         long s = (long)Math.Ceiling(seconds - 1e-4);
         if (s < 100)
-            return $"{s}s";
+            return Loc.F("{0}s", s);
         long minutes = s / 60;
-        return s % 60 == 0 ? $"{minutes}m" : $"{minutes}m+";
+        return s % 60 == 0 ? Loc.F("{0}m", minutes) : Loc.F("{0}m+", minutes);
     }
 }

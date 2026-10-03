@@ -109,7 +109,7 @@ public sealed partial class AttackGraph
                 MethodName = d["m"] as string,
                 MethodPublic = d["p"] is true,
                 Kind = (Kind)Enum.Parse(typeof(Kind), (string)d["k"]),
-                Label = d["l"] as string ?? "",
+                Label = Tidy(d["l"] as string ?? ""),
                 Tag = d["g"] as string,
                 Note = d.TryGetValue("note", out var note) ? note as string : null,
                 OnAi = d["ai"] is true,

@@ -1,0 +1,54 @@
+{
+  "_note": "Translation of codex_content.json (same keys; anything missing here comes from the English file).",
+  "entries": {
+    "Yggdrasil": {
+      "about": "L'arbre ancestral qui garde le premier chapitre. Il combat avec sa tête et deux mains géantes, et s'éveille dans une seconde phase quand la moitié de sa vie est partie.",
+      "moves": {
+        "Fist slam": {
+          "what": "Lève une main bien haut, suit un instant ta position et l'abat.",
+          "tip": "Continue de bouger jusqu'à ce que la main tombe, puis fais un sprint sur le côté. La main reste un instant au sol après l'impact : une fenêtre sûre pour riposter."
+        },
+        "Sweeping": {
+          "what": "Une main balaie toute l'arène au ras du sol.",
+          "tip": "Des plateformes en bois s'élèvent quand le balayage commence : saute sur l'une d'elles ou saute au bon moment par-dessus la main."
+        },
+        "Energy bomb": {
+          "what": "Charge de l'énergie dans sa tête et tire des bombes qui explosent là où elles tombent.",
+          "tip": "Regarde où les bombes visent et quitte cet endroit ; les explosions sont brèves, tu peux revenir aussitôt."
+        },
+        "Laser": {
+          "what": "Rassemble de la lumière dans sa tête et tire un rayon.",
+          "tip": "La charge est ton signal. Sors de la trajectoire du rayon avant le tir au lieu d'essayer de le traverser en sprint."
+        },
+        "Groggy": {
+          "what": "Épuisée, la tête s'affaisse au sol et l'arbre cesse d'attaquer quelques secondes.",
+          "tip": "Ta meilleure fenêtre de dégâts : utilise maintenant tes compétences et tes attaques les plus fortes sur la tête."
+        },
+        "Phase 2 · Awakening": {
+          "what": "Du quartz noir jaillit de l'arbre : la phase 2 commence. Ses attaques deviennent plus dures et s'enchaînent.",
+          "tip": "Profite de la transformation pour te replacer et laisser tes compétences se recharger."
+        },
+        "Phase 2 · Fist power slam": {
+          "what": "Une frappe plus lourde qui envoie une vague de débris au sol à l'impact.",
+          "tip": "Esquiver la main ne suffit pas : saute ou sprinte par-dessus la vague de débris qui suit."
+        },
+        "Phase 2 · Both fist power slam": {
+          "what": "Les deux mains frappent en même temps et couvrent une grande partie de l'arène.",
+          "tip": "Reste près du centre et attends que les deux mains soient lancées avant d'esquiver ; l'espace entre elles est ta sortie."
+        },
+        "Phase 2 · Sweeping combo": {
+          "what": "Deux balayages d'affilée : d'abord d'un côté, puis de l'autre.",
+          "tip": "Reste sur une plateforme ou prépare un autre saut après le premier : le second suit presque aussitôt."
+        },
+        "Phase 2 · Energy corps": {
+          "what": "Invoque un anneau d'orbes d'énergie qui foncent sur toi l'un après l'autre.",
+          "tip": "Continue de bouger dans une direction pour que les orbes te ratent par derrière ; ne t'arrête pas pour attaquer avant que le dernier soit passé."
+        },
+        "Phase 2 · Groggy": {
+          "what": "De nouveau épuisée : la tête retombe et l'arbre cesse d'attaquer.",
+          "tip": "Comme en phase 1 : déchaîne-toi sur la tête."
+        }
+      }
+    }
+  }
+}

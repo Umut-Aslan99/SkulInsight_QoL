@@ -11,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DamageInsight.Lang;
 
 namespace DamageInsight.Codex;
 
@@ -26,7 +27,36 @@ public sealed class CodexWindow : MonoBehaviour
     /// <summary>The live instance (runs the animation capture coroutine).</summary>
     public static CodexWindow Instance { get; private set; }
 
-    private void Awake() => Instance = this;
+    private bool _rebuild;
+
+    private void Awake()
+    {
+        Instance = this;
+        Loc.Changed += () => _rebuild = true; // labels are built once: build the book again in the new language
+    }
+
+    /// <summary>Builds the book again in the current language, on the same page (keeps whether it is open).</summary>
+    private void Rebuild()
+    {
+        _rebuild = false;
+        if (_canvas == null)
+            return;
+        bool open = IsOpen;
+        if (open)
+            SetOpen(false);
+        Destroy(_canvas.gameObject);
+        _canvas = null;
+        _search = null;
+        _query = "";
+        _rows.Clear();
+        _tabs.Clear();
+        _showChips.Clear();
+        _textShownFor = null;
+        _animatedId = null;
+        _listDirty = true;
+        if (open)
+            SetOpen(true);
+    }
 
     /// <summary>True while the search field has focus (our hotkeys must not fire while typing).</summary>
     public static bool IsTyping => IsOpen && _search != null && _search.isFocused;
@@ -91,8 +121,10 @@ public sealed class CodexWindow : MonoBehaviour
 
     private void Update()
     {
+        if (_rebuild)
+            DamageInsight.Patches.Guard.Run("Codex (language)", Rebuild);
         bool typing = IsTyping;
-        if (!typing && Plugin.CodexKey.Value.IsDown())
+        if (!typing && !DamageInsight.UI.SettingsPage.IsOpen && Plugin.CodexKey.Value.IsDown())
             SetOpen(!IsOpen);
         else if (IsOpen && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -267,7 +299,7 @@ public sealed class CodexWindow : MonoBehaviour
 
     private void BuildLeft(RectTransform page)
     {
-        Label(page, "Codex", 40, Ink, TextAlignmentOptions.TopLeft).rectTransform.Place(32, 22, 400, 50);
+        Label(page, Loc.T("Codex"), 40, Ink, TextAlignmentOptions.TopLeft).rectTransform.Place(32, 22, 400, 50);
         _progressText = Label(page, "", 17, InkDim, TextAlignmentOptions.TopRight);
         _progressText.rectTransform.Place(PageWidth - 32 - 360, 36, 360, 26);
 
@@ -278,7 +310,7 @@ public sealed class CodexWindow : MonoBehaviour
         var text = Label(area, "", 20, Ink, TextAlignmentOptions.MidlineLeft);
         text.rectTransform.Fill();
         text.enableWordWrapping = false;
-        var placeholder = Label(area, "Search…  (e.g. \"recruit\", \"hope\", \"chim\")", 20, InkDim, TextAlignmentOptions.MidlineLeft);
+        var placeholder = Label(area, Loc.T("Search…  (e.g. \"recruit\", \"hope\", \"chim\")"), 20, InkDim, TextAlignmentOptions.MidlineLeft);
         placeholder.rectTransform.Fill();
         placeholder.fontStyle = FontStyles.Italic;
         _search = box.gameObject.AddComponent<TMP_InputField>();
@@ -320,7 +352,7 @@ public sealed class CodexWindow : MonoBehaviour
         float fx = 32;
         foreach (ShowFilter show in Enum.GetValues(typeof(ShowFilter)))
         {
-            string label = show.ToString();
+            string label = show switch { ShowFilter.Found => Loc.T("Found"), ShowFilter.Unknown => Loc.T("Unknown"), _ => Loc.T("All") };
             float width = UiKit.ChipWidth(label);
             var chip = new UiKit.Chip(page, label, fx, 172, width, () =>
             {
@@ -332,14 +364,15 @@ public sealed class CodexWindow : MonoBehaviour
             _showChips[show] = chip;
             fx += width + 6;
         }
-        _sortChip = new UiKit.Chip(page, "Sort: Book", 0, 0, 150, () =>
+        _sortChip = new UiKit.Chip(page, Loc.F("Sort: {0}", SortName(SortOrder.Book)), 0, 0, 150, () =>
         {
             _sort = (SortOrder)(((int)_sort + 1) % Enum.GetValues(typeof(SortOrder)).Length);
             _listDirty = true;
             _nextRefresh = 0f;
             RefreshFilterChips();
         });
-        _sortChip.Background.rectTransform.Place(PageWidth - 32 - 150, 172, 150, 28);
+        float sortWidth = Mathf.Max(150f, Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>().Max(s => UiKit.ChipWidth(Loc.F("Sort: {0}", SortName(s)))));
+        _sortChip.Background.rectTransform.Place(PageWidth - 32 - sortWidth, 172, sortWidth, 28);
         RefreshFilterChips();
 
         // Entry list
@@ -388,17 +421,20 @@ public sealed class CodexWindow : MonoBehaviour
         _portraitMark = Label(frame, "?", 150, InkDim, TextAlignmentOptions.Center);
         _portraitMark.rectTransform.Fill();
         // "Refilm" (only on films): replace this take the next time the boss does the move.
-        _filmChip = new UiKit.Chip(frame, "Refilm", 0, 0, 110, ToggleRefilm);
-        _filmChip.Background.rectTransform.PlaceTopRight(8, 8, 110, 28);
+        float filmWidth = Mathf.Max(110f, UiKit.ChipWidth(Loc.T("Refilm: on")));
+        _filmChip = new UiKit.Chip(frame, Loc.T("Refilm"), 0, 0, filmWidth, ToggleRefilm);
+        _filmChip.Background.rectTransform.PlaceTopRight(8, 8, filmWidth, 28);
         // "Normal" / "Dark Mirror": which version of the moves to show (only when a Dark Mirror version exists).
-        _modeChip = new UiKit.Chip(frame, "Normal", 0, 0, 150, ToggleMode);
-        _modeChip.Background.rectTransform.Place(8, 8, 150, 28);
+        float modeWidth = Mathf.Max(150f, UiKit.ChipWidth(Loc.T("Dark Mirror")));
+        _modeChip = new UiKit.Chip(frame, Loc.T("Normal"), 0, 0, modeWidth, ToggleMode);
+        _modeChip.Background.rectTransform.Place(8, 8, modeWidth, 28);
         // "Short Hair" / "Long Hair": which member of a shared page (the Leiana sisters) is shown.
         _memberChip = new UiKit.Chip(frame, "", 0, 0, 150, ToggleMember);
         _memberChip.Background.rectTransform.Place(8, 42, 150, 28);
         // "Animations" / "Attacks (filmed)": the posed pictures or the fight films (only once there are films).
-        _categoryChip = new UiKit.Chip(frame, "Animations", 0, 0, 190, ToggleCategory);
-        _categoryChip.Background.rectTransform.Place(8, 330 - 8 - 28, 190, 28);
+        float categoryWidth = Mathf.Max(190f, UiKit.ChipWidth(Loc.T("Attacks (filmed)")));
+        _categoryChip = new UiKit.Chip(frame, Loc.T("Animations"), 0, 0, categoryWidth, ToggleCategory);
+        _categoryChip.Background.rectTransform.Place(8, 330 - 8 - 28, categoryWidth, 28);
 
         // Move switcher: < Fist slam  2/11 >
         _clipPrev = new UiKit.Chip(page, "<", 32, 440, 40, () => SwitchClip(-1));
@@ -444,8 +480,12 @@ public sealed class CodexWindow : MonoBehaviour
     private string DetailText(CodexEntry entry, EntryProgress p, int tier)
     {
         var clip = IsEnemy(entry) && _clipCount > 0 && _stage >= 3 ? _clips[_clipIndex] : null;
+        string when = clip != null && entry.Category == CodexCategory.Bosses && tier >= 2 && Plugin.CodexMoveHints?.Value != false &&
+                      MoveHints.Get(_currentKey, clip.Label) is { } hint
+            ? $"\n\n<color=#9C3B2A><b>{Loc.T("When:")}</b></color> {MoveHints.Localize(hint)}"
+            : "";
         if (clip != null && Hidden(clip))
-            return "<color=#8A7058>Not seen yet. This move is revealed once you have seen the boss use it.</color>";
+            return $"<color=#8A7058>{Loc.T("Not seen yet. This move is revealed once you have seen the boss use it.")}</color>" + when;
         if (clip != null && !IsIdleLike(clip.Label, _showingFilms ? -1 : _clipIndex))
         {
             var sb = new StringBuilder();
@@ -454,14 +494,15 @@ public sealed class CodexWindow : MonoBehaviour
             {
                 sb.Append(move.Value.what);
                 if (move.Value.tip.Length > 0)
-                    sb.Append("\n\n<color=#9C3B2A><b>How to deal with it</b></color>\n").Append(move.Value.tip);
+                    sb.Append($"\n\n<color=#9C3B2A><b>{Loc.T("How to deal with it")}</b></color>\n").Append(move.Value.tip);
             }
             else
             {
-                sb.Append("<color=#8A7058>No notes on this move yet.</color>");
+                sb.Append($"<color=#8A7058>{Loc.T("No notes on this move yet.")}</color>");
             }
+            sb.Append(when);
             float seconds = clip.Durations.Sum();
-            sb.Append($"\n\n<size=85%><color=#8A7058>{clip.Count} frames ·{seconds.ToString("0.0", CultureInfo.InvariantCulture)} s</color></size>");
+            sb.Append($"\n\n<size=85%><color=#8A7058>{Loc.P("{0} frame · {1} s", "{0} frames · {1} s", clip.Count, seconds.ToString("0.0", CultureInfo.InvariantCulture))}</color></size>");
             return sb.ToString();
         }
         string about = CodexContent.About(entry.Key);
@@ -480,7 +521,7 @@ public sealed class CodexWindow : MonoBehaviour
     {
         foreach (var pair in _showChips)
             pair.Value.SetOn(pair.Key == _show);
-        _sortChip.Label.text = "Sort: " + _sort;
+        _sortChip.Label.text = Loc.F("Sort: {0}", SortName(_sort));
         _sortChip.SetOn(_sort != SortOrder.Book);
     }
 
@@ -529,7 +570,7 @@ public sealed class CodexWindow : MonoBehaviour
             _frameTime = 0f;
         }
         _modeChip.Background.gameObject.SetActive(hasDark && tier > 0);
-        _modeChip.Label.text = dark ? "Dark Mirror" : "Normal";
+        _modeChip.Label.text = dark ? Loc.T("Dark Mirror") : Loc.T("Normal");
         _modeChip.SetOn(dark);
         var posed = enemy && tier > 0 ? new List<CodexClip>(CodexAnimations.Load(storage)) : new List<CodexClip>();
         _partClips.Clear();
@@ -549,7 +590,7 @@ public sealed class CodexWindow : MonoBehaviour
         bool canFilm = films.Any(f => FightRecorder.IsMove(f.Label));
         _showingFilms = _showFilms && canFilm;
         _categoryChip.Background.gameObject.SetActive(canFilm);
-        _categoryChip.Label.text = _showingFilms ? "Attacks (filmed)" : "Animations";
+        _categoryChip.Label.text = _showingFilms ? Loc.T("Attacks (filmed)") : Loc.T("Animations");
         _categoryChip.SetOn(_showingFilms);
         _clips = Ordered(posed, films)
             .Where(c => _showingFilms ? _films.Contains(c) && FightRecorder.IsMove(c.Label) : !_films.Contains(c)).ToList();
@@ -570,7 +611,7 @@ public sealed class CodexWindow : MonoBehaviour
         if (onFilm)
         {
             bool marked = CodexAnimations.Refilm(CodexAnimations.ReplayFolderOf(storage)).Contains(_clips[_clipIndex].Label);
-            _filmChip.Label.text = marked ? "Refilm: on" : "Refilm";
+            _filmChip.Label.text = marked ? Loc.T("Refilm: on") : Loc.T("Refilm");
             _filmChip.SetOn(marked);
         }
 
@@ -581,13 +622,13 @@ public sealed class CodexWindow : MonoBehaviour
             _clipLabel.text = "";
         else if (_stage == 1)
             _clipLabel.text = entry.Category == CodexCategory.Bosses
-                ? "<color=#8A7058>Defeat it to see it in colour</color>"
-                : "<color=#8A7058>Kill it to see its silhouette</color>";
+                ? $"<color=#8A7058>{Loc.T("Defeat it to see it in colour")}</color>"
+                : $"<color=#8A7058>{Loc.T("Kill it to see its silhouette")}</color>";
         else if (_stage == 2)
-            _clipLabel.text = "<color=#8A7058>Kill 5 to see it move</color>";
+            _clipLabel.text = $"<color=#8A7058>{Loc.T("Kill 5 to see it move")}</color>";
         else
-            _clipLabel.text = $"{(Hidden(_clips[_clipIndex]) ? "???" : _clips[_clipIndex].Label)}  <color=#8A7058>{_clipIndex + 1}/{_clipCount}" +
-                              (tier < 3 && _clips.Count > _clipCount ? $" · {_clips.Count - _clipCount} more at ★★★" : "") + "</color>";
+            _clipLabel.text = $"{(Hidden(_clips[_clipIndex]) ? "???" : Loc.Name(_clips[_clipIndex].Label))}  <color=#8A7058>{_clipIndex + 1}/{_clipCount}" +
+                              (tier < 3 && _clips.Count > _clipCount ? " · " + Loc.F("{0} more at ★★★", _clips.Count - _clipCount) : "") + "</color>";
     }
 
     private HashSet<CodexClip> _films = new();
@@ -637,7 +678,7 @@ public sealed class CodexWindow : MonoBehaviour
         int common = 0;
         while (common < words.Length - 1 && members.All(m => Recording.OwnerNames.Humanize(m.Key).Split(' ').ElementAtOrDefault(common) == words[common]))
             common++;
-        return System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Join(" ", words.Skip(common)));
+        return Loc.Name(System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Join(" ", words.Skip(common))));
     }
 
     private void ToggleMember()
@@ -799,8 +840,8 @@ public sealed class CodexWindow : MonoBehaviour
 
         int known = all.Count(e => CodexTiers.Tier(e.Category, CodexTracker.Page(e.Id), e.Id) > 0);
         int knownHere = inCategory.Count(e => CodexTiers.Tier(e.Category, CodexTracker.Page(e.Id), e.Id) > 0);
-        string developing = _waitingShown > 0 ? $"  ·  <color=#9C3B2A>developing {_waitingShown} picture{(_waitingShown == 1 ? "" : "s")}…</color>" : "";
-        _progressText.text = $"{TabLabel(_category)}: {knownHere} / {inCategory.Count}\n<size=80%>All: {known} / {all.Count} discovered{developing}</size>";
+        string developing = _waitingShown > 0 ? $"  ·  <color=#9C3B2A>{Loc.P("developing {0} picture…", "developing {0} pictures…", _waitingShown)}</color>" : "";
+        _progressText.text = $"{TabLabel(_category)}: {knownHere} / {inCategory.Count}\n<size=80%>{Loc.F("All: {0} / {1} discovered", known, all.Count)}{developing}</size>";
 
         while (_rows.Count < _shown.Count)
             _rows.Add(NewRow());
@@ -831,10 +872,10 @@ public sealed class CodexWindow : MonoBehaviour
     {
         string stars = new string('★', CodexTiers.Tier(entry.Category, p, entry.Id)) + new string('☆', CodexTiers.Max - CodexTiers.Tier(entry.Category, p, entry.Id));
         if (IsEnemy(entry))
-            return $"{p?.Kills ?? 0} kills  {stars}";
+            return $"{Loc.P("{0} kill", "{0} kills", p?.Kills ?? 0)}  {stars}";
         if (entry.Category == CodexCategory.Inscriptions)
-            return $"{p?.PickedUp ?? 0}x completed  {stars}";
-        return $"{p?.PickedUp ?? 0}x taken  {stars}";
+            return $"{Loc.F("{0}x completed", p?.PickedUp ?? 0)}  {stars}";
+        return $"{Loc.F("{0}x taken", p?.PickedUp ?? 0)}  {stars}";
     }
 
     private Row NewRow()
@@ -908,14 +949,14 @@ public sealed class CodexWindow : MonoBehaviour
             (sprite, color) = Picture(entry, p, tier);
         _portrait.sprite = sprite;
         _portrait.color = sprite == null ? new Color(0, 0, 0, 0) : color;
-        _portraitMark.text = sprite != null ? "" : tier == 0 ? "?" : enemy ? "<size=22%>No picture yet.\nKill it once more to capture it.</size>" : "";
+        _portraitMark.text = sprite != null ? "" : tier == 0 ? "?" : enemy ? $"<size=22%>{Loc.T("No picture yet.\nKill it once more to capture it.")}</size>" : "";
 
         _title.text = tier > 0 ? entry.Name : "???";
         string stars = new string('★', tier) + new string('☆', CodexTiers.Max - tier);
-        _subtitle.text = tier > 0 ? $"{entry.Group} · {CategoryName(entry.Category)}   <color=#9C3B2A>{stars}</color>" : $"{CategoryName(entry.Category)}   {stars}";
+        _subtitle.text = tier > 0 ? $"{Loc.Name(entry.Group)} · {CategoryName(entry.Category)}   <color=#9C3B2A>{stars}</color>" : $"{CategoryName(entry.Category)}   {stars}";
 
         var next = CodexTiers.Next(entry.Category, p, entry.Id);
-        _nextText.text = next == null ? "<b>Mastered.</b> Everything about it is revealed." : $"{next.Value.text}  ({Math.Min(next.Value.have, next.Value.need)} / {next.Value.need})";
+        _nextText.text = next == null ? Loc.T("<b>Mastered.</b> Everything about it is revealed.") : $"{next.Value.text}  ({Math.Min(next.Value.have, next.Value.need)} / {next.Value.need})";
         float fill = next == null ? 1f : next.Value.need > 0 ? Mathf.Clamp01((float)next.Value.have / next.Value.need) : 0f;
         _barFill.rectTransform.anchorMax = new Vector2(fill, 1);
 
@@ -936,23 +977,23 @@ public sealed class CodexWindow : MonoBehaviour
 
         if (IsEnemy(entry))
         {
-            Line("Encountered", N(p.Seen));
-            Line("Killed", N(p.Kills));
+            Line(Loc.T("Encountered"), N(p.Seen));
+            Line(Loc.T("Killed"), N(p.Kills));
             if (tier >= 2)
             {
-                if (p.MaxHp > 0) Line("Health (highest seen)", N(p.MaxHp));
-                Line("Your damage to it", N(p.DamageDealt));
-                if (p.BestHit > 0) Line("Your biggest hit", N(p.BestHit));
-                Line("Damage it did to you", N(p.DamageTaken));
+                if (p.MaxHp > 0) Line(Loc.T("Health (highest seen)"), N(p.MaxHp));
+                Line(Loc.T("Your damage to it"), N(p.DamageDealt));
+                if (p.BestHit > 0) Line(Loc.T("Your biggest hit"), N(p.BestHit));
+                Line(Loc.T("Damage it did to you"), N(p.DamageTaken));
             }
             if (tier >= 3)
             {
-                if (p.WorstHit > 0) Line("Its biggest hit on you", N(p.WorstHit));
-                Line("Times it killed you", N(p.DeathsBy));
+                if (p.WorstHit > 0) Line(Loc.T("Its biggest hit on you"), N(p.WorstHit));
+                Line(Loc.T("Times it killed you"), N(p.DeathsBy));
             }
             else if (tier == 2)
             {
-                sb.Append("<color=#8A7058>Kill more to reveal its hardest hits.</color>");
+                sb.Append($"<color=#8A7058>{Loc.T("Kill more to reveal its hardest hits.")}</color>");
             }
             // What else is in this fight: its pieces (Pope's dark crystals) and the enemies it summons.
             var progress = CodexTracker.Progress;
@@ -960,34 +1001,34 @@ public sealed class CodexWindow : MonoBehaviour
             if (CodexCatalog.OtherVersion(entry) is { } other)
             {
                 bool known = CodexTiers.Tier(other.Category, CodexTracker.Page(other.Id), other.Id) > 0;
-                Line(entry.Key.StartsWith("Veteran") ? "Weaker version" : "Stronger version", known ? other.Name : "???");
+                Line(entry.Key.StartsWith("Veteran") ? Loc.T("Weaker version") : Loc.T("Stronger version"), known ? other.Name : "???");
             }
             var parts = PartsOfFight(entry);
             if (parts.Count > 0)
             {
-                sb.Append("\n<color=#9C3B2A><b>In this fight</b></color>\n");
+                sb.Append($"\n<color=#9C3B2A><b>{Loc.T("In this fight")}</b></color>\n");
                 foreach (var part in parts)
                 {
                     var pp = progress.Peek(part.Id);
-                    Line(part.Name, pp != null && pp.MaxHp > 0 ? N(pp.MaxHp) + " HP" : "");
+                    Line(part.Name, pp != null && pp.MaxHp > 0 ? Loc.F("{0} HP", N(pp.MaxHp)) : "");
                 }
             }
             var summons = SummonsOf(entry).Where(e => CodexTiers.Tier(e.Category, CodexTracker.Page(e.Id), e.Id) > 0).ToList();
             if (summons.Count > 0)
-                sb.Append("\n<color=#9C3B2A><b>Summons</b></color>\n").Append(string.Join(", ", summons.Select(e => e.Name))).Append('\n');
+                sb.Append($"\n<color=#9C3B2A><b>{Loc.T("Summons")}</b></color>\n").Append(string.Join(", ", summons.Select(e => e.Name))).Append('\n');
         }
         else if (entry.Category == CodexCategory.Inscriptions)
         {
-            Line("Collected in runs", N(p.Seen));
-            Line("Completed (max step)", N(p.PickedUp));
+            Line(Loc.T("Collected in runs"), N(p.Seen));
+            Line(Loc.T("Completed (max step)"), N(p.PickedUp));
         }
         else
         {
-            Line("Seen", N(p.Seen));
-            Line("Taken", N(p.PickedUp));
+            Line(Loc.T("Seen"), N(p.Seen));
+            Line(Loc.T("Taken"), N(p.PickedUp));
             var gear = CodexCatalog.GearOf(entry);
             if (gear is GameResources.ItemReference item && tier >= 2)
-                Line("Inscriptions", $"{Inscription.GetName(item.prefabKeyword1)}, {Inscription.GetName(item.prefabKeyword2)}");
+                Line(Loc.T("Inscriptions"), $"{Inscription.GetName(item.prefabKeyword1)}, {Inscription.GetName(item.prefabKeyword2)}");
         }
         return sb.ToString();
     }
@@ -998,11 +1039,11 @@ public sealed class CodexWindow : MonoBehaviour
         {
             case CodexCategory.Enemies:
             case CodexCategory.Bosses:
-                return tier >= 2 ? "" : "<color=#8A7058>Defeat it to learn more about it.</color>";
+                return tier >= 2 ? "" : $"<color=#8A7058>{Loc.T("Defeat it to learn more about it.")}</color>";
             case CodexCategory.Inscriptions:
             {
                 if (tier < 2)
-                    return "<color=#8A7058>Complete it once (reach its highest step) to read its full description.</color>";
+                    return $"<color=#8A7058>{Loc.T("Complete it once (reach its highest step) to read its full description.")}</color>";
                 var inscriptions = Singleton<Service>.Instance?.levelManager?.player?.playerComponents?.inventory?.synergy?.inscriptions;
                 if (!Enum.TryParse(entry.Key, out Inscription.Key key) || inscriptions == null)
                     return "";
@@ -1011,15 +1052,15 @@ public sealed class CodexWindow : MonoBehaviour
                 for (int step = 1; inscription.steps != null && step < inscription.steps.Count; step++)
                     sb.Append($"<b>{inscription.steps[step]}</b>  {inscription.GetDescription(step)}\n\n");
                 if (tier >= 3 && inscription.canBeSuperType)
-                    sb.Append($"<b>Tuned</b>  {inscription.GetSuperDescription()}");
+                    sb.Append($"<b>{Loc.T("Tuned")}</b>  {inscription.GetSuperDescription()}");
                 return sb.ToString();
             }
             case CodexCategory.DarkAbilities:
-                return tier < 2 ? "<color=#8A7058>Take it once to read what it does.</color>" : CodexCatalog.DarkDescription(entry);
+                return tier < 2 ? $"<color=#8A7058>{Loc.T("Take it once to read what it does.")}</color>" : CodexCatalog.DarkDescription(entry);
             default:
             {
                 if (tier < 2)
-                    return "<color=#8A7058>Pick it up to read its description.</color>";
+                    return $"<color=#8A7058>{Loc.T("Pick it up to read its description.")}</color>";
                 var (description, flavor) = CodexCatalog.GearTexts(entry);
                 return tier >= 3 && flavor.Length > 0 ? $"{description}\n\n<i>{flavor}</i>" : description;
             }
@@ -1078,17 +1119,32 @@ public sealed class CodexWindow : MonoBehaviour
 
     private static string CategoryName(CodexCategory category) => category switch
     {
-        CodexCategory.Enemies => "Enemy",
-        CodexCategory.Bosses => "Boss",
-        CodexCategory.Skulls => "Skull",
-        CodexCategory.Items => "Item",
-        CodexCategory.Essences => "Essence",
-        CodexCategory.DarkAbilities => "Dark ability",
-        _ => "Inscription",
+        CodexCategory.Enemies => Loc.T("Enemy"),
+        CodexCategory.Bosses => Loc.T("Boss"),
+        CodexCategory.Skulls => Loc.T("Skull"),
+        CodexCategory.Items => Loc.T("Item"),
+        CodexCategory.Essences => Loc.T("Essence"),
+        CodexCategory.DarkAbilities => Loc.T("Dark ability"),
+        _ => Loc.T("Inscription"),
     };
 
-    private static string TabLabel(CodexCategory category) =>
-        category == CodexCategory.DarkAbilities ? "Dark" : category.ToString();
+    private static string TabLabel(CodexCategory category) => category switch
+    {
+        CodexCategory.Enemies => Loc.T("Enemies"),
+        CodexCategory.Bosses => Loc.T("Bosses"),
+        CodexCategory.Skulls => Loc.T("Skulls"),
+        CodexCategory.Items => Loc.T("Items"),
+        CodexCategory.Essences => Loc.T("Essences"),
+        CodexCategory.DarkAbilities => Loc.T("Dark"),
+        _ => Loc.T("Inscriptions"),
+    };
+
+    private static string SortName(SortOrder sort) => sort switch
+    {
+        SortOrder.Name => Loc.T("Name"),
+        SortOrder.Kills => Loc.T("Kills"),
+        _ => Loc.T("Book"),
+    };
 
     private static void EnsureEventSystem()
     {

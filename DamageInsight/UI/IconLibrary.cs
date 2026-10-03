@@ -67,7 +67,8 @@ public static class IconLibrary
         return sprite;
     }
 
-    private static Sprite Resolve(string spec)
+    /// <summary>The sprite for an icon spec ("inscription:Arms"), or null for "none" or an unknown icon.</summary>
+    internal static Sprite Resolve(string spec)
     {
         if (string.IsNullOrWhiteSpace(spec) || spec.Trim().Equals("none", StringComparison.OrdinalIgnoreCase))
             return null;

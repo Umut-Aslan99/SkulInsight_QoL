@@ -1,5 +1,6 @@
 using Characters;
 using UnityEngine;
+using DamageInsight.Lang;
 
 namespace DamageInsight;
 
@@ -51,28 +52,39 @@ public static class DamageSources
 
     public static string Label(DamageSource source) => source switch
     {
-        DamageSource.Basic => "ATK",
-        DamageSource.Skill => "SKILL",
-        DamageSource.Item => "ITEM",
-        DamageSource.Quintessence => "ESSENCE",
-        DamageSource.Poison => "POISON",
-        DamageSource.Burn => "BURN",
-        DamageSource.Bleed => "BLEED",
-        DamageSource.Shock => "SHOCK",
-        DamageSource.Ember => "EMBER",
-        DamageSource.Status => "STATUS",
-        DamageSource.Dash => "DASH",
-        DamageSource.Swap => "SWAP",
-        DamageSource.DarkAbility => "DARK",
+        DamageSource.Basic => Loc.T("ATK"),
+        DamageSource.Skill => Loc.T("SKILL"),
+        DamageSource.Item => Loc.T("ITEM"),
+        DamageSource.Quintessence => Loc.T("ESSENCE"),
+        DamageSource.Poison => Loc.T("POISON"),
+        DamageSource.Burn => Loc.T("BURN"),
+        DamageSource.Bleed => Loc.T("BLEED"),
+        DamageSource.Shock => Loc.T("SHOCK"),
+        DamageSource.Ember => Loc.T("EMBER"),
+        DamageSource.Status => Loc.T("STATUS"),
+        DamageSource.Dash => Loc.T("DASH"),
+        DamageSource.Swap => Loc.T("SWAP"),
+        DamageSource.DarkAbility => Loc.T("DARK"),
         _ => "",
     };
 
     /// <summary>Readable name for the combat log and filter chips.</summary>
     public static string Title(DamageSource source) => source switch
     {
-        DamageSource.Quintessence => "Essence",
-        DamageSource.DarkAbility => "Dark",
-        _ => source.ToString(),
+        DamageSource.Basic => Loc.T("Basic"),
+        DamageSource.Skill => Loc.T("Skill"),
+        DamageSource.Item => Loc.T("Item"),
+        DamageSource.Quintessence => Loc.T("Essence"),
+        DamageSource.Poison => Loc.T("Poison"),
+        DamageSource.Burn => Loc.T("Burn"),
+        DamageSource.Bleed => Loc.T("Bleed"),
+        DamageSource.Shock => Loc.T("Shock"),
+        DamageSource.Ember => Loc.T("Ember"),
+        DamageSource.Status => Loc.T("Status"),
+        DamageSource.Dash => Loc.T("Dash"),
+        DamageSource.Swap => Loc.T("Swap"),
+        DamageSource.DarkAbility => Loc.T("Dark"),
+        _ => Loc.T("Other"),
     };
 
     /// <summary>Colour per damage type (close to the game's own damage number colours).</summary>

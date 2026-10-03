@@ -522,33 +522,78 @@ public sealed partial class AttackGraph
         string Key(object step) => StepKey?.Invoke(step) ?? step?.ToString() ?? "";
         // Distinct: once "Back dash long" and "short" are one move it has the back dash twice; "middle" has it once.
         List<string> Keys(Attack a) => a.Steps.Select(Key).Distinct().ToList();
-        for (bool merged = true; merged;)
+        void MergeLoop()
         {
-            merged = false;
-            for (int i = 0; i < Attacks.Count && !merged; i++)
-                for (int j = i + 1; j < Attacks.Count && !merged; j++)
-                {
-                    Attack a = Attacks[i], b = Attacks[j];
-                    string label = null;
-                    string baseA = a.BaseLabel ?? a.Label, baseB = b.BaseLabel ?? b.Label;
-                    if ((a.BaseLabel != null || b.BaseLabel != null) && baseA == baseB)
-                        label = baseA;
-                    else if (Keys(a).SequenceEqual(Keys(b)) && CommonWords(a.Label, b.Label) is { Length: > 0 } common)
-                        label = common;
-                    else if (IsTypo(a.Label, b.Label) && (Keys(a).All(Keys(b).Contains) || Keys(b).All(Keys(a).Contains)))
-                        label = a.Steps.Count >= b.Steps.Count ? a.Label : b.Label;
-                    // The same move with and without its end motion ("Slam" / "Slam (end)", "Dash after landing ->
-                    // slam" / "… -> slam (end)").
-                    else if (WithoutEnd(a.Label) is { Length: > 0 } baseName && baseName == WithoutEnd(b.Label) &&
-                             (Keys(a).All(Keys(b).Contains) || Keys(b).All(Keys(a).Contains)))
-                        label = baseName;
-                    if (label == null)
-                        continue;
-                    Absorb(a, b, label);
-                    merged = true;
-                }
+            for (bool merged = true; merged;)
+            {
+                merged = false;
+                for (int i = 0; i < Attacks.Count && !merged; i++)
+                    for (int j = i + 1; j < Attacks.Count && !merged; j++)
+                    {
+                        Attack a = Attacks[i], b = Attacks[j];
+                        string label = null;
+                        string baseA = a.BaseLabel ?? a.Label, baseB = b.BaseLabel ?? b.Label;
+                        if ((a.BaseLabel != null || b.BaseLabel != null) && baseA == baseB)
+                            label = baseA;
+                        else if (Keys(a).SequenceEqual(Keys(b)) && CommonWords(a.Label, b.Label) is { Length: > 0 } common)
+                            label = common;
+                        // The same move under two designer names, one of them its animation's (First Hero: "Pierce" /
+                        // "Long slash"): the animation's name. Pope's Baptism and Worship share a "Casting" animation that
+                        // names neither, and stay apart.
+                        else if (Keys(a).SequenceEqual(Keys(b)) && !IsPhased(a.Label) && !IsPhased(b.Label) &&
+                                 StepLabel?.Invoke(a.Steps[0]) is { } anim &&
+                                 (string.Equals(a.Label, anim, StringComparison.OrdinalIgnoreCase) || string.Equals(b.Label, anim, StringComparison.OrdinalIgnoreCase)))
+                            label = string.Equals(b.Label, anim, StringComparison.OrdinalIgnoreCase) ? b.Label : a.Label;
+                        else if (IsTypo(a.Label, b.Label) && (Keys(a).All(Keys(b).Contains) || Keys(b).All(Keys(a).Contains)))
+                            label = a.Steps.Count >= b.Steps.Count ? a.Label : b.Label;
+                        // The same move with and without its end motion ("Slam" / "Slam (end)", "Dash after landing ->
+                        // slam" / "… -> slam (end)").
+                        else if (WithoutEnd(a.Label) is { Length: > 0 } baseName && baseName == WithoutEnd(b.Label) &&
+                                 (Keys(a).All(Keys(b).Contains) || Keys(b).All(Keys(a).Contains)))
+                            label = baseName;
+                        if (label == null)
+                            continue;
+                        Absorb(a, b, label);
+                        merged = true;
+                    }
+            }
         }
+        MergeLoop();
+
+        // An end motion on its own ("Long slash end motion", "Double slash end") belongs to its move: the one with
+        // that name, else the smallest one that already contains it.
+        foreach (var fragment in Attacks.ToList())
+        {
+            var m = EndFragment.Match(fragment.Label);
+            if (!m.Success || !Attacks.Contains(fragment))
+                continue;
+            var keys = Keys(fragment);
+            var into = Attacks.FirstOrDefault(a => a != fragment && string.Equals(a.Label, m.Groups[1].Value, StringComparison.OrdinalIgnoreCase))
+                       ?? Attacks.Where(a => a != fragment && keys.All(Keys(a).Contains)).OrderBy(a => a.Steps.Count).FirstOrDefault();
+            if (into != null)
+                Absorb(into, fragment, into.Label);
+        }
+
+        // Parts of one move run as separate blocks ("Dimension rush ready / attack / finish"): one move, unless a move
+        // already has that name ("Upper attack finish" stays apart from "Upper attack").
+        foreach (var family in Attacks.Select(a => (a, m: PartSuffix.Match(a.Label))).Where(p => p.m.Success)
+                     .GroupBy(p => p.m.Groups[1].Value, StringComparer.OrdinalIgnoreCase).ToList())
+        {
+            var parts = family.Select(p => p.a).ToList();
+            if (parts.Count < 2 || Attacks.Any(a => string.Equals(a.Label, family.Key, StringComparison.OrdinalIgnoreCase)))
+                continue;
+            foreach (var part in parts.Skip(1))
+                Absorb(parts[0], part, family.Key);
+            parts[0].Label = family.Key;
+        }
+        MergeLoop(); // whole again, a move may now equal another one ("Long slash" + its end motion = "Pierce")
     }
+
+    private static readonly Regex EndFragment = new(@"(?i)^(.*\S)\s+end(\s+motion)?$");
+
+    /// <summary>A section label ("Phase 2 · ...", "Pair phase · ..."): the same steps in two sections are two moves.</summary>
+    private static bool IsPhased(string label) => label.Contains(" · ");
+    private static readonly Regex PartSuffix = new(@"(?i)^(.*\S)\s+(ready|attack|finish)$");
 
     private void Absorb(Attack into, Attack other, string label)
     {
@@ -638,13 +683,16 @@ public sealed partial class AttackGraph
     public static string Tidy(string name)
     {
         name = Regex.Replace(name ?? "", @"[^\x20-\x7E]", " ");
-        name = Regex.Replace(name, @"\[\s*o\s*\]|\(\s*o\s*\)|\(\s*test\s*\)", " ", RegexOptions.IgnoreCase);
+        // Designer notes: "[ o ]", "(test )", "[new]", animation lengths like "(1.5)" or "(8.79)".
+        name = Regex.Replace(name, @"\[[^\]]*\]|\(\s*o\s*\)|\(\s*test\s*\)|\(\s*\d+(\.\d+)?\s*\)", " ", RegexOptions.IgnoreCase);
         name = Regex.Replace(name, @"\s*->\s*(long\s+|skip+able\s+|skip\s+)?idle\b(\s*\(skip\))?", "", RegexOptions.IgnoreCase);
         name = Regex.Replace(name, @"\s*->\s*$", "");
         name = Regex.Replace(name.Trim(), @"\s+", " ");
         if (name.Length == 0)
             return "";
-        name = Regex.Replace(Recording.OwnerNames.Humanize(name), @"(?<=[a-z])(?=\d)", " ");
+        name = Regex.Replace(Recording.OwnerNames.Humanize(name), @"(?<=[a-z])(?=\d)|(?<=\d)(?=[a-z])", " ");
+        // "Dark seed E": the designers' enhanced version (their action is "…_Enhanced_…").
+        name = Regex.Replace(name, @"\s+[eE]$", " (enhanced)");
         return Regex.Replace(name, @"(?<=\w)\(", " (");
     }
 
@@ -872,8 +920,11 @@ public sealed partial class AttackGraph
         // (First Hero: "Horizontal slash + end motion" > Sequence[Horizontal slash, End motion] is "Horizontal slash").
         bool named = chain.Any(n => !n.Borrowed && Nice(n.Label));
         foreach (var n in Enumerable.Reverse(chain))
-            if (Nice(n.Label) && !(named && n.Borrowed && n.Kind == Kind.Sequence && PartWord.IsMatch(n.Label)))
-                return n.Label;
+        {
+            if (!Nice(n.Label) || (named && n.Borrowed && n.Kind == Kind.Sequence && PartWord.IsMatch(n.Label)))
+                continue;
+            return n.Label;
+        }
         var parts = node.Calls.Where(c => c.Steps.Count > 0).Select(BestName)
             .Where(l => l.Length > 0 && !Regex.IsMatch(l, @"(?i)\bidle\b|\bend\b|\bskip|^cast(ing)?\b")).Distinct().Take(3).ToList();
         if (parts.Count > 0)

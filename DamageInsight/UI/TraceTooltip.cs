@@ -3,6 +3,7 @@ using DamageInsight.Recording;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DamageInsight.Lang;
 
 namespace DamageInsight.UI;
 
@@ -46,12 +47,12 @@ public sealed class TraceTooltip
     public void Show(in DamageRecord record, Vector2 screenPosition)
     {
         var trace = record.Trace;
-        string crit = record.Critical ? " <color=#FFE14D>CRIT</color>" : "";
-        string origin = string.IsNullOrEmpty(trace?.Origin) ? "" : $"  <color=#A89F94>by</color> {trace.Origin}";
-        _header.text = $"<b>{record.Amount:N0}</b> <color={DamageSources.AttributeColorHex(record.Attribute)}>{record.Attribute}</color>{crit}{origin}" +
+        string crit = record.Critical ? $" <color=#FFE14D>{Loc.T("CRIT")}</color>" : "";
+        string origin = string.IsNullOrEmpty(trace?.Origin) ? "" : "  " + Loc.F("<color=#A89F94>by</color> {0}", Loc.Name(trace.Origin));
+        _header.text = $"<b>{record.Amount:N0}</b> <color={DamageSources.AttributeColorHex(record.Attribute)}>{DamageInsight.Describe.DescriptionFormatter.AttributeName(record.Attribute.ToString())}</color>{crit}{origin}" +
                        $"\n<size=80%><color=#A89F94>{record.Attacker} → {record.Target}</color></size>";
 
-        var rows = trace?.Explain() ?? new List<TraceRow> { new("No calculation recorded for this hit", "", record.Amount) };
+        var rows = trace?.Explain() ?? new List<TraceRow> { new(Loc.T("No calculation recorded for this hit"), "", record.Amount) };
         while (_rows.Count < rows.Count)
             _rows.Add(NewRow());
         for (int i = 0; i < _rows.Count; i++)

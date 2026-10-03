@@ -31,7 +31,9 @@ git -C $public push -q origin main --tags
 if ($LASTEXITCODE -ne 0) { throw "Push to GitHub failed." }
 
 Write-Host "--- 4/5 GitHub release"
-& (Join-Path $PSScriptRoot "github-release.ps1") -Version $version
+# PowerShell 7: Windows PowerShell 5.1 garbles the text piped to "git credential fill" ("missing protocol field").
+pwsh -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "github-release.ps1") -Version $version
+if ($LASTEXITCODE -ne 0) { throw "GitHub release failed." }
 
 if ($SkipThunderstore) {
     Write-Host "--- 5/5 Thunderstore skipped"
@@ -41,8 +43,8 @@ if ($SkipThunderstore) {
     if (-not (Test-Path $tokenFile)) { throw "Missing $tokenFile" }
     $token = (Get-Content $tokenFile -Raw).Trim()
     $tcli = Join-Path $env:USERPROFILE ".dotnet/tools/tcli.exe"
-    & $tcli publish --file $zip --token $token --config-path (Join-Path $PSScriptRoot "thunderstore.toml") `
-        --package-namespace DocRun --package-name SkulInsight_QoL --package-version $version
+    # tcli 0.2.4+: with --file the name and version come from the zip's manifest (no --package-* options).
+    & $tcli publish --file $zip --token $token --config-path (Join-Path $PSScriptRoot "thunderstore.toml")
     if ($LASTEXITCODE -ne 0) { throw "Thunderstore upload failed." }
 }
 Write-Host "=== SkulInsight QoL $version released ==="
