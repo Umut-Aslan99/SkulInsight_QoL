@@ -55,6 +55,43 @@ public static class CodexPatches
         });
     }
 
+    // Films: what a boss's move leaves running after its own action (falling bones, meteors, a thrown head) keeps the
+    // take going. Both run for every character, so FightRecorder.Spawned only compares references.
+    [HarmonyPatch(typeof(Characters.Operations.OperationInfos), nameof(Characters.Operations.OperationInfos.Run),
+        typeof(Characters.Character), typeof(float))]
+    public static class BossOperationsStarted
+    {
+        private static void Prefix(Characters.Operations.OperationInfos __instance, Characters.Character owner)
+        {
+            try
+            {
+                FightRecorder.Spawned(owner, __instance);
+            }
+            catch (Exception)
+            {
+                // never break the game's operations (no closure here: this runs for every operation in the game)
+            }
+        }
+    }
+
+    // Projectiles: part of a boss's take; an enemy's first one of each kind is added to its pictures.
+    [HarmonyPatch(typeof(Characters.Projectiles.Projectile), nameof(Characters.Projectiles.Projectile.Fire))]
+    public static class ProjectileFired
+    {
+        private static void Postfix(Characters.Projectiles.Projectile __instance)
+        {
+            try
+            {
+                FightRecorder.Spawned(__instance.owner, __instance);
+                CodexAnimations.NoteProjectile(__instance.owner, __instance);
+            }
+            catch (Exception)
+            {
+                // never break the game's projectile
+            }
+        }
+    }
+
     private static bool _warned;
 
     private static void Safe(Action action)

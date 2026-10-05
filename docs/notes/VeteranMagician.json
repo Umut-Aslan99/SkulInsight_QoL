@@ -1,0 +1,511 @@
+{
+  "key": "VeteranMagician",
+  "moves": {
+    "Flame rain (start)": {
+      "en": [
+        "Flies high and rains drops of fire that set flames burning on the floor and platforms.",
+        "Watch where the drops land and stay off the burning spots until they go out."
+      ],
+      "de": [
+        "Fliegt hoch und lässt Feuertropfen regnen, die auf Boden und Plattformen Flammen entfachen.",
+        "Achte darauf, wo die Tropfen landen, und meide die brennenden Stellen, bis sie erlöschen."
+      ],
+      "es": [
+        "Vuela alto y hace llover gotas de fuego que prenden llamas en el suelo y las plataformas.",
+        "Fíjate dónde caen las gotas y evita los puntos en llamas hasta que se apaguen."
+      ],
+      "fr": [
+        "S'envole haut et fait pleuvoir des gouttes de feu qui allument des flammes au sol et sur les plateformes.",
+        "Repère où tombent les gouttes et évite les endroits en feu jusqu'à ce qu'ils s'éteignent."
+      ],
+      "pl": [
+        "Wzlatuje wysoko i zrzuca krople ognia, które rozpalają płomienie na ziemi i platformach.",
+        "Patrz, gdzie spadają krople, i omijaj płonące miejsca, aż zgasną."
+      ],
+      "pt-BR": [
+        "Voa alto e faz chover gotas de fogo que acendem chamas no chão e nas plataformas.",
+        "Repare onde as gotas caem e evite os pontos em chamas até apagarem."
+      ],
+      "ru": [
+        "Взлетает высоко и обрушивает капли огня, которые поджигают пол и платформы.",
+        "Следите, куда падают капли, и обходите горящие места, пока они не погаснут."
+      ],
+      "ko": [
+        "높이 날아올라 불방울을 비처럼 뿌려 바닥과 발판에 불꽃을 피웁니다.",
+        "불방울이 떨어지는 곳을 보고, 불이 꺼질 때까지 타는 곳을 피하세요."
+      ],
+      "ja": [
+        "高く飛び上がり、火のしずくを降らせて床や足場に炎を灯します。",
+        "しずくが落ちる場所を見て、火が消えるまで燃えている場所を避けましょう。"
+      ],
+      "zh-Hans": [
+        "飞到高处降下火滴，在地面和平台上点燃火焰。",
+        "注意火滴落下的位置，火焰熄灭前避开燃烧的地方。"
+      ],
+      "zh-Hant": [
+        "飛到高處降下火滴，在地面和平台上點燃火焰。",
+        "注意火滴落下的位置，火焰熄滅前避開燃燒的地方。"
+      ]
+    },
+    "Flame rain": {
+      "en": [
+        "Flies high and rains drops of fire that set flames burning on the floor and platforms.",
+        "Watch where the drops land and stay off the burning spots until they go out."
+      ],
+      "de": [
+        "Fliegt hoch und lässt Feuertropfen regnen, die auf Boden und Plattformen Flammen entfachen.",
+        "Achte darauf, wo die Tropfen landen, und meide die brennenden Stellen, bis sie erlöschen."
+      ],
+      "es": [
+        "Vuela alto y hace llover gotas de fuego que prenden llamas en el suelo y las plataformas.",
+        "Fíjate dónde caen las gotas y evita los puntos en llamas hasta que se apaguen."
+      ],
+      "fr": [
+        "S'envole haut et fait pleuvoir des gouttes de feu qui allument des flammes au sol et sur les plateformes.",
+        "Repère où tombent les gouttes et évite les endroits en feu jusqu'à ce qu'ils s'éteignent."
+      ],
+      "pl": [
+        "Wzlatuje wysoko i zrzuca krople ognia, które rozpalają płomienie na ziemi i platformach.",
+        "Patrz, gdzie spadają krople, i omijaj płonące miejsca, aż zgasną."
+      ],
+      "pt-BR": [
+        "Voa alto e faz chover gotas de fogo que acendem chamas no chão e nas plataformas.",
+        "Repare onde as gotas caem e evite os pontos em chamas até apagarem."
+      ],
+      "ru": [
+        "Взлетает высоко и обрушивает капли огня, которые поджигают пол и платформы.",
+        "Следите, куда падают капли, и обходите горящие места, пока они не погаснут."
+      ],
+      "ko": [
+        "높이 날아올라 불방울을 비처럼 뿌려 바닥과 발판에 불꽃을 피웁니다.",
+        "불방울이 떨어지는 곳을 보고, 불이 꺼질 때까지 타는 곳을 피하세요."
+      ],
+      "ja": [
+        "高く飛び上がり、火のしずくを降らせて床や足場に炎を灯します。",
+        "しずくが落ちる場所を見て、火が消えるまで燃えている場所を避けましょう。"
+      ],
+      "zh-Hans": [
+        "飞到高处降下火滴，在地面和平台上点燃火焰。",
+        "注意火滴落下的位置，火焰熄灭前避开燃烧的地方。"
+      ],
+      "zh-Hant": [
+        "飛到高處降下火滴，在地面和平台上點燃火焰。",
+        "注意火滴落下的位置，火焰熄滅前避開燃燒的地方。"
+      ]
+    },
+    "Flame wing": {
+      "en": [
+        "Spreads wings of flame and sweeps a wave of fire across the room; the embers burst into flames on the floor.",
+        "Get above or below the wave, then avoid the flames on the floor."
+      ],
+      "de": [
+        "Breitet Flammenflügel aus und fegt eine Feuerwelle durch den Raum; die Glut entflammt am Boden.",
+        "Geh über oder unter die Welle und meide dann die Flammen am Boden."
+      ],
+      "es": [
+        "Despliega alas de llamas y barre la sala con una ola de fuego; las brasas estallan en llamas en el suelo.",
+        "Ponte por encima o por debajo de la ola y luego evita las llamas del suelo."
+      ],
+      "fr": [
+        "Déploie des ailes de flammes et balaie la salle d'une vague de feu ; les braises s'embrasent au sol.",
+        "Passe au-dessus ou en dessous de la vague, puis évite les flammes au sol."
+      ],
+      "pl": [
+        "Rozpościera skrzydła z płomieni i omiata salę falą ognia; żar wybucha płomieniami na ziemi.",
+        "Znajdź się nad falą albo pod nią, a potem omijaj płomienie na ziemi."
+      ],
+      "pt-BR": [
+        "Abre asas de chamas e varre o salão com uma onda de fogo; as brasas explodem em chamas no chão.",
+        "Fique acima ou abaixo da onda e depois evite as chamas no chão."
+      ],
+      "ru": [
+        "Расправляет огненные крылья и проводит по залу волной огня; угли вспыхивают пламенем на полу.",
+        "Уйдите выше или ниже волны, затем избегайте пламени на полу."
+      ],
+      "ko": [
+        "불꽃 날개를 펴서 방 전체에 불길을 휩쓸고, 불씨가 바닥에서 불꽃으로 터집니다.",
+        "불길 위나 아래로 피한 뒤, 바닥의 불꽃을 피하세요."
+      ],
+      "ja": [
+        "炎の翼を広げて部屋中に炎の波を走らせ、火の粉が床で炎となって弾けます。",
+        "波の上か下へ逃れ、それから床の炎を避けましょう。"
+      ],
+      "zh-Hans": [
+        "展开火焰之翼，向整个房间扫出火浪，火星在地面上爆成火焰。",
+        "躲到火浪的上方或下方，然后避开地上的火焰。"
+      ],
+      "zh-Hant": [
+        "展開火焰之翼，向整個房間掃出火浪，火星在地面上爆成火焰。",
+        "躲到火浪的上方或下方，然後避開地上的火焰。"
+      ]
+    },
+    "Fire ball": {
+      "en": [
+        "Shoots fireballs that leave a trail of smoke.",
+        "Change height or jump over them."
+      ],
+      "de": [
+        "Schießt Feuerbälle, die eine Rauchspur hinterlassen.",
+        "Wechsle die Höhe oder spring darüber."
+      ],
+      "es": [
+        "Dispara bolas de fuego que dejan un rastro de humo.",
+        "Cambia de altura o sáltalas."
+      ],
+      "fr": [
+        "Tire des boules de feu qui laissent une traînée de fumée.",
+        "Change de hauteur ou saute par-dessus."
+      ],
+      "pl": [
+        "Wystrzeliwuje kule ognia zostawiające smugę dymu.",
+        "Zmień wysokość albo je przeskocz."
+      ],
+      "pt-BR": [
+        "Dispara bolas de fogo que deixam um rastro de fumaça.",
+        "Mude de altura ou pule-as."
+      ],
+      "ru": [
+        "Выпускает огненные шары, оставляющие дымный след.",
+        "Смените высоту или перепрыгните их."
+      ],
+      "ko": [
+        "연기 꼬리를 남기는 화염구를 발사합니다.",
+        "높이를 바꾸거나 점프로 넘으세요."
+      ],
+      "ja": [
+        "煙の尾を引く火の玉を放ちます。",
+        "高さを変えるか、飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "射出拖着烟雾的火球。",
+        "改变高度或跳过它们。"
+      ],
+      "zh-Hant": [
+        "射出拖著煙霧的火球。",
+        "改變高度或跳過它們。"
+      ]
+    },
+    "Flame circle": {
+      "en": [
+        "Fireballs swirl around her in a growing spiral, then fly outward in every direction.",
+        "Keep your distance and look for the gaps between the fireballs as they spread."
+      ],
+      "de": [
+        "Feuerbälle kreisen in einer wachsenden Spirale um sie und fliegen dann in alle Richtungen.",
+        "Halte Abstand und such die Lücken zwischen den Feuerbällen, wenn sie sich verteilen."
+      ],
+      "es": [
+        "Bolas de fuego giran a su alrededor en una espiral creciente y luego salen en todas direcciones.",
+        "Mantén la distancia y busca los huecos entre las bolas cuando se dispersen."
+      ],
+      "fr": [
+        "Des boules de feu tourbillonnent autour d'elle en une spirale grandissante, puis partent dans toutes les directions.",
+        "Garde tes distances et cherche les espaces entre les boules quand elles se dispersent."
+      ],
+      "pl": [
+        "Kule ognia krążą wokół niej w rosnącej spirali, a potem rozlatują się na wszystkie strony.",
+        "Trzymaj dystans i szukaj luk między kulami, gdy się rozlatują."
+      ],
+      "pt-BR": [
+        "Bolas de fogo giram ao redor dela numa espiral crescente e depois voam em todas as direções.",
+        "Mantenha distância e procure os espaços entre as bolas quando se espalharem."
+      ],
+      "ru": [
+        "Огненные шары кружат вокруг неё растущей спиралью, затем разлетаются во все стороны.",
+        "Держите дистанцию и ищите промежутки между шарами, когда они разлетаются."
+      ],
+      "ko": [
+        "화염구가 그녀 주위를 점점 커지는 소용돌이로 돌다가 사방으로 날아갑니다.",
+        "거리를 두고, 화염구가 퍼질 때 그 사이의 틈을 찾으세요."
+      ],
+      "ja": [
+        "火の玉が彼女の周りを広がる渦のように回り、それから四方八方へ飛び散ります。",
+        "距離を取り、火の玉が広がるときの隙間を探しましょう。"
+      ],
+      "zh-Hans": [
+        "火球在她周围旋转成越来越大的圈，然后向四面八方飞出。",
+        "保持距离，火球散开时寻找空隙。"
+      ],
+      "zh-Hant": [
+        "火球在她周圍旋轉成越來越大的圈，然後向四面八方飛出。",
+        "保持距離，火球散開時尋找空隙。"
+      ]
+    },
+    "Flame impact": {
+      "en": [
+        "Sends rings of flame rolling forward.",
+        "Jump over the rings or change height."
+      ],
+      "de": [
+        "Schickt Flammenringe nach vorn.",
+        "Spring über die Ringe oder wechsle die Höhe."
+      ],
+      "es": [
+        "Lanza anillos de llamas que avanzan.",
+        "Salta sobre los anillos o cambia de altura."
+      ],
+      "fr": [
+        "Envoie des anneaux de flammes qui roulent vers l'avant.",
+        "Saute par-dessus les anneaux ou change de hauteur."
+      ],
+      "pl": [
+        "Posyła do przodu pierścienie płomieni.",
+        "Przeskocz pierścienie albo zmień wysokość."
+      ],
+      "pt-BR": [
+        "Envia anéis de chamas rolando para a frente.",
+        "Pule os anéis ou mude de altura."
+      ],
+      "ru": [
+        "Посылает вперёд катящиеся кольца пламени.",
+        "Перепрыгните кольца или смените высоту."
+      ],
+      "ko": [
+        "불꽃 고리를 앞으로 굴려 보냅니다.",
+        "고리를 점프로 넘거나 높이를 바꾸세요."
+      ],
+      "ja": [
+        "炎の輪を前へ転がすように放ちます。",
+        "輪を飛び越えるか、高さを変えましょう。"
+      ],
+      "zh-Hans": [
+        "向前方放出滚动的火焰环。",
+        "跳过火焰环或改变高度。"
+      ],
+      "zh-Hant": [
+        "向前方放出滾動的火焰環。",
+        "跳過火焰環或改變高度。"
+      ]
+    },
+    "Phoenix landing": {
+      "en": [
+        "Dives down in a streak of fire.",
+        "Move away from where she is diving."
+      ],
+      "de": [
+        "Stürzt in einem Feuerstreifen herab.",
+        "Geh weg von der Stelle, auf die sie zustürzt."
+      ],
+      "es": [
+        "Cae en picado como una estela de fuego.",
+        "Aléjate del punto hacia el que cae."
+      ],
+      "fr": [
+        "Plonge dans une traînée de feu.",
+        "Éloigne-toi de l'endroit où elle plonge."
+      ],
+      "pl": [
+        "Pikuje w smudze ognia.",
+        "Odsuń się od miejsca, w które pikuje."
+      ],
+      "pt-BR": [
+        "Mergulha num rastro de fogo.",
+        "Afaste-se do ponto para onde ela mergulha."
+      ],
+      "ru": [
+        "Пикирует огненной полосой.",
+        "Уйдите с места, куда она пикирует."
+      ],
+      "ko": [
+        "불꽃 줄기를 그리며 내리꽂힙니다.",
+        "그녀가 내리꽂히는 곳에서 벗어나세요."
+      ],
+      "ja": [
+        "炎の筋となって急降下します。",
+        "急降下する場所から離れましょう。"
+      ],
+      "zh-Hans": [
+        "化作火焰光痕俯冲而下。",
+        "离开她俯冲的位置。"
+      ],
+      "zh-Hant": [
+        "化作火焰光痕俯衝而下。",
+        "離開她俯衝的位置。"
+      ]
+    },
+    "Flame storm": {
+      "en": [
+        "The screen darkens and flames creep along the floor, then huge pillars of fire erupt across the room in groups with gaps between them.",
+        "Find a gap between the pillar groups before they erupt and stay in it."
+      ],
+      "de": [
+        "Der Bildschirm verdunkelt sich und Flammen kriechen über den Boden, dann brechen riesige Feuersäulen in Gruppen mit Lücken dazwischen durch den Raum.",
+        "Such dir vor dem Ausbruch eine Lücke zwischen den Säulengruppen und bleib darin."
+      ],
+      "es": [
+        "La pantalla se oscurece y las llamas reptan por el suelo; luego surgen enormes pilares de fuego por la sala en grupos con huecos entre ellos.",
+        "Busca un hueco entre los grupos de pilares antes de que surjan y quédate en él."
+      ],
+      "fr": [
+        "L'écran s'assombrit et des flammes rampent au sol, puis d'immenses piliers de feu jaillissent dans la salle par groupes séparés par des espaces.",
+        "Trouve un espace entre les groupes de piliers avant qu'ils jaillissent et restes-y."
+      ],
+      "pl": [
+        "Ekran ciemnieje, płomienie pełzną po ziemi, a potem w sali wybuchają ogromne słupy ognia w grupach z lukami między nimi.",
+        "Przed wybuchem znajdź lukę między grupami słupów i zostań w niej."
+      ],
+      "pt-BR": [
+        "A tela escurece e chamas rastejam pelo chão, depois enormes pilares de fogo surgem pelo salão em grupos com espaços entre eles.",
+        "Encontre um espaço entre os grupos de pilares antes de surgirem e fique nele."
+      ],
+      "ru": [
+        "Экран темнеет, по полу ползёт пламя, затем по залу группами с промежутками вырываются огромные столбы огня.",
+        "Найдите промежуток между группами столбов до их появления и оставайтесь в нём."
+      ],
+      "ko": [
+        "화면이 어두워지고 불꽃이 바닥을 기어가다가, 거대한 불기둥이 사이사이 틈을 두고 무리 지어 방 전체에 치솟습니다.",
+        "불기둥이 치솟기 전에 무리 사이의 틈을 찾아 그곳에 머무르세요."
+      ],
+      "ja": [
+        "画面が暗くなり炎が床を這うと、巨大な炎の柱が隙間を空けて群れをなし、部屋中に噴き上がります。",
+        "柱が噴き上がる前に柱の群れの間の隙間を見つけ、そこに留まりましょう。"
+      ],
+      "zh-Hans": [
+        "画面变暗，火焰沿地面蔓延，然后巨大的火柱成组地在房间里喷发，组与组之间留有空隙。",
+        "在火柱喷发前找到火柱组之间的空隙并待在那里。"
+      ],
+      "zh-Hant": [
+        "畫面變暗，火焰沿地面蔓延，然後巨大的火柱成組地在房間裡噴發，組與組之間留有空隙。",
+        "在火柱噴發前找到火柱組之間的空隙並待在那裡。"
+      ]
+    },
+    "World on fire": {
+      "en": [
+        "A pillar of fire rises, then rows of fire orbs spread across the room and drop flames below.",
+        "Stay between the orbs and keep moving as the flames fall."
+      ],
+      "de": [
+        "Eine Feuersäule steigt auf, dann verteilen sich Reihen von Feuerkugeln im Raum und lassen Flammen herabfallen.",
+        "Bleib zwischen den Kugeln und beweg dich, während die Flammen fallen."
+      ],
+      "es": [
+        "Se alza un pilar de fuego; luego filas de orbes de fuego se extienden por la sala y dejan caer llamas.",
+        "Quédate entre los orbes y sigue moviéndote mientras caen las llamas."
+      ],
+      "fr": [
+        "Un pilier de feu s'élève, puis des rangées d'orbes de feu s'étendent dans la salle et font tomber des flammes.",
+        "Reste entre les orbes et continue de bouger pendant que les flammes tombent."
+      ],
+      "pl": [
+        "Wznosi się słup ognia, potem rzędy ognistych kul rozchodzą się po sali i zrzucają płomienie.",
+        "Trzymaj się między kulami i ruszaj się, gdy spadają płomienie."
+      ],
+      "pt-BR": [
+        "Um pilar de fogo sobe, depois fileiras de orbes de fogo se espalham pelo salão e soltam chamas.",
+        "Fique entre os orbes e continue se movendo enquanto as chamas caem."
+      ],
+      "ru": [
+        "Поднимается столб огня, затем ряды огненных сфер расходятся по залу и роняют пламя вниз.",
+        "Держитесь между сферами и двигайтесь, пока падает пламя."
+      ],
+      "ko": [
+        "불기둥이 솟은 뒤, 불의 구슬이 줄지어 방 전체로 퍼지며 아래로 불꽃을 떨어뜨립니다.",
+        "구슬 사이에 있으면서 불꽃이 떨어지는 동안 계속 움직이세요."
+      ],
+      "ja": [
+        "炎の柱が立ち上り、火の球が列をなして部屋中に広がり、下へ炎を落とします。",
+        "球の間にいて、炎が落ちる間は動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "火柱升起，随后一排排火球散布到整个房间，并向下落下火焰。",
+        "待在火球之间，火焰落下时保持移动。"
+      ],
+      "zh-Hant": [
+        "火柱升起，隨後一排排火球散佈到整個房間，並向下灑落火焰。",
+        "待在火球之間，火焰落下時保持移動。"
+      ]
+    },
+    "Rising (high)": {
+      "en": [
+        "Flies up high.",
+        "Moves to a new height for her next spell."
+      ],
+      "de": [
+        "Fliegt hoch hinauf.",
+        "Wechselt die Höhe für ihren nächsten Zauber."
+      ],
+      "es": [
+        "Vuela muy alto.",
+        "Cambia de altura para su siguiente hechizo."
+      ],
+      "fr": [
+        "S'envole très haut.",
+        "Change de hauteur pour son prochain sort."
+      ],
+      "pl": [
+        "Wzlatuje wysoko.",
+        "Zmienia wysokość przed kolejnym zaklęciem."
+      ],
+      "pt-BR": [
+        "Voa bem alto.",
+        "Muda de altura para o próximo feitiço."
+      ],
+      "ru": [
+        "Взлетает высоко.",
+        "Меняет высоту перед следующим заклинанием."
+      ],
+      "ko": [
+        "높이 날아오릅니다.",
+        "높이를 바꿔 다음 마법을 준비합니다."
+      ],
+      "ja": [
+        "高く飛び上がります。",
+        "次の魔法のために高さを変えます。"
+      ],
+      "zh-Hans": [
+        "飞到高处。",
+        "为下一个法术改变高度。"
+      ],
+      "zh-Hant": [
+        "飛到高處。",
+        "為下一個法術改變高度。"
+      ]
+    },
+    "Rising (low)": {
+      "en": [
+        "Flies up a little.",
+        "Moves to a new height for her next spell."
+      ],
+      "de": [
+        "Fliegt ein Stück hoch.",
+        "Wechselt die Höhe für ihren nächsten Zauber."
+      ],
+      "es": [
+        "Vuela un poco hacia arriba.",
+        "Cambia de altura para su siguiente hechizo."
+      ],
+      "fr": [
+        "S'envole un peu.",
+        "Change de hauteur pour son prochain sort."
+      ],
+      "pl": [
+        "Unosi się trochę.",
+        "Zmienia wysokość przed kolejnym zaklęciem."
+      ],
+      "pt-BR": [
+        "Voa um pouco para cima.",
+        "Muda de altura para o próximo feitiço."
+      ],
+      "ru": [
+        "Немного взлетает.",
+        "Меняет высоту перед следующим заклинанием."
+      ],
+      "ko": [
+        "조금 날아오릅니다.",
+        "높이를 바꿔 다음 마법을 준비합니다."
+      ],
+      "ja": [
+        "少し飛び上がります。",
+        "次の魔法のために高さを変えます。"
+      ],
+      "zh-Hans": [
+        "稍微飞起。",
+        "为下一个法术改变高度。"
+      ],
+      "zh-Hant": [
+        "稍微飛起。",
+        "為下一個法術改變高度。"
+      ]
+    }
+  }
+}

@@ -1,0 +1,482 @@
+{
+  "key": "Yggdrasil",
+  "drop": [
+    "Laser",
+    "Phase 2 · Sweeping combo"
+  ],
+  "about": {
+    "en": "The ancient tree guarding the first chapter. It fights with its head and two giant hands, and awakens in a second phase once half of its health is gone.",
+    "de": "Der uralte Baum, der das erste Kapitel bewacht. Er kämpft mit seinem Kopf und zwei riesigen Händen und erwacht in einer zweiten Phase, sobald die Hälfte seiner LP weg ist.",
+    "es": "El árbol ancestral que guarda el primer capítulo. Lucha con su cabeza y dos manos gigantes, y despierta en una segunda fase cuando pierde la mitad de su vida.",
+    "fr": "L'arbre ancien qui garde le premier chapitre. Il se bat avec sa tête et deux mains géantes, et s'éveille dans une seconde phase une fois la moitié de sa vie perdue.",
+    "pl": "Pradawne drzewo strzegące pierwszego rozdziału. Walczy głową i dwiema olbrzymimi dłońmi, a po utracie połowy zdrowia budzi się w drugiej fazie.",
+    "pt-BR": "A árvore ancestral que guarda o primeiro capítulo. Luta com a cabeça e duas mãos gigantes, e desperta numa segunda fase quando perde metade da vida.",
+    "ru": "Древнее дерево, охраняющее первую главу. Сражается головой и двумя огромными руками, а потеряв половину здоровья, пробуждается во второй фазе.",
+    "ko": "첫 번째 챕터를 지키는 고대의 나무. 머리와 거대한 두 손으로 싸우며, 체력이 절반 남으면 두 번째 페이즈로 각성합니다.",
+    "ja": "第1章を守る古代の樹。頭と2つの巨大な手で戦い、体力が半分になると第2フェーズで覚醒します。",
+    "zh-Hans": "守护第一章的古老之树。它用头和两只巨手战斗，体力剩下一半时会在第二阶段觉醒。",
+    "zh-Hant": "守護第一章的古老之樹。它用頭和兩隻巨手戰鬥，體力剩下一半時會在第二階段覺醒。"
+  },
+  "moves": {
+    "Fist slam": {
+      "en": [
+        "Raises both hands, then slams a fist down where you stand, two or three times in a row; dust bursts out on impact. In the Dark Mirror a root spike shoots up from the ground after each slam.",
+        "The fist follows you until it drops: keep moving and dash aside just before it falls. Between slams the fist rests on the ground for a moment, a safe time to hit back. In the Dark Mirror, step away from the impact: the spike comes right after."
+      ],
+      "de": [
+        "Hebt beide Hände und schlägt zwei- oder dreimal hintereinander eine Faust dort nieder, wo du stehst; beim Aufprall wirbelt Staub auf. Im Dunklen Spiegel schießt nach jedem Schlag ein Wurzelstachel aus dem Boden.",
+        "Die Faust folgt dir, bis sie fällt: bleib in Bewegung und sprinte kurz vorher zur Seite. Zwischen den Schlägen ruht die Faust kurz am Boden, ein sicherer Moment für einen Gegenangriff. Im Dunklen Spiegel geh vom Aufschlagpunkt weg: der Stachel kommt gleich danach."
+      ],
+      "es": [
+        "Alza ambas manos y estampa un puño donde estás, dos o tres veces seguidas; al impactar levanta polvo. En el Espejo oscuro, tras cada golpe brota del suelo una púa de raíz.",
+        "El puño te sigue hasta que cae: muévete y esquiva a un lado justo antes. Entre golpes el puño descansa un momento en el suelo: buen momento para contraatacar. En el Espejo oscuro, aléjate del impacto: la púa sale justo después."
+      ],
+      "fr": [
+        "Lève les deux mains puis abat un poing là où tu te tiens, deux ou trois fois de suite ; l'impact soulève de la poussière. Dans le Miroir noir, une pointe de racine jaillit du sol après chaque coup.",
+        "Le poing te suit jusqu'à sa chute : bouge et esquive sur le côté juste avant. Entre deux coups, le poing reste un instant au sol : le moment de riposter. Dans le Miroir noir, éloigne-toi de l'impact : la pointe arrive juste après."
+      ],
+      "pl": [
+        "Unosi obie dłonie i dwa lub trzy razy z rzędu uderza pięścią tam, gdzie stoisz; przy uderzeniu wzbija się pył. W Ciemnym lustrze po każdym uderzeniu z ziemi wystrzeliwuje kolec z korzenia.",
+        "Pięść podąża za tobą, dopóki nie spadnie: ruszaj się i uskocz w bok tuż przed uderzeniem. Między uderzeniami pięść chwilę leży na ziemi: bezpieczna chwila na kontratak. W Ciemnym lustrze odejdź od miejsca uderzenia: kolec pojawia się zaraz potem."
+      ],
+      "pt-BR": [
+        "Ergue as duas mãos e esmaga um punho onde você está, duas ou três vezes seguidas; o impacto levanta poeira. No Espelho Sombrio, um espinho de raiz brota do chão após cada golpe.",
+        "O punho segue você até cair: continue se movendo e esquive para o lado logo antes. Entre os golpes o punho fica um instante no chão, hora segura de revidar. No Espelho Sombrio, afaste-se do impacto: o espinho vem logo depois."
+      ],
+      "ru": [
+        "Поднимает обе руки и два-три раза подряд бьёт кулаком туда, где вы стоите; при ударе поднимается пыль. В Тёмном зеркале после каждого удара из земли вырывается шип-корень.",
+        "Кулак следует за вами, пока не упадёт: двигайтесь и уходите рывком вбок прямо перед ударом. Между ударами кулак ненадолго лежит на земле: безопасный момент для контратаки. В Тёмном зеркале отойдите от места удара: шип появляется сразу после."
+      ],
+      "ko": [
+        "두 손을 들어 올린 뒤 당신이 선 곳에 주먹을 두세 번 연달아 내리칩니다. 충돌하면 먼지가 일어납니다. 검은 거울에서는 내리칠 때마다 땅에서 뿌리 가시가 솟아오릅니다.",
+        "주먹은 떨어질 때까지 당신을 따라옵니다: 계속 움직이다가 떨어지기 직전에 옆으로 대쉬하세요. 내리친 사이에 주먹이 잠시 바닥에 머무르니 반격할 기회입니다. 검은 거울에서는 충돌 지점에서 물러나세요: 가시가 바로 뒤따릅니다."
+      ],
+      "ja": [
+        "両手を上げ、あなたの立つ場所に拳を2、3回続けて叩きつけます。衝撃で砂ぼこりが舞います。闇の鏡では叩きつけるたびに地面から根のトゲが突き出します。",
+        "拳は落ちるまであなたを追います：動き続け、落ちる直前に横へダッシュしましょう。叩きつけの合間に拳はしばらく地面に残るので、反撃のチャンスです。闇の鏡では着弾点から離れましょう：トゲがすぐ後に来ます。"
+      ],
+      "zh-Hans": [
+        "举起双手，在你所站的位置连续砸下拳头两三次，落地时扬起尘土。在魔镜中，每次砸下后地面都会冒出树根尖刺。",
+        "拳头在落下前会追踪你：保持移动，在落下前一刻向旁边冲刺。两次砸击之间拳头会在地上停留片刻，是反击的安全时机。在魔镜中要远离落点：尖刺紧随其后。"
+      ],
+      "zh-Hant": [
+        "舉起雙手，在你所站的位置連續砸下拳頭兩三次，落地時揚起塵土。在黑暗鏡子中，每次砸下後地面都會冒出樹根尖刺。",
+        "拳頭在落下前會追蹤你：保持移動，在落下前一刻向旁邊衝刺。兩次砸擊之間拳頭會在地上停留片刻，是反擊的安全時機。在黑暗鏡子中要遠離落點：尖刺緊隨其後。"
+      ]
+    },
+    "Sweeping": {
+      "en": [
+        "Draws both hands back, then sweeps along the ground across the arena: first one hand, then the other.",
+        "Jump over each hand as it reaches you; the second sweep follows soon after the first, so save a jump for it."
+      ],
+      "de": [
+        "Zieht beide Hände zurück und fegt dann am Boden durch die Arena: erst mit der einen Hand, dann mit der anderen.",
+        "Spring über jede Hand, wenn sie dich erreicht; der zweite Feger folgt kurz nach dem ersten, heb dir also einen Sprung dafür auf."
+      ],
+      "es": [
+        "Echa ambas manos atrás y barre el suelo de la arena: primero con una mano y luego con la otra.",
+        "Salta cada mano cuando te alcance; el segundo barrido llega poco después del primero, así que guarda un salto para él."
+      ],
+      "fr": [
+        "Ramène les deux mains en arrière puis balaie le sol de l'arène : d'abord une main, puis l'autre.",
+        "Saute par-dessus chaque main quand elle arrive ; le second balayage suit de peu le premier, garde donc un saut pour lui."
+      ],
+      "pl": [
+        "Cofa obie dłonie, a potem zamiata ziemię przez całą arenę: najpierw jedną dłonią, potem drugą.",
+        "Przeskakuj każdą dłoń, gdy do ciebie dotrze; drugie zamiatanie przychodzi zaraz po pierwszym, więc zachowaj na nie skok."
+      ],
+      "pt-BR": [
+        "Recolhe as duas mãos e varre o chão da arena: primeiro com uma mão, depois com a outra.",
+        "Pule cada mão quando ela chegar; a segunda varrida vem logo depois da primeira, então guarde um pulo para ela."
+      ],
+      "ru": [
+        "Отводит обе руки назад и проводит ими по земле через всю арену: сначала одной рукой, затем другой.",
+        "Перепрыгивайте каждую руку, когда она до вас доходит; второй взмах следует сразу за первым, так что приберегите прыжок."
+      ],
+      "ko": [
+        "두 손을 뒤로 당긴 뒤 바닥을 따라 아레나를 쓸어 버립니다: 먼저 한 손, 그다음 다른 손.",
+        "손이 다가오면 하나씩 뛰어넘으세요. 두 번째 쓸기가 첫 번째 바로 뒤에 오니 점프를 남겨 두세요."
+      ],
+      "ja": [
+        "両手を後ろに引き、地面に沿ってアリーナを薙ぎ払います：まず片手、次にもう片方の手。",
+        "手が来たら1つずつ飛び越えましょう。2回目の薙ぎ払いは1回目のすぐ後に来るので、ジャンプを残しておきましょう。"
+      ],
+      "zh-Hans": [
+        "双手后收，然后贴着地面横扫整个场地：先是一只手，再是另一只。",
+        "手扫到时逐一跳过；第二次横扫紧跟在第一次之后，所以要留一次跳跃。"
+      ],
+      "zh-Hant": [
+        "雙手後收，然後貼著地面橫掃整個場地：先是一隻手，再是另一隻。",
+        "手掃到時逐一跳過；第二次橫掃緊跟在第一次之後，所以要留一次跳躍。"
+      ]
+    },
+    "Energy bomb": {
+      "en": [
+        "Rests its hands, gathers dark energy and glows red, then fires energy bombs from its head that burst into dark flames where they land. Afterwards it is exhausted (Groggy).",
+        "Keep moving: the bombs land one after another in different spots and their flames linger for a moment. When the barrage stops the tree collapses, so get ready to attack its head."
+      ],
+      "de": [
+        "Legt die Hände ab, sammelt dunkle Energie und glüht rot, dann feuert es aus dem Kopf Energiebomben, die beim Aufschlag in dunkle Flammen aufgehen. Danach ist es erschöpft (Benommen).",
+        "Bleib in Bewegung: die Bomben schlagen nacheinander an verschiedenen Stellen ein und ihre Flammen bleiben kurz. Wenn der Beschuss endet, bricht der Baum zusammen: mach dich bereit, seinen Kopf anzugreifen."
+      ],
+      "es": [
+        "Apoya las manos, reúne energía oscura y brilla en rojo; después dispara desde la cabeza bombas de energía que estallan en llamas oscuras al caer. Luego queda agotado (Aturdido).",
+        "Muévete: las bombas caen una tras otra en distintos puntos y sus llamas duran un momento. Cuando acaba la descarga el árbol se desploma: prepárate para atacar su cabeza."
+      ],
+      "fr": [
+        "Pose les mains, rassemble de l'énergie sombre et rougeoie, puis tire de sa tête des bombes d'énergie qui éclatent en flammes noires à l'impact. Ensuite il est épuisé (Sonné).",
+        "Reste en mouvement : les bombes tombent l'une après l'autre à divers endroits et leurs flammes durent un instant. Quand le tir cesse, l'arbre s'effondre : prépare-toi à frapper sa tête."
+      ],
+      "pl": [
+        "Opiera dłonie, zbiera mroczną energię i świeci na czerwono, a potem wystrzeliwuje z głowy bomby energii, które w miejscu upadku wybuchają mrocznymi płomieniami. Potem jest wyczerpane (Oszołomiony).",
+        "Ruszaj się: bomby spadają jedna po drugiej w różnych miejscach, a ich płomienie chwilę się utrzymują. Gdy ostrzał ustaje, drzewo się osuwa: przygotuj się do ataku na głowę."
+      ],
+      "pt-BR": [
+        "Apoia as mãos, reúne energia sombria e brilha em vermelho; depois dispara da cabeça bombas de energia que explodem em chamas sombrias onde caem. Em seguida fica exausto (Atordoado).",
+        "Continue se movendo: as bombas caem uma após a outra em lugares diferentes e as chamas duram um instante. Quando a barragem para, a árvore desaba: prepare-se para atacar a cabeça."
+      ],
+      "ru": [
+        "Опускает руки, собирает тёмную энергию и раскаляется докрасна, затем выпускает из головы энергетические бомбы, которые взрываются тёмным пламенем там, где упадут. После этого оно обессилено (Оглушён).",
+        "Двигайтесь: бомбы падают одна за другой в разных местах, а их пламя держится недолго. Когда обстрел заканчивается, дерево падает: готовьтесь бить по голове."
+      ],
+      "ko": [
+        "손을 내려놓고 어둠의 에너지를 모아 붉게 빛난 뒤, 머리에서 에너지 폭탄을 쏘아 떨어진 곳에서 어두운 불꽃으로 터뜨립니다. 그 후 지쳐 그로기 상태가 됩니다.",
+        "계속 움직이세요: 폭탄이 여러 곳에 차례로 떨어지고 불꽃이 잠시 남습니다. 폭격이 끝나면 나무가 쓰러지니 머리를 공격할 준비를 하세요."
+      ],
+      "ja": [
+        "手を下ろして闇のエネルギーを集め、赤く光ると、頭からエネルギー爆弾を放ちます。爆弾は落ちた場所で暗い炎となって弾けます。その後、疲れ果ててグロッキーになります。",
+        "動き続けましょう：爆弾は次々と別の場所に落ち、炎はしばらく残ります。砲撃が終わると樹が倒れるので、頭を攻撃する準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "双手放下，聚集黑暗能量并发出红光，然后从头部发射能量炸弹，落地处会爆成黑暗火焰。之后它会精疲力竭（虚弱）。",
+        "保持移动：炸弹接连落在不同位置，火焰会停留片刻。轰炸结束后树会倒下，准备攻击它的头。"
+      ],
+      "zh-Hant": [
+        "雙手放下，聚集黑暗能量並發出紅光，然後從頭部發射能量炸彈，落地處會爆成黑暗火焰。之後它會精疲力竭（虛弱）。",
+        "保持移動：炸彈接連落在不同位置，火焰會停留片刻。轟炸結束後樹會倒下，準備攻擊它的頭。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "After its energy attack the tree is exhausted: its head crashes to the ground in a cloud of dust and stays down for about two seconds before it rises again.",
+        "Your biggest damage window: use your skills and strongest attacks on the head while it is down."
+      ],
+      "de": [
+        "Nach seinem Energieangriff ist der Baum erschöpft: sein Kopf kracht in einer Staubwolke zu Boden und bleibt etwa zwei Sekunden unten, bevor er sich wieder hebt.",
+        "Dein größtes Schadensfenster: setz deine Fertigkeiten und stärksten Angriffe auf den Kopf ein, solange er unten ist."
+      ],
+      "es": [
+        "Tras su ataque de energía el árbol queda agotado: su cabeza cae al suelo en una nube de polvo y se queda abajo unos dos segundos antes de levantarse.",
+        "Tu mejor momento para hacer daño: usa tus habilidades y tus ataques más fuertes en la cabeza mientras está abajo."
+      ],
+      "fr": [
+        "Après son attaque d'énergie l'arbre est épuisé : sa tête s'écrase au sol dans un nuage de poussière et y reste environ deux secondes avant de se relever.",
+        "Ta meilleure fenêtre de dégâts : utilise tes compétences et tes attaques les plus fortes sur la tête tant qu'elle est au sol."
+      ],
+      "pl": [
+        "Po ataku energią drzewo jest wyczerpane: jego głowa uderza o ziemię w chmurze pyłu i zostaje na dole około dwóch sekund, zanim znów się uniesie.",
+        "Twoje największe okno na obrażenia: użyj umiejętności i najmocniejszych ataków na głowę, dopóki leży."
+      ],
+      "pt-BR": [
+        "Depois do ataque de energia a árvore fica exausta: a cabeça despenca no chão numa nuvem de poeira e fica caída uns dois segundos antes de se erguer.",
+        "Sua maior janela de dano: use suas habilidades e ataques mais fortes na cabeça enquanto ela estiver no chão."
+      ],
+      "ru": [
+        "После энергетической атаки дерево обессилено: его голова с облаком пыли падает на землю и лежит около двух секунд, прежде чем подняться.",
+        "Лучшее время для урона: бейте навыками и самыми сильными атаками по голове, пока она лежит."
+      ],
+      "ko": [
+        "에너지 공격 후 나무가 지칩니다: 머리가 먼지구름과 함께 바닥에 쓰러져 약 2초 동안 그대로 있다가 다시 일어납니다.",
+        "가장 큰 피해를 줄 기회입니다: 머리가 내려와 있는 동안 스킬과 가장 강한 공격을 쓰세요."
+      ],
+      "ja": [
+        "エネルギー攻撃の後、樹は疲れ果てます：頭が砂ぼこりと共に地面に倒れ、約2秒そのままでいてから起き上がります。",
+        "最大のダメージチャンスです：頭が下がっている間にスキルと最強の攻撃を使いましょう。"
+      ],
+      "zh-Hans": [
+        "能量攻击后树会精疲力竭：头部在一团尘土中砸到地上，停留约两秒后再抬起。",
+        "最佳输出时机：趁头部倒地时对它使用技能和最强的攻击。"
+      ],
+      "zh-Hant": [
+        "能量攻擊後樹會精疲力竭：頭部在一團塵土中砸到地上，停留約兩秒後再抬起。",
+        "最佳輸出時機：趁頭部倒地時對它使用技能和最強的攻擊。"
+      ]
+    },
+    "Phase 2 · Awakening": {
+      "en": [
+        "At half health the tree flashes white, raises its hands and transforms: dark quartz breaks out, its leaves turn blue and purple lightning runs through it. Phase 2 begins, with harder attacks that come in combinations.",
+        "The transformation itself does no harm: use it to reposition and let your cooldowns recharge."
+      ],
+      "de": [
+        "Bei halben LP blitzt der Baum weiß auf, hebt die Hände und verwandelt sich: dunkler Quarz bricht hervor, seine Blätter werden blau und lila Blitze durchziehen ihn. Phase 2 beginnt, mit härteren Angriffen in Kombinationen.",
+        "Die Verwandlung selbst richtet keinen Schaden an: nutze sie, um dich neu zu positionieren und deine Abklingzeiten aufzuladen."
+      ],
+      "es": [
+        "Con la mitad de su vida el árbol destella en blanco, alza las manos y se transforma: brota cuarzo oscuro, sus hojas se vuelven azules y lo recorren rayos morados. Empieza la fase 2, con ataques más duros y en combinación.",
+        "La transformación no hace daño: úsala para recolocarte y dejar que se recarguen tus enfriamientos."
+      ],
+      "fr": [
+        "À la moitié de sa vie, l'arbre lance un éclair blanc, lève les mains et se transforme : du quartz noir jaillit, ses feuilles bleuissent et des éclairs violets le parcourent. La phase 2 commence, avec des attaques plus dures enchaînées.",
+        "La transformation ne blesse pas : profites-en pour te replacer et laisser tes temps de recharge revenir."
+      ],
+      "pl": [
+        "Przy połowie zdrowia drzewo błyska na biało, unosi dłonie i się przemienia: wybucha mroczny kwarc, liście stają się niebieskie, a przez drzewo przebiegają fioletowe błyskawice. Zaczyna się faza 2 z mocniejszymi atakami w kombinacjach.",
+        "Sama przemiana nie zadaje obrażeń: wykorzystaj ją, by zmienić pozycję i odnowić czasy odnowienia."
+      ],
+      "pt-BR": [
+        "Com metade da vida a árvore brilha em branco, ergue as mãos e se transforma: quartzo sombrio irrompe, as folhas ficam azuis e raios roxos a percorrem. Começa a fase 2, com ataques mais duros e combinados.",
+        "A transformação em si não causa dano: use-a para se reposicionar e deixar suas recargas voltarem."
+      ],
+      "ru": [
+        "На половине здоровья дерево вспыхивает белым, поднимает руки и преображается: проступает тёмный кварц, листва синеет, по стволу бегут фиолетовые молнии. Начинается фаза 2 с более тяжёлыми атаками в связках.",
+        "Само превращение не наносит урона: используйте его, чтобы сменить позицию и дать навыкам перезарядиться."
+      ],
+      "ko": [
+        "체력이 절반이 되면 나무가 하얗게 번쩍이고 두 손을 들며 변신합니다: 마석이 터져 나오고 잎이 파랗게 변하며 보라색 번개가 흐릅니다. 페이즈 2가 시작되고 공격이 더 강해져 연속으로 이어집니다.",
+        "변신 자체는 피해를 주지 않습니다: 위치를 다시 잡고 쿨다운을 회복하세요."
+      ],
+      "ja": [
+        "体力が半分になると樹が白く光り、両手を上げて変身します：魔石が突き出し、葉が青くなり、紫の稲妻が走ります。フェーズ2が始まり、攻撃が激しく連続になります。",
+        "変身そのものにダメージはありません：位置を立て直し、クールダウンを回復させましょう。"
+      ],
+      "zh-Hans": [
+        "体力剩一半时，树闪出白光，举起双手并变身：魔石迸出，树叶变蓝，紫色闪电流遍全身。第二阶段开始，攻击更猛并会连续使出。",
+        "变身本身不会造成伤害：趁机调整位置，让技能冷却恢复。"
+      ],
+      "zh-Hant": [
+        "體力剩一半時，樹閃出白光，舉起雙手並變身：魔石迸出，樹葉變藍，紫色閃電流遍全身。第二階段開始，攻擊更猛並會連續使出。",
+        "變身本身不會造成傷害：趁機調整位置，讓技能冷卻恢復。"
+      ]
+    },
+    "Phase 2 · Fist power slam": {
+      "en": [
+        "Like Fist slam, but harder and four times in a row, each fist coming down at your position. In the Dark Mirror a pink spike erupts after each slam.",
+        "Keep moving the whole time and dash aside as each fist drops. Only hit a resting fist when the next one isn't already falling on you."
+      ],
+      "de": [
+        "Wie Faustschlag, aber härter und viermal hintereinander, jede Faust fällt an deiner Position. Im Dunklen Spiegel bricht nach jedem Schlag ein rosa Stachel hervor.",
+        "Bleib die ganze Zeit in Bewegung und sprinte bei jeder fallenden Faust zur Seite. Schlag eine ruhende Faust nur, wenn die nächste nicht schon auf dich fällt."
+      ],
+      "es": [
+        "Como Golpe de puño, pero más fuerte y cuatro veces seguidas, cada puño cae donde estás. En el Espejo oscuro brota una púa rosa tras cada golpe.",
+        "Muévete todo el rato y esquiva a un lado cuando caiga cada puño. Golpea un puño quieto solo si el siguiente no te está cayendo ya encima."
+      ],
+      "fr": [
+        "Comme Coup de poing écrasant, mais plus fort et quatre fois de suite, chaque poing tombant sur ta position. Dans le Miroir noir, une pointe rose jaillit après chaque coup.",
+        "Bouge sans arrêt et esquive sur le côté à chaque poing qui tombe. Ne frappe un poing au repos que si le suivant ne te tombe pas déjà dessus."
+      ],
+      "pl": [
+        "Jak Uderzenie pięścią, ale mocniej i cztery razy z rzędu, każda pięść spada tam, gdzie jesteś. W Ciemnym lustrze po każdym uderzeniu wyrasta różowy kolec.",
+        "Ruszaj się cały czas i uskakuj w bok przy każdej spadającej pięści. Bij leżącą pięść tylko wtedy, gdy następna już na ciebie nie spada."
+      ],
+      "pt-BR": [
+        "Como Soco esmagador, mas mais forte e quatro vezes seguidas, cada punho caindo onde você está. No Espelho Sombrio um espinho rosa brota após cada golpe.",
+        "Continue se movendo o tempo todo e esquive para o lado a cada punho que cai. Só bata num punho parado quando o próximo não estiver caindo em você."
+      ],
+      "ru": [
+        "Как Удар кулаком, но сильнее и четыре раза подряд, каждый кулак падает туда, где вы стоите. В Тёмном зеркале после каждого удара вырывается розовый шип.",
+        "Всё время двигайтесь и уходите рывком вбок от каждого падающего кулака. Бейте лежащий кулак, только если следующий уже не падает на вас."
+      ],
+      "ko": [
+        "주먹 내려치기와 같지만 더 강하고 네 번 연달아, 주먹마다 당신의 위치에 떨어집니다. 검은 거울에서는 내리칠 때마다 분홍색 가시가 솟아납니다.",
+        "계속 움직이며 주먹이 떨어질 때마다 옆으로 대쉬하세요. 다음 주먹이 당신에게 떨어지고 있지 않을 때만 바닥의 주먹을 공격하세요."
+      ],
+      "ja": [
+        "拳叩きつけと同じですが、より強く4回続けて、拳はそれぞれあなたの位置に落ちます。闇の鏡では叩きつけるたびにピンクのトゲが噴き出します。",
+        "常に動き続け、拳が落ちるたびに横へダッシュしましょう。次の拳が落ちてきていない時だけ、止まった拳を攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "和拳头猛砸一样，但更强并连续四次，每个拳头都落在你的位置。在魔镜中每次砸下后都会冒出粉色尖刺。",
+        "全程保持移动，每个拳头落下时向旁边冲刺。只有在下一个拳头没有砸向你时才攻击停在地上的拳头。"
+      ],
+      "zh-Hant": [
+        "和拳頭猛砸一樣，但更強並連續四次，每個拳頭都落在你的位置。在黑暗鏡子中每次砸下後都會冒出粉色尖刺。",
+        "全程保持移動，每個拳頭落下時向旁邊衝刺。只有在下一個拳頭沒有砸向你時才攻擊停在地上的拳頭。"
+      ]
+    },
+    "Phase 2 · Both fist power slam": {
+      "en": [
+        "A red line flashes across the floor as a warning, then both fists slam down at once on either side, three times. In the Dark Mirror a row of pink spikes then shoots up along the floor.",
+        "The fists land on the left and right: the space between them, under the head, is your best spot. In the Dark Mirror jump when the spikes rise."
+      ],
+      "de": [
+        "Eine rote Linie blitzt als Warnung über den Boden, dann schlagen beide Fäuste gleichzeitig links und rechts nieder, dreimal. Im Dunklen Spiegel schießt danach eine Reihe rosa Stacheln am Boden hoch.",
+        "Die Fäuste landen links und rechts: der Platz dazwischen, unter dem Kopf, ist deine beste Stelle. Im Dunklen Spiegel spring, wenn die Stacheln aufsteigen."
+      ],
+      "es": [
+        "Una línea roja destella en el suelo como aviso; luego ambos puños caen a la vez a los lados, tres veces. En el Espejo oscuro, después brota una hilera de púas rosas en el suelo.",
+        "Los puños caen a izquierda y derecha: el espacio entre ellos, bajo la cabeza, es tu mejor sitio. En el Espejo oscuro, salta cuando suban las púas."
+      ],
+      "fr": [
+        "Une ligne rouge clignote au sol en avertissement, puis les deux poings s'abattent ensemble de chaque côté, trois fois. Dans le Miroir noir, une rangée de pointes roses jaillit ensuite du sol.",
+        "Les poings tombent à gauche et à droite : l'espace entre eux, sous la tête, est ta meilleure place. Dans le Miroir noir, saute quand les pointes surgissent."
+      ],
+      "pl": [
+        "Na ziemi błyska czerwona linia jako ostrzeżenie, potem obie pięści uderzają naraz po bokach, trzy razy. W Ciemnym lustrze potem wzdłuż ziemi wystrzeliwuje rząd różowych kolców.",
+        "Pięści spadają z lewej i prawej: miejsce między nimi, pod głową, jest najlepsze. W Ciemnym lustrze skocz, gdy kolce się wysuną."
+      ],
+      "pt-BR": [
+        "Uma linha vermelha pisca no chão como aviso; depois os dois punhos descem juntos dos dois lados, três vezes. No Espelho Sombrio, em seguida uma fileira de espinhos rosa brota do chão.",
+        "Os punhos caem à esquerda e à direita: o espaço entre eles, sob a cabeça, é o melhor lugar. No Espelho Sombrio, pule quando os espinhos subirem."
+      ],
+      "ru": [
+        "Красная линия вспыхивает на полу как предупреждение, затем оба кулака одновременно бьют по бокам, трижды. В Тёмном зеркале после этого вдоль пола вырастает ряд розовых шипов.",
+        "Кулаки падают слева и справа: место между ними, под головой, самое безопасное. В Тёмном зеркале прыгайте, когда поднимаются шипы."
+      ],
+      "ko": [
+        "경고로 바닥에 붉은 선이 번쩍인 뒤, 두 주먹이 양쪽에 동시에 세 번 내리칩니다. 검은 거울에서는 그 뒤 바닥을 따라 분홍색 가시가 줄지어 솟아납니다.",
+        "주먹은 왼쪽과 오른쪽에 떨어집니다: 그 사이, 머리 아래가 가장 좋은 자리입니다. 검은 거울에서는 가시가 솟을 때 점프하세요."
+      ],
+      "ja": [
+        "警告として床に赤い線が光り、両方の拳が左右に同時に3回叩きつけられます。闇の鏡ではその後、床に沿ってピンクのトゲが列になって突き出します。",
+        "拳は左右に落ちます：その間、頭の下が一番安全な場所です。闇の鏡ではトゲが出る時にジャンプしましょう。"
+      ],
+      "zh-Hans": [
+        "地面闪过一道红线作为警告，然后双拳同时砸向左右，共三次。在魔镜中，随后地面会冒出一排粉色尖刺。",
+        "拳头落在左右：两拳之间、头部下方是最好的位置。在魔镜中，尖刺升起时跳起。"
+      ],
+      "zh-Hant": [
+        "地面閃過一道紅線作為警告，然後雙拳同時砸向兩側，共三次。在黑暗鏡子中，隨後地面會冒出一排粉色尖刺。",
+        "拳頭落在左右兩側：兩拳之間、頭部下方是最好的位置。在黑暗鏡子中，尖刺升起時跳起。"
+      ]
+    },
+    "Phase 2 · Sweeping": {
+      "en": [
+        "Four sweeps along the ground in a row, the hands taking turns.",
+        "Jump each hand as it reaches you and land ready for the next. Don't attack until both hands are back at the tree."
+      ],
+      "de": [
+        "Vier Feger am Boden hintereinander, die Hände wechseln sich ab.",
+        "Spring über jede Hand, wenn sie dich erreicht, und lande bereit für die nächste. Greif erst an, wenn beide Hände wieder am Baum sind."
+      ],
+      "es": [
+        "Cuatro barridos seguidos por el suelo, alternando las manos.",
+        "Salta cada mano cuando te alcance y aterriza listo para la siguiente. No ataques hasta que ambas manos vuelvan al árbol."
+      ],
+      "fr": [
+        "Quatre balayages au sol à la suite, les mains alternant.",
+        "Saute chaque main quand elle arrive et atterris prêt pour la suivante. N'attaque pas avant que les deux mains soient revenues à l'arbre."
+      ],
+      "pl": [
+        "Cztery zamiatania ziemi z rzędu, dłonie na zmianę.",
+        "Przeskakuj każdą dłoń, gdy do ciebie dotrze, i ląduj gotów na następną. Nie atakuj, dopóki obie dłonie nie wrócą do drzewa."
+      ],
+      "pt-BR": [
+        "Quatro varridas seguidas pelo chão, as mãos alternando.",
+        "Pule cada mão quando ela chegar e aterrisse pronto para a próxima. Não ataque até as duas mãos voltarem à árvore."
+      ],
+      "ru": [
+        "Четыре взмаха по земле подряд, руки чередуются.",
+        "Перепрыгивайте каждую руку и приземляйтесь готовыми к следующей. Не атакуйте, пока обе руки не вернутся к дереву."
+      ],
+      "ko": [
+        "바닥을 따라 네 번 연달아 쓸어 버리며, 두 손이 번갈아 움직입니다.",
+        "손이 다가오면 뛰어넘고 다음 손에 대비해 착지하세요. 두 손이 모두 나무로 돌아올 때까지 공격하지 마세요."
+      ],
+      "ja": [
+        "地面に沿った薙ぎ払いを4回続けて行い、両手が交互に動きます。",
+        "手が来たら飛び越え、次に備えて着地しましょう。両手が樹に戻るまで攻撃しないこと。"
+      ],
+      "zh-Hans": [
+        "贴地连续横扫四次，双手交替。",
+        "手扫到时跳过，落地后准备应对下一次。双手都回到树旁之前不要攻击。"
+      ],
+      "zh-Hant": [
+        "貼地連續橫掃四次，雙手交替。",
+        "手掃到時跳過，落地後準備應對下一次。雙手都回到樹旁之前不要攻擊。"
+      ]
+    },
+    "Phase 2 · Energy corps": {
+      "en": [
+        "Glows with purple light and launches a stream of energy orbs for about eight seconds; they fall across the arena and burst into purple flames. Afterwards it is exhausted (Groggy).",
+        "Keep moving and stay out of the flames on the ground. When the stream stops the tree collapses: that's your moment to punish it."
+      ],
+      "de": [
+        "Glüht in lila Licht und schießt etwa acht Sekunden lang einen Strom von Energiekugeln ab; sie fallen über die Arena und gehen in lila Flammen auf. Danach ist es erschöpft (Benommen).",
+        "Bleib in Bewegung und halte dich von den Flammen am Boden fern. Wenn der Strom endet, bricht der Baum zusammen: dein Moment, ihn zu bestrafen."
+      ],
+      "es": [
+        "Brilla con luz morada y lanza un torrente de esferas de energía durante unos ocho segundos; caen por la arena y estallan en llamas moradas. Luego queda agotado (Aturdido).",
+        "Muévete y aléjate de las llamas del suelo. Cuando el torrente termina, el árbol se desploma: es tu momento de castigarlo."
+      ],
+      "fr": [
+        "Rayonne d'une lumière violette et lance un flot d'orbes d'énergie pendant environ huit secondes ; ils tombent dans l'arène et éclatent en flammes violettes. Ensuite il est épuisé (Sonné).",
+        "Bouge et reste hors des flammes au sol. Quand le flot s'arrête, l'arbre s'effondre : c'est le moment de le punir."
+      ],
+      "pl": [
+        "Świeci fioletowym światłem i przez około osiem sekund wystrzeliwuje strumień kul energii; spadają na arenę i wybuchają fioletowymi płomieniami. Potem jest wyczerpane (Oszołomiony).",
+        "Ruszaj się i trzymaj z dala od płomieni na ziemi. Gdy strumień ustaje, drzewo się osuwa: to twoja chwila, by je ukarać."
+      ],
+      "pt-BR": [
+        "Brilha com luz roxa e lança uma torrente de orbes de energia por cerca de oito segundos; eles caem pela arena e explodem em chamas roxas. Depois fica exausto (Atordoado).",
+        "Continue se movendo e fique longe das chamas no chão. Quando a torrente para, a árvore desaba: é sua hora de puni-la."
+      ],
+      "ru": [
+        "Светится фиолетовым и около восьми секунд выпускает поток энергетических сфер; они падают по арене и вспыхивают фиолетовым пламенем. После этого оно обессилено (Оглушён).",
+        "Двигайтесь и держитесь подальше от пламени на земле. Когда поток кончается, дерево падает: ваш момент наказать его."
+      ],
+      "ko": [
+        "보라색 빛으로 빛나며 약 8초 동안 에너지 구체를 연달아 날립니다. 구체는 아레나 곳곳에 떨어져 보라색 불꽃으로 터집니다. 그 후 지쳐 그로기 상태가 됩니다.",
+        "계속 움직이며 바닥의 불꽃을 피하세요. 구체가 멈추면 나무가 쓰러집니다: 반격할 때입니다."
+      ],
+      "ja": [
+        "紫の光を放ち、約8秒間エネルギーの球を次々と放ちます。球はアリーナ中に落ちて紫の炎となって弾けます。その後、疲れ果ててグロッキーになります。",
+        "動き続け、地面の炎を避けましょう。球が止まると樹が倒れます：反撃の時です。"
+      ],
+      "zh-Hans": [
+        "发出紫光，约八秒内连续射出能量球，落在场地各处并爆成紫色火焰。之后它会精疲力竭（虚弱）。",
+        "保持移动，避开地上的火焰。能量球停止后树会倒下：这是惩罚它的时机。"
+      ],
+      "zh-Hant": [
+        "發出紫光，約八秒內連續射出能量球，落在場地各處並爆成紫色火焰。之後它會精疲力竭（虛弱）。",
+        "保持移動，避開地上的火焰。能量球停止後樹會倒下：這是懲罰它的時機。"
+      ]
+    },
+    "Phase 2 · Groggy": {
+      "en": [
+        "Exhausted after Energy corps: the head crashes down in a cloud of dust and stays down for about two seconds.",
+        "Same as in phase 1: unload everything on the head."
+      ],
+      "de": [
+        "Erschöpft nach dem Energiekorps: der Kopf kracht in einer Staubwolke nieder und bleibt etwa zwei Sekunden unten.",
+        "Wie in Phase 1: alles auf den Kopf."
+      ],
+      "es": [
+        "Agotado tras Cuerpo de energía: la cabeza cae en una nube de polvo y se queda abajo unos dos segundos.",
+        "Igual que en la fase 1: descarga todo sobre la cabeza."
+      ],
+      "fr": [
+        "Épuisé après Corps d'énergie : la tête s'écrase dans un nuage de poussière et reste au sol environ deux secondes.",
+        "Comme en phase 1 : déchaîne tout sur la tête."
+      ],
+      "pl": [
+        "Wyczerpane po Korpusie energii: głowa uderza o ziemię w chmurze pyłu i zostaje na dole około dwóch sekund.",
+        "Jak w fazie 1: wszystko w głowę."
+      ],
+      "pt-BR": [
+        "Exausto depois de Corpo de energia: a cabeça despenca numa nuvem de poeira e fica caída uns dois segundos.",
+        "Igual à fase 1: descarregue tudo na cabeça."
+      ],
+      "ru": [
+        "Обессилено после Энергетического отряда: голова с облаком пыли падает и лежит около двух секунд.",
+        "Как в фазе 1: всё в голову."
+      ],
+      "ko": [
+        "에너지 군단 후 지칩니다: 머리가 먼지구름과 함께 쓰러져 약 2초 동안 그대로 있습니다.",
+        "페이즈 1과 같습니다: 머리에 모든 것을 퍼부으세요."
+      ],
+      "ja": [
+        "エネルギー軍団の後に疲れ果てます：頭が砂ぼこりと共に倒れ、約2秒そのままです。",
+        "フェーズ1と同じ：頭にすべてを叩き込みましょう。"
+      ],
+      "zh-Hans": [
+        "能量军团之后精疲力竭：头部在尘土中砸下，停留约两秒。",
+        "和第一阶段一样：把一切都砸在头上。"
+      ],
+      "zh-Hant": [
+        "能量軍團之後精疲力竭：頭部在塵土中砸下，停留約兩秒。",
+        "和第一階段一樣：把一切都砸在頭上。"
+      ]
+    }
+  }
+}

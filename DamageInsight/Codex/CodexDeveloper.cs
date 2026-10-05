@@ -32,6 +32,9 @@ public static class CodexDeveloper
 
         /// <summary>Spine moves as the AI makes them (move → its animations); null groups by animation name.</summary>
         public List<(string label, List<string> parts)> SpineGroups;
+
+        /// <summary>Adds these sets to the enemy's saved ones (its projectiles); same-named sets are replaced.</summary>
+        public bool Append;
     }
 
     private sealed class Job
@@ -264,6 +267,8 @@ public static class CodexDeveloper
         }
         if (sheets.Count == 0)
             return "nothing visible, not saved";
+        if (job.Request.Append)
+            return Append(sheets, folder);
         // The idle animation first: it is the still picture and what the book shows when an entry opens.
         sheets = sheets.OrderBy(s => s.clip.Label.StartsWith("Idle", StringComparison.OrdinalIgnoreCase) ? 0 : 1).ToList();
 
@@ -280,26 +285,53 @@ public static class CodexDeveloper
             ImageConversion.EncodeArrayToPNG(still, GraphicsFormat.R8G8B8A8_UNorm, (uint)first.CellWidth, (uint)first.CellHeight));
         File.WriteAllBytes(Path.Combine(folder, "outline.png"),
             ImageConversion.EncodeArrayToPNG(Outline(still, first.CellWidth, first.CellHeight), GraphicsFormat.R8G8B8A8_UNorm, (uint)first.CellWidth, (uint)first.CellHeight));
-        var json = new StringBuilder("{\"clips\":[");
+        var entries = new List<string>();
         for (int i = 0; i < sheets.Count; i++)
-        {
-            var (clip, sheet) = sheets[i];
-            string file = $"clip_{i}.png";
-            var png = ImageConversion.EncodeArrayToPNG(sheet.Pixels, GraphicsFormat.R8G8B8A8_UNorm, (uint)sheet.Width, (uint)sheet.Height);
-            File.WriteAllBytes(Path.Combine(folder, file), png);
-            if (i > 0) json.Append(',');
-            json.Append("{\"label\":").Append(LogJson.Quote(clip.Label))
-                .Append(",\"file\":").Append(LogJson.Quote(file))
-                .Append(",\"cellW\":").Append(sheet.CellWidth)
-                .Append(",\"cellH\":").Append(sheet.CellHeight)
-                .Append(",\"cols\":").Append(sheet.Columns)
-                .Append(",\"count\":").Append(sheet.Count)
-                .Append(",\"durations\":[")
-                .Append(string.Join(",", clip.Durations.Take(sheet.Count).Select(d => d.ToString("0.###", CultureInfo.InvariantCulture))))
-                .Append("]}");
-        }
-        json.Append("]}");
-        File.WriteAllText(Path.Combine(folder, "animations.json"), json.ToString(), new UTF8Encoding(false));
+            entries.Add(Save(folder, $"clip_{i}.png", sheets[i].clip, sheets[i].sheet));
+        File.WriteAllText(Path.Combine(folder, "animations.json"), "{\"clips\":[" + string.Join(",", entries) + "]}", new UTF8Encoding(false));
         return $"developed {sheets.Count} animations ({string.Join(", ", sheets.Select(s => $"{s.clip.Label} {s.sheet.Count}"))})";
     }
+
+    /// <summary>
+    /// Adds sets to an enemy's saved animations (its projectiles, met after its capture); a set of the same name is
+    /// replaced, every other one and the still pictures stay.
+    /// </summary>
+    private static string Append(List<(CapClip clip, SheetData sheet)> sheets, string folder)
+    {
+        string index = Path.Combine(folder, "animations.json");
+        if (!File.Exists(index))
+            return "no saved animations to add to";
+        var labels = new HashSet<string>(sheets.Select(s => s.clip.Label));
+        var entries = new List<string>();
+        foreach (var node in Describe.GearDoc.ParseNode(File.ReadAllText(index, Encoding.UTF8)).List("clips"))
+        {
+            string label = node.Str("label") ?? "", file = node.Str("file") ?? "";
+            if (labels.Contains(label))
+            {
+                if (File.Exists(Path.Combine(folder, file)))
+                    File.Delete(Path.Combine(folder, file));
+                continue;
+            }
+            entries.Add(Entry(label, file, (int)node.Num("cellW"), (int)node.Num("cellH"), (int)node.Num("cols"), (int)node.Num("count"),
+                node.Numbers("durations").Select(d => (float)d)));
+        }
+        long stamp = DateTime.Now.Ticks;
+        for (int i = 0; i < sheets.Count; i++)
+            entries.Add(Save(folder, $"clip_{stamp}_{i}.png", sheets[i].clip, sheets[i].sheet));
+        File.WriteAllText(index, "{\"clips\":[" + string.Join(",", entries) + "]}", new UTF8Encoding(false));
+        return $"added {string.Join(", ", sheets.Select(s => $"{s.clip.Label} {s.sheet.Count}"))}";
+    }
+
+    /// <summary>Writes one sheet and returns its index entry.</summary>
+    private static string Save(string folder, string file, CapClip clip, SheetData sheet)
+    {
+        var png = ImageConversion.EncodeArrayToPNG(sheet.Pixels, GraphicsFormat.R8G8B8A8_UNorm, (uint)sheet.Width, (uint)sheet.Height);
+        File.WriteAllBytes(Path.Combine(folder, file), png);
+        return Entry(clip.Label, file, sheet.CellWidth, sheet.CellHeight, sheet.Columns, sheet.Count, clip.Durations.Take(sheet.Count));
+    }
+
+    private static string Entry(string label, string file, int w, int h, int cols, int count, IEnumerable<float> durations) =>
+        "{\"label\":" + LogJson.Quote(label) + ",\"file\":" + LogJson.Quote(file) +
+        $",\"cellW\":{w},\"cellH\":{h},\"cols\":{cols},\"count\":{count},\"durations\":[" +
+        string.Join(",", durations.Select(d => d.ToString("0.###", CultureInfo.InvariantCulture))) + "]}";
 }

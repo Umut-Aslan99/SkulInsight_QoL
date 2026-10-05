@@ -2,51 +2,1262 @@
   "_note": "Translation of codex_content.json (same keys; anything missing here comes from the English file).",
   "entries": {
     "Yggdrasil": {
-      "about": "Prastare drzewo strzegące pierwszego rozdziału. Walczy głową i dwiema ogromnymi dłońmi, a gdy straci połowę zdrowia, przebudza się w drugiej fazie.",
+      "about": "Pradawne drzewo strzegące pierwszego rozdziału. Walczy głową i dwiema olbrzymimi dłońmi, a po utracie połowy zdrowia budzi się w drugiej fazie.",
       "moves": {
         "Fist slam": {
-          "what": "Unosi wysoko jedną dłoń, przez chwilę śledzi twoją pozycję i uderza nią.",
-          "tip": "Ruszaj się, aż dłoń opadnie, potem zrób zryw w bok. Po uderzeniu dłoń zostaje chwilę na ziemi: bezpieczne okno na kontrę."
+          "what": "Unosi obie dłonie i dwa lub trzy razy z rzędu uderza pięścią tam, gdzie stoisz; przy uderzeniu wzbija się pył. W Ciemnym lustrze po każdym uderzeniu z ziemi wystrzeliwuje kolec z korzenia.",
+          "tip": "Pięść podąża za tobą, dopóki nie spadnie: ruszaj się i uskocz w bok tuż przed uderzeniem. Między uderzeniami pięść chwilę leży na ziemi: bezpieczna chwila na kontratak. W Ciemnym lustrze odejdź od miejsca uderzenia: kolec pojawia się zaraz potem."
         },
         "Sweeping": {
-          "what": "Jedna dłoń zamiata przy ziemi całą arenę.",
-          "tip": "Gdy zaczyna się zamach, wyrastają drewniane platformy: wskocz na jedną albo przeskocz dłoń we właściwej chwili."
+          "what": "Cofa obie dłonie, a potem zamiata ziemię przez całą arenę: najpierw jedną dłonią, potem drugą.",
+          "tip": "Przeskakuj każdą dłoń, gdy do ciebie dotrze; drugie zamiatanie przychodzi zaraz po pierwszym, więc zachowaj na nie skok."
         },
         "Energy bomb": {
-          "what": "Gromadzi energię w głowie i wystrzeliwuje bomby, które wybuchają tam, gdzie spadną.",
-          "tip": "Patrz, gdzie celują bomby, i zejdź z tego miejsca; wybuchy są krótkie, więc możesz od razu wrócić."
-        },
-        "Laser": {
-          "what": "Zbiera światło w głowie i wystrzeliwuje promień.",
-          "tip": "Ładowanie to twoje ostrzeżenie. Zejdź z linii promienia przed strzałem, zamiast próbować przebić się zrywem."
+          "what": "Opiera dłonie, zbiera mroczną energię i świeci na czerwono, a potem wystrzeliwuje z głowy bomby energii, które w miejscu upadku wybuchają mrocznymi płomieniami. Potem jest wyczerpane (Oszołomiony).",
+          "tip": "Ruszaj się: bomby spadają jedna po drugiej w różnych miejscach, a ich płomienie chwilę się utrzymują. Gdy ostrzał ustaje, drzewo się osuwa: przygotuj się do ataku na głowę."
         },
         "Groggy": {
-          "what": "Wyczerpana głowa opada na ziemię, a drzewo na kilka sekund przestaje atakować.",
-          "tip": "Twoje najlepsze okno na obrażenia: użyj teraz umiejętności i najsilniejszych ataków na głowę."
+          "what": "Po ataku energią drzewo jest wyczerpane: jego głowa uderza o ziemię w chmurze pyłu i zostaje na dole około dwóch sekund, zanim znów się uniesie.",
+          "tip": "Twoje największe okno na obrażenia: użyj umiejętności i najmocniejszych ataków na głowę, dopóki leży."
         },
         "Phase 2 · Awakening": {
-          "what": "Z drzewa wyrywa się czarny kryształ: zaczyna się faza 2. Ataki stają się cięższe i idą w kombinacjach.",
-          "tip": "Wykorzystaj przemianę, by zmienić pozycję i odnowić umiejętności."
+          "what": "Przy połowie zdrowia drzewo błyska na biało, unosi dłonie i się przemienia: wybucha mroczny kwarc, liście stają się niebieskie, a przez drzewo przebiegają fioletowe błyskawice. Zaczyna się faza 2 z mocniejszymi atakami w kombinacjach.",
+          "tip": "Sama przemiana nie zadaje obrażeń: wykorzystaj ją, by zmienić pozycję i odnowić czasy odnowienia."
         },
         "Phase 2 · Fist power slam": {
-          "what": "Cięższe uderzenie, które przy upadku posyła falę gruzu po ziemi.",
-          "tip": "Unik przed dłonią nie wystarczy: przeskocz lub przemknij zrywem nad falą gruzu, która nadchodzi."
+          "what": "Jak Uderzenie pięścią, ale mocniej i cztery razy z rzędu, każda pięść spada tam, gdzie jesteś. W Ciemnym lustrze po każdym uderzeniu wyrasta różowy kolec.",
+          "tip": "Ruszaj się cały czas i uskakuj w bok przy każdej spadającej pięści. Bij leżącą pięść tylko wtedy, gdy następna już na ciebie nie spada."
         },
         "Phase 2 · Both fist power slam": {
-          "what": "Obie dłonie uderzają naraz, pokrywając dużą część areny.",
-          "tip": "Trzymaj się blisko środka i czekaj, aż obie dłonie ruszą, zanim zrobisz unik; luka między nimi to twoje wyjście."
-        },
-        "Phase 2 · Sweeping combo": {
-          "what": "Dwa zamachy z rzędu: najpierw z jednej strony, potem z drugiej.",
-          "tip": "Zostań na platformie albo przygotuj kolejny skok po pierwszym zamachu: drugi następuje niemal od razu."
+          "what": "Na ziemi błyska czerwona linia jako ostrzeżenie, potem obie pięści uderzają naraz po bokach, trzy razy. W Ciemnym lustrze potem wzdłuż ziemi wystrzeliwuje rząd różowych kolców.",
+          "tip": "Pięści spadają z lewej i prawej: miejsce między nimi, pod głową, jest najlepsze. W Ciemnym lustrze skocz, gdy kolce się wysuną."
         },
         "Phase 2 · Energy corps": {
-          "what": "Przyzywa krąg kul energii, które lecą na ciebie jedna po drugiej.",
-          "tip": "Biegnij w jednym kierunku, by kule chybiały za tobą; nie zatrzymuj się do ataku, dopóki nie minie ostatnia."
+          "what": "Świeci fioletowym światłem i przez około osiem sekund wystrzeliwuje strumień kul energii; spadają na arenę i wybuchają fioletowymi płomieniami. Potem jest wyczerpane (Oszołomiony).",
+          "tip": "Ruszaj się i trzymaj z dala od płomieni na ziemi. Gdy strumień ustaje, drzewo się osuwa: to twoja chwila, by je ukarać."
         },
         "Phase 2 · Groggy": {
-          "what": "Znowu wyczerpana: głowa opada, a drzewo przestaje atakować.",
-          "tip": "Tak jak w fazie 1: zrzuć wszystko na głowę."
+          "what": "Wyczerpane po Korpusie energii: głowa uderza o ziemię w chmurze pyłu i zostaje na dole około dwóch sekund.",
+          "tip": "Jak w fazie 1: wszystko w głowę."
+        },
+        "Phase 2 · Sweeping": {
+          "what": "Cztery zamiatania ziemi z rzędu, dłonie na zmianę.",
+          "tip": "Przeskakuj każdą dłoń, gdy do ciebie dotrze, i ląduj gotów na następną. Nie atakuj, dopóki obie dłonie nie wrócą do drzewa."
+        }
+      }
+    },
+    "LeianaShortHair": {
+      "about": "Siostry bliźniaczki i duma Rycerzy Złotogrzywych, bossowie drugiego rozdziału. Zmieniają się: w fazie w parze atakują razem, a w fazie pojedynczej jedna siostra walczy sama przez około 20 sekund, gdy druga czeka w tle poza zasięgiem. Gdy jedna siostra padnie, druga budzi się jako Czuwająca Leiana.",
+      "moves": {
+        "Pair phase · Twin meteor": {
+          "what": "Dwie cienkie żółte linie celowania krzyżują się w X. Siostry pikują wzdłuż nich jako jasne smugi, spotykają się w punkcie przecięcia, wstają i odskakują zrywem. Jedna linia celuje w ciebie, druga tam, dokąd zmierzasz.",
+          "tip": "Linie pokazują obie trasy przed atakiem: zejdź z obu, nie tylko z bliższej. Punkt przecięcia to najgorsze miejsce."
+        },
+        "Pair phase · Twin meteor pierce": {
+          "what": "Siostry stają na przeciwnych końcach sali i zbierają złotą energię. Naprowadzane złote błyskawice przelatują przez salę z obu stron, a potem obie pchają włóczniami tuż nad ziemią i odskakują zrywem.",
+          "tip": "Błyskawice lecą z obu stron i skręcają w twoją stronę: ruszaj się i zmieniaj kierunek w ostatniej chwili, żeby chybiły. Przeskocz pchnięcia włóczni na końcu."
+        },
+        "Pair phase · Twin meteor chain": {
+          "what": "Jedna siostra wykonuje niski wypad tuż nad ziemią, a druga zaraz potem pikuje z góry. Robią to dwa razy, z nowych miejsc.",
+          "tip": "Każda runda ma dwa takty, niski wypad, a potem atak z góry: uniknij jednego i od razu ruszaj się dalej. Atakuj dopiero po ostatniej rundzie."
+        },
+        "Pair phase · Twin meteor ground": {
+          "what": "Obie przykucają na przeciwnych końcach sali i jednocześnie wykonują wypad tuż nad ziemią, mijają się pośrodku i odskakują zrywem.",
+          "tip": "Przykucnięcie to ostrzeżenie: przeskocz wypady. Mijają się pośrodku, więc tam nie czekaj."
+        },
+        "Single phase · Golden meteor": {
+          "what": "Rozpoczyna każdą fazę pojedynczą: siostra wyskakuje wysoko nad salę i pikuje pionowo w dół ze złotą włócznią; przy uderzeniu sypią się złote iskry.",
+          "tip": "Odsuń się z miejsca pod nią, gdy jest w powietrzu. Po lądowaniu potrzebuje chwili, by wstać: dobry moment na atak. W Ciemnym lustrze atak z góry spada dużo szybciej."
+        },
+        "Single phase · Dimension pierce": {
+          "what": "Stoi w miejscu; pojawiają się ukośne cienkie żółte linie ostrzegawcze, a potem wzdłuż nich uderzają jasne złote promienie.",
+          "tip": "Zejdź z linii ostrzegawczych, zanim spadną promienie: uderzają wzdłuż całej linii. Używa go, gdy tylko znów jest gotowe."
+        },
+        "Single phase · Backstep": {
+          "what": "Odskakuje do tyłu, od ciebie; przy ścianie skacze w drugą stronę. Używa go, gdy jesteś blisko.",
+          "tip": "Czasem zaraz po skoku następuje Naprowadzany atak dystansowy: bądź gotów unikać złotych błyskawic."
+        },
+        "Single phase · Meteor in air": {
+          "what": "Wyskakuje w górę w bok, a potem pikuje ukośnie na ciebie ze złotą smugą; przy uderzeniu sypią się iskry.",
+          "tip": "Pikuje w miejsce, w którym stoisz: odskocz zrywem, gdy spada. Używa go z bliska i z daleka. W Ciemnym lustrze atak z góry spada dużo szybciej."
+        },
+        "Single phase · Rising pierce": {
+          "what": "Gdy unosi włócznię, uderza w nią piorun, a potem z ziemi wystrzeliwują rzędy złotych słupów światła, rozchodząc się od niej falami na obie strony.",
+          "tip": "Piorun to ostrzeżenie: oddal się od niej i prześlizgnij przez lukę, gdy dosięgnie cię fala słupów. Nie w pierwszych 10 sekundach fazy pojedynczej; potem, gdy tylko znów jest gotowe."
+        },
+        "Single phase · Range attack homing": {
+          "what": "Cofa włócznię i wystrzeliwuje falami złote zygzakowate błyskawice, które skręcają w twoją stronę.",
+          "tip": "Następuje po ruchu Krok w tył. Ruszaj się i zmieniaj kierunek w ostatniej chwili: błyskawice skręcają zbyt wolno i chybiają."
+        },
+        "Single phase · Rush": {
+          "what": "Doskakuje zrywem, a potem kilka razy tam i z powrotem wykonuje wypady włócznią przez całą podłogę. W Ciemnym lustrze kończy jeszcze jednym długim wypadem.",
+          "tip": "Każdy wypad biegnie tuż nad ziemią: przeskocz go. Po ostatnim chwilę odpoczywa: twoja szansa na atak."
+        },
+        "Single phase · Dash": {
+          "what": "Pędzi po ziemi prosto tam, gdzie stoisz. Używa go, gdy jesteś daleko.",
+          "tip": "Potem następuje Szarża albo Meteor na ziemi: bądź gotów skoczyć, gdy tylko się zatrzyma."
+        },
+        "Single phase · Meteor in ground": {
+          "what": "Przykuca, potem wykonuje niski wypad tuż nad ziemią z włócznią przed sobą i wstaje. W Ciemnym lustrze wraz z wypadem daleko po ziemi biegnie złota fala.",
+          "tip": "Przykucnięcie to ostrzeżenie: przeskocz wypad. Używa go z bliska i po ruchu Zryw."
+        },
+        "Awakening": {
+          "what": "Gdy jedna siostra padnie, druga klęka, otaczają ją fioletowe błyskawice i ciemny dym, salę wypełnia biały błysk, a ona powstaje jako Czuwająca Leiana.",
+          "tip": "Zachowuje pozostałe zdrowie i dodatkowo leczy 40% nowego maksimum. Jeśli obie siostry padną w tej samej chwili, jedna wraca z pełnym zdrowiem: pokonaj jedną, gdy druga jest już osłabiona."
+        },
+        "Single phase · Meteor in ground 2": {
+          "what": "Rzuca się nisko nad ziemią w złotej smudze z jednego końca sali na drugi. Robi to tylko w ramach ataków w parze Bliźniaczy meteor (ziemia) i Łańcuch bliźniaczego meteoru.",
+          "tip": "Przeskocz ją, gdy przelatuje."
+        }
+      }
+    },
+    "AwakenLeiana": {
+      "about": "Ocalała siostra Leiana, przebudzona mroczną mocą po upadku bliźniaczki. Walczy sama mroczniejszymi i silniejszymi wersjami ruchów sióstr, a Szarży i Przebicia wymiaru używa, gdy tylko są gotowe.",
+      "moves": {
+        "Golden meteor": {
+          "what": "Pojawia się wysoko nad tobą i pikuje pionowo w fioletowym słupie; po obu stronach uderzenia wyrastają mroczne kolce. Robi to dwa lub trzy razy z rzędu.",
+          "tip": "Za każdym razem celuje w miejsce, w którym stoisz: ruszaj się po każdym ataku i trzymaj się z dala od obu stron miejsca uderzenia."
+        },
+        "Meteor in air": {
+          "what": "Wyskakuje w górę w bok i pikuje ukośnie na ciebie z fioletową smugą, dwa lub trzy razy z rzędu.",
+          "tip": "Każdy atak celuje w twoje miejsce: odskocz zrywem, gdy spada, i jeszcze raz przy następnym. W Ciemnym lustrze atak z góry spada dużo szybciej."
+        },
+        "Meteor in ground 2": {
+          "what": "Odskakuje do tyłu, a potem pędzi przez całą podłogę jako fioletowa smuga; następnie wzdłuż jej drogi jedna po drugiej wyrastają z ziemi mroczne macki.",
+          "tip": "Przeskocz ją, gdy przebiega, a potem trzymaj się z dala od podłogi, którą przebiegła, aż macki znikną."
+        },
+        "Rush": {
+          "what": "Teleportuje się po sali, a potem fioletowe linie przecinają cały ekran i naraz rozbłyskują cięciami.",
+          "tip": "Linie to ostrzeżenie: znajdź miejsce między nimi, zanim rozbłysną. Używa jej, gdy tylko znów jest gotowa (nie w pierwszych 15 sekundach po przebudzeniu), a potem chwilę odpoczywa."
+        },
+        "Dimension pierce": {
+          "what": "Stoi w miejscu, gdy pojawiają się ukośne fioletowe linie, a potem wzdłuż nich uderzają, jeden po drugim, jeden lub dwa grube fioletowe promienie.",
+          "tip": "Zejdź z każdej linii, zanim spadnie jej promień: uderza wzdłuż całej linii. Używa go, gdy tylko znów jest gotowe."
+        },
+        "Range attack homing": {
+          "what": "Wokół niej w powietrzu pojawiają się ciemnofioletowe kule i strzelają fioletowymi promieniami, które zbiegają się tam, gdzie stoisz. W Ciemnym lustrze kul jest więcej.",
+          "tip": "Promienie celują w twoje miejsce w chwili strzału: ruszaj się, żeby skrzyżowały się za tobą."
+        }
+      }
+    },
+    "Chimera": {
+      "about": "Potworna istota wyhodowana w laboratorium alchemików, boss trzeciego rozdziału. Poniżej połowy zdrowia wszystkie jej ruchy przyspieszają, a co 30 sekund dochodzi Spadający wrak, kombinacja z ruchami Jadowity oddech i Zniszczenie wraku.",
+      "moves": {
+        "Bite": {
+          "what": "Wyrzuca głowy do przodu i gryzie ziemię tuż przed sobą.",
+          "tip": "Tylko gdy stoisz tuż przed nią, i rzadko. Trzymaj się trochę z dala od jej głów, gdy nie atakujesz."
+        },
+        "Stomp": {
+          "what": "Unosi przednią łapę i tupie w ziemię przed sobą, od jednego do trzech razy z rzędu.",
+          "tip": "Tylko gdy jesteś blisko, najwyżej co 7 sekund. Cofnij się poza zasięg, gdy łapa się unosi, i wróć po ostatnim tupnięciu."
+        },
+        "Venom fall": {
+          "what": "Staje dęba i ryczy w stronę sufitu, a potem z sufitu leje się jad w czterech kolumnach rozłożonych po sali, jedna po drugiej, dwie ostatnie razem. W Ciemnym lustrze na końcu następuje jeszcze jeden atak.",
+          "tip": "Każda kolumna spada w swoim miejscu: stań między nimi i ruszaj się dopiero, gdy zaczyna się następna. Potem chwilę odpoczywa (dłużej poniżej połowy zdrowia i w Ciemnym lustrze): dobry moment na atak. Najwyżej co 7 sekund."
+        },
+        "Venom ball": {
+          "what": "Otwiera paszczę i pluje wielką kulą jadu, która odbija się po sali.",
+          "tip": "Od razu, bez przerwy, przechodzi do następnego ruchu: miej kulę na oku, unikając tego, co nadchodzi."
+        },
+        "Venom cannon": {
+          "what": "Wystrzeliwuje grudy jadu wysokimi łukami przez salę; tam, gdzie spadną, rozpryskują się w fioletowe kolce.",
+          "tip": "Patrz, gdzie spadają grudy, i trzymaj się z dala od tych miejsc, aż kolce znikną."
+        },
+        "Subject drop": {
+          "what": "Staje dęba i ryczy w stronę sufitu; spadają kamienie i zielone zbiorniki z próbkami, a z nich wychodzą małe obiekty doświadczalne, które dołączają do walki.",
+          "tip": "Co 20 sekund. Szybko rozpraw się z obiektami doświadczalnymi albo miej je na oku, walcząc z Chimerą."
+        },
+        "Wreck drop": {
+          "what": "Od połowy zdrowia: wyskakuje poza zasięg wzroku, na całej podłodze świeci czerwona linia ostrzegawcza, potem spada z hukiem w chmurze pyłu, a z sufitu spada gruz. Zawsze następują po tym Jadowity oddech i Zniszczenie wraku.",
+          "tip": "Bądź w powietrzu, gdy świeci czerwona linia i ona ląduje. Gruz zostaje na miejscu: użyj go jako osłony przed następującym Jadowitym oddechem. Co 30 sekund."
+        },
+        "Venom breath": {
+          "what": "Wypuszcza strumień jadu z węża na grzbiecie, najpierw pod własne łapy, a potem omiatając całą salę.",
+          "tip": "Pojawia się tylko zaraz po ruchu Spadający wrak. Schowaj się za kawałkiem gruzu, po stronie dalszej od Chimery: gruz zatrzymuje jad."
+        },
+        "Wreck destroy": {
+          "what": "Staje dęba i uderza potężnym tupnięciem, które rozbija cały gruz na ziemi.",
+          "tip": "Koniec kombinacji z gruzem. Odejdź od gruzu przed uderzeniem: każdy kawałek wybucha, gdy się rozpada."
+        }
+      }
+    },
+    "Pope": {
+      "about": "Św. Joanna II, boss czwartego rozdziału. W pierwszej fazie siedzi na tronie za barierą, a atakują fanatycy: zniszcz dwa mroczne kryształy obok niej, by ją zakończyć (w Ciemnym lustrze kryształy są na zmianę osłonięte). W drugiej fazie lata nad platformami, strzeżona przez kule eskorty krążące po sali; w Ciemnym lustrze platformy, na których stoisz, są co jakiś czas atakowane.",
+      "moves": {
+        "Nervousness": {
+          "what": "Drży na tronie, potem przed nią rozbłyska światło, a złote fale uderzeniowe toczą się po ziemi w obie strony.",
+          "tip": "Przeskakuj fale uderzeniowe, gdy do ciebie dotrą."
+        },
+        "Baptism": {
+          "what": "Unosi laskę; z jej głowicy rozbłyskuje snop promieni, potem złote kule wzlatują i spadają deszczem na salę, zostawiając małe słupy światła tam, gdzie upadną.",
+          "tip": "Obserwuj spadające kule i stań między miejscami, w które trafią."
+        },
+        "Worship": {
+          "what": "Kolumny wielkich złotych kul wpływają z boków sali i przesuwają się przez nią.",
+          "tip": "Patrz, którędy przechodzi każda kolumna, i przemykaj przez luki między nimi."
+        },
+        "Consecration": {
+          "what": "Cienka linia światła oznacza miejsce, potem uderza tam ogromny słup złotego światła i podąża za tobą po ziemi. W połowie przypadków następuje Nerwowość.",
+          "tip": "Zejdź z oznaczonej linii, zanim spadnie słup, i trzymaj się przed nim, gdy się przesuwa."
+        },
+        "Choice": {
+          "what": "Wszyscy fanatycy w sali naraz poświęcają się i zmieniają w macki.",
+          "tip": "Tylko po zniszczeniu mrocznego kryształu i tylko gdy są fanatycy: szybko się ich pozbywaj, by niewielu mogło się przemienić."
+        },
+        "Summon escort": {
+          "what": "Rozpoczyna drugą fazę: teleportuje się, jej tron znika, pojawiają się platformy, a ona wraca, unosząc się pośrodku, gdy fioletowe kule eskorty zaczynają krążyć po sali.",
+          "tip": "Kule eskorty ranią przy dotyku i co jakiś czas strzelają: śledź ich krąg podczas walki."
+        },
+        "Control escort": {
+          "what": "Poszerza lub zwęża krąg kul eskorty.",
+          "tip": "Gdy krąg się zmienia, zejdź z nowej drogi kul."
+        },
+        "Grace": {
+          "what": "Wzlatuje pod sklepienie sali; świeci złota aureola, a wachlarze promieni światła omiatają salę trzy razy.",
+          "tip": "Promienie rozchodzą się od niej wachlarzem: stań w luce między nimi i ruszaj się, gdy zaczyna się następny wachlarz."
+        },
+        "Soul chase": {
+          "what": "Teleportuje się w nowe miejsce i wysyła świecącą kulę duszy, która przez chwilę cię goni.",
+          "tip": "Ruszaj się, żeby kula leciała za tobą, i ostro skręcaj, żeby cię minęła."
+        },
+        "Divine impact": {
+          "what": "Świecące kule spadają na platformy i jedna po drugiej rozbłyskują pierścieniami świętego światła.",
+          "tip": "Patrz, gdzie spada każda kula, i nie wchodź tam, aż jej pierścień zniknie."
+        },
+        "Divine light": {
+          "what": "Teleportuje się na skraj sali i wystrzeliwuje ogromny złoty promień prosto przez salę na twojej wysokości, raz lub dwa razy z rzędu.",
+          "tip": "Zmień wysokość tuż przed strzałem: wskocz na inną platformę albo zeskocz."
+        },
+        "Embrace": {
+          "what": "Leci na środek i otwiera czarną pustkę, która przyciąga cię do niej, potem pustka złocieje i kilka razy wybucha promieniami światła.",
+          "tip": "Opieraj się przyciąganiu, a gdy wybucha światło, stań w luce między promieniami."
+        },
+        "Priest summon": {
+          "what": "Przelatuje nad salą i zrzuca świecące kule, z których na platformach powstają klerycy.",
+          "tip": "Tylko gdy nie został żaden kleryk. Szybko ich pokonaj."
+        },
+        "Purification": {
+          "what": "Teleportuje się na bok; na platformach wznoszą się białe płomienie i wyrastają z nich macki.",
+          "tip": "Tylko dopóki któraś platforma nie ma jeszcze macki. Niszcz macki na platformach, z których korzystasz."
+        },
+        "Sacrament": {
+          "what": "Teleportuje się; fioletowe kręgi oznaczają miejsca na całym ekranie, a potem każdy wybucha błyskiem światła.",
+          "tip": "Zanim wybuchną, znajdź miejsce, którego nie obejmuje żaden krąg, i zostań tam."
+        },
+        "Divine cross": {
+          "what": "Złote pierścienie oznaczają miejsca na platformach i wznoszą się tam słupy światła, potem nad jedną z platform pojawia się ogromny krzyż z promieni, który obraca się wokół środka.",
+          "tip": "Trzymaj się z dala od środka i przesuwaj się z lukami, gdy krzyż się obraca. Potem długo odpoczywa."
+        },
+        "Super baptism": {
+          "what": "Leci w róg i unosi laskę; wybucha burza złotych kul, które spadają deszczem na całą salę, a złote pierścienie pokazują, gdzie upadną.",
+          "tip": "Patrz na pierścienie na ziemi i stań tam, gdzie ich nie ma. Potem odpoczywa."
+        }
+      }
+    },
+    "FirstHero1": {
+      "about": "Pierwszy Bohater, Miecz Carleonu, boss piątego rozdziału. Jego pierwsza forma walczy włócznią: powyżej 65% zdrowia używa podstawowych ruchów, poniżej wzmocnionych wersji z czerwonymi falami, Lądowania bohatera, Zabójstwa i Kuli energii, a poniżej 30% także Wielkiego wybuchu.",
+      "moves": {
+        "Landing": {
+          "what": "Wyskakuje wysoko i spada na twoją pozycję w ognistej eksplozji gruzu, a potem chwilę wstaje.",
+          "tip": "Odsuń się z miejsca pod nim, zanim wyląduje. Gdy wstaje po lądowaniu, możesz go trafić."
+        },
+        "Landing short": {
+          "what": "Lądowanie bez długiego wstawania: skacze, spada w ognistej eksplozji i szybko jest znów gotowy.",
+          "tip": "Zejdź spod niego, zanim wyląduje; potem jest mało czasu na kontrę."
+        },
+        "Landing (skip end motion)": {
+          "what": "Lądowanie, które zamiast wstawania od razu przechodzi w zryw po ziemi.",
+          "tip": "Po uniknięciu lądowania bądź gotów przeskoczyć zryw."
+        },
+        "Landing long": {
+          "what": "Lądowanie z pełnym wstawaniem, po którym następuje zryw w tył, zryw w twoją stronę i dwa cięcia.",
+          "tip": "Uniknij lądowania, potem cofnij się przed cięciami; atakuj po ostatnim."
+        },
+        "Skip landing long end motion -> double slash": {
+          "what": "Lądowanie bez wstawania: zaraz po uderzeniu odskakuje, doskakuje do ciebie i tnie dwa razy.",
+          "tip": "Uniknij lądowania i trzymaj dystans: cięcia przychodzą zaraz potem."
+        },
+        "Dash": {
+          "what": "Szybki zryw po ziemi, by zmienić pozycję.",
+          "tip": "Zwykle prowadzi do innego ruchu: uważaj na to, co nastąpi."
+        },
+        "Back dash": {
+          "what": "Odskakuje do tyłu, od ciebie.",
+          "tip": "Pojawia się, gdy jesteś blisko; często zaraz potem znów atakuje."
+        },
+        "Dash chase": {
+          "what": "Przykuca, potem pędzi po ziemi prosto na ciebie i poprawia cięciem.",
+          "tip": "Przeskocz zryw, a potem trzymaj się z dala od cięcia."
+        },
+        "Dash chase + Slam": {
+          "what": "Pędzi po ziemi w twoją stronę, a potem wbija włócznię w ziemię w chmurze pyłu.",
+          "tip": "Przeskocz zryw i cofnij się przed uderzeniem. Czasem pomija wstawanie i od razu działa dalej."
+        },
+        "Slam": {
+          "what": "Unosi włócznię i wbija ją w ziemię przed sobą w chmurze pyłu.",
+          "tip": "Cofnij się poza zasięg, gdy włócznia idzie w górę."
+        },
+        "Dash after landing -> slam": {
+          "what": "Po lądowaniu doskakuje do ciebie i wbija włócznię w ziemię w chmurze pyłu.",
+          "tip": "Po uniknięciu lądowania przeskocz zryw i cofnij się przed uderzeniem."
+        },
+        "Horizontal slash": {
+          "what": "Cofa włócznię, a potem wymachuje nią szerokim poziomym łukiem przed sobą.",
+          "tip": "Cofnij się poza zasięg podczas zamachu i trafiaj go po ciosie."
+        },
+        "Vertical slash": {
+          "what": "Robi krok i wymachuje włócznią w górę wysokim pionowym łukiem przed sobą.",
+          "tip": "Łuk sięga wysoko: lepiej uskocz w tył, niż skacz nad nim."
+        },
+        "Long slash": {
+          "what": "Odchyla się, a potem robi daleki wypad z długim, zamaszystym cięciem tuż nad ziemią.",
+          "tip": "Sięga daleko: przeskocz je albo trzymaj się daleko poza zasięgiem."
+        },
+        "Triple dash slash": {
+          "what": "Trzy razy pędzi po ziemi, tnąc na końcu każdego zrywu; ostatnie to długie cięcie.",
+          "tip": "Oddalaj się i przeskakuj każdy zryw; atakuj po długim cięciu."
+        },
+        "Slash combo": {
+          "what": "Długi łańcuch: poziome cięcie, cięcie w skoku, zryw w tył, a potem zryw w twoją stronę zakończony długim cięciem.",
+          "tip": "Wycofuj się podczas łańcucha i poczekaj na końcowe długie cięcie, zanim zaatakujesz."
+        },
+        "Rush": {
+          "what": "Doskakuje i wyprowadza grad wirujących zamachów włócznią i cięć, kończąc poziomym cięciem.",
+          "tip": "Oddal się i przeczekaj: atak obejmuje duży obszar. Najwyżej co 40 sekund."
+        },
+        "Hero landing": {
+          "what": "Wyskakuje poza zasięg wzroku i sala ciemnieje; czerwone słupy błyskawic uderzają jeden po drugim w miejsca oznaczone czerwonymi liniami na ziemi, a potem ląduje.",
+          "tip": "Patrz na czerwone znaki na ziemi i stań tam, gdzie ich nie ma. Używa go zaraz na początku nowej fazy zdrowia i później ponownie."
+        },
+        "Enhanced pierce": {
+          "what": "Przykuca, potem pchnięciem włóczni posyła czerwoną falę w kształcie sierpa tuż nad ziemią.",
+          "tip": "Przeskocz falę: leci dużo dalej, niż sięga włócznia."
+        },
+        "Enhanced horizontal slash": {
+          "what": "Obraca włócznią dookoła siebie, zostawiając pierścień czerwono-czarnych cięć.",
+          "tip": "Pierścień obejmuje obie strony: oddal się, zanim się zamachnie."
+        },
+        "Enhanced vertical slash": {
+          "what": "Powolny, ciężki zamach włócznią w górę ogromnym pionowym łukiem.",
+          "tip": "Zamach trwa długo: cofnij się poza zasięg i trafiaj go po ciosie."
+        },
+        "Enhanced slash combo": {
+          "what": "Łańcuch cięć w skoku, potem ląduje, a przed nim z ziemi wyrasta rząd czerwonych kolców; na koniec długie cięcie.",
+          "tip": "Nie stój w rzędzie przed nim, gdy ląduje; atakuj po długim cięciu."
+        },
+        "Enhanced rush": {
+          "what": "Jak Szarża, ale każdy wirujący zamach rzuca czerwono-czarne sierpowe cięcia, a na koniec przez ziemię biegnie długa czerwona linia cięcia.",
+          "tip": "Oddal się daleko i przeskocz końcową linię. Najwyżej co 50 sekund."
+        },
+        "Grab dash": {
+          "what": "Pędzi na ciebie, by cię złapać; jeśli mu się uda, rzuca tobą.",
+          "tip": "Przeskocz zryw: chybiony chwyt odsłania go."
+        },
+        "Grab combo": {
+          "what": "Sięga, by złapać cię z bliska; jeśli mu się uda, wykonuje kombinację i rzuca tobą.",
+          "tip": "Nie stój tuż obok niego, gdy cofa rękę."
+        },
+        "Assassination": {
+          "what": "Znika i pojawia się tuż obok ciebie z szybkim, niskim cięciem.",
+          "tip": "Pojawia się, gdy jesteś daleko: ruszaj się, by cięcie chybiło, i ukarz go, gdy wstaje."
+        },
+        "Energy ball": {
+          "what": "Rzuca kilka ciemnoczerwonych kul, które chwilę unoszą się w powietrzu, a potem wybuchają mrocznymi eksplozjami.",
+          "tip": "Tylko gdy jesteś blisko i w powietrzu: wyląduj albo oddal się od kul, zanim wybuchną."
+        },
+        "Big bang": {
+          "what": "Poniżej 30% zdrowia: sala ciemnieje, tnie raz za razem, podczas gdy ogromne białe linie cięć krzyżują się na ekranie i wznoszą się czerwone słupy, a na koniec wywołuje wokół siebie gigantyczną ciemnoczerwoną eksplozję.",
+          "tip": "Białe linie pokazują, gdzie przetną następne cięcia: stań między nimi. Przed końcową eksplozją oddal się od niego daleko. Najwyżej co 100 sekund."
+        }
+      }
+    },
+    "AdventurerArcher": {
+      "moves": {
+        "Arrow shot": {
+          "what": "Napina łuk i wypuszcza szybką strzałę prosto przed siebie.",
+          "tip": "Przeskocz strzałę albo podejdź między strzałami."
+        },
+        "Push": {
+          "what": "Obraca się z łukiem, by cię odepchnąć, gdy podejdziesz.",
+          "tip": "Cofnij się na chwilę, gdy zaczyna się obrót, i podejdź znowu."
+        },
+        "Bird hunt": {
+          "what": "Pod tobą na ziemi pojawia się czerwony znak, a potem uderza w niego zielony promień.",
+          "tip": "Zejdź ze znaku, zanim spadnie promień."
+        },
+        "Back step": {
+          "what": "Odskakuje do tyłu, od ciebie.",
+          "tip": "Pojawia się, gdy jesteś blisko: szybko doskocz przed następnym strzałem."
+        },
+        "Back step trap": {
+          "what": "Odskakuje i zostawia pułapkę na ziemi tam, gdzie stała.",
+          "tip": "Nie biegnij prosto za nią: przeskocz pułapkę."
+        },
+        "Arrow rain (special skill)": {
+          "what": "Umiejętność specjalna: deszcz strzał na dużym obszarze.",
+          "tip": "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+        },
+        "Groggy": {
+          "what": "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+          "tip": "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+        }
+      }
+    },
+    "AdventurerCleric": {
+      "moves": {
+        "Consecration": {
+          "what": "Czerwona linia oznacza pas ziemi, a potem przez chwilę bucha na nim złote święte światło.",
+          "tip": "Zejdź z oznaczonego pasa i nie wracaj, aż światło zgaśnie."
+        },
+        "Holy cross": {
+          "what": "Czerwona linia oznacza miejsce, potem pojawia się tam wielki złoty krzyż i wybucha.",
+          "tip": "Zejdź z oznaczonego miejsca, zanim pojawi się krzyż."
+        },
+        "Heal": {
+          "what": "Klęka i modli się; zielone światło leczy awanturników.",
+          "tip": "Bij ją, gdy się modli, i pokonaj ją najpierw, by grupa przestała się leczyć."
+        },
+        "Reinforce": {
+          "what": "Modli się, a wokół niej wznosi się niebieska aura: błogosławieństwo wzmacniające grupę.",
+          "tip": "Atakuj ją podczas modlitwy, by grupa się nie wzmocniła."
+        },
+        "Massive heal (special skill)": {
+          "what": "Umiejętność specjalna: duże leczenie całej grupy.",
+          "tip": "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+        },
+        "Groggy": {
+          "what": "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+          "tip": "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+        }
+      }
+    },
+    "AdventurerHero": {
+      "moves": {
+        "Dash short": {
+          "what": "Krótki zryw w twoją stronę.",
+          "tip": "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+        },
+        "Dash long": {
+          "what": "Długi zryw w twoją stronę.",
+          "tip": "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+        },
+        "Back dash": {
+          "what": "Odskakuje do tyłu, od ciebie.",
+          "tip": "Pojawia się, gdy jesteś blisko, najwyżej co 10 sekund."
+        },
+        "Energy blast": {
+          "what": "Unosi miecz i przed sobą wywołuje wybuch niebieskiej kopuły energii.",
+          "tip": "Cofnij się poza zasięg kopuły, a potem kontratakuj."
+        },
+        "Combo attack": {
+          "what": "Seria cięć mieczem w marszu, zakończona wybuchem energii.",
+          "tip": "Wycofaj się, aż minie końcowy wybuch, a potem atakuj."
+        },
+        "Energy ball": {
+          "what": "Pchnięciem miecza wystrzeliwuje niebieskie kule energii prosto przed siebie.",
+          "tip": "Przeskocz kule albo zmień wysokość."
+        },
+        "Sword aura wave (special skill)": {
+          "what": "Umiejętność specjalna: ładuje się, a potem posyła po ziemi kilka fal aury miecza.",
+          "tip": "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+        },
+        "Groggy": {
+          "what": "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+          "tip": "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+        }
+      }
+    },
+    "AdventurerMagician": {
+      "moves": {
+        "Fire ball": {
+          "what": "Unosi się w powietrzu i wystrzeliwuje serię kul ognia prosto przed siebie.",
+          "tip": "Zmień wysokość albo przeskocz kule ognia."
+        },
+        "Flame impact": {
+          "what": "Obok ciebie spadają ogniste kule i wybuchają pierścieniami płomieni.",
+          "tip": "Patrz, gdzie spadają kule, i trzymaj się z dala od pierścieni."
+        },
+        "Phoenix landing": {
+          "what": "Wzlatuje; uderza słup ognia, a ona ląduje w wybuchu płomieni.",
+          "tip": "Odsuń się od słupa: wybuch przy lądowaniu rani wszystko wokół."
+        },
+        "Take off": {
+          "what": "Wzlatuje w powietrze.",
+          "tip": "Następny atak nadejdzie z góry."
+        },
+        "Fire ball sub": {
+          "what": "Gdy pomaga innemu awanturnikowi: z tyłu nadlatują wielkie pierścienie płomieni.",
+          "tip": "Miej pierścienie na oku, walcząc z drugim awanturnikiem."
+        },
+        "World on fire (special skill)": {
+          "what": "Umiejętność specjalna: wzlatuje i zrzuca deszcz ognistych kul na cały obszar.",
+          "tip": "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+        },
+        "Groggy": {
+          "what": "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+          "tip": "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+        }
+      }
+    },
+    "AdventurerThief": {
+      "moves": {
+        "Flash cut": {
+          "what": "Znika i przemyka przez ciebie z szybkim cięciem.",
+          "tip": "Ruszaj się i skacz, gdy pojawi się przed tobą."
+        },
+        "Giant shuriken": {
+          "what": "Rzuca wielki fioletowy shuriken, który przelatuje przez salę i wraca.",
+          "tip": "Uniknij go dwa razy: w drodze tam i z powrotem."
+        },
+        "Shadow step": {
+          "what": "Teleportuje się tuż obok ciebie.",
+          "tip": "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+        },
+        "Shuriken": {
+          "what": "Rzuca w ciebie małymi shurikenami.",
+          "tip": "Przeskocz je albo przemknij między nimi."
+        },
+        "Shadow step air": {
+          "what": "Teleportuje się w powietrze obok ciebie i uderza w dół.",
+          "tip": "Zejdź spod niego."
+        },
+        "Multiple bunshin (special skill)": {
+          "what": "Umiejętność specjalna: pojawiają się klony z cienia i kilka razy tną przy ziemi.",
+          "tip": "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+        },
+        "Groggy": {
+          "what": "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+          "tip": "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+        }
+      }
+    },
+    "VeteranMagician": {
+      "moves": {
+        "Flame rain (start)": {
+          "what": "Wzlatuje wysoko i zrzuca krople ognia, które rozpalają płomienie na ziemi i platformach.",
+          "tip": "Patrz, gdzie spadają krople, i omijaj płonące miejsca, aż zgasną."
+        },
+        "Flame rain": {
+          "what": "Wzlatuje wysoko i zrzuca krople ognia, które rozpalają płomienie na ziemi i platformach.",
+          "tip": "Patrz, gdzie spadają krople, i omijaj płonące miejsca, aż zgasną."
+        },
+        "Flame wing": {
+          "what": "Rozpościera skrzydła z płomieni i omiata salę falą ognia; żar wybucha płomieniami na ziemi.",
+          "tip": "Znajdź się nad falą albo pod nią, a potem omijaj płomienie na ziemi."
+        },
+        "Fire ball": {
+          "what": "Wystrzeliwuje kule ognia zostawiające smugę dymu.",
+          "tip": "Zmień wysokość albo je przeskocz."
+        },
+        "Flame circle": {
+          "what": "Kule ognia krążą wokół niej w rosnącej spirali, a potem rozlatują się na wszystkie strony.",
+          "tip": "Trzymaj dystans i szukaj luk między kulami, gdy się rozlatują."
+        },
+        "Flame impact": {
+          "what": "Posyła do przodu pierścienie płomieni.",
+          "tip": "Przeskocz pierścienie albo zmień wysokość."
+        },
+        "Phoenix landing": {
+          "what": "Pikuje w smudze ognia.",
+          "tip": "Odsuń się od miejsca, w które pikuje."
+        },
+        "Flame storm": {
+          "what": "Ekran ciemnieje, płomienie pełzną po ziemi, a potem w sali wybuchają ogromne słupy ognia w grupach z lukami między nimi.",
+          "tip": "Przed wybuchem znajdź lukę między grupami słupów i zostań w niej."
+        },
+        "World on fire": {
+          "what": "Wznosi się słup ognia, potem rzędy ognistych kul rozchodzą się po sali i zrzucają płomienie.",
+          "tip": "Trzymaj się między kulami i ruszaj się, gdy spadają płomienie."
+        },
+        "Rising (high)": {
+          "what": "Wzlatuje wysoko.",
+          "tip": "Zmienia wysokość przed kolejnym zaklęciem."
+        },
+        "Rising (low)": {
+          "what": "Unosi się trochę.",
+          "tip": "Zmienia wysokość przed kolejnym zaklęciem."
+        }
+      }
+    },
+    "VeteranWarrior": {
+      "moves": {
+        "Stamping": {
+          "what": "Skacze na ciebie i tupie; z miejsca uderzenia wylatują kamienie.",
+          "tip": "Odsuń się od miejsca, w którym ląduje."
+        },
+        "Guard": {
+          "what": "Unosi złotą tarczę, która blokuje ataki z przodu.",
+          "tip": "Atakuj od tyłu albo poczekaj, aż ją opuści. Gdy jesteś blisko, najwyżej co 10 sekund."
+        },
+        "Mace rush": {
+          "what": "Szarżuje po ziemi, wlokąc buzdygan, a potem wybija w górę słup skały.",
+          "tip": "Przeskocz szarżę i trzymaj się z dala od słupa skały."
+        },
+        "Body tank": {
+          "what": "Kilka razy szarżuje z tarczą przed sobą, taranując wszystko na drodze.",
+          "tip": "Przeskakuj każdą szarżę; uderz go od tyłu, gdy przejdzie."
+        },
+        "Mace slam": {
+          "what": "Uderza buzdyganem w ziemię; w twoim miejscu pojawia się czerwony znak i wystrzeliwuje tam skalny kolec.",
+          "tip": "Natychmiast zejdź z czerwonego znaku."
+        },
+        "Whirlwind": {
+          "what": "Wiruje z buzdyganem i zbliża się do ciebie jak trąba powietrzna.",
+          "tip": "Trzymaj się z dala, aż przestanie wirować. Poniżej 70% zdrowia, najwyżej co 50 sekund."
+        },
+        "Earthquake": {
+          "what": "Uderza w ziemię; na podłodze świecą czerwone linie i wybuchają z niej skały.",
+          "tip": "Bądź w powietrzu albo na platformie, gdy wybuchają skały."
+        },
+        "Fury of earth": {
+          "what": "Zbiera moc, gdy ekran ciemnieje, wyskakuje, na podłodze świeci czerwona linia, a na całą salę spada deszcz skał.",
+          "tip": "Bij go, gdy zbiera moc, a potem unikaj spadających skał. Poniżej 40% zdrowia, najwyżej co 80 sekund."
+        }
+      }
+    },
+    "DarkSkul1": {
+      "about": "Mroczna kopia Skula, spotykana tylko w Ciemnym lustrze. Walczy kością i własną głową; poniżej 55% zdrowia dochodzą Specjalny deszcz kości, Wywołanie deszczu kości i Rozłupanie ziemi.",
+      "moves": {
+        "Dash": {
+          "what": "Szybki zryw po ziemi.",
+          "tip": "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+        },
+        "Upper attack": {
+          "what": "Wymachuje kością w górę wielkim fioletowym łukiem przed sobą.",
+          "tip": "Nie stój w łuku przed nim; z góry może nastąpić Atak w górę (wykończenie)."
+        },
+        "Upper attack finish": {
+          "what": "Wyskakuje w powietrze i uderza w dół z fioletowym kręgiem run i chmurą pyłu.",
+          "tip": "Odsuń się z miejsca pod nim."
+        },
+        "Head hunting": {
+          "what": "Skacze na ciebie i uderza w dół fioletowym cięciem w chmurze pyłu.",
+          "tip": "Pojawia się, gdy jesteś daleko: odskocz od miejsca lądowania."
+        },
+        "Throw head": {
+          "what": "Rzuca głową po ziemi; wybucha fioletowymi błyskami w całej sali i wraca do niego.",
+          "tip": "Przeskocz głowę w drodze tam i z powrotem."
+        },
+        "Jump throw head": {
+          "what": "Skacze i rzuca w ciebie głową z góry; czerwona linia pokazuje miejsce uderzenia.",
+          "tip": "Zejdź z czerwonej linii."
+        },
+        "Melee attack": {
+          "what": "Dwa szerokie zamachy kością przed sobą.",
+          "tip": "Cofnij się poza zasięg i uderz go po drugim zamachu."
+        },
+        "Swing attack": {
+          "what": "Wlecze kość po ziemi: czerwone linie ostrzegawcze przesuwają się przez salę, a za nimi jeden po drugim wyrastają kościane kolce.",
+          "tip": "Obserwuj czerwone linie i zejdź z każdej, zanim wyrośnie kolec."
+        },
+        "Hard smash": {
+          "what": "Uderza w ziemię przed sobą z wybuchem fioletowych kolców, a potem uderza znowu z mroczną erupcją.",
+          "tip": "Trzymaj się z dala od przodu, aż skończą się oba uderzenia."
+        },
+        "Leap and throw bone": {
+          "what": "Wyskakuje i rzuca wirujące kości, które spadają rozrzucone po ziemi.",
+          "tip": "Pojawia się, gdy jesteś blisko. Patrz, gdzie spadają kości, i stań między nimi."
+        },
+        "Execution": {
+          "what": "Sala ciemnieje, czerwone linie oznaczają miejsca, gdzie wyrastają kościane kolce, a potem uderza z oślepiającym błyskiem i fioletową eksplozją.",
+          "tip": "Omijaj czerwone linie, a potem oddal się od błysku."
+        },
+        "Seperate body": {
+          "what": "Rozpada się w fioletowym błysku; mroczne odłamki kryształu uderzają jeden po drugim w całej sali, a jego kości latają wokół, po czym składa się z powrotem.",
+          "tip": "Ruszaj się: odłamki uderzają w wielu miejscach. W drugiej fazie najwyżej co 30 sekund."
+        },
+        "Bone rain": {
+          "what": "Rzuca kości wysoko w powietrze, które spadają jak fioletowe błyskawice.",
+          "tip": "Pojawia się, gdy jesteś daleko: ruszaj się, gdy spadają błyskawice."
+        },
+        "Special bone rain": {
+          "what": "Wokół niego zbiera się mroczny rój kości, który wystrzeliwuje w górę i spada fioletowymi błyskawicami na dużym obszarze.",
+          "tip": "Oddal się, gdy kości się zbierają, i ruszaj się, gdy spadają."
+        },
+        "Raise bone rain": {
+          "what": "Wyskakuje i spada z kością; z podłogi w całej sali wyrastają kości.",
+          "tip": "Bądź w powietrzu albo wysoko, gdy wyrastają kości."
+        },
+        "Earthshatter": {
+          "what": "Celownik oznacza ciebie, on rzuca w niego kością, a po ziemi przetacza się fala fioletowych kryształowych kolców.",
+          "tip": "Zejdź z celownika, a potem przeskocz falę kolców albo się od niej oddal."
+        }
+      }
+    },
+    "DarkSkul2": {
+      "about": "Druga faza Dark Skula. Przełącza się między trzema formami: Równowaga (ruchy z pierwszej fazy), Moc (ogniste pięści) i Prędkość (oszczep i szybkie zrywy). Poniżej 55% zdrowia każda forma ma wielki ruch specjalny.",
+      "moves": {
+        "Dash": {
+          "what": "Szybki zryw po ziemi.",
+          "tip": "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+        },
+        "Upper attack": {
+          "what": "Wymachuje kością w górę wielkim fioletowym łukiem przed sobą.",
+          "tip": "Nie stój w łuku przed nim; z góry może nastąpić Atak w górę (wykończenie)."
+        },
+        "Upper attack finish": {
+          "what": "Wyskakuje w powietrze i uderza w dół z fioletowym kręgiem run i chmurą pyłu.",
+          "tip": "Odsuń się z miejsca pod nim."
+        },
+        "Head hunting": {
+          "what": "Skacze na ciebie i uderza w dół fioletowym cięciem w chmurze pyłu.",
+          "tip": "Pojawia się, gdy jesteś daleko: odskocz od miejsca lądowania."
+        },
+        "Throw head": {
+          "what": "Rzuca głową po ziemi; wybucha fioletowymi błyskami w całej sali i wraca do niego.",
+          "tip": "Przeskocz głowę w drodze tam i z powrotem."
+        },
+        "Jump throw head": {
+          "what": "Skacze i rzuca w ciebie głową z góry; czerwona linia pokazuje miejsce uderzenia.",
+          "tip": "Zejdź z czerwonej linii."
+        },
+        "Melee attack": {
+          "what": "Dwa szerokie zamachy kością przed sobą.",
+          "tip": "Cofnij się poza zasięg i uderz go po drugim zamachu."
+        },
+        "Swing attack": {
+          "what": "Wlecze kość po ziemi: czerwone linie ostrzegawcze przesuwają się przez salę, a za nimi jeden po drugim wyrastają kościane kolce.",
+          "tip": "Obserwuj czerwone linie i zejdź z każdej, zanim wyrośnie kolec."
+        },
+        "Hard smash": {
+          "what": "Uderza w ziemię przed sobą z wybuchem fioletowych kolców, a potem uderza znowu z mroczną erupcją.",
+          "tip": "Trzymaj się z dala od przodu, aż skończą się oba uderzenia."
+        },
+        "Leap and throw bone": {
+          "what": "Wyskakuje i rzuca wirujące kości, które spadają rozrzucone po ziemi.",
+          "tip": "Pojawia się, gdy jesteś blisko. Patrz, gdzie spadają kości, i stań między nimi."
+        },
+        "Execution": {
+          "what": "Sala ciemnieje, czerwone linie oznaczają miejsca, gdzie wyrastają kościane kolce, a potem uderza z oślepiającym błyskiem i fioletową eksplozją.",
+          "tip": "Omijaj czerwone linie, a potem oddal się od błysku."
+        },
+        "Seperate body": {
+          "what": "Rozpada się w fioletowym błysku; mroczne odłamki kryształu uderzają jeden po drugim w całej sali, a jego kości latają wokół, po czym składa się z powrotem.",
+          "tip": "Ruszaj się: odłamki uderzają w wielu miejscach. W drugiej fazie najwyżej co 30 sekund."
+        },
+        "Bone rain": {
+          "what": "Rzuca kości wysoko w powietrze, które spadają jak fioletowe błyskawice.",
+          "tip": "Pojawia się, gdy jesteś daleko: ruszaj się, gdy spadają błyskawice."
+        },
+        "Special bone rain": {
+          "what": "Wokół niego zbiera się mroczny rój kości, który wystrzeliwuje w górę i spada fioletowymi błyskawicami na dużym obszarze.",
+          "tip": "Oddal się, gdy kości się zbierają, i ruszaj się, gdy spadają."
+        },
+        "Raise bone rain": {
+          "what": "Wyskakuje i spada z kością; z podłogi w całej sali wyrastają kości.",
+          "tip": "Bądź w powietrzu albo wysoko, gdy wyrastają kości."
+        },
+        "Earthshatter normal": {
+          "what": "Celownik oznacza ciebie, on rzuca w niego kością, a po ziemi przetacza się fala fioletowych kryształowych kolców.",
+          "tip": "Zejdź z celownika, a potem przeskocz falę kolców albo się od niej oddal."
+        },
+        "Punch": {
+          "what": "Forma Mocy: raz za razem uderza pięścią przed siebie, a każdy cios eksploduje ogniem.",
+          "tip": "Nie stój w eksplozjach przed nim; atakuj od tyłu albo po ostatnim ciosie."
+        },
+        "Punch fast ignition": {
+          "what": "Forma Mocy: przykuca, a potem wyprowadza szybki grad ciosów z ciągiem ognistych eksplozji daleko przed sobą.",
+          "tip": "Przykucnięcie to ostrzeżenie: zajdź go od tyłu albo oddal się daleko."
+        },
+        "Rush": {
+          "what": "Forma Mocy: szarżuje na ciebie z pięścią przed sobą i kończy wybuchem fioletowych kolców.",
+          "tip": "Przeskocz szarżę i trzymaj się z dala od miejsca, gdzie się kończy."
+        },
+        "Finish": {
+          "what": "Forma Mocy: kończy szarżę cięciem, a potem tupie w ziemię.",
+          "tip": "Po uniknięciu szarży cofnij się: tupnięcie przychodzi zaraz potem."
+        },
+        "Groggy": {
+          "what": "Forma Mocy: na chwilę pada wyczerpany na ziemię.",
+          "tip": "Bezpieczna chwila na atak."
+        },
+        "Stamping": {
+          "what": "Forma Mocy: skacze po sali i tupie z ognistymi eksplozjami.",
+          "tip": "Patrz, gdzie ląduje, i odsuń się."
+        },
+        "Stamping center": {
+          "what": "Forma Mocy: skacze na środek sali i tupie.",
+          "tip": "Trzymaj się z dala od środka, gdy skacze."
+        },
+        "Stomp": {
+          "what": "Forma Mocy: wyskakuje; na ziemi świeci czerwona linia, pojawiają się czerwone znaki i w rzędzie wybuchają słupy ognia.",
+          "tip": "Zejdź z oznaczonej ziemi: bądź w powietrzu albo na platformie, gdy wybucha ogień."
+        },
+        "Stomp bone recovery": {
+          "what": "Forma Mocy: po słupach ognia podnosi swoją kość.",
+          "tip": "Krótka przerwa: okazja, by go trafić."
+        },
+        "Special move": {
+          "what": "Forma Mocy: zbiera moc, raz za razem przygniata ziemię i kończy potężnym uderzeniem w dół.",
+          "tip": "Trzymaj się z dala, aż minie ostatnie, największe uderzenie."
+        },
+        "To power switching": {
+          "what": "Przechodzi w formę Mocy w chmurze mrocznego dymu; spadają fioletowe kule, a wokół niego wybuchają ogniste eksplozje.",
+          "tip": "Trzymaj dystans, gdy zmienia formę."
+        },
+        "To balance switching": {
+          "what": "Przechodzi w formę Równowagi w chmurze mrocznego dymu, a potem wymachuje kością wielkimi fioletowymi łukami.",
+          "tip": "Trzymaj dystans, gdy zmienia formę."
+        },
+        "To speed switching": {
+          "what": "Przechodzi w formę Prędkości: białe cięcie sierpem, potem długa czerwona linia cięcia po ziemi i czerwone sierpowe fale.",
+          "tip": "Przeskocz czerwoną linię na ziemi."
+        },
+        "Fast move aerial": {
+          "what": "Forma Prędkości: przemyka przez powietrze w nowe miejsce.",
+          "tip": "Ruchy Prędkości są szybkie: ruszaj się i uważaj na następny atak."
+        },
+        "Fast move on ground": {
+          "what": "Forma Prędkości: przemyka po ziemi w nowe miejsce.",
+          "tip": "Ruchy Prędkości są szybkie: ruszaj się i uważaj na następny atak."
+        },
+        "Wide sweep": {
+          "what": "Forma Prędkości: celownik oznacza ciebie, a potem doskakuje z ogromnym fioletowym zamaszystym cięciem.",
+          "tip": "Natychmiast zejdź z celownika."
+        },
+        "Joint sweep": {
+          "what": "Forma Prędkości: celownik oznacza ciebie, pojawia się fioletowe cięcie i pierścieniowe portale, a potem po ziemi biegnie długie fioletowe cięcie.",
+          "tip": "Zejdź z celownika, a potem przeskocz cięcie przy ziemi."
+        },
+        "First step horizontal dash": {
+          "what": "Forma Prędkości: celownik oznacza ciebie, fioletowe cięcie, a potem przemyka poziomo przez salę z cięciem.",
+          "tip": "Przeskocz zryw."
+        },
+        "First step falling dash": {
+          "what": "Forma Prędkości: celownik oznacza ciebie, fioletowe cięcie, a potem pikuje na ciebie ukośnie z góry.",
+          "tip": "Odskocz od celownika, gdy spada."
+        },
+        "Spike field": {
+          "what": "Forma Prędkości: przemyka wokół, na całej podłodze świeci czerwona linia, a potem wyrasta z niej pole białych kolców.",
+          "tip": "Bądź w powietrzu albo na platformie, gdy wyrastają kolce."
+        },
+        "Fast move 2 javelin combo": {
+          "what": "Forma Prędkości: doskakuje i kilka razy z rzędu uderza oszczepem.",
+          "tip": "Oddalaj się, aż kombinacja się skończy."
+        },
+        "Punto (fade)": {
+          "what": "Forma Prędkości: otwiera się fioletowy pierścieniowy portal, on wyskakuje z niego z pchnięciem, a po ziemi mknie smuga.",
+          "tip": "Przeskocz smugę na ziemi."
+        },
+        "Spike spot (fade)": {
+          "what": "Forma Prędkości: na ziemi pojawia się celownik, biegnie przez niego czerwona linia, a on wyskakuje tam z ziemi z cięciem.",
+          "tip": "Zejdź z celownika."
+        },
+        "Javelin": {
+          "what": "Forma Prędkości: czerwona linia celowania przecina salę, a potem ciska wzdłuż niej oszczepem.",
+          "tip": "Zejdź z czerwonej linii, zanim rzuci."
+        },
+        "Javelin grab on wall": {
+          "what": "Forma Prędkości: czepia się ściany i rzuca rząd oszczepów przez salę.",
+          "tip": "Unikaj oszczepów: jeśli któryś cię złapie, ekran robi się czerwony i on wykonuje kombinację."
+        },
+        "Javelin grab on ground": {
+          "what": "Forma Prędkości: wyrasta rząd białych kolców, a potem rzuca oszczepami z ziemi.",
+          "tip": "Unikaj oszczepów: jeśli któryś cię złapie, ekran robi się czerwony i on wykonuje kombinację."
+        },
+        "Star fall ready": {
+          "what": "Przykuca i zbiera moc, wznosi się mroczny słup, a fioletowe gwiazdy wzlatują i spadają deszczem.",
+          "tip": "Ruszaj się, gdy spadają gwiazdy. Najwyżej co 30 sekund."
+        },
+        "Super bone rain": {
+          "what": "Wokół niego zbiera się mroczny rój kości, który wystrzeliwuje w górę i spada fioletowymi błyskawicami na dużym obszarze.",
+          "tip": "Oddal się, gdy kości się zbierają, i ruszaj się, gdy spadają."
+        },
+        "Speed": {
+          "what": "Ruch specjalny formy Prędkości: długi łańcuch czerwonych linii, kościanych kolców, fioletowych cięć i zrywów, zakończony polem kolców na całej podłodze.",
+          "tip": "Przez cały czas omijaj czerwone linie, a na końcu bądź w powietrzu albo na platformie."
+        },
+        "Power": {
+          "what": "Ruch specjalny formy Mocy: ogniste ciosy i eksplozje, fioletowa kopuła i deszcz kości.",
+          "tip": "Trzymaj dystans podczas ciosów i ruszaj się pod spadającymi kośćmi."
+        },
+        "Grab combination": {
+          "what": "Ruch specjalny formy Równowagi: doskakuje, by cię złapać; jeśli mu się uda, sala się zmienia, uderzają pioruny i tnie cię raz za razem, zanim wyrosną kolce.",
+          "tip": "Za wszelką cenę unikaj chwytu: przeskocz jego zryw."
+        },
+        "Unstoppable": {
+          "what": "Forma Mocy: podczas szarży pędzi dalej i ciosy go nie zatrzymują.",
+          "tip": "Zejdź mu z drogi; nie próbuj zatrzymać szarży."
+        }
+      }
+    },
+    "FirstDarkHero": {
+      "about": "Pierwszy Bohater pochłonięty przez mrok, spotykany tylko w Ciemnym lustrze. Skacze między ziemią a ścianami z mrocznym ostrzem i walczy w trzech etapach: każdy etap dodaje nowe ruchy, ostatni Stratowanie, Egzekucję, Cierniste piekło (ściana) i Wielki wybuch.",
+      "moves": {
+        "Dash ground to wall": {
+          "what": "Pędzi z ziemi na ścianę.",
+          "tip": "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+        },
+        "Dash wall to wall": {
+          "what": "Pędzi od jednej ściany do drugiej.",
+          "tip": "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+        },
+        "Raid": {
+          "what": "Pikuje ukośnie przez salę ze ściany z fioletową smugą cięcia.",
+          "tip": "Patrz, na której ścianie jest, i zejdź z jego toru."
+        },
+        "Wall to target raid": {
+          "what": "Ze ściany pędzi prosto na ciebie wzdłuż mrocznej linii, tnąc.",
+          "tip": "Mroczna linia pokazuje jego drogę: zejdź z niej."
+        },
+        "Dark blast ground": {
+          "what": "Uderza w ziemię; cienkie świecące linie oznaczają miejsca, a potem wybuchają tam mroczne erupcje z demoniczną twarzą, a po nich mroczny sierp.",
+          "tip": "Zejdź ze świecących linii przed erupcjami."
+        },
+        "Air slash wave": {
+          "what": "Wyskakuje i wystrzeliwuje w dół sierpowe fale cięć, które wybuchają mrocznymi płomieniami.",
+          "tip": "Patrz, gdzie spadają fale, i trzymaj się z dala od płomieni."
+        },
+        "Air slash wave (enhanced)": {
+          "what": "Sierpowe fale cięć, potem ogromny słup mrocznej energii, a następnie rzędy czerwonych pazurów i mrocznych cierni wyrastających z ziemi.",
+          "tip": "Trzymaj się z dala od słupa i szukaj luk między pazurami. Najwyżej co 90 sekund."
+        },
+        "Dark stomp (enhanced)": {
+          "what": "Raz za razem skacze i tupie; tam, gdzie ląduje, wznoszą się wysokie słupy mrocznej energii.",
+          "tip": "Oddalaj się od każdego miejsca lądowania."
+        },
+        "Dark seed (enhanced)": {
+          "what": "Rzuca garść kolczastych mrocznych nasion, które rozpraszają się po sali i wybuchają na ziemi.",
+          "tip": "Patrz, gdzie spadają nasiona, i stań między nimi."
+        },
+        "Triple thorn": {
+          "what": "Przykuca, a potem przed nim jeden po drugim wyrastają z ziemi trzy rzędy mrocznych cierni.",
+          "tip": "Zajdź go od tyłu albo oddal się daleko od jego przodu."
+        },
+        "Slash wave": {
+          "what": "Wymachuje ostrzem i posyła po ziemi fioletową falę cięcia.",
+          "tip": "Przeskocz falę."
+        },
+        "Double slash": {
+          "what": "Dwa szybkie cięcia przed sobą.",
+          "tip": "Pojawia się, gdy jesteś blisko: cofnij się i skontruj."
+        },
+        "Grab dash try": {
+          "what": "Pędzi po ziemi, by cię złapać.",
+          "tip": "Przeskocz zryw: jeśli cię złapie, miażdży cię."
+        },
+        "Grab dash smash": {
+          "what": "Jeśli jego zryw z chwytem cię złapie, wbija cię w ziemię.",
+          "tip": "Przeskocz zryw: jeśli cię złapie, miażdży cię."
+        },
+        "Grab dash smash (enhanced)": {
+          "what": "Jak zmiażdżenie po zrywie z chwytem, ale uderzenie wznosi też słupy mrocznej energii.",
+          "tip": "Przeskocz zryw: jeśli cię złapie, miażdży cię."
+        },
+        "Dash grab fail": {
+          "what": "Jego zryw z chwytem chybił: potyka się i łapie równowagę.",
+          "tip": "Twoja szansa, by go trafić."
+        },
+        "Grab": {
+          "what": "Sięga, by złapać cię z bliska; jeśli mu się uda, zadaje ciosy.",
+          "tip": "Nie stój tuż obok niego."
+        },
+        "Dimension slash": {
+          "what": "Wokół ciebie rośnie biały pierścień, potem przecina go ogromne białe sierpowe cięcie, a po nim cięcia z ziemi.",
+          "tip": "Wyjdź z pierścienia, zanim zostanie przecięty."
+        },
+        "Dimension rush": {
+          "what": "Szarżuje po ziemi, zostawiając za sobą ślad mrocznych cierni.",
+          "tip": "Przeskocz go i omijaj ciernie."
+        },
+        "Zigzag rush": {
+          "what": "Pędzi zygzakiem przez salę, tnąc po drodze.",
+          "tip": "Ruszaj się i skacz, gdy leci na ciebie."
+        },
+        "Dark cannon": {
+          "what": "Ładuje mroczną kulę i wystrzeliwuje promień, potem kula dryfuje w twoją stronę i wybucha biało-fioletowymi błyskawicami.",
+          "tip": "Uniknij promienia, a potem oddal się od kuli, zanim wybuchnie."
+        },
+        "Giant mouth": {
+          "what": "Na ziemi świeci czerwona linia, wznoszą się kurtyny mrocznej energii, z ziemi wyrywa się gigantyczna mroczna paszcza, a potem mroczne macki.",
+          "tip": "Zejdź z ziemi, gdy świeci czerwona linia. Najwyżej co 90 sekund."
+        },
+        "Thorny hell on ground": {
+          "what": "Na całej podłodze świeci czerwona linia, a potem wyrasta pole mrocznych cierni.",
+          "tip": "Bądź w powietrzu albo na platformie, gdy wyrastają ciernie."
+        },
+        "Thorny hell on wall": {
+          "what": "Czepia się ściany, ściana świeci na czerwono, a potem przez salę wystrzeliwują rzędy mrocznych cierni.",
+          "tip": "Znajdź lukę między rzędami i zostań w niej."
+        },
+        "Overrun": {
+          "what": "Mroczne linie krzyżują się na ekranie, a on raz za razem tnie wzdłuż nich; potem czerwona rama zamyka salę, a podłoga wypełnia się kolcami.",
+          "tip": "Trzymaj się między liniami i bądź w powietrzu, gdy pojawi się czerwona rama."
+        },
+        "Execution": {
+          "what": "Wokół ciebie zaciska się biały pierścień; jeśli cię złapie, ekran robi się czerwony i mocno cię uderza. Robi to kilka razy.",
+          "tip": "Wyskakuj z każdego pierścienia, zanim się zamknie."
+        },
+        "Big bang": {
+          "what": "Cięcia krzyżują się w sali, potem mroczna kula dryfuje za tobą, ładuje się i wybucha ogromną eksplozją błyskawic.",
+          "tip": "Odciągnij kulę i oddal się jak najdalej, zanim wybuchnie."
+        },
+        "Summon thorn": {
+          "what": "Obok innych ataków, mniej więcej co pół minuty: z ziemi wyrastają mroczne ciernie.",
+          "tip": "Obserwuj podłogę i odsuń się, gdy ciernie wyrastają."
+        },
+        "Dark orb fragments": {
+          "what": "Od drugiego etapu, obok innych ataków: w powietrzu w całej sali pojawiają się małe mroczne kule, a potem uderzają.",
+          "tip": "Ruszaj się i nie stój pod nimi."
+        },
+        "Dark blast wall": {
+          "what": "Od drugiego etapu, obok innych ataków: ze ściany wybucha mroczny podmuch.",
+          "tip": "Trzymaj się wtedy z dala od ścian."
+        },
+        "Dark orb": {
+          "what": "W ostatnim etapie, mniej więcej co 100 sekund, obok innych ataków: w sali pojawia się wielka mroczna kula.",
+          "tip": "Trzymaj się z dala od kuli."
+        }
+      }
+    },
+    "Alexander1": {
+      "about": "Alexander, Cesarz Carleonu, ostateczny boss Ciemnego lustra. W pierwszej formie unosi się nad areną, rzuca mroczną materią, strzela laserami i pociskami, a nawet zmienia kształt podłogi. Potem walczy jego serce (druga forma), a na końcu walczy pieszo, osłabiony (czwarta forma).",
+      "moves": {
+        "Warp quick": {
+          "what": "Znika i pojawia się gdzie indziej w błysku mrocznej energii.",
+          "tip": "Pojawia się w pobliżu: bądź gotów na następny atak."
+        },
+        "Only warp in": {
+          "what": "Pojawia się ponownie po zniknięciu.",
+          "tip": "Pojawia się w pobliżu: bądź gotów na następny atak."
+        },
+        "Only warp out": {
+          "what": "Znika między atakami.",
+          "tip": "Pojawia się w pobliżu: bądź gotów na następny atak."
+        },
+        "Dark matter (vertical)": {
+          "what": "Zrzuca kulę mrocznej materii na ziemię pod sobą.",
+          "tip": "Zejdź spod niego."
+        },
+        "Dark matter (horizontal small)": {
+          "what": "Obok niego tworzą się dwie wielkie kule mrocznej materii, a potem one i mniejsze kule przelatują przez salę.",
+          "tip": "Patrz na wysokość kul i przeskocz je albo zejdź pod nie."
+        },
+        "Dark matter (horizontal big)": {
+          "what": "Przed nim rośnie ogromna kula mrocznej materii i toczy się przez salę.",
+          "tip": "Wejdź na platformę albo przeskocz ją, gdy przetacza się obok."
+        },
+        "Dark matter (horizontal burst)": {
+          "what": "Jedna po drugiej wystrzeliwuje przez salę kule mrocznej materii, które wybuchają przy uderzeniu.",
+          "tip": "Zmieniaj wysokość między strzałami."
+        },
+        "Flame impact": {
+          "what": "Rzuca mroczną kulę; uderzają czerwone sierpy, a w miejscu upadku wybucha wirująca kosmiczna kula.",
+          "tip": "Odsuń się od miejsca, w które spada kula."
+        },
+        "Chasing missile 3": {
+          "what": "Trzy fioletowe pociski zbierają się w górze, a potem jeden po drugim pikują na ciebie.",
+          "tip": "Pociski podążają za tobą: ruszaj się i ostro skręcaj, żeby uderzyły za tobą."
+        },
+        "Chasing missile 10": {
+          "what": "Dziesięć fioletowych pocisków zbiera się w górze, a potem jeden po drugim pikują na ciebie.",
+          "tip": "Pociski podążają za tobą: ruszaj się i ostro skręcaj, żeby uderzyły za tobą."
+        },
+        "Hexagon laser": {
+          "what": "Unosi się, a świecąca kula nad nim strzela laserami na wszystkie strony, które obracają się wokół niego, a przez salę dryfują mroczne kule.",
+          "tip": "Stój w luce między promieniami i przesuwaj się z nią, gdy się obracają. Najwyżej co 20 sekund."
+        },
+        "To island": {
+          "what": "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w pojedynczą wyspę unoszącą się nad pustką.",
+          "tip": "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+        },
+        "To island with platform": {
+          "what": "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w wyspę nad pustką z platformami.",
+          "tip": "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+        },
+        "To side": {
+          "what": "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w dwie strony z pustką pośrodku.",
+          "tip": "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+        },
+        "To flat spatial compression": {
+          "what": "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w z powrotem płaską podłogę.",
+          "tip": "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+        },
+        "Spatial compression": {
+          "what": "Przestrzeń wokół niego zostaje ściśnięta w świecącą skrzynię: sala zmienia się w gwiaździstą pustkę wewnątrz sześcianu.",
+          "tip": "W skrzyni następuje Eksplozja: trzymaj od niego dystans."
+        },
+        "Explosion": {
+          "what": "W ściśniętej przestrzeni wokół niego wirują czerwone sierpy i wybuchają pierścieniami energii.",
+          "tip": "Trzymaj się od niego tak daleko, jak pozwala skrzynia."
+        },
+        "Spatial decompression": {
+          "what": "Skrzynia pęka i wylatują z niej kule mrocznej materii.",
+          "tip": "Patrz, dokąd lecą kule, i zejdź im z drogi."
+        },
+        "Horizontal laser": {
+          "what": "Wystrzeliwuje długi promień lasera, który omiata podłogę, a potem posyła za tobą pociski.",
+          "tip": "Przeskocz promień, a potem ruszaj się przed pociskami."
+        },
+        "Horizontal long laser (platform)": {
+          "what": "Na arenie z wyspą: unosi się w górze, a potem strzela długim laserem przez cały ekran na wysokości platform.",
+          "tip": "Zejdź z platform, zanim wystrzeli. Najwyżej co 100 sekund."
+        },
+        "Vertical long laser": {
+          "what": "Strzela długim laserem prosto w dół z góry.",
+          "tip": "Zejdź z jego linii w bok."
+        },
+        "Special move": {
+          "what": "Sześciokątny laser, potem arena się spłaszcza, a on świeci w ogromnym złotym kręgu run, podczas gdy gigantyczne włócznie omiatają salę, a wokół niego wybuchają różowe słupy laserów.",
+          "tip": "Długa kombinacja: unikaj każdej włóczni, gdy omiata salę, i trzymaj się z dala, gdy wybuchają słupy laserów. Najwyżej co 20 sekund."
+        }
+      }
+    },
+    "Alexander2_Heart": {
+      "about": "Druga forma Alexandra: serce jego gigantycznej machiny wojennej. Dopóki walczą obie dłonie, atakują razem z nim; gdy jedna dłoń zostanie zniszczona, serce walczy dalej silniejszymi wzorami z trzech części: mrocznych kul toczących się po ziemi, mrocznych laserów z oka i dział oraz mrocznej ziemi (oleju na podłodze, który się zapala).",
+      "moves": {
+        "Ball-laser": {
+          "what": "Świecące różowe kule z runami toczą się po ziemi, a z oka serca w dół strzela słup lasera.",
+          "tip": "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+        },
+        "Ground-ball": {
+          "what": "Podłoga miejscami wybucha mrocznymi płomieniami, a po niej toczą się różowe kule z runami.",
+          "tip": "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+        },
+        "Ground-laser": {
+          "what": "Podłoga miejscami wybucha mrocznymi płomieniami, a serce strzela słupem lasera, a jego działo omiata podłogę promieniem.",
+          "tip": "Przeskocz promień działa i omijaj płonące miejsca."
+        },
+        "Laser-laser": {
+          "what": "Serce strzela w dół słupem lasera, a jego działa z boków omiatają podłogę jasnymi promieniami.",
+          "tip": "Przeskakuj każdy promień i omijaj słup."
+        },
+        "Wave generator": {
+          "what": "Wielkie koło z runami toczy się po ziemi, a z oka serca w dół strzela słup lasera.",
+          "tip": "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+        },
+        "Enhanced dark ball": {
+          "what": "Różowe kule z runami toczą się po ziemi. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+          "tip": "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+        },
+        "Enhanced dark laser": {
+          "what": "Działa serca omiatają podłogę promieniami, a w dół strzela słup lasera. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+          "tip": "Przeskakuj promienie i trzymaj się z dala od słupa."
+        },
+        "Enhanced dark ground": {
+          "what": "Czerwone linie przecinają podłogę i wybucha tam mroczny ogień. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+          "tip": "Zejdź z czerwonych linii, zanim pojawi się ogień."
+        },
+        "Enhanced wave generator": {
+          "what": "Koło z runami toczy się po ziemi, w dół strzela słup lasera, a wzdłuż podłogi wybucha mroczny ogień. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+          "tip": "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+        },
+        "Dark big bang": {
+          "what": "Po obu stronach pojawiają się niebieska i czerwona kula, dryfują ku sobie i spotykają się pośrodku w ogromnej mrocznej eksplozji.",
+          "tip": "Przejdź na skraj sali, zanim kule się spotkają."
+        },
+        "Cosmic explosion": {
+          "what": "Mroczny ogień oświetla podłogę, w sali otwiera się czarna dziura, która po chwili wybucha oślepiającymi promieniami i ogromną złotą eksplozją.",
+          "tip": "Oddal się od czarnej dziury, zanim wybuchnie."
+        },
+        "Celestial meteor": {
+          "what": "Na podłogę spadają iskry, czerwone kręgi oznaczają miejsca, a tam spadają meteory w różowych eksplozjach.",
+          "tip": "Nie wchodź w czerwone kręgi."
+        },
+        "Groggy": {
+          "what": "Serce jest przez chwilę ogłuszone.",
+          "tip": "Atakuj serce wszystkim, co masz."
+        },
+        "Groggy 2": {
+          "what": "Serce jest przez chwilę ogłuszone.",
+          "tip": "Atakuj serce wszystkim, co masz."
+        },
+        "Chase laser": {
+          "what": "Dopóki walczą obie dłonie: działo u góry strzela w dół słupem lasera i przesuwa go po podłodze za tobą.",
+          "tip": "Ruszaj się bez przerwy: słup podąża za tobą."
+        },
+        "Enhanced chase laser": {
+          "what": "Po zniszczeniu dłoni mocniejsza wersja: działo u góry strzela w dół słupem lasera i goni cię nim po podłodze.",
+          "tip": "Uciekaj cały czas przed słupem."
+        },
+        "Curtain laser": {
+          "what": "Po zniszczeniu dłoni: działo u góry strzela w dół słupem lasera i powoli przeciąga go po całej podłodze jak kurtynę.",
+          "tip": "Trzymaj się przed słupem albo prześlizgnij się obok niego."
+        },
+        "Targeting laser": {
+          "what": "Gdy obie dłonie są zniszczone: działo przeskakuje z miejsca na miejsce i strzela krótkimi słupami lasera tam, gdzie stoisz.",
+          "tip": "Ruszaj się: każdy strzał trafia w miejsce, gdzie stałeś."
+        },
+        "Heart beat": {
+          "what": "Gdy obie dłonie są zniszczone: rdzeń serca pulsuje, po czym wybucha z niego pierścień różowych błyskawic i rozchodzi się po całej sali; często zaraz uderza jeszcze raz.",
+          "tip": "Przeskocz dolną krawędź pierścienia, gdy do ciebie dotrze."
+        },
+        "Drill missile": {
+          "what": "Czerwone kręgi oznaczają miejsca na podłodze, a potem wyrywają się tam pociski wiertła w różowych eksplozjach.",
+          "tip": "Wyjdź z czerwonych kręgów."
+        },
+        "Dark ring": {
+          "what": "Po lewej lub prawej stronie serca tworzy się mroczny pierścień i wybucha błyskiem mrocznej energii.",
+          "tip": "Przejdź na drugą stronę, gdy pojawi się pierścień."
+        },
+        "Dark bouncy ball": {
+          "what": "Wystrzelone mroczne kule odbijają się po sali od podłogi i ścian.",
+          "tip": "Obserwuj ich odbicia i przeskakuj je albo przechodź pod nimi."
+        },
+        "Bouncy ball": {
+          "what": "Małe runiczne kule skaczą po podłodze. Gdy zostaje jedna dłoń, razem z nimi toczy się przez salę wielkie runiczne koło (wzmocniony generator fal).",
+          "tip": "Przeskakuj kule i koło."
+        },
+        "Oil ball": {
+          "what": "Kule mrocznego oleju spadają na podłogę i zostawiają kałuże płonące fioletowym ogniem. Gdy zostaje jedna dłoń, serce dodaje słup lasera z oka albo toczące się mroczne kule; bez dłoni obracający się laser.",
+          "tip": "Omijaj płonące kałuże i uważaj na laser."
+        },
+        "Buzz saw": {
+          "what": "Wylatują piły tarczowe i toczą się po podłodze. Gdy zostaje jedna dłoń, często następują czerwone linie, które przecinają podłogę i wybuchają mrocznym ogniem, a mniej więcej co dwie minuty Kosmiczna eksplozja: otwiera się czarna dziura i wybucha ogromną złotą eksplozją.",
+          "tip": "Przeskakuj piły; oddal się od czarnej dziury, zanim wybuchnie."
+        }
+      }
+    },
+    "Alexander4": {
+      "about": "Ostatnia forma Alexandra: osłabiony walczy pieszo kryształami kwarcu, bombami i teleportacją. Poniżej połowy zdrowia dochodzi Stratowanie 2.",
+      "moves": {
+        "Grapple": {
+          "what": "Doskakuje do ciebie; jeśli cię złapie, wyskakuje z tobą i ciska cię w dół w mrocznej eksplozji.",
+          "tip": "Przeskocz zryw, by uniknąć chwytu."
+        },
+        "Surrounded bomb quartz": {
+          "what": "Rzuca czarną bombę; czerwone linie tworzą wokół niej gwiazdę, a potem wzdłuż linii wyrastają kryształy kwarcu.",
+          "tip": "Stań między czerwonymi liniami, zanim wyrosną kryształy."
+        },
+        "Surrounded bomb quartz 2": {
+          "what": "Rzuca czarną bombę; czerwone linie tworzą wokół niej gwiazdę, a potem wzdłuż linii wyrastają kryształy kwarcu. Więcej linii, większe kryształy.",
+          "tip": "Stań między czerwonymi liniami, zanim wyrosną kryształy."
+        },
+        "Shoving": {
+          "what": "Wykonuje wypad długą lancą z kwarcu.",
+          "tip": "Przeskocz lancę albo zejdź z jej linii."
+        },
+        "Teleport to player behind + Shoving": {
+          "what": "Teleportuje się tuż za ciebie i wykonuje wypad lancą z kwarcu.",
+          "tip": "Gdy zniknie, natychmiast się ruszaj: lanca nadchodzi od tyłu. Najwyżej co 45 sekund."
+        },
+        "Overrun": {
+          "what": "Małe fioletowe bomby spadają na salę, a różowe kolce pokrywają podłogę, podczas gdy on uderza gigantyczną lancą z kwarcu, kończąc wielką czerwoną eksplozją.",
+          "tip": "Omijaj kolczastą podłogę, unikaj lancy i oddal się przed czerwoną eksplozją. Najwyżej co 45 sekund."
+        },
+        "Overrun 2": {
+          "what": "Poniżej połowy zdrowia: w sali rosną kryształy kwarcu, ekran wypełnia biały błysk, przez salę przechodzą lasery, a potem wyrasta ogromna grupa kryształów.",
+          "tip": "Ruszaj się, przeskakuj lasery i trzymaj się z dala od kryształów. Najwyżej co 45 sekund."
+        },
+        "Summon bombman": {
+          "what": "Przywołuje małe bombowe stworki, które spadają w sali i wybuchają słupami kwarcu i światła.",
+          "tip": "Patrz, gdzie spadają, i trzymaj się z dala, aż wybuchną."
+        },
+        "Dimensional": {
+          "what": "Posyła mroczną kulę toczącą się po ziemi w twoją stronę.",
+          "tip": "Przeskocz kulę."
+        },
+        "Curse of quartz": {
+          "what": "Wokół niego zaciskają się czarne pierścienie, ekran wypełnia biały błysk, a kryształ kwarcu leci w twoją stronę.",
+          "tip": "Uniknij kryształu, gdy tylko błysk się skończy."
+        },
+        "Teleport to": {
+          "what": "Teleportuje się w nowe miejsce, a wzdłuż podłogi wyrasta rząd kwarcowych kolców.",
+          "tip": "Bądź w powietrzu, gdy wyrastają kolce."
+        },
+        "Teleport out": {
+          "what": "Znika przed atakiem.",
+          "tip": "Pojawia się w pobliżu: bądź gotów na następny atak."
         }
       }
     }

@@ -1,0 +1,708 @@
+{
+  "key": "LeianaShortHair",
+  "about": {
+    "en": "Twin sisters and the pride of the Golden Mane Knights, the boss of the second chapter. They take turns: in the pair phase both attack together, then in the single phase one sister fights alone for about 20 seconds as the other waits in the background, out of reach. When one sister falls, the other awakens as Awakened Leiana.",
+    "de": "Zwillingsschwestern und der ganze Stolz der Goldmähnenritter, Boss des zweiten Kapitels. Sie wechseln sich ab: In der Paarphase greifen beide zusammen an, in der Einzelphase kämpft eine Schwester etwa 20 Sekunden lang allein, während die andere unerreichbar im Hintergrund wartet. Fällt eine Schwester, erwacht die andere als Leiana die Erweckte.",
+    "es": "Hermanas gemelas y orgullo de los Caballeros de la Melena Dorada, jefas del segundo capítulo. Se turnan: en la fase en pareja atacan juntas, y en la fase individual una hermana lucha sola unos 20 segundos mientras la otra espera al fondo, fuera de tu alcance. Cuando una hermana cae, la otra despierta como Leiana despertada.",
+    "fr": "Sœurs jumelles et fierté des chevaliers de la Crinière d'or, boss du deuxième chapitre. Elles se relaient : en phase en duo, les deux attaquent ensemble, puis en phase en solo, une sœur combat seule environ 20 secondes pendant que l'autre attend à l'arrière-plan, hors d'atteinte. Quand une sœur tombe, l'autre s'éveille en Leiana éveillée.",
+    "pl": "Siostry bliźniaczki i duma Rycerzy Złotogrzywych, bossowie drugiego rozdziału. Zmieniają się: w fazie w parze atakują razem, a w fazie pojedynczej jedna siostra walczy sama przez około 20 sekund, gdy druga czeka w tle poza zasięgiem. Gdy jedna siostra padnie, druga budzi się jako Czuwająca Leiana.",
+    "pt-BR": "Irmãs gêmeas e orgulho dos Cavaleiros da Crina Dourada, chefes do segundo capítulo. Elas se revezam: na fase em dupla atacam juntas, e na fase individual uma irmã luta sozinha por cerca de 20 segundos enquanto a outra espera ao fundo, fora de alcance. Quando uma irmã cai, a outra desperta como Leiana despertada.",
+    "ru": "Сёстры-близнецы, гордость рыцарей Золотой Гривы, босс второй главы. Они сменяют друг друга: в парной фазе атакуют вместе, а в одиночной фазе одна сестра около 20 секунд сражается одна, пока другая ждёт на заднем плане, недосягаемая. Когда одна сестра падает, другая пробуждается как Пробужденная Леяна.",
+    "ko": "황금 갈기 기사단의 자랑인 쌍둥이 자매로, 두 번째 챕터의 보스입니다. 번갈아 싸웁니다: 2인 페이즈에서는 둘이 함께 공격하고, 단독 페이즈에서는 한 명이 약 20초간 혼자 싸우는 동안 다른 한 명은 뒤에서 기다리며 공격할 수 없습니다. 한 명이 쓰러지면 남은 한 명이 각성한 레이아나로 각성합니다.",
+    "ja": "黄金のたてがみ騎士団の誇りである双子の姉妹で、第2章のボスです。交代で戦います：ペアフェーズでは2人で同時に攻撃し、単独フェーズでは1人が約20秒間単独で戦い、もう1人は奥で待機していて攻撃が届きません。1人が倒れると、残った1人が覚醒レイアナとして覚醒します。",
+    "zh-Hans": "金鬃骑士团引以为傲的双胞胎姐妹，第二章的首领。她们轮流战斗：双人阶段两人一起攻击，单人阶段由一人单独战斗约20秒，另一人在后方等待，无法被攻击。一人倒下后，另一人会觉醒为觉醒的蕾安娜。",
+    "zh-Hant": "金鬃騎士團引以為傲的雙胞胎姐妹，第二章的首領。她們輪流戰鬥：雙人階段兩人一起攻擊，單人階段由一人單獨戰鬥約20秒，另一人在後方等待，無法被攻擊。一人倒下後，另一人會覺醒為覺醒的萊安娜。"
+  },
+  "moves": {
+    "Pair phase · Twin meteor": {
+      "en": [
+        "Two thin yellow aim lines cross in an X. The sisters dive along them in bright streaks and meet where the lines cross, then stand up and dash away. One line aims at you, the other at where you are heading.",
+        "The lines show both paths before the dive: get clear of both, not just the nearer one. The crossing point is the worst place to be."
+      ],
+      "de": [
+        "Zwei dünne gelbe Ziellinien kreuzen sich zu einem X. Die Schwestern stürzen als helle Streifen an ihnen entlang herab, treffen sich am Kreuzungspunkt, stehen auf und sprinten davon. Eine Linie zielt auf dich, die andere dorthin, wohin du läufst.",
+        "Die Linien zeigen beide Bahnen vor dem Sturz: Geh aus beiden heraus, nicht nur aus der näheren. Am Kreuzungspunkt stehst du am schlechtesten."
+      ],
+      "es": [
+        "Dos finas líneas amarillas de mira se cruzan en X. Las hermanas caen en picado a lo largo de ellas como estelas brillantes, se juntan donde se cruzan las líneas, se levantan y se alejan corriendo. Una línea apunta a ti y la otra hacia donde te diriges.",
+        "Las líneas muestran ambas trayectorias antes de la caída: sal de las dos, no solo de la más cercana. El punto de cruce es el peor lugar."
+      ],
+      "fr": [
+        "Deux fines lignes de visée jaunes se croisent en X. Les sœurs plongent le long de ces lignes en traînées lumineuses, se rejoignent au point de croisement, se relèvent et s'éloignent en sprintant. Une ligne vise ta position, l'autre l'endroit où tu te diriges.",
+        "Les lignes montrent les deux trajectoires avant le plongeon : sors des deux, pas seulement de la plus proche. Le point de croisement est le pire endroit."
+      ],
+      "pl": [
+        "Dwie cienkie żółte linie celowania krzyżują się w X. Siostry pikują wzdłuż nich jako jasne smugi, spotykają się w punkcie przecięcia, wstają i odskakują zrywem. Jedna linia celuje w ciebie, druga tam, dokąd zmierzasz.",
+        "Linie pokazują obie trasy przed atakiem: zejdź z obu, nie tylko z bliższej. Punkt przecięcia to najgorsze miejsce."
+      ],
+      "pt-BR": [
+        "Duas finas linhas amarelas de mira se cruzam em X. As irmãs mergulham ao longo delas como rastros brilhantes, se encontram onde as linhas se cruzam, se levantam e se afastam correndo. Uma linha mira em você, a outra para onde você está indo.",
+        "As linhas mostram os dois caminhos antes do mergulho: saia dos dois, não só do mais próximo. O ponto de cruzamento é o pior lugar."
+      ],
+      "ru": [
+        "Две тонкие жёлтые линии прицела скрещиваются буквой X. Сёстры пикируют вдоль них яркими полосами, встречаются в точке пересечения, встают и уносятся рывком. Одна линия нацелена на вас, другая туда, куда вы движетесь.",
+        "Линии показывают оба пути до пике: уйдите с обеих, а не только с ближней. Точка пересечения хуже всего."
+      ],
+      "ko": [
+        "가는 노란 조준선 두 개가 X자로 교차합니다. 자매가 그 선을 따라 밝은 빛줄기가 되어 내리꽂히고, 선이 만나는 곳에서 합류한 뒤 일어나 대쉬로 멀어집니다. 한 선은 당신을, 다른 선은 당신이 향하는 곳을 노립니다.",
+        "내리꽂히기 전에 선이 두 경로를 모두 보여줍니다: 가까운 선만이 아니라 두 선 모두에서 벗어나세요. 교차점이 가장 위험한 곳입니다."
+      ],
+      "ja": [
+        "細い黄色の照準線が2本、X字に交差します。姉妹はその線に沿って光の筋となって急降下し、線の交点で合流して立ち上がり、ダッシュで離れます。1本はあなたを、もう1本はあなたの進む先を狙います。",
+        "急降下の前に線が両方の経路を示します：近い線だけでなく、両方の線から離れましょう。交点が一番危険な場所です。"
+      ],
+      "zh-Hans": [
+        "两条细细的黄色瞄准线交叉成X形。两姐妹化作明亮的光痕沿线俯冲而下，在交叉点会合，然后站起来疾驰离开。一条线瞄准你，另一条瞄准你前进的方向。",
+        "俯冲前两条线会显示路径：两条线都要避开，而不只是近的那条。交叉点是最危险的位置。"
+      ],
+      "zh-Hant": [
+        "兩條細細的黃色瞄準線交叉成X形。姐妹倆化作明亮的光痕沿線俯衝而下，在交叉點會合，然後站起來衝刺離開。一條線瞄準你，另一條瞄準你前進的方向。",
+        "俯衝前兩條線會顯示路徑：兩條線都要避開，而不只是近的那條。交叉點是最危險的位置。"
+      ]
+    },
+    "Pair phase · Twin meteor pierce": {
+      "en": [
+        "The sisters stand at opposite ends of the hall and gather golden energy. Golden homing bolts fly across the hall from both sides, then both thrust their spears along the floor and dash away.",
+        "The bolts come from both sides and curve toward you: keep moving and change direction late so they miss. Jump over the spear thrusts at the end."
+      ],
+      "de": [
+        "Die Schwestern stehen an entgegengesetzten Enden der Halle und sammeln goldene Energie. Zielsuchende goldene Blitze fliegen von beiden Seiten durch die Halle, dann stoßen beide ihre Speere am Boden entlang und sprinten davon.",
+        "Die Blitze kommen von beiden Seiten und biegen zu dir ab: Bleib in Bewegung und wechsle spät die Richtung, damit sie verfehlen. Spring über die Speerstöße am Ende."
+      ],
+      "es": [
+        "Las hermanas se colocan en extremos opuestos de la sala y reúnen energía dorada. Rayos dorados teledirigidos cruzan la sala desde ambos lados; después, las dos lanzan una estocada con la lanza a ras de suelo y se alejan corriendo.",
+        "Los rayos vienen de ambos lados y se curvan hacia ti: sigue moviéndote y cambia de dirección en el último momento para que fallen. Salta sobre las estocadas del final."
+      ],
+      "fr": [
+        "Les sœurs se placent aux deux bouts de la salle et rassemblent de l'énergie dorée. Des éclairs dorés à tête chercheuse traversent la salle des deux côtés, puis les deux portent un coup de lance au ras du sol et s'éloignent en sprintant.",
+        "Les éclairs viennent des deux côtés et virent vers toi : continue de bouger et change de direction au dernier moment pour qu'ils te ratent. Saute par-dessus les coups de lance à la fin."
+      ],
+      "pl": [
+        "Siostry stają na przeciwnych końcach sali i zbierają złotą energię. Naprowadzane złote błyskawice przelatują przez salę z obu stron, a potem obie pchają włóczniami tuż nad ziemią i odskakują zrywem.",
+        "Błyskawice lecą z obu stron i skręcają w twoją stronę: ruszaj się i zmieniaj kierunek w ostatniej chwili, żeby chybiły. Przeskocz pchnięcia włóczni na końcu."
+      ],
+      "pt-BR": [
+        "As irmãs ficam em extremos opostos do salão e reúnem energia dourada. Raios dourados teleguiados cruzam o salão dos dois lados, depois as duas estocam com a lança rente ao chão e se afastam correndo.",
+        "Os raios vêm dos dois lados e fazem curva na sua direção: continue se movendo e mude de direção no último momento para que errem. Pule as estocadas do final."
+      ],
+      "ru": [
+        "Сёстры встают в противоположных концах зала и собирают золотую энергию. С обеих сторон через зал летят самонаводящиеся золотые молнии, затем обе делают выпад копьём над самым полом и уносятся рывком.",
+        "Молнии летят с обеих сторон и сворачивают к вам: двигайтесь и меняйте направление в последний момент, чтобы они промахнулись. Перепрыгните выпады копьями в конце."
+      ],
+      "ko": [
+        "자매가 홀의 양 끝에 서서 황금빛 에너지를 모읍니다. 유도되는 황금 번개가 양쪽에서 홀을 가로질러 날아온 뒤, 둘이 바닥을 따라 창을 찌르고 대쉬로 멀어집니다.",
+        "번개가 양쪽에서 날아와 당신 쪽으로 휩니다: 계속 움직이다가 마지막 순간에 방향을 바꿔 빗나가게 하세요. 마지막의 창 찌르기는 점프로 피하세요."
+      ],
+      "ja": [
+        "姉妹がホールの両端に立ち、黄金のエネルギーを集めます。誘導する黄金の雷が両側からホールを横切って飛び、その後2人とも床すれすれに槍を突き出してダッシュで離れます。",
+        "雷は両側から飛んできてあなたの方へ曲がります：動き続け、ぎりぎりで向きを変えて外させましょう。最後の槍の突きはジャンプでかわしましょう。"
+      ],
+      "zh-Hans": [
+        "两姐妹站在大厅两端，聚集金色能量。追踪的金色闪电从左右两边飞过大厅，然后两人贴着地面刺出长枪，再疾驰离开。",
+        "闪电从左右两边飞来并会转向你：保持移动，在最后一刻改变方向让它们落空。最后的长枪突刺要跳起躲开。"
+      ],
+      "zh-Hant": [
+        "姐妹倆站在大廳兩端，聚集金色能量。追蹤的金色閃電從兩側飛過大廳，然後兩人貼著地面刺出長槍，再衝刺離開。",
+        "閃電從兩側飛來並會轉向你：保持移動，在最後一刻改變方向讓它們落空。最後的長槍突刺要跳起躲開。"
+      ]
+    },
+    "Pair phase · Twin meteor chain": {
+      "en": [
+        "One sister lunges low along the floor and the other dives in from above right after. They do it twice, from new spots.",
+        "Every round comes in two beats, the low lunge and then the dive: dodge one and move again at once. Attack only after the last round."
+      ],
+      "de": [
+        "Eine Schwester macht einen tiefen Ausfall am Boden entlang, die andere stürzt gleich danach von oben herab. Das machen sie zweimal, von neuen Stellen aus.",
+        "Jede Runde kommt in zwei Schlägen, erst der tiefe Ausfall, dann der Sturz von oben: Weich einem aus und beweg dich sofort wieder. Greif erst nach der letzten Runde an."
+      ],
+      "es": [
+        "Una hermana arremete a ras de suelo y la otra cae en picado desde arriba justo después. Lo hacen dos veces, desde nuevos puntos.",
+        "Cada ronda llega en dos tiempos, la arremetida baja y luego la caída: esquiva una y vuelve a moverte enseguida. Ataca solo después de la última ronda."
+      ],
+      "fr": [
+        "Une sœur se fend au ras du sol et l'autre plonge d'en haut juste après. Elles le font deux fois, depuis de nouveaux endroits.",
+        "Chaque série arrive en deux temps, la fente basse puis le plongeon : esquive l'une et bouge à nouveau aussitôt. N'attaque qu'après la dernière série."
+      ],
+      "pl": [
+        "Jedna siostra wykonuje niski wypad tuż nad ziemią, a druga zaraz potem pikuje z góry. Robią to dwa razy, z nowych miejsc.",
+        "Każda runda ma dwa takty, niski wypad, a potem atak z góry: uniknij jednego i od razu ruszaj się dalej. Atakuj dopiero po ostatniej rundzie."
+      ],
+      "pt-BR": [
+        "Uma irmã avança rente ao chão e a outra mergulha de cima logo em seguida. Elas fazem isso duas vezes, a partir de novos pontos.",
+        "Cada rodada vem em dois tempos, o avanço baixo e depois o mergulho: desvie de um e mova-se de novo na hora. Ataque só depois da última rodada."
+      ],
+      "ru": [
+        "Одна сестра делает низкий выпад вдоль пола, другая сразу следом пикирует сверху. Они делают это дважды, с новых мест.",
+        "Каждый заход идёт в два такта, низкий выпад, затем пике: увернитесь от одного и сразу снова двигайтесь. Атакуйте только после последнего захода."
+      ],
+      "ko": [
+        "한 명이 바닥을 따라 낮게 파고들고, 다른 한 명이 곧바로 위에서 내리꽂힙니다. 위치를 바꿔 두 번 반복합니다.",
+        "매 회차가 두 박자로 옵니다. 낮은 공격 다음에 내리꽂기: 하나를 피하면 바로 다시 움직이세요. 마지막 회차가 끝난 뒤에 공격하세요."
+      ],
+      "ja": [
+        "1人が床すれすれに低く踏み込み、すぐ後にもう1人が上から急降下します。場所を変えて2回行います。",
+        "毎回2拍子で来ます。低い踏み込み、次に急降下：1つかわしたらすぐにまた動きましょう。攻撃は最後の回の後にしましょう。"
+      ],
+      "zh-Hans": [
+        "一人贴着地面低身突刺，另一人紧接着从上方俯冲而下。她们会换位置进行两次。",
+        "每一轮分两拍：先是低身突刺，然后是俯冲。躲开一个后要立刻再次移动。等最后一轮结束再攻击。"
+      ],
+      "zh-Hant": [
+        "一人貼著地面低身突刺，另一人緊接著從上方俯衝而下。她們會換位置進行兩次。",
+        "每一輪分兩拍：先是低身突刺，然後是俯衝。躲開一個後要立刻再次移動。等最後一輪結束再攻擊。"
+      ]
+    },
+    "Pair phase · Twin meteor ground": {
+      "en": [
+        "Both crouch at opposite ends of the hall and lunge along the floor at the same time, crossing in the middle, then dash away.",
+        "The crouch is the warning: jump over the lunges. They cross in the middle, so do not wait there."
+      ],
+      "de": [
+        "Beide gehen an entgegengesetzten Enden der Halle in die Hocke, machen gleichzeitig einen Ausfall am Boden entlang, kreuzen sich in der Mitte und sprinten davon.",
+        "Das Hocken ist die Warnung: Spring über die Ausfälle. Sie kreuzen sich in der Mitte, also warte nicht dort."
+      ],
+      "es": [
+        "Ambas se agachan en extremos opuestos de la sala y arremeten a ras de suelo a la vez, se cruzan en el centro y se alejan corriendo.",
+        "Agacharse es el aviso: salta sobre las arremetidas. Se cruzan en el centro, así que no esperes ahí."
+      ],
+      "fr": [
+        "Les deux s'accroupissent aux deux bouts de la salle et se fendent au ras du sol en même temps, se croisent au milieu, puis s'éloignent en sprintant.",
+        "L'accroupissement est l'avertissement : saute par-dessus les fentes. Elles se croisent au milieu, n'attends donc pas là."
+      ],
+      "pl": [
+        "Obie przykucają na przeciwnych końcach sali i jednocześnie wykonują wypad tuż nad ziemią, mijają się pośrodku i odskakują zrywem.",
+        "Przykucnięcie to ostrzeżenie: przeskocz wypady. Mijają się pośrodku, więc tam nie czekaj."
+      ],
+      "pt-BR": [
+        "As duas se agacham em extremos opostos do salão e avançam rente ao chão ao mesmo tempo, se cruzam no meio e se afastam correndo.",
+        "O agachamento é o aviso: pule os avanços. Elas se cruzam no meio, então não espere ali."
+      ],
+      "ru": [
+        "Обе приседают в противоположных концах зала и одновременно делают выпад вдоль пола, пересекаются посередине и уносятся рывком.",
+        "Приседание и есть предупреждение: перепрыгните выпады. Они пересекаются посередине, так что не ждите там."
+      ],
+      "ko": [
+        "둘이 홀의 양 끝에서 몸을 낮췄다가 동시에 바닥을 따라 파고들어 가운데에서 교차한 뒤, 대쉬로 멀어집니다.",
+        "몸을 낮추는 것이 신호입니다: 점프로 넘으세요. 가운데에서 교차하니 그곳에서 기다리지 마세요."
+      ],
+      "ja": [
+        "2人がホールの両端で身をかがめ、同時に床すれすれに踏み込み、中央で交差してからダッシュで離れます。",
+        "身をかがめるのが合図です：ジャンプで飛び越えましょう。中央で交差するので、そこで待たないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "两人在大厅两端压低身子，同时贴着地面突刺，在中间交错而过，然后疾驰离开。",
+        "压低身子就是预警：跳起越过突刺。她们会在中间交错，所以不要在那里等待。"
+      ],
+      "zh-Hant": [
+        "兩人在大廳兩端壓低身子，同時貼著地面突刺，在中間交錯而過，然後衝刺離開。",
+        "壓低身子就是預警：跳起越過突刺。她們會在中間交錯，所以不要在那裡等待。"
+      ]
+    },
+    "Single phase · Golden meteor": {
+      "en": [
+        "Opens every single phase: the sister jumps high above the hall and dives straight down with a golden spear; golden sparks burst on impact.",
+        "Move away from the spot below her while she is in the air. She needs a moment to stand up after landing, a good time to hit her. In the Dark Mirror the dive comes much faster."
+      ],
+      "de": [
+        "Eröffnet jede Einzelphase: Die Schwester springt hoch über die Halle und stürzt mit goldenem Speer senkrecht herab; beim Aufprall sprühen goldene Funken.",
+        "Geh weg von der Stelle unter ihr, solange sie in der Luft ist. Nach der Landung braucht sie einen Moment zum Aufstehen, eine gute Gelegenheit zum Zuschlagen. Im Dunklen Spiegel kommt der Sturz viel schneller."
+      ],
+      "es": [
+        "Abre cada fase individual: la hermana salta muy alto sobre la sala y cae en picado en vertical con una lanza dorada; al impactar saltan chispas doradas.",
+        "Aléjate del punto bajo ella mientras está en el aire. Tras aterrizar necesita un momento para levantarse, buen momento para golpearla. En el Espejo oscuro la caída llega mucho más rápido."
+      ],
+      "fr": [
+        "Ouvre chaque phase en solo : la sœur saute très haut au-dessus de la salle et plonge à la verticale avec une lance dorée ; des étincelles dorées jaillissent à l'impact.",
+        "Éloigne-toi de l'endroit sous elle tant qu'elle est en l'air. Après l'atterrissage, elle met un instant à se relever : bon moment pour la frapper. Dans le Miroir noir, le plongeon arrive bien plus vite."
+      ],
+      "pl": [
+        "Rozpoczyna każdą fazę pojedynczą: siostra wyskakuje wysoko nad salę i pikuje pionowo w dół ze złotą włócznią; przy uderzeniu sypią się złote iskry.",
+        "Odsuń się z miejsca pod nią, gdy jest w powietrzu. Po lądowaniu potrzebuje chwili, by wstać: dobry moment na atak. W Ciemnym lustrze atak z góry spada dużo szybciej."
+      ],
+      "pt-BR": [
+        "Abre cada fase individual: a irmã salta bem alto sobre o salão e mergulha em linha reta para baixo com uma lança dourada; faíscas douradas saltam no impacto.",
+        "Saia do ponto abaixo dela enquanto ela está no ar. Depois de pousar ela leva um momento para se levantar, boa hora para atacar. No Espelho Sombrio o mergulho vem muito mais rápido."
+      ],
+      "ru": [
+        "Открывает каждую одиночную фазу: сестра высоко подпрыгивает над залом и пикирует отвесно вниз с золотым копьём; при ударе сыплются золотые искры.",
+        "Уйдите с места под ней, пока она в воздухе. После приземления ей нужно мгновение, чтобы встать: хороший момент для удара. В Тёмном зеркале пике намного быстрее."
+      ],
+      "ko": [
+        "모든 단독 페이즈의 시작 기술: 홀 위로 높이 뛰어올라 황금 창을 들고 수직으로 내리꽂히며, 착지할 때 황금 불꽃이 터집니다.",
+        "공중에 있는 동안 그녀 아래에서 벗어나세요. 착지 후 일어나는 데 잠시 걸리니 공격하기 좋은 때입니다. 검은 거울에서는 훨씬 빠르게 내리꽂힙니다."
+      ],
+      "ja": [
+        "毎回の単独フェーズの始まり：ホールの上へ高く跳び上がり、黄金の槍を構えて真下へ急降下します。着地すると黄金の火花が散ります。",
+        "空中にいる間に彼女の真下から離れましょう。着地後は立ち上がるまで少し時間がかかるので、攻撃のチャンスです。闇の鏡では急降下がずっと速くなります。"
+      ],
+      "zh-Hans": [
+        "每个单人阶段的开场：她高高跃上大厅上空，手持金色长枪垂直俯冲而下，落地时金色火花四溅。",
+        "她在空中时，离开她正下方的位置。落地后她需要片刻才能站起来，是攻击的好时机。魔镜中俯冲会快得多。"
+      ],
+      "zh-Hant": [
+        "每個單人階段的開場：她高高躍上大廳上空，手持金色長槍垂直俯衝而下，落地時金色火花四濺。",
+        "她在空中時，離開她正下方的位置。落地後她需要片刻才能站起來，是攻擊的好時機。黑暗鏡子中俯衝會快得多。"
+      ]
+    },
+    "Single phase · Dimension pierce": {
+      "en": [
+        "She stands still; thin yellow warning lines appear at a slant, then bright golden beams strike down along them.",
+        "Leave the warning lines before the beams fall: they strike along the whole line. She uses it whenever it is ready again."
+      ],
+      "de": [
+        "Sie steht still; dünne gelbe Warnlinien erscheinen schräg, dann schlagen helle goldene Strahlen an ihnen entlang herab.",
+        "Verlass die Warnlinien, bevor die Strahlen fallen: Sie treffen die ganze Linie entlang. Sie setzt ihn ein, sobald er wieder bereit ist."
+      ],
+      "es": [
+        "Se queda quieta; aparecen finas líneas de aviso amarillas en diagonal y luego caen rayos dorados brillantes a lo largo de ellas.",
+        "Sal de las líneas de aviso antes de que caigan los rayos: golpean a lo largo de toda la línea. La usa en cuanto vuelve a estar lista."
+      ],
+      "fr": [
+        "Elle reste immobile ; de fines lignes d'avertissement jaunes apparaissent en biais, puis des rayons dorés éclatants frappent le long de ces lignes.",
+        "Quitte les lignes d'avertissement avant la chute des rayons : ils frappent sur toute la ligne. Elle l'utilise dès qu'elle est de nouveau prête."
+      ],
+      "pl": [
+        "Stoi w miejscu; pojawiają się ukośne cienkie żółte linie ostrzegawcze, a potem wzdłuż nich uderzają jasne złote promienie.",
+        "Zejdź z linii ostrzegawczych, zanim spadną promienie: uderzają wzdłuż całej linii. Używa go, gdy tylko znów jest gotowe."
+      ],
+      "pt-BR": [
+        "Ela fica parada; finas linhas amarelas de aviso aparecem na diagonal, depois raios dourados brilhantes caem ao longo delas.",
+        "Saia das linhas de aviso antes que os raios caiam: eles atingem a linha inteira. Ela usa isso sempre que fica pronto de novo."
+      ],
+      "ru": [
+        "Она стоит на месте; появляются тонкие жёлтые косые линии предупреждения, затем вдоль них бьют яркие золотые лучи.",
+        "Уйдите с линий до удара лучей: они бьют по всей длине линии. Она применяет приём, как только он снова готов."
+      ],
+      "ko": [
+        "제자리에 서 있으면 가는 노란 경고선이 비스듬히 나타나고, 그 선을 따라 밝은 황금 광선이 내리꽂힙니다.",
+        "광선이 떨어지기 전에 경고선에서 벗어나세요: 선 전체를 따라 내리꽂힙니다. 다시 준비되면 바로 사용합니다."
+      ],
+      "ja": [
+        "その場に立ち止まると、細い黄色の警告線がななめに現れ、その線に沿ってまばゆい黄金の光線が降り注ぎます。",
+        "光線が落ちる前に警告線から離れましょう：線全体に沿って当たります。再び使えるようになると、すぐに使ってきます。"
+      ],
+      "zh-Hans": [
+        "她站着不动，细细的黄色警示线出现，然后耀眼的金色光束沿线劈下。",
+        "在光束落下前离开警示线：光束会沿整条线命中。一旦再次就绪，她就会使用。"
+      ],
+      "zh-Hant": [
+        "她站著不動，細細的黃色警示線出現，然後耀眼的金色光束沿線劈下。",
+        "在光束落下前離開警示線：光束會沿整條線命中。一旦再次就緒，她就會使用。"
+      ]
+    },
+    "Single phase · Backstep": {
+      "en": [
+        "Hops back, away from you; near a wall she hops the other way. She uses it when you are close.",
+        "Sometimes Range attack homing follows right after the hop: be ready to dodge golden bolts."
+      ],
+      "de": [
+        "Hüpft zurück, weg von dir; nahe einer Wand hüpft sie in die andere Richtung. Sie setzt ihn ein, wenn du nah bist.",
+        "Manchmal folgt direkt nach dem Sprung Zielsuchender Fernangriff: Mach dich bereit, goldenen Blitzen auszuweichen."
+      ],
+      "es": [
+        "Da un salto hacia atrás, alejándose de ti; junto a una pared salta hacia el otro lado. Lo usa cuando estás cerca.",
+        "A veces Ataque a distancia teledirigido llega justo después del salto: prepárate para esquivar rayos dorados."
+      ],
+      "fr": [
+        "Fait un bond en arrière pour s'éloigner de toi ; près d'un mur, elle bondit de l'autre côté. Elle l'utilise quand tu es proche.",
+        "Parfois, Attaque à distance guidée suit juste après le bond : prépare-toi à esquiver des éclairs dorés."
+      ],
+      "pl": [
+        "Odskakuje do tyłu, od ciebie; przy ścianie skacze w drugą stronę. Używa go, gdy jesteś blisko.",
+        "Czasem zaraz po skoku następuje Naprowadzany atak dystansowy: bądź gotów unikać złotych błyskawic."
+      ],
+      "pt-BR": [
+        "Dá um salto para trás, se afastando de você; perto de uma parede ela salta para o outro lado. Usa isso quando você está perto.",
+        "Às vezes Ataque à distância teleguiado vem logo depois do salto: prepare-se para desviar de raios dourados."
+      ],
+      "ru": [
+        "Отскакивает назад, подальше от вас; у стены отскакивает в другую сторону. Применяет, когда вы рядом.",
+        "Иногда сразу после отскока следует Самонаводящаяся дальняя атака: будьте готовы уворачиваться от золотых молний."
+      ],
+      "ko": [
+        "당신에게서 멀어지도록 뒤로 뛰어 물러나며, 벽 가까이에서는 반대쪽으로 물러납니다. 당신이 가까이 있을 때 사용합니다.",
+        "뛰어 물러난 직후 유도 원거리 공격이 이어지기도 합니다: 황금 번개를 피할 준비를 하세요."
+      ],
+      "ja": [
+        "あなたから離れるように後ろへ跳びます。壁の近くでは反対側へ跳びます。あなたが近くにいるときに使います。",
+        "跳んだ直後に誘導遠距離攻撃が続くことがあります：黄金の雷をかわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "向后跳开，远离你；靠近墙壁时会跳向另一边。你靠近时她会使用。",
+        "跳开后有时会紧接着使用追踪远程攻击：准备好躲避金色闪电。"
+      ],
+      "zh-Hant": [
+        "向後跳開，遠離你；靠近牆壁時會跳向另一邊。你靠近時她會使用。",
+        "跳開後有時會緊接著使用追蹤遠程攻擊：準備好躲避金色閃電。"
+      ]
+    },
+    "Single phase · Meteor in air": {
+      "en": [
+        "Leaps up to the side, then dives diagonally to the floor at you with a golden streak; sparks burst on impact.",
+        "She dives at the spot where you stand: dash away from it as she comes down. She uses it near and far. In the Dark Mirror the dive comes much faster."
+      ],
+      "de": [
+        "Springt seitlich hoch und stürzt dann mit einem goldenen Streifen schräg auf dich zu Boden; beim Aufprall sprühen Funken.",
+        "Sie stürzt auf die Stelle, an der du stehst: Sprinte davon weg, wenn sie herabkommt. Sie setzt ihn aus der Nähe und aus der Ferne ein. Im Dunklen Spiegel kommt der Sturz viel schneller."
+      ],
+      "es": [
+        "Salta hacia un lado y luego cae en picado en diagonal hacia ti con una estela dorada; al impactar saltan chispas.",
+        "Cae sobre el punto donde estás: aléjate corriendo cuando baje. Lo usa tanto de cerca como de lejos. En el Espejo oscuro la caída llega mucho más rápido."
+      ],
+      "fr": [
+        "Bondit sur le côté, puis plonge en diagonale vers toi jusqu'au sol dans une traînée dorée ; des étincelles jaillissent à l'impact.",
+        "Elle plonge sur l'endroit où tu te tiens : sprinte hors de là quand elle redescend. Elle l'utilise de près comme de loin. Dans le Miroir noir, le plongeon arrive bien plus vite."
+      ],
+      "pl": [
+        "Wyskakuje w górę w bok, a potem pikuje ukośnie na ciebie ze złotą smugą; przy uderzeniu sypią się iskry.",
+        "Pikuje w miejsce, w którym stoisz: odskocz zrywem, gdy spada. Używa go z bliska i z daleka. W Ciemnym lustrze atak z góry spada dużo szybciej."
+      ],
+      "pt-BR": [
+        "Salta para o lado e depois mergulha na diagonal até o chão na sua direção com um rastro dourado; faíscas saltam no impacto.",
+        "Ela mergulha no ponto onde você está: corra para longe quando ela descer. Usa isso de perto e de longe. No Espelho Sombrio o mergulho vem muito mais rápido."
+      ],
+      "ru": [
+        "Взмывает вверх в сторону, затем пикирует наискосок к вам золотой полосой; при ударе сыплются искры.",
+        "Она пикирует в то место, где вы стоите: уходите рывком, когда она падает. Применяет и вблизи, и издалека. В Тёмном зеркале пике намного быстрее."
+      ],
+      "ko": [
+        "옆으로 뛰어오른 뒤, 황금빛 줄기를 그리며 당신을 향해 비스듬히 바닥으로 내리꽂힙니다. 착지할 때 불꽃이 터집니다.",
+        "당신이 서 있는 곳으로 내리꽂힙니다: 내려올 때 대쉬로 벗어나세요. 가까이에서도 멀리서도 사용합니다. 검은 거울에서는 훨씬 빠르게 내리꽂힙니다."
+      ],
+      "ja": [
+        "横へ跳び上がり、黄金の筋を描いてあなたへ向かってななめに床へ急降下します。着地すると火花が散ります。",
+        "あなたの立っている場所へ急降下します：降りてくるときにダッシュで離れましょう。近くでも遠くでも使います。闇の鏡では急降下がずっと速くなります。"
+      ],
+      "zh-Hans": [
+        "向一边高高跃起，然后拖着金色光痕朝你俯冲到地面，落地时火花四溅。",
+        "她会俯冲到你所站的位置：她落下时迅速闪开。无论远近她都会使用。魔镜中俯冲会快得多。"
+      ],
+      "zh-Hant": [
+        "向側上方躍起，然後拖著金色光痕朝你俯衝到地面，落地時火花四濺。",
+        "她會俯衝到你所站的位置：她落下時迅速閃開。無論遠近她都會使用。黑暗鏡子中俯衝會快得多。"
+      ]
+    },
+    "Single phase · Rising pierce": {
+      "en": [
+        "Lightning strikes her as she raises her spear, then rows of golden light pillars shoot up from the floor, spreading out from her to both sides in waves.",
+        "The lightning is the warning: get away from her and slip through a gap as a wave of pillars reaches you. Not in the first 10 seconds of a single phase; after that, whenever it is ready again."
+      ],
+      "de": [
+        "Ein Blitz schlägt in sie ein, während sie ihren Speer hebt, dann schießen Reihen goldener Lichtsäulen aus dem Boden und breiten sich in Wellen von ihr aus zu beiden Seiten aus.",
+        "Der Blitz ist die Warnung: Geh weg von ihr und schlüpf durch eine Lücke, wenn eine Welle Säulen dich erreicht. Nicht in den ersten 10 Sekunden einer Einzelphase, danach immer, sobald er wieder bereit ist."
+      ],
+      "es": [
+        "Un rayo cae sobre ella mientras alza la lanza; luego surgen del suelo filas de pilares de luz dorada que se extienden desde ella hacia ambos lados en oleadas.",
+        "El rayo es el aviso: aléjate de ella y cuélate por un hueco cuando te alcance una oleada de pilares. No en los primeros 10 segundos de una fase individual; después, en cuanto vuelve a estar lista."
+      ],
+      "fr": [
+        "La foudre la frappe pendant qu'elle lève sa lance, puis des rangées de piliers de lumière dorée jaillissent du sol et s'étendent d'elle vers les deux côtés par vagues.",
+        "La foudre est l'avertissement : éloigne-toi d'elle et glisse-toi dans un espace quand une vague de piliers t'atteint. Pas dans les 10 premières secondes d'une phase en solo ; ensuite, dès qu'elle est de nouveau prête."
+      ],
+      "pl": [
+        "Gdy unosi włócznię, uderza w nią piorun, a potem z ziemi wystrzeliwują rzędy złotych słupów światła, rozchodząc się od niej falami na obie strony.",
+        "Piorun to ostrzeżenie: oddal się od niej i prześlizgnij przez lukę, gdy dosięgnie cię fala słupów. Nie w pierwszych 10 sekundach fazy pojedynczej; potem, gdy tylko znów jest gotowe."
+      ],
+      "pt-BR": [
+        "Um raio cai sobre ela enquanto ergue a lança, depois fileiras de pilares de luz dourada sobem do chão, se espalhando a partir dela para os dois lados em ondas.",
+        "O raio é o aviso: afaste-se dela e passe por uma brecha quando uma onda de pilares chegar até você. Não nos primeiros 10 segundos de uma fase individual; depois, sempre que fica pronto de novo."
+      ],
+      "ru": [
+        "В неё бьёт молния, пока она поднимает копьё, затем из пола вырываются ряды золотых столбов света и волнами расходятся от неё в обе стороны.",
+        "Молния и есть предупреждение: отойдите от неё и проскользните в просвет, когда до вас дойдёт волна столбов. Не в первые 10 секунд одиночной фазы; потом, как только приём снова готов."
+      ],
+      "ko": [
+        "창을 치켜들 때 번개가 그녀에게 내리치고, 이어서 황금 빛기둥이 줄지어 바닥에서 솟아오르며 그녀를 중심으로 양쪽으로 물결처럼 퍼집니다.",
+        "번개가 신호입니다: 그녀에게서 멀어지고, 빛기둥의 물결이 닿을 때 틈으로 빠져나가세요. 단독 페이즈의 처음 10초 동안은 쓰지 않고, 그 뒤로는 준비되는 대로 사용합니다."
+      ],
+      "ja": [
+        "槍を掲げると雷が彼女に落ち、続いて黄金の光の柱が列をなして床から立ち上り、彼女から両側へ波のように広がります。",
+        "雷が合図です：彼女から離れ、光の柱の波が届いたら隙間をすり抜けましょう。単独フェーズの最初の10秒間は使わず、その後は使えるようになるたびに使います。"
+      ],
+      "zh-Hans": [
+        "她举起长枪时一道闪电劈在她身上，随后一排排金色光柱从地面升起，从她身边向左右两边如波浪般扩散。",
+        "闪电就是预警：远离她，在光柱的波浪到达时从空隙中穿过。单人阶段的前10秒不会使用，之后一旦就绪就会使用。"
+      ],
+      "zh-Hant": [
+        "她舉起長槍時一道閃電劈在她身上，隨後一排排金色光柱從地面升起，從她身邊向兩側如波浪般擴散。",
+        "閃電就是預警：遠離她，在光柱的波浪到達時從空隙中穿過。單人階段的前10秒不會使用，之後一旦就緒就會使用。"
+      ]
+    },
+    "Single phase · Range attack homing": {
+      "en": [
+        "Holds her spear back and fires golden zigzag bolts in waves; they curve toward you.",
+        "Comes after a Backstep. Keep moving and change direction late, so the bolts turn too slowly and miss."
+      ],
+      "de": [
+        "Hält ihren Speer zurück und feuert in Wellen goldene Zickzack-Blitze ab, die zu dir abbiegen.",
+        "Kommt nach einem Rückschritt. Bleib in Bewegung und wechsle spät die Richtung, dann biegen die Blitze zu langsam ab und verfehlen dich."
+      ],
+      "es": [
+        "Echa la lanza hacia atrás y dispara oleadas de rayos dorados en zigzag que se curvan hacia ti.",
+        "Llega después de un Paso atrás. Sigue moviéndote y cambia de dirección en el último momento: los rayos giran demasiado lento y fallan."
+      ],
+      "fr": [
+        "Ramène sa lance en arrière et tire des vagues d'éclairs dorés en zigzag qui virent vers toi.",
+        "Vient après un Pas en arrière. Continue de bouger et change de direction au dernier moment : les éclairs virent trop lentement et te ratent."
+      ],
+      "pl": [
+        "Cofa włócznię i wystrzeliwuje falami złote zygzakowate błyskawice, które skręcają w twoją stronę.",
+        "Następuje po ruchu Krok w tył. Ruszaj się i zmieniaj kierunek w ostatniej chwili: błyskawice skręcają zbyt wolno i chybiają."
+      ],
+      "pt-BR": [
+        "Recua a lança e dispara ondas de raios dourados em zigue-zague que fazem curva na sua direção.",
+        "Vem depois de um Passo atrás. Continue se movendo e mude de direção no último momento: os raios viram devagar demais e erram."
+      ],
+      "ru": [
+        "Отводит копьё назад и волнами выпускает золотые зигзагообразные молнии, которые сворачивают к вам.",
+        "Следует за приёмом Шаг назад. Двигайтесь и меняйте направление в последний момент: молнии поворачивают слишком медленно и промахиваются."
+      ],
+      "ko": [
+        "창을 뒤로 당긴 채 지그재그로 휘는 황금 번개를 여러 차례 발사하며, 번개는 당신 쪽으로 휩니다.",
+        "백스텝 다음에 나옵니다. 계속 움직이다가 마지막 순간에 방향을 바꾸면 번개가 제때 꺾이지 못해 빗나갑니다."
+      ],
+      "ja": [
+        "槍を後ろに引き、ジグザグの黄金の雷を何度かに分けて放ちます。雷はあなたの方へ曲がります。",
+        "バックステップの後に来ます。動き続け、ぎりぎりで向きを変えると、雷は曲がりきれずに外れます。"
+      ],
+      "zh-Hans": [
+        "她把长枪向后收，分几波射出锯齿状的金色闪电，闪电会转向你。",
+        "在后撤步之后出现。保持移动，在最后一刻改变方向，闪电来不及转向就会落空。"
+      ],
+      "zh-Hant": [
+        "她把長槍向後收，分幾波射出鋸齒狀的金色閃電，閃電會轉向你。",
+        "在後撤步之後出現。保持移動，在最後一刻改變方向，閃電來不及轉向就會落空。"
+      ]
+    },
+    "Single phase · Rush": {
+      "en": [
+        "Dashes in, then lunges across the floor with her spear, several times back and forth. In the Dark Mirror she ends with one more long lunge.",
+        "Each lunge runs along the floor: jump over it. After the last lunge she rests for a moment, your chance to attack."
+      ],
+      "de": [
+        "Sprintet heran und macht dann mehrmals hin und her Ausfälle mit dem Speer quer über den Boden. Im Dunklen Spiegel endet sie mit einem weiteren langen Ausfall.",
+        "Jeder Ausfall läuft am Boden entlang: Spring darüber. Nach dem letzten Ausfall ruht sie kurz, deine Chance zum Angriff."
+      ],
+      "es": [
+        "Se acerca corriendo y luego arremete con la lanza a lo largo del suelo, varias veces de un lado a otro. En el Espejo oscuro termina con una arremetida larga más.",
+        "Cada arremetida va a ras de suelo: sáltala. Tras la última descansa un momento: tu oportunidad para atacar."
+      ],
+      "fr": [
+        "Arrive en sprintant, puis se fend avec sa lance à travers le sol, plusieurs fois dans un sens puis dans l'autre. Dans le Miroir noir, elle termine par une longue fente de plus.",
+        "Chaque fente passe au ras du sol : saute par-dessus. Après la dernière, elle se repose un instant : ta chance d'attaquer."
+      ],
+      "pl": [
+        "Doskakuje zrywem, a potem kilka razy tam i z powrotem wykonuje wypady włócznią przez całą podłogę. W Ciemnym lustrze kończy jeszcze jednym długim wypadem.",
+        "Każdy wypad biegnie tuż nad ziemią: przeskocz go. Po ostatnim chwilę odpoczywa: twoja szansa na atak."
+      ],
+      "pt-BR": [
+        "Chega correndo e depois avança com a lança pelo chão, várias vezes para lá e para cá. No Espelho Sombrio ela termina com mais um avanço longo.",
+        "Cada avanço vai rente ao chão: pule por cima. Depois do último ela descansa um momento, sua chance de atacar."
+      ],
+      "ru": [
+        "Подбегает рывком, затем несколько раз туда и обратно делает выпады копьём через весь пол. В Тёмном зеркале она завершает ещё одним длинным выпадом.",
+        "Каждый выпад идёт вдоль пола: перепрыгните его. После последнего она ненадолго замирает: ваш шанс атаковать."
+      ],
+      "ko": [
+        "대쉬로 다가온 뒤, 창을 들고 바닥을 가로질러 여러 번 왔다 갔다 하며 파고듭니다. 검은 거울에서는 마지막에 길게 한 번 더 파고듭니다.",
+        "매번 바닥을 따라 파고드니 점프로 넘으세요. 마지막 공격 후 잠시 쉬니 공격할 기회입니다."
+      ],
+      "ja": [
+        "ダッシュで近づき、槍を構えて床を横切るように何度も行き来しながら踏み込みます。闇の鏡では、最後にもう一度長く踏み込みます。",
+        "踏み込みは床すれすれに来るので、ジャンプで飛び越えましょう。最後の踏み込みの後は少し休むので、攻撃のチャンスです。"
+      ],
+      "zh-Hans": [
+        "疾驰接近，然后手持长枪在地面上来回突刺数次。魔镜中，她最后还会再长距离突刺一次。",
+        "每次突刺都贴着地面：跳起越过。最后一次突刺后她会停顿片刻，是你攻击的机会。"
+      ],
+      "zh-Hant": [
+        "衝刺接近，然後手持長槍在地面上來回突刺數次。黑暗鏡子中，她最後還會再長距離突刺一次。",
+        "每次突刺都貼著地面：跳起越過。最後一次突刺後她會停頓片刻，是你攻擊的機會。"
+      ]
+    },
+    "Single phase · Dash": {
+      "en": [
+        "Dashes along the floor straight to where you stand. She uses it when you are far away.",
+        "Rush or Meteor in ground follows: be ready to jump as soon as she stops."
+      ],
+      "de": [
+        "Sprintet am Boden entlang direkt dorthin, wo du stehst. Sie setzt ihn ein, wenn du weit weg bist.",
+        "Danach folgt Ansturm oder Meteor am Boden: Sei bereit zu springen, sobald sie anhält."
+      ],
+      "es": [
+        "Corre a ras de suelo directo hacia donde estás. La usa cuando estás lejos.",
+        "Le sigue Embestida o Meteoro en el suelo: prepárate para saltar en cuanto se detenga."
+      ],
+      "fr": [
+        "Sprinte au sol droit vers l'endroit où tu te tiens. Elle l'utilise quand tu es loin.",
+        "Ruée ou Météore au sol suit : prépare-toi à sauter dès qu'elle s'arrête."
+      ],
+      "pl": [
+        "Pędzi po ziemi prosto tam, gdzie stoisz. Używa go, gdy jesteś daleko.",
+        "Potem następuje Szarża albo Meteor na ziemi: bądź gotów skoczyć, gdy tylko się zatrzyma."
+      ],
+      "pt-BR": [
+        "Corre pelo chão direto até onde você está. Usa isso quando você está longe.",
+        "Em seguida vem Investida ou Meteoro no chão: prepare-se para pular assim que ela parar."
+      ],
+      "ru": [
+        "Мчится по полу прямо туда, где вы стоите. Применяет, когда вы далеко.",
+        "Затем следует Натиск или Метеор на земле: будьте готовы прыгнуть, как только она остановится."
+      ],
+      "ko": [
+        "바닥을 따라 당신이 서 있는 곳으로 곧장 대쉬합니다. 당신이 멀리 있을 때 사용합니다.",
+        "이어서 돌진이나 지상 메테오가 나옵니다: 멈추는 즉시 점프할 준비를 하세요."
+      ],
+      "ja": [
+        "床に沿って、あなたの立っている場所へまっすぐダッシュします。あなたが遠くにいるときに使います。",
+        "続いて突進か地上メテオが来ます：止まったらすぐジャンプできるようにしましょう。"
+      ],
+      "zh-Hans": [
+        "沿着地面直接疾驰到你所站的位置。你离得远时她会使用。",
+        "之后会接突进或地面陨石：她一停下就准备跳起。"
+      ],
+      "zh-Hant": [
+        "沿著地面直接衝刺到你所站的位置。你離得遠時她會使用。",
+        "之後會接突進或地面隕石：她一停下就準備跳起。"
+      ]
+    },
+    "Single phase · Meteor in ground": {
+      "en": [
+        "Crouches, then lunges low along the floor with her spear forward and stands up. In the Dark Mirror a golden wave runs far along the floor with the lunge.",
+        "The crouch is the warning: jump over the lunge. She uses it up close and after a Dash."
+      ],
+      "de": [
+        "Geht in die Hocke, macht dann mit vorgestrecktem Speer einen tiefen Ausfall am Boden entlang und steht auf. Im Dunklen Spiegel läuft mit dem Ausfall eine goldene Welle weit über den Boden.",
+        "Das Hocken ist die Warnung: Spring über den Ausfall. Sie setzt ihn aus der Nähe und nach einem Sprint ein."
+      ],
+      "es": [
+        "Se agacha, luego arremete a ras de suelo con la lanza por delante y se levanta. En el Espejo oscuro, una onda dorada recorre el suelo hasta lejos con la arremetida.",
+        "Agacharse es el aviso: salta sobre la arremetida. Lo usa de cerca y después de una Carrera."
+      ],
+      "fr": [
+        "S'accroupit, puis se fend au ras du sol, lance en avant, et se relève. Dans le Miroir noir, une onde dorée parcourt le sol loin devant avec la fente.",
+        "L'accroupissement est l'avertissement : saute par-dessus la fente. Elle l'utilise de près et après un Sprint."
+      ],
+      "pl": [
+        "Przykuca, potem wykonuje niski wypad tuż nad ziemią z włócznią przed sobą i wstaje. W Ciemnym lustrze wraz z wypadem daleko po ziemi biegnie złota fala.",
+        "Przykucnięcie to ostrzeżenie: przeskocz wypad. Używa go z bliska i po ruchu Zryw."
+      ],
+      "pt-BR": [
+        "Agacha-se, depois avança rente ao chão com a lança à frente e se levanta. No Espelho Sombrio, uma onda dourada percorre o chão para longe junto com o avanço.",
+        "O agachamento é o aviso: pule o avanço. Usa isso de perto e depois de uma Corrida."
+      ],
+      "ru": [
+        "Приседает, затем делает низкий выпад вдоль пола, выставив копьё вперёд, и встаёт. В Тёмном зеркале вместе с выпадом далеко по полу проходит золотая волна.",
+        "Приседание и есть предупреждение: перепрыгните выпад. Применяет вблизи и после приёма Рывок."
+      ],
+      "ko": [
+        "몸을 낮췄다가 창을 앞으로 내밀고 바닥을 따라 낮게 파고든 뒤 일어섭니다. 검은 거울에서는 공격과 함께 황금 파동이 바닥을 따라 멀리 뻗어 나갑니다.",
+        "몸을 낮추는 것이 신호입니다: 점프로 넘으세요. 가까이에서, 그리고 대쉬 다음에 사용합니다."
+      ],
+      "ja": [
+        "身をかがめ、槍を前に突き出して床すれすれに低く踏み込み、立ち上がります。闇の鏡では、踏み込みとともに黄金の波が床を遠くまで走ります。",
+        "身をかがめるのが合図です：ジャンプで飛び越えましょう。近くにいるときと、ダッシュの後に使います。"
+      ],
+      "zh-Hans": [
+        "压低身子，然后长枪向前贴着地面低身突刺，再站起来。魔镜中，突刺时会有一道金色波动沿地面冲出很远。",
+        "压低身子就是预警：跳起越过突刺。你靠近时和疾驰之后她会使用。"
+      ],
+      "zh-Hant": [
+        "壓低身子，然後長槍向前貼著地面低身突刺，再站起來。黑暗鏡子中，突刺時會有一道金色波動沿地面衝出很遠。",
+        "壓低身子就是預警：跳起越過突刺。你靠近時和衝刺之後她會使用。"
+      ]
+    },
+    "Awakening": {
+      "en": [
+        "When one sister falls, the other kneels, purple lightning and dark smoke wrap around her, a white flash fills the hall, and she rises as Awakened Leiana.",
+        "She keeps her remaining health and heals 40% of her new maximum on top. If both sisters fall at the same moment, one comes back with full health: bring one down while the other is already low."
+      ],
+      "de": [
+        "Fällt eine Schwester, kniet die andere nieder, violette Blitze und dunkler Rauch hüllen sie ein, ein weißer Blitz erfüllt die Halle und sie erhebt sich als Leiana die Erweckte.",
+        "Sie behält ihre restlichen LP und heilt zusätzlich 40 % ihres neuen Maximums. Fallen beide Schwestern im selben Moment, kehrt eine mit vollen LP zurück: Bring eine zu Fall, während die andere schon geschwächt ist."
+      ],
+      "es": [
+        "Cuando una hermana cae, la otra se arrodilla, rayos morados y humo oscuro la envuelven, un destello blanco llena la sala y se alza como Leiana despertada.",
+        "Conserva la vida que le quedaba y además se cura un 40% de su nuevo máximo. Si ambas hermanas caen a la vez, una vuelve con la vida al completo: derriba a una cuando la otra ya esté baja."
+      ],
+      "fr": [
+        "Quand une sœur tombe, l'autre s'agenouille, des éclairs violets et une fumée sombre l'enveloppent, un éclair blanc emplit la salle et elle se relève en Leiana éveillée.",
+        "Elle garde sa vie restante et récupère en plus 40 % de son nouveau maximum. Si les deux sœurs tombent au même moment, l'une revient avec toute sa vie : abats-en une quand l'autre est déjà affaiblie."
+      ],
+      "pl": [
+        "Gdy jedna siostra padnie, druga klęka, otaczają ją fioletowe błyskawice i ciemny dym, salę wypełnia biały błysk, a ona powstaje jako Czuwająca Leiana.",
+        "Zachowuje pozostałe zdrowie i dodatkowo leczy 40% nowego maksimum. Jeśli obie siostry padną w tej samej chwili, jedna wraca z pełnym zdrowiem: pokonaj jedną, gdy druga jest już osłabiona."
+      ],
+      "pt-BR": [
+        "Quando uma irmã cai, a outra se ajoelha, raios roxos e fumaça escura a envolvem, um clarão branco enche o salão e ela se ergue como Leiana despertada.",
+        "Ela mantém a vida que restava e ainda recupera 40% do novo máximo. Se as duas irmãs caírem ao mesmo tempo, uma volta com a vida cheia: derrube uma quando a outra já estiver fraca."
+      ],
+      "ru": [
+        "Когда одна сестра падает, другая опускается на колено, её окутывают фиолетовые молнии и тёмный дым, зал заливает белая вспышка, и она встаёт как Пробужденная Леяна.",
+        "Она сохраняет оставшееся здоровье и сверху восстанавливает 40 % нового максимума. Если обе сестры падут одновременно, одна вернётся с полным здоровьем: добивайте одну, когда другая уже ослаблена."
+      ],
+      "ko": [
+        "한 명이 쓰러지면 남은 한 명이 무릎을 꿇고, 보랏빛 번개와 검은 연기가 그녀를 감싸며, 하얀 섬광이 홀을 가득 채운 뒤 각성한 레이아나로 일어섭니다.",
+        "남은 체력을 그대로 유지하고 새 최대 체력의 40%를 추가로 회복합니다. 두 자매가 동시에 쓰러지면 한 명이 체력을 모두 회복해 돌아오니, 다른 한 명의 체력이 이미 낮을 때 한 명을 쓰러뜨리세요."
+      ],
+      "ja": [
+        "1人が倒れると、残った1人がひざまずき、紫の雷と黒い煙に包まれ、白い閃光がホールを満たし、覚醒レイアナとして立ち上がります。",
+        "残りの体力をそのまま引き継ぎ、さらに新しい最大体力の40%を回復します。2人が同時に倒れると1人が体力全快で復活するので、もう1人の体力が減っているときに1人を倒しましょう。"
+      ],
+      "zh-Hans": [
+        "一人倒下后，另一人跪下，紫色闪电和黑烟将她包围，白光充满大厅，她作为觉醒的蕾安娜站起。",
+        "她保留剩余的体力，并额外恢复新上限的40%。如果两姐妹同时倒下，其中一人会以满体力复活：在另一人体力已经很低时打倒一人。"
+      ],
+      "zh-Hant": [
+        "一人倒下後，另一人跪下，紫色閃電和黑煙將她包圍，白光充滿大廳，她作為覺醒的萊安娜站起。",
+        "她保留剩餘的體力，並額外恢復新上限的40%。如果兩姐妹同時倒下，其中一人會以滿體力復活：在另一人體力已經很低時打倒一人。"
+      ]
+    },
+    "Single phase · Meteor in ground 2": {
+      "en": [
+        "Lunges from one end of the hall to the other, low along the floor in a golden streak. She only does it inside the pair moves Twin meteor ground and Twin meteor chain.",
+        "Jump over her as she passes."
+      ],
+      "de": [
+        "Stößt tief über den Boden in einem goldenen Streif von einem Ende der Halle zum anderen. Sie macht das nur innerhalb der Paarangriffe Zwillingsmeteor (Boden) und Zwillingsmeteor-Kette.",
+        "Spring über sie, wenn sie vorbeikommt."
+      ],
+      "es": [
+        "Se lanza de un extremo de la sala al otro, a ras de suelo en una estela dorada. Solo lo hace dentro de los ataques en pareja Meteoro gemelo (suelo) y Cadena de meteoro gemelo.",
+        "Sáltala cuando pase."
+      ],
+      "fr": [
+        "Fonce d'un bout de la salle à l'autre, au ras du sol dans une traînée dorée. Elle ne le fait que dans les attaques en duo Météore jumeau (sol) et Enchaînement de météore jumeau.",
+        "Saute par-dessus elle quand elle passe."
+      ],
+      "pl": [
+        "Rzuca się nisko nad ziemią w złotej smudze z jednego końca sali na drugi. Robi to tylko w ramach ataków w parze Bliźniaczy meteor (ziemia) i Łańcuch bliźniaczego meteoru.",
+        "Przeskocz ją, gdy przelatuje."
+      ],
+      "pt-BR": [
+        "Avança de um lado do salão ao outro, rente ao chão num rastro dourado. Ela só faz isso dentro dos ataques em dupla Meteoro gêmeo (chão) e Cadeia de meteoro gêmeo.",
+        "Pule por cima dela quando passar."
+      ],
+      "ru": [
+        "Проносится от одного края зала к другому низко над полом золотой полосой. Делает это только внутри парных атак Двойной метеор (на земле) и Цепь двойного метеора.",
+        "Перепрыгните её, когда она пролетает."
+      ],
+      "ko": [
+        "금빛 궤적을 남기며 바닥을 따라 낮게 홀 한쪽 끝에서 반대쪽 끝까지 돌진합니다. 페어 공격인 지상 트윈 메테오와 트윈 메테오 연쇄 안에서만 사용합니다.",
+        "지나갈 때 점프로 넘으세요."
+      ],
+      "ja": [
+        "金色の軌跡を残し、床すれすれに広間の端から端まで突進します。ペア攻撃の地上ツインメテオとツインメテオ連鎖の中でだけ使います。",
+        "通り過ぎるときに飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "贴着地面化作金色流光，从大厅一端冲到另一端。她只会在双人招式地面双子陨石和双子陨石连锁中使用。",
+        "她经过时跳过去。"
+      ],
+      "zh-Hant": [
+        "貼著地面化作金色流光，從大廳一端衝到另一端。她只會在雙人招式地面雙子隕石和雙子隕石連鎖中使用。",
+        "她經過時跳過去。"
+      ]
+    }
+  }
+}

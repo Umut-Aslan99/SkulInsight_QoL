@@ -602,6 +602,9 @@ public sealed class SettingsPage : global::UI.Dialogue
             case SettingKind.Key:
                 row.ValueText.text = item.Format(item.Entry.BoxedValue);
                 break;
+            case SettingKind.Action when item.Action == SettingsCatalog.ResetCodex && Codex.CodexReset.Requested:
+                row.ValueText.text = Loc.T("At the next start");
+                break;
             default:
                 row.ValueText.text = Localized("label/pause/settings/data/reset", "Reset");
                 break;
@@ -648,7 +651,37 @@ public sealed class SettingsPage : global::UI.Dialogue
             case SettingKind.Action when row.Item.Action == SettingsCatalog.ResetAll:
                 ConfirmResetAll(row);
                 break;
+            case SettingKind.Action when row.Item.Action == SettingsCatalog.ResetCodex:
+                ConfirmResetCodex(row);
+                break;
         }
+    }
+
+    /// <summary>Reset Codex: asks first; selected again while requested, it withdraws the request.</summary>
+    private void ConfirmResetCodex(Row row)
+    {
+        var focus = row.Root.GetComponent<Selectable>();
+        void Refocus() => Focus(focus);
+        if (Codex.CodexReset.Requested)
+        {
+            Codex.CodexReset.Withdraw();
+            ShowValue(row);
+            return;
+        }
+        void Request()
+        {
+            Codex.CodexReset.Request();
+            ShowValue(row);
+            Refocus();
+        }
+        var confirm = Scenes.Scene<Scenes.GameBase>.instance?.uiManager?.confirm;
+        if (confirm == null)
+        {
+            Request();
+            return;
+        }
+        confirm.Open(Loc.T("Delete everything the Codex has gathered (progress, films, pictures) the next time the game starts?"),
+            () => Guard.Run("Settings page (reset Codex)", Request), Refocus);
     }
 
     private void ConfirmResetAll(Row row)

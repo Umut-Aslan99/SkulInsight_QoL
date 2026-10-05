@@ -142,7 +142,11 @@ public static class GearAnalyzer
             motions.Add(single);
         motions.AddRange(action.List("_motions"));
         motions.AddRange(action.List("_landingMotions")); // PowerbombChainAction: the landing hit
-        foreach (var field in new[] { "_anticipation", "_charging", "_charged", "_earlyFinish", "_finish" })
+        // Single motions under their own field: charge stages; the counter hit of a parry (ParryAction, not its waiting
+        // stance); the two hits of AttackHitTriggerAction (Minotaurus' stomp); a streak's start and end; a powerbomb's
+        // landing (the damage scan found these skipped, docs/DAMAGE_SCAN.md).
+        foreach (var field in new[] { "_anticipation", "_charging", "_charged", "_earlyFinish", "_finish", "_parryMotion",
+                     "_attackMotion", "_secondMotion", "_startMotion", "_endMotion", "_fullStreakEndMotion", "_landingMotion" })
         {
             var m = action.Child(field);
             if (!m.IsNull)
@@ -151,6 +155,9 @@ public static class GearAnalyzer
         foreach (var entry in action.List("_chargeMotions"))
             motions.AddRange(new[] { entry.Child("charging"), entry.Child("finish") }.Where(m => !m.IsNull));
         motions.AddRange(action.List("_chargingMotions"));
+        // GrabAction: the grab that lands and what follows while holding (the Champion's combos hit there); not the miss.
+        motions.AddRange(action.List("_grabMotions"));
+        motions.AddRange(action.List("_maintainMotions"));
         return motions;
     }
 

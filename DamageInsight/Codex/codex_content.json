@@ -2,52 +2,1262 @@
   "_note": "Hand-written Codex texts (our own, shipped with the mod). Keyed by the Codex entry key, then by the move label shown under the picture. 'draft' marks texts that still need checking in game.",
   "entries": {
     "Yggdrasil": {
-      "draft": true,
       "about": "The ancient tree guarding the first chapter. It fights with its head and two giant hands, and awakens in a second phase once half of its health is gone.",
       "moves": {
         "Fist slam": {
-          "what": "Raises one hand high, follows your position for a moment and slams it down.",
-          "tip": "Keep moving until the hand drops, then dash sideways. The hand stays down for a moment after the impact: a safe window to hit back."
+          "what": "Raises both hands, then slams a fist down where you stand, two or three times in a row; dust bursts out on impact. In the Dark Mirror a root spike shoots up from the ground after each slam.",
+          "tip": "The fist follows you until it drops: keep moving and dash aside just before it falls. Between slams the fist rests on the ground for a moment, a safe time to hit back. In the Dark Mirror, step away from the impact: the spike comes right after."
         },
         "Sweeping": {
-          "what": "One hand sweeps across the whole arena along the ground.",
-          "tip": "Wooden platforms rise when the sweep starts: jump onto one, or time a jump over the hand."
+          "what": "Draws both hands back, then sweeps along the ground across the arena: first one hand, then the other.",
+          "tip": "Jump over each hand as it reaches you; the second sweep follows soon after the first, so save a jump for it."
         },
         "Energy bomb": {
-          "what": "Charges energy in its head and fires bombs that explode where they land.",
-          "tip": "Watch where the bombs are aimed and leave that spot; the explosions are short, so you can walk back in right after."
-        },
-        "Laser": {
-          "what": "Gathers light in its head and fires a beam.",
-          "tip": "The charge-up is your warning. Get out of the beam's line before it fires instead of trying to dash through it."
+          "what": "Rests its hands, gathers dark energy and glows red, then fires energy bombs from its head that burst into dark flames where they land. Afterwards it is exhausted (Groggy).",
+          "tip": "Keep moving: the bombs land one after another in different spots and their flames linger for a moment. When the barrage stops the tree collapses, so get ready to attack its head."
         },
         "Groggy": {
-          "what": "Exhausted, the head sinks to the ground and the tree stops attacking for a few seconds.",
-          "tip": "Your biggest damage window: use your skills and strongest attacks on the head now."
+          "what": "After its energy attack the tree is exhausted: its head crashes to the ground in a cloud of dust and stays down for about two seconds before it rises again.",
+          "tip": "Your biggest damage window: use your skills and strongest attacks on the head while it is down."
         },
         "Phase 2 · Awakening": {
-          "what": "Dark quartz breaks out of the tree: phase 2 begins. Its attacks become harder and come in combinations.",
-          "tip": "Use the transformation to reposition and let your cooldowns recharge."
+          "what": "At half health the tree flashes white, raises its hands and transforms: dark quartz breaks out, its leaves turn blue and purple lightning runs through it. Phase 2 begins, with harder attacks that come in combinations.",
+          "tip": "The transformation itself does no harm: use it to reposition and let your cooldowns recharge."
         },
         "Phase 2 · Fist power slam": {
-          "what": "A heavier slam that sends a wave of debris along the ground on impact.",
-          "tip": "Dodging the hand is not enough: jump or dash over the debris wave that follows."
+          "what": "Like Fist slam, but harder and four times in a row, each fist coming down at your position. In the Dark Mirror a pink spike erupts after each slam.",
+          "tip": "Keep moving the whole time and dash aside as each fist drops. Only hit a resting fist when the next one isn't already falling on you."
         },
         "Phase 2 · Both fist power slam": {
-          "what": "Both hands slam down at once, covering a large part of the arena.",
-          "tip": "Stay near the middle and wait for both hands to commit before you dodge; the gap between them is your way out."
-        },
-        "Phase 2 · Sweeping combo": {
-          "what": "Two sweeps in a row: first from one side, then from the other.",
-          "tip": "Stay on a platform or ready another jump after the first sweep: the second one follows almost at once."
+          "what": "A red line flashes across the floor as a warning, then both fists slam down at once on either side, three times. In the Dark Mirror a row of pink spikes then shoots up along the floor.",
+          "tip": "The fists land on the left and right: the space between them, under the head, is your best spot. In the Dark Mirror jump when the spikes rise."
         },
         "Phase 2 · Energy corps": {
-          "what": "Summons a ring of energy orbs that fly at you one after another.",
-          "tip": "Keep moving in one direction so the orbs miss behind you; don't stop to attack until the last one has passed."
+          "what": "Glows with purple light and launches a stream of energy orbs for about eight seconds; they fall across the arena and burst into purple flames. Afterwards it is exhausted (Groggy).",
+          "tip": "Keep moving and stay out of the flames on the ground. When the stream stops the tree collapses: that's your moment to punish it."
         },
         "Phase 2 · Groggy": {
-          "what": "Exhausted again: the head drops and the tree stops attacking.",
+          "what": "Exhausted after Energy corps: the head crashes down in a cloud of dust and stays down for about two seconds.",
           "tip": "Same as in phase 1: unload everything on the head."
+        },
+        "Phase 2 · Sweeping": {
+          "what": "Four sweeps along the ground in a row, the hands taking turns.",
+          "tip": "Jump each hand as it reaches you and land ready for the next. Don't attack until both hands are back at the tree."
+        }
+      }
+    },
+    "LeianaShortHair": {
+      "about": "Twin sisters and the pride of the Golden Mane Knights, the boss of the second chapter. They take turns: in the pair phase both attack together, then in the single phase one sister fights alone for about 20 seconds as the other waits in the background, out of reach. When one sister falls, the other awakens as Awakened Leiana.",
+      "moves": {
+        "Pair phase · Twin meteor": {
+          "what": "Two thin yellow aim lines cross in an X. The sisters dive along them in bright streaks and meet where the lines cross, then stand up and dash away. One line aims at you, the other at where you are heading.",
+          "tip": "The lines show both paths before the dive: get clear of both, not just the nearer one. The crossing point is the worst place to be."
+        },
+        "Pair phase · Twin meteor pierce": {
+          "what": "The sisters stand at opposite ends of the hall and gather golden energy. Golden homing bolts fly across the hall from both sides, then both thrust their spears along the floor and dash away.",
+          "tip": "The bolts come from both sides and curve toward you: keep moving and change direction late so they miss. Jump over the spear thrusts at the end."
+        },
+        "Pair phase · Twin meteor chain": {
+          "what": "One sister lunges low along the floor and the other dives in from above right after. They do it twice, from new spots.",
+          "tip": "Every round comes in two beats, the low lunge and then the dive: dodge one and move again at once. Attack only after the last round."
+        },
+        "Pair phase · Twin meteor ground": {
+          "what": "Both crouch at opposite ends of the hall and lunge along the floor at the same time, crossing in the middle, then dash away.",
+          "tip": "The crouch is the warning: jump over the lunges. They cross in the middle, so do not wait there."
+        },
+        "Single phase · Golden meteor": {
+          "what": "Opens every single phase: the sister jumps high above the hall and dives straight down with a golden spear; golden sparks burst on impact.",
+          "tip": "Move away from the spot below her while she is in the air. She needs a moment to stand up after landing, a good time to hit her. In the Dark Mirror the dive comes much faster."
+        },
+        "Single phase · Dimension pierce": {
+          "what": "She stands still; thin yellow warning lines appear at a slant, then bright golden beams strike down along them.",
+          "tip": "Leave the warning lines before the beams fall: they strike along the whole line. She uses it whenever it is ready again."
+        },
+        "Single phase · Backstep": {
+          "what": "Hops back, away from you; near a wall she hops the other way. She uses it when you are close.",
+          "tip": "Sometimes Range attack homing follows right after the hop: be ready to dodge golden bolts."
+        },
+        "Single phase · Meteor in air": {
+          "what": "Leaps up to the side, then dives diagonally to the floor at you with a golden streak; sparks burst on impact.",
+          "tip": "She dives at the spot where you stand: dash away from it as she comes down. She uses it near and far. In the Dark Mirror the dive comes much faster."
+        },
+        "Single phase · Rising pierce": {
+          "what": "Lightning strikes her as she raises her spear, then rows of golden light pillars shoot up from the floor, spreading out from her to both sides in waves.",
+          "tip": "The lightning is the warning: get away from her and slip through a gap as a wave of pillars reaches you. Not in the first 10 seconds of a single phase; after that, whenever it is ready again."
+        },
+        "Single phase · Range attack homing": {
+          "what": "Holds her spear back and fires golden zigzag bolts in waves; they curve toward you.",
+          "tip": "Comes after a Backstep. Keep moving and change direction late, so the bolts turn too slowly and miss."
+        },
+        "Single phase · Rush": {
+          "what": "Dashes in, then lunges across the floor with her spear, several times back and forth. In the Dark Mirror she ends with one more long lunge.",
+          "tip": "Each lunge runs along the floor: jump over it. After the last lunge she rests for a moment, your chance to attack."
+        },
+        "Single phase · Dash": {
+          "what": "Dashes along the floor straight to where you stand. She uses it when you are far away.",
+          "tip": "Rush or Meteor in ground follows: be ready to jump as soon as she stops."
+        },
+        "Single phase · Meteor in ground": {
+          "what": "Crouches, then lunges low along the floor with her spear forward and stands up. In the Dark Mirror a golden wave runs far along the floor with the lunge.",
+          "tip": "The crouch is the warning: jump over the lunge. She uses it up close and after a Dash."
+        },
+        "Awakening": {
+          "what": "When one sister falls, the other kneels, purple lightning and dark smoke wrap around her, a white flash fills the hall, and she rises as Awakened Leiana.",
+          "tip": "She keeps her remaining health and heals 40% of her new maximum on top. If both sisters fall at the same moment, one comes back with full health: bring one down while the other is already low."
+        },
+        "Single phase · Meteor in ground 2": {
+          "what": "Lunges from one end of the hall to the other, low along the floor in a golden streak. She only does it inside the pair moves Twin meteor ground and Twin meteor chain.",
+          "tip": "Jump over her as she passes."
+        }
+      }
+    },
+    "AwakenLeiana": {
+      "about": "The surviving Leiana sister, awakened in dark power after her twin fell. She fights alone with darker, stronger versions of the sisters' moves, and uses Rush and Dimension pierce whenever they are ready.",
+      "moves": {
+        "Golden meteor": {
+          "what": "Appears high above you and dives straight down in a purple pillar; dark spikes burst up on both sides of the impact. She does it two or three times in a row.",
+          "tip": "She aims at where you stand each time: keep moving after every dive and stay away from both sides of the landing spot."
+        },
+        "Meteor in air": {
+          "what": "Leaps up to the side and dives diagonally at you with a purple streak, two or three times in a row.",
+          "tip": "Each dive aims at your spot: dash away as she comes down, then again for the next dive. In the Dark Mirror the dive comes much faster."
+        },
+        "Meteor in ground 2": {
+          "what": "Hops back, then dashes along the whole floor in a purple streak; dark tendrils then rise from the floor one after another along her path.",
+          "tip": "Jump over her as she passes, then keep off the floor she crossed until the tendrils are gone."
+        },
+        "Rush": {
+          "what": "Teleports around the hall, then purple lines criss-cross the whole screen and flash into slashes all at once.",
+          "tip": "The lines are the warning: find a spot between them before they flash. She uses it whenever it is ready again (not in the first 15 seconds after the awakening) and rests for a moment afterwards."
+        },
+        "Dimension pierce": {
+          "what": "Stands still while purple lines appear at a slant, then one or two thick purple beams strike along them, one after the other.",
+          "tip": "Leave each line before its beam falls: it strikes along the whole line. She uses it whenever it is ready again."
+        },
+        "Range attack homing": {
+          "what": "Dark purple orbs appear in the air around her and fire purple beams that meet where you stand. In the Dark Mirror there are more orbs.",
+          "tip": "The beams aim at your spot when they fire: keep moving so they cross behind you."
+        }
+      }
+    },
+    "Chimera": {
+      "about": "A monstrous creature bred in the alchemists' laboratory, the boss of the third chapter. Below half health all its moves get faster, and every 30 seconds it adds Wreck drop, a combo with Venom breath and Wreck destroy.",
+      "moves": {
+        "Bite": {
+          "what": "Lunges its heads forward and bites at the floor right in front of it.",
+          "tip": "Only when you are right in front of it, and rarely. Keep a little distance from its heads when you are not attacking."
+        },
+        "Stomp": {
+          "what": "Raises a front paw and stomps the floor in front of it, one to three times in a row.",
+          "tip": "Only when you are close, at most every 7 seconds. Step back out of reach when the paw rises and come back in after the last stomp."
+        },
+        "Venom fall": {
+          "what": "Rears up and roars at the ceiling, then venom pours down from the ceiling in four columns spread across the room, one after another, the last two together. In the Dark Mirror an extra attack follows at the end.",
+          "tip": "Each column falls in its own spot: stand between them and move only when the next one starts. Afterwards it rests for a while (longer below half health and in the Dark Mirror), a good time to attack. At most every 7 seconds."
+        },
+        "Venom ball": {
+          "what": "Opens its jaws and spits a big ball of venom that bounces through the room.",
+          "tip": "It goes straight into its next move without a pause: keep an eye on the ball while you dodge what comes next."
+        },
+        "Venom cannon": {
+          "what": "Fires blobs of venom in high arcs across the room; they burst into purple spikes where they land.",
+          "tip": "Watch where the blobs come down and keep out of those spots until the spikes are gone."
+        },
+        "Subject drop": {
+          "what": "Rears up and roars at the ceiling; rocks and green specimen tanks fall, and the tanks release small test subjects that join the fight.",
+          "tip": "Every 20 seconds. Deal with the test subjects quickly, or keep them in view while you fight Chimera."
+        },
+        "Wreck drop": {
+          "what": "From half health on: leaps out of sight, a red warning line glows along the whole floor, then it crashes back down in a cloud of dust and rubble falls from the ceiling. Venom breath and Wreck destroy always follow.",
+          "tip": "Be in the air when the red line glows and it lands. The rubble stays standing: use it as cover from the Venom breath that comes next. Every 30 seconds."
+        },
+        "Venom breath": {
+          "what": "Sprays a stream of venom from the snake on its back, first at its own feet, then sweeping out across the whole room.",
+          "tip": "Comes only right after Wreck drop. Hide behind a piece of rubble on the side away from Chimera: the rubble catches the venom."
+        },
+        "Wreck destroy": {
+          "what": "Rears up and slams down with a huge stomp that smashes all the rubble on the floor.",
+          "tip": "The end of the rubble combo. Step away from the rubble before the slam: each piece bursts when it breaks."
+        }
+      }
+    },
+    "Pope": {
+      "about": "St. Joan II, the boss of the fourth chapter. In the first phase she sits on her throne behind a barrier while fanatics attack: break the two dark crystals beside her to end it (in the Dark Mirror the crystals take turns being shielded). In the second phase she flies over platforms, guarded by escort orbs circling the hall; in the Dark Mirror the platforms you stand on are attacked every now and then.",
+      "moves": {
+        "Nervousness": {
+          "what": "Trembles on her throne, then a flash of light bursts in front of her and golden shock waves roll along the floor to both sides.",
+          "tip": "Jump over the shock waves as they reach you."
+        },
+        "Baptism": {
+          "what": "Raises her staff; a burst of light rays flashes from its head, then golden orbs fly up and rain down across the hall, leaving small light pillars where they land.",
+          "tip": "Watch the orbs as they come down and step between their landing spots."
+        },
+        "Worship": {
+          "what": "Columns of big golden orbs float in from the sides of the hall and sweep across it.",
+          "tip": "Watch where each column passes and move through the gaps between them."
+        },
+        "Consecration": {
+          "what": "A thin line of light marks a spot, then a huge pillar of golden light beams down there and moves along the floor after you. Half of the time Nervousness follows.",
+          "tip": "Leave the marked line before the pillar comes down and keep ahead of it while it moves."
+        },
+        "Choice": {
+          "what": "Every fanatic in the hall sacrifices itself at once and turns into a tentacle.",
+          "tip": "Only after a dark crystal is broken, and only while fanatics are around: clear fanatics quickly so few are left to turn."
+        },
+        "Summon escort": {
+          "what": "Opens the second phase: she teleports away, her throne vanishes, platforms appear, and she returns floating in the middle while purple escort orbs start circling the hall.",
+          "tip": "The escort orbs hurt on touch and shoot now and then: keep track of their circle while you fight."
+        },
+        "Control escort": {
+          "what": "Widens or tightens the circle of the escort orbs.",
+          "tip": "When the circle changes, step out of the orbs' new path."
+        },
+        "Grace": {
+          "what": "Flies to the top of the hall; a golden halo shines and fans of light beams sweep down across the room, three times.",
+          "tip": "The beams fan out from her: stand in a gap between them and move when the next fan starts."
+        },
+        "Soul chase": {
+          "what": "Teleports to a new spot and sends a glowing soul orb that chases you for a while.",
+          "tip": "Keep moving so the orb trails behind you, and turn sharply to make it overshoot."
+        },
+        "Divine impact": {
+          "what": "Glowing orbs drop onto the platforms and burst into rings of holy light, one after another.",
+          "tip": "Watch where each orb lands and stay off that spot until its ring is gone."
+        },
+        "Divine light": {
+          "what": "Teleports to the edge of the hall and fires a huge golden beam straight across the room at your height, once or twice in a row.",
+          "tip": "Change height right before she fires: jump up to another platform or drop down."
+        },
+        "Embrace": {
+          "what": "Flies to the middle and opens a black void that pulls you toward her, then it turns golden and bursts into rays of light, several times.",
+          "tip": "Work against the pull, then stand in a gap between the rays when the light bursts out."
+        },
+        "Priest summon": {
+          "what": "Flies over the hall and drops glowing orbs that burst into clerics on the platforms.",
+          "tip": "Only when no cleric is left. Defeat them quickly."
+        },
+        "Purification": {
+          "what": "Teleports to the side; white flames rise on the platforms and grow into tentacles.",
+          "tip": "Only while a platform has no tentacle yet. Destroy the tentacles on the platforms you use."
+        },
+        "Sacrament": {
+          "what": "Teleports away; purple circles mark spots all over the screen, then each one bursts into a flash of light.",
+          "tip": "Look for a spot no circle covers before they burst, and stay there."
+        },
+        "Divine cross": {
+          "what": "Golden rings mark spots on the platforms and light pillars rise there, then a huge cross of light beams appears over a platform and turns around its center.",
+          "tip": "Stay away from the center and move with the gaps as the cross turns. She rests for a long time afterwards."
+        },
+        "Super baptism": {
+          "what": "Flies to a corner and raises her staff; a storm of golden orbs bursts out and rains over the whole room, golden rings marking where they land.",
+          "tip": "Watch the rings on the floor and stand where there is none. She rests afterwards."
+        }
+      }
+    },
+    "FirstHero1": {
+      "about": "First Hero, the Sword of Carleon, the boss of the fifth chapter. His first form fights with a spear: above 65 % health he uses his basic moves, below that enhanced versions with red shock waves, Hero landing, Assassination and Energy ball, and below 30 % health also Big bang.",
+      "moves": {
+        "Landing": {
+          "what": "Leaps high into the air and crashes down on your position in a fiery explosion of rubble, then takes a moment to stand up.",
+          "tip": "Move away from the spot below him before he lands. While he stands up after landing you can hit him."
+        },
+        "Landing short": {
+          "what": "A Landing without the long recovery: he leaps, crashes down in a fiery explosion and is ready again quickly.",
+          "tip": "Get out from under him before he lands; there is little time to counter afterwards."
+        },
+        "Landing (skip end motion)": {
+          "what": "A Landing that goes straight into a dash along the floor instead of standing up.",
+          "tip": "After dodging the landing, be ready to jump over the dash."
+        },
+        "Landing long": {
+          "what": "A Landing with the full recovery, followed by a back dash, a dash at you and two slashes.",
+          "tip": "Dodge the landing, then step back from the slashes that follow; attack after the last one."
+        },
+        "Skip landing long end motion -> double slash": {
+          "what": "A Landing that skips the recovery: right after the crash he back-dashes, dashes at you and slashes twice.",
+          "tip": "Dodge the landing and keep your distance: the slashes come right after it."
+        },
+        "Dash": {
+          "what": "A quick dash along the floor to change position.",
+          "tip": "Usually leads into another move: watch what follows."
+        },
+        "Back dash": {
+          "what": "Hops back away from you.",
+          "tip": "Comes when you are close; he often attacks again right after."
+        },
+        "Dash chase": {
+          "what": "Crouches, then dashes along the floor straight at you and follows up with a slash.",
+          "tip": "Jump over the dash, then keep away from the slash."
+        },
+        "Dash chase + Slam": {
+          "what": "Dashes along the floor at you, then slams his spear into the ground with a burst of dust.",
+          "tip": "Jump over the dash and step back from the slam. Sometimes he skips the recovery and moves on at once."
+        },
+        "Slam": {
+          "what": "Raises his spear and slams it into the ground in front of him with a burst of dust.",
+          "tip": "Step back out of reach when the spear goes up."
+        },
+        "Dash after landing -> slam": {
+          "what": "After a landing he dashes at you and slams his spear into the ground with a burst of dust.",
+          "tip": "After dodging the landing, jump over the dash and step back from the slam."
+        },
+        "Horizontal slash": {
+          "what": "Draws his spear back, then swings it in a wide horizontal arc in front of him.",
+          "tip": "Step back out of reach during the windup and hit him after the swing."
+        },
+        "Vertical slash": {
+          "what": "Steps in and swings his spear up in a high vertical arc in front of him.",
+          "tip": "The arc reaches high: dodge back rather than jumping over him."
+        },
+        "Long slash": {
+          "what": "Leans back, then lunges far forward with a long sweeping slash along the floor.",
+          "tip": "It reaches far: jump over it or stay well out of range."
+        },
+        "Triple dash slash": {
+          "what": "Dashes across the floor three times, slashing at the end of each dash; the last is a long slash.",
+          "tip": "Keep moving away and jump over each dash; attack after the long slash."
+        },
+        "Slash combo": {
+          "what": "A long chain: horizontal slash, a jump slash, a back dash, then a dash at you that ends in a long slash.",
+          "tip": "Back off during the chain and wait for the final long slash before you attack."
+        },
+        "Rush": {
+          "what": "Dashes in and unleashes a flurry of spinning spear sweeps and slashes, finishing with a horizontal slash.",
+          "tip": "Get away and wait it out: the flurry covers a wide area. At most every 40 seconds."
+        },
+        "Hero landing": {
+          "what": "Leaps out of sight and the hall darkens; red lightning pillars strike down one after another at the spots marked by red lines on the floor, then he lands.",
+          "tip": "Watch the red marks on the floor and stand where there are none. He uses it right as a new health phase begins and again later."
+        },
+        "Enhanced pierce": {
+          "what": "Crouches, then thrusts his spear forward and sends a red crescent shock wave flying along the floor.",
+          "tip": "Jump over the shock wave: it travels much farther than the spear."
+        },
+        "Enhanced horizontal slash": {
+          "what": "Swings his spear all the way around him, leaving a ring of red and black slashes.",
+          "tip": "The ring covers both sides of him: get well away before he swings."
+        },
+        "Enhanced vertical slash": {
+          "what": "A slow, heavy upward swing of his spear in a huge vertical arc.",
+          "tip": "The windup is long: step back out of reach and hit him after the swing."
+        },
+        "Enhanced slash combo": {
+          "what": "Jump slashes in a chain, then he lands and a row of red spikes bursts out of the floor in front of him, ending with a long slash.",
+          "tip": "Stay out of the row in front of him when he lands; attack after the long slash."
+        },
+        "Enhanced rush": {
+          "what": "Like Rush, but each spinning sweep throws red and black crescent slashes, and it ends with a long red slash line across the floor.",
+          "tip": "Get far away and jump over the final slash line. At most every 50 seconds."
+        },
+        "Grab dash": {
+          "what": "Dashes at you to grab you; if it catches you, he throws you.",
+          "tip": "Jump over the dash: a missed grab leaves him open."
+        },
+        "Grab combo": {
+          "what": "Reaches out to grab you up close; if it catches you, he follows with a combo and throws you.",
+          "tip": "Do not stand right next to him when his arm goes back."
+        },
+        "Assassination": {
+          "what": "Vanishes and reappears right next to you with a quick, low slash.",
+          "tip": "Comes when you are far away: keep moving so the slash misses, then punish his recovery."
+        },
+        "Energy ball": {
+          "what": "Throws several dark red orbs that float in the air for a moment and then burst into dark explosions.",
+          "tip": "Only when you are close and in the air: land or get away from the orbs before they burst."
+        },
+        "Big bang": {
+          "what": "Below 30 % health: the hall goes dark, he slashes again and again while huge white slash lines criss-cross the screen and red pillars rise, then he ends with a giant dark red explosion around himself.",
+          "tip": "The white lines show where the next slashes cut: stand between them. Get far away from him before the final explosion. At most every 100 seconds."
+        }
+      }
+    },
+    "AdventurerArcher": {
+      "moves": {
+        "Arrow shot": {
+          "what": "Draws the bow and shoots a fast arrow straight ahead.",
+          "tip": "Jump over the arrow or close in between shots."
+        },
+        "Push": {
+          "what": "Spins with the bow to knock you back when you come close.",
+          "tip": "Back off briefly when the spin starts, then go in again."
+        },
+        "Bird hunt": {
+          "what": "A red mark appears on the floor below you, then a green beam of light strikes down on it.",
+          "tip": "Step off the red mark before the beam falls."
+        },
+        "Back step": {
+          "what": "Leaps back away from you.",
+          "tip": "Comes when you are close: follow up quickly before the next shot."
+        },
+        "Back step trap": {
+          "what": "Leaps back and leaves a trap on the floor where she stood.",
+          "tip": "Do not chase straight in: jump over the trap."
+        },
+        "Arrow rain (special skill)": {
+          "what": "The special skill: a rain of arrows over a wide area.",
+          "tip": "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+        },
+        "Groggy": {
+          "what": "Stunned after the special skill was broken: stands dazed for a few seconds.",
+          "tip": "Free hits: use your strongest skills now."
+        }
+      }
+    },
+    "AdventurerCleric": {
+      "moves": {
+        "Consecration": {
+          "what": "A red line marks a strip of floor, then golden holy light blazes up along it for a while.",
+          "tip": "Step off the marked strip and stay off until the light fades."
+        },
+        "Holy cross": {
+          "what": "A red line marks a spot, then a big golden cross appears there and bursts.",
+          "tip": "Leave the marked spot before the cross appears."
+        },
+        "Heal": {
+          "what": "Kneels and prays; green light heals the adventurers.",
+          "tip": "Hit her while she prays, and defeat her first so the group stops healing."
+        },
+        "Reinforce": {
+          "what": "Prays while a blue aura rises around her: a blessing that strengthens the group.",
+          "tip": "Attack her during the prayer to keep the group from getting stronger."
+        },
+        "Massive heal (special skill)": {
+          "what": "The special skill: a big heal for the whole group.",
+          "tip": "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+        },
+        "Groggy": {
+          "what": "Stunned after the special skill was broken: stands dazed for a few seconds.",
+          "tip": "Free hits: use your strongest skills now."
+        }
+      }
+    },
+    "AdventurerHero": {
+      "moves": {
+        "Dash short": {
+          "what": "A short dash toward you.",
+          "tip": "Usually leads into an attack: be ready to dodge."
+        },
+        "Dash long": {
+          "what": "A long dash toward you.",
+          "tip": "Usually leads into an attack: be ready to dodge."
+        },
+        "Back dash": {
+          "what": "Hops back away from you.",
+          "tip": "Comes when you are close, at most every 10 seconds."
+        },
+        "Energy blast": {
+          "what": "Raises the sword and bursts a blue energy dome in front.",
+          "tip": "Step back out of the dome's reach, then hit back."
+        },
+        "Combo attack": {
+          "what": "A chain of sword slashes while stepping in, ending with an energy blast.",
+          "tip": "Back off until the final burst is over, then attack."
+        },
+        "Energy ball": {
+          "what": "Thrusts the sword and fires blue energy balls straight ahead.",
+          "tip": "Jump over the balls or change height."
+        },
+        "Sword aura wave (special skill)": {
+          "what": "The special skill: charges up, then sends several sword aura waves along the floor.",
+          "tip": "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+        },
+        "Groggy": {
+          "what": "Stunned after the special skill was broken: stands dazed for a few seconds.",
+          "tip": "Free hits: use your strongest skills now."
+        }
+      }
+    },
+    "AdventurerMagician": {
+      "moves": {
+        "Fire ball": {
+          "what": "Floats in the air and shoots a stream of fireballs straight ahead.",
+          "tip": "Change height or jump over the fireballs."
+        },
+        "Flame impact": {
+          "what": "Fire orbs drop near you and burst into rings of flame.",
+          "tip": "Watch where the orbs fall and stay out of the rings."
+        },
+        "Phoenix landing": {
+          "what": "Flies up; a pillar of fire strikes down and she lands in a burst of flame.",
+          "tip": "Move away from the pillar: the landing burst hurts all around her."
+        },
+        "Take off": {
+          "what": "Flies up into the air.",
+          "tip": "The next attack comes from above."
+        },
+        "Fire ball sub": {
+          "what": "While helping another adventurer: big rings of flame fly in from behind the fight.",
+          "tip": "Keep an eye on the rings while you fight the other adventurer."
+        },
+        "World on fire (special skill)": {
+          "what": "The special skill: flies up and rains orbs of fire over the whole area.",
+          "tip": "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+        },
+        "Groggy": {
+          "what": "Stunned after the special skill was broken: stands dazed for a few seconds.",
+          "tip": "Free hits: use your strongest skills now."
+        }
+      }
+    },
+    "AdventurerThief": {
+      "moves": {
+        "Flash cut": {
+          "what": "Vanishes and dashes through you with a fast slash.",
+          "tip": "Keep moving and jump when the thief reappears in front of you."
+        },
+        "Giant shuriken": {
+          "what": "Throws a big purple shuriken that flies across the room and comes back.",
+          "tip": "Dodge it twice: on the way out and on the way back."
+        },
+        "Shadow step": {
+          "what": "Teleports right next to you.",
+          "tip": "Usually leads into an attack: be ready to dodge."
+        },
+        "Shuriken": {
+          "what": "Throws small shurikens at you.",
+          "tip": "Jump over them or dodge between them."
+        },
+        "Shadow step air": {
+          "what": "Teleports into the air near you and strikes down.",
+          "tip": "Move out from below."
+        },
+        "Multiple bunshin (special skill)": {
+          "what": "The special skill: shadow clones appear and slash across the floor several times.",
+          "tip": "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+        },
+        "Groggy": {
+          "what": "Stunned after the special skill was broken: stands dazed for a few seconds.",
+          "tip": "Free hits: use your strongest skills now."
+        }
+      }
+    },
+    "VeteranMagician": {
+      "moves": {
+        "Flame rain (start)": {
+          "what": "Flies high and rains drops of fire that set flames burning on the floor and platforms.",
+          "tip": "Watch where the drops land and stay off the burning spots until they go out."
+        },
+        "Flame rain": {
+          "what": "Flies high and rains drops of fire that set flames burning on the floor and platforms.",
+          "tip": "Watch where the drops land and stay off the burning spots until they go out."
+        },
+        "Flame wing": {
+          "what": "Spreads wings of flame and sweeps a wave of fire across the room; the embers burst into flames on the floor.",
+          "tip": "Get above or below the wave, then avoid the flames on the floor."
+        },
+        "Fire ball": {
+          "what": "Shoots fireballs that leave a trail of smoke.",
+          "tip": "Change height or jump over them."
+        },
+        "Flame circle": {
+          "what": "Fireballs swirl around her in a growing spiral, then fly outward in every direction.",
+          "tip": "Keep your distance and look for the gaps between the fireballs as they spread."
+        },
+        "Flame impact": {
+          "what": "Sends rings of flame rolling forward.",
+          "tip": "Jump over the rings or change height."
+        },
+        "Phoenix landing": {
+          "what": "Dives down in a streak of fire.",
+          "tip": "Move away from where she is diving."
+        },
+        "Flame storm": {
+          "what": "The screen darkens and flames creep along the floor, then huge pillars of fire erupt across the room in groups with gaps between them.",
+          "tip": "Find a gap between the pillar groups before they erupt and stay in it."
+        },
+        "World on fire": {
+          "what": "A pillar of fire rises, then rows of fire orbs spread across the room and drop flames below.",
+          "tip": "Stay between the orbs and keep moving as the flames fall."
+        },
+        "Rising (high)": {
+          "what": "Flies up high.",
+          "tip": "Moves to a new height for her next spell."
+        },
+        "Rising (low)": {
+          "what": "Flies up a little.",
+          "tip": "Moves to a new height for her next spell."
+        }
+      }
+    },
+    "VeteranWarrior": {
+      "moves": {
+        "Stamping": {
+          "what": "Leaps at you and stamps down; rocks fly up from the impact.",
+          "tip": "Move away from where he lands."
+        },
+        "Guard": {
+          "what": "Raises a golden shield that blocks attacks from the front.",
+          "tip": "Attack from behind or wait until he lowers it. When you are close, at most every 10 seconds."
+        },
+        "Mace rush": {
+          "what": "Charges along the floor dragging his mace, then smashes up a pillar of rock.",
+          "tip": "Jump over the charge and stay clear of the rock pillar."
+        },
+        "Body tank": {
+          "what": "Charges shield-first across the floor, ramming everything in his way, several times.",
+          "tip": "Jump over each charge; hit him from behind after it passes."
+        },
+        "Mace slam": {
+          "what": "Slams his mace into the ground; a red mark appears at your spot and a rock spike shoots up there.",
+          "tip": "Step off the red mark right away."
+        },
+        "Whirlwind": {
+          "what": "Spins with his mace and moves toward you in a whirlwind.",
+          "tip": "Keep away until he stops spinning. Below 70 % health, at most every 50 seconds."
+        },
+        "Earthquake": {
+          "what": "Slams the ground; red lines glow along the floor and rocks burst out of it.",
+          "tip": "Be in the air or on a platform when the rocks burst out."
+        },
+        "Fury of earth": {
+          "what": "Gathers power while the screen darkens, leaps up, a red line glows along the floor, and rocks rain down across the whole room.",
+          "tip": "Hit him while he gathers power, then dodge between the falling rocks. Below 40 % health, at most every 80 seconds."
+        }
+      }
+    },
+    "DarkSkul1": {
+      "about": "A dark copy of Skul, met only in the Dark Mirror. He fights with his bone and his own head; below 55 % health he adds Special bone rain, Raise bone rain and Earthshatter.",
+      "moves": {
+        "Dash": {
+          "what": "A quick dash along the floor.",
+          "tip": "Usually leads into an attack: be ready to dodge."
+        },
+        "Upper attack": {
+          "what": "Swings his bone upward in a big purple arc in front of him.",
+          "tip": "Stay out of the arc in front of him; Upper attack finish can follow from above."
+        },
+        "Upper attack finish": {
+          "what": "Leaps into the air and smashes down with a purple rune circle and a burst of dust.",
+          "tip": "Move away from the spot below him."
+        },
+        "Head hunting": {
+          "what": "Leaps at you and smashes down with a purple slash and a burst of dust.",
+          "tip": "Comes when you are far away: dash away from where he lands."
+        },
+        "Throw head": {
+          "what": "Throws his head along the floor; it bursts in purple flashes across the room and comes back to him.",
+          "tip": "Jump over the head on the way out and on the way back."
+        },
+        "Jump throw head": {
+          "what": "Jumps and throws his head down at you; a red line marks where it strikes.",
+          "tip": "Step off the red line."
+        },
+        "Melee attack": {
+          "what": "Two wide sweeps of his bone in front of him.",
+          "tip": "Step back out of reach, then hit him after the second sweep."
+        },
+        "Swing attack": {
+          "what": "Drags his bone along the floor: red warning lines move across the room and bone spikes shoot up behind them one after another.",
+          "tip": "Watch the red lines and step out of each one before its spike comes."
+        },
+        "Hard smash": {
+          "what": "Smashes the ground in front of him with a burst of purple spikes, then smashes again with a dark eruption.",
+          "tip": "Keep away from the front until both smashes are done."
+        },
+        "Leap and throw bone": {
+          "what": "Leaps up and throws spinning bones that scatter down across the floor.",
+          "tip": "Comes when you are close. Watch where the bones fall and step between them."
+        },
+        "Execution": {
+          "what": "The room goes dark, red lines mark spots and bone spikes shoot up there, then he strikes with a blinding flash and a purple explosion.",
+          "tip": "Stay off the red lines, then get away from the flash."
+        },
+        "Seperate body": {
+          "what": "Breaks apart in a purple flash; dark crystal shards strike down around the room one after another while his bones fly about, then he puts himself back together.",
+          "tip": "Keep moving: the shards strike in many spots. In the second phase at most every 30 seconds."
+        },
+        "Bone rain": {
+          "what": "Throws bones high into the air that rain down as purple bolts.",
+          "tip": "Comes when you are far away: keep moving while the bolts fall."
+        },
+        "Special bone rain": {
+          "what": "A dark swarm of bones gathers around him, then shoots up and rains down as purple bolts over a wide area.",
+          "tip": "Get far from him while the bones gather, and keep moving while they fall."
+        },
+        "Raise bone rain": {
+          "what": "Jumps up and crashes down with his bone; bones rise out of the floor across the room.",
+          "tip": "Be in the air or on a high spot when the bones rise."
+        },
+        "Earthshatter": {
+          "what": "A crosshair marks you, he hurls his bone at it, and a wave of purple crystal spikes erupts along the floor.",
+          "tip": "Move off the crosshair, then jump over or away from the spike wave."
+        }
+      }
+    },
+    "DarkSkul2": {
+      "about": "Dark Skul's second phase. He switches between three forms: Balance (the moves of his first phase), Power (fiery fists) and Speed (javelin and fast dashes). Below 55 % health each form has a big special move.",
+      "moves": {
+        "Dash": {
+          "what": "A quick dash along the floor.",
+          "tip": "Usually leads into an attack: be ready to dodge."
+        },
+        "Upper attack": {
+          "what": "Swings his bone upward in a big purple arc in front of him.",
+          "tip": "Stay out of the arc in front of him; Upper attack finish can follow from above."
+        },
+        "Upper attack finish": {
+          "what": "Leaps into the air and smashes down with a purple rune circle and a burst of dust.",
+          "tip": "Move away from the spot below him."
+        },
+        "Head hunting": {
+          "what": "Leaps at you and smashes down with a purple slash and a burst of dust.",
+          "tip": "Comes when you are far away: dash away from where he lands."
+        },
+        "Throw head": {
+          "what": "Throws his head along the floor; it bursts in purple flashes across the room and comes back to him.",
+          "tip": "Jump over the head on the way out and on the way back."
+        },
+        "Jump throw head": {
+          "what": "Jumps and throws his head down at you; a red line marks where it strikes.",
+          "tip": "Step off the red line."
+        },
+        "Melee attack": {
+          "what": "Two wide sweeps of his bone in front of him.",
+          "tip": "Step back out of reach, then hit him after the second sweep."
+        },
+        "Swing attack": {
+          "what": "Drags his bone along the floor: red warning lines move across the room and bone spikes shoot up behind them one after another.",
+          "tip": "Watch the red lines and step out of each one before its spike comes."
+        },
+        "Hard smash": {
+          "what": "Smashes the ground in front of him with a burst of purple spikes, then smashes again with a dark eruption.",
+          "tip": "Keep away from the front until both smashes are done."
+        },
+        "Leap and throw bone": {
+          "what": "Leaps up and throws spinning bones that scatter down across the floor.",
+          "tip": "Comes when you are close. Watch where the bones fall and step between them."
+        },
+        "Execution": {
+          "what": "The room goes dark, red lines mark spots and bone spikes shoot up there, then he strikes with a blinding flash and a purple explosion.",
+          "tip": "Stay off the red lines, then get away from the flash."
+        },
+        "Seperate body": {
+          "what": "Breaks apart in a purple flash; dark crystal shards strike down around the room one after another while his bones fly about, then he puts himself back together.",
+          "tip": "Keep moving: the shards strike in many spots. In the second phase at most every 30 seconds."
+        },
+        "Bone rain": {
+          "what": "Throws bones high into the air that rain down as purple bolts.",
+          "tip": "Comes when you are far away: keep moving while the bolts fall."
+        },
+        "Special bone rain": {
+          "what": "A dark swarm of bones gathers around him, then shoots up and rains down as purple bolts over a wide area.",
+          "tip": "Get far from him while the bones gather, and keep moving while they fall."
+        },
+        "Raise bone rain": {
+          "what": "Jumps up and crashes down with his bone; bones rise out of the floor across the room.",
+          "tip": "Be in the air or on a high spot when the bones rise."
+        },
+        "Earthshatter normal": {
+          "what": "A crosshair marks you, he hurls his bone at it, and a wave of purple crystal spikes erupts along the floor.",
+          "tip": "Move off the crosshair, then jump over or away from the spike wave."
+        },
+        "Punch": {
+          "what": "Power form: punches forward again and again, each punch exploding in fire in front of him.",
+          "tip": "Stay out of the explosions in front of him; attack from behind or after the last punch."
+        },
+        "Punch fast ignition": {
+          "what": "Power form: crouches, then unleashes a fast flurry of punches with a stream of fiery explosions far in front of him.",
+          "tip": "The crouch is the warning: get behind him or far away."
+        },
+        "Rush": {
+          "what": "Power form: charges at you with his fist forward, ending in an eruption of purple spikes.",
+          "tip": "Jump over the charge and stay away from where it ends."
+        },
+        "Finish": {
+          "what": "Power form: ends a charge with a slash, then stamps the ground.",
+          "tip": "Back off after dodging the charge: the stamp comes right after."
+        },
+        "Groggy": {
+          "what": "Power form: drops to the floor, worn out, for a moment.",
+          "tip": "A safe moment to attack."
+        },
+        "Stamping": {
+          "what": "Power form: leaps around the room and stamps down with fiery explosions.",
+          "tip": "Watch where he lands and move away from it."
+        },
+        "Stamping center": {
+          "what": "Power form: leaps to the middle of the room and stamps down.",
+          "tip": "Keep away from the middle when he jumps."
+        },
+        "Stomp": {
+          "what": "Power form: leaps up; a red line glows along the floor, red marks appear, and pillars of fire erupt in a row.",
+          "tip": "Get off the marked floor: be in the air or on a platform when the fire erupts."
+        },
+        "Stomp bone recovery": {
+          "what": "Power form: after the fire pillars he picks his bone back up.",
+          "tip": "A short pause: a chance to hit him."
+        },
+        "Special move": {
+          "what": "Power form: gathers power, then presses down on the ground again and again and ends with a huge press down.",
+          "tip": "Stay away from him until the last, biggest press down is over."
+        },
+        "To power switching": {
+          "what": "Switches to Power form in a cloud of dark smoke; purple orbs fall and fiery explosions burst around him.",
+          "tip": "Keep your distance while he switches."
+        },
+        "To balance switching": {
+          "what": "Switches to Balance form in a cloud of dark smoke, then swings his bone in big purple arcs.",
+          "tip": "Keep your distance while he switches."
+        },
+        "To speed switching": {
+          "what": "Switches to Speed form: a white crescent slash, then a long red slash line along the floor and red crescent waves.",
+          "tip": "Jump over the red line along the floor."
+        },
+        "Fast move aerial": {
+          "what": "Speed form: darts through the air to a new spot.",
+          "tip": "Speed form moves are fast: keep moving and watch for the attack that follows."
+        },
+        "Fast move on ground": {
+          "what": "Speed form: darts along the floor to a new spot.",
+          "tip": "Speed form moves are fast: keep moving and watch for the attack that follows."
+        },
+        "Wide sweep": {
+          "what": "Speed form: a crosshair marks you, then he dashes in with a huge purple sweeping slash.",
+          "tip": "Move off the crosshair right away."
+        },
+        "Joint sweep": {
+          "what": "Speed form: a crosshair marks you, a purple slash and ring portals appear, then a long purple sweep runs along the floor.",
+          "tip": "Leave the crosshair, then jump over the sweep along the floor."
+        },
+        "First step horizontal dash": {
+          "what": "Speed form: a crosshair marks you, a purple slash, then he dashes straight across the room with a slash.",
+          "tip": "Jump over the dash."
+        },
+        "First step falling dash": {
+          "what": "Speed form: a crosshair marks you, a purple slash, then he dives at you diagonally from above.",
+          "tip": "Dash away from the crosshair as he comes down."
+        },
+        "Spike field": {
+          "what": "Speed form: darts around, a red line glows along the whole floor, and a field of white spikes erupts across it.",
+          "tip": "Be in the air or on a platform when the spikes come up."
+        },
+        "Fast move 2 javelin combo": {
+          "what": "Speed form: darts in and strikes with his javelin several times in a row.",
+          "tip": "Keep moving away until the combo ends."
+        },
+        "Punto (fade)": {
+          "what": "Speed form: a purple ring portal opens, he thrusts out of it, and a streak shoots along the floor.",
+          "tip": "Jump over the streak along the floor."
+        },
+        "Spike spot (fade)": {
+          "what": "Speed form: a crosshair appears on the floor, a red line runs along it, and he slashes up out of the ground there.",
+          "tip": "Step off the crosshair."
+        },
+        "Javelin": {
+          "what": "Speed form: a red aim line crosses the room, then he hurls his javelin along it.",
+          "tip": "Get off the red line before he throws."
+        },
+        "Javelin grab on wall": {
+          "what": "Speed form: clings to the wall and throws a row of javelins across the room.",
+          "tip": "Dodge the javelins: if one catches you, the screen turns red and he follows with a combo."
+        },
+        "Javelin grab on ground": {
+          "what": "Speed form: a row of white spikes rises, then he throws javelins from the ground.",
+          "tip": "Dodge the javelins: if one catches you, the screen turns red and he follows with a combo."
+        },
+        "Star fall ready": {
+          "what": "Crouches and gathers power, a dark pillar rises, and purple stars fly up and rain down.",
+          "tip": "Keep moving while the stars fall. At most every 30 seconds."
+        },
+        "Super bone rain": {
+          "what": "A dark swarm of bones gathers around him, then shoots up and rains down as purple bolts over a wide area.",
+          "tip": "Get far from him while the bones gather, and keep moving while they fall."
+        },
+        "Speed": {
+          "what": "Speed form's special move: a long chain of red warning lines, bone spikes, purple slashes and dashes, ending with a field of spikes across the whole floor.",
+          "tip": "Stay off the red lines throughout and be in the air or on a platform at the end."
+        },
+        "Power": {
+          "what": "Power form's special move: fiery fist blows and explosions, a purple dome, and a rain of bones.",
+          "tip": "Keep your distance during the blows and keep moving under the bones."
+        },
+        "Grab combination": {
+          "what": "Balance form's special move: dashes to grab you; if it catches you, the room changes, lightning strikes and he slashes you again and again before spikes erupt.",
+          "tip": "Avoid the grab at all costs: jump over his dash."
+        },
+        "Unstoppable": {
+          "what": "Power form: during his charge he keeps rushing forward and cannot be stopped by hits.",
+          "tip": "Get out of his path; don't try to stop the charge."
+        }
+      }
+    },
+    "FirstDarkHero": {
+      "about": "The First Hero consumed by darkness, met only in the Dark Mirror. He leaps between the floor and the walls with his dark blade and fights in three stages: each stage adds new moves, the last one Overrun, Execution, Thorny hell on wall and Big bang.",
+      "moves": {
+        "Dash ground to wall": {
+          "what": "Dashes from the floor up onto a wall.",
+          "tip": "Usually leads into an attack: be ready to dodge."
+        },
+        "Dash wall to wall": {
+          "what": "Dashes from one wall to the other.",
+          "tip": "Usually leads into an attack: be ready to dodge."
+        },
+        "Raid": {
+          "what": "Dives diagonally across the room from the wall with a purple slash streak.",
+          "tip": "Watch which wall he is on and move out of his diving line."
+        },
+        "Wall to target raid": {
+          "what": "From the wall, dashes straight at you along a dark line with slashes.",
+          "tip": "The dark line shows his path: step off it."
+        },
+        "Dark blast ground": {
+          "what": "Strikes the ground; thin glowing lines mark spots, then dark eruptions with a demon face burst up there, followed by a dark crescent.",
+          "tip": "Step off the glowing lines before the eruptions."
+        },
+        "Air slash wave": {
+          "what": "Leaps up and fires crescent slash waves down at the floor; they burst into dark flames.",
+          "tip": "Watch where the waves land and stay out of the flames."
+        },
+        "Air slash wave (enhanced)": {
+          "what": "Crescent slash waves, then a huge pillar of dark energy, followed by rows of red claws and dark thorns bursting out across the floor.",
+          "tip": "Stay away from the pillar and look for the gaps between the claws. At most every 90 seconds."
+        },
+        "Dark stomp (enhanced)": {
+          "what": "Leaps and stomps down again and again; tall pillars of dark energy rise where he lands.",
+          "tip": "Keep moving away from each landing spot."
+        },
+        "Dark seed (enhanced)": {
+          "what": "Throws a spray of spiky dark seeds that scatter across the room and burst on the floor.",
+          "tip": "Watch where the seeds land and stand between them."
+        },
+        "Triple thorn": {
+          "what": "Crouches, then three rows of dark thorns erupt from the floor in front of him, one after another.",
+          "tip": "Get behind him or well away from his front."
+        },
+        "Slash wave": {
+          "what": "Swings his blade and sends a purple slash wave along the floor.",
+          "tip": "Jump over the wave."
+        },
+        "Double slash": {
+          "what": "Two quick slashes in front of him.",
+          "tip": "Comes when you are close: step back, then punish."
+        },
+        "Grab dash try": {
+          "what": "Dashes along the floor to grab you.",
+          "tip": "Jump over the dash: if it catches you, he smashes you."
+        },
+        "Grab dash smash": {
+          "what": "If his grab dash catches you, he slams you into the ground.",
+          "tip": "Jump over the dash: if it catches you, he smashes you."
+        },
+        "Grab dash smash (enhanced)": {
+          "what": "Like Grab dash smash, but the slam also raises pillars of dark energy.",
+          "tip": "Jump over the dash: if it catches you, he smashes you."
+        },
+        "Dash grab fail": {
+          "what": "His grab dash missed: he stumbles and recovers.",
+          "tip": "Your chance to hit him."
+        },
+        "Grab": {
+          "what": "Reaches out to grab you up close; if it catches you, he follows with blows.",
+          "tip": "Do not stand right next to him."
+        },
+        "Dimension slash": {
+          "what": "A white ring grows around you, then a huge white crescent slash cuts through it, followed by slashes from the floor.",
+          "tip": "Get out of the ring before it is cut."
+        },
+        "Dimension rush": {
+          "what": "Rushes along the floor, raising a trail of dark thorns behind him.",
+          "tip": "Jump over him and keep off the thorns."
+        },
+        "Zigzag rush": {
+          "what": "Zigzags back and forth across the room, slashing as he goes.",
+          "tip": "Keep moving and jump when he comes at you."
+        },
+        "Dark cannon": {
+          "what": "Charges a dark orb and fires a beam, then the orb drifts toward you and bursts in white and purple lightning.",
+          "tip": "Dodge the beam, then get far from the orb before it bursts."
+        },
+        "Giant mouth": {
+          "what": "A red line glows along the floor, curtains of dark energy rise and a giant dark mouth bursts out of the ground, then dark tendrils follow.",
+          "tip": "Get off the floor when the red line glows. At most every 90 seconds."
+        },
+        "Thorny hell on ground": {
+          "what": "A red line glows along the whole floor, then a field of dark thorns erupts across it.",
+          "tip": "Be in the air or on a platform when the thorns come up."
+        },
+        "Thorny hell on wall": {
+          "what": "Clings to a wall, the wall glows red, then rows of dark thorns shoot out across the room.",
+          "tip": "Find the gap between the rows and stay in it."
+        },
+        "Overrun": {
+          "what": "Dark lines criss-cross the screen and he slashes along them again and again; then a red frame closes around the room and the floor fills with spikes.",
+          "tip": "Stay between the lines, and be in the air when the red frame appears."
+        },
+        "Execution": {
+          "what": "A white ring closes in around you; if he catches you, the screen turns red and he strikes you hard. He does it several times.",
+          "tip": "Dash out of each ring before it closes."
+        },
+        "Big bang": {
+          "what": "Slashes criss-cross the room, then a dark orb drifts after you, charges up and bursts in a huge blast of lightning.",
+          "tip": "Lead the orb away and get as far from it as you can before it bursts."
+        },
+        "Summon thorn": {
+          "what": "Beside his other moves, about every half minute: dark thorns burst up out of the floor.",
+          "tip": "Watch the floor and step away when the thorns rise."
+        },
+        "Dark orb fragments": {
+          "what": "From the second stage, beside his other moves: small dark orbs appear in the air across the room and then strike.",
+          "tip": "Keep moving and don't stand under them."
+        },
+        "Dark blast wall": {
+          "what": "From the second stage, beside his other moves: a dark blast bursts out of the wall.",
+          "tip": "Keep away from the walls when it comes."
+        },
+        "Dark orb": {
+          "what": "In the last stage, about every 100 seconds, beside his other moves: a big dark orb appears in the room.",
+          "tip": "Keep your distance from the orb."
+        }
+      }
+    },
+    "Alexander1": {
+      "about": "Alexander, Emperor of Carleon, the final boss of the Dark Mirror. In his first form he floats over the arena, throws dark matter, fires lasers and missiles, and reshapes the floor itself. Then his heart fights (second form), and at last he fights on foot, weakened (fourth form).",
+      "moves": {
+        "Warp quick": {
+          "what": "Vanishes and reappears elsewhere in a flash of dark energy.",
+          "tip": "He reappears close by: be ready for the next attack."
+        },
+        "Only warp in": {
+          "what": "Reappears after vanishing.",
+          "tip": "He reappears close by: be ready for the next attack."
+        },
+        "Only warp out": {
+          "what": "Vanishes between attacks.",
+          "tip": "He reappears close by: be ready for the next attack."
+        },
+        "Dark matter (vertical)": {
+          "what": "Drops a sphere of dark matter onto the floor below him.",
+          "tip": "Move out from under him."
+        },
+        "Dark matter (horizontal small)": {
+          "what": "Two large dark matter spheres form beside him, then they and smaller orbs fly across the room.",
+          "tip": "Watch the spheres' height and jump over or drop under them."
+        },
+        "Dark matter (horizontal big)": {
+          "what": "A huge dark matter sphere swells in front of him and rolls across the room.",
+          "tip": "Get above it on a platform or jump over it as it passes."
+        },
+        "Dark matter (horizontal burst)": {
+          "what": "Fires dark matter spheres across the room one after another; they burst where they hit.",
+          "tip": "Change height between shots."
+        },
+        "Flame impact": {
+          "what": "Throws a dark orb; red crescents strike, and it bursts into a swirling cosmic sphere where it lands.",
+          "tip": "Move away from where the orb lands."
+        },
+        "Chasing missile 3": {
+          "what": "Three purple missiles gather above, then dive at you one after another.",
+          "tip": "The missiles follow you: keep moving and turn sharply so they hit the floor behind you."
+        },
+        "Chasing missile 10": {
+          "what": "Ten purple missiles gather above, then dive at you one after another.",
+          "tip": "The missiles follow you: keep moving and turn sharply so they hit the floor behind you."
+        },
+        "Hexagon laser": {
+          "what": "Rises, and a glowing orb above him fires laser beams in all directions that turn around him, while dark orbs drift through the room.",
+          "tip": "Stay in a gap between the beams and move with it as they turn. At most every 20 seconds."
+        },
+        "To island": {
+          "what": "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into a single island floating over the void.",
+          "tip": "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+        },
+        "To island with platform": {
+          "what": "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into an island over the void with platforms.",
+          "tip": "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+        },
+        "To side": {
+          "what": "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into two sides with the void in the middle.",
+          "tip": "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+        },
+        "To flat spatial compression": {
+          "what": "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into a flat floor again.",
+          "tip": "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+        },
+        "Spatial compression": {
+          "what": "The space around him is compressed into a glowing box: the room turns into a starry void inside a cube.",
+          "tip": "An Explosion follows inside the box: keep your distance from him."
+        },
+        "Explosion": {
+          "what": "Inside the compressed space, red crescents swirl around him and burst into rings of energy.",
+          "tip": "Stay as far from him as the box allows."
+        },
+        "Spatial decompression": {
+          "what": "The box breaks open and dark matter spheres burst out of it.",
+          "tip": "Watch where the spheres fly and stay out of their way."
+        },
+        "Horizontal laser": {
+          "what": "Fires a long laser beam that sweeps along the floor, then sends missiles after you.",
+          "tip": "Jump over the beam, then keep moving for the missiles."
+        },
+        "Horizontal long laser (platform)": {
+          "what": "On the island arena: floats above, then fires a long laser straight across the whole screen at platform height.",
+          "tip": "Get off the platforms before it fires. At most every 100 seconds."
+        },
+        "Vertical long laser": {
+          "what": "Fires a long laser straight down from above.",
+          "tip": "Move sideways out of its line."
+        },
+        "Special move": {
+          "what": "Hexagon laser, then the arena flattens, and he shines inside a huge golden rune circle while giant spears sweep across the room and pink laser pillars burst out around him.",
+          "tip": "A long combination: dodge each spear as it sweeps and stay away from him when the laser pillars burst. At most every 20 seconds."
+        }
+      }
+    },
+    "Alexander2_Heart": {
+      "about": "Alexander's second form: the heart of his giant war machine. While both hands fight, they attack together with it; once a hand is destroyed, the heart fights on with stronger patterns built from three parts: dark balls rolling across the floor, dark lasers from its eye and its cannons, and dark ground (oil on the floor that ignites).",
+      "moves": {
+        "Ball-laser": {
+          "what": "Glowing pink rune balls roll across the floor while a laser column shoots down from the heart's eye.",
+          "tip": "Jump over the rolling balls and keep away from the laser column and the burning floor."
+        },
+        "Ground-ball": {
+          "what": "The floor bursts into dark flames in spots while pink rune balls roll across it.",
+          "tip": "Jump over the rolling balls and keep away from the laser column and the burning floor."
+        },
+        "Ground-laser": {
+          "what": "The floor bursts into dark flames in spots while the heart fires a laser column and its cannon sweeps a beam along the floor.",
+          "tip": "Jump over the cannon beam and stay off the burning spots."
+        },
+        "Laser-laser": {
+          "what": "The heart fires a laser column down while its cannons sweep bright beams across the floor from the sides.",
+          "tip": "Jump over each sweeping beam and avoid the column."
+        },
+        "Wave generator": {
+          "what": "A big rune wheel rolls across the floor while a laser column shoots down from the heart's eye.",
+          "tip": "Jump over the rolling balls and keep away from the laser column and the burning floor."
+        },
+        "Enhanced dark ball": {
+          "what": "Pink rune balls roll across the floor. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+          "tip": "Jump over the rolling balls and keep away from the laser column and the burning floor."
+        },
+        "Enhanced dark laser": {
+          "what": "The heart's cannons sweep beams along the floor and a laser column shoots down. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+          "tip": "Jump over the beams and keep away from the column."
+        },
+        "Enhanced dark ground": {
+          "what": "Red lines slash across the floor and dark fire bursts out there. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+          "tip": "Step off the red lines before the fire comes."
+        },
+        "Enhanced wave generator": {
+          "what": "A rune wheel rolls across the floor, the laser column shoots down, and dark fire bursts up along the floor. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+          "tip": "Jump over the rolling balls and keep away from the laser column and the burning floor."
+        },
+        "Dark big bang": {
+          "what": "A blue and a red orb appear on both sides, drift toward each other, and meet in the middle in a huge dark explosion.",
+          "tip": "Get to the edge of the room before the orbs meet."
+        },
+        "Cosmic explosion": {
+          "what": "Dark fire lights the floor, a black hole opens in the room, and after a while it erupts in blinding rays and a huge golden explosion.",
+          "tip": "Get far from the black hole before it erupts."
+        },
+        "Celestial meteor": {
+          "what": "Sparks fall onto the floor, red circles mark spots, and meteors crash down there in pink explosions.",
+          "tip": "Stay out of the red circles."
+        },
+        "Groggy": {
+          "what": "The heart is stunned for a while.",
+          "tip": "Attack the heart with everything you have."
+        },
+        "Groggy 2": {
+          "what": "The heart is stunned for a while.",
+          "tip": "Attack the heart with everything you have."
+        },
+        "Chase laser": {
+          "what": "While both hands fight: the cannon above fires a laser column straight down and slides it after you along the floor.",
+          "tip": "Keep moving: the column follows you."
+        },
+        "Enhanced chase laser": {
+          "what": "After a hand is destroyed, the stronger version: the cannon above fires a laser column down and chases you with it along the floor.",
+          "tip": "Keep running ahead of the column."
+        },
+        "Curtain laser": {
+          "what": "After a hand is destroyed: the cannon above fires a laser column straight down and sweeps it slowly across the whole floor like a curtain.",
+          "tip": "Stay ahead of the column, or slip past it while it moves."
+        },
+        "Targeting laser": {
+          "what": "With both hands destroyed: the cannon jumps from spot to spot and fires short laser columns down at where you stand.",
+          "tip": "Keep moving: each shot hits the spot you were on."
+        },
+        "Heart beat": {
+          "what": "With both hands destroyed: the heart's core throbs, then a ring of pink lightning bursts out of it and spreads across the whole room; it often beats again right after.",
+          "tip": "Jump over the ring's lower edge as it passes you."
+        },
+        "Drill missile": {
+          "what": "Red circles mark spots on the floor, then drill missiles burst up there in pink explosions.",
+          "tip": "Step out of the red circles."
+        },
+        "Dark ring": {
+          "what": "A dark ring forms on the left or right of the heart and bursts in a flash of dark energy.",
+          "tip": "Move to the other side when the ring appears."
+        },
+        "Dark bouncy ball": {
+          "what": "Dark balls are launched and bounce across the room, off the floor and the walls.",
+          "tip": "Watch their bounces and jump over them or pass under them."
+        },
+        "Bouncy ball": {
+          "what": "Small rune balls bounce along the floor. With one hand left, a big rune wheel (the enhanced wave generator) rolls across the room with them.",
+          "tip": "Jump over the balls and the wheel."
+        },
+        "Oil ball": {
+          "what": "Balls of dark oil fall onto the floor and leave pools that burn in purple flames. With one hand left, the heart adds a laser column from its eye or rolling dark balls; with no hands left, a rotating laser.",
+          "tip": "Stay off the burning pools and watch for the laser."
+        },
+        "Buzz saw": {
+          "what": "Saw blades shoot out and roll along the floor. With one hand left it is often followed by red lines that slash the floor and burst into dark fire, and about every two minutes by the Cosmic explosion: a black hole opens and erupts in a huge golden blast.",
+          "tip": "Jump over the saws; get far from the black hole before it erupts."
+        }
+      }
+    },
+    "Alexander4": {
+      "about": "Alexander's last form: weakened, he fights on foot with quartz crystals, bombs and teleports. Below half health he adds Overrun 2.",
+      "moves": {
+        "Grapple": {
+          "what": "Dashes at you; if he catches you, he leaps up with you and slams you down in a dark explosion.",
+          "tip": "Jump over the dash to avoid the grab."
+        },
+        "Surrounded bomb quartz": {
+          "what": "Throws a black bomb; red lines mark a star around it, then quartz crystals burst out along the lines.",
+          "tip": "Stand between the red lines before the crystals burst out."
+        },
+        "Surrounded bomb quartz 2": {
+          "what": "Throws a black bomb; red lines mark a star around it, then quartz crystals burst out along the lines. More lines, bigger crystals.",
+          "tip": "Stand between the red lines before the crystals burst out."
+        },
+        "Shoving": {
+          "what": "Lunges forward with a long quartz lance.",
+          "tip": "Jump over the lance or get out of its line."
+        },
+        "Teleport to player behind + Shoving": {
+          "what": "Teleports right behind you and lunges with his quartz lance.",
+          "tip": "When he vanishes, move at once: the lance comes from behind. At most every 45 seconds."
+        },
+        "Overrun": {
+          "what": "Small purple bombs rain over the room and pink spikes cover the floor while he strikes with a giant quartz lance, ending in a big red explosion.",
+          "tip": "Keep off the spiky floor, dodge the lance, and get away before the red explosion. At most every 45 seconds."
+        },
+        "Overrun 2": {
+          "what": "Below half health: quartz crystals grow around the room, a white flash fills the screen, lasers sweep across, and a huge cluster of crystals bursts up.",
+          "tip": "Keep moving, jump over the lasers and stay away from the crystals. At most every 45 seconds."
+        },
+        "Summon bombman": {
+          "what": "Summons small bomb creatures that fall around the room and explode into pillars of quartz and light.",
+          "tip": "Watch where they land and stay away until they have exploded."
+        },
+        "Dimensional": {
+          "what": "Sends a dark sphere rolling along the floor toward you.",
+          "tip": "Jump over the sphere."
+        },
+        "Curse of quartz": {
+          "what": "Black rings close around him, a white flash fills the screen, and a quartz crystal flies at you.",
+          "tip": "Dodge the crystal as soon as the flash ends."
+        },
+        "Teleport to": {
+          "what": "Teleports to a new spot while a row of quartz spikes erupts along the floor.",
+          "tip": "Be in the air when the spikes come up."
+        },
+        "Teleport out": {
+          "what": "Vanishes before an attack.",
+          "tip": "He reappears close by: be ready for the next attack."
         }
       }
     }

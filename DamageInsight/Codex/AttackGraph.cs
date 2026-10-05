@@ -205,7 +205,21 @@ public sealed partial class AttackGraph
         }
     }
 
-    private static MethodInfo RunOf(Type type) => AccessTools.Method(type, "CRun") is { } run && IsCoroutine(run) ? run : null;
+    private static MethodInfo RunOf(Type type) => FindMethod(type, "CRun") is { } run && IsCoroutine(run) ? run : null;
+
+    /// <summary>
+    /// The first method of that name on the type or a base type, or null; like AccessTools.Method without arguments,
+    /// but quiet: probing hundreds of component types for "CRun" made HarmonyX log a warning for every miss.
+    /// </summary>
+    internal static MethodInfo FindMethod(Type type, string name)
+    {
+        const BindingFlags all = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+        for (var t = type; t != null; t = t.BaseType)
+            foreach (var method in t.GetMethods(all))
+                if (method.Name == name)
+                    return method;
+        return null;
+    }
 
     /// <summary>Adds a tree node read from data (a BehaviorDesigner task); link it with <see cref="Link"/>.</summary>
     public Unit AddTreeUnit(Node owner, string name, Kind kind, IEnumerable<object> steps, string label, string tag)
@@ -500,6 +514,7 @@ public sealed partial class AttackGraph
         }
 
         MergeDuplicates();
+        DropSetup();
 
         foreach (var a in Attacks)
             a.IsTail = a.Steps.Count == 1 &&
@@ -589,6 +604,31 @@ public sealed partial class AttackGraph
         MergeLoop(); // whole again, a move may now equal another one ("Long slash" + its end motion = "Pierce")
     }
 
+    /// <summary>
+    /// The fight's setup is not a move: an action that plays no animation ("Initialize", run once at the start), alone
+    /// or followed by moves the book lists anyway (Dark Skul's opening upper attack, his first form switch).
+    /// </summary>
+    private void DropSetup()
+    {
+        if (StepKey == null)
+            return;
+        bool Silent(object step) => StepKey(step)?.EndsWith("|") == true;
+        // Only under a "run only once" block: other actions without animation are real moves (the Thief's shadow step).
+        bool Once(Unit u) => u.TypeName == "RunOnlyOnce" || u.Calls.Any(c => c.TypeName == "RunOnlyOnce");
+        foreach (var a in Attacks.Where(a => a.Steps.Any(Silent) && a.Units.Any(Once)).ToList())
+        {
+            var elsewhere = new HashSet<string>(Attacks.Where(o => o != a).SelectMany(o => o.Steps).Select(StepKey));
+            if (!a.Steps.Where(s => !Silent(s)).All(s => elsewhere.Contains(StepKey(s))))
+                continue;
+            Attacks.Remove(a);
+            foreach (var u in a.Units.Where(u => AttackOf(u) == a))
+            {
+                _attackOf.Remove(u);
+                u.Entry = false;
+            }
+        }
+    }
+
     private static readonly Regex EndFragment = new(@"(?i)^(.*\S)\s+end(\s+motion)?$");
 
     /// <summary>A section label ("Phase 2 · ...", "Pair phase · ..."): the same steps in two sections are two moves.</summary>
@@ -619,6 +659,22 @@ public sealed partial class AttackGraph
         while (n < wa.Length && n < wb.Length && string.Equals(wa[n], wb[n], StringComparison.OrdinalIgnoreCase))
             n++;
         return string.Join(" ", wa.Take(n)).Trim();
+    }
+
+    /// <summary>The last words all names share ("Long dash" + "Short dash" → "Dash"), or "" (also for fewer than two).</summary>
+    private static string CommonTail(List<string> names)
+    {
+        if (names.Count < 2 || names.Any(string.IsNullOrWhiteSpace))
+            return "";
+        var words = names.Select(n => n.Split(' ')).ToList();
+        int n = 0;
+        while (words.All(w => n < w.Length) &&
+               words.All(w => string.Equals(w[w.Length - 1 - n], words[0][words[0].Length - 1 - n], StringComparison.OrdinalIgnoreCase)))
+            n++;
+        if (n == 0 || words.Any(w => w.Length == n))
+            return ""; // "Dash" + "Long dash": one of them is the move itself, not a variant
+        string tail = string.Join(" ", words[0].Skip(words[0].Length - n));
+        return char.ToUpperInvariant(tail[0]) + tail.Substring(1);
     }
 
     /// <summary>A name without an end-motion suffix: "Slam (end)", "Slam end motion", "Slam + end motion" → "Slam".</summary>
@@ -794,13 +850,33 @@ public sealed partial class AttackGraph
             }
             return false;
         }
-        bool HasOwnMove(Unit sequence) => sequence.Calls.Any(c => c.Steps.Count > 0 && !IsContainer(c));
+        // Repeated dashes on the way there are not the sequence's own move (Dark Skul: dash until close, then Melee /
+        // Swing / Hard smash).
+        bool HasOwnMove(Unit sequence) => sequence.Calls.Any(c => c.Steps.Count > 0 && !IsContainer(c) && !IsRepeater(c));
+        bool IsRepeater(Unit u)
+        {
+            // through wrappers with one child ("Return Success" is a one-child dispatcher)
+            for (int i = 0; i < 8 && u.TypeName != "Repeater" && u.Own.Count == 0 && u.Calls.Count == 1; i++)
+                u = u.Calls[0];
+            return u.TypeName == "Repeater";
+        }
         bool IsRepeatOfOneMove(Unit u)
         {
-            if (u.TypeName != "Repeat") // the behaviour block with a count; not endless loops
-                return false;
             var moving = u.Calls.Where(c => c.Steps.Count > 0).ToList();
-            return moving.Count == 1 && !IsContainer(moving[0]);
+            if (moving.Count != 1)
+                return false;
+            if (u.TypeName == "Repeat") // the behaviour block with a count; not endless loops
+                return !IsContainer(moving[0]);
+            // BehaviorDesigner's Repeater: one action again and again (Dark Skul's "Press down" inside "Special move"),
+            // or dashes while you are far, then a short one that ends the repeat ("Return Failure"). The fight's loops
+            // and King Alexander's repeated warp-and-cast sequences stay dispatchers.
+            return u.TypeName == "Repeater" && (IsSingleMove(moving[0]) || IsVariantPick(moving[0]) && IsDashUntilClose(Unwrap(moving[0])));
+        }
+        // Variants of one move ("Long dash" / "Short dash"), the last of which ends the repeat.
+        bool IsDashUntilClose(Unit pick)
+        {
+            var variants = pick.Calls.Where(c => c.Steps.Count > 0).ToList();
+            return variants.Any(c => c.TypeName == "ReturnFailure") && CommonTail(variants.Select(BestName).ToList()).Length > 0;
         }
         bool EndsInGroggy(Unit sequence)
         {
@@ -839,6 +915,11 @@ public sealed partial class AttackGraph
                 u.Label = AttackLabel(u);
                 rootOf[u] = currentRoot;
             }
+            // A block named after its idle only (the Cleric: "Skippable idle", then Holy cross again and again): the
+            // moves in it are still moves.
+            else if (u.Borrowed && u.Calls.Any(c => c.Steps.Count > 0 && IsRepeater(c)))
+                foreach (var c in u.Calls)
+                    Visit(c);
         }
         // When the AI runs a tree, blocks the AI never reaches are leftovers in the prefab (First Hero: 100+ of them,
         // "Hook 2", "Dash breakaway"): not attacks. Trees without an AI (BehaviorDesigner) start at their own roots.
@@ -919,6 +1000,11 @@ public sealed partial class AttackGraph
         // above it does ("Fist power slam" > Sequence[Intro, Slam, Outro]). A move name taken from a child still wins
         // (First Hero: "Horizontal slash + end motion" > Sequence[Horizontal slash, End motion] is "Horizontal slash").
         bool named = chain.Any(n => !n.Borrowed && Nice(n.Label));
+        // A repeated pick between variants of one move (Dark Skul: "Long dash" while you are far, then "Short dash"):
+        // the words they share ("Dash").
+        if (!named && node.Kind == Kind.Dispatcher && node.Own.Count == 0 &&
+            CommonTail(node.Calls.Where(c => c.Steps.Count > 0).Select(BestName).ToList()) is { Length: > 0 } shared)
+            return shared;
         foreach (var n in Enumerable.Reverse(chain))
         {
             if (!Nice(n.Label) || (named && n.Borrowed && n.Kind == Kind.Sequence && PartWord.IsMatch(n.Label)))

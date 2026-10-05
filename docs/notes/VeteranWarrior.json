@@ -1,0 +1,373 @@
+{
+  "key": "VeteranWarrior",
+  "moves": {
+    "Stamping": {
+      "en": [
+        "Leaps at you and stamps down; rocks fly up from the impact.",
+        "Move away from where he lands."
+      ],
+      "de": [
+        "Springt auf dich zu und stampft auf; beim Aufprall fliegen Steine hoch.",
+        "Geh weg von der Stelle, an der er landet."
+      ],
+      "es": [
+        "Salta hacia ti y pisotea; del impacto saltan rocas.",
+        "Aléjate del punto donde aterriza."
+      ],
+      "fr": [
+        "Bondit sur toi et écrase le sol ; des rochers jaillissent à l'impact.",
+        "Éloigne-toi de l'endroit où il atterrit."
+      ],
+      "pl": [
+        "Skacze na ciebie i tupie; z miejsca uderzenia wylatują kamienie.",
+        "Odsuń się od miejsca, w którym ląduje."
+      ],
+      "pt-BR": [
+        "Salta até você e pisa forte; pedras voam do impacto.",
+        "Afaste-se do ponto onde ele pousa."
+      ],
+      "ru": [
+        "Прыгает на вас и топает; от удара разлетаются камни.",
+        "Уйдите с места его приземления."
+      ],
+      "ko": [
+        "당신에게 뛰어들어 짓밟고, 충격으로 돌이 튀어 오릅니다.",
+        "그가 착지하는 곳에서 벗어나세요."
+      ],
+      "ja": [
+        "あなたへ跳びかかって踏みつけ、衝撃で岩が飛び散ります。",
+        "着地する場所から離れましょう。"
+      ],
+      "zh-Hans": [
+        "跃向你并重踏，冲击处飞起石块。",
+        "离开他落地的位置。"
+      ],
+      "zh-Hant": [
+        "躍向你並重踏，衝擊處飛起石塊。",
+        "離開他落地的位置。"
+      ]
+    },
+    "Guard": {
+      "en": [
+        "Raises a golden shield that blocks attacks from the front.",
+        "Attack from behind or wait until he lowers it. When you are close, at most every 10 seconds."
+      ],
+      "de": [
+        "Hebt einen goldenen Schild, der Angriffe von vorn abblockt.",
+        "Greif von hinten an oder warte, bis er ihn senkt. Wenn du nah bist, höchstens alle 10 Sekunden."
+      ],
+      "es": [
+        "Alza un escudo dorado que bloquea los ataques frontales.",
+        "Ataca por detrás o espera a que lo baje. Cuando estás cerca, como mucho cada 10 segundos."
+      ],
+      "fr": [
+        "Lève un bouclier doré qui bloque les attaques de face.",
+        "Attaque par-derrière ou attends qu'il le baisse. Quand tu es proche, au plus toutes les 10 secondes."
+      ],
+      "pl": [
+        "Unosi złotą tarczę, która blokuje ataki z przodu.",
+        "Atakuj od tyłu albo poczekaj, aż ją opuści. Gdy jesteś blisko, najwyżej co 10 sekund."
+      ],
+      "pt-BR": [
+        "Ergue um escudo dourado que bloqueia ataques pela frente.",
+        "Ataque por trás ou espere ele baixar o escudo. Quando você está perto, no máximo a cada 10 segundos."
+      ],
+      "ru": [
+        "Поднимает золотой щит, блокирующий атаки спереди.",
+        "Атакуйте сзади или ждите, пока он опустит щит. Когда вы рядом, не чаще раза в 10 секунд."
+      ],
+      "ko": [
+        "앞쪽 공격을 막는 황금 방패를 듭니다.",
+        "뒤에서 공격하거나 방패를 내릴 때까지 기다리세요. 가까이 있을 때 최대 10초마다 사용합니다."
+      ],
+      "ja": [
+        "正面からの攻撃を防ぐ黄金の盾を構えます。",
+        "後ろから攻撃するか、盾を下ろすまで待ちましょう。近くにいるとき、最大で10秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "举起金色盾牌，挡住来自正面的攻击。",
+        "从背后攻击，或等他放下盾牌。你靠近时使用，最多每10秒一次。"
+      ],
+      "zh-Hant": [
+        "舉起金色盾牌，擋住來自正面的攻擊。",
+        "從背後攻擊，或等他放下盾牌。你靠近時使用，最多每10秒一次。"
+      ]
+    },
+    "Mace rush": {
+      "en": [
+        "Charges along the floor dragging his mace, then smashes up a pillar of rock.",
+        "Jump over the charge and stay clear of the rock pillar."
+      ],
+      "de": [
+        "Stürmt mit schleifendem Streitkolben über den Boden und schlägt dann eine Felssäule hoch.",
+        "Spring über den Ansturm und halte dich von der Felssäule fern."
+      ],
+      "es": [
+        "Carga a ras de suelo arrastrando la maza y luego hace surgir un pilar de roca de un golpe.",
+        "Salta sobre la carga y aléjate del pilar de roca."
+      ],
+      "fr": [
+        "Charge au sol en traînant sa masse, puis fait jaillir un pilier de roche d'un coup.",
+        "Saute par-dessus la charge et reste loin du pilier de roche."
+      ],
+      "pl": [
+        "Szarżuje po ziemi, wlokąc buzdygan, a potem wybija w górę słup skały.",
+        "Przeskocz szarżę i trzymaj się z dala od słupa skały."
+      ],
+      "pt-BR": [
+        "Avança pelo chão arrastando a maça e depois faz surgir um pilar de rocha com um golpe.",
+        "Pule a investida e fique longe do pilar de rocha."
+      ],
+      "ru": [
+        "Несётся по полу, волоча булаву, затем выбивает вверх каменный столб.",
+        "Перепрыгните натиск и держитесь подальше от каменного столба."
+      ],
+      "ko": [
+        "철퇴를 끌며 바닥을 따라 돌진한 뒤, 내리쳐 바위 기둥을 솟게 합니다.",
+        "돌진을 점프로 넘고 바위 기둥에서 떨어지세요."
+      ],
+      "ja": [
+        "メイスを引きずりながら床を突進し、叩きつけて岩の柱を突き上げます。",
+        "突進を飛び越え、岩の柱から離れましょう。"
+      ],
+      "zh-Hans": [
+        "拖着钉锤贴地冲锋，然后砸出一根石柱。",
+        "跳过冲锋，远离石柱。"
+      ],
+      "zh-Hant": [
+        "拖著釘錘貼地衝鋒，然後砸出一根石柱。",
+        "跳過衝鋒，遠離石柱。"
+      ]
+    },
+    "Body tank": {
+      "en": [
+        "Charges shield-first across the floor, ramming everything in his way, several times.",
+        "Jump over each charge; hit him from behind after it passes."
+      ],
+      "de": [
+        "Stürmt mehrmals mit dem Schild voran über den Boden und rammt alles auf seinem Weg.",
+        "Spring über jeden Ansturm; triff ihn von hinten, wenn er vorbei ist."
+      ],
+      "es": [
+        "Carga con el escudo por delante varias veces, embistiendo todo a su paso.",
+        "Salta sobre cada carga; golpéalo por detrás cuando pase."
+      ],
+      "fr": [
+        "Charge plusieurs fois bouclier en avant, percutant tout sur son passage.",
+        "Saute par-dessus chaque charge ; frappe-le par-derrière quand il est passé."
+      ],
+      "pl": [
+        "Kilka razy szarżuje z tarczą przed sobą, taranując wszystko na drodze.",
+        "Przeskakuj każdą szarżę; uderz go od tyłu, gdy przejdzie."
+      ],
+      "pt-BR": [
+        "Avança várias vezes com o escudo à frente, atropelando tudo no caminho.",
+        "Pule cada investida; acerte-o por trás depois que ele passar."
+      ],
+      "ru": [
+        "Несколько раз несётся щитом вперёд, тараня всё на пути.",
+        "Перепрыгивайте каждый натиск; бейте его сзади, когда он пронесётся."
+      ],
+      "ko": [
+        "방패를 앞세워 바닥을 여러 번 돌진하며 길목의 모든 것을 들이받습니다.",
+        "돌진할 때마다 점프로 넘고, 지나간 뒤에 뒤에서 공격하세요."
+      ],
+      "ja": [
+        "盾を前にして何度も床を突進し、行く手のものすべてに体当たりします。",
+        "突進のたびに飛び越え、通り過ぎたら後ろから攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "举盾在前多次冲锋，撞飞路上的一切。",
+        "每次冲锋都跳过，他冲过后从背后攻击。"
+      ],
+      "zh-Hant": [
+        "舉盾在前多次衝鋒，撞飛路上的一切。",
+        "每次衝鋒都跳過，他衝過後從背後攻擊。"
+      ]
+    },
+    "Mace slam": {
+      "en": [
+        "Slams his mace into the ground; a red mark appears at your spot and a rock spike shoots up there.",
+        "Step off the red mark right away."
+      ],
+      "de": [
+        "Schlägt den Streitkolben in den Boden; an deiner Stelle erscheint eine rote Markierung und dort schießt ein Felsstachel hoch.",
+        "Verlass die rote Markierung sofort."
+      ],
+      "es": [
+        "Golpea el suelo con la maza; aparece una marca roja en tu posición y ahí brota una púa de roca.",
+        "Sal de la marca roja enseguida."
+      ],
+      "fr": [
+        "Frappe le sol avec sa masse ; une marque rouge apparaît à ta position et une pointe de roche y jaillit.",
+        "Quitte la marque rouge tout de suite."
+      ],
+      "pl": [
+        "Uderza buzdyganem w ziemię; w twoim miejscu pojawia się czerwony znak i wystrzeliwuje tam skalny kolec.",
+        "Natychmiast zejdź z czerwonego znaku."
+      ],
+      "pt-BR": [
+        "Bate a maça no chão; uma marca vermelha aparece onde você está e um espinho de rocha sobe ali.",
+        "Saia da marca vermelha na hora."
+      ],
+      "ru": [
+        "Бьёт булавой в землю; на вашем месте появляется красная метка, и оттуда вырывается каменный шип.",
+        "Сразу уйдите с красной метки."
+      ],
+      "ko": [
+        "철퇴로 땅을 내리치면 당신 위치에 붉은 표시가 나타나고, 그곳에서 바위 가시가 솟아오릅니다.",
+        "곧바로 붉은 표시에서 벗어나세요."
+      ],
+      "ja": [
+        "メイスを地面に叩きつけると、あなたの位置に赤い印が現れ、そこから岩のトゲが突き出します。",
+        "すぐに赤い印から離れましょう。"
+      ],
+      "zh-Hans": [
+        "把钉锤砸向地面，你的位置出现红色标记，随后石刺从那里冒出。",
+        "立刻离开红色标记。"
+      ],
+      "zh-Hant": [
+        "把釘錘砸向地面，你的位置出現紅色標記，隨後石刺從那裡冒出。",
+        "立刻離開紅色標記。"
+      ]
+    },
+    "Whirlwind": {
+      "en": [
+        "Spins with his mace and moves toward you in a whirlwind.",
+        "Keep away until he stops spinning. Below 70 % health, at most every 50 seconds."
+      ],
+      "de": [
+        "Dreht sich mit dem Streitkolben und bewegt sich als Wirbelwind auf dich zu.",
+        "Halte Abstand, bis er aufhört zu wirbeln. Unter 70 % LP, höchstens alle 50 Sekunden."
+      ],
+      "es": [
+        "Gira con la maza y avanza hacia ti como un torbellino.",
+        "Mantente lejos hasta que deje de girar. Por debajo del 70 % de vida, como mucho cada 50 segundos."
+      ],
+      "fr": [
+        "Tournoie avec sa masse et avance vers toi en tourbillon.",
+        "Reste à distance jusqu'à ce qu'il arrête de tourner. Sous 70 % de vie, au plus toutes les 50 secondes."
+      ],
+      "pl": [
+        "Wiruje z buzdyganem i zbliża się do ciebie jak trąba powietrzna.",
+        "Trzymaj się z dala, aż przestanie wirować. Poniżej 70% zdrowia, najwyżej co 50 sekund."
+      ],
+      "pt-BR": [
+        "Gira com a maça e avança até você como um redemoinho.",
+        "Fique longe até ele parar de girar. Abaixo de 70 % de vida, no máximo a cada 50 segundos."
+      ],
+      "ru": [
+        "Вращается с булавой и движется к вам вихрем.",
+        "Держитесь подальше, пока он не перестанет вращаться. Ниже 70 % здоровья, не чаще раза в 50 секунд."
+      ],
+      "ko": [
+        "철퇴를 들고 회전하며 회오리처럼 당신에게 다가옵니다.",
+        "회전이 멈출 때까지 떨어져 있으세요. 체력 70% 아래에서 최대 50초마다 사용합니다."
+      ],
+      "ja": [
+        "メイスを持って回転し、つむじ風のようにあなたへ迫ります。",
+        "回転が止まるまで離れていましょう。体力70%未満で、最大で50秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "挥舞钉锤旋转，像旋风一样逼近你。",
+        "在他停止旋转前保持距离。体力低于70%时使用，最多每50秒一次。"
+      ],
+      "zh-Hant": [
+        "揮舞釘錘旋轉，像旋風一樣逼近你。",
+        "在他停止旋轉前保持距離。體力低於70%時使用，最多每50秒一次。"
+      ]
+    },
+    "Earthquake": {
+      "en": [
+        "Slams the ground; red lines glow along the floor and rocks burst out of it.",
+        "Be in the air or on a platform when the rocks burst out."
+      ],
+      "de": [
+        "Schlägt auf den Boden; rote Linien leuchten am Boden auf und Felsen brechen hervor.",
+        "Sei in der Luft oder auf einer Plattform, wenn die Felsen hervorbrechen."
+      ],
+      "es": [
+        "Golpea el suelo; brillan líneas rojas en él y brotan rocas.",
+        "Estate en el aire o sobre una plataforma cuando broten las rocas."
+      ],
+      "fr": [
+        "Frappe le sol ; des lignes rouges s'allument au sol et des rochers en jaillissent.",
+        "Sois en l'air ou sur une plateforme quand les rochers jaillissent."
+      ],
+      "pl": [
+        "Uderza w ziemię; na podłodze świecą czerwone linie i wybuchają z niej skały.",
+        "Bądź w powietrzu albo na platformie, gdy wybuchają skały."
+      ],
+      "pt-BR": [
+        "Bate no chão; linhas vermelhas brilham nele e pedras saem de lá.",
+        "Esteja no ar ou numa plataforma quando as pedras saírem."
+      ],
+      "ru": [
+        "Бьёт по земле; по полу загораются красные линии, и из него вырываются камни.",
+        "Будьте в воздухе или на платформе, когда вырываются камни."
+      ],
+      "ko": [
+        "땅을 내리치면 바닥에 붉은 선이 빛나고 바위가 솟구칩니다.",
+        "바위가 솟구칠 때 공중이나 발판 위에 있으세요."
+      ],
+      "ja": [
+        "地面を叩くと、床に赤い線が光り、岩が噴き出します。",
+        "岩が噴き出すときは空中か足場の上にいましょう。"
+      ],
+      "zh-Hans": [
+        "砸向地面，地面亮起红线并迸出石块。",
+        "石块迸出时待在空中或平台上。"
+      ],
+      "zh-Hant": [
+        "砸向地面，地面亮起紅線並迸出石塊。",
+        "石塊迸出時待在空中或平台上。"
+      ]
+    },
+    "Fury of earth": {
+      "en": [
+        "Gathers power while the screen darkens, leaps up, a red line glows along the floor, and rocks rain down across the whole room.",
+        "Hit him while he gathers power, then dodge between the falling rocks. Below 40 % health, at most every 80 seconds."
+      ],
+      "de": [
+        "Sammelt Kraft, während sich der Bildschirm verdunkelt, springt hoch, eine rote Linie leuchtet am Boden und Felsen regnen über den ganzen Raum.",
+        "Triff ihn, während er Kraft sammelt, und weich dann zwischen den fallenden Felsen aus. Unter 40 % LP, höchstens alle 80 Sekunden."
+      ],
+      "es": [
+        "Acumula poder mientras la pantalla se oscurece, salta, brilla una línea roja en el suelo y llueven rocas por toda la sala.",
+        "Golpéalo mientras acumula poder y luego esquiva entre las rocas que caen. Por debajo del 40 % de vida, como mucho cada 80 segundos."
+      ],
+      "fr": [
+        "Rassemble sa force pendant que l'écran s'assombrit, bondit, une ligne rouge s'allume au sol et des rochers pleuvent sur toute la salle.",
+        "Frappe-le pendant qu'il rassemble sa force, puis esquive entre les rochers qui tombent. Sous 40 % de vie, au plus toutes les 80 secondes."
+      ],
+      "pl": [
+        "Zbiera moc, gdy ekran ciemnieje, wyskakuje, na podłodze świeci czerwona linia, a na całą salę spada deszcz skał.",
+        "Bij go, gdy zbiera moc, a potem unikaj spadających skał. Poniżej 40% zdrowia, najwyżej co 80 sekund."
+      ],
+      "pt-BR": [
+        "Junta poder enquanto a tela escurece, salta, uma linha vermelha brilha no chão e pedras chovem pelo salão inteiro.",
+        "Acerte-o enquanto junta poder e depois desvie entre as pedras que caem. Abaixo de 40 % de vida, no máximo a cada 80 segundos."
+      ],
+      "ru": [
+        "Копит силу, пока экран темнеет, подпрыгивает, по полу загорается красная линия, и на весь зал сыплются камни.",
+        "Бейте его, пока он копит силу, затем уворачивайтесь от падающих камней. Ниже 40 % здоровья, не чаще раза в 80 секунд."
+      ],
+      "ko": [
+        "화면이 어두워지는 동안 힘을 모으고 뛰어오르면, 바닥에 붉은 선이 빛나고 방 전체에 바위가 쏟아집니다.",
+        "힘을 모으는 동안 공격하고, 떨어지는 바위 사이로 피하세요. 체력 40% 아래에서 최대 80초마다 사용합니다."
+      ],
+      "ja": [
+        "画面が暗くなる間に力をため、跳び上がると床に赤い線が光り、部屋中に岩が降り注ぎます。",
+        "力をためている間に攻撃し、落ちてくる岩の間をかわしましょう。体力40%未満で、最大で80秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "画面变暗时蓄力，然后跃起，地面亮起红线，石块落满整个房间。",
+        "在他蓄力时攻击，然后在落下的石块之间闪避。体力低于40%时使用，最多每80秒一次。"
+      ],
+      "zh-Hant": [
+        "畫面變暗時蓄力，然後躍起，地面亮起紅線，石塊落滿整個房間。",
+        "在他蓄力時攻擊，然後在落下的石塊之間閃避。體力低於40%時使用，最多每80秒一次。"
+      ]
+    }
+  }
+}

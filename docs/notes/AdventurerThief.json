@@ -1,0 +1,327 @@
+{
+  "key": "AdventurerThief",
+  "moves": {
+    "Flash cut": {
+      "en": [
+        "Vanishes and dashes through you with a fast slash.",
+        "Keep moving and jump when the thief reappears in front of you."
+      ],
+      "de": [
+        "Verschwindet und sprintet mit einem schnellen Hieb durch dich hindurch.",
+        "Bleib in Bewegung und spring, wenn der Dieb vor dir auftaucht."
+      ],
+      "es": [
+        "Desaparece y te atraviesa corriendo con un tajo rápido.",
+        "Sigue moviéndote y salta cuando reaparezca delante de ti."
+      ],
+      "fr": [
+        "Disparaît et te traverse en sprintant avec une entaille rapide.",
+        "Continue de bouger et saute quand il réapparaît devant toi."
+      ],
+      "pl": [
+        "Znika i przemyka przez ciebie z szybkim cięciem.",
+        "Ruszaj się i skacz, gdy pojawi się przed tobą."
+      ],
+      "pt-BR": [
+        "Some e atravessa você correndo com um corte rápido.",
+        "Continue se movendo e pule quando ele reaparecer à sua frente."
+      ],
+      "ru": [
+        "Исчезает и проносится сквозь вас с быстрым ударом.",
+        "Двигайтесь и прыгайте, когда вор появится перед вами."
+      ],
+      "ko": [
+        "사라졌다가 빠르게 베며 당신을 관통해 지나갑니다.",
+        "계속 움직이다가 도적이 앞에 나타나면 점프하세요."
+      ],
+      "ja": [
+        "姿を消し、素早い斬撃とともにあなたを駆け抜けます。",
+        "動き続け、目の前に現れたらジャンプしましょう。"
+      ],
+      "zh-Hans": [
+        "消失后以快速斩击从你身上穿过。",
+        "保持移动，盗贼在你面前出现时跳起。"
+      ],
+      "zh-Hant": [
+        "消失後以快速斬擊從你身上穿過。",
+        "保持移動，盜賊在你面前出現時跳起。"
+      ]
+    },
+    "Giant shuriken": {
+      "en": [
+        "Throws a big purple shuriken that flies across the room and comes back.",
+        "Dodge it twice: on the way out and on the way back."
+      ],
+      "de": [
+        "Wirft einen großen violetten Shuriken, der durch den Raum fliegt und zurückkehrt.",
+        "Weich zweimal aus: auf dem Hinweg und auf dem Rückweg."
+      ],
+      "es": [
+        "Lanza un gran shuriken morado que cruza la sala y vuelve.",
+        "Esquívalo dos veces: a la ida y a la vuelta."
+      ],
+      "fr": [
+        "Lance un grand shuriken violet qui traverse la salle et revient.",
+        "Esquive-le deux fois : à l'aller et au retour."
+      ],
+      "pl": [
+        "Rzuca wielki fioletowy shuriken, który przelatuje przez salę i wraca.",
+        "Uniknij go dwa razy: w drodze tam i z powrotem."
+      ],
+      "pt-BR": [
+        "Lança uma grande shuriken roxa que cruza o salão e volta.",
+        "Desvie duas vezes: na ida e na volta."
+      ],
+      "ru": [
+        "Бросает большой фиолетовый сюрикен, который пролетает через зал и возвращается.",
+        "Уворачивайтесь дважды: туда и обратно."
+      ],
+      "ko": [
+        "방을 가로질러 날아갔다 돌아오는 커다란 보라색 수리검을 던집니다.",
+        "두 번 피하세요: 날아갈 때와 돌아올 때."
+      ],
+      "ja": [
+        "部屋を横切って戻ってくる大きな紫の手裏剣を投げます。",
+        "行きと帰りの2回かわしましょう。"
+      ],
+      "zh-Hans": [
+        "掷出一枚巨大的紫色手里剑，飞过房间后再飞回来。",
+        "要躲两次：飞出去时和飞回来时。"
+      ],
+      "zh-Hant": [
+        "擲出一枚巨大的紫色手裏劍，飛過房間後再飛回來。",
+        "要躲兩次：飛出去時和飛回來時。"
+      ]
+    },
+    "Shadow step": {
+      "en": [
+        "Teleports right next to you.",
+        "Usually leads into an attack: be ready to dodge."
+      ],
+      "de": [
+        "Teleportiert sich direkt neben dich.",
+        "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+      ],
+      "es": [
+        "Se teletransporta justo a tu lado.",
+        "Suele llevar a un ataque: prepárate para esquivar."
+      ],
+      "fr": [
+        "Se téléporte juste à côté de toi.",
+        "Mène généralement à une attaque : prépare-toi à esquiver."
+      ],
+      "pl": [
+        "Teleportuje się tuż obok ciebie.",
+        "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+      ],
+      "pt-BR": [
+        "Teleporta-se bem ao seu lado.",
+        "Costuma levar a um ataque: prepare-se para desviar."
+      ],
+      "ru": [
+        "Телепортируется прямо к вам.",
+        "Обычно ведёт к атаке: будьте готовы увернуться."
+      ],
+      "ko": [
+        "당신 바로 옆으로 순간이동합니다.",
+        "대개 공격으로 이어지니 피할 준비를 하세요."
+      ],
+      "ja": [
+        "あなたのすぐ隣へ瞬間移動します。",
+        "たいてい攻撃につながるので、かわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "瞬移到你身边。",
+        "通常会接攻击：准备好闪避。"
+      ],
+      "zh-Hant": [
+        "瞬移到你身邊。",
+        "通常會接攻擊：準備好閃避。"
+      ]
+    },
+    "Shuriken": {
+      "en": [
+        "Throws small shurikens at you.",
+        "Jump over them or dodge between them."
+      ],
+      "de": [
+        "Wirft kleine Shuriken nach dir.",
+        "Spring darüber oder weich zwischen ihnen aus."
+      ],
+      "es": [
+        "Te lanza pequeños shurikens.",
+        "Sáltalos o esquiva entre ellos."
+      ],
+      "fr": [
+        "Te lance de petits shurikens.",
+        "Saute par-dessus ou esquive entre eux."
+      ],
+      "pl": [
+        "Rzuca w ciebie małymi shurikenami.",
+        "Przeskocz je albo przemknij między nimi."
+      ],
+      "pt-BR": [
+        "Lança pequenas shurikens em você.",
+        "Pule-as ou desvie entre elas."
+      ],
+      "ru": [
+        "Бросает в вас маленькие сюрикены.",
+        "Перепрыгните их или проскользните между ними."
+      ],
+      "ko": [
+        "당신에게 작은 수리검을 던집니다.",
+        "점프로 넘거나 그 사이로 피하세요."
+      ],
+      "ja": [
+        "あなたへ小さな手裏剣を投げます。",
+        "飛び越えるか、間をすり抜けましょう。"
+      ],
+      "zh-Hans": [
+        "朝你掷出小手里剑。",
+        "跳过它们，或从间隙中躲开。"
+      ],
+      "zh-Hant": [
+        "朝你擲出小手裏劍。",
+        "跳過它們，或從間隙中躲開。"
+      ]
+    },
+    "Shadow step air": {
+      "en": [
+        "Teleports into the air near you and strikes down.",
+        "Move out from below."
+      ],
+      "de": [
+        "Teleportiert sich in deiner Nähe in die Luft und schlägt nach unten zu.",
+        "Geh unter ihm weg."
+      ],
+      "es": [
+        "Se teletransporta al aire cerca de ti y ataca hacia abajo.",
+        "Sal de debajo."
+      ],
+      "fr": [
+        "Se téléporte dans les airs près de toi et frappe vers le bas.",
+        "Sors de dessous."
+      ],
+      "pl": [
+        "Teleportuje się w powietrze obok ciebie i uderza w dół.",
+        "Zejdź spod niego."
+      ],
+      "pt-BR": [
+        "Teleporta-se no ar perto de você e ataca para baixo.",
+        "Saia de baixo."
+      ],
+      "ru": [
+        "Телепортируется в воздух рядом с вами и бьёт вниз.",
+        "Уйдите из-под него."
+      ],
+      "ko": [
+        "당신 근처 공중으로 순간이동해 아래로 공격합니다.",
+        "아래에서 벗어나세요."
+      ],
+      "ja": [
+        "あなたの近くの空中へ瞬間移動し、下へ攻撃します。",
+        "真下から離れましょう。"
+      ],
+      "zh-Hans": [
+        "瞬移到你附近的空中并向下攻击。",
+        "离开他的正下方。"
+      ],
+      "zh-Hant": [
+        "瞬移到你附近的空中並向下攻擊。",
+        "離開他的正下方。"
+      ]
+    },
+    "Multiple bunshin (special skill)": {
+      "en": [
+        "The special skill: shadow clones appear and slash across the floor several times.",
+        "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+      ],
+      "de": [
+        "Die Spezialfähigkeit: Schattenklone erscheinen und schlagen mehrmals quer über den Boden.",
+        "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+      ],
+      "es": [
+        "La habilidad especial: aparecen clones de sombra que dan tajos a ras de suelo varias veces.",
+        "Por debajo de la mitad de la vida. Inflige suficiente daño durante el lanzamiento para romperlo: quedará aturdido."
+      ],
+      "fr": [
+        "La compétence spéciale : des clones d'ombre apparaissent et tranchent le sol plusieurs fois.",
+        "Sous la moitié de la vie. Inflige assez de dégâts pendant l'incantation pour l'interrompre : le lanceur sera sonné."
+      ],
+      "pl": [
+        "Umiejętność specjalna: pojawiają się klony z cienia i kilka razy tną przy ziemi.",
+        "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+      ],
+      "pt-BR": [
+        "A habilidade especial: clones de sombra aparecem e cortam pelo chão várias vezes.",
+        "Abaixo da metade da vida. Cause dano suficiente durante a conjuração para quebrá-la: quem conjura fica atordoado."
+      ],
+      "ru": [
+        "Особый навык: появляются теневые клоны и несколько раз рубят вдоль пола.",
+        "Ниже половины здоровья. Нанесите достаточно урона во время подготовки, чтобы сорвать её: противник будет оглушён."
+      ],
+      "ko": [
+        "특수 스킬: 그림자 분신이 나타나 바닥을 따라 여러 번 베어 냅니다.",
+        "체력이 절반 아래일 때 사용합니다. 시전하는 동안 충분한 피해를 주면 끊을 수 있고, 시전자는 그로기 상태가 됩니다."
+      ],
+      "ja": [
+        "特殊スキル：影の分身が現れ、床に沿って何度も斬りつけます。",
+        "体力が半分を切ると使います。詠唱中に十分なダメージを与えると中断でき、使い手はグロッキーになります。"
+      ],
+      "zh-Hans": [
+        "特殊技能：出现多个影子分身，沿地面多次斩击。",
+        "体力低于一半时使用。施放期间造成足够伤害即可打断，施放者会陷入虚弱。"
+      ],
+      "zh-Hant": [
+        "特殊技能：出現多個影子分身，沿地面多次斬擊。",
+        "體力低於一半時使用。施放期間造成足夠傷害即可打斷，施放者會陷入虛弱。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "Stunned after the special skill was broken: stands dazed for a few seconds.",
+        "Free hits: use your strongest skills now."
+      ],
+      "de": [
+        "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+        "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+      ],
+      "es": [
+        "Aturdido tras romperse la habilidad especial: se queda atontado unos segundos.",
+        "Golpes gratis: usa ahora tus habilidades más fuertes."
+      ],
+      "fr": [
+        "Étourdi après l'interruption de la compétence spéciale : reste sonné quelques secondes.",
+        "Coups gratuits : utilise maintenant tes compétences les plus fortes."
+      ],
+      "pl": [
+        "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+        "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+      ],
+      "pt-BR": [
+        "Atordoado depois que a habilidade especial foi quebrada: fica tonto por alguns segundos.",
+        "Golpes livres: use agora suas habilidades mais fortes."
+      ],
+      "ru": [
+        "Оглушён после срыва особого навыка: несколько секунд стоит без движения.",
+        "Бесплатные удары: используйте сейчас самые сильные навыки."
+      ],
+      "ko": [
+        "특수 스킬이 끊겨 기절한 상태: 몇 초 동안 멍하니 서 있습니다.",
+        "마음껏 공격할 기회입니다: 가장 강한 스킬을 쓰세요."
+      ],
+      "ja": [
+        "特殊スキルを中断されて気絶した状態：数秒間ふらふらと立ち尽くします。",
+        "攻撃し放題です：一番強いスキルを使いましょう。"
+      ],
+      "zh-Hans": [
+        "特殊技能被打断后陷入眩晕：呆立几秒。",
+        "可以随意攻击：现在使用你最强的技能。"
+      ],
+      "zh-Hant": [
+        "特殊技能被打斷後陷入暈眩：呆立幾秒。",
+        "可以隨意攻擊：現在使用你最強的技能。"
+      ]
+    }
+  }
+}

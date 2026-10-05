@@ -1,0 +1,1444 @@
+{
+  "key": "FirstDarkHero",
+  "about": {
+    "en": "The First Hero consumed by darkness, met only in the Dark Mirror. He leaps between the floor and the walls with his dark blade and fights in three stages: each stage adds new moves, the last one Overrun, Execution, Thorny hell on wall and Big bang.",
+    "de": "Der Erste Held, von der Dunkelheit verschlungen, nur im Dunklen Spiegel. Er springt mit seiner dunklen Klinge zwischen Boden und Wänden hin und her und kämpft in drei Stufen: Jede Stufe bringt neue Angriffe, die letzte Überrennen, Hinrichtung, Dornenhölle (Wand) und Urknall.",
+    "es": "El Primer Héroe consumido por la oscuridad, solo en el Espejo oscuro. Salta entre el suelo y las paredes con su hoja oscura y lucha en tres fases: cada fase añade movimientos nuevos, la última Arrollar, Ejecución, Infierno de espinas (pared) y Big Bang.",
+    "fr": "Le Premier Héros dévoré par les ténèbres, rencontré seulement dans le Miroir noir. Il bondit entre le sol et les murs avec sa lame sombre et combat en trois étapes : chaque étape ajoute de nouvelles attaques, la dernière Débordement, Exécution, Enfer d'épines (mur) et Big bang.",
+    "pl": "Pierwszy Bohater pochłonięty przez mrok, spotykany tylko w Ciemnym lustrze. Skacze między ziemią a ścianami z mrocznym ostrzem i walczy w trzech etapach: każdy etap dodaje nowe ruchy, ostatni Stratowanie, Egzekucję, Cierniste piekło (ściana) i Wielki wybuch.",
+    "pt-BR": "O Primeiro Herói consumido pelas trevas, só no Espelho Sombrio. Salta entre o chão e as paredes com sua lâmina sombria e luta em três estágios: cada estágio traz golpes novos, o último Atropelar, Execução, Inferno de espinhos (parede) e Big Bang.",
+    "ru": "Первый герой, поглощённый тьмой, встречается только в Тёмном зеркале. Прыгает между полом и стенами с тёмным клинком и сражается в три стадии: каждая добавляет новые приёмы, последняя — Прорыв, Казнь, Тернистый ад (на стене) и Большой взрыв.",
+    "ko": "어둠에 잠식된 초대 용사로, 검은 거울에서만 만납니다. 어둠의 칼날을 들고 바닥과 벽 사이를 뛰어다니며 세 단계로 싸웁니다: 단계마다 새 기술이 더해지고, 마지막 단계에서는 돌파, 처형, 벽 가시 지옥, 대폭발을 사용합니다.",
+    "ja": "闇にのまれた初代勇者で、闇の鏡でのみ出会います。闇の刃を手に床と壁の間を跳び回り、3つの段階で戦います：段階ごとに新しい技が加わり、最後の段階では突破、処刑、壁のいばら地獄、ビッグバンを使います。",
+    "zh-Hans": "被黑暗吞噬的初代勇者，只在魔镜中遇到。他手持黑暗之刃在地面与墙壁之间跳跃，分三个阶段战斗：每个阶段都会增加新招式，最后阶段会使用冲破、处决、墙面荆棘地狱和大爆炸。",
+    "zh-Hant": "被黑暗吞噬的初代勇者，只在黑暗鏡子中遇到。他手持黑暗之刃在地面與牆壁之間跳躍，分三個階段戰鬥：每個階段都會增加新招式，最後階段會使用衝破、處決、牆面荊棘地獄和大爆炸。"
+  },
+  "moves": {
+    "Dash ground to wall": {
+      "en": [
+        "Dashes from the floor up onto a wall.",
+        "Usually leads into an attack: be ready to dodge."
+      ],
+      "de": [
+        "Sprintet vom Boden an eine Wand hoch.",
+        "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+      ],
+      "es": [
+        "Corre desde el suelo hasta una pared.",
+        "Suele llevar a un ataque: prepárate para esquivar."
+      ],
+      "fr": [
+        "Sprinte du sol jusqu'à un mur.",
+        "Mène généralement à une attaque : prépare-toi à esquiver."
+      ],
+      "pl": [
+        "Pędzi z ziemi na ścianę.",
+        "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+      ],
+      "pt-BR": [
+        "Corre do chão até uma parede.",
+        "Costuma levar a um ataque: prepare-se para desviar."
+      ],
+      "ru": [
+        "Рывком перемещается с пола на стену.",
+        "Обычно ведёт к атаке: будьте готовы увернуться."
+      ],
+      "ko": [
+        "바닥에서 벽으로 대쉬합니다.",
+        "대개 공격으로 이어지니 피할 준비를 하세요."
+      ],
+      "ja": [
+        "床から壁へダッシュします。",
+        "たいてい攻撃につながるので、かわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "从地面疾驰到墙上。",
+        "通常会接攻击：准备好闪避。"
+      ],
+      "zh-Hant": [
+        "從地面衝刺到牆上。",
+        "通常會接攻擊：準備好閃避。"
+      ]
+    },
+    "Dash wall to wall": {
+      "en": [
+        "Dashes from one wall to the other.",
+        "Usually leads into an attack: be ready to dodge."
+      ],
+      "de": [
+        "Sprintet von einer Wand zur anderen.",
+        "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+      ],
+      "es": [
+        "Corre de una pared a la otra.",
+        "Suele llevar a un ataque: prepárate para esquivar."
+      ],
+      "fr": [
+        "Sprinte d'un mur à l'autre.",
+        "Mène généralement à une attaque : prépare-toi à esquiver."
+      ],
+      "pl": [
+        "Pędzi od jednej ściany do drugiej.",
+        "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+      ],
+      "pt-BR": [
+        "Corre de uma parede à outra.",
+        "Costuma levar a um ataque: prepare-se para desviar."
+      ],
+      "ru": [
+        "Рывком перемещается от одной стены к другой.",
+        "Обычно ведёт к атаке: будьте готовы увернуться."
+      ],
+      "ko": [
+        "한쪽 벽에서 다른 쪽 벽으로 대쉬합니다.",
+        "대개 공격으로 이어지니 피할 준비를 하세요."
+      ],
+      "ja": [
+        "壁から反対側の壁へダッシュします。",
+        "たいてい攻撃につながるので、かわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "从一面墙疾驰到另一面墙。",
+        "通常会接攻击：准备好闪避。"
+      ],
+      "zh-Hant": [
+        "從一面牆衝刺到另一面牆。",
+        "通常會接攻擊：準備好閃避。"
+      ]
+    },
+    "Raid": {
+      "en": [
+        "Dives diagonally across the room from the wall with a purple slash streak.",
+        "Watch which wall he is on and move out of his diving line."
+      ],
+      "de": [
+        "Stürzt mit einem violetten Hiebstreifen schräg von der Wand quer durch den Raum.",
+        "Achte darauf, an welcher Wand er hängt, und geh aus seiner Sturzbahn."
+      ],
+      "es": [
+        "Cae en diagonal a través de la sala desde la pared con una estela de tajo morada.",
+        "Fíjate en qué pared está y sal de su trayectoria."
+      ],
+      "fr": [
+        "Plonge en diagonale à travers la salle depuis le mur dans une traînée d'entaille violette.",
+        "Repère sur quel mur il se trouve et sors de sa trajectoire."
+      ],
+      "pl": [
+        "Pikuje ukośnie przez salę ze ściany z fioletową smugą cięcia.",
+        "Patrz, na której ścianie jest, i zejdź z jego toru."
+      ],
+      "pt-BR": [
+        "Mergulha na diagonal pelo salão a partir da parede com um rastro de corte roxo.",
+        "Repare em qual parede ele está e saia da trajetória dele."
+      ],
+      "ru": [
+        "Пикирует наискосок через зал со стены с фиолетовой полосой удара.",
+        "Следите, на какой он стене, и уходите с линии его пике."
+      ],
+      "ko": [
+        "벽에서 보랏빛 베기 줄기를 그리며 방을 비스듬히 가로질러 내리꽂힙니다.",
+        "그가 어느 벽에 있는지 보고 내리꽂히는 경로에서 벗어나세요."
+      ],
+      "ja": [
+        "壁から紫の斬撃の筋を描いて、部屋をななめに横切るように急降下します。",
+        "どちらの壁にいるかを見て、急降下の進路から外れましょう。"
+      ],
+      "zh-Hans": [
+        "从墙上拖着紫色斩击光痕冲过房间。",
+        "注意他在哪面墙上，离开他俯冲的路线。"
+      ],
+      "zh-Hant": [
+        "從牆上拖著紫色斬擊光痕衝過房間。",
+        "注意他在哪面牆上，離開他俯衝的路線。"
+      ]
+    },
+    "Wall to target raid": {
+      "en": [
+        "From the wall, dashes straight at you along a dark line with slashes.",
+        "The dark line shows his path: step off it."
+      ],
+      "de": [
+        "Sprintet von der Wand aus entlang einer dunklen Linie mit Hieben direkt auf dich zu.",
+        "Die dunkle Linie zeigt seinen Weg: Geh davon runter."
+      ],
+      "es": [
+        "Desde la pared, se lanza directo hacia ti a lo largo de una línea oscura dando tajos.",
+        "La línea oscura muestra su trayectoria: sal de ella."
+      ],
+      "fr": [
+        "Depuis le mur, fonce droit sur toi le long d'une ligne sombre en tranchant.",
+        "La ligne sombre montre sa trajectoire : sors-en."
+      ],
+      "pl": [
+        "Ze ściany pędzi prosto na ciebie wzdłuż mrocznej linii, tnąc.",
+        "Mroczna linia pokazuje jego drogę: zejdź z niej."
+      ],
+      "pt-BR": [
+        "Da parede, avança direto até você ao longo de uma linha sombria cortando.",
+        "A linha sombria mostra o caminho dele: saia dela."
+      ],
+      "ru": [
+        "Со стены бросается прямо на вас вдоль тёмной линии, нанося удары.",
+        "Тёмная линия показывает его путь: уйдите с неё."
+      ],
+      "ko": [
+        "벽에서 어두운 선을 따라 베면서 당신에게 곧장 돌진합니다.",
+        "어두운 선이 그의 경로입니다: 선에서 벗어나세요."
+      ],
+      "ja": [
+        "壁から暗い線に沿って斬りながら、あなたへまっすぐ突進します。",
+        "暗い線が進路を示します：線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "从墙上沿着黑线边斩边直冲向你。",
+        "黑线就是他的路线：离开黑线。"
+      ],
+      "zh-Hant": [
+        "從牆上沿著黑線邊斬邊直衝向你。",
+        "黑線就是他的路線：離開黑線。"
+      ]
+    },
+    "Dark blast ground": {
+      "en": [
+        "Strikes the ground; thin glowing lines mark spots, then dark eruptions with a demon face burst up there, followed by a dark crescent.",
+        "Step off the glowing lines before the eruptions."
+      ],
+      "de": [
+        "Schlägt auf den Boden; dünne leuchtende Linien markieren Stellen, dann brechen dort dunkle Ausbrüche mit einer Dämonenfratze hervor, gefolgt von einer dunklen Sichel.",
+        "Verlass die leuchtenden Linien vor den Ausbrüchen."
+      ],
+      "es": [
+        "Golpea el suelo; finas líneas brillantes marcan puntos y luego brotan ahí erupciones oscuras con un rostro demoníaco, seguidas de una media luna oscura.",
+        "Sal de las líneas brillantes antes de las erupciones."
+      ],
+      "fr": [
+        "Frappe le sol ; de fines lignes lumineuses marquent des endroits, puis des éruptions sombres à face de démon y jaillissent, suivies d'un croissant sombre.",
+        "Quitte les lignes lumineuses avant les éruptions."
+      ],
+      "pl": [
+        "Uderza w ziemię; cienkie świecące linie oznaczają miejsca, a potem wybuchają tam mroczne erupcje z demoniczną twarzą, a po nich mroczny sierp.",
+        "Zejdź ze świecących linii przed erupcjami."
+      ],
+      "pt-BR": [
+        "Golpeia o chão; finas linhas brilhantes marcam pontos, depois erupções sombrias com um rosto demoníaco surgem ali, seguidas de uma lua crescente sombria.",
+        "Saia das linhas brilhantes antes das erupções."
+      ],
+      "ru": [
+        "Бьёт по земле; тонкие светящиеся линии отмечают места, затем там вырываются тёмные извержения с демонической мордой, а за ними тёмный серп.",
+        "Уйдите со светящихся линий до извержений."
+      ],
+      "ko": [
+        "땅을 내리치면 가는 빛줄기가 지점을 표시하고, 그곳에서 악마 얼굴의 어두운 분출이 터진 뒤 어두운 초승달이 이어집니다.",
+        "분출 전에 빛줄기에서 벗어나세요."
+      ],
+      "ja": [
+        "地面を叩くと、細い光の線が場所を示し、そこから悪魔の顔をした暗い噴出が起こり、続いて暗い三日月が放たれます。",
+        "噴出の前に光の線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "砸向地面，细细的光线标出位置，随后那里爆出带恶魔面孔的黑暗喷发，接着是一道黑暗新月。",
+        "在喷发前离开光线。"
+      ],
+      "zh-Hant": [
+        "砸向地面，細細的光線標出位置，隨後那裡爆出帶惡魔面孔的黑暗噴發，接著是一道黑暗新月。",
+        "在噴發前離開光線。"
+      ]
+    },
+    "Air slash wave": {
+      "en": [
+        "Leaps up and fires crescent slash waves down at the floor; they burst into dark flames.",
+        "Watch where the waves land and stay out of the flames."
+      ],
+      "de": [
+        "Springt hoch und feuert sichelförmige Hiebwellen auf den Boden, die in dunkle Flammen aufgehen.",
+        "Achte darauf, wo die Wellen landen, und bleib aus den Flammen heraus."
+      ],
+      "es": [
+        "Salta y dispara ondas de tajo en media luna hacia el suelo que estallan en llamas oscuras.",
+        "Fíjate dónde caen las ondas y no te metas en las llamas."
+      ],
+      "fr": [
+        "Bondit et tire des vagues d'entaille en croissant vers le sol, qui éclatent en flammes sombres.",
+        "Repère où tombent les vagues et reste hors des flammes."
+      ],
+      "pl": [
+        "Wyskakuje i wystrzeliwuje w dół sierpowe fale cięć, które wybuchają mrocznymi płomieniami.",
+        "Patrz, gdzie spadają fale, i trzymaj się z dala od płomieni."
+      ],
+      "pt-BR": [
+        "Salta e dispara ondas de corte em lua crescente para o chão, que explodem em chamas sombrias.",
+        "Repare onde as ondas caem e fique fora das chamas."
+      ],
+      "ru": [
+        "Подпрыгивает и выпускает вниз серповидные волны ударов, которые вспыхивают тёмным пламенем.",
+        "Следите, куда падают волны, и не стойте в пламени."
+      ],
+      "ko": [
+        "뛰어올라 바닥을 향해 초승달 베기 파동을 쏘며, 파동은 어두운 불꽃으로 터집니다.",
+        "파동이 떨어지는 곳을 보고 불꽃에 들어가지 마세요."
+      ],
+      "ja": [
+        "跳び上がって床へ三日月形の斬撃波を放ち、それが暗い炎となって弾けます。",
+        "波が落ちる場所を見て、炎に入らないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "跃起向地面放出新月形斩击波，落地后爆成黑暗火焰。",
+        "注意斩击波落下的位置，不要站在火焰里。"
+      ],
+      "zh-Hant": [
+        "躍起向地面放出新月形斬擊波，落地後爆成黑暗火焰。",
+        "注意斬擊波落下的位置，不要站在火焰裡。"
+      ]
+    },
+    "Air slash wave (enhanced)": {
+      "en": [
+        "Crescent slash waves, then a huge pillar of dark energy, followed by rows of red claws and dark thorns bursting out across the floor.",
+        "Stay away from the pillar and look for the gaps between the claws. At most every 90 seconds."
+      ],
+      "de": [
+        "Sichelförmige Hiebwellen, dann eine riesige Säule dunkler Energie, gefolgt von Reihen roter Klauen und dunkler Dornen, die über den Boden hervorbrechen.",
+        "Halte dich von der Säule fern und such die Lücken zwischen den Klauen. Höchstens alle 90 Sekunden."
+      ],
+      "es": [
+        "Ondas de tajo en media luna, luego un enorme pilar de energía oscura y después filas de garras rojas y espinas oscuras que brotan por el suelo.",
+        "Aléjate del pilar y busca los huecos entre las garras. Como mucho cada 90 segundos."
+      ],
+      "fr": [
+        "Des vagues d'entaille en croissant, puis un immense pilier d'énergie sombre, suivi de rangées de griffes rouges et d'épines sombres qui jaillissent au sol.",
+        "Reste loin du pilier et cherche les espaces entre les griffes. Au plus toutes les 90 secondes."
+      ],
+      "pl": [
+        "Sierpowe fale cięć, potem ogromny słup mrocznej energii, a następnie rzędy czerwonych pazurów i mrocznych cierni wyrastających z ziemi.",
+        "Trzymaj się z dala od słupa i szukaj luk między pazurami. Najwyżej co 90 sekund."
+      ],
+      "pt-BR": [
+        "Ondas de corte em lua crescente, depois um enorme pilar de energia sombria, seguido de fileiras de garras vermelhas e espinhos sombrios saindo do chão.",
+        "Fique longe do pilar e procure os espaços entre as garras. No máximo a cada 90 segundos."
+      ],
+      "ru": [
+        "Серповидные волны ударов, затем огромный столб тёмной энергии, а следом ряды красных когтей и тёмных шипов, вырывающихся из пола.",
+        "Держитесь подальше от столба и ищите промежутки между когтями. Не чаще раза в 90 секунд."
+      ],
+      "ko": [
+        "초승달 베기 파동, 이어서 거대한 어둠의 기둥, 그리고 바닥 곳곳에서 붉은 발톱과 어두운 가시가 줄지어 솟구칩니다.",
+        "기둥에서 떨어지고 발톱 사이의 틈을 찾으세요. 최대 90초마다 사용합니다."
+      ],
+      "ja": [
+        "三日月形の斬撃波、続いて巨大な闇のエネルギーの柱、そして床のあちこちから赤い爪と暗いいばらが列をなして突き出します。",
+        "柱から離れ、爪の間の隙間を探しましょう。最大で90秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "新月形斩击波，随后是巨大的黑暗能量柱，接着地面上冒出一排排红色利爪和黑暗荆棘。",
+        "远离能量柱，寻找利爪之间的空隙。最多每90秒一次。"
+      ],
+      "zh-Hant": [
+        "新月形斬擊波，隨後是巨大的黑暗能量柱，接著地面上冒出一排排紅色利爪和黑暗荊棘。",
+        "遠離能量柱，尋找利爪之間的空隙。最多每90秒一次。"
+      ]
+    },
+    "Dark stomp (enhanced)": {
+      "en": [
+        "Leaps and stomps down again and again; tall pillars of dark energy rise where he lands.",
+        "Keep moving away from each landing spot."
+      ],
+      "de": [
+        "Springt und stampft immer wieder auf; wo er landet, steigen hohe Säulen dunkler Energie auf.",
+        "Bleib in Bewegung, weg von jeder Landestelle."
+      ],
+      "es": [
+        "Salta y pisotea una y otra vez; donde aterriza se alzan altos pilares de energía oscura.",
+        "Sigue alejándote de cada punto de aterrizaje."
+      ],
+      "fr": [
+        "Bondit et écrase le sol encore et encore ; de hauts piliers d'énergie sombre s'élèvent là où il atterrit.",
+        "Continue de t'éloigner de chaque point d'atterrissage."
+      ],
+      "pl": [
+        "Raz za razem skacze i tupie; tam, gdzie ląduje, wznoszą się wysokie słupy mrocznej energii.",
+        "Oddalaj się od każdego miejsca lądowania."
+      ],
+      "pt-BR": [
+        "Salta e pisa forte várias vezes; altos pilares de energia sombria sobem onde ele pousa.",
+        "Continue se afastando de cada ponto de pouso."
+      ],
+      "ru": [
+        "Снова и снова прыгает и топает; там, где он приземляется, поднимаются высокие столбы тёмной энергии.",
+        "Продолжайте уходить от каждого места приземления."
+      ],
+      "ko": [
+        "뛰어올라 계속 짓밟으며, 착지하는 곳마다 높은 어둠의 기둥이 솟습니다.",
+        "착지할 때마다 그 자리에서 계속 멀어지세요."
+      ],
+      "ja": [
+        "何度も跳んで踏みつけ、着地した場所に高い闇のエネルギーの柱が立ち上ります。",
+        "着地点ごとに離れ続けましょう。"
+      ],
+      "zh-Hans": [
+        "反复跃起重踏，落地处升起高高的黑暗能量柱。",
+        "不断远离每个落地点。"
+      ],
+      "zh-Hant": [
+        "反覆躍起重踏，落地處升起高高的黑暗能量柱。",
+        "不斷遠離每個落地點。"
+      ]
+    },
+    "Dark seed (enhanced)": {
+      "en": [
+        "Throws a spray of spiky dark seeds that scatter across the room and burst on the floor.",
+        "Watch where the seeds land and stand between them."
+      ],
+      "de": [
+        "Wirft einen Schwall stacheliger dunkler Samen, die sich im Raum verteilen und am Boden zerplatzen.",
+        "Achte darauf, wo die Samen landen, und stell dich dazwischen."
+      ],
+      "es": [
+        "Lanza una ráfaga de semillas oscuras con púas que se dispersan por la sala y estallan en el suelo.",
+        "Fíjate dónde caen las semillas y colócate entre ellas."
+      ],
+      "fr": [
+        "Lance une gerbe de graines sombres hérissées qui se dispersent dans la salle et éclatent au sol.",
+        "Repère où tombent les graines et place-toi entre elles."
+      ],
+      "pl": [
+        "Rzuca garść kolczastych mrocznych nasion, które rozpraszają się po sali i wybuchają na ziemi.",
+        "Patrz, gdzie spadają nasiona, i stań między nimi."
+      ],
+      "pt-BR": [
+        "Lança uma rajada de sementes sombrias espinhosas que se espalham pelo salão e explodem no chão.",
+        "Repare onde as sementes caem e fique entre elas."
+      ],
+      "ru": [
+        "Бросает горсть шипастых тёмных семян, которые разлетаются по залу и взрываются на полу.",
+        "Следите, куда падают семена, и вставайте между ними."
+      ],
+      "ko": [
+        "가시 돋친 어둠의 씨앗을 흩뿌리며, 씨앗은 방 곳곳으로 퍼져 바닥에서 터집니다.",
+        "씨앗이 떨어지는 곳을 보고 그 사이에 서세요."
+      ],
+      "ja": [
+        "とげのある闇の種をばらまき、種は部屋中に散らばって床で弾けます。",
+        "種が落ちる場所を見て、その間に立ちましょう。"
+      ],
+      "zh-Hans": [
+        "撒出带刺的黑暗种子，种子散落房间各处并在地面爆开。",
+        "注意种子落下的位置，站在它们之间。"
+      ],
+      "zh-Hant": [
+        "撒出帶刺的黑暗種子，種子散落房間各處並在地面爆開。",
+        "注意種子落下的位置，站在它們之間。"
+      ]
+    },
+    "Triple thorn": {
+      "en": [
+        "Crouches, then three rows of dark thorns erupt from the floor in front of him, one after another.",
+        "Get behind him or well away from his front."
+      ],
+      "de": [
+        "Geht in die Hocke, dann brechen vor ihm nacheinander drei Reihen dunkler Dornen aus dem Boden.",
+        "Geh hinter ihn oder weit weg von seiner Vorderseite."
+      ],
+      "es": [
+        "Se agacha y luego brotan del suelo delante de él tres filas de espinas oscuras, una tras otra.",
+        "Ponte detrás de él o muy lejos de su frente."
+      ],
+      "fr": [
+        "S'accroupit, puis trois rangées d'épines sombres jaillissent du sol devant lui, l'une après l'autre.",
+        "Passe derrière lui ou loin devant lui."
+      ],
+      "pl": [
+        "Przykuca, a potem przed nim jeden po drugim wyrastają z ziemi trzy rzędy mrocznych cierni.",
+        "Zajdź go od tyłu albo oddal się daleko od jego przodu."
+      ],
+      "pt-BR": [
+        "Agacha-se e depois três fileiras de espinhos sombrios saem do chão à frente dele, uma após a outra.",
+        "Vá para trás dele ou bem longe da frente dele."
+      ],
+      "ru": [
+        "Приседает, затем перед ним одна за другой вырываются из пола три полосы тёмных шипов.",
+        "Зайдите ему за спину или отойдите подальше от его фронта."
+      ],
+      "ko": [
+        "몸을 낮춘 뒤 그의 앞쪽 바닥에서 어두운 가시가 세 줄로 차례로 솟구칩니다.",
+        "그의 뒤로 가거나 앞쪽에서 멀리 떨어지세요."
+      ],
+      "ja": [
+        "身をかがめると、目の前の床から暗いいばらが3列、次々と突き出します。",
+        "背後に回るか、正面から十分離れましょう。"
+      ],
+      "zh-Hans": [
+        "压低身子，然后身前的地面接连冒出三排黑暗荆棘。",
+        "绕到他背后或远离他的正前方。"
+      ],
+      "zh-Hant": [
+        "壓低身子，然後身前的地面接連冒出三排黑暗荊棘。",
+        "繞到他背後或遠離他的正前方。"
+      ]
+    },
+    "Slash wave": {
+      "en": [
+        "Swings his blade and sends a purple slash wave along the floor.",
+        "Jump over the wave."
+      ],
+      "de": [
+        "Schwingt seine Klinge und schickt eine violette Hiebwelle über den Boden.",
+        "Spring über die Welle."
+      ],
+      "es": [
+        "Blande su hoja y lanza una onda de tajo morada a ras de suelo.",
+        "Salta sobre la onda."
+      ],
+      "fr": [
+        "Balance sa lame et envoie une vague d'entaille violette au ras du sol.",
+        "Saute par-dessus la vague."
+      ],
+      "pl": [
+        "Wymachuje ostrzem i posyła po ziemi fioletową falę cięcia.",
+        "Przeskocz falę."
+      ],
+      "pt-BR": [
+        "Gira a lâmina e envia uma onda de corte roxa pelo chão.",
+        "Pule a onda."
+      ],
+      "ru": [
+        "Взмахивает клинком и посылает вдоль пола фиолетовую волну удара.",
+        "Перепрыгните волну."
+      ],
+      "ko": [
+        "칼날을 휘둘러 바닥을 따라 보랏빛 베기 파동을 날립니다.",
+        "파동을 점프로 넘으세요."
+      ],
+      "ja": [
+        "刃を振るい、床に沿って紫の斬撃波を放ちます。",
+        "波を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "挥动刀刃，沿地面放出紫色斩击波。",
+        "跳过斩击波。"
+      ],
+      "zh-Hant": [
+        "揮動刀刃，沿地面放出紫色斬擊波。",
+        "跳過斬擊波。"
+      ]
+    },
+    "Double slash": {
+      "en": [
+        "Two quick slashes in front of him.",
+        "Comes when you are close: step back, then punish."
+      ],
+      "de": [
+        "Zwei schnelle Hiebe vor sich.",
+        "Kommt, wenn du nah bist: Geh zurück und schlag dann zu."
+      ],
+      "es": [
+        "Dos tajos rápidos delante de él.",
+        "Llega cuando estás cerca: retrocede y castígalo."
+      ],
+      "fr": [
+        "Deux entailles rapides devant lui.",
+        "Arrive quand tu es proche : recule, puis punis-le."
+      ],
+      "pl": [
+        "Dwa szybkie cięcia przed sobą.",
+        "Pojawia się, gdy jesteś blisko: cofnij się i skontruj."
+      ],
+      "pt-BR": [
+        "Dois cortes rápidos à sua frente.",
+        "Vem quando você está perto: recue e depois castigue."
+      ],
+      "ru": [
+        "Два быстрых удара перед собой.",
+        "Бывает, когда вы рядом: отступите и накажите его."
+      ],
+      "ko": [
+        "앞쪽으로 빠르게 두 번 베어 냅니다.",
+        "가까이 있을 때 나옵니다: 물러났다가 반격하세요."
+      ],
+      "ja": [
+        "目の前を素早く2回斬ります。",
+        "近くにいるときに使います：下がってから反撃しましょう。"
+      ],
+      "zh-Hans": [
+        "在身前快速斩击两次。",
+        "你靠近时使用：后退，然后反击。"
+      ],
+      "zh-Hant": [
+        "在身前快速斬擊兩次。",
+        "你靠近時使用：後退，然後反擊。"
+      ]
+    },
+    "Grab dash try": {
+      "en": [
+        "Dashes along the floor to grab you.",
+        "Jump over the dash: if it catches you, he smashes you."
+      ],
+      "de": [
+        "Sprintet am Boden heran, um dich zu packen.",
+        "Spring über den Sprint: Erwischt er dich, schmettert er dich nieder."
+      ],
+      "es": [
+        "Corre a ras de suelo para agarrarte.",
+        "Salta sobre la carrera: si te atrapa, te aplasta."
+      ],
+      "fr": [
+        "Sprinte au sol pour t'attraper.",
+        "Saute par-dessus le sprint : s'il t'attrape, il t'écrase."
+      ],
+      "pl": [
+        "Pędzi po ziemi, by cię złapać.",
+        "Przeskocz zryw: jeśli cię złapie, miażdży cię."
+      ],
+      "pt-BR": [
+        "Corre pelo chão para agarrar você.",
+        "Pule a corrida: se ele pegar você, ele esmaga você."
+      ],
+      "ru": [
+        "Мчится по полу, чтобы схватить вас.",
+        "Перепрыгните рывок: если поймает, он вас сокрушит."
+      ],
+      "ko": [
+        "잡기 위해 바닥을 따라 대쉬합니다.",
+        "대쉬를 점프로 넘으세요: 잡히면 내리찍힙니다."
+      ],
+      "ja": [
+        "掴むために床に沿ってダッシュします。",
+        "ダッシュを飛び越えましょう：捕まると叩きつけられます。"
+      ],
+      "zh-Hans": [
+        "贴地疾驰试图抓住你。",
+        "跳过疾驰：被抓住就会被重砸。"
+      ],
+      "zh-Hant": [
+        "貼地衝刺試圖抓住你。",
+        "跳過衝刺：被抓住就會被重砸。"
+      ]
+    },
+    "Grab dash smash": {
+      "en": [
+        "If his grab dash catches you, he slams you into the ground.",
+        "Jump over the dash: if it catches you, he smashes you."
+      ],
+      "de": [
+        "Erwischt dich sein Griffsprint, rammt er dich in den Boden.",
+        "Spring über den Sprint: Erwischt er dich, schmettert er dich nieder."
+      ],
+      "es": [
+        "Si su carrera de agarre te atrapa, te estampa contra el suelo.",
+        "Salta sobre la carrera: si te atrapa, te aplasta."
+      ],
+      "fr": [
+        "Si son sprint de prise t'attrape, il te plaque au sol.",
+        "Saute par-dessus le sprint : s'il t'attrape, il t'écrase."
+      ],
+      "pl": [
+        "Jeśli jego zryw z chwytem cię złapie, wbija cię w ziemię.",
+        "Przeskocz zryw: jeśli cię złapie, miażdży cię."
+      ],
+      "pt-BR": [
+        "Se a corrida de agarrar pegar você, ele esmaga você no chão.",
+        "Pule a corrida: se ele pegar você, ele esmaga você."
+      ],
+      "ru": [
+        "Если его захват в рывке поймает вас, он впечатывает вас в землю.",
+        "Перепрыгните рывок: если поймает, он вас сокрушит."
+      ],
+      "ko": [
+        "잡기 대쉬에 잡히면 땅에 내리찍힙니다.",
+        "대쉬를 점프로 넘으세요: 잡히면 내리찍힙니다."
+      ],
+      "ja": [
+        "掴みダッシュに捕まると、地面に叩きつけられます。",
+        "ダッシュを飛び越えましょう：捕まると叩きつけられます。"
+      ],
+      "zh-Hans": [
+        "被他的抓取疾驰抓住后，会被砸向地面。",
+        "跳过疾驰：被抓住就会被重砸。"
+      ],
+      "zh-Hant": [
+        "被他的抓取衝刺抓住後，會被砸向地面。",
+        "跳過衝刺：被抓住就會被重砸。"
+      ]
+    },
+    "Grab dash smash (enhanced)": {
+      "en": [
+        "Like Grab dash smash, but the slam also raises pillars of dark energy.",
+        "Jump over the dash: if it catches you, he smashes you."
+      ],
+      "de": [
+        "Wie Griffsprint-Schmettern, aber der Aufprall lässt auch Säulen dunkler Energie aufsteigen.",
+        "Spring über den Sprint: Erwischt er dich, schmettert er dich nieder."
+      ],
+      "es": [
+        "Como el aplastamiento con carrera de agarre, pero el golpe además alza pilares de energía oscura.",
+        "Salta sobre la carrera: si te atrapa, te aplasta."
+      ],
+      "fr": [
+        "Comme l'écrasement après sprint de prise, mais l'impact fait aussi surgir des piliers d'énergie sombre.",
+        "Saute par-dessus le sprint : s'il t'attrape, il t'écrase."
+      ],
+      "pl": [
+        "Jak zmiażdżenie po zrywie z chwytem, ale uderzenie wznosi też słupy mrocznej energii.",
+        "Przeskocz zryw: jeśli cię złapie, miażdży cię."
+      ],
+      "pt-BR": [
+        "Como o esmagamento da corrida de agarrar, mas o impacto também ergue pilares de energia sombria.",
+        "Pule a corrida: se ele pegar você, ele esmaga você."
+      ],
+      "ru": [
+        "Как сокрушение после захвата в рывке, но удар ещё и поднимает столбы тёмной энергии.",
+        "Перепрыгните рывок: если поймает, он вас сокрушит."
+      ],
+      "ko": [
+        "잡기 대쉬 내리찍기와 같지만, 내리찍을 때 어둠의 기둥도 솟아오릅니다.",
+        "대쉬를 점프로 넘으세요: 잡히면 내리찍힙니다."
+      ],
+      "ja": [
+        "掴みダッシュの叩きつけと同じですが、叩きつけで闇のエネルギーの柱も立ち上ります。",
+        "ダッシュを飛び越えましょう：捕まると叩きつけられます。"
+      ],
+      "zh-Hans": [
+        "与抓取疾驰重砸相同，但砸下时还会升起黑暗能量柱。",
+        "跳过疾驰：被抓住就会被重砸。"
+      ],
+      "zh-Hant": [
+        "與抓取衝刺重砸相同，但砸下時還會升起黑暗能量柱。",
+        "跳過衝刺：被抓住就會被重砸。"
+      ]
+    },
+    "Dash grab fail": {
+      "en": [
+        "His grab dash missed: he stumbles and recovers.",
+        "Your chance to hit him."
+      ],
+      "de": [
+        "Sein Griffsprint ging daneben: Er stolpert und fängt sich wieder.",
+        "Deine Chance, ihn zu treffen."
+      ],
+      "es": [
+        "Su carrera de agarre falló: tropieza y se recupera.",
+        "Tu oportunidad de golpearlo."
+      ],
+      "fr": [
+        "Son sprint de prise a raté : il trébuche et se rattrape.",
+        "Ta chance de le frapper."
+      ],
+      "pl": [
+        "Jego zryw z chwytem chybił: potyka się i łapie równowagę.",
+        "Twoja szansa, by go trafić."
+      ],
+      "pt-BR": [
+        "A corrida de agarrar errou: ele tropeça e se recupera.",
+        "Sua chance de acertá-lo."
+      ],
+      "ru": [
+        "Захват в рывке не удался: он спотыкается и приходит в себя.",
+        "Ваш шанс ударить его."
+      ],
+      "ko": [
+        "잡기 대쉬가 빗나가 비틀거렸다가 자세를 바로잡습니다.",
+        "공격할 기회입니다."
+      ],
+      "ja": [
+        "掴みダッシュが外れ、よろめいてから立ち直ります。",
+        "攻撃のチャンスです。"
+      ],
+      "zh-Hans": [
+        "抓取疾驰落空：他晃了一下后恢复。",
+        "攻击他的机会。"
+      ],
+      "zh-Hant": [
+        "抓取衝刺落空：他晃了一下後恢復。",
+        "攻擊他的機會。"
+      ]
+    },
+    "Grab": {
+      "en": [
+        "Reaches out to grab you up close; if it catches you, he follows with blows.",
+        "Do not stand right next to him."
+      ],
+      "de": [
+        "Greift aus nächster Nähe nach dir; erwischt er dich, folgen Schläge.",
+        "Steh nicht direkt neben ihm."
+      ],
+      "es": [
+        "Intenta agarrarte de cerca; si te atrapa, sigue con golpes.",
+        "No te quedes justo a su lado."
+      ],
+      "fr": [
+        "Tente de t'attraper de près ; s'il t'attrape, il enchaîne des coups.",
+        "Ne reste pas juste à côté de lui."
+      ],
+      "pl": [
+        "Sięga, by złapać cię z bliska; jeśli mu się uda, zadaje ciosy.",
+        "Nie stój tuż obok niego."
+      ],
+      "pt-BR": [
+        "Estica o braço para agarrar você de perto; se pegar, emenda golpes.",
+        "Não fique colado nele."
+      ],
+      "ru": [
+        "Пытается схватить вас вплотную; если поймает, следуют удары.",
+        "Не стойте вплотную к нему."
+      ],
+      "ko": [
+        "가까이에서 손을 뻗어 잡으려 하며, 잡히면 연속으로 공격합니다.",
+        "그의 바로 옆에 서 있지 마세요."
+      ],
+      "ja": [
+        "近くで手を伸ばして掴もうとし、捕まると攻撃が続きます。",
+        "すぐ隣に立たないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "近距离伸手抓你；被抓住后会接连攻击。",
+        "不要站在他身边。"
+      ],
+      "zh-Hant": [
+        "近距離伸手抓你；被抓住後會接連攻擊。",
+        "不要站在他身邊。"
+      ]
+    },
+    "Dimension slash": {
+      "en": [
+        "A white ring grows around you, then a huge white crescent slash cuts through it, followed by slashes from the floor.",
+        "Get out of the ring before it is cut."
+      ],
+      "de": [
+        "Um dich wächst ein weißer Ring, dann schneidet ein riesiger weißer Sichelhieb hindurch, gefolgt von Hieben aus dem Boden.",
+        "Raus aus dem Ring, bevor er zerschnitten wird."
+      ],
+      "es": [
+        "Un anillo blanco crece a tu alrededor y luego un enorme tajo blanco en media luna lo atraviesa, seguido de tajos desde el suelo.",
+        "Sal del anillo antes de que lo corten."
+      ],
+      "fr": [
+        "Un anneau blanc grandit autour de toi, puis une immense entaille blanche en croissant le traverse, suivie d'entailles venant du sol.",
+        "Sors de l'anneau avant qu'il soit tranché."
+      ],
+      "pl": [
+        "Wokół ciebie rośnie biały pierścień, potem przecina go ogromne białe sierpowe cięcie, a po nim cięcia z ziemi.",
+        "Wyjdź z pierścienia, zanim zostanie przecięty."
+      ],
+      "pt-BR": [
+        "Um anel branco cresce ao seu redor, depois um enorme corte branco em lua crescente o atravessa, seguido de cortes vindos do chão.",
+        "Saia do anel antes de ele ser cortado."
+      ],
+      "ru": [
+        "Вокруг вас растёт белое кольцо, затем его рассекает огромный белый серповидный удар, а следом удары из пола.",
+        "Выйдите из кольца до того, как его рассекут."
+      ],
+      "ko": [
+        "당신 주위에 하얀 고리가 커지고, 거대한 하얀 초승달 베기가 그것을 가른 뒤 바닥에서 베기가 이어집니다.",
+        "고리가 갈라지기 전에 밖으로 나가세요."
+      ],
+      "ja": [
+        "あなたの周りに白い輪が広がり、巨大な白い三日月の斬撃がそれを切り裂き、床からの斬撃が続きます。",
+        "輪が切り裂かれる前に外へ出ましょう。"
+      ],
+      "zh-Hans": [
+        "你周围出现不断扩大的白色光环，随后巨大的白色新月斩劈开它，接着地面也发出斩击。",
+        "在光环被劈开前离开。"
+      ],
+      "zh-Hant": [
+        "你周圍出現不斷擴大的白色光環，隨後巨大的白色新月斬劈開它，接著地面也發出斬擊。",
+        "在光環被劈開前離開。"
+      ]
+    },
+    "Dimension rush": {
+      "en": [
+        "Rushes along the floor, raising a trail of dark thorns behind him.",
+        "Jump over him and keep off the thorns."
+      ],
+      "de": [
+        "Stürmt über den Boden und lässt hinter sich eine Spur dunkler Dornen aufsteigen.",
+        "Spring über ihn und bleib von den Dornen weg."
+      ],
+      "es": [
+        "Carga a ras de suelo dejando tras de sí un rastro de espinas oscuras.",
+        "Sáltalo y no pises las espinas."
+      ],
+      "fr": [
+        "Fonce au sol en laissant derrière lui une traînée d'épines sombres.",
+        "Saute par-dessus lui et évite les épines."
+      ],
+      "pl": [
+        "Szarżuje po ziemi, zostawiając za sobą ślad mrocznych cierni.",
+        "Przeskocz go i omijaj ciernie."
+      ],
+      "pt-BR": [
+        "Avança pelo chão deixando um rastro de espinhos sombrios.",
+        "Pule por cima dele e fique longe dos espinhos."
+      ],
+      "ru": [
+        "Несётся по полу, оставляя за собой след тёмных шипов.",
+        "Перепрыгните его и не наступайте на шипы."
+      ],
+      "ko": [
+        "바닥을 따라 돌진하며 뒤로 어두운 가시 자국을 남깁니다.",
+        "그를 점프로 넘고 가시를 피하세요."
+      ],
+      "ja": [
+        "床に沿って突進し、後ろに暗いいばらの跡を残します。",
+        "飛び越えて、いばらを避けましょう。"
+      ],
+      "zh-Hans": [
+        "贴地冲锋，身后留下一串黑暗荆棘。",
+        "跳过他并避开荆棘。"
+      ],
+      "zh-Hant": [
+        "貼地衝鋒，身後留下一串黑暗荊棘。",
+        "跳過他並避開荊棘。"
+      ]
+    },
+    "Zigzag rush": {
+      "en": [
+        "Zigzags back and forth across the room, slashing as he goes.",
+        "Keep moving and jump when he comes at you."
+      ],
+      "de": [
+        "Rast im Zickzack durch den Raum und schlägt dabei zu.",
+        "Bleib in Bewegung und spring, wenn er auf dich zukommt."
+      ],
+      "es": [
+        "Cruza la sala en zigzag dando tajos.",
+        "Sigue moviéndote y salta cuando venga hacia ti."
+      ],
+      "fr": [
+        "Traverse la salle en zigzag en tranchant.",
+        "Continue de bouger et saute quand il arrive sur toi."
+      ],
+      "pl": [
+        "Pędzi zygzakiem przez salę, tnąc po drodze.",
+        "Ruszaj się i skacz, gdy leci na ciebie."
+      ],
+      "pt-BR": [
+        "Cruza o salão em zigue-zague cortando pelo caminho.",
+        "Continue se movendo e pule quando ele vier até você."
+      ],
+      "ru": [
+        "Носится зигзагом по залу, нанося удары.",
+        "Двигайтесь и прыгайте, когда он летит на вас."
+      ],
+      "ko": [
+        "방을 지그재그로 오가며 베어 냅니다.",
+        "계속 움직이다가 그가 다가오면 점프하세요."
+      ],
+      "ja": [
+        "部屋をジグザグに行き来しながら斬りつけます。",
+        "動き続け、向かってきたらジャンプしましょう。"
+      ],
+      "zh-Hans": [
+        "在房间里来回之字形冲刺并斩击。",
+        "保持移动，他冲向你时跳起。"
+      ],
+      "zh-Hant": [
+        "在房間裡來回之字形衝刺並斬擊。",
+        "保持移動，他衝向你時跳起。"
+      ]
+    },
+    "Dark cannon": {
+      "en": [
+        "Charges a dark orb and fires a beam, then the orb drifts toward you and bursts in white and purple lightning.",
+        "Dodge the beam, then get far from the orb before it bursts."
+      ],
+      "de": [
+        "Lädt eine dunkle Kugel auf und feuert einen Strahl, dann treibt die Kugel auf dich zu und zerplatzt in weiß-violetten Blitzen.",
+        "Weich dem Strahl aus und entferne dich dann weit von der Kugel, bevor sie platzt."
+      ],
+      "es": [
+        "Carga un orbe oscuro y dispara un rayo; luego el orbe flota hacia ti y estalla en relámpagos blancos y morados.",
+        "Esquiva el rayo y luego aléjate del orbe antes de que estalle."
+      ],
+      "fr": [
+        "Charge un orbe sombre et tire un rayon, puis l'orbe dérive vers toi et éclate en éclairs blancs et violets.",
+        "Esquive le rayon, puis éloigne-toi de l'orbe avant qu'il éclate."
+      ],
+      "pl": [
+        "Ładuje mroczną kulę i wystrzeliwuje promień, potem kula dryfuje w twoją stronę i wybucha biało-fioletowymi błyskawicami.",
+        "Uniknij promienia, a potem oddal się od kuli, zanim wybuchnie."
+      ],
+      "pt-BR": [
+        "Carrega um orbe sombrio e dispara um raio, depois o orbe flutua até você e explode em relâmpagos brancos e roxos.",
+        "Desvie do raio e depois se afaste do orbe antes que ele exploda."
+      ],
+      "ru": [
+        "Заряжает тёмную сферу и выпускает луч, затем сфера плывёт к вам и взрывается бело-фиолетовыми молниями.",
+        "Увернитесь от луча, затем отойдите от сферы, пока она не взорвалась."
+      ],
+      "ko": [
+        "어둠의 구슬을 충전해 광선을 쏜 뒤, 구슬이 당신 쪽으로 떠와 하얗고 보랏빛 번개로 터집니다.",
+        "광선을 피한 뒤, 구슬이 터지기 전에 멀리 떨어지세요."
+      ],
+      "ja": [
+        "闇の球をためて光線を放つと、球があなたの方へ漂ってきて、白と紫の稲妻となって弾けます。",
+        "光線をかわし、球が弾ける前に遠く離れましょう。"
+      ],
+      "zh-Hans": [
+        "蓄力黑暗球体并射出光束，随后球体飘向你，爆成白紫色的闪电。",
+        "躲开光束，然后在球体爆开前远离它。"
+      ],
+      "zh-Hant": [
+        "蓄力黑暗球體並射出光束，隨後球體飄向你，爆成白紫色的閃電。",
+        "躲開光束，然後在球體爆開前遠離它。"
+      ]
+    },
+    "Giant mouth": {
+      "en": [
+        "A red line glows along the floor, curtains of dark energy rise and a giant dark mouth bursts out of the ground, then dark tendrils follow.",
+        "Get off the floor when the red line glows. At most every 90 seconds."
+      ],
+      "de": [
+        "Eine rote Linie leuchtet am Boden, Vorhänge dunkler Energie steigen auf und ein riesiges dunkles Maul bricht aus dem Boden, dann folgen dunkle Ranken.",
+        "Runter vom Boden, wenn die rote Linie leuchtet. Höchstens alle 90 Sekunden."
+      ],
+      "es": [
+        "Brilla una línea roja en el suelo, se alzan cortinas de energía oscura y una boca oscura gigante brota del suelo; luego siguen zarcillos oscuros.",
+        "Sal del suelo cuando brille la línea roja. Como mucho cada 90 segundos."
+      ],
+      "fr": [
+        "Une ligne rouge s'allume au sol, des rideaux d'énergie sombre s'élèvent et une gueule sombre géante jaillit du sol, suivie de vrilles sombres.",
+        "Quitte le sol quand la ligne rouge s'allume. Au plus toutes les 90 secondes."
+      ],
+      "pl": [
+        "Na ziemi świeci czerwona linia, wznoszą się kurtyny mrocznej energii, z ziemi wyrywa się gigantyczna mroczna paszcza, a potem mroczne macki.",
+        "Zejdź z ziemi, gdy świeci czerwona linia. Najwyżej co 90 sekund."
+      ],
+      "pt-BR": [
+        "Uma linha vermelha brilha no chão, cortinas de energia sombria sobem e uma boca sombria gigante sai do chão, seguida de tentáculos sombrios.",
+        "Saia do chão quando a linha vermelha brilhar. No máximo a cada 90 segundos."
+      ],
+      "ru": [
+        "По полу загорается красная линия, поднимаются завесы тёмной энергии, из земли вырывается гигантская тёмная пасть, а следом тёмные щупальца.",
+        "Уйдите с пола, когда горит красная линия. Не чаще раза в 90 секунд."
+      ],
+      "ko": [
+        "바닥에 붉은 선이 빛나고 어둠의 장막이 솟은 뒤, 거대한 어둠의 입이 땅에서 튀어나오고 어두운 촉수가 이어집니다.",
+        "붉은 선이 빛나면 바닥에서 벗어나세요. 최대 90초마다 사용합니다."
+      ],
+      "ja": [
+        "床に赤い線が光り、闇のカーテンが立ち上ると、巨大な闇の口が地面から飛び出し、暗い触手が続きます。",
+        "赤い線が光ったら床から離れましょう。最大で90秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "地面亮起红线，黑暗屏障升起，一张巨大的黑暗之口从地下冲出，随后是黑暗触手。",
+        "红线亮起时离开地面。最多每90秒一次。"
+      ],
+      "zh-Hant": [
+        "地面亮起紅線，黑暗屏障升起，一張巨大的黑暗之口從地下衝出，隨後是黑暗觸手。",
+        "紅線亮起時離開地面。最多每90秒一次。"
+      ]
+    },
+    "Thorny hell on ground": {
+      "en": [
+        "A red line glows along the whole floor, then a field of dark thorns erupts across it.",
+        "Be in the air or on a platform when the thorns come up."
+      ],
+      "de": [
+        "Eine rote Linie leuchtet über den ganzen Boden, dann bricht ein Feld dunkler Dornen hervor.",
+        "Sei in der Luft oder auf einer Plattform, wenn die Dornen hochkommen."
+      ],
+      "es": [
+        "Una línea roja brilla en todo el suelo y luego brota un campo de espinas oscuras.",
+        "Estate en el aire o en una plataforma cuando salgan las espinas."
+      ],
+      "fr": [
+        "Une ligne rouge s'allume sur tout le sol, puis un champ d'épines sombres en jaillit.",
+        "Sois en l'air ou sur une plateforme quand les épines sortent."
+      ],
+      "pl": [
+        "Na całej podłodze świeci czerwona linia, a potem wyrasta pole mrocznych cierni.",
+        "Bądź w powietrzu albo na platformie, gdy wyrastają ciernie."
+      ],
+      "pt-BR": [
+        "Uma linha vermelha brilha no chão inteiro, depois um campo de espinhos sombrios irrompe.",
+        "Esteja no ar ou numa plataforma quando os espinhos subirem."
+      ],
+      "ru": [
+        "По всему полу загорается красная линия, затем из него вырастает поле тёмных шипов.",
+        "Будьте в воздухе или на платформе, когда вырастают шипы."
+      ],
+      "ko": [
+        "바닥 전체에 붉은 선이 빛난 뒤, 어두운 가시 밭이 솟구칩니다.",
+        "가시가 솟을 때 공중이나 발판 위에 있으세요."
+      ],
+      "ja": [
+        "床全体に赤い線が光ると、暗いいばらの原が突き出します。",
+        "いばらが出るときは空中か足場の上にいましょう。"
+      ],
+      "zh-Hans": [
+        "整个地面亮起红线，然后冒出一片黑暗荆棘。",
+        "荆棘冒出时待在空中或平台上。"
+      ],
+      "zh-Hant": [
+        "整個地面亮起紅線，然後冒出一片黑暗荊棘。",
+        "荊棘冒出時待在空中或平台上。"
+      ]
+    },
+    "Thorny hell on wall": {
+      "en": [
+        "Clings to a wall, the wall glows red, then rows of dark thorns shoot out across the room.",
+        "Find the gap between the rows and stay in it."
+      ],
+      "de": [
+        "Hängt an einer Wand, die Wand glüht rot, dann schießen Reihen dunkler Dornen quer durch den Raum.",
+        "Such die Lücke zwischen den Reihen und bleib darin."
+      ],
+      "es": [
+        "Se aferra a una pared, la pared brilla en rojo y luego salen disparadas filas de espinas oscuras a través de la sala.",
+        "Busca el hueco entre las filas y quédate en él."
+      ],
+      "fr": [
+        "S'accroche à un mur, le mur rougeoie, puis des rangées d'épines sombres traversent la salle.",
+        "Trouve l'espace entre les rangées et restes-y."
+      ],
+      "pl": [
+        "Czepia się ściany, ściana świeci na czerwono, a potem przez salę wystrzeliwują rzędy mrocznych cierni.",
+        "Znajdź lukę między rzędami i zostań w niej."
+      ],
+      "pt-BR": [
+        "Agarra-se a uma parede, a parede brilha vermelha e depois fileiras de espinhos sombrios disparam pelo salão.",
+        "Encontre o espaço entre as fileiras e fique nele."
+      ],
+      "ru": [
+        "Цепляется за стену, стена светится красным, затем через зал выстреливают ряды тёмных шипов.",
+        "Найдите промежуток между рядами и оставайтесь в нём."
+      ],
+      "ko": [
+        "벽에 매달리면 벽이 붉게 빛나고, 어두운 가시가 줄지어 방을 가로질러 뻗어 나옵니다.",
+        "줄 사이의 틈을 찾아 그곳에 머무르세요."
+      ],
+      "ja": [
+        "壁にしがみつくと壁が赤く光り、暗いいばらが列をなして部屋を横切って伸びてきます。",
+        "列と列の間の隙間を見つけ、そこに留まりましょう。"
+      ],
+      "zh-Hans": [
+        "贴在墙上，墙壁发出红光，随后一排排黑暗荆棘横穿房间射出。",
+        "找到荆棘之间的空隙并待在那里。"
+      ],
+      "zh-Hant": [
+        "貼在牆上，牆壁發出紅光，隨後一排排黑暗荊棘橫穿房間射出。",
+        "找到荊棘之間的空隙並待在那裡。"
+      ]
+    },
+    "Overrun": {
+      "en": [
+        "Dark lines criss-cross the screen and he slashes along them again and again; then a red frame closes around the room and the floor fills with spikes.",
+        "Stay between the lines, and be in the air when the red frame appears."
+      ],
+      "de": [
+        "Dunkle Linien kreuzen den Bildschirm und er schlägt immer wieder an ihnen entlang; dann schließt sich ein roter Rahmen um den Raum und der Boden füllt sich mit Stacheln.",
+        "Bleib zwischen den Linien und sei in der Luft, wenn der rote Rahmen erscheint."
+      ],
+      "es": [
+        "Líneas oscuras cruzan la pantalla y él da tajos una y otra vez a lo largo de ellas; luego un marco rojo rodea la sala y el suelo se llena de púas.",
+        "Quédate entre las líneas y estate en el aire cuando aparezca el marco rojo."
+      ],
+      "fr": [
+        "Des lignes sombres s'entrecroisent à l'écran et il tranche le long de celles-ci encore et encore ; puis un cadre rouge se referme sur la salle et le sol se couvre de pointes.",
+        "Reste entre les lignes, et sois en l'air quand le cadre rouge apparaît."
+      ],
+      "pl": [
+        "Mroczne linie krzyżują się na ekranie, a on raz za razem tnie wzdłuż nich; potem czerwona rama zamyka salę, a podłoga wypełnia się kolcami.",
+        "Trzymaj się między liniami i bądź w powietrzu, gdy pojawi się czerwona rama."
+      ],
+      "pt-BR": [
+        "Linhas sombrias cruzam a tela e ele corta ao longo delas várias vezes; depois uma moldura vermelha se fecha em volta do salão e o chão se enche de espinhos.",
+        "Fique entre as linhas e esteja no ar quando a moldura vermelha aparecer."
+      ],
+      "ru": [
+        "Тёмные линии перечёркивают экран, и он снова и снова рубит вдоль них; затем красная рамка смыкается вокруг зала, и пол заполняется шипами.",
+        "Держитесь между линиями и будьте в воздухе, когда появится красная рамка."
+      ],
+      "ko": [
+        "어두운 선이 화면을 교차하고 그 선을 따라 계속 베다가, 붉은 테두리가 방을 감싸고 바닥이 가시로 가득 덮입니다.",
+        "선 사이에 있다가, 붉은 테두리가 나타나면 공중에 있으세요."
+      ],
+      "ja": [
+        "暗い線が画面を交差し、その線に沿って何度も斬りつけ、その後赤い枠が部屋を囲み、床がトゲで埋め尽くされます。",
+        "線の間にいて、赤い枠が現れたら空中にいましょう。"
+      ],
+      "zh-Hans": [
+        "黑色线条在画面上纵横交错，他沿线反复斩击；随后红色边框围住房间，地面布满尖刺。",
+        "待在线条之间，红框出现时待在空中。"
+      ],
+      "zh-Hant": [
+        "黑色線條在畫面上縱橫交錯，他沿線反覆斬擊；隨後紅色邊框圍住房間，地面佈滿尖刺。",
+        "待在線條之間，紅框出現時待在空中。"
+      ]
+    },
+    "Execution": {
+      "en": [
+        "A white ring closes in around you; if he catches you, the screen turns red and he strikes you hard. He does it several times.",
+        "Dash out of each ring before it closes."
+      ],
+      "de": [
+        "Ein weißer Ring zieht sich um dich zusammen; erwischt er dich, wird der Bildschirm rot und er trifft dich hart. Das macht er mehrmals.",
+        "Sprinte aus jedem Ring heraus, bevor er sich schließt."
+      ],
+      "es": [
+        "Un anillo blanco se cierra a tu alrededor; si te atrapa, la pantalla se vuelve roja y te golpea con fuerza. Lo hace varias veces.",
+        "Sal corriendo de cada anillo antes de que se cierre."
+      ],
+      "fr": [
+        "Un anneau blanc se resserre autour de toi ; s'il t'attrape, l'écran devient rouge et il te frappe durement. Il le fait plusieurs fois.",
+        "Sors de chaque anneau en sprintant avant qu'il se referme."
+      ],
+      "pl": [
+        "Wokół ciebie zaciska się biały pierścień; jeśli cię złapie, ekran robi się czerwony i mocno cię uderza. Robi to kilka razy.",
+        "Wyskakuj z każdego pierścienia, zanim się zamknie."
+      ],
+      "pt-BR": [
+        "Um anel branco se fecha ao seu redor; se ele pegar você, a tela fica vermelha e ele atinge você com força. Faz isso várias vezes.",
+        "Corra para fora de cada anel antes de ele fechar."
+      ],
+      "ru": [
+        "Вокруг вас сжимается белое кольцо; если он поймает вас, экран краснеет и он бьёт вас со всей силы. Делает это несколько раз.",
+        "Выскакивайте из каждого кольца, пока оно не сомкнулось."
+      ],
+      "ko": [
+        "하얀 고리가 당신 주위로 좁혀 들고, 잡히면 화면이 붉게 변하며 강하게 공격당합니다. 여러 번 반복합니다.",
+        "고리가 닫히기 전에 대쉬로 빠져나오세요."
+      ],
+      "ja": [
+        "白い輪があなたの周りに迫り、捕まると画面が赤くなって強烈な一撃を受けます。何度か繰り返します。",
+        "輪が閉じる前にダッシュで抜け出しましょう。"
+      ],
+      "zh-Hans": [
+        "白色光环向你收缩；被抓住时画面变红，他会重重击中你。会连续进行数次。",
+        "在每个光环收缩前冲出去。"
+      ],
+      "zh-Hant": [
+        "白色光環向你收縮；被抓住時畫面變紅，他會重重擊中你。會連續進行數次。",
+        "在每個光環收縮前衝出去。"
+      ]
+    },
+    "Big bang": {
+      "en": [
+        "Slashes criss-cross the room, then a dark orb drifts after you, charges up and bursts in a huge blast of lightning.",
+        "Lead the orb away and get as far from it as you can before it bursts."
+      ],
+      "de": [
+        "Hiebe kreuzen den Raum, dann treibt eine dunkle Kugel dir hinterher, lädt sich auf und zerplatzt in einer riesigen Blitzexplosion.",
+        "Lock die Kugel weg und entferne dich so weit wie möglich, bevor sie platzt."
+      ],
+      "es": [
+        "Tajos cruzan la sala, luego un orbe oscuro te sigue flotando, se carga y estalla en una enorme explosión de relámpagos.",
+        "Aleja el orbe y apártate lo más posible antes de que estalle."
+      ],
+      "fr": [
+        "Des entailles s'entrecroisent dans la salle, puis un orbe sombre te suit, se charge et éclate dans une immense déflagration d'éclairs.",
+        "Entraîne l'orbe loin et éloigne-toi le plus possible avant qu'il éclate."
+      ],
+      "pl": [
+        "Cięcia krzyżują się w sali, potem mroczna kula dryfuje za tobą, ładuje się i wybucha ogromną eksplozją błyskawic.",
+        "Odciągnij kulę i oddal się jak najdalej, zanim wybuchnie."
+      ],
+      "pt-BR": [
+        "Cortes cruzam o salão, depois um orbe sombrio flutua atrás de você, carrega e explode numa enorme explosão de relâmpagos.",
+        "Leve o orbe para longe e se afaste o máximo possível antes de ele explodir."
+      ],
+      "ru": [
+        "Удары перечёркивают зал, затем тёмная сфера плывёт за вами, заряжается и взрывается огромным разрядом молний.",
+        "Уведите сферу и отойдите от неё как можно дальше, пока она не взорвалась."
+      ],
+      "ko": [
+        "베기가 방을 교차한 뒤, 어둠의 구슬이 당신을 따라오며 충전되어 거대한 번개 폭발로 터집니다.",
+        "구슬을 유인한 뒤 터지기 전에 최대한 멀리 떨어지세요."
+      ],
+      "ja": [
+        "斬撃が部屋を交差した後、闇の球があなたを追って漂い、力をためて巨大な稲妻の爆発となって弾けます。",
+        "球を引き離し、弾ける前にできるだけ遠く離れましょう。"
+      ],
+      "zh-Hans": [
+        "斩击在房间里纵横交错，然后黑暗球体追着你飘来，蓄力后爆成巨大的闪电爆炸。",
+        "把球体引开，在它爆开前尽量远离。"
+      ],
+      "zh-Hant": [
+        "斬擊在房間裡縱橫交錯，然後黑暗球體追著你飄來，蓄力後爆成巨大的閃電爆炸。",
+        "把球體引開，在它爆開前盡量遠離。"
+      ]
+    },
+    "Summon thorn": {
+      "en": [
+        "Beside his other moves, about every half minute: dark thorns burst up out of the floor.",
+        "Watch the floor and step away when the thorns rise."
+      ],
+      "de": [
+        "Neben seinen anderen Angriffen, etwa jede halbe Minute: Dunkle Dornen brechen aus dem Boden.",
+        "Achte auf den Boden und geh weg, wenn die Dornen wachsen."
+      ],
+      "es": [
+        "Además de sus otros ataques, más o menos cada medio minuto: espinas oscuras brotan del suelo.",
+        "Vigila el suelo y apártate cuando salgan las espinas."
+      ],
+      "fr": [
+        "En plus de ses autres attaques, environ toutes les demi-minutes : des épines sombres jaillissent du sol.",
+        "Surveille le sol et écarte-toi quand les épines sortent."
+      ],
+      "pl": [
+        "Obok innych ataków, mniej więcej co pół minuty: z ziemi wyrastają mroczne ciernie.",
+        "Obserwuj podłogę i odsuń się, gdy ciernie wyrastają."
+      ],
+      "pt-BR": [
+        "Além dos outros ataques, mais ou menos a cada meio minuto: espinhos sombrios saem do chão.",
+        "Observe o chão e afaste-se quando os espinhos subirem."
+      ],
+      "ru": [
+        "Помимо других атак, примерно раз в полминуты: из пола вырываются тёмные шипы.",
+        "Следите за полом и отходите, когда шипы поднимаются."
+      ],
+      "ko": [
+        "다른 공격과 별개로 약 30초마다: 어두운 가시가 바닥에서 솟구칩니다.",
+        "바닥을 살피고 가시가 솟으면 물러나세요."
+      ],
+      "ja": [
+        "ほかの攻撃と並行して約30秒ごとに：暗いいばらが床から突き出します。",
+        "床を見て、いばらが伸びたら離れましょう。"
+      ],
+      "zh-Hans": [
+        "与其他招式同时进行，大约每半分钟：黑暗荆棘从地面冒出。",
+        "留意地面，荆棘冒出时离开。"
+      ],
+      "zh-Hant": [
+        "與其他招式同時進行，大約每半分鐘：黑暗荊棘從地面冒出。",
+        "留意地面，荊棘冒出時離開。"
+      ]
+    },
+    "Dark orb fragments": {
+      "en": [
+        "From the second stage, beside his other moves: small dark orbs appear in the air across the room and then strike.",
+        "Keep moving and don't stand under them."
+      ],
+      "de": [
+        "Ab der zweiten Stufe, neben seinen anderen Angriffen: Kleine dunkle Kugeln erscheinen überall im Raum in der Luft und schlagen dann zu.",
+        "Bleib in Bewegung und steh nicht unter ihnen."
+      ],
+      "es": [
+        "Desde la segunda etapa, además de sus otros ataques: aparecen pequeñas esferas oscuras en el aire por toda la sala y luego atacan.",
+        "Muévete y no te quedes debajo de ellas."
+      ],
+      "fr": [
+        "À partir de la deuxième étape, en plus de ses autres attaques : de petites sphères sombres apparaissent en l'air dans toute la salle, puis frappent.",
+        "Bouge et ne reste pas sous elles."
+      ],
+      "pl": [
+        "Od drugiego etapu, obok innych ataków: w powietrzu w całej sali pojawiają się małe mroczne kule, a potem uderzają.",
+        "Ruszaj się i nie stój pod nimi."
+      ],
+      "pt-BR": [
+        "A partir da segunda fase, além dos outros ataques: pequenas esferas sombrias surgem no ar pela sala e depois atacam.",
+        "Continue se movendo e não fique embaixo delas."
+      ],
+      "ru": [
+        "Со второй стадии, помимо других атак: в воздухе по всему залу появляются маленькие тёмные сферы, а затем бьют.",
+        "Двигайтесь и не стойте под ними."
+      ],
+      "ko": [
+        "두 번째 단계부터 다른 공격과 별개로: 작은 암흑구들이 방 곳곳의 공중에 나타난 뒤 공격합니다.",
+        "계속 움직이고 그 아래에 서 있지 마세요."
+      ],
+      "ja": [
+        "第2段階から、ほかの攻撃と並行して：小さな暗黒球が部屋のあちこちの空中に現れ、攻撃してきます。",
+        "動き続け、その下に立たないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "从第二阶段起，与其他招式同时进行：小黑暗球出现在房间各处的空中，随后发起攻击。",
+        "不停移动，不要站在它们下方。"
+      ],
+      "zh-Hant": [
+        "從第二階段起，與其他招式同時進行：小黑暗球出現在房間各處的空中，隨後發起攻擊。",
+        "不停移動，不要站在它們下方。"
+      ]
+    },
+    "Dark blast wall": {
+      "en": [
+        "From the second stage, beside his other moves: a dark blast bursts out of the wall.",
+        "Keep away from the walls when it comes."
+      ],
+      "de": [
+        "Ab der zweiten Stufe, neben seinen anderen Angriffen: Aus der Wand bricht eine dunkle Explosion hervor.",
+        "Halte dich dann von den Wänden fern."
+      ],
+      "es": [
+        "Desde la segunda etapa, además de sus otros ataques: una explosión oscura sale de la pared.",
+        "Aléjate de las paredes cuando llegue."
+      ],
+      "fr": [
+        "À partir de la deuxième étape, en plus de ses autres attaques : une explosion sombre jaillit du mur.",
+        "Éloigne-toi des murs à ce moment-là."
+      ],
+      "pl": [
+        "Od drugiego etapu, obok innych ataków: ze ściany wybucha mroczny podmuch.",
+        "Trzymaj się wtedy z dala od ścian."
+      ],
+      "pt-BR": [
+        "A partir da segunda fase, além dos outros ataques: uma explosão sombria sai da parede.",
+        "Fique longe das paredes quando vier."
+      ],
+      "ru": [
+        "Со второй стадии, помимо других атак: из стены вырывается тёмный взрыв.",
+        "Держитесь подальше от стен в этот момент."
+      ],
+      "ko": [
+        "두 번째 단계부터 다른 공격과 별개로: 벽에서 어두운 폭발이 터져 나옵니다.",
+        "그때는 벽에서 떨어지세요."
+      ],
+      "ja": [
+        "第2段階から、ほかの攻撃と並行して：壁から暗い爆発が噴き出します。",
+        "そのときは壁から離れましょう。"
+      ],
+      "zh-Hans": [
+        "从第二阶段起，与其他招式同时进行：墙上迸发出黑暗爆炸。",
+        "这时远离墙壁。"
+      ],
+      "zh-Hant": [
+        "從第二階段起，與其他招式同時進行：牆上迸發出黑暗爆炸。",
+        "這時遠離牆壁。"
+      ]
+    },
+    "Dark orb": {
+      "en": [
+        "In the last stage, about every 100 seconds, beside his other moves: a big dark orb appears in the room.",
+        "Keep your distance from the orb."
+      ],
+      "de": [
+        "In der letzten Stufe, etwa alle 100 Sekunden, neben seinen anderen Angriffen: Eine große dunkle Kugel erscheint im Raum.",
+        "Halte Abstand zur Kugel."
+      ],
+      "es": [
+        "En la última etapa, cada 100 segundos más o menos, además de sus otros ataques: aparece una gran esfera oscura en la sala.",
+        "Mantén la distancia con la esfera."
+      ],
+      "fr": [
+        "Dans la dernière étape, environ toutes les 100 secondes, en plus de ses autres attaques : une grande sphère sombre apparaît dans la salle.",
+        "Garde tes distances avec la sphère."
+      ],
+      "pl": [
+        "W ostatnim etapie, mniej więcej co 100 sekund, obok innych ataków: w sali pojawia się wielka mroczna kula.",
+        "Trzymaj się z dala od kuli."
+      ],
+      "pt-BR": [
+        "Na última fase, mais ou menos a cada 100 segundos, além dos outros ataques: uma grande esfera sombria aparece na sala.",
+        "Mantenha distância da esfera."
+      ],
+      "ru": [
+        "На последней стадии, примерно раз в 100 секунд, помимо других атак: в зале появляется большая тёмная сфера.",
+        "Держитесь от сферы подальше."
+      ],
+      "ko": [
+        "마지막 단계에서 약 100초마다, 다른 공격과 별개로: 커다란 암흑구가 방에 나타납니다.",
+        "구체와 거리를 두세요."
+      ],
+      "ja": [
+        "最終段階では約100秒ごとに、ほかの攻撃と並行して：大きな暗黒球が部屋に現れます。",
+        "球から距離を取りましょう。"
+      ],
+      "zh-Hans": [
+        "最后阶段大约每100秒，与其他招式同时进行：一个巨大的黑暗球出现在房间里。",
+        "与黑暗球保持距离。"
+      ],
+      "zh-Hant": [
+        "最後階段大約每100秒，與其他招式同時進行：一個巨大的黑暗球出現在房間裡。",
+        "與黑暗球保持距離。"
+      ]
+    }
+  }
+}

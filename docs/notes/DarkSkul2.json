@@ -1,0 +1,2226 @@
+{
+  "key": "DarkSkul2",
+  "about": {
+    "en": "Dark Skul's second phase. He switches between three forms: Balance (the moves of his first phase), Power (fiery fists) and Speed (javelin and fast dashes). Below 55 % health each form has a big special move.",
+    "de": "Die zweite Phase von Dark Skul. Er wechselt zwischen drei Formen: Balance (die Angriffe seiner ersten Phase), Kraft (feurige Fäuste) und Tempo (Speer und schnelle Sprints). Unter 55 % LP hat jede Form einen großen Spezialangriff.",
+    "es": "La segunda fase de Dark Skul. Cambia entre tres formas: Equilibrio (los movimientos de su primera fase), Poder (puños ardientes) y Velocidad (jabalina y carreras rápidas). Por debajo del 55 % de vida cada forma tiene un gran movimiento especial.",
+    "fr": "La seconde phase de Dark Skul. Il alterne trois formes : Équilibre (les attaques de sa première phase), Puissance (poings enflammés) et Vitesse (javelot et sprints rapides). Sous 55 % de vie, chaque forme a une grande attaque spéciale.",
+    "pl": "Druga faza Dark Skula. Przełącza się między trzema formami: Równowaga (ruchy z pierwszej fazy), Moc (ogniste pięści) i Prędkość (oszczep i szybkie zrywy). Poniżej 55% zdrowia każda forma ma wielki ruch specjalny.",
+    "pt-BR": "A segunda fase de Dark Skul. Ele alterna entre três formas: Equilíbrio (os golpes da primeira fase), Energia (punhos flamejantes) e Velocidade (dardo e corridas rápidas). Abaixo de 55 % de vida cada forma tem um grande golpe especial.",
+    "ru": "Вторая фаза Dark Skul. Он переключается между тремя формами: Баланс (приёмы первой фазы), Сила (огненные кулаки) и Скорость (копьё и быстрые рывки). Ниже 55 % здоровья у каждой формы есть большой особый приём.",
+    "ko": "다크 스컬의 두 번째 페이즈. 밸런스(첫 번째 페이즈의 기술), 파워(불타는 주먹), 스피드(투창과 빠른 대쉬) 세 형태를 오갑니다. 체력 55% 아래에서는 형태마다 커다란 특수 기술이 있습니다.",
+    "ja": "ダークスカルの第2フェーズ。バランス（第1フェーズの技）、パワー（燃える拳）、スピード（投げ槍と素早いダッシュ）の3つの形態を切り替えます。体力55%未満では形態ごとに大きな特殊技があります。",
+    "zh-Hans": "黑暗小骨的第二阶段。他会在三种形态间切换：平衡（第一阶段的招式）、力量（燃烧的拳头）和速度（标枪与快速疾驰）。体力低于55%时每种形态都有一个强大的特殊招式。",
+    "zh-Hant": "黑暗孤骨的第二階段。他會在三種形態間切換：平衡（第一階段的招式）、力量（燃燒的拳頭）和速度（標槍與快速衝刺）。體力低於55%時每種形態都有一個強大的特殊招式。"
+  },
+  "moves": {
+    "Dash": {
+      "en": [
+        "A quick dash along the floor.",
+        "Usually leads into an attack: be ready to dodge."
+      ],
+      "de": [
+        "Ein schneller Sprint am Boden.",
+        "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+      ],
+      "es": [
+        "Una carrera rápida a ras de suelo.",
+        "Suele llevar a un ataque: prepárate para esquivar."
+      ],
+      "fr": [
+        "Un sprint rapide au sol.",
+        "Mène généralement à une attaque : prépare-toi à esquiver."
+      ],
+      "pl": [
+        "Szybki zryw po ziemi.",
+        "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+      ],
+      "pt-BR": [
+        "Uma corrida rápida pelo chão.",
+        "Costuma levar a um ataque: prepare-se para desviar."
+      ],
+      "ru": [
+        "Быстрый рывок по полу.",
+        "Обычно ведёт к атаке: будьте готовы увернуться."
+      ],
+      "ko": [
+        "바닥을 따라 빠르게 대쉬합니다.",
+        "대개 공격으로 이어지니 피할 준비를 하세요."
+      ],
+      "ja": [
+        "床に沿って素早くダッシュします。",
+        "たいてい攻撃につながるので、かわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "贴地快速疾驰。",
+        "通常会接攻击：准备好闪避。"
+      ],
+      "zh-Hant": [
+        "貼地快速衝刺。",
+        "通常會接攻擊：準備好閃避。"
+      ]
+    },
+    "Upper attack": {
+      "en": [
+        "Swings his bone upward in a big purple arc in front of him.",
+        "Stay out of the arc in front of him; Upper attack finish can follow from above."
+      ],
+      "de": [
+        "Schwingt seinen Knochen in einem großen violetten Bogen vor sich nach oben.",
+        "Bleib aus dem Bogen vor ihm heraus; danach kann Aufwärtsangriff (Abschluss) von oben folgen."
+      ],
+      "es": [
+        "Blande su hueso hacia arriba en un gran arco morado delante de él.",
+        "No te quedes en el arco delante de él; puede seguir Ataque ascendente (remate) desde arriba."
+      ],
+      "fr": [
+        "Balance son os vers le haut en un grand arc violet devant lui.",
+        "Reste hors de l'arc devant lui ; Attaque montante (finition) peut suivre d'en haut."
+      ],
+      "pl": [
+        "Wymachuje kością w górę wielkim fioletowym łukiem przed sobą.",
+        "Nie stój w łuku przed nim; z góry może nastąpić Atak w górę (wykończenie)."
+      ],
+      "pt-BR": [
+        "Gira o osso para cima num grande arco roxo à sua frente.",
+        "Fique fora do arco à frente dele; Ataque ascendente (finalização) pode vir de cima."
+      ],
+      "ru": [
+        "Взмахивает костью вверх большой фиолетовой дугой перед собой.",
+        "Не стойте в дуге перед ним; сверху может последовать Атака вверх (добивание)."
+      ],
+      "ko": [
+        "뼈를 앞쪽으로 크게 보랏빛 호를 그리며 올려 휘두릅니다.",
+        "그의 앞쪽 호 안에 서 있지 마세요. 위에서 올려치기 마무리가 이어질 수 있습니다."
+      ],
+      "ja": [
+        "骨を目の前で大きな紫の弧を描いて振り上げます。",
+        "目の前の弧に入らないようにしましょう。上から打ち上げ攻撃フィニッシュが続くことがあります。"
+      ],
+      "zh-Hans": [
+        "在身前挥起骨头，划出巨大的紫色弧线。",
+        "不要站在他身前的弧线内；之后可能从上方接上挑攻击终结。"
+      ],
+      "zh-Hant": [
+        "在身前揮起骨頭，劃出巨大的紫色弧線。",
+        "不要站在他身前的弧線內；之後可能從上方接上挑攻擊終結。"
+      ]
+    },
+    "Upper attack finish": {
+      "en": [
+        "Leaps into the air and smashes down with a purple rune circle and a burst of dust.",
+        "Move away from the spot below him."
+      ],
+      "de": [
+        "Springt in die Luft und schlägt mit einem violetten Runenkreis und einer Staubwolke nieder.",
+        "Geh weg von der Stelle unter ihm."
+      ],
+      "es": [
+        "Salta y cae golpeando con un círculo de runas morado y una nube de polvo.",
+        "Aléjate del punto bajo él."
+      ],
+      "fr": [
+        "Bondit dans les airs et s'abat avec un cercle de runes violet et un nuage de poussière.",
+        "Éloigne-toi de l'endroit sous lui."
+      ],
+      "pl": [
+        "Wyskakuje w powietrze i uderza w dół z fioletowym kręgiem run i chmurą pyłu.",
+        "Odsuń się z miejsca pod nim."
+      ],
+      "pt-BR": [
+        "Salta e desce golpeando com um círculo de runas roxo e uma nuvem de poeira.",
+        "Saia do ponto abaixo dele."
+      ],
+      "ru": [
+        "Взмывает в воздух и обрушивается с фиолетовым кругом рун и облаком пыли.",
+        "Уйдите с места под ним."
+      ],
+      "ko": [
+        "공중으로 뛰어올라 보랏빛 룬 원과 먼지를 일으키며 내려찍습니다.",
+        "그의 아래에서 벗어나세요."
+      ],
+      "ja": [
+        "空中へ跳び上がり、紫のルーンの円と土煙とともに叩きつけます。",
+        "彼の真下から離れましょう。"
+      ],
+      "zh-Hans": [
+        "跃到空中，伴随紫色符文圈和尘土砸下。",
+        "离开他的正下方。"
+      ],
+      "zh-Hant": [
+        "躍到空中，伴隨紫色符文圈和塵土砸下。",
+        "離開他的正下方。"
+      ]
+    },
+    "Head hunting": {
+      "en": [
+        "Leaps at you and smashes down with a purple slash and a burst of dust.",
+        "Comes when you are far away: dash away from where he lands."
+      ],
+      "de": [
+        "Springt auf dich zu und schlägt mit einem violetten Hieb und einer Staubwolke nieder.",
+        "Kommt, wenn du weit weg bist: Sprinte von seinem Landepunkt weg."
+      ],
+      "es": [
+        "Salta hacia ti y cae con un tajo morado y una nube de polvo.",
+        "Llega cuando estás lejos: aléjate corriendo de donde aterriza."
+      ],
+      "fr": [
+        "Bondit sur toi et s'abat avec une entaille violette et un nuage de poussière.",
+        "Arrive quand tu es loin : sprinte loin de son point d'atterrissage."
+      ],
+      "pl": [
+        "Skacze na ciebie i uderza w dół fioletowym cięciem w chmurze pyłu.",
+        "Pojawia się, gdy jesteś daleko: odskocz od miejsca lądowania."
+      ],
+      "pt-BR": [
+        "Salta até você e desce com um corte roxo e uma nuvem de poeira.",
+        "Vem quando você está longe: corra para longe de onde ele pousa."
+      ],
+      "ru": [
+        "Прыгает на вас и обрушивается с фиолетовым ударом и облаком пыли.",
+        "Бывает, когда вы далеко: уходите рывком от места приземления."
+      ],
+      "ko": [
+        "당신에게 뛰어들어 보랏빛 베기와 먼지를 일으키며 내려찍습니다.",
+        "멀리 있을 때 나옵니다: 착지하는 곳에서 대쉬로 벗어나세요."
+      ],
+      "ja": [
+        "あなたへ跳びかかり、紫の斬撃と土煙とともに叩きつけます。",
+        "遠くにいるときに使います：着地点からダッシュで離れましょう。"
+      ],
+      "zh-Hans": [
+        "跃向你，伴随紫色斩击和尘土砸下。",
+        "你离得远时使用：从他落地的位置闪开。"
+      ],
+      "zh-Hant": [
+        "躍向你，伴隨紫色斬擊和塵土砸下。",
+        "你離得遠時使用：從他落地的位置閃開。"
+      ]
+    },
+    "Throw head": {
+      "en": [
+        "Throws his head along the floor; it bursts in purple flashes across the room and comes back to him.",
+        "Jump over the head on the way out and on the way back."
+      ],
+      "de": [
+        "Wirft seinen Kopf über den Boden; er zerplatzt quer durch den Raum in violetten Blitzen und kehrt zu ihm zurück.",
+        "Spring auf dem Hin- und Rückweg über den Kopf."
+      ],
+      "es": [
+        "Lanza su cabeza a ras de suelo; estalla en destellos morados por la sala y vuelve a él.",
+        "Salta sobre la cabeza a la ida y a la vuelta."
+      ],
+      "fr": [
+        "Lance sa tête au ras du sol ; elle éclate en éclairs violets à travers la salle et revient vers lui.",
+        "Saute par-dessus la tête à l'aller et au retour."
+      ],
+      "pl": [
+        "Rzuca głową po ziemi; wybucha fioletowymi błyskami w całej sali i wraca do niego.",
+        "Przeskocz głowę w drodze tam i z powrotem."
+      ],
+      "pt-BR": [
+        "Lança a cabeça pelo chão; ela explode em clarões roxos pelo salão e volta para ele.",
+        "Pule a cabeça na ida e na volta."
+      ],
+      "ru": [
+        "Бросает голову вдоль пола; она вспыхивает фиолетовым по всему залу и возвращается к нему.",
+        "Перепрыгивайте голову туда и обратно."
+      ],
+      "ko": [
+        "머리를 바닥을 따라 던지면 방을 가로지르며 보랏빛으로 번쩍이고, 다시 그에게 돌아옵니다.",
+        "날아갈 때와 돌아올 때 머리를 점프로 넘으세요."
+      ],
+      "ja": [
+        "頭を床に沿って投げると、部屋を横切りながら紫に弾け、彼の元へ戻ってきます。",
+        "行きと帰りに頭を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "沿地面扔出自己的头，头在房间里爆出紫色闪光，然后飞回他手中。",
+        "头飞出去和飞回来时都要跳过。"
+      ],
+      "zh-Hant": [
+        "沿地面扔出自己的頭，頭在房間裡爆出紫色閃光，然後飛回他手中。",
+        "頭飛出去和飛回來時都要跳過。"
+      ]
+    },
+    "Jump throw head": {
+      "en": [
+        "Jumps and throws his head down at you; a red line marks where it strikes.",
+        "Step off the red line."
+      ],
+      "de": [
+        "Springt und wirft seinen Kopf auf dich herab; eine rote Linie zeigt, wo er einschlägt.",
+        "Verlass die rote Linie."
+      ],
+      "es": [
+        "Salta y te lanza la cabeza hacia abajo; una línea roja marca dónde golpea.",
+        "Sal de la línea roja."
+      ],
+      "fr": [
+        "Saute et te lance sa tête vers le bas ; une ligne rouge marque l'impact.",
+        "Quitte la ligne rouge."
+      ],
+      "pl": [
+        "Skacze i rzuca w ciebie głową z góry; czerwona linia pokazuje miejsce uderzenia.",
+        "Zejdź z czerwonej linii."
+      ],
+      "pt-BR": [
+        "Salta e arremessa a cabeça em você de cima; uma linha vermelha marca onde ela atinge.",
+        "Saia da linha vermelha."
+      ],
+      "ru": [
+        "Прыгает и бросает в вас голову сверху; красная линия отмечает место удара.",
+        "Уйдите с красной линии."
+      ],
+      "ko": [
+        "점프해 당신을 향해 머리를 아래로 던지며, 붉은 선이 떨어질 곳을 표시합니다.",
+        "붉은 선에서 벗어나세요."
+      ],
+      "ja": [
+        "跳んであなたへ頭を投げ下ろします。赤い線が当たる場所を示します。",
+        "赤い線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "跳起向你扔下头颅，红线标出落点。",
+        "离开红线。"
+      ],
+      "zh-Hant": [
+        "跳起向你扔下頭顱，紅線標出落點。",
+        "離開紅線。"
+      ]
+    },
+    "Melee attack": {
+      "en": [
+        "Two wide sweeps of his bone in front of him.",
+        "Step back out of reach, then hit him after the second sweep."
+      ],
+      "de": [
+        "Zwei weite Schwünge mit seinem Knochen vor sich.",
+        "Geh aus der Reichweite und triff ihn nach dem zweiten Schwung."
+      ],
+      "es": [
+        "Dos amplios barridos con su hueso delante de él.",
+        "Retrocede fuera de su alcance y golpéalo tras el segundo barrido."
+      ],
+      "fr": [
+        "Deux larges balayages de son os devant lui.",
+        "Recule hors de portée, puis frappe-le après le second balayage."
+      ],
+      "pl": [
+        "Dwa szerokie zamachy kością przed sobą.",
+        "Cofnij się poza zasięg i uderz go po drugim zamachu."
+      ],
+      "pt-BR": [
+        "Dois amplos golpes do osso à sua frente.",
+        "Recue para fora do alcance e acerte-o depois do segundo golpe."
+      ],
+      "ru": [
+        "Два широких взмаха костью перед собой.",
+        "Отступите из зоны досягаемости и бейте после второго взмаха."
+      ],
+      "ko": [
+        "앞쪽으로 뼈를 두 번 크게 휘두릅니다.",
+        "닿지 않는 곳으로 물러났다가 두 번째 휘두르기 후에 공격하세요."
+      ],
+      "ja": [
+        "目の前で骨を2回大きく振り払います。",
+        "届かない所まで下がり、2回目の振りの後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "在身前大幅挥动骨头两次。",
+        "退到够不到的地方，第二次挥击后攻击他。"
+      ],
+      "zh-Hant": [
+        "在身前大幅揮動骨頭兩次。",
+        "退到夠不到的地方，第二次揮擊後攻擊他。"
+      ]
+    },
+    "Swing attack": {
+      "en": [
+        "Drags his bone along the floor: red warning lines move across the room and bone spikes shoot up behind them one after another.",
+        "Watch the red lines and step out of each one before its spike comes."
+      ],
+      "de": [
+        "Zieht seinen Knochen über den Boden: Rote Warnlinien wandern durch den Raum und dahinter schießen nacheinander Knochenstacheln hoch.",
+        "Achte auf die roten Linien und verlass jede, bevor ihr Stachel kommt."
+      ],
+      "es": [
+        "Arrastra su hueso por el suelo: líneas rojas de aviso recorren la sala y tras ellas brotan púas de hueso una tras otra.",
+        "Fíjate en las líneas rojas y sal de cada una antes de que salga su púa."
+      ],
+      "fr": [
+        "Traîne son os au sol : des lignes d'avertissement rouges traversent la salle et des pointes d'os jaillissent derrière elles l'une après l'autre.",
+        "Surveille les lignes rouges et quitte chacune avant que sa pointe jaillisse."
+      ],
+      "pl": [
+        "Wlecze kość po ziemi: czerwone linie ostrzegawcze przesuwają się przez salę, a za nimi jeden po drugim wyrastają kościane kolce.",
+        "Obserwuj czerwone linie i zejdź z każdej, zanim wyrośnie kolec."
+      ],
+      "pt-BR": [
+        "Arrasta o osso pelo chão: linhas vermelhas de aviso cruzam o salão e espinhos de osso sobem atrás delas, um após o outro.",
+        "Observe as linhas vermelhas e saia de cada uma antes de o espinho subir."
+      ],
+      "ru": [
+        "Тащит кость по полу: красные линии предупреждения движутся по залу, а за ними одна за другой вырастают костяные шипы.",
+        "Следите за красными линиями и уходите с каждой до появления шипа."
+      ],
+      "ko": [
+        "뼈를 바닥에 끌면 붉은 경고선이 방을 가로질러 이동하고, 그 뒤로 뼈 가시가 차례로 솟아오릅니다.",
+        "붉은 선을 보고 가시가 솟기 전에 선에서 벗어나세요."
+      ],
+      "ja": [
+        "骨を床に引きずると、赤い警告線が部屋を移動し、その後ろから骨のトゲが次々と突き出します。",
+        "赤い線を見て、トゲが出る前にそれぞれの線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "拖着骨头划过地面：红色警示线横穿房间，骨刺随后接连冒出。",
+        "注意红线，在骨刺冒出前离开每条线。"
+      ],
+      "zh-Hant": [
+        "拖著骨頭劃過地面：紅色警示線橫穿房間，骨刺隨後接連冒出。",
+        "注意紅線，在骨刺冒出前離開每條線。"
+      ]
+    },
+    "Hard smash": {
+      "en": [
+        "Smashes the ground in front of him with a burst of purple spikes, then smashes again with a dark eruption.",
+        "Keep away from the front until both smashes are done."
+      ],
+      "de": [
+        "Schlägt vor sich auf den Boden, sodass violette Stacheln hervorbrechen, und schlägt dann mit einem dunklen Ausbruch erneut zu.",
+        "Bleib vorn weg, bis beide Schläge vorbei sind."
+      ],
+      "es": [
+        "Golpea el suelo delante de él con un estallido de púas moradas y luego vuelve a golpear con una erupción oscura.",
+        "Mantente lejos del frente hasta que acaben los dos golpes."
+      ],
+      "fr": [
+        "Frappe le sol devant lui dans une gerbe de pointes violettes, puis frappe encore dans une éruption sombre.",
+        "Reste loin de l'avant jusqu'à la fin des deux frappes."
+      ],
+      "pl": [
+        "Uderza w ziemię przed sobą z wybuchem fioletowych kolców, a potem uderza znowu z mroczną erupcją.",
+        "Trzymaj się z dala od przodu, aż skończą się oba uderzenia."
+      ],
+      "pt-BR": [
+        "Golpeia o chão à sua frente com uma explosão de espinhos roxos, depois golpeia de novo com uma erupção sombria.",
+        "Fique longe da frente até os dois golpes acabarem."
+      ],
+      "ru": [
+        "Бьёт по земле перед собой со вспышкой фиолетовых шипов, затем бьёт снова с тёмным извержением.",
+        "Держитесь подальше от его фронта, пока не закончатся оба удара."
+      ],
+      "ko": [
+        "앞쪽 땅을 내리쳐 보랏빛 가시를 터뜨린 뒤, 어두운 분출과 함께 다시 내리칩니다.",
+        "두 번 내리칠 때까지 앞쪽에서 떨어져 있으세요."
+      ],
+      "ja": [
+        "目の前の地面を叩いて紫のトゲを炸裂させ、さらに暗い噴出とともにもう一度叩きます。",
+        "2回の叩きつけが終わるまで正面から離れていましょう。"
+      ],
+      "zh-Hans": [
+        "砸向身前的地面，迸出紫色尖刺，然后伴随黑暗的喷发再砸一次。",
+        "两次重击结束前远离他的正前方。"
+      ],
+      "zh-Hant": [
+        "砸向身前的地面，迸出紫色尖刺，然後伴隨黑暗的噴發再砸一次。",
+        "兩次重擊結束前遠離他的正前方。"
+      ]
+    },
+    "Leap and throw bone": {
+      "en": [
+        "Leaps up and throws spinning bones that scatter down across the floor.",
+        "Comes when you are close. Watch where the bones fall and step between them."
+      ],
+      "de": [
+        "Springt hoch und wirft kreisende Knochen, die sich über den Boden verteilen.",
+        "Kommt, wenn du nah bist. Achte darauf, wo die Knochen fallen, und stell dich dazwischen."
+      ],
+      "es": [
+        "Salta y lanza huesos giratorios que caen esparcidos por el suelo.",
+        "Llega cuando estás cerca. Fíjate dónde caen los huesos y colócate entre ellos."
+      ],
+      "fr": [
+        "Bondit et lance des os tournoyants qui retombent éparpillés au sol.",
+        "Arrive quand tu es proche. Repère où tombent les os et place-toi entre eux."
+      ],
+      "pl": [
+        "Wyskakuje i rzuca wirujące kości, które spadają rozrzucone po ziemi.",
+        "Pojawia się, gdy jesteś blisko. Patrz, gdzie spadają kości, i stań między nimi."
+      ],
+      "pt-BR": [
+        "Salta e lança ossos girando que caem espalhados pelo chão.",
+        "Vem quando você está perto. Repare onde os ossos caem e fique entre eles."
+      ],
+      "ru": [
+        "Подпрыгивает и бросает вращающиеся кости, которые падают по всему полу.",
+        "Бывает, когда вы рядом. Следите, куда падают кости, и вставайте между ними."
+      ],
+      "ko": [
+        "뛰어올라 회전하는 뼈를 던지고, 뼈는 바닥 곳곳으로 흩어져 떨어집니다.",
+        "가까이 있을 때 나옵니다. 뼈가 떨어지는 곳을 보고 그 사이에 서세요."
+      ],
+      "ja": [
+        "跳び上がって回転する骨を投げ、骨は床のあちこちに散らばって落ちます。",
+        "近くにいるときに使います。骨が落ちる場所を見て、その間に立ちましょう。"
+      ],
+      "zh-Hans": [
+        "跃起扔出旋转的骨头，骨头散落在地面各处。",
+        "你靠近时使用。注意骨头落下的位置，站在它们之间。"
+      ],
+      "zh-Hant": [
+        "躍起扔出旋轉的骨頭，骨頭散落在地面各處。",
+        "你靠近時使用。注意骨頭落下的位置，站在它們之間。"
+      ]
+    },
+    "Execution": {
+      "en": [
+        "The room goes dark, red lines mark spots and bone spikes shoot up there, then he strikes with a blinding flash and a purple explosion.",
+        "Stay off the red lines, then get away from the flash."
+      ],
+      "de": [
+        "Der Raum wird dunkel, rote Linien markieren Stellen, an denen Knochenstacheln hochschießen, dann schlägt er mit einem grellen Blitz und einer violetten Explosion zu.",
+        "Bleib von den roten Linien weg und entferne dich dann vom Blitz."
+      ],
+      "es": [
+        "La sala se oscurece, líneas rojas marcan puntos donde brotan púas de hueso, y luego ataca con un destello cegador y una explosión morada.",
+        "No pises las líneas rojas y luego aléjate del destello."
+      ],
+      "fr": [
+        "La salle s'assombrit, des lignes rouges marquent des endroits où jaillissent des pointes d'os, puis il frappe dans un éclair aveuglant et une explosion violette.",
+        "Évite les lignes rouges, puis éloigne-toi de l'éclair."
+      ],
+      "pl": [
+        "Sala ciemnieje, czerwone linie oznaczają miejsca, gdzie wyrastają kościane kolce, a potem uderza z oślepiającym błyskiem i fioletową eksplozją.",
+        "Omijaj czerwone linie, a potem oddal się od błysku."
+      ],
+      "pt-BR": [
+        "O salão escurece, linhas vermelhas marcam pontos onde espinhos de osso sobem, depois ele ataca com um clarão ofuscante e uma explosão roxa.",
+        "Fique fora das linhas vermelhas e depois se afaste do clarão."
+      ],
+      "ru": [
+        "Зал темнеет, красные линии отмечают места, где вырастают костяные шипы, затем он бьёт с ослепительной вспышкой и фиолетовым взрывом.",
+        "Не стойте на красных линиях, затем уходите от вспышки."
+      ],
+      "ko": [
+        "방이 어두워지고 붉은 선이 표시한 곳에 뼈 가시가 솟은 뒤, 눈부신 섬광과 보랏빛 폭발로 공격합니다.",
+        "붉은 선을 피하고, 섬광에서 멀어지세요."
+      ],
+      "ja": [
+        "部屋が暗くなり、赤い線が示す場所に骨のトゲが突き出した後、まばゆい閃光と紫の爆発で攻撃します。",
+        "赤い線を避け、それから閃光から離れましょう。"
+      ],
+      "zh-Hans": [
+        "房间变暗，红线标出的位置冒出骨刺，然后他伴随耀眼的闪光和紫色爆炸发动攻击。",
+        "避开红线，然后远离闪光。"
+      ],
+      "zh-Hant": [
+        "房間變暗，紅線標出的位置冒出骨刺，然後他伴隨耀眼的閃光和紫色爆炸發動攻擊。",
+        "避開紅線，然後遠離閃光。"
+      ]
+    },
+    "Seperate body": {
+      "en": [
+        "Breaks apart in a purple flash; dark crystal shards strike down around the room one after another while his bones fly about, then he puts himself back together.",
+        "Keep moving: the shards strike in many spots. In the second phase at most every 30 seconds."
+      ],
+      "de": [
+        "Zerfällt in einem violetten Blitz; dunkle Kristallsplitter schlagen nacheinander im Raum ein, während seine Knochen umherfliegen, dann setzt er sich wieder zusammen.",
+        "Bleib in Bewegung: Die Splitter schlagen an vielen Stellen ein. In der zweiten Phase höchstens alle 30 Sekunden."
+      ],
+      "es": [
+        "Se deshace en un destello morado; fragmentos de cristal oscuro caen uno tras otro por la sala mientras sus huesos vuelan, y luego se recompone.",
+        "Sigue moviéndote: los fragmentos caen en muchos puntos. En la segunda fase, como mucho cada 30 segundos."
+      ],
+      "fr": [
+        "Se disloque dans un éclair violet ; des éclats de cristal sombre s'abattent l'un après l'autre dans la salle pendant que ses os volent, puis il se reconstitue.",
+        "Continue de bouger : les éclats tombent à de nombreux endroits. En seconde phase, au plus toutes les 30 secondes."
+      ],
+      "pl": [
+        "Rozpada się w fioletowym błysku; mroczne odłamki kryształu uderzają jeden po drugim w całej sali, a jego kości latają wokół, po czym składa się z powrotem.",
+        "Ruszaj się: odłamki uderzają w wielu miejscach. W drugiej fazie najwyżej co 30 sekund."
+      ],
+      "pt-BR": [
+        "Se desfaz num clarão roxo; fragmentos de cristal sombrio caem um após o outro pelo salão enquanto seus ossos voam, depois ele se recompõe.",
+        "Continue se movendo: os fragmentos caem em muitos pontos. Na segunda fase, no máximo a cada 30 segundos."
+      ],
+      "ru": [
+        "Распадается во фиолетовой вспышке; осколки тёмного кристалла один за другим бьют по залу, пока его кости летают вокруг, затем он собирается обратно.",
+        "Двигайтесь: осколки бьют во многих местах. Во второй фазе не чаще раза в 30 секунд."
+      ],
+      "ko": [
+        "보랏빛 섬광과 함께 흩어지고, 뼈가 날아다니는 동안 어두운 수정 조각이 방 곳곳에 차례로 내리꽂힌 뒤 다시 몸을 합칩니다.",
+        "계속 움직이세요: 조각이 여러 곳에 떨어집니다. 두 번째 페이즈에서는 최대 30초마다 사용합니다."
+      ],
+      "ja": [
+        "紫の閃光とともにばらばらになり、骨が飛び回る間に暗い水晶の破片が部屋のあちこちへ次々と降り注ぎ、その後また元の体に戻ります。",
+        "動き続けましょう：破片はあちこちに落ちます。第2フェーズでは最大で30秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "在紫色闪光中散开，骨头四处飞舞，黑暗水晶碎片接连劈向房间各处，然后他重新组合。",
+        "保持移动：碎片会落在许多位置。第二阶段最多每30秒一次。"
+      ],
+      "zh-Hant": [
+        "在紫色閃光中散開，骨頭四處飛舞，黑暗水晶碎片接連劈向房間各處，然後他重新組合。",
+        "保持移動：碎片會落在許多位置。第二階段最多每30秒一次。"
+      ]
+    },
+    "Bone rain": {
+      "en": [
+        "Throws bones high into the air that rain down as purple bolts.",
+        "Comes when you are far away: keep moving while the bolts fall."
+      ],
+      "de": [
+        "Wirft Knochen hoch in die Luft, die als violette Blitze herabregnen.",
+        "Kommt, wenn du weit weg bist: Bleib in Bewegung, während die Blitze fallen."
+      ],
+      "es": [
+        "Lanza huesos muy alto que caen como rayos morados.",
+        "Llega cuando estás lejos: sigue moviéndote mientras caen los rayos."
+      ],
+      "fr": [
+        "Lance des os très haut qui retombent en éclairs violets.",
+        "Arrive quand tu es loin : continue de bouger pendant que les éclairs tombent."
+      ],
+      "pl": [
+        "Rzuca kości wysoko w powietrze, które spadają jak fioletowe błyskawice.",
+        "Pojawia się, gdy jesteś daleko: ruszaj się, gdy spadają błyskawice."
+      ],
+      "pt-BR": [
+        "Lança ossos bem alto que caem como raios roxos.",
+        "Vem quando você está longe: continue se movendo enquanto os raios caem."
+      ],
+      "ru": [
+        "Подбрасывает кости высоко в воздух, и они падают фиолетовыми молниями.",
+        "Бывает, когда вы далеко: двигайтесь, пока падают молнии."
+      ],
+      "ko": [
+        "뼈를 높이 던지면 보랏빛 번개처럼 쏟아져 내립니다.",
+        "멀리 있을 때 나옵니다: 번개가 떨어지는 동안 계속 움직이세요."
+      ],
+      "ja": [
+        "骨を高く放り投げ、紫の稲妻となって降り注ぎます。",
+        "遠くにいるときに使います：稲妻が落ちる間は動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "把骨头高高抛起，化作紫色闪电落下。",
+        "你离得远时使用：闪电落下时保持移动。"
+      ],
+      "zh-Hant": [
+        "把骨頭高高拋起，化作紫色閃電落下。",
+        "你離得遠時使用：閃電落下時保持移動。"
+      ]
+    },
+    "Special bone rain": {
+      "en": [
+        "A dark swarm of bones gathers around him, then shoots up and rains down as purple bolts over a wide area.",
+        "Get far from him while the bones gather, and keep moving while they fall."
+      ],
+      "de": [
+        "Ein dunkler Schwarm Knochen sammelt sich um ihn, schießt dann hoch und regnet als violette Blitze über eine große Fläche nieder.",
+        "Geh weit weg, während sich die Knochen sammeln, und bleib in Bewegung, während sie fallen."
+      ],
+      "es": [
+        "Un oscuro enjambre de huesos se reúne a su alrededor, sale disparado hacia arriba y cae como rayos morados sobre una gran zona.",
+        "Aléjate mientras se reúnen los huesos y sigue moviéndote mientras caen."
+      ],
+      "fr": [
+        "Un essaim sombre d'os se rassemble autour de lui, puis s'élève et retombe en éclairs violets sur une large zone.",
+        "Éloigne-toi pendant que les os se rassemblent, et continue de bouger pendant qu'ils tombent."
+      ],
+      "pl": [
+        "Wokół niego zbiera się mroczny rój kości, który wystrzeliwuje w górę i spada fioletowymi błyskawicami na dużym obszarze.",
+        "Oddal się, gdy kości się zbierają, i ruszaj się, gdy spadają."
+      ],
+      "pt-BR": [
+        "Um enxame sombrio de ossos se junta ao redor dele, depois sobe e cai como raios roxos sobre uma área grande.",
+        "Afaste-se enquanto os ossos se juntam e continue se movendo enquanto caem."
+      ],
+      "ru": [
+        "Вокруг него собирается тёмный рой костей, затем взмывает и обрушивается фиолетовыми молниями на большую площадь.",
+        "Отойдите подальше, пока кости собираются, и двигайтесь, пока они падают."
+      ],
+      "ko": [
+        "어두운 뼈 무리가 그의 주위에 모였다가 솟구쳐 넓은 범위에 보랏빛 번개로 쏟아집니다.",
+        "뼈가 모이는 동안 멀리 떨어지고, 떨어지는 동안 계속 움직이세요."
+      ],
+      "ja": [
+        "暗い骨の群れが彼の周りに集まり、舞い上がって広い範囲に紫の稲妻として降り注ぎます。",
+        "骨が集まる間に遠く離れ、落ちてくる間は動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "大群黑暗的骨头聚集在他周围，然后飞起，化作紫色闪电落在大片区域。",
+        "骨头聚集时远离他，落下时保持移动。"
+      ],
+      "zh-Hant": [
+        "大群黑暗的骨頭聚集在他周圍，然後飛起，化作紫色閃電落在大片區域。",
+        "骨頭聚集時遠離他，落下時保持移動。"
+      ]
+    },
+    "Raise bone rain": {
+      "en": [
+        "Jumps up and crashes down with his bone; bones rise out of the floor across the room.",
+        "Be in the air or on a high spot when the bones rise."
+      ],
+      "de": [
+        "Springt hoch und kracht mit seinem Knochen herab; überall im Raum steigen Knochen aus dem Boden.",
+        "Sei in der Luft oder weit oben, wenn die Knochen aufsteigen."
+      ],
+      "es": [
+        "Salta y cae de golpe con su hueso; brotan huesos del suelo por toda la sala.",
+        "Estate en el aire o en un lugar alto cuando broten los huesos."
+      ],
+      "fr": [
+        "Bondit et s'abat avec son os ; des os surgissent du sol dans toute la salle.",
+        "Sois en l'air ou en hauteur quand les os surgissent."
+      ],
+      "pl": [
+        "Wyskakuje i spada z kością; z podłogi w całej sali wyrastają kości.",
+        "Bądź w powietrzu albo wysoko, gdy wyrastają kości."
+      ],
+      "pt-BR": [
+        "Salta e despenca com o osso; ossos saem do chão por todo o salão.",
+        "Esteja no ar ou num lugar alto quando os ossos subirem."
+      ],
+      "ru": [
+        "Подпрыгивает и обрушивается с костью; по всему залу из пола поднимаются кости.",
+        "Будьте в воздухе или повыше, когда поднимаются кости."
+      ],
+      "ko": [
+        "뛰어올라 뼈와 함께 내려찍고, 방 곳곳의 바닥에서 뼈가 솟아오릅니다.",
+        "뼈가 솟을 때 공중이나 높은 곳에 있으세요."
+      ],
+      "ja": [
+        "跳び上がって骨とともに叩きつけ、部屋中の床から骨が突き出します。",
+        "骨が突き出すときは空中か高い所にいましょう。"
+      ],
+      "zh-Hans": [
+        "跃起后带着骨头砸下，房间各处的地面冒出骨头。",
+        "骨头冒出时待在空中或高处。"
+      ],
+      "zh-Hant": [
+        "躍起後帶著骨頭砸下，房間各處的地面冒出骨頭。",
+        "骨頭冒出時待在空中或高處。"
+      ]
+    },
+    "Earthshatter normal": {
+      "en": [
+        "A crosshair marks you, he hurls his bone at it, and a wave of purple crystal spikes erupts along the floor.",
+        "Move off the crosshair, then jump over or away from the spike wave."
+      ],
+      "de": [
+        "Ein Fadenkreuz markiert dich, er schleudert seinen Knochen darauf, und eine Welle violetter Kristallstacheln bricht über den Boden.",
+        "Verlass das Fadenkreuz und spring dann über die Stachelwelle oder weg davon."
+      ],
+      "es": [
+        "Una mira te marca, lanza su hueso hacia ella y una ola de púas de cristal moradas brota por el suelo.",
+        "Sal de la mira y luego salta sobre la ola de púas o aléjate de ella."
+      ],
+      "fr": [
+        "Un viseur te marque, il y projette son os, et une vague de pointes de cristal violettes jaillit au sol.",
+        "Quitte le viseur, puis saute par-dessus la vague de pointes ou éloigne-toi."
+      ],
+      "pl": [
+        "Celownik oznacza ciebie, on rzuca w niego kością, a po ziemi przetacza się fala fioletowych kryształowych kolców.",
+        "Zejdź z celownika, a potem przeskocz falę kolców albo się od niej oddal."
+      ],
+      "pt-BR": [
+        "Uma mira marca você, ele arremessa o osso nela e uma onda de espinhos de cristal roxos irrompe pelo chão.",
+        "Saia da mira e depois pule a onda de espinhos ou se afaste dela."
+      ],
+      "ru": [
+        "Прицел отмечает вас, он швыряет в него кость, и по полу прокатывается волна фиолетовых кристаллических шипов.",
+        "Уйдите с прицела, затем перепрыгните волну шипов или отойдите от неё."
+      ],
+      "ko": [
+        "조준점이 당신을 표시하고, 그곳으로 뼈를 던지면 바닥을 따라 보랏빛 수정 가시가 물결처럼 솟구칩니다.",
+        "조준점에서 벗어난 뒤, 가시 물결을 점프로 넘거나 멀어지세요."
+      ],
+      "ja": [
+        "照準があなたを示し、そこへ骨を投げつけると、床に沿って紫の水晶のトゲが波のように噴き出します。",
+        "照準から離れ、トゲの波を飛び越えるか遠ざかりましょう。"
+      ],
+      "zh-Hans": [
+        "准星标记你，他把骨头掷向那里，随后一波紫色水晶尖刺沿地面迸发。",
+        "离开准星，然后跳过尖刺波或远离它。"
+      ],
+      "zh-Hant": [
+        "準星標記你，他把骨頭擲向那裡，隨後一波紫色水晶尖刺沿地面迸發。",
+        "離開準星，然後跳過尖刺波或遠離它。"
+      ]
+    },
+    "Punch": {
+      "en": [
+        "Power form: punches forward again and again, each punch exploding in fire in front of him.",
+        "Stay out of the explosions in front of him; attack from behind or after the last punch."
+      ],
+      "de": [
+        "Kraft-Form: Schlägt immer wieder nach vorn, jeder Schlag explodiert vor ihm in Feuer.",
+        "Bleib aus den Explosionen vor ihm heraus; greif von hinten oder nach dem letzten Schlag an."
+      ],
+      "es": [
+        "Forma de Poder: golpea hacia delante una y otra vez, y cada puñetazo estalla en fuego delante de él.",
+        "No te quedes en las explosiones delante de él; ataca por detrás o tras el último golpe."
+      ],
+      "fr": [
+        "Forme Puissance : frappe devant lui encore et encore, chaque coup explosant en flammes.",
+        "Reste hors des explosions devant lui ; attaque par-derrière ou après le dernier coup."
+      ],
+      "pl": [
+        "Forma Mocy: raz za razem uderza pięścią przed siebie, a każdy cios eksploduje ogniem.",
+        "Nie stój w eksplozjach przed nim; atakuj od tyłu albo po ostatnim ciosie."
+      ],
+      "pt-BR": [
+        "Forma Energia: soca para a frente várias vezes, cada soco explode em fogo à frente dele.",
+        "Fique fora das explosões à frente dele; ataque por trás ou depois do último soco."
+      ],
+      "ru": [
+        "Форма Силы: снова и снова бьёт вперёд, каждый удар взрывается огнём перед ним.",
+        "Не стойте во взрывах перед ним; атакуйте сзади или после последнего удара."
+      ],
+      "ko": [
+        "파워 형태: 앞으로 계속 주먹을 내지르며, 주먹마다 앞에서 불길이 폭발합니다.",
+        "앞쪽 폭발 범위에 서 있지 말고, 뒤에서 또는 마지막 주먹 후에 공격하세요."
+      ],
+      "ja": [
+        "パワー形態：何度も前へ拳を突き出し、拳ごとに目の前で炎が爆発します。",
+        "目の前の爆発に入らず、後ろから、または最後の拳の後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态：不断向前出拳，每一拳都在身前爆出火焰。",
+        "不要站在他身前的爆炸里；从背后或最后一拳之后攻击。"
+      ],
+      "zh-Hant": [
+        "力量形態：不斷向前出拳，每一拳都在身前爆出火焰。",
+        "不要站在他身前的爆炸裡；從背後或最後一拳之後攻擊。"
+      ]
+    },
+    "Punch fast ignition": {
+      "en": [
+        "Power form: crouches, then unleashes a fast flurry of punches with a stream of fiery explosions far in front of him.",
+        "The crouch is the warning: get behind him or far away."
+      ],
+      "de": [
+        "Kraft-Form: Geht in die Hocke und entfesselt dann einen schnellen Schlaghagel mit einer Kette feuriger Explosionen weit vor sich.",
+        "Das Hocken ist die Warnung: Geh hinter ihn oder weit weg."
+      ],
+      "es": [
+        "Forma de Poder: se agacha y desata una rápida ráfaga de puñetazos con una cadena de explosiones de fuego muy por delante.",
+        "Agacharse es el aviso: ponte detrás de él o muy lejos."
+      ],
+      "fr": [
+        "Forme Puissance : s'accroupit, puis déchaîne une rafale de coups avec une traînée d'explosions enflammées loin devant lui.",
+        "L'accroupissement est l'avertissement : passe derrière lui ou éloigne-toi beaucoup."
+      ],
+      "pl": [
+        "Forma Mocy: przykuca, a potem wyprowadza szybki grad ciosów z ciągiem ognistych eksplozji daleko przed sobą.",
+        "Przykucnięcie to ostrzeżenie: zajdź go od tyłu albo oddal się daleko."
+      ],
+      "pt-BR": [
+        "Forma Energia: agacha-se e solta uma rajada rápida de socos com uma sequência de explosões de fogo bem à frente.",
+        "O agachamento é o aviso: vá para trás dele ou para bem longe."
+      ],
+      "ru": [
+        "Форма Силы: приседает, затем обрушивает град быстрых ударов с цепью огненных взрывов далеко перед собой.",
+        "Приседание и есть предупреждение: зайдите ему за спину или отойдите далеко."
+      ],
+      "ko": [
+        "파워 형태: 몸을 낮췄다가 빠르게 주먹을 연타하며 앞쪽 멀리까지 불길의 폭발을 연달아 일으킵니다.",
+        "몸을 낮추는 것이 신호입니다: 그의 뒤로 가거나 멀리 떨어지세요."
+      ],
+      "ja": [
+        "パワー形態：身をかがめ、素早い連打とともに目の前の遠くまで炎の爆発を連ねます。",
+        "身をかがめるのが合図です：背後に回るか遠く離れましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态：压低身子，然后快速连续出拳，在身前远处引发一连串火焰爆炸。",
+        "压低身子就是预警：绕到他背后或远远离开。"
+      ],
+      "zh-Hant": [
+        "力量形態：壓低身子，然後快速連續出拳，在身前遠處引發一連串火焰爆炸。",
+        "壓低身子就是預警：繞到他背後或遠遠離開。"
+      ]
+    },
+    "Rush": {
+      "en": [
+        "Power form: charges at you with his fist forward, ending in an eruption of purple spikes.",
+        "Jump over the charge and stay away from where it ends."
+      ],
+      "de": [
+        "Kraft-Form: Stürmt mit vorgestreckter Faust auf dich zu und endet in einem Ausbruch violetter Stacheln.",
+        "Spring über den Ansturm und halte dich von seinem Ende fern."
+      ],
+      "es": [
+        "Forma de Poder: carga hacia ti con el puño por delante y termina en una erupción de púas moradas.",
+        "Salta sobre la carga y aléjate de donde termina."
+      ],
+      "fr": [
+        "Forme Puissance : charge vers toi, poing en avant, et finit par une éruption de pointes violettes.",
+        "Saute par-dessus la charge et reste loin de son point d'arrivée."
+      ],
+      "pl": [
+        "Forma Mocy: szarżuje na ciebie z pięścią przed sobą i kończy wybuchem fioletowych kolców.",
+        "Przeskocz szarżę i trzymaj się z dala od miejsca, gdzie się kończy."
+      ],
+      "pt-BR": [
+        "Forma Energia: avança até você com o punho à frente e termina numa erupção de espinhos roxos.",
+        "Pule a investida e fique longe de onde ela termina."
+      ],
+      "ru": [
+        "Форма Силы: несётся на вас кулаком вперёд и завершает извержением фиолетовых шипов.",
+        "Перепрыгните натиск и держитесь подальше от места, где он заканчивается."
+      ],
+      "ko": [
+        "파워 형태: 주먹을 앞세워 당신에게 돌진하고, 보랏빛 가시 분출로 끝납니다.",
+        "돌진을 점프로 넘고, 돌진이 끝나는 곳에서 떨어지세요."
+      ],
+      "ja": [
+        "パワー形態：拳を前にあなたへ突進し、紫のトゲの噴出で締めくくります。",
+        "突進を飛び越え、終わる場所から離れましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态：挥拳在前冲向你，最后爆出紫色尖刺。",
+        "跳过冲锋，远离冲锋结束的位置。"
+      ],
+      "zh-Hant": [
+        "力量形態：揮拳在前衝向你，最後爆出紫色尖刺。",
+        "跳過衝鋒，遠離衝鋒結束的位置。"
+      ]
+    },
+    "Finish": {
+      "en": [
+        "Power form: ends a charge with a slash, then stamps the ground.",
+        "Back off after dodging the charge: the stamp comes right after."
+      ],
+      "de": [
+        "Kraft-Form: Beendet einen Ansturm mit einem Hieb und stampft dann auf den Boden.",
+        "Weich nach dem Ansturm zurück: Das Stampfen kommt direkt danach."
+      ],
+      "es": [
+        "Forma de Poder: termina una carga con un tajo y luego pisotea el suelo.",
+        "Retrocede tras esquivar la carga: el pisotón llega justo después."
+      ],
+      "fr": [
+        "Forme Puissance : termine une charge par une entaille, puis écrase le sol.",
+        "Recule après avoir esquivé la charge : l'écrasement arrive juste après."
+      ],
+      "pl": [
+        "Forma Mocy: kończy szarżę cięciem, a potem tupie w ziemię.",
+        "Po uniknięciu szarży cofnij się: tupnięcie przychodzi zaraz potem."
+      ],
+      "pt-BR": [
+        "Forma Energia: termina uma investida com um corte e depois pisa forte no chão.",
+        "Recue depois de desviar da investida: o pisão vem logo depois."
+      ],
+      "ru": [
+        "Форма Силы: завершает натиск ударом, затем топает по земле.",
+        "Увернувшись от натиска, отойдите: топот следует сразу."
+      ],
+      "ko": [
+        "파워 형태: 돌진을 베기로 마무리한 뒤 땅을 짓밟습니다.",
+        "돌진을 피한 뒤 물러나세요: 짓밟기가 바로 이어집니다."
+      ],
+      "ja": [
+        "パワー形態：突進を斬撃で締めくくり、地面を踏みつけます。",
+        "突進をかわしたら下がりましょう：踏みつけがすぐに続きます。"
+      ],
+      "zh-Hans": [
+        "力量形态：以一记斩击结束冲锋，然后重踏地面。",
+        "躲开冲锋后后退：重踏紧接着就来。"
+      ],
+      "zh-Hant": [
+        "力量形態：以一記斬擊結束衝鋒，然後重踏地面。",
+        "躲開衝鋒後後退：重踏緊接著就來。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "Power form: drops to the floor, worn out, for a moment.",
+        "A safe moment to attack."
+      ],
+      "de": [
+        "Kraft-Form: Sinkt kurz erschöpft zu Boden.",
+        "Ein sicherer Moment zum Angreifen."
+      ],
+      "es": [
+        "Forma de Poder: cae al suelo agotado un momento.",
+        "Un momento seguro para atacar."
+      ],
+      "fr": [
+        "Forme Puissance : s'effondre au sol, épuisé, un instant.",
+        "Un moment sûr pour attaquer."
+      ],
+      "pl": [
+        "Forma Mocy: na chwilę pada wyczerpany na ziemię.",
+        "Bezpieczna chwila na atak."
+      ],
+      "pt-BR": [
+        "Forma Energia: cai no chão, exausto, por um momento.",
+        "Um momento seguro para atacar."
+      ],
+      "ru": [
+        "Форма Силы: на мгновение падает на пол без сил.",
+        "Безопасный момент для атаки."
+      ],
+      "ko": [
+        "파워 형태: 지쳐서 잠시 바닥에 쓰러집니다.",
+        "안전하게 공격할 수 있는 순간입니다."
+      ],
+      "ja": [
+        "パワー形態：疲れ果てて少しの間床に倒れ込みます。",
+        "安全に攻撃できるチャンスです。"
+      ],
+      "zh-Hans": [
+        "力量形态：精疲力竭地倒地片刻。",
+        "安全的攻击时机。"
+      ],
+      "zh-Hant": [
+        "力量形態：精疲力竭地倒地片刻。",
+        "安全的攻擊時機。"
+      ]
+    },
+    "Stamping": {
+      "en": [
+        "Power form: leaps around the room and stamps down with fiery explosions.",
+        "Watch where he lands and move away from it."
+      ],
+      "de": [
+        "Kraft-Form: Springt durch den Raum und stampft mit feurigen Explosionen auf.",
+        "Achte darauf, wo er landet, und geh dort weg."
+      ],
+      "es": [
+        "Forma de Poder: salta por la sala y pisotea con explosiones de fuego.",
+        "Fíjate dónde aterriza y aléjate."
+      ],
+      "fr": [
+        "Forme Puissance : bondit dans la salle et écrase le sol dans des explosions enflammées.",
+        "Repère où il atterrit et éloigne-toi."
+      ],
+      "pl": [
+        "Forma Mocy: skacze po sali i tupie z ognistymi eksplozjami.",
+        "Patrz, gdzie ląduje, i odsuń się."
+      ],
+      "pt-BR": [
+        "Forma Energia: salta pelo salão e pisa forte com explosões de fogo.",
+        "Repare onde ele pousa e se afaste."
+      ],
+      "ru": [
+        "Форма Силы: прыгает по залу и топает с огненными взрывами.",
+        "Следите, куда он приземляется, и уходите оттуда."
+      ],
+      "ko": [
+        "파워 형태: 방 안을 뛰어다니며 불길의 폭발과 함께 짓밟습니다.",
+        "착지하는 곳을 보고 그곳에서 벗어나세요."
+      ],
+      "ja": [
+        "パワー形態：部屋中を跳び回り、炎の爆発とともに踏みつけます。",
+        "着地する場所を見て、そこから離れましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态：在房间里跳跃，伴随火焰爆炸重踏地面。",
+        "注意他落地的位置并远离。"
+      ],
+      "zh-Hant": [
+        "力量形態：在房間裡跳躍，伴隨火焰爆炸重踏地面。",
+        "注意他落地的位置並遠離。"
+      ]
+    },
+    "Stamping center": {
+      "en": [
+        "Power form: leaps to the middle of the room and stamps down.",
+        "Keep away from the middle when he jumps."
+      ],
+      "de": [
+        "Kraft-Form: Springt in die Mitte des Raums und stampft auf.",
+        "Halte dich von der Mitte fern, wenn er springt."
+      ],
+      "es": [
+        "Forma de Poder: salta al centro de la sala y pisotea.",
+        "Aléjate del centro cuando salte."
+      ],
+      "fr": [
+        "Forme Puissance : bondit au centre de la salle et écrase le sol.",
+        "Reste loin du centre quand il saute."
+      ],
+      "pl": [
+        "Forma Mocy: skacze na środek sali i tupie.",
+        "Trzymaj się z dala od środka, gdy skacze."
+      ],
+      "pt-BR": [
+        "Forma Energia: salta para o meio do salão e pisa forte.",
+        "Fique longe do meio quando ele saltar."
+      ],
+      "ru": [
+        "Форма Силы: прыгает в центр зала и топает.",
+        "Держитесь подальше от центра, когда он прыгает."
+      ],
+      "ko": [
+        "파워 형태: 방 가운데로 뛰어가 짓밟습니다.",
+        "그가 뛰어오르면 가운데에서 떨어지세요."
+      ],
+      "ja": [
+        "パワー形態：部屋の中央へ跳び、踏みつけます。",
+        "彼が跳んだら中央から離れましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态：跳到房间中央重踏地面。",
+        "他跳起时远离中央。"
+      ],
+      "zh-Hant": [
+        "力量形態：跳到房間中央重踏地面。",
+        "他跳起時遠離中央。"
+      ]
+    },
+    "Stomp": {
+      "en": [
+        "Power form: leaps up; a red line glows along the floor, red marks appear, and pillars of fire erupt in a row.",
+        "Get off the marked floor: be in the air or on a platform when the fire erupts."
+      ],
+      "de": [
+        "Kraft-Form: Springt hoch; eine rote Linie leuchtet am Boden, rote Markierungen erscheinen und Feuersäulen brechen in einer Reihe hervor.",
+        "Runter vom markierten Boden: Sei in der Luft oder auf einer Plattform, wenn das Feuer ausbricht."
+      ],
+      "es": [
+        "Forma de Poder: salta; brilla una línea roja en el suelo, aparecen marcas rojas y surgen pilares de fuego en fila.",
+        "Sal del suelo marcado: estate en el aire o en una plataforma cuando surja el fuego."
+      ],
+      "fr": [
+        "Forme Puissance : bondit ; une ligne rouge s'allume au sol, des marques rouges apparaissent et des piliers de feu jaillissent en rangée.",
+        "Quitte le sol marqué : sois en l'air ou sur une plateforme quand le feu jaillit."
+      ],
+      "pl": [
+        "Forma Mocy: wyskakuje; na ziemi świeci czerwona linia, pojawiają się czerwone znaki i w rzędzie wybuchają słupy ognia.",
+        "Zejdź z oznaczonej ziemi: bądź w powietrzu albo na platformie, gdy wybucha ogień."
+      ],
+      "pt-BR": [
+        "Forma Energia: salta; uma linha vermelha brilha no chão, marcas vermelhas aparecem e pilares de fogo irrompem em fila.",
+        "Saia do chão marcado: esteja no ar ou numa plataforma quando o fogo irromper."
+      ],
+      "ru": [
+        "Форма Силы: подпрыгивает; по полу загорается красная линия, появляются красные метки, и в ряд вырываются столбы огня.",
+        "Уйдите с отмеченного пола: будьте в воздухе или на платформе, когда вырывается огонь."
+      ],
+      "ko": [
+        "파워 형태: 뛰어오르면 바닥에 붉은 선이 빛나고 붉은 표시가 나타난 뒤, 불기둥이 줄지어 치솟습니다.",
+        "표시된 바닥에서 벗어나세요: 불길이 치솟을 때 공중이나 발판 위에 있으세요."
+      ],
+      "ja": [
+        "パワー形態：跳び上がると床に赤い線が光り、赤い印が現れ、炎の柱が一列に噴き上がります。",
+        "示された床から離れ、炎が噴き上がるときは空中か足場の上にいましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态：跃起后地面亮起红线并出现红色标记，然后一排火柱喷发。",
+        "离开标记的地面：火焰喷发时待在空中或平台上。"
+      ],
+      "zh-Hant": [
+        "力量形態：躍起後地面亮起紅線並出現紅色標記，然後一排火柱噴發。",
+        "離開標記的地面：火焰噴發時待在空中或平台上。"
+      ]
+    },
+    "Stomp bone recovery": {
+      "en": [
+        "Power form: after the fire pillars he picks his bone back up.",
+        "A short pause: a chance to hit him."
+      ],
+      "de": [
+        "Kraft-Form: Nach den Feuersäulen hebt er seinen Knochen wieder auf.",
+        "Eine kurze Pause: eine Gelegenheit, ihn zu treffen."
+      ],
+      "es": [
+        "Forma de Poder: tras los pilares de fuego recoge su hueso.",
+        "Una breve pausa: ocasión para golpearlo."
+      ],
+      "fr": [
+        "Forme Puissance : après les piliers de feu, il ramasse son os.",
+        "Une courte pause : l'occasion de le frapper."
+      ],
+      "pl": [
+        "Forma Mocy: po słupach ognia podnosi swoją kość.",
+        "Krótka przerwa: okazja, by go trafić."
+      ],
+      "pt-BR": [
+        "Forma Energia: depois dos pilares de fogo ele recolhe o osso.",
+        "Uma pausa curta: chance de acertá-lo."
+      ],
+      "ru": [
+        "Форма Силы: после огненных столбов поднимает свою кость.",
+        "Короткая пауза: шанс ударить его."
+      ],
+      "ko": [
+        "파워 형태: 불기둥이 끝나면 뼈를 다시 줍습니다.",
+        "짧은 틈: 공격할 기회입니다."
+      ],
+      "ja": [
+        "パワー形態：炎の柱の後、骨を拾い直します。",
+        "短い隙：攻撃のチャンスです。"
+      ],
+      "zh-Hans": [
+        "力量形态：火柱之后重新拿起骨头。",
+        "短暂停顿：攻击的机会。"
+      ],
+      "zh-Hant": [
+        "力量形態：火柱之後重新撿起骨頭。",
+        "短暫停頓：攻擊的機會。"
+      ]
+    },
+    "Special move": {
+      "en": [
+        "Power form: gathers power, then presses down on the ground again and again and ends with a huge press down.",
+        "Stay away from him until the last, biggest press down is over."
+      ],
+      "de": [
+        "Kraft-Form: Sammelt Kraft, drückt dann immer wieder auf den Boden und endet mit einem gewaltigen Stoß nach unten.",
+        "Halte Abstand, bis der letzte, größte Stoß vorbei ist."
+      ],
+      "es": [
+        "Forma de Poder: acumula poder, aplasta el suelo una y otra vez y termina con un enorme golpe hacia abajo.",
+        "Mantente lejos hasta que pase el último y mayor golpe."
+      ],
+      "fr": [
+        "Forme Puissance : rassemble sa force, frappe le sol encore et encore et termine par un énorme écrasement.",
+        "Reste à distance jusqu'à la fin du dernier et plus gros écrasement."
+      ],
+      "pl": [
+        "Forma Mocy: zbiera moc, raz za razem przygniata ziemię i kończy potężnym uderzeniem w dół.",
+        "Trzymaj się z dala, aż minie ostatnie, największe uderzenie."
+      ],
+      "pt-BR": [
+        "Forma Energia: junta poder, esmaga o chão várias vezes e termina com um enorme golpe para baixo.",
+        "Fique longe até o último e maior golpe acabar."
+      ],
+      "ru": [
+        "Форма Силы: копит силу, снова и снова давит на землю и завершает огромным ударом вниз.",
+        "Держитесь подальше, пока не закончится последний, самый сильный удар."
+      ],
+      "ko": [
+        "파워 형태: 힘을 모은 뒤 땅을 계속 내리누르다가 거대한 내려찍기로 끝냅니다.",
+        "마지막의 가장 큰 내려찍기가 끝날 때까지 떨어져 있으세요."
+      ],
+      "ja": [
+        "パワー形態：力をため、何度も地面を押し潰し、巨大な押し潰しで締めくくります。",
+        "最後の一番大きな押し潰しが終わるまで離れていましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态：蓄力后不断向下重压地面，最后以一次巨大的重压结束。",
+        "在最后、最大的一次重压结束前远离他。"
+      ],
+      "zh-Hant": [
+        "力量形態：蓄力後不斷向下重壓地面，最後以一次巨大的重壓結束。",
+        "在最後、最大的一次重壓結束前遠離他。"
+      ]
+    },
+    "To power switching": {
+      "en": [
+        "Switches to Power form in a cloud of dark smoke; purple orbs fall and fiery explosions burst around him.",
+        "Keep your distance while he switches."
+      ],
+      "de": [
+        "Wechselt in einer dunklen Rauchwolke in die Kraft-Form; violette Kugeln fallen und um ihn platzen feurige Explosionen.",
+        "Halte Abstand, während er wechselt."
+      ],
+      "es": [
+        "Cambia a la forma de Poder en una nube de humo oscuro; caen orbes morados y estallan explosiones de fuego a su alrededor.",
+        "Mantén la distancia mientras cambia."
+      ],
+      "fr": [
+        "Passe en forme Puissance dans un nuage de fumée sombre ; des orbes violets tombent et des explosions enflammées éclatent autour de lui.",
+        "Garde tes distances pendant qu'il change de forme."
+      ],
+      "pl": [
+        "Przechodzi w formę Mocy w chmurze mrocznego dymu; spadają fioletowe kule, a wokół niego wybuchają ogniste eksplozje.",
+        "Trzymaj dystans, gdy zmienia formę."
+      ],
+      "pt-BR": [
+        "Muda para a forma Energia numa nuvem de fumaça sombria; orbes roxos caem e explosões de fogo estouram ao redor dele.",
+        "Mantenha distância enquanto ele muda."
+      ],
+      "ru": [
+        "Переходит в форму Силы в облаке тёмного дыма; падают фиолетовые сферы, вокруг него гремят огненные взрывы.",
+        "Держите дистанцию, пока он меняет форму."
+      ],
+      "ko": [
+        "검은 연기 속에서 파워 형태로 바뀌며, 보랏빛 구슬이 떨어지고 주위에 불길의 폭발이 일어납니다.",
+        "형태를 바꾸는 동안 거리를 두세요."
+      ],
+      "ja": [
+        "暗い煙の中でパワー形態に変わり、紫の球が落ち、周りで炎の爆発が起こります。",
+        "形態を切り替える間は距離を取りましょう。"
+      ],
+      "zh-Hans": [
+        "在黑烟中切换为力量形态，紫色球体落下，周围爆出火焰。",
+        "他切换形态时保持距离。"
+      ],
+      "zh-Hant": [
+        "在黑煙中切換為力量形態，紫色球體落下，周圍爆出火焰。",
+        "他切換形態時保持距離。"
+      ]
+    },
+    "To balance switching": {
+      "en": [
+        "Switches to Balance form in a cloud of dark smoke, then swings his bone in big purple arcs.",
+        "Keep your distance while he switches."
+      ],
+      "de": [
+        "Wechselt in einer dunklen Rauchwolke in die Balance-Form und schwingt dann seinen Knochen in großen violetten Bögen.",
+        "Halte Abstand, während er wechselt."
+      ],
+      "es": [
+        "Cambia a la forma de Equilibrio en una nube de humo oscuro y luego blande su hueso en grandes arcos morados.",
+        "Mantén la distancia mientras cambia."
+      ],
+      "fr": [
+        "Passe en forme Équilibre dans un nuage de fumée sombre, puis balance son os en grands arcs violets.",
+        "Garde tes distances pendant qu'il change de forme."
+      ],
+      "pl": [
+        "Przechodzi w formę Równowagi w chmurze mrocznego dymu, a potem wymachuje kością wielkimi fioletowymi łukami.",
+        "Trzymaj dystans, gdy zmienia formę."
+      ],
+      "pt-BR": [
+        "Muda para a forma Equilíbrio numa nuvem de fumaça sombria e depois gira o osso em grandes arcos roxos.",
+        "Mantenha distância enquanto ele muda."
+      ],
+      "ru": [
+        "Переходит в форму Баланса в облаке тёмного дыма, затем размахивает костью большими фиолетовыми дугами.",
+        "Держите дистанцию, пока он меняет форму."
+      ],
+      "ko": [
+        "검은 연기 속에서 밸런스 형태로 바뀐 뒤, 뼈를 크게 보랏빛 호를 그리며 휘두릅니다.",
+        "형태를 바꾸는 동안 거리를 두세요."
+      ],
+      "ja": [
+        "暗い煙の中でバランス形態に変わり、骨を大きな紫の弧を描いて振り回します。",
+        "形態を切り替える間は距離を取りましょう。"
+      ],
+      "zh-Hans": [
+        "在黑烟中切换为平衡形态，然后挥动骨头划出巨大的紫色弧线。",
+        "他切换形态时保持距离。"
+      ],
+      "zh-Hant": [
+        "在黑煙中切換為平衡形態，然後揮動骨頭劃出巨大的紫色弧線。",
+        "他切換形態時保持距離。"
+      ]
+    },
+    "To speed switching": {
+      "en": [
+        "Switches to Speed form: a white crescent slash, then a long red slash line along the floor and red crescent waves.",
+        "Jump over the red line along the floor."
+      ],
+      "de": [
+        "Wechselt in die Tempo-Form: ein weißer Sichelhieb, dann eine lange rote Hieblinie am Boden und rote Sichelwellen.",
+        "Spring über die rote Linie am Boden."
+      ],
+      "es": [
+        "Cambia a la forma de Velocidad: un tajo blanco en media luna, luego una larga línea roja de tajo por el suelo y ondas rojas en media luna.",
+        "Salta sobre la línea roja del suelo."
+      ],
+      "fr": [
+        "Passe en forme Vitesse : une entaille blanche en croissant, puis une longue ligne d'entaille rouge au sol et des ondes rouges en croissant.",
+        "Saute par-dessus la ligne rouge au sol."
+      ],
+      "pl": [
+        "Przechodzi w formę Prędkości: białe cięcie sierpem, potem długa czerwona linia cięcia po ziemi i czerwone sierpowe fale.",
+        "Przeskocz czerwoną linię na ziemi."
+      ],
+      "pt-BR": [
+        "Muda para a forma Velocidade: um corte branco em lua crescente, depois uma longa linha vermelha de corte pelo chão e ondas vermelhas em lua crescente.",
+        "Pule a linha vermelha no chão."
+      ],
+      "ru": [
+        "Переходит в форму Скорости: белый серповидный удар, затем длинная красная линия удара по полу и красные серповидные волны.",
+        "Перепрыгните красную линию на полу."
+      ],
+      "ko": [
+        "스피드 형태로 바뀝니다: 하얀 초승달 베기, 이어서 바닥을 가로지르는 긴 붉은 베기 선과 붉은 초승달 파동.",
+        "바닥의 붉은 선을 점프로 넘으세요."
+      ],
+      "ja": [
+        "スピード形態に変わります：白い三日月の斬撃、続いて床に沿った長い赤い斬撃の線と赤い三日月の波。",
+        "床の赤い線を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "切换为速度形态：一记白色新月斩，然后沿地面的长长红色斩击线和红色新月波。",
+        "跳过地上的红线。"
+      ],
+      "zh-Hant": [
+        "切換為速度形態：一記白色新月斬，然後沿地面的長長紅色斬擊線和紅色新月波。",
+        "跳過地上的紅線。"
+      ]
+    },
+    "Fast move aerial": {
+      "en": [
+        "Speed form: darts through the air to a new spot.",
+        "Speed form moves are fast: keep moving and watch for the attack that follows."
+      ],
+      "de": [
+        "Tempo-Form: Schießt durch die Luft an eine neue Stelle.",
+        "Tempo-Angriffe sind schnell: Bleib in Bewegung und achte auf den folgenden Angriff."
+      ],
+      "es": [
+        "Forma de Velocidad: se lanza por el aire a otro punto.",
+        "Los movimientos de Velocidad son rápidos: sigue moviéndote y atento al ataque que sigue."
+      ],
+      "fr": [
+        "Forme Vitesse : file dans les airs vers un autre endroit.",
+        "Les attaques de Vitesse sont rapides : continue de bouger et surveille l'attaque suivante."
+      ],
+      "pl": [
+        "Forma Prędkości: przemyka przez powietrze w nowe miejsce.",
+        "Ruchy Prędkości są szybkie: ruszaj się i uważaj na następny atak."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: dispara pelo ar até outro ponto.",
+        "Os golpes de Velocidade são rápidos: continue se movendo e fique atento ao ataque seguinte."
+      ],
+      "ru": [
+        "Форма Скорости: проносится по воздуху на новое место.",
+        "Приёмы Скорости быстры: двигайтесь и следите за следующей атакой."
+      ],
+      "ko": [
+        "스피드 형태: 공중을 가로질러 다른 곳으로 순식간에 이동합니다.",
+        "스피드 기술은 빠릅니다: 계속 움직이며 이어지는 공격을 살피세요."
+      ],
+      "ja": [
+        "スピード形態：空中を一瞬で別の場所へ移動します。",
+        "スピードの技は速いので、動き続けて次の攻撃に注意しましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：在空中飞速移动到新位置。",
+        "速度形态的招式很快：保持移动，注意接下来的攻击。"
+      ],
+      "zh-Hant": [
+        "速度形態：在空中飛速移動到新位置。",
+        "速度形態的招式很快：保持移動，注意接下來的攻擊。"
+      ]
+    },
+    "Fast move on ground": {
+      "en": [
+        "Speed form: darts along the floor to a new spot.",
+        "Speed form moves are fast: keep moving and watch for the attack that follows."
+      ],
+      "de": [
+        "Tempo-Form: Schießt am Boden an eine neue Stelle.",
+        "Tempo-Angriffe sind schnell: Bleib in Bewegung und achte auf den folgenden Angriff."
+      ],
+      "es": [
+        "Forma de Velocidad: se lanza a ras de suelo a otro punto.",
+        "Los movimientos de Velocidad son rápidos: sigue moviéndote y atento al ataque que sigue."
+      ],
+      "fr": [
+        "Forme Vitesse : file au sol vers un autre endroit.",
+        "Les attaques de Vitesse sont rapides : continue de bouger et surveille l'attaque suivante."
+      ],
+      "pl": [
+        "Forma Prędkości: przemyka po ziemi w nowe miejsce.",
+        "Ruchy Prędkości są szybkie: ruszaj się i uważaj na następny atak."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: dispara pelo chão até outro ponto.",
+        "Os golpes de Velocidade são rápidos: continue se movendo e fique atento ao ataque seguinte."
+      ],
+      "ru": [
+        "Форма Скорости: проносится по полу на новое место.",
+        "Приёмы Скорости быстры: двигайтесь и следите за следующей атакой."
+      ],
+      "ko": [
+        "스피드 형태: 바닥을 따라 다른 곳으로 순식간에 이동합니다.",
+        "스피드 기술은 빠릅니다: 계속 움직이며 이어지는 공격을 살피세요."
+      ],
+      "ja": [
+        "スピード形態：床に沿って一瞬で別の場所へ移動します。",
+        "スピードの技は速いので、動き続けて次の攻撃に注意しましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：贴地飞速移动到新位置。",
+        "速度形态的招式很快：保持移动，注意接下来的攻击。"
+      ],
+      "zh-Hant": [
+        "速度形態：貼地飛速移動到新位置。",
+        "速度形態的招式很快：保持移動，注意接下來的攻擊。"
+      ]
+    },
+    "Wide sweep": {
+      "en": [
+        "Speed form: a crosshair marks you, then he dashes in with a huge purple sweeping slash.",
+        "Move off the crosshair right away."
+      ],
+      "de": [
+        "Tempo-Form: Ein Fadenkreuz markiert dich, dann sprintet er mit einem riesigen violetten Fegehieb heran.",
+        "Verlass das Fadenkreuz sofort."
+      ],
+      "es": [
+        "Forma de Velocidad: una mira te marca y luego se lanza con un enorme tajo morado de barrido.",
+        "Sal de la mira enseguida."
+      ],
+      "fr": [
+        "Forme Vitesse : un viseur te marque, puis il fonce avec une immense entaille violette balayante.",
+        "Quitte le viseur tout de suite."
+      ],
+      "pl": [
+        "Forma Prędkości: celownik oznacza ciebie, a potem doskakuje z ogromnym fioletowym zamaszystym cięciem.",
+        "Natychmiast zejdź z celownika."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: uma mira marca você, depois ele avança com um enorme corte roxo de varredura.",
+        "Saia da mira na hora."
+      ],
+      "ru": [
+        "Форма Скорости: прицел отмечает вас, затем он врывается с огромным фиолетовым размашистым ударом.",
+        "Сразу уйдите с прицела."
+      ],
+      "ko": [
+        "스피드 형태: 조준점이 당신을 표시한 뒤, 거대한 보랏빛 휩쓸기 베기로 파고듭니다.",
+        "곧바로 조준점에서 벗어나세요."
+      ],
+      "ja": [
+        "スピード形態：照準があなたを示すと、巨大な紫の薙ぎ払いとともに踏み込みます。",
+        "すぐに照準から離れましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：准星标记你，然后他冲过来挥出巨大的紫色横扫。",
+        "立刻离开准星。"
+      ],
+      "zh-Hant": [
+        "速度形態：準星標記你，然後他衝過來揮出巨大的紫色橫掃。",
+        "立刻離開準星。"
+      ]
+    },
+    "Joint sweep": {
+      "en": [
+        "Speed form: a crosshair marks you, a purple slash and ring portals appear, then a long purple sweep runs along the floor.",
+        "Leave the crosshair, then jump over the sweep along the floor."
+      ],
+      "de": [
+        "Tempo-Form: Ein Fadenkreuz markiert dich, ein violetter Hieb und Ringportale erscheinen, dann zieht ein langer violetter Fegeschlag über den Boden.",
+        "Verlass das Fadenkreuz und spring dann über den Fegeschlag am Boden."
+      ],
+      "es": [
+        "Forma de Velocidad: una mira te marca, aparecen un tajo morado y portales en anillo, y luego un largo barrido morado recorre el suelo.",
+        "Sal de la mira y luego salta sobre el barrido del suelo."
+      ],
+      "fr": [
+        "Forme Vitesse : un viseur te marque, une entaille violette et des portails en anneau apparaissent, puis un long balayage violet parcourt le sol.",
+        "Quitte le viseur, puis saute par-dessus le balayage au sol."
+      ],
+      "pl": [
+        "Forma Prędkości: celownik oznacza ciebie, pojawia się fioletowe cięcie i pierścieniowe portale, a potem po ziemi biegnie długie fioletowe cięcie.",
+        "Zejdź z celownika, a potem przeskocz cięcie przy ziemi."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: uma mira marca você, aparecem um corte roxo e portais em anel, depois uma longa varredura roxa corre pelo chão.",
+        "Saia da mira e depois pule a varredura no chão."
+      ],
+      "ru": [
+        "Форма Скорости: прицел отмечает вас, появляются фиолетовый удар и кольцевые порталы, затем по полу проходит длинный фиолетовый удар.",
+        "Уйдите с прицела, затем перепрыгните удар вдоль пола."
+      ],
+      "ko": [
+        "스피드 형태: 조준점이 당신을 표시하고 보랏빛 베기와 고리 모양 차원문이 나타난 뒤, 바닥을 따라 긴 보랏빛 휩쓸기가 지나갑니다.",
+        "조준점에서 벗어난 뒤, 바닥을 따라오는 휩쓸기를 점프로 넘으세요."
+      ],
+      "ja": [
+        "スピード形態：照準があなたを示し、紫の斬撃と輪の門が現れた後、床に沿って長い紫の薙ぎ払いが走ります。",
+        "照準から離れ、床に沿った薙ぎ払いを飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：准星标记你，出现紫色斩击和环形传送门，随后一道长长的紫色横扫沿地面掠过。",
+        "离开准星，然后跳过贴地的横扫。"
+      ],
+      "zh-Hant": [
+        "速度形態：準星標記你，出現紫色斬擊和環形傳送門，隨後一道長長的紫色橫掃沿地面掠過。",
+        "離開準星，然後跳過貼地的橫掃。"
+      ]
+    },
+    "First step horizontal dash": {
+      "en": [
+        "Speed form: a crosshair marks you, a purple slash, then he dashes straight across the room with a slash.",
+        "Jump over the dash."
+      ],
+      "de": [
+        "Tempo-Form: Ein Fadenkreuz markiert dich, ein violetter Hieb, dann sprintet er mit einem Hieb waagrecht durch den Raum.",
+        "Spring über den Sprint."
+      ],
+      "es": [
+        "Forma de Velocidad: una mira te marca, un tajo morado, y luego cruza la sala en línea recta con un tajo.",
+        "Salta sobre la carrera."
+      ],
+      "fr": [
+        "Forme Vitesse : un viseur te marque, une entaille violette, puis il traverse la salle à l'horizontale avec une entaille.",
+        "Saute par-dessus le sprint."
+      ],
+      "pl": [
+        "Forma Prędkości: celownik oznacza ciebie, fioletowe cięcie, a potem przemyka poziomo przez salę z cięciem.",
+        "Przeskocz zryw."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: uma mira marca você, um corte roxo, depois ele cruza o salão em linha reta com um corte.",
+        "Pule a corrida."
+      ],
+      "ru": [
+        "Форма Скорости: прицел отмечает вас, фиолетовый удар, затем он проносится через зал по горизонтали с ударом.",
+        "Перепрыгните рывок."
+      ],
+      "ko": [
+        "스피드 형태: 조준점이 당신을 표시하고 보랏빛 베기 후, 베면서 방을 수평으로 가로질러 대쉬합니다.",
+        "대쉬를 점프로 넘으세요."
+      ],
+      "ja": [
+        "スピード形態：照準があなたを示し、紫の斬撃の後、斬りながら部屋を水平にダッシュで横切ります。",
+        "ダッシュを飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：准星标记你，一记紫色斩击，然后他边斩边水平冲过房间。",
+        "跳过疾驰。"
+      ],
+      "zh-Hant": [
+        "速度形態：準星標記你，一記紫色斬擊，然後他邊斬邊水平衝過房間。",
+        "跳過衝刺。"
+      ]
+    },
+    "First step falling dash": {
+      "en": [
+        "Speed form: a crosshair marks you, a purple slash, then he dives at you diagonally from above.",
+        "Dash away from the crosshair as he comes down."
+      ],
+      "de": [
+        "Tempo-Form: Ein Fadenkreuz markiert dich, ein violetter Hieb, dann stürzt er schräg von oben auf dich zu.",
+        "Sprinte vom Fadenkreuz weg, wenn er herabkommt."
+      ],
+      "es": [
+        "Forma de Velocidad: una mira te marca, un tajo morado, y luego cae en diagonal hacia ti desde arriba.",
+        "Aléjate corriendo de la mira cuando baje."
+      ],
+      "fr": [
+        "Forme Vitesse : un viseur te marque, une entaille violette, puis il plonge sur toi en diagonale depuis le haut.",
+        "Sprinte loin du viseur quand il redescend."
+      ],
+      "pl": [
+        "Forma Prędkości: celownik oznacza ciebie, fioletowe cięcie, a potem pikuje na ciebie ukośnie z góry.",
+        "Odskocz od celownika, gdy spada."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: uma mira marca você, um corte roxo, depois ele mergulha na diagonal até você de cima.",
+        "Corra para longe da mira quando ele descer."
+      ],
+      "ru": [
+        "Форма Скорости: прицел отмечает вас, фиолетовый удар, затем он пикирует на вас наискосок сверху.",
+        "Уходите рывком от прицела, когда он падает."
+      ],
+      "ko": [
+        "스피드 형태: 조준점이 당신을 표시하고 보랏빛 베기 후, 위에서 비스듬히 당신에게 내리꽂힙니다.",
+        "그가 내려올 때 조준점에서 대쉬로 벗어나세요."
+      ],
+      "ja": [
+        "スピード形態：照準があなたを示し、紫の斬撃の後、上からななめにあなたへ急降下します。",
+        "降りてくるときに照準からダッシュで離れましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：准星标记你，一记紫色斩击，然后他从上方朝你俯冲。",
+        "他落下时从准星处闪开。"
+      ],
+      "zh-Hant": [
+        "速度形態：準星標記你，一記紫色斬擊，然後他從上方朝你俯衝。",
+        "他落下時從準星處閃開。"
+      ]
+    },
+    "Spike field": {
+      "en": [
+        "Speed form: darts around, a red line glows along the whole floor, and a field of white spikes erupts across it.",
+        "Be in the air or on a platform when the spikes come up."
+      ],
+      "de": [
+        "Tempo-Form: Huscht umher, eine rote Linie leuchtet über den ganzen Boden, und ein Feld weißer Stacheln bricht daraus hervor.",
+        "Sei in der Luft oder auf einer Plattform, wenn die Stacheln hochkommen."
+      ],
+      "es": [
+        "Forma de Velocidad: se mueve a toda velocidad, una línea roja brilla en todo el suelo y brota de él un campo de púas blancas.",
+        "Estate en el aire o en una plataforma cuando salgan las púas."
+      ],
+      "fr": [
+        "Forme Vitesse : file de tous côtés, une ligne rouge s'allume sur tout le sol et un champ de pointes blanches en jaillit.",
+        "Sois en l'air ou sur une plateforme quand les pointes sortent."
+      ],
+      "pl": [
+        "Forma Prędkości: przemyka wokół, na całej podłodze świeci czerwona linia, a potem wyrasta z niej pole białych kolców.",
+        "Bądź w powietrzu albo na platformie, gdy wyrastają kolce."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: dispara de um lado para outro, uma linha vermelha brilha no chão inteiro e um campo de espinhos brancos irrompe dele.",
+        "Esteja no ar ou numa plataforma quando os espinhos subirem."
+      ],
+      "ru": [
+        "Форма Скорости: носится вокруг, по всему полу загорается красная линия, и из него вырастает поле белых шипов.",
+        "Будьте в воздухе или на платформе, когда вырастают шипы."
+      ],
+      "ko": [
+        "스피드 형태: 이리저리 움직이다가 바닥 전체에 붉은 선이 빛나고, 하얀 가시 밭이 솟아오릅니다.",
+        "가시가 솟을 때 공중이나 발판 위에 있으세요."
+      ],
+      "ja": [
+        "スピード形態：素早く動き回り、床全体に赤い線が光ると、白いトゲの原が突き出します。",
+        "トゲが出るときは空中か足場の上にいましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：四处移动，整个地面亮起红线，然后冒出一片白色尖刺。",
+        "尖刺冒出时待在空中或平台上。"
+      ],
+      "zh-Hant": [
+        "速度形態：四處飛竄，整個地面亮起紅線，然後冒出一片白色尖刺。",
+        "尖刺冒出時待在空中或平台上。"
+      ]
+    },
+    "Fast move 2 javelin combo": {
+      "en": [
+        "Speed form: darts in and strikes with his javelin several times in a row.",
+        "Keep moving away until the combo ends."
+      ],
+      "de": [
+        "Tempo-Form: Huscht heran und sticht mehrmals hintereinander mit dem Speer zu.",
+        "Bleib in Bewegung, bis die Kombo endet."
+      ],
+      "es": [
+        "Forma de Velocidad: se lanza y golpea con la jabalina varias veces seguidas.",
+        "Sigue alejándote hasta que termine el combo."
+      ],
+      "fr": [
+        "Forme Vitesse : file vers toi et frappe plusieurs fois d'affilée avec son javelot.",
+        "Continue de t'éloigner jusqu'à la fin de l'enchaînement."
+      ],
+      "pl": [
+        "Forma Prędkości: doskakuje i kilka razy z rzędu uderza oszczepem.",
+        "Oddalaj się, aż kombinacja się skończy."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: avança e golpeia com o dardo várias vezes seguidas.",
+        "Continue se afastando até o combo acabar."
+      ],
+      "ru": [
+        "Форма Скорости: врывается и несколько раз подряд бьёт копьём.",
+        "Продолжайте отходить, пока серия не закончится."
+      ],
+      "ko": [
+        "스피드 형태: 순식간에 다가와 투창으로 여러 번 연속 공격합니다.",
+        "연속 공격이 끝날 때까지 계속 멀어지세요."
+      ],
+      "ja": [
+        "スピード形態：素早く近づき、投げ槍で何度も続けて攻撃します。",
+        "連続攻撃が終わるまで離れ続けましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：飞速接近，用标枪连续攻击数次。",
+        "持续远离直到连击结束。"
+      ],
+      "zh-Hant": [
+        "速度形態：飛速接近，用標槍連續攻擊數次。",
+        "持續遠離直到連擊結束。"
+      ]
+    },
+    "Punto (fade)": {
+      "en": [
+        "Speed form: a purple ring portal opens, he thrusts out of it, and a streak shoots along the floor.",
+        "Jump over the streak along the floor."
+      ],
+      "de": [
+        "Tempo-Form: Ein violettes Ringportal öffnet sich, er sticht daraus hervor und ein Streifen schießt über den Boden.",
+        "Spring über den Streifen am Boden."
+      ],
+      "es": [
+        "Forma de Velocidad: se abre un portal en anillo morado, sale de él con una estocada y una estela recorre el suelo.",
+        "Salta sobre la estela del suelo."
+      ],
+      "fr": [
+        "Forme Vitesse : un portail violet en anneau s'ouvre, il en jaillit d'un coup d'estoc et une traînée file au sol.",
+        "Saute par-dessus la traînée au sol."
+      ],
+      "pl": [
+        "Forma Prędkości: otwiera się fioletowy pierścieniowy portal, on wyskakuje z niego z pchnięciem, a po ziemi mknie smuga.",
+        "Przeskocz smugę na ziemi."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: um portal roxo em anel se abre, ele sai dele com uma estocada e um rastro corre pelo chão.",
+        "Pule o rastro no chão."
+      ],
+      "ru": [
+        "Форма Скорости: открывается фиолетовый кольцевой портал, он делает из него выпад, и по полу проносится полоса.",
+        "Перепрыгните полосу на полу."
+      ],
+      "ko": [
+        "스피드 형태: 보랏빛 고리 모양 차원문이 열리고, 그곳에서 찌르며 튀어나와 바닥을 따라 빛줄기가 뻗습니다.",
+        "바닥을 따라오는 빛줄기를 점프로 넘으세요."
+      ],
+      "ja": [
+        "スピード形態：紫の輪の門が開き、そこから突きを放って飛び出し、床に沿って光の筋が走ります。",
+        "床の光の筋を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：紫色环形传送门打开，他从中突刺而出，一道光痕沿地面射出。",
+        "跳过贴地的光痕。"
+      ],
+      "zh-Hant": [
+        "速度形態：紫色環形傳送門打開，他從中突刺而出，一道光痕沿地面射出。",
+        "跳過貼地的光痕。"
+      ]
+    },
+    "Spike spot (fade)": {
+      "en": [
+        "Speed form: a crosshair appears on the floor, a red line runs along it, and he slashes up out of the ground there.",
+        "Step off the crosshair."
+      ],
+      "de": [
+        "Tempo-Form: Ein Fadenkreuz erscheint am Boden, eine rote Linie läuft daran entlang, und dort schlägt er aus dem Boden hervor.",
+        "Verlass das Fadenkreuz."
+      ],
+      "es": [
+        "Forma de Velocidad: aparece una mira en el suelo, una línea roja la recorre y él sale del suelo con un tajo ahí.",
+        "Sal de la mira."
+      ],
+      "fr": [
+        "Forme Vitesse : un viseur apparaît au sol, une ligne rouge le parcourt, et il surgit du sol en tranchant à cet endroit.",
+        "Quitte le viseur."
+      ],
+      "pl": [
+        "Forma Prędkości: na ziemi pojawia się celownik, biegnie przez niego czerwona linia, a on wyskakuje tam z ziemi z cięciem.",
+        "Zejdź z celownika."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: uma mira aparece no chão, uma linha vermelha corre por ela e ele sai do chão cortando ali.",
+        "Saia da mira."
+      ],
+      "ru": [
+        "Форма Скорости: на полу появляется прицел, вдоль него проходит красная линия, и там он выскакивает из земли с ударом.",
+        "Уйдите с прицела."
+      ],
+      "ko": [
+        "스피드 형태: 바닥에 조준점이 나타나고 붉은 선이 지나간 뒤, 그곳 땅속에서 베며 솟아오릅니다.",
+        "조준점에서 벗어나세요."
+      ],
+      "ja": [
+        "スピード形態：床に照準が現れ、赤い線が走ると、そこで地面から斬り上げて飛び出します。",
+        "照準から離れましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：地面出现准星，红线划过，然后他从那里的地下斩出。",
+        "离开准星。"
+      ],
+      "zh-Hant": [
+        "速度形態：地面出現準星，紅線劃過，然後他從那裡的地下斬出。",
+        "離開準星。"
+      ]
+    },
+    "Javelin": {
+      "en": [
+        "Speed form: a red aim line crosses the room, then he hurls his javelin along it.",
+        "Get off the red line before he throws."
+      ],
+      "de": [
+        "Tempo-Form: Eine rote Ziellinie zieht sich durch den Raum, dann schleudert er seinen Speer daran entlang.",
+        "Verlass die rote Linie, bevor er wirft."
+      ],
+      "es": [
+        "Forma de Velocidad: una línea roja de mira cruza la sala y luego lanza su jabalina a lo largo de ella.",
+        "Sal de la línea roja antes del lanzamiento."
+      ],
+      "fr": [
+        "Forme Vitesse : une ligne de visée rouge traverse la salle, puis il lance son javelot le long de celle-ci.",
+        "Quitte la ligne rouge avant qu'il lance."
+      ],
+      "pl": [
+        "Forma Prędkości: czerwona linia celowania przecina salę, a potem ciska wzdłuż niej oszczepem.",
+        "Zejdź z czerwonej linii, zanim rzuci."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: uma linha vermelha de mira cruza o salão, depois ele arremessa o dardo ao longo dela.",
+        "Saia da linha vermelha antes de ele arremessar."
+      ],
+      "ru": [
+        "Форма Скорости: красная линия прицела пересекает зал, затем он швыряет вдоль неё копьё.",
+        "Уйдите с красной линии до броска."
+      ],
+      "ko": [
+        "스피드 형태: 붉은 조준선이 방을 가로지른 뒤, 그 선을 따라 투창을 던집니다.",
+        "던지기 전에 붉은 선에서 벗어나세요."
+      ],
+      "ja": [
+        "スピード形態：赤い照準線が部屋を横切ると、その線に沿って投げ槍を投げます。",
+        "投げる前に赤い線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态：红色瞄准线横穿房间，然后他沿线掷出标枪。",
+        "在他投掷前离开红线。"
+      ],
+      "zh-Hant": [
+        "速度形態：紅色瞄準線橫穿房間，然後他沿線擲出標槍。",
+        "在他投擲前離開紅線。"
+      ]
+    },
+    "Javelin grab on wall": {
+      "en": [
+        "Speed form: clings to the wall and throws a row of javelins across the room.",
+        "Dodge the javelins: if one catches you, the screen turns red and he follows with a combo."
+      ],
+      "de": [
+        "Tempo-Form: Hängt an der Wand und wirft eine Reihe Speere quer durch den Raum.",
+        "Weich den Speeren aus: Trifft dich einer, wird der Bildschirm rot und er setzt mit einer Kombo nach."
+      ],
+      "es": [
+        "Forma de Velocidad: se aferra a la pared y lanza una fila de jabalinas a través de la sala.",
+        "Esquiva las jabalinas: si una te atrapa, la pantalla se vuelve roja y sigue con un combo."
+      ],
+      "fr": [
+        "Forme Vitesse : s'accroche au mur et lance une rangée de javelots à travers la salle.",
+        "Esquive les javelots : si l'un t'attrape, l'écran devient rouge et il enchaîne un combo."
+      ],
+      "pl": [
+        "Forma Prędkości: czepia się ściany i rzuca rząd oszczepów przez salę.",
+        "Unikaj oszczepów: jeśli któryś cię złapie, ekran robi się czerwony i on wykonuje kombinację."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: agarra-se à parede e arremessa uma fileira de dardos pelo salão.",
+        "Desvie dos dardos: se um pegar você, a tela fica vermelha e ele emenda um combo."
+      ],
+      "ru": [
+        "Форма Скорости: цепляется за стену и бросает через зал ряд копий.",
+        "Уворачивайтесь от копий: если одно поймает вас, экран краснеет и он проводит серию ударов."
+      ],
+      "ko": [
+        "스피드 형태: 벽에 매달려 방을 가로질러 투창을 줄지어 던집니다.",
+        "투창을 피하세요: 하나라도 맞으면 화면이 붉게 변하고 연속 공격이 이어집니다."
+      ],
+      "ja": [
+        "スピード形態：壁にしがみつき、部屋の向こうへ投げ槍を何本も並べて投げます。",
+        "投げ槍をかわしましょう：当たると画面が赤くなり、連続攻撃が続きます。"
+      ],
+      "zh-Hans": [
+        "速度形态：贴在墙上，向房间另一头掷出一排标枪。",
+        "躲开标枪：被命中时画面变红，他会接着连击。"
+      ],
+      "zh-Hant": [
+        "速度形態：貼在牆上，向房間另一頭擲出一排標槍。",
+        "躲開標槍：被命中時畫面變紅，他會接著連擊。"
+      ]
+    },
+    "Javelin grab on ground": {
+      "en": [
+        "Speed form: a row of white spikes rises, then he throws javelins from the ground.",
+        "Dodge the javelins: if one catches you, the screen turns red and he follows with a combo."
+      ],
+      "de": [
+        "Tempo-Form: Eine Reihe weißer Stacheln steigt auf, dann wirft er Speere vom Boden aus.",
+        "Weich den Speeren aus: Trifft dich einer, wird der Bildschirm rot und er setzt mit einer Kombo nach."
+      ],
+      "es": [
+        "Forma de Velocidad: se alza una fila de púas blancas y luego lanza jabalinas desde el suelo.",
+        "Esquiva las jabalinas: si una te atrapa, la pantalla se vuelve roja y sigue con un combo."
+      ],
+      "fr": [
+        "Forme Vitesse : une rangée de pointes blanches s'élève, puis il lance des javelots depuis le sol.",
+        "Esquive les javelots : si l'un t'attrape, l'écran devient rouge et il enchaîne un combo."
+      ],
+      "pl": [
+        "Forma Prędkości: wyrasta rząd białych kolców, a potem rzuca oszczepami z ziemi.",
+        "Unikaj oszczepów: jeśli któryś cię złapie, ekran robi się czerwony i on wykonuje kombinację."
+      ],
+      "pt-BR": [
+        "Forma Velocidade: uma fileira de espinhos brancos sobe, depois ele arremessa dardos do chão.",
+        "Desvie dos dardos: se um pegar você, a tela fica vermelha e ele emenda um combo."
+      ],
+      "ru": [
+        "Форма Скорости: поднимается ряд белых шипов, затем он бросает копья с земли.",
+        "Уворачивайтесь от копий: если одно поймает вас, экран краснеет и он проводит серию ударов."
+      ],
+      "ko": [
+        "스피드 형태: 하얀 가시가 줄지어 솟은 뒤, 땅에서 투창을 던집니다.",
+        "투창을 피하세요: 하나라도 맞으면 화면이 붉게 변하고 연속 공격이 이어집니다."
+      ],
+      "ja": [
+        "スピード形態：白いトゲが一列に立ち上り、地上から投げ槍を投げます。",
+        "投げ槍をかわしましょう：当たると画面が赤くなり、連続攻撃が続きます。"
+      ],
+      "zh-Hans": [
+        "速度形态：一排白色尖刺升起，然后他在地面上掷出标枪。",
+        "躲开标枪：被命中时画面变红，他会接着连击。"
+      ],
+      "zh-Hant": [
+        "速度形態：一排白色尖刺升起，然後他在地面上擲出標槍。",
+        "躲開標槍：被命中時畫面變紅，他會接著連擊。"
+      ]
+    },
+    "Star fall ready": {
+      "en": [
+        "Crouches and gathers power, a dark pillar rises, and purple stars fly up and rain down.",
+        "Keep moving while the stars fall. At most every 30 seconds."
+      ],
+      "de": [
+        "Geht in die Hocke und sammelt Kraft, eine dunkle Säule steigt auf, und violette Sterne fliegen hoch und regnen herab.",
+        "Bleib in Bewegung, während die Sterne fallen. Höchstens alle 30 Sekunden."
+      ],
+      "es": [
+        "Se agacha y acumula poder, se alza un pilar oscuro y estrellas moradas suben y llueven.",
+        "Sigue moviéndote mientras caen las estrellas. Como mucho cada 30 segundos."
+      ],
+      "fr": [
+        "S'accroupit et rassemble sa force, un pilier sombre s'élève, et des étoiles violettes montent puis retombent en pluie.",
+        "Continue de bouger pendant que les étoiles tombent. Au plus toutes les 30 secondes."
+      ],
+      "pl": [
+        "Przykuca i zbiera moc, wznosi się mroczny słup, a fioletowe gwiazdy wzlatują i spadają deszczem.",
+        "Ruszaj się, gdy spadają gwiazdy. Najwyżej co 30 sekund."
+      ],
+      "pt-BR": [
+        "Agacha-se e junta poder, um pilar sombrio sobe e estrelas roxas voam para cima e chovem.",
+        "Continue se movendo enquanto as estrelas caem. No máximo a cada 30 segundos."
+      ],
+      "ru": [
+        "Приседает и копит силу, поднимается тёмный столб, и фиолетовые звёзды взлетают и падают дождём.",
+        "Двигайтесь, пока падают звёзды. Не чаще раза в 30 секунд."
+      ],
+      "ko": [
+        "몸을 낮춰 힘을 모으면 어두운 기둥이 솟고, 보랏빛 별이 솟구쳤다가 쏟아집니다.",
+        "별이 떨어지는 동안 계속 움직이세요. 최대 30초마다 사용합니다."
+      ],
+      "ja": [
+        "身をかがめて力をためると暗い柱が立ち上り、紫の星が舞い上がって降り注ぎます。",
+        "星が落ちる間は動き続けましょう。最大で30秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "压低身子蓄力，黑暗光柱升起，紫色星星飞起后如雨落下。",
+        "星星落下时保持移动。最多每30秒一次。"
+      ],
+      "zh-Hant": [
+        "壓低身子蓄力，黑暗光柱升起，紫色星星飛起後如雨落下。",
+        "星星落下時保持移動。最多每30秒一次。"
+      ]
+    },
+    "Super bone rain": {
+      "en": [
+        "A dark swarm of bones gathers around him, then shoots up and rains down as purple bolts over a wide area.",
+        "Get far from him while the bones gather, and keep moving while they fall."
+      ],
+      "de": [
+        "Ein dunkler Schwarm Knochen sammelt sich um ihn, schießt dann hoch und regnet als violette Blitze über eine große Fläche nieder.",
+        "Geh weit weg, während sich die Knochen sammeln, und bleib in Bewegung, während sie fallen."
+      ],
+      "es": [
+        "Un oscuro enjambre de huesos se reúne a su alrededor, sale disparado hacia arriba y cae como rayos morados sobre una gran zona.",
+        "Aléjate mientras se reúnen los huesos y sigue moviéndote mientras caen."
+      ],
+      "fr": [
+        "Un essaim sombre d'os se rassemble autour de lui, puis s'élève et retombe en éclairs violets sur une large zone.",
+        "Éloigne-toi pendant que les os se rassemblent, et continue de bouger pendant qu'ils tombent."
+      ],
+      "pl": [
+        "Wokół niego zbiera się mroczny rój kości, który wystrzeliwuje w górę i spada fioletowymi błyskawicami na dużym obszarze.",
+        "Oddal się, gdy kości się zbierają, i ruszaj się, gdy spadają."
+      ],
+      "pt-BR": [
+        "Um enxame sombrio de ossos se junta ao redor dele, depois sobe e cai como raios roxos sobre uma área grande.",
+        "Afaste-se enquanto os ossos se juntam e continue se movendo enquanto caem."
+      ],
+      "ru": [
+        "Вокруг него собирается тёмный рой костей, затем взмывает и обрушивается фиолетовыми молниями на большую площадь.",
+        "Отойдите подальше, пока кости собираются, и двигайтесь, пока они падают."
+      ],
+      "ko": [
+        "어두운 뼈 무리가 그의 주위에 모였다가 솟구쳐 넓은 범위에 보랏빛 번개로 쏟아집니다.",
+        "뼈가 모이는 동안 멀리 떨어지고, 떨어지는 동안 계속 움직이세요."
+      ],
+      "ja": [
+        "暗い骨の群れが彼の周りに集まり、舞い上がって広い範囲に紫の稲妻として降り注ぎます。",
+        "骨が集まる間に遠く離れ、落ちてくる間は動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "大群黑暗的骨头聚集在他周围，然后飞起，化作紫色闪电落在大片区域。",
+        "骨头聚集时远离他，落下时保持移动。"
+      ],
+      "zh-Hant": [
+        "大群黑暗的骨頭聚集在他周圍，然後飛起，化作紫色閃電落在大片區域。",
+        "骨頭聚集時遠離他，落下時保持移動。"
+      ]
+    },
+    "Speed": {
+      "en": [
+        "Speed form's special move: a long chain of red warning lines, bone spikes, purple slashes and dashes, ending with a field of spikes across the whole floor.",
+        "Stay off the red lines throughout and be in the air or on a platform at the end."
+      ],
+      "de": [
+        "Spezialangriff der Tempo-Form: eine lange Kette aus roten Warnlinien, Knochenstacheln, violetten Hieben und Sprints, zum Schluss ein Stachelfeld über den ganzen Boden.",
+        "Bleib die ganze Zeit von den roten Linien weg und sei am Ende in der Luft oder auf einer Plattform."
+      ],
+      "es": [
+        "Movimiento especial de la forma de Velocidad: una larga cadena de líneas rojas, púas de hueso, tajos morados y carreras, que termina con un campo de púas por todo el suelo.",
+        "No pises las líneas rojas en ningún momento y al final estate en el aire o en una plataforma."
+      ],
+      "fr": [
+        "Attaque spéciale de la forme Vitesse : un long enchaînement de lignes rouges, de pointes d'os, d'entailles violettes et de sprints, qui finit par un champ de pointes sur tout le sol.",
+        "Évite les lignes rouges tout du long et sois en l'air ou sur une plateforme à la fin."
+      ],
+      "pl": [
+        "Ruch specjalny formy Prędkości: długi łańcuch czerwonych linii, kościanych kolców, fioletowych cięć i zrywów, zakończony polem kolców na całej podłodze.",
+        "Przez cały czas omijaj czerwone linie, a na końcu bądź w powietrzu albo na platformie."
+      ],
+      "pt-BR": [
+        "Golpe especial da forma Velocidade: uma longa sequência de linhas vermelhas, espinhos de osso, cortes roxos e corridas, terminando com um campo de espinhos no chão inteiro.",
+        "Fique fora das linhas vermelhas o tempo todo e, no final, esteja no ar ou numa plataforma."
+      ],
+      "ru": [
+        "Особый приём формы Скорости: длинная цепь красных линий, костяных шипов, фиолетовых ударов и рывков, завершающаяся полем шипов по всему полу.",
+        "Всё время избегайте красных линий, а в конце будьте в воздухе или на платформе."
+      ],
+      "ko": [
+        "스피드 형태의 특수 기술: 붉은 경고선, 뼈 가시, 보랏빛 베기, 대쉬가 길게 이어지다가 바닥 전체에 가시 밭이 솟으며 끝납니다.",
+        "내내 붉은 선을 피하고, 마지막에는 공중이나 발판 위에 있으세요."
+      ],
+      "ja": [
+        "スピード形態の特殊技：赤い警告線、骨のトゲ、紫の斬撃、ダッシュが長く続き、床全体にトゲの原が突き出して終わります。",
+        "ずっと赤い線を避け、最後は空中か足場の上にいましょう。"
+      ],
+      "zh-Hans": [
+        "速度形态的特殊招式：一长串红色警示线、骨刺、紫色斩击和疾驰，最后整个地面冒出一片尖刺。",
+        "全程避开红线，最后待在空中或平台上。"
+      ],
+      "zh-Hant": [
+        "速度形態的特殊招式：一長串紅色警示線、骨刺、紫色斬擊和衝刺，最後整個地面冒出一片尖刺。",
+        "全程避開紅線，最後待在空中或平台上。"
+      ]
+    },
+    "Power": {
+      "en": [
+        "Power form's special move: fiery fist blows and explosions, a purple dome, and a rain of bones.",
+        "Keep your distance during the blows and keep moving under the bones."
+      ],
+      "de": [
+        "Spezialangriff der Kraft-Form: feurige Faustschläge und Explosionen, eine violette Kuppel und ein Knochenregen.",
+        "Halte bei den Schlägen Abstand und bleib unter den Knochen in Bewegung."
+      ],
+      "es": [
+        "Movimiento especial de la forma de Poder: puñetazos y explosiones de fuego, una cúpula morada y una lluvia de huesos.",
+        "Mantén la distancia durante los golpes y sigue moviéndote bajo los huesos."
+      ],
+      "fr": [
+        "Attaque spéciale de la forme Puissance : coups de poing et explosions enflammés, un dôme violet et une pluie d'os.",
+        "Garde tes distances pendant les coups et continue de bouger sous les os."
+      ],
+      "pl": [
+        "Ruch specjalny formy Mocy: ogniste ciosy i eksplozje, fioletowa kopuła i deszcz kości.",
+        "Trzymaj dystans podczas ciosów i ruszaj się pod spadającymi kośćmi."
+      ],
+      "pt-BR": [
+        "Golpe especial da forma Energia: socos e explosões de fogo, uma cúpula roxa e uma chuva de ossos.",
+        "Mantenha distância durante os golpes e continue se movendo sob os ossos."
+      ],
+      "ru": [
+        "Особый приём формы Силы: огненные удары кулаками и взрывы, фиолетовый купол и дождь из костей.",
+        "Держите дистанцию во время ударов и двигайтесь под падающими костями."
+      ],
+      "ko": [
+        "파워 형태의 특수 기술: 불타는 주먹과 폭발, 보랏빛 반구, 그리고 뼈의 비.",
+        "주먹이 이어지는 동안 거리를 두고, 뼈가 떨어질 때는 계속 움직이세요."
+      ],
+      "ja": [
+        "パワー形態の特殊技：燃える拳と爆発、紫のドーム、そして骨の雨。",
+        "拳の間は距離を取り、骨の下では動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "力量形态的特殊招式：燃烧的拳击与爆炸、紫色圆罩，以及骨雨。",
+        "出拳时保持距离，骨头落下时保持移动。"
+      ],
+      "zh-Hant": [
+        "力量形態的特殊招式：燃燒的拳擊與爆炸、紫色圓罩，以及骨雨。",
+        "出拳時保持距離，骨頭落下時保持移動。"
+      ]
+    },
+    "Grab combination": {
+      "en": [
+        "Balance form's special move: dashes to grab you; if it catches you, the room changes, lightning strikes and he slashes you again and again before spikes erupt.",
+        "Avoid the grab at all costs: jump over his dash."
+      ],
+      "de": [
+        "Spezialangriff der Balance-Form: Sprintet heran, um dich zu packen; erwischt er dich, verändert sich der Raum, Blitze schlagen ein und er schlägt immer wieder zu, bevor Stacheln hervorbrechen.",
+        "Vermeide den Griff um jeden Preis: Spring über seinen Sprint."
+      ],
+      "es": [
+        "Movimiento especial de la forma de Equilibrio: corre para agarrarte; si te atrapa, la sala cambia, caen rayos y te golpea una y otra vez antes de que broten púas.",
+        "Evita el agarre a toda costa: salta sobre su carrera."
+      ],
+      "fr": [
+        "Attaque spéciale de la forme Équilibre : fonce pour t'attraper ; s'il t'attrape, la salle change, la foudre frappe et il te tranche encore et encore avant que des pointes jaillissent.",
+        "Évite la prise à tout prix : saute par-dessus son sprint."
+      ],
+      "pl": [
+        "Ruch specjalny formy Równowagi: doskakuje, by cię złapać; jeśli mu się uda, sala się zmienia, uderzają pioruny i tnie cię raz za razem, zanim wyrosną kolce.",
+        "Za wszelką cenę unikaj chwytu: przeskocz jego zryw."
+      ],
+      "pt-BR": [
+        "Golpe especial da forma Equilíbrio: corre para agarrar você; se pegar, o salão muda, raios caem e ele corta você várias vezes antes de espinhos irromperem.",
+        "Evite a agarrada a qualquer custo: pule a corrida dele."
+      ],
+      "ru": [
+        "Особый приём формы Баланса: бросается, чтобы схватить вас; если поймает, зал меняется, бьют молнии, и он снова и снова рубит вас, прежде чем вырастут шипы.",
+        "Любой ценой избегайте захвата: перепрыгните его рывок."
+      ],
+      "ko": [
+        "밸런스 형태의 특수 기술: 잡기 위해 대쉬하며, 잡히면 방이 바뀌고 번개가 내리치며 계속 베인 뒤 가시가 솟구칩니다.",
+        "어떻게든 잡기를 피하세요: 대쉬를 점프로 넘으세요."
+      ],
+      "ja": [
+        "バランス形態の特殊技：掴むためにダッシュし、捕まると部屋が変わり、雷が落ち、何度も斬られた後にトゲが噴き出します。",
+        "何としても掴みを避けましょう：ダッシュを飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "平衡形态的特殊招式：冲过来抓你；被抓住后房间改变，雷电劈下，他不断斩击你，最后冒出尖刺。",
+        "无论如何都要躲开抓取：跳过他的疾驰。"
+      ],
+      "zh-Hant": [
+        "平衡形態的特殊招式：衝過來抓你；被抓住後房間改變，雷電劈下，他不斷斬擊你，最後冒出尖刺。",
+        "無論如何都要躲開抓取：跳過他的衝刺。"
+      ]
+    },
+    "Unstoppable": {
+      "en": [
+        "Power form: during his charge he keeps rushing forward and cannot be stopped by hits.",
+        "Get out of his path; don't try to stop the charge."
+      ],
+      "de": [
+        "Kraft-Form: Während seines Ansturms stürmt er immer weiter vorwärts; Treffer halten ihn nicht auf.",
+        "Geh ihm aus dem Weg; versuch nicht, den Ansturm aufzuhalten."
+      ],
+      "es": [
+        "Forma de Poder: durante su carga sigue avanzando y los golpes no lo detienen.",
+        "Apártate de su camino; no intentes frenar la carga."
+      ],
+      "fr": [
+        "Forme Puissance : pendant sa charge il continue de foncer et les coups ne l'arrêtent pas.",
+        "Écarte-toi de sa trajectoire ; n'essaie pas d'arrêter la charge."
+      ],
+      "pl": [
+        "Forma Mocy: podczas szarży pędzi dalej i ciosy go nie zatrzymują.",
+        "Zejdź mu z drogi; nie próbuj zatrzymać szarży."
+      ],
+      "pt-BR": [
+        "Forma Energia: durante a investida ele continua avançando e golpes não o param.",
+        "Saia do caminho; não tente parar a investida."
+      ],
+      "ru": [
+        "Форма Силы: во время натиска он продолжает нестись вперёд, и удары его не останавливают.",
+        "Уйдите с его пути; не пытайтесь остановить натиск."
+      ],
+      "ko": [
+        "파워 형태: 돌진하는 동안 계속 앞으로 달려들며, 공격으로 멈출 수 없습니다.",
+        "진로에서 벗어나세요. 돌진을 막으려 하지 마세요."
+      ],
+      "ja": [
+        "パワー形態：突進中は前へ突き進み続け、攻撃しても止まりません。",
+        "進路から離れましょう。突進を止めようとしないこと。"
+      ],
+      "zh-Hans": [
+        "力量形态：冲锋时持续向前冲，攻击无法让他停下。",
+        "离开他的路线，不要试图拦下冲锋。"
+      ],
+      "zh-Hant": [
+        "力量形態：衝鋒時持續向前衝，攻擊無法讓他停下。",
+        "離開他的路線，不要試圖攔下衝鋒。"
+      ]
+    }
+  }
+}

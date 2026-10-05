@@ -81,4 +81,66 @@ public class CodexTests
         Assert.Empty(FuzzySearch.Filter(names, "xyz", n => n));
         Assert.Equal(names.Length, FuzzySearch.Filter(names, "", n => n).Count);
     }
+
+    [Fact]
+    public void Saved_moves_get_the_new_names_once_each()
+    {
+        // 0.11: Dark Skul 2's dashes became "Dash", its press downs "Special move", and "Initialize" is no move.
+        var renames = CodexMigrations.MovesOf011["DarkSkul2"];
+        Assert.Equal("Bone rain|Dash|Special move",
+            CodexMigrations.Renamed("Initialize|Bone rain|Long dash|Press down ready|Short dash|Press down", renames));
+        Assert.Equal("", CodexMigrations.Renamed("", renames));
+    }
+
+    [Fact]
+    public void Entrance_sleep_and_death_films_are_dropped_with_their_pictures()
+    {
+        // 0.11: the book shows only moves, so films of entrances, sleeping and deaths are removed once (and not filmed).
+        string folder = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "codex_drop_" + System.Guid.NewGuid().ToString("N"));
+        System.IO.Directory.CreateDirectory(folder);
+        try
+        {
+            string Clip(string label, string file) =>
+                "{\"label\":\"" + label + "\",\"file\":\"" + file + "\",\"cellW\":4,\"cellH\":4,\"cols\":1,\"count\":1,\"take\":2,\"durations\":[0.1]}";
+            System.IO.File.WriteAllText(System.IO.Path.Combine(folder, "animations.json"),
+                "{\"clips\":[" + Clip("Sleep", "a.png") + "," + Clip("Venom fall", "b.png") + "," + Clip("Intro", "c.png") + "]}");
+            foreach (var file in new[] { "a.png", "b.png", "c.png" })
+                System.IO.File.WriteAllBytes(System.IO.Path.Combine(folder, file), new byte[] { 1 });
+
+            Assert.True(FightRecorder.DropFilms(folder, label => !FightRecorder.IsMove(label)));
+
+            string index = System.IO.File.ReadAllText(System.IO.Path.Combine(folder, "animations.json"));
+            Assert.Contains("Venom fall", index);
+            Assert.DoesNotContain("Sleep", index);
+            Assert.DoesNotContain("Intro", index);
+            Assert.True(System.IO.File.Exists(System.IO.Path.Combine(folder, "b.png")));
+            Assert.False(System.IO.File.Exists(System.IO.Path.Combine(folder, "a.png")));
+            Assert.False(System.IO.File.Exists(System.IO.Path.Combine(folder, "c.png")));
+            Assert.False(FightRecorder.DropFilms(folder, label => !FightRecorder.IsMove(label))); // nothing left to drop
+        }
+        finally
+        {
+            System.IO.Directory.Delete(folder, true);
+        }
+    }
+
+    [Fact]
+    public void Codex_reset_deletes_the_gathered_data_and_keeps_the_rest()
+    {
+        string folder = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "codex_reset_" + System.Guid.NewGuid().ToString("N"));
+        foreach (var dir in new[] { "Replays/Boss", "Animations/Enemy", "Hints", "Debug", "_reset_backup_1", "Keep" })
+            System.IO.Directory.CreateDirectory(System.IO.Path.Combine(folder, dir));
+        foreach (var file in new[] { "progress.json", "progress.json.before-1003", "migrations.txt", "Replays/Boss/animations.json" })
+            System.IO.File.WriteAllText(System.IO.Path.Combine(folder, file), "x");
+        try
+        {
+            Assert.Equal(7, CodexReset.Delete(folder));
+            Assert.Equal(new[] { "Keep" }, System.IO.Directory.GetDirectories(folder).Select(System.IO.Path.GetFileName).ToArray());
+            Assert.Equal(new[] { "migrations.txt" }, System.IO.Directory.GetFiles(folder).Select(System.IO.Path.GetFileName).ToArray());
+        }
+        finally
+        {
+            System.IO.Directory.Delete(folder, true);
+        }
+    }
 }

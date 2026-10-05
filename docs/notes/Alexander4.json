@@ -1,0 +1,570 @@
+{
+  "key": "Alexander4",
+  "about": {
+    "en": "Alexander's last form: weakened, he fights on foot with quartz crystals, bombs and teleports. Below half health he adds Overrun 2.",
+    "de": "Alexanders letzte Form: Geschwächt kämpft er zu Fuß mit Quarzkristallen, Bomben und Teleports. Unter der Hälfte der LP kommt Überrennen 2 dazu.",
+    "es": "La última forma de Alexander: debilitado, lucha a pie con cristales de cuarzo, bombas y teletransportes. Por debajo de la mitad de su vida añade Arrollar 2.",
+    "fr": "La dernière forme d'Alexander : affaibli, il combat à pied avec des cristaux de quartz, des bombes et des téléportations. Sous la moitié de sa vie, il ajoute Débordement 2.",
+    "pl": "Ostatnia forma Alexandra: osłabiony walczy pieszo kryształami kwarcu, bombami i teleportacją. Poniżej połowy zdrowia dochodzi Stratowanie 2.",
+    "pt-BR": "A última forma de Alexander: enfraquecido, luta a pé com cristais de quartzo, bombas e teleportes. Abaixo da metade da vida acrescenta Atropelar 2.",
+    "ru": "Последняя форма Александра: ослабленный, он сражается пешим с кристаллами кварца, бомбами и телепортами. Ниже половины здоровья добавляет Прорыв 2.",
+    "ko": "알렉산더의 마지막 형태: 약해진 채 걸어서 석영 수정, 폭탄, 순간이동으로 싸웁니다. 체력이 절반 아래가 되면 돌파 2를 더합니다.",
+    "ja": "アレクサンダーの最後の形態：弱った姿で地上に立ち、石英の水晶、爆弾、瞬間移動で戦います。体力が半分を切ると突破2も使います。",
+    "zh-Hans": "亚历山大的最后形态：虚弱的他徒步战斗，使用石英水晶、炸弹和瞬移。体力低于一半时还会使用冲破2。",
+    "zh-Hant": "亞歷山大的最後形態：虛弱的他徒步戰鬥，使用石英水晶、炸彈和瞬移。體力低於一半時還會使用衝破2。"
+  },
+  "moves": {
+    "Grapple": {
+      "en": [
+        "Dashes at you; if he catches you, he leaps up with you and slams you down in a dark explosion.",
+        "Jump over the dash to avoid the grab."
+      ],
+      "de": [
+        "Sprintet auf dich zu; erwischt er dich, springt er mit dir hoch und schmettert dich in einer dunklen Explosion nieder.",
+        "Spring über den Sprint, um dem Griff zu entgehen."
+      ],
+      "es": [
+        "Corre hacia ti; si te atrapa, salta contigo y te estampa en una explosión oscura.",
+        "Salta sobre la carrera para evitar el agarre."
+      ],
+      "fr": [
+        "Fonce sur toi ; s'il t'attrape, il bondit avec toi et te plaque au sol dans une explosion sombre.",
+        "Saute par-dessus le sprint pour éviter la prise."
+      ],
+      "pl": [
+        "Doskakuje do ciebie; jeśli cię złapie, wyskakuje z tobą i ciska cię w dół w mrocznej eksplozji.",
+        "Przeskocz zryw, by uniknąć chwytu."
+      ],
+      "pt-BR": [
+        "Corre até você; se pegar, ele salta com você e o esmaga no chão numa explosão sombria.",
+        "Pule a corrida para evitar a agarrada."
+      ],
+      "ru": [
+        "Бросается к вам; если поймает, взмывает с вами вверх и швыряет вниз в тёмном взрыве.",
+        "Перепрыгните рывок, чтобы избежать захвата."
+      ],
+      "ko": [
+        "당신에게 대쉬하며, 잡히면 함께 뛰어올라 어둠의 폭발과 함께 내리찍습니다.",
+        "잡히지 않도록 대쉬를 점프로 넘으세요."
+      ],
+      "ja": [
+        "あなたへダッシュし、捕まると一緒に跳び上がって闇の爆発とともに叩きつけます。",
+        "ダッシュを飛び越えて掴みを避けましょう。"
+      ],
+      "zh-Hans": [
+        "冲向你；被抓住后他会带你跃起，在黑暗爆炸中把你砸下。",
+        "跳过疾驰以躲开抓取。"
+      ],
+      "zh-Hant": [
+        "衝向你；被抓住後他會帶你躍起，在黑暗爆炸中把你砸下。",
+        "跳過衝刺以躲開抓取。"
+      ]
+    },
+    "Surrounded bomb quartz": {
+      "en": [
+        "Throws a black bomb; red lines mark a star around it, then quartz crystals burst out along the lines.",
+        "Stand between the red lines before the crystals burst out."
+      ],
+      "de": [
+        "Wirft eine schwarze Bombe; rote Linien markieren einen Stern um sie, dann brechen entlang der Linien Quarzkristalle hervor.",
+        "Stell dich zwischen die roten Linien, bevor die Kristalle hervorbrechen."
+      ],
+      "es": [
+        "Lanza una bomba negra; líneas rojas marcan una estrella a su alrededor y luego brotan cristales de cuarzo a lo largo de ellas.",
+        "Colócate entre las líneas rojas antes de que broten los cristales."
+      ],
+      "fr": [
+        "Lance une bombe noire ; des lignes rouges marquent une étoile autour d'elle, puis des cristaux de quartz jaillissent le long des lignes.",
+        "Place-toi entre les lignes rouges avant que les cristaux jaillissent."
+      ],
+      "pl": [
+        "Rzuca czarną bombę; czerwone linie tworzą wokół niej gwiazdę, a potem wzdłuż linii wyrastają kryształy kwarcu.",
+        "Stań między czerwonymi liniami, zanim wyrosną kryształy."
+      ],
+      "pt-BR": [
+        "Lança uma bomba preta; linhas vermelhas marcam uma estrela ao redor dela e depois cristais de quartzo irrompem ao longo das linhas.",
+        "Fique entre as linhas vermelhas antes de os cristais irromperem."
+      ],
+      "ru": [
+        "Бросает чёрную бомбу; красные линии отмечают вокруг неё звезду, затем вдоль линий вырываются кристаллы кварца.",
+        "Встаньте между красными линиями до появления кристаллов."
+      ],
+      "ko": [
+        "검은 폭탄을 던지면 붉은 선이 그 주위에 별 모양을 표시하고, 선을 따라 석영 수정이 터져 나옵니다.",
+        "수정이 터져 나오기 전에 붉은 선 사이에 서세요."
+      ],
+      "ja": [
+        "黒い爆弾を投げると、赤い線がその周りに星形を描き、線に沿って石英の水晶が噴き出します。",
+        "水晶が噴き出す前に赤い線の間に立ちましょう。"
+      ],
+      "zh-Hans": [
+        "扔出一颗黑色炸弹，红线在周围标出星形，随后石英水晶沿线迸出。",
+        "在水晶迸出前站到红线之间。"
+      ],
+      "zh-Hant": [
+        "扔出一顆黑色炸彈，紅線在周圍標出星形，隨後石英水晶沿線迸出。",
+        "在水晶迸出前站到紅線之間。"
+      ]
+    },
+    "Surrounded bomb quartz 2": {
+      "en": [
+        "Throws a black bomb; red lines mark a star around it, then quartz crystals burst out along the lines. More lines, bigger crystals.",
+        "Stand between the red lines before the crystals burst out."
+      ],
+      "de": [
+        "Wirft eine schwarze Bombe; rote Linien markieren einen Stern um sie, dann brechen entlang der Linien Quarzkristalle hervor. Mehr Linien, größere Kristalle.",
+        "Stell dich zwischen die roten Linien, bevor die Kristalle hervorbrechen."
+      ],
+      "es": [
+        "Lanza una bomba negra; líneas rojas marcan una estrella a su alrededor y luego brotan cristales de cuarzo a lo largo de ellas. Más líneas, cristales más grandes.",
+        "Colócate entre las líneas rojas antes de que broten los cristales."
+      ],
+      "fr": [
+        "Lance une bombe noire ; des lignes rouges marquent une étoile autour d'elle, puis des cristaux de quartz jaillissent le long des lignes. Plus de lignes, des cristaux plus gros.",
+        "Place-toi entre les lignes rouges avant que les cristaux jaillissent."
+      ],
+      "pl": [
+        "Rzuca czarną bombę; czerwone linie tworzą wokół niej gwiazdę, a potem wzdłuż linii wyrastają kryształy kwarcu. Więcej linii, większe kryształy.",
+        "Stań między czerwonymi liniami, zanim wyrosną kryształy."
+      ],
+      "pt-BR": [
+        "Lança uma bomba preta; linhas vermelhas marcam uma estrela ao redor dela e depois cristais de quartzo irrompem ao longo das linhas. Mais linhas, cristais maiores.",
+        "Fique entre as linhas vermelhas antes de os cristais irromperem."
+      ],
+      "ru": [
+        "Бросает чёрную бомбу; красные линии отмечают вокруг неё звезду, затем вдоль линий вырываются кристаллы кварца. Больше линий, кристаллы крупнее.",
+        "Встаньте между красными линиями до появления кристаллов."
+      ],
+      "ko": [
+        "검은 폭탄을 던지면 붉은 선이 그 주위에 별 모양을 표시하고, 선을 따라 석영 수정이 터져 나옵니다.선이 더 많고 수정도 더 커집니다.",
+        "수정이 터져 나오기 전에 붉은 선 사이에 서세요."
+      ],
+      "ja": [
+        "黒い爆弾を投げると、赤い線がその周りに星形を描き、線に沿って石英の水晶が噴き出します。線が多く、水晶も大きくなります。",
+        "水晶が噴き出す前に赤い線の間に立ちましょう。"
+      ],
+      "zh-Hans": [
+        "扔出一颗黑色炸弹，红线在周围标出星形，随后石英水晶沿线迸出。线条更多，水晶更大。",
+        "在水晶迸出前站到红线之间。"
+      ],
+      "zh-Hant": [
+        "扔出一顆黑色炸彈，紅線在周圍標出星形，隨後石英水晶沿線迸出。線條更多，水晶更大。",
+        "在水晶迸出前站到紅線之間。"
+      ]
+    },
+    "Shoving": {
+      "en": [
+        "Lunges forward with a long quartz lance.",
+        "Jump over the lance or get out of its line."
+      ],
+      "de": [
+        "Stößt mit einer langen Quarzlanze nach vorn.",
+        "Spring über die Lanze oder geh aus ihrer Bahn."
+      ],
+      "es": [
+        "Arremete hacia delante con una larga lanza de cuarzo.",
+        "Salta sobre la lanza o sal de su línea."
+      ],
+      "fr": [
+        "Se fend en avant avec une longue lance de quartz.",
+        "Saute par-dessus la lance ou sors de sa ligne."
+      ],
+      "pl": [
+        "Wykonuje wypad długą lancą z kwarcu.",
+        "Przeskocz lancę albo zejdź z jej linii."
+      ],
+      "pt-BR": [
+        "Avança com uma longa lança de quartzo.",
+        "Pule a lança ou saia da linha dela."
+      ],
+      "ru": [
+        "Делает выпад длинным кварцевым копьём.",
+        "Перепрыгните копьё или уйдите с его линии."
+      ],
+      "ko": [
+        "긴 석영 창을 들고 앞으로 찔러 들어옵니다.",
+        "창을 점프로 넘거나 그 줄기에서 벗어나세요."
+      ],
+      "ja": [
+        "長い石英の槍で前へ突き込みます。",
+        "槍を飛び越えるか、その線から外れましょう。"
+      ],
+      "zh-Hans": [
+        "持长长的石英长枪向前突刺。",
+        "跳过长枪或离开它的路线。"
+      ],
+      "zh-Hant": [
+        "持長長的石英長槍向前突刺。",
+        "跳過長槍或離開它的路線。"
+      ]
+    },
+    "Teleport to player behind + Shoving": {
+      "en": [
+        "Teleports right behind you and lunges with his quartz lance.",
+        "When he vanishes, move at once: the lance comes from behind. At most every 45 seconds."
+      ],
+      "de": [
+        "Teleportiert sich direkt hinter dich und stößt mit seiner Quarzlanze zu.",
+        "Wenn er verschwindet, beweg dich sofort: Die Lanze kommt von hinten. Höchstens alle 45 Sekunden."
+      ],
+      "es": [
+        "Se teletransporta justo detrás de ti y arremete con su lanza de cuarzo.",
+        "Cuando desaparezca, muévete al instante: la lanza viene por detrás. Como mucho cada 45 segundos."
+      ],
+      "fr": [
+        "Se téléporte juste derrière toi et se fend avec sa lance de quartz.",
+        "Quand il disparaît, bouge aussitôt : la lance vient de derrière. Au plus toutes les 45 secondes."
+      ],
+      "pl": [
+        "Teleportuje się tuż za ciebie i wykonuje wypad lancą z kwarcu.",
+        "Gdy zniknie, natychmiast się ruszaj: lanca nadchodzi od tyłu. Najwyżej co 45 sekund."
+      ],
+      "pt-BR": [
+        "Teleporta-se bem atrás de você e avança com a lança de quartzo.",
+        "Quando ele sumir, mova-se na hora: a lança vem por trás. No máximo a cada 45 segundos."
+      ],
+      "ru": [
+        "Телепортируется прямо вам за спину и делает выпад кварцевым копьём.",
+        "Когда он исчезает, сразу двигайтесь: копьё придёт сзади. Не чаще раза в 45 секунд."
+      ],
+      "ko": [
+        "당신 바로 뒤로 순간이동해 석영 창으로 찔러 들어옵니다.",
+        "그가 사라지면 곧바로 움직이세요: 창은 뒤에서 옵니다. 최대 45초마다 사용합니다."
+      ],
+      "ja": [
+        "あなたのすぐ後ろへ瞬間移動し、石英の槍で突き込みます。",
+        "姿が消えたらすぐに動きましょう：槍は後ろから来ます。最大で45秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "瞬移到你身后，用石英长枪突刺。",
+        "他消失时立刻移动：长枪会从背后刺来。最多每45秒一次。"
+      ],
+      "zh-Hant": [
+        "瞬移到你身後，用石英長槍突刺。",
+        "他消失時立刻移動：長槍會從背後刺來。最多每45秒一次。"
+      ]
+    },
+    "Overrun": {
+      "en": [
+        "Small purple bombs rain over the room and pink spikes cover the floor while he strikes with a giant quartz lance, ending in a big red explosion.",
+        "Keep off the spiky floor, dodge the lance, and get away before the red explosion. At most every 45 seconds."
+      ],
+      "de": [
+        "Kleine violette Bomben regnen über den Raum und rosa Stacheln bedecken den Boden, während er mit einer riesigen Quarzlanze zuschlägt; zum Schluss eine große rote Explosion.",
+        "Meide den stacheligen Boden, weich der Lanze aus und geh vor der roten Explosion weg. Höchstens alle 45 Sekunden."
+      ],
+      "es": [
+        "Pequeñas bombas moradas llueven sobre la sala y púas rosas cubren el suelo mientras golpea con una lanza de cuarzo gigante, y termina con una gran explosión roja.",
+        "Evita el suelo con púas, esquiva la lanza y aléjate antes de la explosión roja. Como mucho cada 45 segundos."
+      ],
+      "fr": [
+        "De petites bombes violettes pleuvent sur la salle et des pointes roses couvrent le sol pendant qu'il frappe avec une lance de quartz géante, pour finir par une grande explosion rouge.",
+        "Évite le sol hérissé, esquive la lance et éloigne-toi avant l'explosion rouge. Au plus toutes les 45 secondes."
+      ],
+      "pl": [
+        "Małe fioletowe bomby spadają na salę, a różowe kolce pokrywają podłogę, podczas gdy on uderza gigantyczną lancą z kwarcu, kończąc wielką czerwoną eksplozją.",
+        "Omijaj kolczastą podłogę, unikaj lancy i oddal się przed czerwoną eksplozją. Najwyżej co 45 sekund."
+      ],
+      "pt-BR": [
+        "Pequenas bombas roxas chovem pelo salão e espinhos rosa cobrem o chão enquanto ele ataca com uma lança de quartzo gigante, terminando numa grande explosão vermelha.",
+        "Evite o chão com espinhos, desvie da lança e se afaste antes da explosão vermelha. No máximo a cada 45 segundos."
+      ],
+      "ru": [
+        "Маленькие фиолетовые бомбы сыплются на зал, розовые шипы покрывают пол, пока он бьёт гигантским кварцевым копьём, а в конце гремит большой красный взрыв.",
+        "Не стойте на шипастом полу, уворачивайтесь от копья и уходите до красного взрыва. Не чаще раза в 45 секунд."
+      ],
+      "ko": [
+        "작은 보라색 폭탄이 방에 쏟아지고 분홍빛 가시가 바닥을 덮는 동안 거대한 석영 창으로 공격하며, 커다란 붉은 폭발로 끝납니다.",
+        "가시 바닥을 피하고 창을 피한 뒤, 붉은 폭발 전에 멀어지세요. 최대 45초마다 사용합니다."
+      ],
+      "ja": [
+        "小さな紫の爆弾が部屋中に降り、ピンクのトゲが床を覆う中、巨大な石英の槍で攻撃し、大きな赤い爆発で締めくくります。",
+        "トゲの床を避け、槍をかわし、赤い爆発の前に離れましょう。最大で45秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "小型紫色炸弹落满房间，粉色尖刺覆盖地面，他挥舞巨大的石英长枪攻击，最后引发一场巨大的红色爆炸。",
+        "避开尖刺地面，闪开长枪，在红色爆炸前远离。最多每45秒一次。"
+      ],
+      "zh-Hant": [
+        "小型紫色炸彈落滿房間，粉色尖刺覆蓋地面，他揮舞巨大的石英長槍攻擊，最後引發一場巨大的紅色爆炸。",
+        "避開尖刺地面，閃開長槍，在紅色爆炸前遠離。最多每45秒一次。"
+      ]
+    },
+    "Overrun 2": {
+      "en": [
+        "Below half health: quartz crystals grow around the room, a white flash fills the screen, lasers sweep across, and a huge cluster of crystals bursts up.",
+        "Keep moving, jump over the lasers and stay away from the crystals. At most every 45 seconds."
+      ],
+      "de": [
+        "Unter der Hälfte der LP: Quarzkristalle wachsen im Raum, ein weißer Blitz erfüllt den Bildschirm, Laser fegen hindurch, und eine riesige Kristallgruppe bricht hervor.",
+        "Bleib in Bewegung, spring über die Laser und halte dich von den Kristallen fern. Höchstens alle 45 Sekunden."
+      ],
+      "es": [
+        "Por debajo de la mitad de su vida: crecen cristales de cuarzo por la sala, un destello blanco llena la pantalla, láseres la barren y brota un enorme grupo de cristales.",
+        "Sigue moviéndote, salta sobre los láseres y aléjate de los cristales. Como mucho cada 45 segundos."
+      ],
+      "fr": [
+        "Sous la moitié de sa vie : des cristaux de quartz poussent dans la salle, un éclair blanc emplit l'écran, des lasers balaient tout et un immense amas de cristaux jaillit.",
+        "Continue de bouger, saute par-dessus les lasers et reste loin des cristaux. Au plus toutes les 45 secondes."
+      ],
+      "pl": [
+        "Poniżej połowy zdrowia: w sali rosną kryształy kwarcu, ekran wypełnia biały błysk, przez salę przechodzą lasery, a potem wyrasta ogromna grupa kryształów.",
+        "Ruszaj się, przeskakuj lasery i trzymaj się z dala od kryształów. Najwyżej co 45 sekund."
+      ],
+      "pt-BR": [
+        "Abaixo da metade da vida: cristais de quartzo crescem pelo salão, um clarão branco enche a tela, lasers varrem tudo e um enorme aglomerado de cristais irrompe.",
+        "Continue se movendo, pule os lasers e fique longe dos cristais. No máximo a cada 45 segundos."
+      ],
+      "ru": [
+        "Ниже половины здоровья: по залу растут кристаллы кварца, экран заливает белая вспышка, проходят лазеры, и вырывается огромная друза кристаллов.",
+        "Двигайтесь, перепрыгивайте лазеры и держитесь подальше от кристаллов. Не чаще раза в 45 секунд."
+      ],
+      "ko": [
+        "체력 절반 아래에서: 방 곳곳에 석영 수정이 자라고, 하얀 섬광이 화면을 채운 뒤 레이저가 휩쓸고, 거대한 수정 덩어리가 솟구칩니다.",
+        "계속 움직이고 레이저를 점프로 넘으며 수정에서 떨어지세요. 최대 45초마다 사용합니다."
+      ],
+      "ja": [
+        "体力が半分を切ると：部屋中に石英の水晶が育ち、白い閃光が画面を満たし、レーザーが薙ぎ払い、巨大な水晶の塊が突き出します。",
+        "動き続け、レーザーを飛び越え、水晶から離れましょう。最大で45秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "体力低于一半时：房间里长出石英水晶，白光充满画面，激光横扫而过，然后迸出大片水晶。",
+        "保持移动，跳过激光，远离水晶。最多每45秒一次。"
+      ],
+      "zh-Hant": [
+        "體力低於一半時：房間裡長出石英水晶，白光充滿畫面，雷射橫掃而過，然後迸出大片水晶。",
+        "保持移動，跳過雷射，遠離水晶。最多每45秒一次。"
+      ]
+    },
+    "Summon bombman": {
+      "en": [
+        "Summons small bomb creatures that fall around the room and explode into pillars of quartz and light.",
+        "Watch where they land and stay away until they have exploded."
+      ],
+      "de": [
+        "Beschwört kleine Bombenwesen, die im Raum herabfallen und zu Säulen aus Quarz und Licht explodieren.",
+        "Achte darauf, wo sie landen, und halte Abstand, bis sie explodiert sind."
+      ],
+      "es": [
+        "Invoca pequeñas criaturas bomba que caen por la sala y explotan en pilares de cuarzo y luz.",
+        "Fíjate dónde caen y mantente lejos hasta que exploten."
+      ],
+      "fr": [
+        "Invoque de petites créatures-bombes qui tombent dans la salle et explosent en piliers de quartz et de lumière.",
+        "Repère où elles tombent et reste à distance jusqu'à ce qu'elles explosent."
+      ],
+      "pl": [
+        "Przywołuje małe bombowe stworki, które spadają w sali i wybuchają słupami kwarcu i światła.",
+        "Patrz, gdzie spadają, i trzymaj się z dala, aż wybuchną."
+      ],
+      "pt-BR": [
+        "Invoca pequenas criaturas-bomba que caem pelo salão e explodem em pilares de quartzo e luz.",
+        "Repare onde elas caem e fique longe até explodirem."
+      ],
+      "ru": [
+        "Призывает маленьких бомбочек, которые падают по залу и взрываются столбами кварца и света.",
+        "Следите, куда они падают, и держитесь подальше, пока не взорвутся."
+      ],
+      "ko": [
+        "작은 폭탄 생물을 소환하며, 이들은 방 곳곳에 떨어져 석영과 빛의 기둥으로 폭발합니다.",
+        "떨어지는 곳을 보고 폭발할 때까지 떨어져 있으세요."
+      ],
+      "ja": [
+        "小さな爆弾の生き物を召喚し、それらは部屋中に落ちて石英と光の柱となって爆発します。",
+        "落ちる場所を見て、爆発するまで離れていましょう。"
+      ],
+      "zh-Hans": [
+        "召唤小型炸弹生物，它们落在房间各处并爆成石英与光柱。",
+        "注意它们落下的位置，爆炸前保持距离。"
+      ],
+      "zh-Hant": [
+        "召喚小型炸彈生物，牠們落在房間各處並爆成石英與光柱。",
+        "注意牠們落下的位置，爆炸前保持距離。"
+      ]
+    },
+    "Dimensional": {
+      "en": [
+        "Sends a dark sphere rolling along the floor toward you.",
+        "Jump over the sphere."
+      ],
+      "de": [
+        "Schickt eine dunkle Kugel über den Boden auf dich zu.",
+        "Spring über die Kugel."
+      ],
+      "es": [
+        "Envía una esfera oscura rodando por el suelo hacia ti.",
+        "Salta sobre la esfera."
+      ],
+      "fr": [
+        "Envoie une sphère sombre rouler au sol vers toi.",
+        "Saute par-dessus la sphère."
+      ],
+      "pl": [
+        "Posyła mroczną kulę toczącą się po ziemi w twoją stronę.",
+        "Przeskocz kulę."
+      ],
+      "pt-BR": [
+        "Manda uma esfera sombria rolando pelo chão até você.",
+        "Pule a esfera."
+      ],
+      "ru": [
+        "Пускает тёмную сферу, катящуюся по полу к вам.",
+        "Перепрыгните сферу."
+      ],
+      "ko": [
+        "어둠의 구체를 바닥을 따라 당신에게 굴려 보냅니다.",
+        "구체를 점프로 넘으세요."
+      ],
+      "ja": [
+        "闇の球を床に沿ってあなたへ転がします。",
+        "球を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "让一颗黑暗球体沿地面朝你滚来。",
+        "跳过球体。"
+      ],
+      "zh-Hant": [
+        "讓一顆黑暗球體沿地面朝你滾來。",
+        "跳過球體。"
+      ]
+    },
+    "Curse of quartz": {
+      "en": [
+        "Black rings close around him, a white flash fills the screen, and a quartz crystal flies at you.",
+        "Dodge the crystal as soon as the flash ends."
+      ],
+      "de": [
+        "Schwarze Ringe schließen sich um ihn, ein weißer Blitz erfüllt den Bildschirm, und ein Quarzkristall fliegt auf dich zu.",
+        "Weich dem Kristall aus, sobald der Blitz endet."
+      ],
+      "es": [
+        "Anillos negros se cierran a su alrededor, un destello blanco llena la pantalla y un cristal de cuarzo vuela hacia ti.",
+        "Esquiva el cristal en cuanto acabe el destello."
+      ],
+      "fr": [
+        "Des anneaux noirs se resserrent autour de lui, un éclair blanc emplit l'écran et un cristal de quartz file vers toi.",
+        "Esquive le cristal dès que l'éclair se termine."
+      ],
+      "pl": [
+        "Wokół niego zaciskają się czarne pierścienie, ekran wypełnia biały błysk, a kryształ kwarcu leci w twoją stronę.",
+        "Uniknij kryształu, gdy tylko błysk się skończy."
+      ],
+      "pt-BR": [
+        "Anéis pretos se fecham ao redor dele, um clarão branco enche a tela e um cristal de quartzo voa até você.",
+        "Desvie do cristal assim que o clarão acabar."
+      ],
+      "ru": [
+        "Вокруг него сжимаются чёрные кольца, экран заливает белая вспышка, и в вас летит кристалл кварца.",
+        "Уворачивайтесь от кристалла, как только вспышка закончится."
+      ],
+      "ko": [
+        "검은 고리가 그의 주위로 조여들고, 하얀 섬광이 화면을 채운 뒤, 석영 수정이 당신에게 날아옵니다.",
+        "섬광이 끝나면 곧바로 수정을 피하세요."
+      ],
+      "ja": [
+        "黒い輪が彼の周りを締めつけ、白い閃光が画面を満たすと、石英の水晶があなたへ飛んできます。",
+        "閃光が終わったらすぐに水晶をかわしましょう。"
+      ],
+      "zh-Hans": [
+        "黑色光环在他周围收缩，白光充满画面，随后一块石英水晶朝你飞来。",
+        "闪光一结束就躲开水晶。"
+      ],
+      "zh-Hant": [
+        "黑色光環在他周圍收縮，白光充滿畫面，隨後一塊石英水晶朝你飛來。",
+        "閃光一結束就躲開水晶。"
+      ]
+    },
+    "Teleport to": {
+      "en": [
+        "Teleports to a new spot while a row of quartz spikes erupts along the floor.",
+        "Be in the air when the spikes come up."
+      ],
+      "de": [
+        "Teleportiert sich an eine neue Stelle, während eine Reihe Quarzstacheln über den Boden hervorbricht.",
+        "Sei in der Luft, wenn die Stacheln hochkommen."
+      ],
+      "es": [
+        "Se teletransporta a otro punto mientras una fila de púas de cuarzo brota por el suelo.",
+        "Estate en el aire cuando salgan las púas."
+      ],
+      "fr": [
+        "Se téléporte ailleurs pendant qu'une rangée de pointes de quartz jaillit au sol.",
+        "Sois en l'air quand les pointes sortent."
+      ],
+      "pl": [
+        "Teleportuje się w nowe miejsce, a wzdłuż podłogi wyrasta rząd kwarcowych kolców.",
+        "Bądź w powietrzu, gdy wyrastają kolce."
+      ],
+      "pt-BR": [
+        "Teleporta-se para outro ponto enquanto uma fileira de espinhos de quartzo irrompe pelo chão.",
+        "Esteja no ar quando os espinhos subirem."
+      ],
+      "ru": [
+        "Телепортируется в новое место, пока вдоль пола вырывается ряд кварцевых шипов.",
+        "Будьте в воздухе, когда вырастают шипы."
+      ],
+      "ko": [
+        "새 위치로 순간이동하는 동안 바닥을 따라 석영 가시가 줄지어 솟구칩니다.",
+        "가시가 솟을 때 공중에 있으세요."
+      ],
+      "ja": [
+        "別の場所へ瞬間移動し、床に沿って石英のトゲが一列に突き出します。",
+        "トゲが出るときは空中にいましょう。"
+      ],
+      "zh-Hans": [
+        "瞬移到新位置，同时一排石英尖刺沿地面迸出。",
+        "尖刺冒出时待在空中。"
+      ],
+      "zh-Hant": [
+        "瞬移到新位置，同時一排石英尖刺沿地面迸出。",
+        "尖刺冒出時待在空中。"
+      ]
+    },
+    "Teleport out": {
+      "en": [
+        "Vanishes before an attack.",
+        "He reappears close by: be ready for the next attack."
+      ],
+      "de": [
+        "Verschwindet vor einem Angriff.",
+        "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
+      ],
+      "es": [
+        "Desaparece antes de un ataque.",
+        "Reaparece cerca: prepárate para el siguiente ataque."
+      ],
+      "fr": [
+        "Disparaît avant une attaque.",
+        "Il réapparaît tout près : prépare-toi à l'attaque suivante."
+      ],
+      "pl": [
+        "Znika przed atakiem.",
+        "Pojawia się w pobliżu: bądź gotów na następny atak."
+      ],
+      "pt-BR": [
+        "Some antes de um ataque.",
+        "Ele reaparece perto: prepare-se para o próximo ataque."
+      ],
+      "ru": [
+        "Исчезает перед атакой.",
+        "Он появляется рядом: будьте готовы к следующей атаке."
+      ],
+      "ko": [
+        "공격하기 전에 사라집니다.",
+        "가까운 곳에 다시 나타나니 다음 공격에 대비하세요."
+      ],
+      "ja": [
+        "攻撃の前に姿を消します。",
+        "近くに再び現れるので、次の攻撃に備えましょう。"
+      ],
+      "zh-Hans": [
+        "在攻击前消失。",
+        "他会在附近重新出现：做好应对下一次攻击的准备。"
+      ],
+      "zh-Hant": [
+        "在攻擊前消失。",
+        "他會在附近重新出現：做好應對下一次攻擊的準備。"
+      ]
+    }
+  }
+}

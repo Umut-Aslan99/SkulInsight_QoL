@@ -1,0 +1,1030 @@
+{
+  "key": "Alexander1",
+  "about": {
+    "en": "Alexander, Emperor of Carleon, the final boss of the Dark Mirror. In his first form he floats over the arena, throws dark matter, fires lasers and missiles, and reshapes the floor itself. Then his heart fights (second form), and at last he fights on foot, weakened (fourth form).",
+    "de": "Alexander, Imperator von Carleon, der Endboss des Dunklen Spiegels. In seiner ersten Form schwebt er über der Arena, wirft dunkle Materie, feuert Laser und Raketen und verändert sogar den Boden. Dann kämpft sein Herz (zweite Form), und zuletzt kämpft er geschwächt zu Fuß (vierte Form).",
+    "es": "Alexander, el emperador de Carleon, el jefe final del Espejo oscuro. En su primera forma flota sobre la arena, lanza materia oscura, dispara láseres y misiles y cambia la forma del propio suelo. Luego lucha su corazón (segunda forma) y al final lucha a pie, debilitado (cuarta forma).",
+    "fr": "Alexander, Empereur de Carleon, le boss final du Miroir noir. Dans sa première forme, il flotte au-dessus de l'arène, lance de la matière noire, tire des lasers et des missiles et remodèle le sol lui-même. Puis son cœur combat (deuxième forme), et enfin il combat à pied, affaibli (quatrième forme).",
+    "pl": "Alexander, Cesarz Carleonu, ostateczny boss Ciemnego lustra. W pierwszej formie unosi się nad areną, rzuca mroczną materią, strzela laserami i pociskami, a nawet zmienia kształt podłogi. Potem walczy jego serce (druga forma), a na końcu walczy pieszo, osłabiony (czwarta forma).",
+    "pt-BR": "Alexander, Imperador de Carleon, o chefe final do Espelho Sombrio. Na primeira forma ele flutua sobre a arena, lança matéria sombria, dispara lasers e mísseis e muda a forma do próprio chão. Depois o coração dele luta (segunda forma) e, por fim, ele luta a pé, enfraquecido (quarta forma).",
+    "ru": "Александр, Император Карлеона, финальный босс Тёмного зеркала. В первой форме он парит над ареной, бросает тёмную материю, стреляет лазерами и ракетами и меняет форму самого пола. Затем сражается его сердце (вторая форма), а в конце он сражается пешим, ослабленный (четвёртая форма).",
+    "ko": "알렉산더, 칼레온의 황제, 검은 거울의 최종 보스입니다. 첫 번째 형태에서는 경기장 위를 떠다니며 암흑 물질을 던지고, 레이저와 미사일을 쏘며, 바닥의 모양까지 변하게 합니다. 그 뒤 그의 심장이 싸우고(두 번째 형태), 마지막에는 약해진 채 걸어서 싸웁니다(네 번째 형태).",
+    "ja": "アレクサンダー、カーリアンの皇帝、闇の鏡のラスボスです。第1形態では闘技場の上を漂い、暗黒物質を投げ、レーザーやミサイルを撃ち、床の形まで変えます。その後、心臓が戦い（第2形態）、最後は弱った姿で地上で戦います（第4形態）。",
+    "zh-Hans": "亚历山大，卡利恩皇帝，魔镜的最终首领。第一形态时他漂浮在竞技场上空，投掷暗物质，发射激光和导弹，甚至改变地面的形状。随后他的心脏参与战斗（第二形态），最后他会以虚弱的状态徒步战斗（第四形态）。",
+    "zh-Hant": "亞歷山大，卡倫大帝，黑暗鏡子的最終首領。第一形態時他漂浮在競技場上空，投擲暗物質，發射雷射和導彈，甚至改變地面的形狀。隨後他的心臟參與戰鬥（第二形態），最後他會以虛弱的狀態徒步戰鬥（第四形態）。"
+  },
+  "moves": {
+    "Warp quick": {
+      "en": [
+        "Vanishes and reappears elsewhere in a flash of dark energy.",
+        "He reappears close by: be ready for the next attack."
+      ],
+      "de": [
+        "Verschwindet und taucht in einem Blitz dunkler Energie woanders wieder auf.",
+        "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
+      ],
+      "es": [
+        "Desaparece y reaparece en otro lugar con un destello de energía oscura.",
+        "Reaparece cerca: prepárate para el siguiente ataque."
+      ],
+      "fr": [
+        "Disparaît et réapparaît ailleurs dans un éclair d'énergie sombre.",
+        "Il réapparaît tout près : prépare-toi à l'attaque suivante."
+      ],
+      "pl": [
+        "Znika i pojawia się gdzie indziej w błysku mrocznej energii.",
+        "Pojawia się w pobliżu: bądź gotów na następny atak."
+      ],
+      "pt-BR": [
+        "Some e reaparece em outro lugar num clarão de energia sombria.",
+        "Ele reaparece perto: prepare-se para o próximo ataque."
+      ],
+      "ru": [
+        "Исчезает и появляется в другом месте во вспышке тёмной энергии.",
+        "Он появляется рядом: будьте готовы к следующей атаке."
+      ],
+      "ko": [
+        "사라졌다가 어둠의 에너지와 함께 다른 곳에 나타납니다.",
+        "가까운 곳에 다시 나타나니 다음 공격에 대비하세요."
+      ],
+      "ja": [
+        "姿を消し、闇のエネルギーの閃光とともに別の場所に現れます。",
+        "近くに再び現れるので、次の攻撃に備えましょう。"
+      ],
+      "zh-Hans": [
+        "消失后伴随黑暗能量的闪光在别处出现。",
+        "他会在附近重新出现：做好应对下一次攻击的准备。"
+      ],
+      "zh-Hant": [
+        "消失後伴隨黑暗能量的閃光在別處出現。",
+        "他會在附近重新出現：做好應對下一次攻擊的準備。"
+      ]
+    },
+    "Only warp in": {
+      "en": [
+        "Reappears after vanishing.",
+        "He reappears close by: be ready for the next attack."
+      ],
+      "de": [
+        "Taucht nach dem Verschwinden wieder auf.",
+        "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
+      ],
+      "es": [
+        "Reaparece tras desaparecer.",
+        "Reaparece cerca: prepárate para el siguiente ataque."
+      ],
+      "fr": [
+        "Réapparaît après avoir disparu.",
+        "Il réapparaît tout près : prépare-toi à l'attaque suivante."
+      ],
+      "pl": [
+        "Pojawia się ponownie po zniknięciu.",
+        "Pojawia się w pobliżu: bądź gotów na następny atak."
+      ],
+      "pt-BR": [
+        "Reaparece depois de sumir.",
+        "Ele reaparece perto: prepare-se para o próximo ataque."
+      ],
+      "ru": [
+        "Появляется после исчезновения.",
+        "Он появляется рядом: будьте готовы к следующей атаке."
+      ],
+      "ko": [
+        "사라졌다가 다시 나타납니다.",
+        "가까운 곳에 다시 나타나니 다음 공격에 대비하세요."
+      ],
+      "ja": [
+        "消えた後に再び現れます。",
+        "近くに再び現れるので、次の攻撃に備えましょう。"
+      ],
+      "zh-Hans": [
+        "消失后重新出现。",
+        "他会在附近重新出现：做好应对下一次攻击的准备。"
+      ],
+      "zh-Hant": [
+        "消失後重新出現。",
+        "他會在附近重新出現：做好應對下一次攻擊的準備。"
+      ]
+    },
+    "Only warp out": {
+      "en": [
+        "Vanishes between attacks.",
+        "He reappears close by: be ready for the next attack."
+      ],
+      "de": [
+        "Verschwindet zwischen den Angriffen.",
+        "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
+      ],
+      "es": [
+        "Desaparece entre ataques.",
+        "Reaparece cerca: prepárate para el siguiente ataque."
+      ],
+      "fr": [
+        "Disparaît entre deux attaques.",
+        "Il réapparaît tout près : prépare-toi à l'attaque suivante."
+      ],
+      "pl": [
+        "Znika między atakami.",
+        "Pojawia się w pobliżu: bądź gotów na następny atak."
+      ],
+      "pt-BR": [
+        "Some entre os ataques.",
+        "Ele reaparece perto: prepare-se para o próximo ataque."
+      ],
+      "ru": [
+        "Исчезает между атаками.",
+        "Он появляется рядом: будьте готовы к следующей атаке."
+      ],
+      "ko": [
+        "공격 사이에 사라집니다.",
+        "가까운 곳에 다시 나타나니 다음 공격에 대비하세요."
+      ],
+      "ja": [
+        "攻撃の合間に姿を消します。",
+        "近くに再び現れるので、次の攻撃に備えましょう。"
+      ],
+      "zh-Hans": [
+        "在攻击之间消失。",
+        "他会在附近重新出现：做好应对下一次攻击的准备。"
+      ],
+      "zh-Hant": [
+        "在攻擊之間消失。",
+        "他會在附近重新出現：做好應對下一次攻擊的準備。"
+      ]
+    },
+    "Dark matter (vertical)": {
+      "en": [
+        "Drops a sphere of dark matter onto the floor below him.",
+        "Move out from under him."
+      ],
+      "de": [
+        "Lässt eine Kugel dunkler Materie unter sich auf den Boden fallen.",
+        "Geh unter ihm weg."
+      ],
+      "es": [
+        "Deja caer una esfera de materia oscura al suelo bajo él.",
+        "Sal de debajo de él."
+      ],
+      "fr": [
+        "Fait tomber une sphère de matière noire au sol sous lui.",
+        "Sors de sous lui."
+      ],
+      "pl": [
+        "Zrzuca kulę mrocznej materii na ziemię pod sobą.",
+        "Zejdź spod niego."
+      ],
+      "pt-BR": [
+        "Solta uma esfera de matéria sombria no chão abaixo dele.",
+        "Saia de baixo dele."
+      ],
+      "ru": [
+        "Роняет сферу тёмной материи на пол под собой.",
+        "Уйдите из-под него."
+      ],
+      "ko": [
+        "자기 아래 바닥으로 암흑 물질 구체를 떨어뜨립니다.",
+        "그의 아래에서 벗어나세요."
+      ],
+      "ja": [
+        "真下の床へ暗黒物質の球を落とします。",
+        "彼の真下から離れましょう。"
+      ],
+      "zh-Hans": [
+        "向自己下方的地面投下一颗暗物质球。",
+        "离开他的正下方。"
+      ],
+      "zh-Hant": [
+        "向自己下方的地面投下一顆暗物質球。",
+        "離開他的正下方。"
+      ]
+    },
+    "Dark matter (horizontal small)": {
+      "en": [
+        "Two large dark matter spheres form beside him, then they and smaller orbs fly across the room.",
+        "Watch the spheres' height and jump over or drop under them."
+      ],
+      "de": [
+        "Neben ihm bilden sich zwei große Kugeln dunkler Materie, dann fliegen sie und kleinere Kugeln quer durch den Raum.",
+        "Achte auf die Höhe der Kugeln und spring darüber oder lass dich darunter fallen."
+      ],
+      "es": [
+        "Se forman dos grandes esferas de materia oscura a su lado y luego ellas y otros orbes más pequeños cruzan la sala.",
+        "Fíjate en la altura de las esferas y sáltalas o pasa por debajo."
+      ],
+      "fr": [
+        "Deux grandes sphères de matière noire se forment à côté de lui, puis elles et de plus petits orbes traversent la salle.",
+        "Repère la hauteur des sphères et saute par-dessus ou passe en dessous."
+      ],
+      "pl": [
+        "Obok niego tworzą się dwie wielkie kule mrocznej materii, a potem one i mniejsze kule przelatują przez salę.",
+        "Patrz na wysokość kul i przeskocz je albo zejdź pod nie."
+      ],
+      "pt-BR": [
+        "Duas grandes esferas de matéria sombria se formam ao lado dele, depois elas e orbes menores cruzam o salão.",
+        "Repare na altura das esferas e pule por cima ou passe por baixo."
+      ],
+      "ru": [
+        "Рядом с ним образуются две большие сферы тёмной материи, затем они и сферы поменьше пролетают через зал.",
+        "Следите за высотой сфер и перепрыгивайте их или уходите под них."
+      ],
+      "ko": [
+        "그의 옆에 커다란 암흑 물질 구체 두 개가 생긴 뒤, 그것들과 작은 구슬이 방을 가로질러 날아갑니다.",
+        "구체의 높이를 보고 뛰어넘거나 아래로 피하세요."
+      ],
+      "ja": [
+        "彼の横に大きな暗黒物質の球が2つでき、それと小さな球が部屋を横切って飛んでいきます。",
+        "球の高さを見て、飛び越えるか下をくぐりましょう。"
+      ],
+      "zh-Hans": [
+        "他身旁形成两颗巨大的暗物质球，随后它们和较小的球一起飞过房间。",
+        "注意球的高度，跳过或从下方躲开。"
+      ],
+      "zh-Hant": [
+        "他身旁形成兩顆巨大的暗物質球，隨後它們和較小的球一起飛過房間。",
+        "注意球的高度，跳過或從下方躲開。"
+      ]
+    },
+    "Dark matter (horizontal big)": {
+      "en": [
+        "A huge dark matter sphere swells in front of him and rolls across the room.",
+        "Get above it on a platform or jump over it as it passes."
+      ],
+      "de": [
+        "Vor ihm schwillt eine riesige Kugel dunkler Materie an und rollt durch den Raum.",
+        "Geh auf einer Plattform darüber oder spring darüber, wenn sie vorbeirollt."
+      ],
+      "es": [
+        "Una enorme esfera de materia oscura crece delante de él y rueda por la sala.",
+        "Súbete a una plataforma o sáltala cuando pase."
+      ],
+      "fr": [
+        "Une immense sphère de matière noire enfle devant lui et roule à travers la salle.",
+        "Monte sur une plateforme ou saute par-dessus quand elle passe."
+      ],
+      "pl": [
+        "Przed nim rośnie ogromna kula mrocznej materii i toczy się przez salę.",
+        "Wejdź na platformę albo przeskocz ją, gdy przetacza się obok."
+      ],
+      "pt-BR": [
+        "Uma enorme esfera de matéria sombria cresce à frente dele e rola pelo salão.",
+        "Suba numa plataforma ou pule por cima quando ela passar."
+      ],
+      "ru": [
+        "Перед ним разрастается огромная сфера тёмной материи и катится через зал.",
+        "Заберитесь на платформу или перепрыгните её, когда она прокатится."
+      ],
+      "ko": [
+        "그의 앞에서 거대한 암흑 물질 구체가 부풀어 올라 방을 가로질러 굴러갑니다.",
+        "발판 위로 올라가거나 지나갈 때 점프로 넘으세요."
+      ],
+      "ja": [
+        "目の前で巨大な暗黒物質の球が膨らみ、部屋を転がっていきます。",
+        "足場に乗るか、通り過ぎるときに飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "他面前变出一颗巨大的暗物质球，并滚过房间。",
+        "站到平台上，或在它经过时跳过。"
+      ],
+      "zh-Hant": [
+        "他面前變出一顆巨大的暗物質球，並滾過房間。",
+        "站到平台上，或在它經過時跳過。"
+      ]
+    },
+    "Dark matter (horizontal burst)": {
+      "en": [
+        "Fires dark matter spheres across the room one after another; they burst where they hit.",
+        "Change height between shots."
+      ],
+      "de": [
+        "Feuert nacheinander Kugeln dunkler Materie durch den Raum, die beim Aufprall zerplatzen.",
+        "Wechsle zwischen den Schüssen die Höhe."
+      ],
+      "es": [
+        "Dispara esferas de materia oscura por la sala una tras otra; estallan al impactar.",
+        "Cambia de altura entre disparos."
+      ],
+      "fr": [
+        "Tire des sphères de matière noire à travers la salle l'une après l'autre ; elles éclatent à l'impact.",
+        "Change de hauteur entre les tirs."
+      ],
+      "pl": [
+        "Jedna po drugiej wystrzeliwuje przez salę kule mrocznej materii, które wybuchają przy uderzeniu.",
+        "Zmieniaj wysokość między strzałami."
+      ],
+      "pt-BR": [
+        "Dispara esferas de matéria sombria pelo salão, uma após a outra; elas explodem ao atingir.",
+        "Mude de altura entre os disparos."
+      ],
+      "ru": [
+        "Одну за другой выпускает через зал сферы тёмной материи; они взрываются при попадании.",
+        "Меняйте высоту между выстрелами."
+      ],
+      "ko": [
+        "암흑 물질 구체를 차례로 방 건너편으로 쏘며, 구체는 맞은 곳에서 터집니다.",
+        "발사 사이에 높이를 바꾸세요."
+      ],
+      "ja": [
+        "暗黒物質の球を次々と部屋の向こうへ撃ち、当たった場所で弾けます。",
+        "撃つ合間に高さを変えましょう。"
+      ],
+      "zh-Hans": [
+        "接连向房间对面射出暗物质球，命中处会爆开。",
+        "在射击间隙改变高度。"
+      ],
+      "zh-Hant": [
+        "接連向房間對面射出暗物質球，命中處會爆開。",
+        "在射擊間隙改變高度。"
+      ]
+    },
+    "Flame impact": {
+      "en": [
+        "Throws a dark orb; red crescents strike, and it bursts into a swirling cosmic sphere where it lands.",
+        "Move away from where the orb lands."
+      ],
+      "de": [
+        "Wirft eine dunkle Kugel; rote Sicheln schlagen ein, und wo sie landet, zerplatzt sie zu einer wirbelnden kosmischen Kugel.",
+        "Geh weg von der Stelle, an der die Kugel landet."
+      ],
+      "es": [
+        "Lanza un orbe oscuro; caen medias lunas rojas y estalla en una esfera cósmica giratoria donde cae.",
+        "Aléjate de donde cae el orbe."
+      ],
+      "fr": [
+        "Lance un orbe sombre ; des croissants rouges frappent, et il éclate en une sphère cosmique tourbillonnante là où il tombe.",
+        "Éloigne-toi de l'endroit où tombe l'orbe."
+      ],
+      "pl": [
+        "Rzuca mroczną kulę; uderzają czerwone sierpy, a w miejscu upadku wybucha wirująca kosmiczna kula.",
+        "Odsuń się od miejsca, w które spada kula."
+      ],
+      "pt-BR": [
+        "Lança um orbe sombrio; luas crescentes vermelhas atingem e ele explode numa esfera cósmica giratória onde cai.",
+        "Afaste-se de onde o orbe cai."
+      ],
+      "ru": [
+        "Бросает тёмную сферу; бьют красные серпы, и там, где она падает, она взрывается вихрящейся космической сферой.",
+        "Уйдите с места, куда падает сфера."
+      ],
+      "ko": [
+        "어둠의 구슬을 던지면 붉은 초승달이 내리치고, 떨어진 곳에서 소용돌이치는 우주의 구체로 터집니다.",
+        "구슬이 떨어지는 곳에서 벗어나세요."
+      ],
+      "ja": [
+        "闇の球を投げると、赤い三日月が打ちつけ、落ちた場所で渦巻く宇宙の球となって弾けます。",
+        "球が落ちる場所から離れましょう。"
+      ],
+      "zh-Hans": [
+        "扔出一颗黑暗球，红色新月劈下，球在落点爆成旋转的宇宙球体。",
+        "离开球落下的位置。"
+      ],
+      "zh-Hant": [
+        "扔出一顆黑暗球，紅色新月劈下，球在落點爆成旋轉的宇宙球體。",
+        "離開球落下的位置。"
+      ]
+    },
+    "Chasing missile 3": {
+      "en": [
+        "Three purple missiles gather above, then dive at you one after another.",
+        "The missiles follow you: keep moving and turn sharply so they hit the floor behind you."
+      ],
+      "de": [
+        "Drei violette Raketen sammeln sich oben und stürzen dann nacheinander auf dich zu.",
+        "Die Raketen folgen dir: Bleib in Bewegung und schlag Haken, damit sie hinter dir einschlagen."
+      ],
+      "es": [
+        "Tres misiles morados se reúnen arriba y luego caen sobre ti uno tras otro.",
+        "Los misiles te siguen: sigue moviéndote y gira de golpe para que impacten detrás de ti."
+      ],
+      "fr": [
+        "Trois missiles violets se rassemblent en haut, puis plongent sur toi l'un après l'autre.",
+        "Les missiles te suivent : continue de bouger et fais des virages secs pour qu'ils s'écrasent derrière toi."
+      ],
+      "pl": [
+        "Trzy fioletowe pociski zbierają się w górze, a potem jeden po drugim pikują na ciebie.",
+        "Pociski podążają za tobą: ruszaj się i ostro skręcaj, żeby uderzyły za tobą."
+      ],
+      "pt-BR": [
+        "Três mísseis roxos se juntam no alto e depois mergulham em você um após o outro.",
+        "Os mísseis seguem você: continue se movendo e faça curvas bruscas para que acertem o chão atrás de você."
+      ],
+      "ru": [
+        "Три фиолетовые ракеты собираются наверху, затем одна за другой пикируют на вас.",
+        "Ракеты следуют за вами: двигайтесь и резко меняйте направление, чтобы они врезались в пол позади."
+      ],
+      "ko": [
+        "보라색 미사일 세 개가 위에 모였다가 차례로 당신에게 내리꽂힙니다.",
+        "미사일이 당신을 쫓아옵니다: 계속 움직이고 갑자기 방향을 꺾어 뒤쪽 바닥에 떨어지게 하세요."
+      ],
+      "ja": [
+        "紫のミサイルが3発、上に集まってから次々とあなたへ急降下します。",
+        "ミサイルは追ってきます：動き続け、急に向きを変えて背後の床に落とさせましょう。"
+      ],
+      "zh-Hans": [
+        "三枚紫色导弹在上方聚集，然后接连俯冲向你。",
+        "导弹会追踪你：保持移动并急转，让它们砸在你身后的地面上。"
+      ],
+      "zh-Hant": [
+        "三枚紫色導彈在上方聚集，然後接連俯衝向你。",
+        "導彈會追蹤你：保持移動並猛然轉向，讓它們砸在你身後的地面上。"
+      ]
+    },
+    "Chasing missile 10": {
+      "en": [
+        "Ten purple missiles gather above, then dive at you one after another.",
+        "The missiles follow you: keep moving and turn sharply so they hit the floor behind you."
+      ],
+      "de": [
+        "Zehn violette Raketen sammeln sich oben und stürzen dann nacheinander auf dich zu.",
+        "Die Raketen folgen dir: Bleib in Bewegung und schlag Haken, damit sie hinter dir einschlagen."
+      ],
+      "es": [
+        "Diez misiles morados se reúnen arriba y luego caen sobre ti uno tras otro.",
+        "Los misiles te siguen: sigue moviéndote y gira de golpe para que impacten detrás de ti."
+      ],
+      "fr": [
+        "Dix missiles violets se rassemblent en haut, puis plongent sur toi l'un après l'autre.",
+        "Les missiles te suivent : continue de bouger et fais des virages secs pour qu'ils s'écrasent derrière toi."
+      ],
+      "pl": [
+        "Dziesięć fioletowych pocisków zbiera się w górze, a potem jeden po drugim pikują na ciebie.",
+        "Pociski podążają za tobą: ruszaj się i ostro skręcaj, żeby uderzyły za tobą."
+      ],
+      "pt-BR": [
+        "Dez mísseis roxos se juntam no alto e depois mergulham em você um após o outro.",
+        "Os mísseis seguem você: continue se movendo e faça curvas bruscas para que acertem o chão atrás de você."
+      ],
+      "ru": [
+        "Десять фиолетовых ракет собираются наверху, затем одна за другой пикируют на вас.",
+        "Ракеты следуют за вами: двигайтесь и резко меняйте направление, чтобы они врезались в пол позади."
+      ],
+      "ko": [
+        "보라색 미사일 열 개가 위에 모였다가 차례로 당신에게 내리꽂힙니다.",
+        "미사일이 당신을 쫓아옵니다: 계속 움직이고 갑자기 방향을 꺾어 뒤쪽 바닥에 떨어지게 하세요."
+      ],
+      "ja": [
+        "紫のミサイルが10発、上に集まってから次々とあなたへ急降下します。",
+        "ミサイルは追ってきます：動き続け、急に向きを変えて背後の床に落とさせましょう。"
+      ],
+      "zh-Hans": [
+        "十枚紫色导弹在上方聚集，然后接连俯冲向你。",
+        "导弹会追踪你：保持移动并急转，让它们砸在你身后的地面上。"
+      ],
+      "zh-Hant": [
+        "十枚紫色導彈在上方聚集，然後接連俯衝向你。",
+        "導彈會追蹤你：保持移動並猛然轉向，讓它們砸在你身後的地面上。"
+      ]
+    },
+    "Hexagon laser": {
+      "en": [
+        "Rises, and a glowing orb above him fires laser beams in all directions that turn around him, while dark orbs drift through the room.",
+        "Stay in a gap between the beams and move with it as they turn. At most every 20 seconds."
+      ],
+      "de": [
+        "Steigt auf, und eine leuchtende Kugel über ihm feuert Laserstrahlen in alle Richtungen, die sich um ihn drehen, während dunkle Kugeln durch den Raum treiben.",
+        "Bleib in einer Lücke zwischen den Strahlen und beweg dich mit, wenn sie sich drehen. Höchstens alle 20 Sekunden."
+      ],
+      "es": [
+        "Se eleva y un orbe brillante sobre él dispara rayos láser en todas direcciones que giran a su alrededor, mientras orbes oscuros flotan por la sala.",
+        "Quédate en un hueco entre los rayos y muévete con él mientras giran. Como mucho cada 20 segundos."
+      ],
+      "fr": [
+        "S'élève, et un orbe lumineux au-dessus de lui tire des rayons laser dans toutes les directions qui tournent autour de lui, tandis que des orbes sombres dérivent dans la salle.",
+        "Reste dans un espace entre les rayons et déplace-toi avec lui quand ils tournent. Au plus toutes les 20 secondes."
+      ],
+      "pl": [
+        "Unosi się, a świecąca kula nad nim strzela laserami na wszystkie strony, które obracają się wokół niego, a przez salę dryfują mroczne kule.",
+        "Stój w luce między promieniami i przesuwaj się z nią, gdy się obracają. Najwyżej co 20 sekund."
+      ],
+      "pt-BR": [
+        "Sobe, e um orbe brilhante acima dele dispara raios laser em todas as direções que giram ao redor dele, enquanto orbes sombrios flutuam pelo salão.",
+        "Fique num espaço entre os raios e mova-se com ele enquanto giram. No máximo a cada 20 segundos."
+      ],
+      "ru": [
+        "Поднимается, и светящаяся сфера над ним выпускает во все стороны лазерные лучи, вращающиеся вокруг него, пока по залу плывут тёмные сферы.",
+        "Стойте в промежутке между лучами и двигайтесь вместе с ним, пока они вращаются. Не чаще раза в 20 секунд."
+      ],
+      "ko": [
+        "위로 떠오르면 그의 위에 있는 빛나는 구슬이 사방으로 레이저를 쏘고, 레이저는 그를 중심으로 회전하며, 어두운 구슬이 방 안을 떠다닙니다.",
+        "레이저 사이의 틈에 있다가 회전에 맞춰 함께 움직이세요. 최대 20초마다 사용합니다."
+      ],
+      "ja": [
+        "浮かび上がると、頭上の光る球が四方八方にレーザーを放ち、レーザーは彼の周りを回転し、暗い球が部屋を漂います。",
+        "レーザーの間の隙間にいて、回転に合わせて動きましょう。最大で20秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "他升到空中，头顶发光的球体向四面八方射出激光，激光绕着他旋转，同时黑暗球体在房间里飘荡。",
+        "待在激光之间的空隙中，随着旋转一起移动。最多每20秒一次。"
+      ],
+      "zh-Hant": [
+        "他升到空中，頭頂發光的球體向四面八方射出雷射，雷射繞著他旋轉，同時黑暗球體在房間裡飄盪。",
+        "待在雷射之間的空隙中，隨著旋轉一起移動。最多每20秒一次。"
+      ]
+    },
+    "To island": {
+      "en": [
+        "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into a single island floating over the void.",
+        "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+      ],
+      "de": [
+        "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu einer einzelnen Insel über der Leere.",
+        "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+      ],
+      "es": [
+        "Se envuelve en una esfera mágica, un destello brillante llena la pantalla y la arena se convierte en una sola isla flotando sobre el vacío.",
+        "El suelo cambia de forma: fíjate dónde se abre el vacío y quédate en suelo firme. Como mucho cada 20 segundos."
+      ],
+      "fr": [
+        "S'enveloppe d'une sphère magique, un éclair éblouissant emplit l'écran et l'arène devient une île unique flottant au-dessus du vide.",
+        "Le sol change de forme : repère où s'ouvre le vide et reste sur la terre ferme. Au plus toutes les 20 secondes."
+      ],
+      "pl": [
+        "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w pojedynczą wyspę unoszącą się nad pustką.",
+        "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+      ],
+      "pt-BR": [
+        "Envolve-se numa esfera mágica, um clarão enche a tela e a arena vira uma única ilha flutuando sobre o vazio.",
+        "O chão muda de forma: repare onde o vazio se abre e fique em chão firme. No máximo a cada 20 segundos."
+      ],
+      "ru": [
+        "Окутывается магической сферой, экран заливает яркая вспышка, и арена превращается в один остров, парящий над пустотой.",
+        "Пол меняет форму: следите, где открывается пустота, и стойте на твёрдой земле. Не чаще раза в 20 секунд."
+      ],
+      "ko": [
+        "마법의 구체로 몸을 감싸면 밝은 섬광이 화면을 채우고, 경기장이 공허 위에 떠 있는 섬 하나로 바뀝니다.",
+        "바닥의 모양이 바뀝니다: 공허가 열리는 곳을 보고 단단한 바닥 위에 있으세요. 최대 20초마다 사용합니다."
+      ],
+      "ja": [
+        "魔法の球に身を包むと、まばゆい閃光が画面を満たし、闘技場が虚空に浮かぶひとつの浮き足場に変わります。",
+        "床の形が変わります：虚空が開く場所を見て、しっかりした床の上にいましょう。最大で20秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "他用魔法球体包住自己，耀眼的闪光充满画面，竞技场变成一座漂浮在虚空上的浮台。",
+        "地面会改变形状：注意虚空出现的位置，待在坚实的地面上。最多每20秒一次。"
+      ],
+      "zh-Hant": [
+        "他用魔法球體包住自己，耀眼的閃光充滿畫面，競技場變成一座漂浮在虛空上的浮台。",
+        "地面會改變形狀：注意虛空出現的位置，待在堅實的地面上。最多每20秒一次。"
+      ]
+    },
+    "To island with platform": {
+      "en": [
+        "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into an island over the void with platforms.",
+        "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+      ],
+      "de": [
+        "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu einer Insel über der Leere mit Plattformen.",
+        "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+      ],
+      "es": [
+        "Se envuelve en una esfera mágica, un destello brillante llena la pantalla y la arena se convierte en una isla sobre el vacío con plataformas.",
+        "El suelo cambia de forma: fíjate dónde se abre el vacío y quédate en suelo firme. Como mucho cada 20 segundos."
+      ],
+      "fr": [
+        "S'enveloppe d'une sphère magique, un éclair éblouissant emplit l'écran et l'arène devient une île au-dessus du vide avec des plateformes.",
+        "Le sol change de forme : repère où s'ouvre le vide et reste sur la terre ferme. Au plus toutes les 20 secondes."
+      ],
+      "pl": [
+        "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w wyspę nad pustką z platformami.",
+        "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+      ],
+      "pt-BR": [
+        "Envolve-se numa esfera mágica, um clarão enche a tela e a arena vira uma ilha sobre o vazio com plataformas.",
+        "O chão muda de forma: repare onde o vazio se abre e fique em chão firme. No máximo a cada 20 segundos."
+      ],
+      "ru": [
+        "Окутывается магической сферой, экран заливает яркая вспышка, и арена превращается в остров над пустотой с платформами.",
+        "Пол меняет форму: следите, где открывается пустота, и стойте на твёрдой земле. Не чаще раза в 20 секунд."
+      ],
+      "ko": [
+        "마법의 구체로 몸을 감싸면 밝은 섬광이 화면을 채우고, 경기장이 발판이 있는 공허 위의 섬으로 바뀝니다.",
+        "바닥의 모양이 바뀝니다: 공허가 열리는 곳을 보고 단단한 바닥 위에 있으세요. 최대 20초마다 사용합니다."
+      ],
+      "ja": [
+        "魔法の球に身を包むと、まばゆい閃光が画面を満たし、闘技場が床のある、虚空の上の浮き足場に変わります。",
+        "床の形が変わります：虚空が開く場所を見て、しっかりした床の上にいましょう。最大で20秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "他用魔法球体包住自己，耀眼的闪光充满画面，竞技场变成一座带平台、漂浮在虚空上的浮台。",
+        "地面会改变形状：注意虚空出现的位置，待在坚实的地面上。最多每20秒一次。"
+      ],
+      "zh-Hant": [
+        "他用魔法球體包住自己，耀眼的閃光充滿畫面，競技場變成一座帶平台、漂浮在虛空上的浮台。",
+        "地面會改變形狀：注意虛空出現的位置，待在堅實的地面上。最多每20秒一次。"
+      ]
+    },
+    "To side": {
+      "en": [
+        "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into two sides with the void in the middle.",
+        "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+      ],
+      "de": [
+        "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu zwei Seiten mit der Leere in der Mitte.",
+        "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+      ],
+      "es": [
+        "Se envuelve en una esfera mágica, un destello brillante llena la pantalla y la arena se convierte en dos lados con el vacío en el centro.",
+        "El suelo cambia de forma: fíjate dónde se abre el vacío y quédate en suelo firme. Como mucho cada 20 segundos."
+      ],
+      "fr": [
+        "S'enveloppe d'une sphère magique, un éclair éblouissant emplit l'écran et l'arène devient deux côtés avec le vide au milieu.",
+        "Le sol change de forme : repère où s'ouvre le vide et reste sur la terre ferme. Au plus toutes les 20 secondes."
+      ],
+      "pl": [
+        "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w dwie strony z pustką pośrodku.",
+        "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+      ],
+      "pt-BR": [
+        "Envolve-se numa esfera mágica, um clarão enche a tela e a arena vira dois lados com o vazio no meio.",
+        "O chão muda de forma: repare onde o vazio se abre e fique em chão firme. No máximo a cada 20 segundos."
+      ],
+      "ru": [
+        "Окутывается магической сферой, экран заливает яркая вспышка, и арена превращается в две стороны с пустотой посередине.",
+        "Пол меняет форму: следите, где открывается пустота, и стойте на твёрдой земле. Не чаще раза в 20 секунд."
+      ],
+      "ko": [
+        "마법의 구체로 몸을 감싸면 밝은 섬광이 화면을 채우고, 경기장이 가운데에 공허가 있는 양쪽 바닥으로 바뀝니다.",
+        "바닥의 모양이 바뀝니다: 공허가 열리는 곳을 보고 단단한 바닥 위에 있으세요. 최대 20초마다 사용합니다."
+      ],
+      "ja": [
+        "魔法の球に身を包むと、まばゆい閃光が画面を満たし、闘技場が中央に虚空がある左右の床に変わります。",
+        "床の形が変わります：虚空が開く場所を見て、しっかりした床の上にいましょう。最大で20秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "他用魔法球体包住自己，耀眼的闪光充满画面，竞技场变成中间是虚空的左右两块地面。",
+        "地面会改变形状：注意虚空出现的位置，待在坚实的地面上。最多每20秒一次。"
+      ],
+      "zh-Hant": [
+        "他用魔法球體包住自己，耀眼的閃光充滿畫面，競技場變成中間是虛空的左右兩塊地面。",
+        "地面會改變形狀：注意虛空出現的位置，待在堅實的地面上。最多每20秒一次。"
+      ]
+    },
+    "To flat spatial compression": {
+      "en": [
+        "Wraps himself in a magic sphere, a bright flash fills the screen, and the arena turns into a flat floor again.",
+        "The floor changes shape: watch where the void opens and stay on solid ground. At most every 20 seconds."
+      ],
+      "de": [
+        "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu wieder einem flachen Boden.",
+        "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+      ],
+      "es": [
+        "Se envuelve en una esfera mágica, un destello brillante llena la pantalla y la arena se convierte en un suelo plano de nuevo.",
+        "El suelo cambia de forma: fíjate dónde se abre el vacío y quédate en suelo firme. Como mucho cada 20 segundos."
+      ],
+      "fr": [
+        "S'enveloppe d'une sphère magique, un éclair éblouissant emplit l'écran et l'arène devient un sol plat à nouveau.",
+        "Le sol change de forme : repère où s'ouvre le vide et reste sur la terre ferme. Au plus toutes les 20 secondes."
+      ],
+      "pl": [
+        "Otacza się magiczną kulą, ekran wypełnia jasny błysk, a arena zmienia się w z powrotem płaską podłogę.",
+        "Podłoga zmienia kształt: patrz, gdzie otwiera się pustka, i stój na twardym gruncie. Najwyżej co 20 sekund."
+      ],
+      "pt-BR": [
+        "Envolve-se numa esfera mágica, um clarão enche a tela e a arena vira um chão plano de novo.",
+        "O chão muda de forma: repare onde o vazio se abre e fique em chão firme. No máximo a cada 20 segundos."
+      ],
+      "ru": [
+        "Окутывается магической сферой, экран заливает яркая вспышка, и арена превращается в снова ровный пол.",
+        "Пол меняет форму: следите, где открывается пустота, и стойте на твёрдой земле. Не чаще раза в 20 секунд."
+      ],
+      "ko": [
+        "마법의 구체로 몸을 감싸면 밝은 섬광이 화면을 채우고, 경기장이 다시 평평한 바닥으로 바뀝니다.",
+        "바닥의 모양이 바뀝니다: 공허가 열리는 곳을 보고 단단한 바닥 위에 있으세요. 최대 20초마다 사용합니다."
+      ],
+      "ja": [
+        "魔法の球に身を包むと、まばゆい閃光が画面を満たし、闘技場が再び平らな床に変わります。",
+        "床の形が変わります：虚空が開く場所を見て、しっかりした床の上にいましょう。最大で20秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "他用魔法球体包住自己，耀眼的闪光充满画面，竞技场变成平坦的地面。",
+        "地面会改变形状：注意虚空出现的位置，待在坚实的地面上。最多每20秒一次。"
+      ],
+      "zh-Hant": [
+        "他用魔法球體包住自己，耀眼的閃光充滿畫面，競技場變成平坦的地面。",
+        "地面會改變形狀：注意虛空出現的位置，待在堅實的地面上。最多每20秒一次。"
+      ]
+    },
+    "Spatial compression": {
+      "en": [
+        "The space around him is compressed into a glowing box: the room turns into a starry void inside a cube.",
+        "An Explosion follows inside the box: keep your distance from him."
+      ],
+      "de": [
+        "Der Raum um ihn wird in einen leuchtenden Kasten verdichtet: Der Raum wird zu einer Sternenleere in einem Würfel.",
+        "Im Kasten folgt eine Explosion: Halte Abstand zu ihm."
+      ],
+      "es": [
+        "El espacio a su alrededor se comprime en una caja brillante: la sala se convierte en un vacío estrellado dentro de un cubo.",
+        "Sigue una Explosión dentro de la caja: mantén la distancia."
+      ],
+      "fr": [
+        "L'espace autour de lui est comprimé dans une boîte lumineuse : la salle devient un vide étoilé dans un cube.",
+        "Une Explosion suit dans la boîte : garde tes distances."
+      ],
+      "pl": [
+        "Przestrzeń wokół niego zostaje ściśnięta w świecącą skrzynię: sala zmienia się w gwiaździstą pustkę wewnątrz sześcianu.",
+        "W skrzyni następuje Eksplozja: trzymaj od niego dystans."
+      ],
+      "pt-BR": [
+        "O espaço ao redor dele é comprimido numa caixa brilhante: o salão vira um vazio estrelado dentro de um cubo.",
+        "Uma Explosão vem a seguir dentro da caixa: mantenha distância dele."
+      ],
+      "ru": [
+        "Пространство вокруг него сжимается в светящийся ящик: зал превращается в звёздную пустоту внутри куба.",
+        "Внутри ящика следует Взрыв: держитесь от него подальше."
+      ],
+      "ko": [
+        "주변 공간이 빛나는 상자 안으로 압축되어, 방이 정육면체 속 별이 빛나는 공허로 바뀝니다.",
+        "상자 안에서 폭발이 이어지니 그와 거리를 두세요."
+      ],
+      "ja": [
+        "周りの空間が光る箱の中に圧縮され、部屋が立方体の中の星空の虚空に変わります。",
+        "箱の中で爆発が続くので、彼から距離を取りましょう。"
+      ],
+      "zh-Hans": [
+        "周围的空间被压缩进一个发光的盒子：房间变成立方体中的星空虚空。",
+        "盒子里会接着爆炸：与他保持距离。"
+      ],
+      "zh-Hant": [
+        "周圍的空間被壓縮進一個發光的盒子：房間變成立方體中的星空虛空。",
+        "盒子裡會接著爆炸：與他保持距離。"
+      ]
+    },
+    "Explosion": {
+      "en": [
+        "Inside the compressed space, red crescents swirl around him and burst into rings of energy.",
+        "Stay as far from him as the box allows."
+      ],
+      "de": [
+        "Im verdichteten Raum wirbeln rote Sicheln um ihn und zerplatzen zu Energieringen.",
+        "Bleib so weit von ihm weg, wie der Kasten erlaubt."
+      ],
+      "es": [
+        "Dentro del espacio comprimido, medias lunas rojas giran a su alrededor y estallan en anillos de energía.",
+        "Quédate tan lejos de él como permita la caja."
+      ],
+      "fr": [
+        "Dans l'espace comprimé, des croissants rouges tourbillonnent autour de lui et éclatent en anneaux d'énergie.",
+        "Reste aussi loin de lui que la boîte le permet."
+      ],
+      "pl": [
+        "W ściśniętej przestrzeni wokół niego wirują czerwone sierpy i wybuchają pierścieniami energii.",
+        "Trzymaj się od niego tak daleko, jak pozwala skrzynia."
+      ],
+      "pt-BR": [
+        "Dentro do espaço comprimido, luas crescentes vermelhas giram ao redor dele e explodem em anéis de energia.",
+        "Fique o mais longe dele que a caixa permitir."
+      ],
+      "ru": [
+        "В сжатом пространстве вокруг него кружат красные серпы и взрываются кольцами энергии.",
+        "Держитесь от него так далеко, как позволяет ящик."
+      ],
+      "ko": [
+        "압축된 공간 안에서 붉은 초승달이 그의 주위를 돌다가 에너지 고리로 터집니다.",
+        "상자 안에서 최대한 그에게서 떨어지세요."
+      ],
+      "ja": [
+        "圧縮された空間の中で、赤い三日月が彼の周りを回り、エネルギーの輪となって弾けます。",
+        "箱の中でできるだけ彼から離れましょう。"
+      ],
+      "zh-Hans": [
+        "在压缩的空间里，红色新月绕着他旋转，然后爆成能量环。",
+        "在盒子里尽量远离他。"
+      ],
+      "zh-Hant": [
+        "在壓縮的空間裡，紅色新月繞著他旋轉，然後爆成能量環。",
+        "在盒子裡盡量遠離他。"
+      ]
+    },
+    "Spatial decompression": {
+      "en": [
+        "The box breaks open and dark matter spheres burst out of it.",
+        "Watch where the spheres fly and stay out of their way."
+      ],
+      "de": [
+        "Der Kasten bricht auf und Kugeln dunkler Materie brechen heraus.",
+        "Achte darauf, wohin die Kugeln fliegen, und geh ihnen aus dem Weg."
+      ],
+      "es": [
+        "La caja se rompe y salen esferas de materia oscura.",
+        "Fíjate hacia dónde vuelan las esferas y apártate."
+      ],
+      "fr": [
+        "La boîte se brise et des sphères de matière noire en jaillissent.",
+        "Repère où volent les sphères et écarte-toi de leur trajectoire."
+      ],
+      "pl": [
+        "Skrzynia pęka i wylatują z niej kule mrocznej materii.",
+        "Patrz, dokąd lecą kule, i zejdź im z drogi."
+      ],
+      "pt-BR": [
+        "A caixa se rompe e esferas de matéria sombria saem dela.",
+        "Repare para onde as esferas voam e saia do caminho."
+      ],
+      "ru": [
+        "Ящик раскрывается, и из него вырываются сферы тёмной материи.",
+        "Следите, куда летят сферы, и уходите с их пути."
+      ],
+      "ko": [
+        "상자가 깨지며 암흑 물질 구체가 튀어나옵니다.",
+        "구체가 날아가는 방향을 보고 피하세요."
+      ],
+      "ja": [
+        "箱が割れ、暗黒物質の球が飛び出します。",
+        "球が飛ぶ方向を見て、進路から外れましょう。"
+      ],
+      "zh-Hans": [
+        "盒子破开，暗物质球从中迸出。",
+        "注意球飞去的方向并避开。"
+      ],
+      "zh-Hant": [
+        "盒子破開，暗物質球從中迸出。",
+        "注意球飛去的方向並避開。"
+      ]
+    },
+    "Horizontal laser": {
+      "en": [
+        "Fires a long laser beam that sweeps along the floor, then sends missiles after you.",
+        "Jump over the beam, then keep moving for the missiles."
+      ],
+      "de": [
+        "Feuert einen langen Laserstrahl, der über den Boden fegt, und schickt dann Raketen hinter dir her.",
+        "Spring über den Strahl und bleib dann für die Raketen in Bewegung."
+      ],
+      "es": [
+        "Dispara un largo rayo láser que barre el suelo y luego te lanza misiles.",
+        "Salta sobre el rayo y luego sigue moviéndote por los misiles."
+      ],
+      "fr": [
+        "Tire un long rayon laser qui balaie le sol, puis envoie des missiles à ta poursuite.",
+        "Saute par-dessus le rayon, puis continue de bouger à cause des missiles."
+      ],
+      "pl": [
+        "Wystrzeliwuje długi promień lasera, który omiata podłogę, a potem posyła za tobą pociski.",
+        "Przeskocz promień, a potem ruszaj się przed pociskami."
+      ],
+      "pt-BR": [
+        "Dispara um longo raio laser que varre o chão e depois manda mísseis atrás de você.",
+        "Pule o raio e depois continue se movendo por causa dos mísseis."
+      ],
+      "ru": [
+        "Выпускает длинный лазерный луч, проходящий вдоль пола, затем посылает за вами ракеты.",
+        "Перепрыгните луч, затем двигайтесь, уходя от ракет."
+      ],
+      "ko": [
+        "바닥을 따라 휩쓰는 긴 레이저를 쏜 뒤, 미사일을 날려 보냅니다.",
+        "레이저를 점프로 넘고, 미사일을 피해 계속 움직이세요."
+      ],
+      "ja": [
+        "床を薙ぎ払う長いレーザーを放ち、その後ミサイルを撃ってきます。",
+        "レーザーを飛び越え、ミサイルに備えて動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "射出一道沿地面横扫的长激光，然后放出导弹追击你。",
+        "跳过激光，然后保持移动躲避导弹。"
+      ],
+      "zh-Hant": [
+        "射出一道沿地面橫掃的長雷射，然後放出導彈追擊你。",
+        "跳過雷射，然後保持移動躲避導彈。"
+      ]
+    },
+    "Horizontal long laser (platform)": {
+      "en": [
+        "On the island arena: floats above, then fires a long laser straight across the whole screen at platform height.",
+        "Get off the platforms before it fires. At most every 100 seconds."
+      ],
+      "de": [
+        "In der Insel-Arena: Schwebt oben und feuert dann einen langen Laser auf Plattformhöhe quer über den ganzen Bildschirm.",
+        "Runter von den Plattformen, bevor er feuert. Höchstens alle 100 Sekunden."
+      ],
+      "es": [
+        "En la arena de la isla: flota arriba y luego dispara un largo láser recto a lo ancho de toda la pantalla a la altura de las plataformas.",
+        "Bájate de las plataformas antes del disparo. Como mucho cada 100 segundos."
+      ],
+      "fr": [
+        "Dans l'arène de l'île : flotte en haut, puis tire un long laser droit sur tout l'écran à hauteur des plateformes.",
+        "Descends des plateformes avant le tir. Au plus toutes les 100 secondes."
+      ],
+      "pl": [
+        "Na arenie z wyspą: unosi się w górze, a potem strzela długim laserem przez cały ekran na wysokości platform.",
+        "Zejdź z platform, zanim wystrzeli. Najwyżej co 100 sekund."
+      ],
+      "pt-BR": [
+        "Na arena da ilha: flutua no alto e depois dispara um longo laser reto por toda a tela na altura das plataformas.",
+        "Saia das plataformas antes do disparo. No máximo a cada 100 segundos."
+      ],
+      "ru": [
+        "На арене-острове: парит наверху, затем выпускает длинный лазер через весь экран на высоте платформ.",
+        "Сойдите с платформ до выстрела. Не чаще раза в 100 секунд."
+      ],
+      "ko": [
+        "섬 경기장에서: 위쪽에 떠 있다가 발판 높이로 화면 전체를 가로지르는 긴 레이저를 발사합니다.",
+        "발사 전에 발판에서 내려오세요. 최대 100초마다 사용합니다."
+      ],
+      "ja": [
+        "浮き足場の闘技場で：上空に浮かび、足場の高さで画面全体を横切る長いレーザーを放ちます。",
+        "撃つ前に足場から降りましょう。最大で100秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "在浮台竞技场：漂浮在上方，然后在平台高度射出横贯整个画面的长激光。",
+        "在他发射前离开平台。最多每100秒一次。"
+      ],
+      "zh-Hant": [
+        "在浮台競技場：漂浮在上方，然後在平台高度射出橫貫整個畫面的長雷射。",
+        "在他發射前離開平台。最多每100秒一次。"
+      ]
+    },
+    "Vertical long laser": {
+      "en": [
+        "Fires a long laser straight down from above.",
+        "Move sideways out of its line."
+      ],
+      "de": [
+        "Feuert einen langen Laser senkrecht von oben herab.",
+        "Geh seitlich aus seiner Bahn."
+      ],
+      "es": [
+        "Dispara un largo láser recto hacia abajo desde arriba.",
+        "Apártate de su línea hacia un lado."
+      ],
+      "fr": [
+        "Tire un long laser droit vers le bas depuis le haut.",
+        "Écarte-toi de sa ligne sur le côté."
+      ],
+      "pl": [
+        "Strzela długim laserem prosto w dół z góry.",
+        "Zejdź z jego linii w bok."
+      ],
+      "pt-BR": [
+        "Dispara um longo laser reto para baixo, de cima.",
+        "Saia da linha dele para o lado."
+      ],
+      "ru": [
+        "Выпускает длинный лазер прямо вниз сверху.",
+        "Уйдите в сторону с его линии."
+      ],
+      "ko": [
+        "위에서 아래로 긴 레이저를 수직으로 발사합니다.",
+        "옆으로 이동해 레이저 줄기에서 벗어나세요."
+      ],
+      "ja": [
+        "上から真下へ長いレーザーを放ちます。",
+        "横に動いて、その線から外れましょう。"
+      ],
+      "zh-Hans": [
+        "从上方垂直向下射出长激光。",
+        "向旁边移动，离开激光的路线。"
+      ],
+      "zh-Hant": [
+        "從上方垂直向下射出長雷射。",
+        "向旁邊移動，離開雷射的路線。"
+      ]
+    },
+    "Special move": {
+      "en": [
+        "Hexagon laser, then the arena flattens, and he shines inside a huge golden rune circle while giant spears sweep across the room and pink laser pillars burst out around him.",
+        "A long combination: dodge each spear as it sweeps and stay away from him when the laser pillars burst. At most every 20 seconds."
+      ],
+      "de": [
+        "Sechseck-Laser, dann wird die Arena flach, und er leuchtet in einem riesigen goldenen Runenkreis, während riesige Speere durch den Raum fegen und rosa Lasersäulen um ihn hervorbrechen.",
+        "Eine lange Kombination: Weich jedem Speer aus, wenn er vorbeifegt, und halte Abstand, wenn die Lasersäulen hervorbrechen. Höchstens alle 20 Sekunden."
+      ],
+      "es": [
+        "Láser hexagonal; luego la arena se aplana y él brilla dentro de un enorme círculo de runas dorado mientras lanzas gigantes barren la sala y pilares de láser rosa estallan a su alrededor.",
+        "Una combinación larga: esquiva cada lanza cuando barra y mantente lejos cuando estallen los pilares de láser. Como mucho cada 20 segundos."
+      ],
+      "fr": [
+        "Laser hexagonal, puis l'arène s'aplatit, et il brille dans un immense cercle de runes doré tandis que des lances géantes balaient la salle et que des piliers laser roses jaillissent autour de lui.",
+        "Un long enchaînement : esquive chaque lance quand elle balaie et reste loin de lui quand les piliers laser jaillissent. Au plus toutes les 20 secondes."
+      ],
+      "pl": [
+        "Sześciokątny laser, potem arena się spłaszcza, a on świeci w ogromnym złotym kręgu run, podczas gdy gigantyczne włócznie omiatają salę, a wokół niego wybuchają różowe słupy laserów.",
+        "Długa kombinacja: unikaj każdej włóczni, gdy omiata salę, i trzymaj się z dala, gdy wybuchają słupy laserów. Najwyżej co 20 sekund."
+      ],
+      "pt-BR": [
+        "Laser hexagonal, depois a arena fica plana e ele brilha dentro de um enorme círculo de runas dourado enquanto lanças gigantes varrem o salão e pilares de laser rosa irrompem ao redor dele.",
+        "Uma combinação longa: desvie de cada lança quando ela varrer e fique longe dele quando os pilares de laser irromperem. No máximo a cada 20 segundos."
+      ],
+      "ru": [
+        "Шестиугольный лазер, затем арена становится ровной, и он сияет внутри огромного золотого круга рун, пока гигантские копья проходят по залу, а вокруг него вырываются розовые лазерные столбы.",
+        "Длинная связка: уворачивайтесь от каждого копья и держитесь подальше, когда вырываются лазерные столбы. Не чаще раза в 20 секунд."
+      ],
+      "ko": [
+        "육각 레이저 후 경기장이 평평해지고, 거대한 황금 룬 원 안에서 빛나는 동안 거대한 창이 방을 휩쓸고 분홍빛 레이저 기둥이 그의 주위에서 터져 나옵니다.",
+        "긴 연계입니다: 창이 휩쓸 때마다 피하고, 레이저 기둥이 터질 때는 그에게서 떨어지세요. 최대 20초마다 사용합니다."
+      ],
+      "ja": [
+        "六角レーザーの後、闘技場が平らになり、巨大な黄金のルーンの円の中で輝く間、巨大な槍が部屋を薙ぎ払い、ピンクのレーザーの柱が周りから噴き出します。",
+        "長い連携です：槍が薙ぎ払うたびにかわし、レーザーの柱が噴き出すときは彼から離れましょう。最大で20秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "六角激光之后竞技场变平，他在巨大的金色符文圈中发光，巨大的长枪横扫房间，粉色激光柱在他周围迸发。",
+        "一长串连招：每次长枪横扫时都要闪避，激光柱迸发时远离他。最多每20秒一次。"
+      ],
+      "zh-Hant": [
+        "六角雷射之後競技場變平，他在巨大的金色符文圈中發光，巨大的長槍橫掃房間，粉色雷射柱在他周圍迸發。",
+        "一長串連招：每次長槍橫掃時都要閃避，雷射柱迸發時遠離他。最多每20秒一次。"
+      ]
+    }
+  }
+}

@@ -105,7 +105,13 @@ public class MoveCounterLabel : MonoBehaviour
         }
         if (count == null)
             return "";
-        return prefix + TextOf(count.Value);
+        string text = prefix + TextOf(count.Value);
+#if DEV
+        // Developer/PreferNewMoves on a tree boss: the move it is led to next.
+        if (MoveDirector.TargetText(boss) is { } next)
+            text += $"\n<size=80%><color=#9FD3FF>{next}</color></size>";
+#endif
+        return text;
     }
 
     private static string TextOf(FightRecorder.MoveCount count)

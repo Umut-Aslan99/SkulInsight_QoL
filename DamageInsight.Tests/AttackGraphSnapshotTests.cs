@@ -56,9 +56,11 @@ public class AttackGraphSnapshotTests
         if (!Directory.Exists(folder))
             return;
         var sb = new StringBuilder();
+        var trees = new StringBuilder(); // the classified trees, to compare a rule change before and after
         foreach (var file in Directory.GetFiles(folder, "*_graph.json").OrderBy(f => f))
         {
             var g = AttackGraph.FromSnapshot(File.ReadAllText(file));
+            trees.Append("== ").Append(Path.GetFileName(file)).Append('\n').Append(g.TreeReport());
             sb.Append("== ").Append(Path.GetFileName(file).Replace("_graph.json", "")).Append(" (").Append(g.Attacks.Count(a => !a.IsTail))
               .Append(" moves)\n");
             foreach (var a in g.Attacks)
@@ -70,5 +72,6 @@ public class AttackGraphSnapshotTests
             }
         }
         File.WriteAllText(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "graph-review.txt"), sb.ToString(), new UTF8Encoding(false));
+        File.WriteAllText(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "graph-trees.txt"), trees.ToString(), new UTF8Encoding(false));
     }
 }

@@ -31,11 +31,24 @@ public static class AttackTracker
     private static readonly Dictionary<(object owner, Type machine), (AttackGraph graph, AttackGraph.Unit unit)> UnitOf = new();
     private static readonly Dictionary<object, Run> Live = new();
     private static readonly Dictionary<object, object> ParentOf = new();
+    private static readonly Stack<object> Executing = new();    // tracked coroutines whose MoveNext runs now, innermost on top
 
     /// <summary>(run, coroutine): a tracked coroutine started or finished.</summary>
     public static event Action<Run, object> Started, Ended;
 
     public static bool TryGet(object coroutine, out Run run) => Live.TryGetValue(coroutine, out run);
+
+    /// <summary>
+    /// Whether the code running now is inside an attack's coroutine (a helper or smaller attack it starts is part of
+    /// it), not in a dispatcher or outside the boss's tracked coroutines.
+    /// </summary>
+    public static bool InsideAttack()
+    {
+        foreach (var coroutine in Executing)
+            if (Live.TryGetValue(coroutine, out var run))
+                return run.Unit.Entry && !run.Unit.Dispatcher;
+        return false;
+    }
 
     /// <summary>
     /// Hooks the attack and dispatcher coroutines of a boss (each compiled coroutine class once), and the
@@ -64,7 +77,8 @@ public static class AttackTracker
                 Fields[unit.StateMachine] = (state, self);
                 _harmony ??= new Harmony(MyPluginInfo.PLUGIN_GUID + ".attacks");
                 _harmony.Patch(moveNext, prefix: new HarmonyMethod(typeof(AttackTracker), nameof(Prefix)),
-                    postfix: new HarmonyMethod(typeof(AttackTracker), nameof(Postfix)));
+                    postfix: new HarmonyMethod(typeof(AttackTracker), nameof(Postfix)),
+                    finalizer: new HarmonyMethod(typeof(AttackTracker), nameof(Finalizer)));
             }
             catch (Exception e)
             {
@@ -127,7 +141,26 @@ public static class AttackTracker
             ParentOf.Clear();
     }
 
-    private static void Prefix(object __instance) => Guard.Run("Codex attack tracking", () => Enter(__instance));
+    private static void Prefix(object __instance)
+    {
+        if (Executing.Count > 64)
+            Executing.Clear(); // never popped (should not happen): start afresh
+        Executing.Push(__instance);
+        Guard.Run("Codex attack tracking", () => Enter(__instance));
+    }
+
+    private static void Finalizer()
+    {
+        try
+        {
+            if (Executing.Count > 0)
+                Executing.Pop();
+        }
+        catch (Exception)
+        {
+            // tracking is never worth breaking a boss's coroutine
+        }
+    }
 
     private static void Postfix(object __instance, bool __result) => Guard.Run("Codex attack tracking", () => Leave(__instance, __result));
 

@@ -1,0 +1,327 @@
+{
+  "key": "AdventurerArcher",
+  "moves": {
+    "Arrow shot": {
+      "en": [
+        "Draws the bow and shoots a fast arrow straight ahead.",
+        "Jump over the arrow or close in between shots."
+      ],
+      "de": [
+        "Spannt den Bogen und schießt einen schnellen Pfeil geradeaus.",
+        "Spring über den Pfeil oder rück zwischen den Schüssen nach."
+      ],
+      "es": [
+        "Tensa el arco y dispara una flecha rápida hacia delante.",
+        "Salta sobre la flecha o acércate entre disparos."
+      ],
+      "fr": [
+        "Bande l'arc et tire une flèche rapide droit devant.",
+        "Saute par-dessus la flèche ou rapproche-toi entre deux tirs."
+      ],
+      "pl": [
+        "Napina łuk i wypuszcza szybką strzałę prosto przed siebie.",
+        "Przeskocz strzałę albo podejdź między strzałami."
+      ],
+      "pt-BR": [
+        "Puxa o arco e dispara uma flecha rápida para a frente.",
+        "Pule a flecha ou se aproxime entre os disparos."
+      ],
+      "ru": [
+        "Натягивает лук и пускает быструю стрелу прямо вперёд.",
+        "Перепрыгните стрелу или сближайтесь между выстрелами."
+      ],
+      "ko": [
+        "활을 당겨 앞으로 빠른 화살을 발사합니다.",
+        "화살을 점프로 넘거나, 쏘는 사이에 다가가세요."
+      ],
+      "ja": [
+        "弓を引き、まっすぐ前へ速い矢を放ちます。",
+        "矢を飛び越えるか、撃つ合間に近づきましょう。"
+      ],
+      "zh-Hans": [
+        "拉弓向正前方射出一支快箭。",
+        "跳起越过箭矢，或在射击间隙靠近。"
+      ],
+      "zh-Hant": [
+        "拉弓向正前方射出一支快箭。",
+        "跳起越過箭矢，或在射擊間隙靠近。"
+      ]
+    },
+    "Push": {
+      "en": [
+        "Spins with the bow to knock you back when you come close.",
+        "Back off briefly when the spin starts, then go in again."
+      ],
+      "de": [
+        "Wirbelt mit dem Bogen herum, um dich zurückzustoßen, wenn du nah kommst.",
+        "Weich kurz zurück, wenn die Drehung beginnt, und geh dann wieder ran."
+      ],
+      "es": [
+        "Gira con el arco para empujarte cuando te acercas.",
+        "Retrocede un momento cuando empiece el giro y vuelve a acercarte."
+      ],
+      "fr": [
+        "Tournoie avec l'arc pour te repousser quand tu t'approches.",
+        "Recule brièvement quand la rotation commence, puis reviens."
+      ],
+      "pl": [
+        "Obraca się z łukiem, by cię odepchnąć, gdy podejdziesz.",
+        "Cofnij się na chwilę, gdy zaczyna się obrót, i podejdź znowu."
+      ],
+      "pt-BR": [
+        "Gira com o arco para empurrar você quando se aproxima.",
+        "Recue um pouco quando o giro começar e depois volte."
+      ],
+      "ru": [
+        "Крутится с луком, чтобы отбросить вас, когда вы подходите.",
+        "Ненадолго отойдите, когда начинается вращение, и снова подходите."
+      ],
+      "ko": [
+        "가까이 다가오면 활을 휘두르며 회전해 밀쳐냅니다.",
+        "회전이 시작되면 잠깐 물러났다가 다시 다가가세요."
+      ],
+      "ja": [
+        "近づくと弓を振り回して回転し、押し返します。",
+        "回転が始まったら少し下がり、また近づきましょう。"
+      ],
+      "zh-Hans": [
+        "你靠近时挥弓旋转把你击退。",
+        "旋转开始时稍微后退，然后再靠近。"
+      ],
+      "zh-Hant": [
+        "你靠近時揮弓旋轉把你擊退。",
+        "旋轉開始時稍微後退，然後再靠近。"
+      ]
+    },
+    "Bird hunt": {
+      "en": [
+        "A red mark appears on the floor below you, then a green beam of light strikes down on it.",
+        "Step off the red mark before the beam falls."
+      ],
+      "de": [
+        "Unter dir erscheint eine rote Markierung am Boden, dann schlägt ein grüner Lichtstrahl darauf ein.",
+        "Verlass die rote Markierung, bevor der Strahl fällt."
+      ],
+      "es": [
+        "Aparece una marca roja en el suelo bajo ti y luego un rayo de luz verde cae sobre ella.",
+        "Sal de la marca roja antes de que caiga el rayo."
+      ],
+      "fr": [
+        "Une marque rouge apparaît au sol sous toi, puis un rayon de lumière verte s'y abat.",
+        "Quitte la marque rouge avant que le rayon tombe."
+      ],
+      "pl": [
+        "Pod tobą na ziemi pojawia się czerwony znak, a potem uderza w niego zielony promień.",
+        "Zejdź ze znaku, zanim spadnie promień."
+      ],
+      "pt-BR": [
+        "Uma marca vermelha aparece no chão abaixo de você, depois um raio de luz verde cai sobre ela.",
+        "Saia da marca vermelha antes de o raio cair."
+      ],
+      "ru": [
+        "Под вами на полу появляется красная метка, затем в неё бьёт зелёный луч света.",
+        "Уйдите с красной метки до удара луча."
+      ],
+      "ko": [
+        "당신 아래 바닥에 붉은 표시가 나타나고, 그곳에 초록빛 광선이 내리꽂힙니다.",
+        "광선이 떨어지기 전에 붉은 표시에서 벗어나세요."
+      ],
+      "ja": [
+        "あなたの下の床に赤い印が現れ、そこに緑の光線が降り注ぎます。",
+        "光線が落ちる前に赤い印から離れましょう。"
+      ],
+      "zh-Hans": [
+        "你脚下的地面出现红色标记，随后一道绿色光束劈在上面。",
+        "在光束落下前离开红色标记。"
+      ],
+      "zh-Hant": [
+        "你腳下的地面出現紅色標記，隨後一道綠色光束劈在上面。",
+        "在光束落下前離開紅色標記。"
+      ]
+    },
+    "Back step": {
+      "en": [
+        "Leaps back away from you.",
+        "Comes when you are close: follow up quickly before the next shot."
+      ],
+      "de": [
+        "Springt zurück, weg von dir.",
+        "Kommt, wenn du nah bist: Setz schnell nach, bevor der nächste Schuss kommt."
+      ],
+      "es": [
+        "Salta hacia atrás, alejándose de ti.",
+        "Llega cuando estás cerca: persíguela rápido antes del siguiente disparo."
+      ],
+      "fr": [
+        "Bondit en arrière pour s'éloigner de toi.",
+        "Arrive quand tu es proche : poursuis vite avant le tir suivant."
+      ],
+      "pl": [
+        "Odskakuje do tyłu, od ciebie.",
+        "Pojawia się, gdy jesteś blisko: szybko doskocz przed następnym strzałem."
+      ],
+      "pt-BR": [
+        "Salta para trás, se afastando de você.",
+        "Vem quando você está perto: avance rápido antes do próximo disparo."
+      ],
+      "ru": [
+        "Отпрыгивает назад, подальше от вас.",
+        "Бывает, когда вы рядом: быстро догоняйте до следующего выстрела."
+      ],
+      "ko": [
+        "당신에게서 멀어지도록 뒤로 뛰어 물러납니다.",
+        "가까이 있을 때 나옵니다: 다음 공격 전에 빨리 쫓아가세요."
+      ],
+      "ja": [
+        "あなたから離れるように後ろへ跳びます。",
+        "近くにいるときに使います：次の攻撃の前に素早く追いかけましょう。"
+      ],
+      "zh-Hans": [
+        "向后跳开，远离你。",
+        "你靠近时使用：在下一次射击前迅速追上。"
+      ],
+      "zh-Hant": [
+        "向後跳開，遠離你。",
+        "你靠近時使用：在下一次射擊前迅速追上。"
+      ]
+    },
+    "Back step trap": {
+      "en": [
+        "Leaps back and leaves a trap on the floor where she stood.",
+        "Do not chase straight in: jump over the trap."
+      ],
+      "de": [
+        "Springt zurück und hinterlässt eine Falle am Boden, wo sie stand.",
+        "Lauf nicht direkt hinterher: Spring über die Falle."
+      ],
+      "es": [
+        "Salta hacia atrás y deja una trampa en el suelo donde estaba.",
+        "No la persigas en línea recta: salta sobre la trampa."
+      ],
+      "fr": [
+        "Bondit en arrière et laisse un piège au sol à l'endroit où elle se tenait.",
+        "Ne la poursuis pas tout droit : saute par-dessus le piège."
+      ],
+      "pl": [
+        "Odskakuje i zostawia pułapkę na ziemi tam, gdzie stała.",
+        "Nie biegnij prosto za nią: przeskocz pułapkę."
+      ],
+      "pt-BR": [
+        "Salta para trás e deixa uma armadilha no chão onde estava.",
+        "Não corra direto atrás dela: pule a armadilha."
+      ],
+      "ru": [
+        "Отпрыгивает назад и оставляет ловушку на полу там, где стояла.",
+        "Не бегите прямо за ней: перепрыгните ловушку."
+      ],
+      "ko": [
+        "뒤로 뛰어 물러나며 서 있던 자리에 함정을 남깁니다.",
+        "곧장 쫓아가지 말고 함정을 점프로 넘으세요."
+      ],
+      "ja": [
+        "後ろへ跳び、立っていた場所の床に罠を残します。",
+        "まっすぐ追いかけず、罠を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "向后跳开，并在原来站的地方留下陷阱。",
+        "不要直接追上去：跳过陷阱。"
+      ],
+      "zh-Hant": [
+        "向後跳開，並在原來站的地方留下陷阱。",
+        "不要直接追上去：跳過陷阱。"
+      ]
+    },
+    "Arrow rain (special skill)": {
+      "en": [
+        "The special skill: a rain of arrows over a wide area.",
+        "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+      ],
+      "de": [
+        "Die Spezialfähigkeit: ein Pfeilregen über eine große Fläche.",
+        "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+      ],
+      "es": [
+        "La habilidad especial: una lluvia de flechas sobre una gran zona.",
+        "Por debajo de la mitad de la vida. Inflige suficiente daño durante el lanzamiento para romperlo: quedará aturdido."
+      ],
+      "fr": [
+        "La compétence spéciale : une pluie de flèches sur une large zone.",
+        "Sous la moitié de la vie. Inflige assez de dégâts pendant l'incantation pour l'interrompre : le lanceur sera sonné."
+      ],
+      "pl": [
+        "Umiejętność specjalna: deszcz strzał na dużym obszarze.",
+        "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+      ],
+      "pt-BR": [
+        "A habilidade especial: uma chuva de flechas sobre uma área grande.",
+        "Abaixo da metade da vida. Cause dano suficiente durante a conjuração para quebrá-la: quem conjura fica atordoado."
+      ],
+      "ru": [
+        "Особый навык: дождь из стрел на большой площади.",
+        "Ниже половины здоровья. Нанесите достаточно урона во время подготовки, чтобы сорвать её: противник будет оглушён."
+      ],
+      "ko": [
+        "특수 스킬: 넓은 범위에 화살비를 쏟아냅니다.",
+        "체력이 절반 아래일 때 사용합니다. 시전하는 동안 충분한 피해를 주면 끊을 수 있고, 시전자는 그로기 상태가 됩니다."
+      ],
+      "ja": [
+        "特殊スキル：広い範囲に矢の雨を降らせます。",
+        "体力が半分を切ると使います。詠唱中に十分なダメージを与えると中断でき、使い手はグロッキーになります。"
+      ],
+      "zh-Hans": [
+        "特殊技能：在大范围内降下箭雨。",
+        "体力低于一半时使用。施放期间造成足够伤害即可打断，施放者会陷入虚弱。"
+      ],
+      "zh-Hant": [
+        "特殊技能：在大範圍內降下箭雨。",
+        "體力低於一半時使用。施放期間造成足夠傷害即可打斷，施放者會陷入虛弱。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "Stunned after the special skill was broken: stands dazed for a few seconds.",
+        "Free hits: use your strongest skills now."
+      ],
+      "de": [
+        "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+        "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+      ],
+      "es": [
+        "Aturdido tras romperse la habilidad especial: se queda atontado unos segundos.",
+        "Golpes gratis: usa ahora tus habilidades más fuertes."
+      ],
+      "fr": [
+        "Étourdi après l'interruption de la compétence spéciale : reste sonné quelques secondes.",
+        "Coups gratuits : utilise maintenant tes compétences les plus fortes."
+      ],
+      "pl": [
+        "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+        "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+      ],
+      "pt-BR": [
+        "Atordoado depois que a habilidade especial foi quebrada: fica tonto por alguns segundos.",
+        "Golpes livres: use agora suas habilidades mais fortes."
+      ],
+      "ru": [
+        "Оглушён после срыва особого навыка: несколько секунд стоит без движения.",
+        "Бесплатные удары: используйте сейчас самые сильные навыки."
+      ],
+      "ko": [
+        "특수 스킬이 끊겨 기절한 상태: 몇 초 동안 멍하니 서 있습니다.",
+        "마음껏 공격할 기회입니다: 가장 강한 스킬을 쓰세요."
+      ],
+      "ja": [
+        "特殊スキルを中断されて気絶した状態：数秒間ふらふらと立ち尽くします。",
+        "攻撃し放題です：一番強いスキルを使いましょう。"
+      ],
+      "zh-Hans": [
+        "特殊技能被打断后陷入眩晕：呆立几秒。",
+        "可以随意攻击：现在使用你最强的技能。"
+      ],
+      "zh-Hant": [
+        "特殊技能被打斷後陷入暈眩：呆立幾秒。",
+        "可以隨意攻擊：現在使用你最強的技能。"
+      ]
+    }
+  }
+}

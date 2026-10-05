@@ -32,6 +32,7 @@ public static class GearDescriptions
         {
             Cache.Clear();
             Summons.Clear();
+            Transforms.Clear();
         };
     }
 
@@ -42,7 +43,8 @@ public static class GearDescriptions
             Part(b, "Jump", Loc.T("Jump attack")),
             Part(b, "Dash", Loc.T("Dash attack")),
             Part(b, "Passive", Loc.T("Passive")),
-            SummonParts(b)));
+            SummonParts(b),
+            TransformParts(b)));
 
     public static string ForSwap(Weapon weapon) => Build(weapon, "weapons", b => Part(b, "Swap", null));
 
@@ -373,6 +375,7 @@ public static class GearDescriptions
             var breakdown = Analyze(gear, category);
             if (breakdown == null)
                 return "";
+            DescriptionFormatter.Short = Plugin.DescriptionsShort?.Value ?? false;
             string text = format(breakdown);
             return text.Length > 0 ? "\n\n" + text : "";
         }
@@ -418,7 +421,51 @@ public static class GearDescriptions
                 summons.Add((SummonName(character), summon));
         }
         Summons[breakdown] = summons;
+
+        // A skill or swap that turns the skull into another body (Nightmare's Hell Bike, Devil Berserker's devil
+        // form: StartWeaponPolymorph): that body's attacks, analyzed like a skull (docs/DAMAGE_SCAN.md).
+        var transforms = new List<(bool swap, Breakdown breakdown)>();
+        if (category == "weapons")
+            foreach (var weapon in writer.ReferencedWeapons.Where(w => w != null && w.gameObject.name.Contains("Polymorph")))
+            {
+                var body = AnalyzeTransformed(weapon);
+                if (body != null && body.Sections.Any(sec => sec.HasHits && sec.Kind != "Passive"))
+                    transforms.Add((weapon.gameObject.name.Contains("Swap"), body));
+            }
+        Transforms[breakdown] = transforms;
         return breakdown;
+    }
+
+    private static readonly Dictionary<Breakdown, List<(bool swap, Breakdown breakdown)>> Transforms = new();
+
+    private static Breakdown AnalyzeTransformed(Weapon weapon)
+    {
+        string key = "weapons/" + weapon.gameObject.name.Replace("(Clone)", "").Trim();
+        if (Cache.TryGetValue(key, out var cached))
+            return cached;
+        var writer = new ObjectGraphWriter();
+        writer.WriteRoot(weapon.gameObject, new Dictionary<string, string> { ["category"] = "weapons", ["name"] = weapon.gameObject.name });
+        var breakdown = GearAnalyzer.Analyze(GearDoc.Parse(writer.Result));
+        Cache[key] = breakdown;
+        return breakdown;
+    }
+
+    /// <summary>"Transformed by a skill / the swap:" blocks with the transformed body's attacks.</summary>
+    private static string TransformParts(Breakdown b)
+    {
+        if (!Transforms.TryGetValue(b, out var bodies) || bodies.Count == 0)
+            return "";
+        var parts = new List<string>();
+        foreach (var (swap, body) in bodies)
+        {
+            parts.Add($"<color={DescriptionFormatter.DimColor}>{(swap ? Loc.T("Transformed by the swap:") : Loc.T("Transformed by a skill:"))}</color>");
+            parts.Add(Part(body, "Basic", Loc.T("Basic attack")));
+            parts.Add(Part(body, "Jump", Loc.T("Jump attack")));
+            parts.Add(Part(body, "Dash", Loc.T("Dash attack")));
+            foreach (var skill in body.Sections.Where(sec => sec.Kind == "Skill" && sec.HasHits))
+                parts.Add(Part(body, "Skill", Loc.Name(WeaponRefiner.Humanize(skill.Key)), skill.Key));
+        }
+        return Join(parts.ToArray());
     }
 
     private static readonly Dictionary<Breakdown, List<(string name, Breakdown breakdown)>> Summons = new();

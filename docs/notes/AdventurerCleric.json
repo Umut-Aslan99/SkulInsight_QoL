@@ -1,0 +1,281 @@
+{
+  "key": "AdventurerCleric",
+  "moves": {
+    "Consecration": {
+      "en": [
+        "A red line marks a strip of floor, then golden holy light blazes up along it for a while.",
+        "Step off the marked strip and stay off until the light fades."
+      ],
+      "de": [
+        "Eine rote Linie markiert einen Streifen Boden, dann lodert dort eine Weile goldenes heiliges Licht auf.",
+        "Verlass den markierten Streifen und bleib weg, bis das Licht erlischt."
+      ],
+      "es": [
+        "Una línea roja marca una franja del suelo y luego brota en ella luz sagrada dorada durante un rato.",
+        "Sal de la franja marcada y no vuelvas hasta que se apague la luz."
+      ],
+      "fr": [
+        "Une ligne rouge marque une bande de sol, puis une lumière sacrée dorée y flamboie un moment.",
+        "Quitte la bande marquée et n'y reviens pas avant que la lumière s'éteigne."
+      ],
+      "pl": [
+        "Czerwona linia oznacza pas ziemi, a potem przez chwilę bucha na nim złote święte światło.",
+        "Zejdź z oznaczonego pasa i nie wracaj, aż światło zgaśnie."
+      ],
+      "pt-BR": [
+        "Uma linha vermelha marca uma faixa do chão, depois luz sagrada dourada arde ali por um tempo.",
+        "Saia da faixa marcada e fique fora até a luz sumir."
+      ],
+      "ru": [
+        "Красная линия отмечает полосу пола, затем на ней какое-то время пылает золотой святой свет.",
+        "Уйдите с отмеченной полосы и не возвращайтесь, пока свет не погаснет."
+      ],
+      "ko": [
+        "붉은 선이 바닥 한 구간을 표시하고, 그곳에서 한동안 황금빛 성스러운 빛이 타오릅니다.",
+        "표시된 구간에서 벗어나 빛이 사라질 때까지 들어가지 마세요."
+      ],
+      "ja": [
+        "赤い線が床の一帯を示し、そこにしばらく黄金の聖なる光が燃え上がります。",
+        "示された一帯から離れ、光が消えるまで入らないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "红线标出一段地面，随后金色的圣光在那里燃起一段时间。",
+        "离开标记的地面，光消失前不要回去。"
+      ],
+      "zh-Hant": [
+        "紅線標出一段地面，隨後金色的聖光在那裡燃起一段時間。",
+        "離開標記的地面，光消失前不要回去。"
+      ]
+    },
+    "Holy cross": {
+      "en": [
+        "A red line marks a spot, then a big golden cross appears there and bursts.",
+        "Leave the marked spot before the cross appears."
+      ],
+      "de": [
+        "Eine rote Linie markiert eine Stelle, dann erscheint dort ein großes goldenes Kreuz und zerplatzt.",
+        "Verlass die markierte Stelle, bevor das Kreuz erscheint."
+      ],
+      "es": [
+        "Una línea roja marca un punto y luego aparece ahí una gran cruz dorada que estalla.",
+        "Sal del punto marcado antes de que aparezca la cruz."
+      ],
+      "fr": [
+        "Une ligne rouge marque un endroit, puis une grande croix dorée y apparaît et éclate.",
+        "Quitte l'endroit marqué avant que la croix apparaisse."
+      ],
+      "pl": [
+        "Czerwona linia oznacza miejsce, potem pojawia się tam wielki złoty krzyż i wybucha.",
+        "Zejdź z oznaczonego miejsca, zanim pojawi się krzyż."
+      ],
+      "pt-BR": [
+        "Uma linha vermelha marca um ponto, depois uma grande cruz dourada aparece ali e explode.",
+        "Saia do ponto marcado antes de a cruz aparecer."
+      ],
+      "ru": [
+        "Красная линия отмечает место, затем там появляется большой золотой крест и взрывается.",
+        "Уйдите с отмеченного места до появления креста."
+      ],
+      "ko": [
+        "붉은 선이 한 곳을 표시하고, 그곳에 커다란 황금 십자가가 나타나 터집니다.",
+        "십자가가 나타나기 전에 표시된 곳에서 벗어나세요."
+      ],
+      "ja": [
+        "赤い線がある場所を示し、そこに大きな黄金の十字架が現れて弾けます。",
+        "十字架が現れる前に示された場所から離れましょう。"
+      ],
+      "zh-Hans": [
+        "红线标出一个位置，随后巨大的金色十字架在那里出现并爆开。",
+        "在十字架出现前离开标记的位置。"
+      ],
+      "zh-Hant": [
+        "紅線標出一個位置，隨後巨大的金色十字架在那裡出現並爆開。",
+        "在十字架出現前離開標記的位置。"
+      ]
+    },
+    "Heal": {
+      "en": [
+        "Kneels and prays; green light heals the adventurers.",
+        "Hit her while she prays, and defeat her first so the group stops healing."
+      ],
+      "de": [
+        "Kniet nieder und betet; grünes Licht heilt die Abenteurer.",
+        "Triff sie, während sie betet, und besiege sie zuerst, damit die Gruppe nicht mehr geheilt wird."
+      ],
+      "es": [
+        "Se arrodilla y reza; una luz verde cura a los aventureros.",
+        "Golpéala mientras reza y derrótala primero para que el grupo deje de curarse."
+      ],
+      "fr": [
+        "S'agenouille et prie ; une lumière verte soigne les aventuriers.",
+        "Frappe-la pendant qu'elle prie, et vaincs-la en premier pour que le groupe ne soit plus soigné."
+      ],
+      "pl": [
+        "Klęka i modli się; zielone światło leczy awanturników.",
+        "Bij ją, gdy się modli, i pokonaj ją najpierw, by grupa przestała się leczyć."
+      ],
+      "pt-BR": [
+        "Ajoelha-se e reza; uma luz verde cura os aventureiros.",
+        "Ataque enquanto ela reza e derrote-a primeiro para o grupo parar de se curar."
+      ],
+      "ru": [
+        "Опускается на колени и молится; зелёный свет лечит героев.",
+        "Бейте её, пока она молится, и победите её первой, чтобы группа перестала лечиться."
+      ],
+      "ko": [
+        "무릎을 꿇고 기도하면 초록빛이 모험가들을 치유합니다.",
+        "기도하는 동안 공격하고, 먼저 쓰러뜨려 일행의 회복을 막으세요."
+      ],
+      "ja": [
+        "ひざまずいて祈ると、緑の光が冒険家たちを癒やします。",
+        "祈っている間に攻撃し、先に倒して仲間の回復を止めましょう。"
+      ],
+      "zh-Hans": [
+        "跪下祈祷，绿光治疗冒险家们。",
+        "在她祈祷时攻击，并先打倒她，让队伍无法再治疗。"
+      ],
+      "zh-Hant": [
+        "跪下祈禱，綠光治療冒險家們。",
+        "在她祈禱時攻擊，並先打倒她，讓隊伍無法再治療。"
+      ]
+    },
+    "Reinforce": {
+      "en": [
+        "Prays while a blue aura rises around her: a blessing that strengthens the group.",
+        "Attack her during the prayer to keep the group from getting stronger."
+      ],
+      "de": [
+        "Betet, während eine blaue Aura um sie aufsteigt: ein Segen, der die Gruppe stärkt.",
+        "Greif sie während des Gebets an, damit die Gruppe nicht stärker wird."
+      ],
+      "es": [
+        "Reza mientras surge un aura azul a su alrededor: una bendición que refuerza al grupo.",
+        "Atácala durante el rezo para que el grupo no se fortalezca."
+      ],
+      "fr": [
+        "Prie pendant qu'une aura bleue s'élève autour d'elle : une bénédiction qui renforce le groupe.",
+        "Attaque-la pendant la prière pour que le groupe ne se renforce pas."
+      ],
+      "pl": [
+        "Modli się, a wokół niej wznosi się niebieska aura: błogosławieństwo wzmacniające grupę.",
+        "Atakuj ją podczas modlitwy, by grupa się nie wzmocniła."
+      ],
+      "pt-BR": [
+        "Reza enquanto uma aura azul surge ao redor dela: uma bênção que fortalece o grupo.",
+        "Ataque durante a reza para o grupo não ficar mais forte."
+      ],
+      "ru": [
+        "Молится, пока вокруг неё поднимается синяя аура: благословение, усиливающее группу.",
+        "Атакуйте её во время молитвы, чтобы группа не стала сильнее."
+      ],
+      "ko": [
+        "기도하는 동안 그녀 주위로 푸른 기운이 솟아오릅니다: 일행을 강화하는 축복입니다.",
+        "일행이 강해지지 않도록 기도하는 동안 공격하세요."
+      ],
+      "ja": [
+        "祈る間、彼女の周りに青いオーラが立ち上ります：仲間を強化する祝福です。",
+        "仲間が強くならないよう、祈っている間に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "她祈祷时周围升起蓝色光环：强化队伍的祝福。",
+        "在她祈祷时攻击，以免队伍变强。"
+      ],
+      "zh-Hant": [
+        "她祈禱時周圍升起藍色光環：強化隊伍的祝福。",
+        "在她祈禱時攻擊，以免隊伍變強。"
+      ]
+    },
+    "Massive heal (special skill)": {
+      "en": [
+        "The special skill: a big heal for the whole group.",
+        "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+      ],
+      "de": [
+        "Die Spezialfähigkeit: eine große Heilung für die ganze Gruppe.",
+        "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+      ],
+      "es": [
+        "La habilidad especial: una gran curación para todo el grupo.",
+        "Por debajo de la mitad de la vida. Inflige suficiente daño durante el lanzamiento para romperlo: quedará aturdido."
+      ],
+      "fr": [
+        "La compétence spéciale : un grand soin pour tout le groupe.",
+        "Sous la moitié de la vie. Inflige assez de dégâts pendant l'incantation pour l'interrompre : le lanceur sera sonné."
+      ],
+      "pl": [
+        "Umiejętność specjalna: duże leczenie całej grupy.",
+        "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+      ],
+      "pt-BR": [
+        "A habilidade especial: uma grande cura para todo o grupo.",
+        "Abaixo da metade da vida. Cause dano suficiente durante a conjuração para quebrá-la: quem conjura fica atordoado."
+      ],
+      "ru": [
+        "Особый навык: сильное лечение всей группы.",
+        "Ниже половины здоровья. Нанесите достаточно урона во время подготовки, чтобы сорвать её: противник будет оглушён."
+      ],
+      "ko": [
+        "특수 스킬: 일행 전체를 크게 회복시킵니다.",
+        "체력이 절반 아래일 때 사용합니다. 시전하는 동안 충분한 피해를 주면 끊을 수 있고, 시전자는 그로기 상태가 됩니다."
+      ],
+      "ja": [
+        "特殊スキル：仲間全員を大きく回復します。",
+        "体力が半分を切ると使います。詠唱中に十分なダメージを与えると中断でき、使い手はグロッキーになります。"
+      ],
+      "zh-Hans": [
+        "特殊技能：大幅治疗整个队伍。",
+        "体力低于一半时使用。施放期间造成足够伤害即可打断，施放者会陷入虚弱。"
+      ],
+      "zh-Hant": [
+        "特殊技能：大幅治療整個隊伍。",
+        "體力低於一半時使用。施放期間造成足夠傷害即可打斷，施放者會陷入虛弱。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "Stunned after the special skill was broken: stands dazed for a few seconds.",
+        "Free hits: use your strongest skills now."
+      ],
+      "de": [
+        "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+        "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+      ],
+      "es": [
+        "Aturdido tras romperse la habilidad especial: se queda atontado unos segundos.",
+        "Golpes gratis: usa ahora tus habilidades más fuertes."
+      ],
+      "fr": [
+        "Étourdi après l'interruption de la compétence spéciale : reste sonné quelques secondes.",
+        "Coups gratuits : utilise maintenant tes compétences les plus fortes."
+      ],
+      "pl": [
+        "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+        "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+      ],
+      "pt-BR": [
+        "Atordoado depois que a habilidade especial foi quebrada: fica tonto por alguns segundos.",
+        "Golpes livres: use agora suas habilidades mais fortes."
+      ],
+      "ru": [
+        "Оглушён после срыва особого навыка: несколько секунд стоит без движения.",
+        "Бесплатные удары: используйте сейчас самые сильные навыки."
+      ],
+      "ko": [
+        "특수 스킬이 끊겨 기절한 상태: 몇 초 동안 멍하니 서 있습니다.",
+        "마음껏 공격할 기회입니다: 가장 강한 스킬을 쓰세요."
+      ],
+      "ja": [
+        "特殊スキルを中断されて気絶した状態：数秒間ふらふらと立ち尽くします。",
+        "攻撃し放題です：一番強いスキルを使いましょう。"
+      ],
+      "zh-Hans": [
+        "特殊技能被打断后陷入眩晕：呆立几秒。",
+        "可以随意攻击：现在使用你最强的技能。"
+      ],
+      "zh-Hant": [
+        "特殊技能被打斷後陷入暈眩：呆立幾秒。",
+        "可以隨意攻擊：現在使用你最強的技能。"
+      ]
+    }
+  }
+}

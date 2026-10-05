@@ -1,0 +1,1306 @@
+{
+  "key": "FirstHero1",
+  "about": {
+    "en": "First Hero, the Sword of Carleon, the boss of the fifth chapter. His first form fights with a spear: above 65 % health he uses his basic moves, below that enhanced versions with red shock waves, Hero landing, Assassination and Energy ball, and below 30 % health also Big bang.",
+    "de": "Erster Held, das Schwert von Carleon, Boss des fünften Kapitels. Seine erste Form kämpft mit einem Speer: Über 65 % LP nutzt er seine Grundangriffe, darunter verstärkte Versionen mit roten Schockwellen, Heldenlandung, Attentat und Energiekugel, und unter 30 % LP auch Urknall.",
+    "es": "Primer Héroe, la Espada de Carleon, jefe del quinto capítulo. Su primera forma lucha con una lanza: por encima del 65 % de vida usa sus movimientos básicos; por debajo, versiones mejoradas con ondas rojas, Aterrizaje heroico, Asesinato y Bola de energía, y por debajo del 30 % también Big Bang.",
+    "fr": "Premier Héros, l'Épée de Caerleon, boss du cinquième chapitre. Sa première forme se bat à la lance : au-dessus de 65 % de vie, il utilise ses attaques de base ; en dessous, des versions renforcées avec des ondes rouges, Atterrissage du héros, Assassinat et Boule d'énergie, et sous 30 % aussi Big bang.",
+    "pl": "Pierwszy Bohater, Miecz Carleonu, boss piątego rozdziału. Jego pierwsza forma walczy włócznią: powyżej 65% zdrowia używa podstawowych ruchów, poniżej wzmocnionych wersji z czerwonymi falami, Lądowania bohatera, Zabójstwa i Kuli energii, a poniżej 30% także Wielkiego wybuchu.",
+    "pt-BR": "Primeiro Herói, a Espada de Carleon, chefe do quinto capítulo. Sua primeira forma luta com uma lança: acima de 65 % de vida usa os golpes básicos; abaixo disso, versões fortalecidas com ondas vermelhas, Aterrissagem heroica, Assassinato e Bola de energia, e abaixo de 30 % também Big Bang.",
+    "ru": "Первый герой, Меч Карлеона, босс пятой главы. Его первая форма сражается копьём: выше 65 % здоровья он использует базовые приёмы, ниже — усиленные версии с красными ударными волнами, Приземление героя, Убийство и Энергетический шар, а ниже 30 % ещё и Большой взрыв.",
+    "ko": "초대 용사, 칼레온의 검, 다섯 번째 챕터의 보스입니다. 첫 번째 형태는 창으로 싸웁니다: 체력 65% 이상에서는 기본 기술을, 그 아래에서는 붉은 충격파가 더해진 강화 기술과 용사 착지, 암살, 에너지 구체를, 체력 30% 아래에서는 대폭발도 사용합니다.",
+    "ja": "初代勇者、カーリアンの剣、第5章のボスです。第1形態は槍で戦います：体力65%以上では基本の技を、それ以下では赤い衝撃波を伴う強化版の技、勇者の着地、暗殺、エネルギーボールを、体力30%未満ではビッグバンも使います。",
+    "zh-Hans": "初代勇者，卡利恩的剑，第五章的首领。他的第一形态使用长枪战斗：体力在65%以上时使用基本招式，低于65%时使用带有红色冲击波的强化招式、勇者着陆、暗杀和能量球，低于30%时还会使用大爆炸。",
+    "zh-Hant": "初代勇者，卡倫的劍，第五章的首領。他的第一形態使用長槍戰鬥：體力在65%以上時使用基本招式，低於65%時使用帶有紅色衝擊波的強化招式、勇者著陸、暗殺和能量球，低於30%時還會使用大爆炸。"
+  },
+  "moves": {
+    "Landing": {
+      "en": [
+        "Leaps high into the air and crashes down on your position in a fiery explosion of rubble, then takes a moment to stand up.",
+        "Move away from the spot below him before he lands. While he stands up after landing you can hit him."
+      ],
+      "de": [
+        "Springt hoch in die Luft und kracht in einer feurigen Explosion aus Trümmern auf deine Position herab, dann braucht er einen Moment zum Aufstehen.",
+        "Geh vor der Landung weg von der Stelle unter ihm. Während er nach der Landung aufsteht, kannst du ihn treffen."
+      ],
+      "es": [
+        "Salta muy alto y cae sobre tu posición con una explosión ardiente de escombros; luego tarda un momento en levantarse.",
+        "Aléjate del punto bajo él antes de que aterrice. Mientras se levanta puedes golpearlo."
+      ],
+      "fr": [
+        "Bondit très haut et s'écrase sur ta position dans une explosion de débris enflammés, puis met un instant à se relever.",
+        "Éloigne-toi de l'endroit sous lui avant qu'il n'atterrisse. Pendant qu'il se relève, tu peux le frapper."
+      ],
+      "pl": [
+        "Wyskakuje wysoko i spada na twoją pozycję w ognistej eksplozji gruzu, a potem chwilę wstaje.",
+        "Odsuń się z miejsca pod nim, zanim wyląduje. Gdy wstaje po lądowaniu, możesz go trafić."
+      ],
+      "pt-BR": [
+        "Salta bem alto e despenca sobre a sua posição numa explosão ardente de destroços, depois leva um momento para se levantar.",
+        "Saia do ponto abaixo dele antes do pouso. Enquanto ele se levanta, você pode atacá-lo."
+      ],
+      "ru": [
+        "Высоко подпрыгивает и обрушивается на ваше место в огненном взрыве обломков, затем ему нужно мгновение, чтобы встать.",
+        "Уйдите с места под ним до приземления. Пока он встаёт после приземления, его можно бить."
+      ],
+      "ko": [
+        "높이 뛰어올라 당신의 위치로 떨어지며 불타는 잔해 폭발을 일으키고, 일어나는 데 잠시 걸립니다.",
+        "착지하기 전에 그의 아래에서 벗어나세요. 착지 후 일어나는 동안 공격할 수 있습니다."
+      ],
+      "ja": [
+        "高く跳び上がり、あなたの位置へ落ちてきて燃えるがれきの爆発を起こし、立ち上がるまで少しかかります。",
+        "着地する前に彼の真下から離れましょう。着地後に立ち上がる間は攻撃できます。"
+      ],
+      "zh-Hans": [
+        "高高跃起，砸向你所在的位置，引发燃烧的碎石爆炸，然后需要片刻才能站起来。",
+        "在他落地前离开他正下方的位置。落地后他站起来的期间可以攻击他。"
+      ],
+      "zh-Hant": [
+        "高高躍起，砸向你所在的位置，引發燃燒的碎石爆炸，然後需要片刻才能站起來。",
+        "在他落地前離開他正下方的位置。落地後他站起來的期間可以攻擊他。"
+      ]
+    },
+    "Landing short": {
+      "en": [
+        "A Landing without the long recovery: he leaps, crashes down in a fiery explosion and is ready again quickly.",
+        "Get out from under him before he lands; there is little time to counter afterwards."
+      ],
+      "de": [
+        "Eine Landung ohne lange Erholung: Er springt, kracht in einer feurigen Explosion herab und ist schnell wieder bereit.",
+        "Raus unter ihm, bevor er landet; danach bleibt wenig Zeit für einen Gegenangriff."
+      ],
+      "es": [
+        "Un Aterrizaje sin la larga recuperación: salta, cae con una explosión ardiente y vuelve a estar listo enseguida.",
+        "Sal de debajo de él antes de que aterrice; después hay poco tiempo para contraatacar."
+      ],
+      "fr": [
+        "Un Atterrissage sans la longue récupération : il bondit, s'écrase dans une explosion enflammée et se remet vite.",
+        "Sors de sous lui avant qu'il n'atterrisse ; il reste peu de temps pour contre-attaquer ensuite."
+      ],
+      "pl": [
+        "Lądowanie bez długiego wstawania: skacze, spada w ognistej eksplozji i szybko jest znów gotowy.",
+        "Zejdź spod niego, zanim wyląduje; potem jest mało czasu na kontrę."
+      ],
+      "pt-BR": [
+        "Uma Aterrissagem sem a longa recuperação: ele salta, despenca numa explosão ardente e logo está pronto de novo.",
+        "Saia de baixo dele antes do pouso; depois sobra pouco tempo para contra-atacar."
+      ],
+      "ru": [
+        "Приземление без долгого восстановления: прыгает, обрушивается в огненном взрыве и быстро снова готов.",
+        "Уйдите из-под него до приземления; после почти нет времени на контратаку."
+      ],
+      "ko": [
+        "긴 회복 동작이 없는 착지: 뛰어올라 불타는 폭발과 함께 떨어진 뒤 금방 다시 움직입니다.",
+        "착지 전에 그의 아래에서 벗어나세요. 그 뒤에는 반격할 틈이 거의 없습니다."
+      ],
+      "ja": [
+        "長い立ち上がりのない着地：跳び上がって燃える爆発とともに落ち、すぐにまた動けるようになります。",
+        "着地前に彼の真下から離れましょう。その後は反撃の時間がほとんどありません。"
+      ],
+      "zh-Hans": [
+        "没有长时间恢复的着陆：跃起后伴随燃烧的爆炸落下，很快就能再次行动。",
+        "在他落地前离开他的正下方；之后几乎没有反击的时间。"
+      ],
+      "zh-Hant": [
+        "沒有長時間恢復的著陸：躍起後伴隨燃燒的爆炸落下，很快就能再次行動。",
+        "在他落地前離開他的正下方；之後幾乎沒有反擊的時間。"
+      ]
+    },
+    "Landing (skip end motion)": {
+      "en": [
+        "A Landing that goes straight into a dash along the floor instead of standing up.",
+        "After dodging the landing, be ready to jump over the dash."
+      ],
+      "de": [
+        "Eine Landung, die statt des Aufstehens direkt in einen Sprint am Boden übergeht.",
+        "Nachdem du der Landung ausgewichen bist, sei bereit, über den Sprint zu springen."
+      ],
+      "es": [
+        "Un Aterrizaje que pasa directamente a una carrera a ras de suelo en vez de levantarse.",
+        "Tras esquivar el aterrizaje, prepárate para saltar sobre la carrera."
+      ],
+      "fr": [
+        "Un Atterrissage qui enchaîne directement sur un sprint au sol au lieu de se relever.",
+        "Après avoir esquivé l'atterrissage, prépare-toi à sauter par-dessus le sprint."
+      ],
+      "pl": [
+        "Lądowanie, które zamiast wstawania od razu przechodzi w zryw po ziemi.",
+        "Po uniknięciu lądowania bądź gotów przeskoczyć zryw."
+      ],
+      "pt-BR": [
+        "Uma Aterrissagem que passa direto para uma corrida pelo chão em vez de se levantar.",
+        "Depois de desviar do pouso, prepare-se para pular a corrida."
+      ],
+      "ru": [
+        "Приземление, которое вместо подъёма сразу переходит в рывок по полу.",
+        "Увернувшись от приземления, будьте готовы перепрыгнуть рывок."
+      ],
+      "ko": [
+        "일어나는 대신 바로 바닥을 따라 대쉬로 이어지는 착지입니다.",
+        "착지를 피한 뒤 대쉬를 점프로 넘을 준비를 하세요."
+      ],
+      "ja": [
+        "立ち上がらずに、そのまま床に沿ったダッシュへつながる着地です。",
+        "着地をかわした後、ダッシュを飛び越える準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "着陆后不站起来，直接接一次贴地疾驰。",
+        "躲开着陆后，准备跳起越过疾驰。"
+      ],
+      "zh-Hant": [
+        "著陸後不站起來，直接接一次貼地衝刺。",
+        "躲開著陸後，準備跳起越過衝刺。"
+      ]
+    },
+    "Landing long": {
+      "en": [
+        "A Landing with the full recovery, followed by a back dash, a dash at you and two slashes.",
+        "Dodge the landing, then step back from the slashes that follow; attack after the last one."
+      ],
+      "de": [
+        "Eine Landung mit voller Erholung, gefolgt von einem Rückwärtssprint, einem Sprint auf dich zu und zwei Hieben.",
+        "Weich der Landung aus und geh dann vor den folgenden Hieben zurück; greif nach dem letzten an."
+      ],
+      "es": [
+        "Un Aterrizaje con la recuperación completa, seguido de una carrera hacia atrás, una carrera hacia ti y dos tajos.",
+        "Esquiva el aterrizaje y retrocede ante los tajos que siguen; ataca tras el último."
+      ],
+      "fr": [
+        "Un Atterrissage avec la récupération complète, suivi d'un sprint arrière, d'un sprint vers toi et de deux entailles.",
+        "Esquive l'atterrissage, puis recule devant les entailles qui suivent ; attaque après la dernière."
+      ],
+      "pl": [
+        "Lądowanie z pełnym wstawaniem, po którym następuje zryw w tył, zryw w twoją stronę i dwa cięcia.",
+        "Uniknij lądowania, potem cofnij się przed cięciami; atakuj po ostatnim."
+      ],
+      "pt-BR": [
+        "Uma Aterrissagem com a recuperação completa, seguida de uma corrida para trás, uma corrida até você e dois cortes.",
+        "Desvie do pouso e depois recue dos cortes que vêm a seguir; ataque depois do último."
+      ],
+      "ru": [
+        "Приземление с полным восстановлением, затем рывок назад, рывок к вам и два удара.",
+        "Увернитесь от приземления, затем отступите от следующих ударов; атакуйте после последнего."
+      ],
+      "ko": [
+        "회복 동작까지 모두 하는 착지 후, 백대쉬, 당신을 향한 대쉬, 두 번의 베기가 이어집니다.",
+        "착지를 피한 뒤 이어지는 베기에서 물러나고, 마지막 베기 후에 공격하세요."
+      ],
+      "ja": [
+        "立ち上がりまで行う着地の後、バックダッシュ、あなたへのダッシュ、2回の斬撃が続きます。",
+        "着地をかわし、続く斬撃から下がって、最後の斬撃の後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "完整恢复的着陆之后，接后撤疾驰、冲向你的疾驰和两次斩击。",
+        "躲开着陆，然后从接下来的斩击中后退，最后一击之后再攻击。"
+      ],
+      "zh-Hant": [
+        "完整恢復的著陸之後，接後撤衝刺、衝向你的衝刺和兩次斬擊。",
+        "躲開著陸，然後從接下來的斬擊中後退，最後一擊之後再攻擊。"
+      ]
+    },
+    "Skip landing long end motion -> double slash": {
+      "en": [
+        "A Landing that skips the recovery: right after the crash he back-dashes, dashes at you and slashes twice.",
+        "Dodge the landing and keep your distance: the slashes come right after it."
+      ],
+      "de": [
+        "Eine Landung ohne Erholung: Direkt nach dem Aufprall sprintet er zurück, sprintet auf dich zu und schlägt zweimal zu.",
+        "Weich der Landung aus und halte Abstand: Die Hiebe kommen direkt danach."
+      ],
+      "es": [
+        "Un Aterrizaje sin recuperación: justo después del impacto retrocede, corre hacia ti y da dos tajos.",
+        "Esquiva el aterrizaje y mantén la distancia: los tajos llegan justo después."
+      ],
+      "fr": [
+        "Un Atterrissage sans récupération : juste après l'impact, il recule en sprintant, fonce sur toi et frappe deux fois.",
+        "Esquive l'atterrissage et garde tes distances : les entailles arrivent juste après."
+      ],
+      "pl": [
+        "Lądowanie bez wstawania: zaraz po uderzeniu odskakuje, doskakuje do ciebie i tnie dwa razy.",
+        "Uniknij lądowania i trzymaj dystans: cięcia przychodzą zaraz potem."
+      ],
+      "pt-BR": [
+        "Uma Aterrissagem sem recuperação: logo após o impacto ele recua, corre até você e corta duas vezes.",
+        "Desvie do pouso e mantenha distância: os cortes vêm logo em seguida."
+      ],
+      "ru": [
+        "Приземление без восстановления: сразу после удара он отскакивает, бросается к вам и бьёт дважды.",
+        "Увернитесь от приземления и держите дистанцию: удары следуют сразу."
+      ],
+      "ko": [
+        "회복 동작을 생략한 착지: 떨어진 직후 백대쉬하고 당신에게 대쉬해 두 번 베어 냅니다.",
+        "착지를 피하고 거리를 두세요: 베기가 바로 이어집니다."
+      ],
+      "ja": [
+        "立ち上がりを省いた着地：落ちた直後にバックダッシュし、あなたへダッシュして2回斬ります。",
+        "着地をかわして距離を取りましょう：斬撃がすぐに続きます。"
+      ],
+      "zh-Hans": [
+        "省略恢复动作的着陆：落地后立刻后撤疾驰，冲向你并斩击两次。",
+        "躲开着陆并保持距离：斩击紧接着就来。"
+      ],
+      "zh-Hant": [
+        "省略恢復動作的著陸：落地後立刻後撤衝刺，衝向你並斬擊兩次。",
+        "躲開著陸並保持距離：斬擊緊接著就來。"
+      ]
+    },
+    "Dash": {
+      "en": [
+        "A quick dash along the floor to change position.",
+        "Usually leads into another move: watch what follows."
+      ],
+      "de": [
+        "Ein schneller Sprint am Boden, um die Position zu wechseln.",
+        "Leitet meist einen anderen Angriff ein: Achte darauf, was folgt."
+      ],
+      "es": [
+        "Una carrera rápida a ras de suelo para cambiar de posición.",
+        "Suele llevar a otro movimiento: atento a lo que sigue."
+      ],
+      "fr": [
+        "Un sprint rapide au sol pour changer de position.",
+        "Mène généralement à une autre attaque : surveille la suite."
+      ],
+      "pl": [
+        "Szybki zryw po ziemi, by zmienić pozycję.",
+        "Zwykle prowadzi do innego ruchu: uważaj na to, co nastąpi."
+      ],
+      "pt-BR": [
+        "Uma corrida rápida pelo chão para mudar de posição.",
+        "Costuma levar a outro golpe: fique atento ao que vem depois."
+      ],
+      "ru": [
+        "Быстрый рывок по полу, чтобы сменить позицию.",
+        "Обычно ведёт к другому приёму: следите за продолжением."
+      ],
+      "ko": [
+        "위치를 바꾸기 위해 바닥을 따라 빠르게 대쉬합니다.",
+        "대개 다른 기술로 이어지니 다음 동작을 살피세요."
+      ],
+      "ja": [
+        "位置を変えるために床に沿って素早くダッシュします。",
+        "たいてい別の技につながるので、次の動きに注意しましょう。"
+      ],
+      "zh-Hans": [
+        "贴着地面快速疾驰，改变位置。",
+        "通常会接其他招式：注意接下来的动作。"
+      ],
+      "zh-Hant": [
+        "貼著地面快速衝刺，改變位置。",
+        "通常會接其他招式：注意接下來的動作。"
+      ]
+    },
+    "Back dash": {
+      "en": [
+        "Hops back away from you.",
+        "Comes when you are close; he often attacks again right after."
+      ],
+      "de": [
+        "Springt zurück, weg von dir.",
+        "Kommt, wenn du nah bist; oft greift er direkt danach wieder an."
+      ],
+      "es": [
+        "Salta hacia atrás, alejándose de ti.",
+        "Llega cuando estás cerca; a menudo ataca de nuevo justo después."
+      ],
+      "fr": [
+        "Bondit en arrière pour s'éloigner de toi.",
+        "Arrive quand tu es proche ; il attaque souvent de nouveau juste après."
+      ],
+      "pl": [
+        "Odskakuje do tyłu, od ciebie.",
+        "Pojawia się, gdy jesteś blisko; często zaraz potem znów atakuje."
+      ],
+      "pt-BR": [
+        "Salta para trás, se afastando de você.",
+        "Vem quando você está perto; muitas vezes ele ataca de novo logo depois."
+      ],
+      "ru": [
+        "Отскакивает назад, подальше от вас.",
+        "Бывает, когда вы рядом; часто он сразу снова атакует."
+      ],
+      "ko": [
+        "당신에게서 멀어지도록 뒤로 물러납니다.",
+        "당신이 가까이 있을 때 나오며, 직후에 다시 공격하는 경우가 많습니다."
+      ],
+      "ja": [
+        "あなたから離れるように後ろへ跳びます。",
+        "近くにいるときに使い、直後にまた攻撃してくることが多いです。"
+      ],
+      "zh-Hans": [
+        "向后跳开，远离你。",
+        "你靠近时使用，之后常常立刻再次攻击。"
+      ],
+      "zh-Hant": [
+        "向後跳開，遠離你。",
+        "你靠近時使用，之後常常立刻再次攻擊。"
+      ]
+    },
+    "Dash chase": {
+      "en": [
+        "Crouches, then dashes along the floor straight at you and follows up with a slash.",
+        "Jump over the dash, then keep away from the slash."
+      ],
+      "de": [
+        "Geht in die Hocke, sprintet dann am Boden direkt auf dich zu und setzt mit einem Hieb nach.",
+        "Spring über den Sprint und halte dich dann vom Hieb fern."
+      ],
+      "es": [
+        "Se agacha y luego corre a ras de suelo directo hacia ti, rematando con un tajo.",
+        "Salta sobre la carrera y luego mantente lejos del tajo."
+      ],
+      "fr": [
+        "S'accroupit, puis sprinte au sol droit sur toi et enchaîne par une entaille.",
+        "Saute par-dessus le sprint, puis reste hors de portée de l'entaille."
+      ],
+      "pl": [
+        "Przykuca, potem pędzi po ziemi prosto na ciebie i poprawia cięciem.",
+        "Przeskocz zryw, a potem trzymaj się z dala od cięcia."
+      ],
+      "pt-BR": [
+        "Agacha-se, depois corre pelo chão direto até você e emenda um corte.",
+        "Pule a corrida e depois fique longe do corte."
+      ],
+      "ru": [
+        "Приседает, затем мчится по полу прямо на вас и добавляет удар.",
+        "Перепрыгните рывок, затем держитесь подальше от удара."
+      ],
+      "ko": [
+        "몸을 낮췄다가 바닥을 따라 당신에게 곧장 대쉬한 뒤 베기를 이어갑니다.",
+        "대쉬를 점프로 넘고, 이어지는 베기에서 떨어지세요."
+      ],
+      "ja": [
+        "身をかがめ、床に沿ってあなたへまっすぐダッシュし、斬撃を続けます。",
+        "ダッシュを飛び越え、続く斬撃から離れましょう。"
+      ],
+      "zh-Hans": [
+        "压低身子，然后贴地直冲向你，接着斩击。",
+        "跳起越过疾驰，然后远离斩击。"
+      ],
+      "zh-Hant": [
+        "壓低身子，然後貼地直衝向你，接著斬擊。",
+        "跳起越過衝刺，然後遠離斬擊。"
+      ]
+    },
+    "Dash chase + Slam": {
+      "en": [
+        "Dashes along the floor at you, then slams his spear into the ground with a burst of dust.",
+        "Jump over the dash and step back from the slam. Sometimes he skips the recovery and moves on at once."
+      ],
+      "de": [
+        "Sprintet am Boden auf dich zu und rammt dann seinen Speer mit einer Staubwolke in den Boden.",
+        "Spring über den Sprint und geh vor dem Schlag zurück. Manchmal lässt er die Erholung aus und macht sofort weiter."
+      ],
+      "es": [
+        "Corre a ras de suelo hacia ti y luego clava la lanza en el suelo con una nube de polvo.",
+        "Salta sobre la carrera y retrocede ante el golpe. A veces se salta la recuperación y sigue al instante."
+      ],
+      "fr": [
+        "Sprinte au sol vers toi, puis plante sa lance dans le sol dans un nuage de poussière.",
+        "Saute par-dessus le sprint et recule devant l'impact. Parfois, il saute la récupération et enchaîne aussitôt."
+      ],
+      "pl": [
+        "Pędzi po ziemi w twoją stronę, a potem wbija włócznię w ziemię w chmurze pyłu.",
+        "Przeskocz zryw i cofnij się przed uderzeniem. Czasem pomija wstawanie i od razu działa dalej."
+      ],
+      "pt-BR": [
+        "Corre pelo chão até você e depois crava a lança no chão numa nuvem de poeira.",
+        "Pule a corrida e recue do golpe. Às vezes ele pula a recuperação e segue na hora."
+      ],
+      "ru": [
+        "Мчится по полу к вам, затем вонзает копьё в землю в облаке пыли.",
+        "Перепрыгните рывок и отступите от удара. Иногда он пропускает восстановление и сразу продолжает."
+      ],
+      "ko": [
+        "바닥을 따라 당신에게 대쉬한 뒤, 먼지를 일으키며 창을 땅에 내리찍습니다.",
+        "대쉬를 점프로 넘고 내리찍기에서 물러나세요. 가끔 회복 동작 없이 바로 다음 동작으로 넘어갑니다."
+      ],
+      "ja": [
+        "床に沿ってあなたへダッシュし、土煙とともに槍を地面に叩きつけます。",
+        "ダッシュを飛び越え、叩きつけから下がりましょう。立ち上がりを省いてすぐ次へ移ることもあります。"
+      ],
+      "zh-Hans": [
+        "贴地冲向你，然后扬起尘土，把长枪砸进地面。",
+        "跳起越过疾驰，从重砸中后退。有时他会省略恢复动作，立刻继续行动。"
+      ],
+      "zh-Hant": [
+        "貼地衝向你，然後揚起塵土，把長槍砸進地面。",
+        "跳起越過衝刺，從重砸中後退。有時他會省略恢復動作，立刻繼續行動。"
+      ]
+    },
+    "Slam": {
+      "en": [
+        "Raises his spear and slams it into the ground in front of him with a burst of dust.",
+        "Step back out of reach when the spear goes up."
+      ],
+      "de": [
+        "Hebt seinen Speer und rammt ihn mit einer Staubwolke vor sich in den Boden.",
+        "Geh aus der Reichweite, wenn der Speer hochgeht."
+      ],
+      "es": [
+        "Alza la lanza y la clava en el suelo delante de él con una nube de polvo.",
+        "Retrocede fuera de su alcance cuando suba la lanza."
+      ],
+      "fr": [
+        "Lève sa lance et la plante dans le sol devant lui dans un nuage de poussière.",
+        "Recule hors de portée quand la lance se lève."
+      ],
+      "pl": [
+        "Unosi włócznię i wbija ją w ziemię przed sobą w chmurze pyłu.",
+        "Cofnij się poza zasięg, gdy włócznia idzie w górę."
+      ],
+      "pt-BR": [
+        "Ergue a lança e a crava no chão à sua frente numa nuvem de poeira.",
+        "Recue para fora do alcance quando a lança subir."
+      ],
+      "ru": [
+        "Поднимает копьё и вонзает его в землю перед собой в облаке пыли.",
+        "Отступите из зоны досягаемости, когда копьё поднимается."
+      ],
+      "ko": [
+        "창을 들어 올렸다가 먼지를 일으키며 앞쪽 땅에 내리찍습니다.",
+        "창이 올라가면 닿지 않는 곳으로 물러나세요."
+      ],
+      "ja": [
+        "槍を振り上げ、土煙とともに目の前の地面に叩きつけます。",
+        "槍が上がったら届かない所まで下がりましょう。"
+      ],
+      "zh-Hans": [
+        "举起长枪，扬起尘土砸向身前的地面。",
+        "长枪举起时退到够不到的地方。"
+      ],
+      "zh-Hant": [
+        "舉起長槍，揚起塵土砸向身前的地面。",
+        "長槍舉起時退到夠不到的地方。"
+      ]
+    },
+    "Dash after landing -> slam": {
+      "en": [
+        "After a landing he dashes at you and slams his spear into the ground with a burst of dust.",
+        "After dodging the landing, jump over the dash and step back from the slam."
+      ],
+      "de": [
+        "Nach einer Landung sprintet er auf dich zu und rammt seinen Speer mit einer Staubwolke in den Boden.",
+        "Nachdem du der Landung ausgewichen bist, spring über den Sprint und geh vor dem Schlag zurück."
+      ],
+      "es": [
+        "Tras un aterrizaje corre hacia ti y clava la lanza en el suelo con una nube de polvo.",
+        "Tras esquivar el aterrizaje, salta sobre la carrera y retrocede ante el golpe."
+      ],
+      "fr": [
+        "Après un atterrissage, il fonce sur toi et plante sa lance dans le sol dans un nuage de poussière.",
+        "Après avoir esquivé l'atterrissage, saute par-dessus le sprint et recule devant l'impact."
+      ],
+      "pl": [
+        "Po lądowaniu doskakuje do ciebie i wbija włócznię w ziemię w chmurze pyłu.",
+        "Po uniknięciu lądowania przeskocz zryw i cofnij się przed uderzeniem."
+      ],
+      "pt-BR": [
+        "Depois de uma aterrissagem ele corre até você e crava a lança no chão numa nuvem de poeira.",
+        "Depois de desviar do pouso, pule a corrida e recue do golpe."
+      ],
+      "ru": [
+        "После приземления бросается к вам и вонзает копьё в землю в облаке пыли.",
+        "Увернувшись от приземления, перепрыгните рывок и отступите от удара."
+      ],
+      "ko": [
+        "착지 후 당신에게 대쉬해 먼지를 일으키며 창을 땅에 내리찍습니다.",
+        "착지를 피한 뒤 대쉬를 점프로 넘고 내리찍기에서 물러나세요."
+      ],
+      "ja": [
+        "着地の後、あなたへダッシュし、土煙とともに槍を地面に叩きつけます。",
+        "着地をかわしたら、ダッシュを飛び越え、叩きつけから下がりましょう。"
+      ],
+      "zh-Hans": [
+        "着陆后冲向你，扬起尘土把长枪砸进地面。",
+        "躲开着陆后，跳起越过疾驰，并从重砸中后退。"
+      ],
+      "zh-Hant": [
+        "著陸後衝向你，揚起塵土把長槍砸進地面。",
+        "躲開著陸後，跳起越過衝刺，並從重砸中後退。"
+      ]
+    },
+    "Horizontal slash": {
+      "en": [
+        "Draws his spear back, then swings it in a wide horizontal arc in front of him.",
+        "Step back out of reach during the windup and hit him after the swing."
+      ],
+      "de": [
+        "Zieht seinen Speer zurück und schwingt ihn dann in einem weiten waagrechten Bogen vor sich.",
+        "Geh während des Ausholens aus der Reichweite und triff ihn nach dem Schwung."
+      ],
+      "es": [
+        "Echa la lanza hacia atrás y la blande en un amplio arco horizontal delante de él.",
+        "Retrocede fuera de su alcance durante la preparación y golpéalo tras el barrido."
+      ],
+      "fr": [
+        "Ramène sa lance en arrière, puis la balance en un large arc horizontal devant lui.",
+        "Recule hors de portée pendant la préparation et frappe-le après le coup."
+      ],
+      "pl": [
+        "Cofa włócznię, a potem wymachuje nią szerokim poziomym łukiem przed sobą.",
+        "Cofnij się poza zasięg podczas zamachu i trafiaj go po ciosie."
+      ],
+      "pt-BR": [
+        "Recua a lança e a gira num amplo arco horizontal à sua frente.",
+        "Recue para fora do alcance durante a preparação e acerte-o depois do golpe."
+      ],
+      "ru": [
+        "Отводит копьё назад, затем широко взмахивает им по горизонтали перед собой.",
+        "Отступите из зоны досягаемости во время замаха и бейте после удара."
+      ],
+      "ko": [
+        "창을 뒤로 당겼다가 앞쪽으로 넓게 수평으로 휘두릅니다.",
+        "준비 동작 동안 닿지 않는 곳으로 물러났다가, 휘두른 뒤에 공격하세요."
+      ],
+      "ja": [
+        "槍を後ろに引き、目の前で大きく横に振り払います。",
+        "構えの間に届かない所まで下がり、振り終わった後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "把长枪向后收，然后在身前大幅度横扫。",
+        "蓄力时退到够不到的地方，横扫之后再攻击。"
+      ],
+      "zh-Hant": [
+        "把長槍向後收，然後在身前大幅度橫掃。",
+        "蓄力時退到夠不到的地方，橫掃之後再攻擊。"
+      ]
+    },
+    "Vertical slash": {
+      "en": [
+        "Steps in and swings his spear up in a high vertical arc in front of him.",
+        "The arc reaches high: dodge back rather than jumping over him."
+      ],
+      "de": [
+        "Tritt vor und schwingt seinen Speer in einem hohen senkrechten Bogen vor sich nach oben.",
+        "Der Bogen reicht hoch: Weich lieber nach hinten aus, statt über ihn zu springen."
+      ],
+      "es": [
+        "Da un paso y blande la lanza hacia arriba en un alto arco vertical delante de él.",
+        "El arco llega alto: esquiva hacia atrás en vez de saltar sobre él."
+      ],
+      "fr": [
+        "Avance et balance sa lance vers le haut en un grand arc vertical devant lui.",
+        "L'arc monte haut : esquive en arrière plutôt que de sauter par-dessus lui."
+      ],
+      "pl": [
+        "Robi krok i wymachuje włócznią w górę wysokim pionowym łukiem przed sobą.",
+        "Łuk sięga wysoko: lepiej uskocz w tył, niż skacz nad nim."
+      ],
+      "pt-BR": [
+        "Avança e gira a lança para cima num arco vertical alto à sua frente.",
+        "O arco vai alto: desvie para trás em vez de pular por cima dele."
+      ],
+      "ru": [
+        "Делает шаг и взмахивает копьём вверх высокой вертикальной дугой перед собой.",
+        "Дуга достаёт высоко: уходите назад, а не прыгайте через него."
+      ],
+      "ko": [
+        "앞으로 나서며 창을 앞쪽으로 높게 수직으로 올려 휘두릅니다.",
+        "높이까지 닿으니 그를 뛰어넘기보다 뒤로 피하세요."
+      ],
+      "ja": [
+        "踏み込んで、目の前で槍を高く縦に振り上げます。",
+        "高い所まで届くので、飛び越えるより後ろへかわしましょう。"
+      ],
+      "zh-Hans": [
+        "向前踏步，在身前把长枪向上高高竖劈。",
+        "攻击范围很高：向后躲开，不要从他头上跳过。"
+      ],
+      "zh-Hant": [
+        "向前踏步，在身前把長槍向上高高豎劈。",
+        "攻擊範圍很高：向後躲開，不要從他頭上跳過。"
+      ]
+    },
+    "Long slash": {
+      "en": [
+        "Leans back, then lunges far forward with a long sweeping slash along the floor.",
+        "It reaches far: jump over it or stay well out of range."
+      ],
+      "de": [
+        "Lehnt sich zurück und macht dann einen weiten Ausfall mit einem langen, fegenden Hieb am Boden entlang.",
+        "Er reicht weit: Spring darüber oder bleib weit außer Reichweite."
+      ],
+      "es": [
+        "Se echa atrás y luego arremete muy lejos con un largo tajo barriendo el suelo.",
+        "Llega lejos: sáltalo o mantente bien fuera de alcance."
+      ],
+      "fr": [
+        "Se penche en arrière, puis se fend loin en avant avec une longue entaille balayant le sol.",
+        "Elle porte loin : saute par-dessus ou reste bien hors de portée."
+      ],
+      "pl": [
+        "Odchyla się, a potem robi daleki wypad z długim, zamaszystym cięciem tuż nad ziemią.",
+        "Sięga daleko: przeskocz je albo trzymaj się daleko poza zasięgiem."
+      ],
+      "pt-BR": [
+        "Inclina-se para trás e depois avança longe com um longo corte varrendo o chão.",
+        "Vai longe: pule por cima ou fique bem fora de alcance."
+      ],
+      "ru": [
+        "Отклоняется назад, затем делает далёкий выпад с длинным размашистым ударом вдоль пола.",
+        "Достаёт далеко: перепрыгните его или держитесь подальше."
+      ],
+      "ko": [
+        "몸을 뒤로 기울였다가 바닥을 따라 길게 휩쓰는 베기로 멀리 파고듭니다.",
+        "멀리까지 닿으니 점프로 넘거나 사거리 밖에 있으세요."
+      ],
+      "ja": [
+        "身を引いてから、床に沿って長く薙ぎ払う斬撃で遠くまで踏み込みます。",
+        "遠くまで届くので、飛び越えるか、十分に離れていましょう。"
+      ],
+      "zh-Hans": [
+        "身体后仰，然后贴着地面长距离突进横斩。",
+        "攻击距离很远：跳起越过，或远远待在范围外。"
+      ],
+      "zh-Hant": [
+        "身體後仰，然後貼著地面長距離突進橫斬。",
+        "攻擊距離很遠：跳起越過，或遠遠待在範圍外。"
+      ]
+    },
+    "Triple dash slash": {
+      "en": [
+        "Dashes across the floor three times, slashing at the end of each dash; the last is a long slash.",
+        "Keep moving away and jump over each dash; attack after the long slash."
+      ],
+      "de": [
+        "Sprintet dreimal über den Boden und schlägt am Ende jedes Sprints zu; der letzte ist ein langer Hieb.",
+        "Bleib in Bewegung und spring über jeden Sprint; greif nach dem langen Hieb an."
+      ],
+      "es": [
+        "Recorre el suelo tres veces a toda velocidad, dando un tajo al final de cada carrera; el último es un tajo largo.",
+        "Sigue alejándote y salta sobre cada carrera; ataca tras el tajo largo."
+      ],
+      "fr": [
+        "Traverse le sol trois fois en sprintant, frappant à la fin de chaque sprint ; la dernière est une longue entaille.",
+        "Continue de t'éloigner et saute par-dessus chaque sprint ; attaque après la longue entaille."
+      ],
+      "pl": [
+        "Trzy razy pędzi po ziemi, tnąc na końcu każdego zrywu; ostatnie to długie cięcie.",
+        "Oddalaj się i przeskakuj każdy zryw; atakuj po długim cięciu."
+      ],
+      "pt-BR": [
+        "Atravessa o chão correndo três vezes, cortando no fim de cada corrida; o último é um corte longo.",
+        "Continue se afastando e pule cada corrida; ataque depois do corte longo."
+      ],
+      "ru": [
+        "Трижды проносится по полу, нанося удар в конце каждого рывка; последний — длинный удар.",
+        "Продолжайте отходить и перепрыгивайте каждый рывок; атакуйте после длинного удара."
+      ],
+      "ko": [
+        "바닥을 세 번 대쉬하며 대쉬가 끝날 때마다 베고, 마지막은 긴 베기입니다.",
+        "계속 멀어지며 대쉬마다 점프로 넘고, 긴 베기 후에 공격하세요."
+      ],
+      "ja": [
+        "床を3回ダッシュし、ダッシュの終わりごとに斬ります。最後は長い斬撃です。",
+        "離れ続けて、ダッシュのたびに飛び越え、長い斬撃の後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "贴地疾驰三次，每次疾驰结束时斩击，最后一次是长距离斩击。",
+        "持续远离并跳过每次疾驰，长距离斩击之后再攻击。"
+      ],
+      "zh-Hant": [
+        "貼地衝刺三次，每次衝刺結束時斬擊，最後一次是長距離斬擊。",
+        "持續遠離並跳過每次衝刺，長距離斬擊之後再攻擊。"
+      ]
+    },
+    "Slash combo": {
+      "en": [
+        "A long chain: horizontal slash, a jump slash, a back dash, then a dash at you that ends in a long slash.",
+        "Back off during the chain and wait for the final long slash before you attack."
+      ],
+      "de": [
+        "Eine lange Kette: Querhieb, ein Sprunghieb, ein Rückwärtssprint, dann ein Sprint auf dich zu, der in einem langen Hieb endet.",
+        "Zieh dich während der Kette zurück und warte den letzten langen Hieb ab, bevor du angreifst."
+      ],
+      "es": [
+        "Una larga cadena: tajo horizontal, un tajo en salto, una carrera hacia atrás y luego una carrera hacia ti que acaba en un tajo largo.",
+        "Retrocede durante la cadena y espera al tajo largo final antes de atacar."
+      ],
+      "fr": [
+        "Un long enchaînement : entaille horizontale, entaille sautée, sprint arrière, puis un sprint vers toi qui finit par une longue entaille.",
+        "Recule pendant l'enchaînement et attends la longue entaille finale avant d'attaquer."
+      ],
+      "pl": [
+        "Długi łańcuch: poziome cięcie, cięcie w skoku, zryw w tył, a potem zryw w twoją stronę zakończony długim cięciem.",
+        "Wycofuj się podczas łańcucha i poczekaj na końcowe długie cięcie, zanim zaatakujesz."
+      ],
+      "pt-BR": [
+        "Uma longa sequência: corte horizontal, corte no salto, corrida para trás e depois uma corrida até você que termina num corte longo.",
+        "Recue durante a sequência e espere o corte longo final antes de atacar."
+      ],
+      "ru": [
+        "Длинная связка: горизонтальный удар, удар в прыжке, рывок назад, затем рывок к вам, который заканчивается длинным ударом.",
+        "Отступайте во время связки и дождитесь последнего длинного удара, прежде чем атаковать."
+      ],
+      "ko": [
+        "긴 연계: 수평 베기, 점프 베기, 백대쉬, 그리고 당신을 향한 대쉬가 긴 베기로 끝납니다.",
+        "연계 중에는 물러나 있다가, 마지막 긴 베기가 끝난 뒤 공격하세요."
+      ],
+      "ja": [
+        "長い連携：横斬り、ジャンプ斬り、バックダッシュ、そしてあなたへのダッシュから長い斬撃で終わります。",
+        "連携の間は下がり、最後の長い斬撃が終わってから攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "一长串连招：横斩、跳斩、后撤疾驰，然后冲向你，以长距离斩击结束。",
+        "连招期间后退，等最后的长距离斩击结束再攻击。"
+      ],
+      "zh-Hant": [
+        "一長串連招：橫斬、跳斬、後撤衝刺，然後衝向你，以長距離斬擊結束。",
+        "連招期間後退，等最後的長距離斬擊結束再攻擊。"
+      ]
+    },
+    "Rush": {
+      "en": [
+        "Dashes in and unleashes a flurry of spinning spear sweeps and slashes, finishing with a horizontal slash.",
+        "Get away and wait it out: the flurry covers a wide area. At most every 40 seconds."
+      ],
+      "de": [
+        "Sprintet heran und entfesselt einen Wirbel aus kreisenden Speerschwüngen und Hieben, zum Schluss ein Querhieb.",
+        "Geh weg und warte ab: Der Wirbel deckt eine große Fläche ab. Höchstens alle 40 Sekunden."
+      ],
+      "es": [
+        "Se acerca corriendo y desata una ráfaga de giros de lanza y tajos, rematando con un tajo horizontal.",
+        "Aléjate y espera: la ráfaga cubre un área amplia. Como mucho cada 40 segundos."
+      ],
+      "fr": [
+        "Arrive en sprintant et déchaîne une rafale de moulinets et d'entailles, finissant par une entaille horizontale.",
+        "Éloigne-toi et attends : la rafale couvre une large zone. Au plus toutes les 40 secondes."
+      ],
+      "pl": [
+        "Doskakuje i wyprowadza grad wirujących zamachów włócznią i cięć, kończąc poziomym cięciem.",
+        "Oddal się i przeczekaj: atak obejmuje duży obszar. Najwyżej co 40 sekund."
+      ],
+      "pt-BR": [
+        "Chega correndo e solta uma rajada de giros de lança e cortes, terminando com um corte horizontal.",
+        "Afaste-se e espere passar: a rajada cobre uma área grande. No máximo a cada 40 segundos."
+      ],
+      "ru": [
+        "Подбегает и обрушивает шквал вращающихся взмахов копьём и ударов, завершая горизонтальным ударом.",
+        "Отойдите и переждите: шквал накрывает большую область. Не чаще раза в 40 секунд."
+      ],
+      "ko": [
+        "대쉬로 다가와 창을 빙글빙글 휘두르며 연속으로 베고, 수평 베기로 마무리합니다.",
+        "넓은 범위를 휩쓰니 물러나서 끝날 때까지 기다리세요. 최대 40초마다 사용합니다."
+      ],
+      "ja": [
+        "ダッシュで近づき、槍を回転させながら連続で斬りつけ、横斬りで締めくくります。",
+        "広い範囲に及ぶので、離れて終わるのを待ちましょう。最大で40秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "疾驰接近，连续旋转长枪横扫和斩击，以一记横斩收尾。",
+        "攻击范围很大：远离并等它结束。最多每40秒一次。"
+      ],
+      "zh-Hant": [
+        "衝刺接近，連續旋轉長槍橫掃和斬擊，以一記橫斬收尾。",
+        "攻擊範圍很大：遠離並等它結束。最多每40秒一次。"
+      ]
+    },
+    "Hero landing": {
+      "en": [
+        "Leaps out of sight and the hall darkens; red lightning pillars strike down one after another at the spots marked by red lines on the floor, then he lands.",
+        "Watch the red marks on the floor and stand where there are none. He uses it right as a new health phase begins and again later."
+      ],
+      "de": [
+        "Springt außer Sicht und die Halle verdunkelt sich; rote Blitzsäulen schlagen nacheinander an den Stellen ein, die rote Linien am Boden markieren, dann landet er.",
+        "Achte auf die roten Markierungen am Boden und stell dich dorthin, wo keine sind. Er setzt sie gleich zu Beginn einer neuen LP-Phase ein und später wieder."
+      ],
+      "es": [
+        "Salta fuera de la vista y la sala se oscurece; pilares de rayos rojos caen uno tras otro en los puntos marcados con líneas rojas en el suelo, y luego aterriza.",
+        "Fíjate en las marcas rojas del suelo y colócate donde no haya ninguna. La usa justo al empezar una nueva fase de vida y de nuevo más tarde."
+      ],
+      "fr": [
+        "Bondit hors de vue et la salle s'assombrit ; des piliers de foudre rouge s'abattent l'un après l'autre aux endroits marqués par des lignes rouges au sol, puis il atterrit.",
+        "Repère les marques rouges au sol et place-toi là où il n'y en a pas. Il l'utilise dès qu'une nouvelle phase de vie commence, puis à nouveau plus tard."
+      ],
+      "pl": [
+        "Wyskakuje poza zasięg wzroku i sala ciemnieje; czerwone słupy błyskawic uderzają jeden po drugim w miejsca oznaczone czerwonymi liniami na ziemi, a potem ląduje.",
+        "Patrz na czerwone znaki na ziemi i stań tam, gdzie ich nie ma. Używa go zaraz na początku nowej fazy zdrowia i później ponownie."
+      ],
+      "pt-BR": [
+        "Salta para fora de vista e o salão escurece; pilares de raios vermelhos caem um após o outro nos pontos marcados por linhas vermelhas no chão, depois ele pousa.",
+        "Observe as marcas vermelhas no chão e fique onde não houver nenhuma. Ele usa isso logo no início de uma nova fase de vida e de novo depois."
+      ],
+      "ru": [
+        "Прыгает из виду, и зал темнеет; красные столбы молний бьют один за другим в места, отмеченные красными линиями на полу, затем он приземляется.",
+        "Следите за красными метками на полу и вставайте туда, где их нет. Применяет сразу в начале новой фазы здоровья и потом снова."
+      ],
+      "ko": [
+        "보이지 않는 곳으로 뛰어오르면 홀이 어두워지고, 바닥의 붉은 선이 표시한 곳에 붉은 번개 기둥이 차례로 내리친 뒤 착지합니다.",
+        "바닥의 붉은 표시를 보고 표시가 없는 곳에 서세요. 새 체력 구간이 시작될 때 바로 사용하고, 나중에 다시 사용합니다."
+      ],
+      "ja": [
+        "見えない所まで跳び上がるとホールが暗くなり、床の赤い線が示す場所に赤い雷の柱が次々と落ち、その後着地します。",
+        "床の赤い印を見て、印のない場所に立ちましょう。新しい体力の段階が始まるとすぐに使い、その後もまた使います。"
+      ],
+      "zh-Hans": [
+        "跃出视野，大厅变暗，红色雷柱接连劈在地面红线标出的位置，然后他落地。",
+        "注意地面上的红色标记，站在没有标记的地方。新的体力阶段一开始他就会使用，之后还会再用。"
+      ],
+      "zh-Hant": [
+        "躍出視野，大廳變暗，紅色雷柱接連劈在地面紅線標出的位置，然後他落地。",
+        "注意地面上的紅色標記，站在沒有標記的地方。新的體力階段一開始他就會使用，之後還會再用。"
+      ]
+    },
+    "Enhanced pierce": {
+      "en": [
+        "Crouches, then thrusts his spear forward and sends a red crescent shock wave flying along the floor.",
+        "Jump over the shock wave: it travels much farther than the spear."
+      ],
+      "de": [
+        "Geht in die Hocke, stößt dann den Speer nach vorn und schickt eine rote Sichel-Schockwelle am Boden entlang.",
+        "Spring über die Schockwelle: Sie fliegt viel weiter, als der Speer reicht."
+      ],
+      "es": [
+        "Se agacha y luego lanza una estocada que envía una onda roja en forma de media luna a ras de suelo.",
+        "Salta sobre la onda: llega mucho más lejos que la lanza."
+      ],
+      "fr": [
+        "S'accroupit, puis porte un coup de lance qui envoie une onde de choc rouge en croissant au ras du sol.",
+        "Saute par-dessus l'onde de choc : elle va bien plus loin que la lance."
+      ],
+      "pl": [
+        "Przykuca, potem pchnięciem włóczni posyła czerwoną falę w kształcie sierpa tuż nad ziemią.",
+        "Przeskocz falę: leci dużo dalej, niż sięga włócznia."
+      ],
+      "pt-BR": [
+        "Agacha-se, depois estoca com a lança e lança uma onda de choque vermelha em forma de lua crescente rente ao chão.",
+        "Pule a onda de choque: ela vai muito mais longe que a lança."
+      ],
+      "ru": [
+        "Приседает, затем делает выпад копьём и посылает вдоль пола красную серповидную ударную волну.",
+        "Перепрыгните волну: она летит гораздо дальше, чем достаёт копьё."
+      ],
+      "ko": [
+        "몸을 낮췄다가 창을 찔러 바닥을 따라 붉은 초승달 모양 충격파를 날립니다.",
+        "충격파를 점프로 넘으세요: 창보다 훨씬 멀리 날아갑니다."
+      ],
+      "ja": [
+        "身をかがめ、槍を突き出して、床に沿って赤い三日月形の衝撃波を飛ばします。",
+        "衝撃波を飛び越えましょう：槍よりずっと遠くまで飛びます。"
+      ],
+      "zh-Hans": [
+        "压低身子，然后刺出长枪，贴着地面放出一道红色新月形冲击波。",
+        "跳起越过冲击波：它飞得比长枪远得多。"
+      ],
+      "zh-Hant": [
+        "壓低身子，然後刺出長槍，貼著地面放出一道紅色新月形衝擊波。",
+        "跳起越過衝擊波：它飛得比長槍遠得多。"
+      ]
+    },
+    "Enhanced horizontal slash": {
+      "en": [
+        "Swings his spear all the way around him, leaving a ring of red and black slashes.",
+        "The ring covers both sides of him: get well away before he swings."
+      ],
+      "de": [
+        "Schwingt den Speer einmal ganz um sich herum und hinterlässt einen Ring aus roten und schwarzen Hieben.",
+        "Der Ring deckt beide Seiten ab: Geh weit weg, bevor er ausholt."
+      ],
+      "es": [
+        "Gira la lanza a su alrededor y deja un anillo de tajos rojos y negros.",
+        "El anillo cubre ambos lados: aléjate bien antes del giro."
+      ],
+      "fr": [
+        "Fait tourner sa lance tout autour de lui, laissant un anneau d'entailles rouges et noires.",
+        "L'anneau couvre ses deux côtés : éloigne-toi bien avant qu'il ne frappe."
+      ],
+      "pl": [
+        "Obraca włócznią dookoła siebie, zostawiając pierścień czerwono-czarnych cięć.",
+        "Pierścień obejmuje obie strony: oddal się, zanim się zamachnie."
+      ],
+      "pt-BR": [
+        "Gira a lança ao redor de si, deixando um anel de cortes vermelhos e pretos.",
+        "O anel cobre os dois lados: afaste-se bem antes do golpe."
+      ],
+      "ru": [
+        "Проворачивает копьё вокруг себя, оставляя кольцо красно-чёрных разрезов.",
+        "Кольцо накрывает обе стороны: отойдите подальше до замаха."
+      ],
+      "ko": [
+        "창을 몸 주위로 한 바퀴 휘둘러 붉고 검은 베기의 고리를 남깁니다.",
+        "고리가 양쪽을 모두 덮으니 휘두르기 전에 멀리 떨어지세요."
+      ],
+      "ja": [
+        "槍を体の周りに一回転させ、赤と黒の斬撃の輪を残します。",
+        "輪は両側に及ぶので、振る前に十分離れましょう。"
+      ],
+      "zh-Hans": [
+        "把长枪绕身体挥舞一圈，留下红黑色的斩击环。",
+        "斩击环覆盖他的左右两边：在他挥枪前远远离开。"
+      ],
+      "zh-Hant": [
+        "把長槍繞身體揮舞一圈，留下紅黑色的斬擊環。",
+        "斬擊環覆蓋他的兩側：在他揮槍前遠遠離開。"
+      ]
+    },
+    "Enhanced vertical slash": {
+      "en": [
+        "A slow, heavy upward swing of his spear in a huge vertical arc.",
+        "The windup is long: step back out of reach and hit him after the swing."
+      ],
+      "de": [
+        "Ein langsamer, schwerer Aufwärtsschwung des Speers in einem riesigen senkrechten Bogen.",
+        "Das Ausholen dauert lange: Geh aus der Reichweite und triff ihn nach dem Schwung."
+      ],
+      "es": [
+        "Un barrido lento y pesado hacia arriba con la lanza en un enorme arco vertical.",
+        "La preparación es larga: retrocede fuera de alcance y golpéalo tras el barrido."
+      ],
+      "fr": [
+        "Un balancement lent et lourd de sa lance vers le haut en un immense arc vertical.",
+        "La préparation est longue : recule hors de portée et frappe-le après le coup."
+      ],
+      "pl": [
+        "Powolny, ciężki zamach włócznią w górę ogromnym pionowym łukiem.",
+        "Zamach trwa długo: cofnij się poza zasięg i trafiaj go po ciosie."
+      ],
+      "pt-BR": [
+        "Um golpe lento e pesado da lança para cima num enorme arco vertical.",
+        "A preparação é longa: recue para fora do alcance e acerte-o depois do golpe."
+      ],
+      "ru": [
+        "Медленный тяжёлый взмах копьём вверх огромной вертикальной дугой.",
+        "Замах долгий: отступите из зоны досягаемости и бейте после удара."
+      ],
+      "ko": [
+        "거대한 수직 호를 그리며 창을 느리고 묵직하게 올려 휘두릅니다.",
+        "준비 동작이 길니 닿지 않는 곳으로 물러났다가 휘두른 뒤 공격하세요."
+      ],
+      "ja": [
+        "巨大な縦の弧を描いて、槍をゆっくり重く振り上げます。",
+        "構えが長いので、届かない所まで下がり、振り終わった後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "以巨大的竖直弧线，缓慢而沉重地向上挥起长枪。",
+        "蓄力时间很长：退到够不到的地方，挥完之后再攻击。"
+      ],
+      "zh-Hant": [
+        "以巨大的豎直弧線，緩慢而沉重地向上揮起長槍。",
+        "蓄力時間很長：退到夠不到的地方，揮完之後再攻擊。"
+      ]
+    },
+    "Enhanced slash combo": {
+      "en": [
+        "Jump slashes in a chain, then he lands and a row of red spikes bursts out of the floor in front of him, ending with a long slash.",
+        "Stay out of the row in front of him when he lands; attack after the long slash."
+      ],
+      "de": [
+        "Sprunghiebe in Folge, dann landet er und eine Reihe roter Stacheln bricht vor ihm aus dem Boden; zum Schluss ein langer Hieb.",
+        "Halte dich bei der Landung aus der Reihe vor ihm heraus; greif nach dem langen Hieb an."
+      ],
+      "es": [
+        "Tajos en salto encadenados; luego aterriza y brota del suelo una fila de púas rojas delante de él, terminando con un tajo largo.",
+        "No te quedes en la fila delante de él cuando aterrice; ataca tras el tajo largo."
+      ],
+      "fr": [
+        "Des entailles sautées enchaînées, puis il atterrit et une rangée de pointes rouges jaillit du sol devant lui, finissant par une longue entaille.",
+        "Reste hors de la rangée devant lui quand il atterrit ; attaque après la longue entaille."
+      ],
+      "pl": [
+        "Łańcuch cięć w skoku, potem ląduje, a przed nim z ziemi wyrasta rząd czerwonych kolców; na koniec długie cięcie.",
+        "Nie stój w rzędzie przed nim, gdy ląduje; atakuj po długim cięciu."
+      ],
+      "pt-BR": [
+        "Cortes no salto em sequência; depois ele pousa e uma fileira de espinhos vermelhos sai do chão à frente dele, terminando com um corte longo.",
+        "Fique fora da fileira à frente dele quando ele pousar; ataque depois do corte longo."
+      ],
+      "ru": [
+        "Серия ударов в прыжке, затем он приземляется, и перед ним из пола вырывается ряд красных шипов; в конце длинный удар.",
+        "Не стойте в ряду перед ним, когда он приземляется; атакуйте после длинного удара."
+      ],
+      "ko": [
+        "점프 베기를 연달아 한 뒤 착지하면 그의 앞쪽 바닥에서 붉은 가시가 줄지어 솟아나고, 긴 베기로 끝납니다.",
+        "착지할 때 그의 앞쪽 줄에 서 있지 마세요. 긴 베기 후에 공격하세요."
+      ],
+      "ja": [
+        "ジャンプ斬りを連続で行い、着地すると目の前の床から赤いトゲが一列に突き出し、長い斬撃で終わります。",
+        "着地のときは彼の前の列に立たないようにしましょう。長い斬撃の後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "连续跳斩，落地后身前的地面冒出一排红色尖刺，最后以长距离斩击结束。",
+        "他落地时不要站在他身前的那一排；长距离斩击之后再攻击。"
+      ],
+      "zh-Hant": [
+        "連續跳斬，落地後身前的地面冒出一排紅色尖刺，最後以長距離斬擊結束。",
+        "他落地時不要站在他身前的那一排；長距離斬擊之後再攻擊。"
+      ]
+    },
+    "Enhanced rush": {
+      "en": [
+        "Like Rush, but each spinning sweep throws red and black crescent slashes, and it ends with a long red slash line across the floor.",
+        "Get far away and jump over the final slash line. At most every 50 seconds."
+      ],
+      "de": [
+        "Wie Ansturm, aber jeder kreisende Schwung wirft rot-schwarze Sichelhiebe, und zum Schluss zieht sich eine lange rote Hieblinie über den Boden.",
+        "Geh weit weg und spring über die letzte Hieblinie. Höchstens alle 50 Sekunden."
+      ],
+      "es": [
+        "Como Embestida, pero cada giro lanza tajos rojos y negros en media luna y termina con una larga línea roja de tajo por el suelo.",
+        "Aléjate mucho y salta sobre la línea final. Como mucho cada 50 segundos."
+      ],
+      "fr": [
+        "Comme Ruée, mais chaque moulinet projette des entailles en croissant rouges et noires, et elle se termine par une longue ligne d'entaille rouge au sol.",
+        "Éloigne-toi beaucoup et saute par-dessus la ligne finale. Au plus toutes les 50 secondes."
+      ],
+      "pl": [
+        "Jak Szarża, ale każdy wirujący zamach rzuca czerwono-czarne sierpowe cięcia, a na koniec przez ziemię biegnie długa czerwona linia cięcia.",
+        "Oddal się daleko i przeskocz końcową linię. Najwyżej co 50 sekund."
+      ],
+      "pt-BR": [
+        "Como Investida, mas cada giro lança cortes vermelhos e pretos em lua crescente, e termina com uma longa linha vermelha de corte pelo chão.",
+        "Afaste-se bastante e pule a linha final. No máximo a cada 50 segundos."
+      ],
+      "ru": [
+        "Как Натиск, но каждый взмах выбрасывает красно-чёрные серповидные разрезы, а в конце по полу проходит длинная красная линия удара.",
+        "Отойдите подальше и перепрыгните последнюю линию. Не чаще раза в 50 секунд."
+      ],
+      "ko": [
+        "돌진과 비슷하지만 회전할 때마다 붉고 검은 초승달 베기가 날아가고, 마지막에 바닥을 가로지르는 긴 붉은 베기 선으로 끝납니다.",
+        "멀리 떨어지고 마지막 베기 선을 점프로 넘으세요. 최대 50초마다 사용합니다."
+      ],
+      "ja": [
+        "突進と同じですが、回転するたびに赤と黒の三日月形の斬撃が飛び、最後に床を横切る長い赤い斬撃の線で終わります。",
+        "遠く離れ、最後の斬撃の線を飛び越えましょう。最大で50秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "与突进类似，但每次旋转都会放出红黑色的新月斩击，最后以一道横贯地面的长长红色斩击线结束。",
+        "远远离开，跳起越过最后的斩击线。最多每50秒一次。"
+      ],
+      "zh-Hant": [
+        "與突進類似，但每次旋轉都會放出紅黑色的新月斬擊，最後以一道橫貫地面的長長紅色斬擊線結束。",
+        "遠遠離開，跳起越過最後的斬擊線。最多每50秒一次。"
+      ]
+    },
+    "Grab dash": {
+      "en": [
+        "Dashes at you to grab you; if it catches you, he throws you.",
+        "Jump over the dash: a missed grab leaves him open."
+      ],
+      "de": [
+        "Sprintet auf dich zu, um dich zu packen; erwischt er dich, wirft er dich.",
+        "Spring über den Sprint: Ein verfehlter Griff macht ihn angreifbar."
+      ],
+      "es": [
+        "Corre hacia ti para agarrarte; si te atrapa, te lanza.",
+        "Salta sobre la carrera: un agarre fallido lo deja expuesto."
+      ],
+      "fr": [
+        "Fonce sur toi pour t'attraper ; s'il t'attrape, il te projette.",
+        "Saute par-dessus le sprint : une prise ratée le laisse vulnérable."
+      ],
+      "pl": [
+        "Pędzi na ciebie, by cię złapać; jeśli mu się uda, rzuca tobą.",
+        "Przeskocz zryw: chybiony chwyt odsłania go."
+      ],
+      "pt-BR": [
+        "Corre até você para agarrar; se pegar, ele arremessa você.",
+        "Pule a corrida: uma agarrada que erra o deixa exposto."
+      ],
+      "ru": [
+        "Бросается к вам, чтобы схватить; если поймает, швыряет вас.",
+        "Перепрыгните рывок: промах с захватом оставляет его открытым."
+      ],
+      "ko": [
+        "잡기 위해 당신에게 대쉬하며, 잡히면 당신을 던집니다.",
+        "대쉬를 점프로 넘으세요: 잡기가 빗나가면 빈틈이 생깁니다."
+      ],
+      "ja": [
+        "掴むためにあなたへダッシュし、捕まると投げ飛ばされます。",
+        "ダッシュを飛び越えましょう：掴みが外れると隙ができます。"
+      ],
+      "zh-Hans": [
+        "冲向你试图抓住你；被抓住就会被扔出去。",
+        "跳起越过疾驰：抓取落空时他会露出破绽。"
+      ],
+      "zh-Hant": [
+        "衝向你試圖抓住你；被抓住就會被扔出去。",
+        "跳起越過衝刺：抓取落空時他會露出破綻。"
+      ]
+    },
+    "Grab combo": {
+      "en": [
+        "Reaches out to grab you up close; if it catches you, he follows with a combo and throws you.",
+        "Do not stand right next to him when his arm goes back."
+      ],
+      "de": [
+        "Greift aus nächster Nähe nach dir; erwischt er dich, folgt eine Kombo und er wirft dich.",
+        "Steh nicht direkt neben ihm, wenn er den Arm zurückzieht."
+      ],
+      "es": [
+        "Intenta agarrarte de cerca; si te atrapa, sigue con un combo y te lanza.",
+        "No te quedes justo a su lado cuando eche el brazo atrás."
+      ],
+      "fr": [
+        "Tente de t'attraper de près ; s'il t'attrape, il enchaîne un combo et te projette.",
+        "Ne reste pas juste à côté de lui quand il ramène le bras en arrière."
+      ],
+      "pl": [
+        "Sięga, by złapać cię z bliska; jeśli mu się uda, wykonuje kombinację i rzuca tobą.",
+        "Nie stój tuż obok niego, gdy cofa rękę."
+      ],
+      "pt-BR": [
+        "Estica o braço para agarrar você de perto; se pegar, emenda um combo e arremessa você.",
+        "Não fique colado nele quando ele recuar o braço."
+      ],
+      "ru": [
+        "Пытается схватить вас вплотную; если поймает, проводит серию ударов и швыряет вас.",
+        "Не стойте вплотную к нему, когда он отводит руку."
+      ],
+      "ko": [
+        "가까이에서 손을 뻗어 잡으려 하며, 잡히면 연속 공격 후 당신을 던집니다.",
+        "그가 팔을 뒤로 당길 때 바로 옆에 서 있지 마세요."
+      ],
+      "ja": [
+        "近くで手を伸ばして掴もうとし、捕まると連続攻撃の後に投げ飛ばされます。",
+        "腕を引いたら、すぐ隣に立たないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "近距离伸手抓你；被抓住后会接一套连击并把你扔出去。",
+        "他把手臂向后收时，不要站在他身边。"
+      ],
+      "zh-Hant": [
+        "近距離伸手抓你；被抓住後會接一套連擊並把你扔出去。",
+        "他把手臂向後收時，不要站在他身邊。"
+      ]
+    },
+    "Assassination": {
+      "en": [
+        "Vanishes and reappears right next to you with a quick, low slash.",
+        "Comes when you are far away: keep moving so the slash misses, then punish his recovery."
+      ],
+      "de": [
+        "Verschwindet und taucht direkt neben dir mit einem schnellen, tiefen Hieb wieder auf.",
+        "Kommt, wenn du weit weg bist: Bleib in Bewegung, damit der Hieb verfehlt, und nutze dann seine Erholung."
+      ],
+      "es": [
+        "Desaparece y reaparece justo a tu lado con un tajo rápido y bajo.",
+        "Llega cuando estás lejos: sigue moviéndote para que falle y castiga su recuperación."
+      ],
+      "fr": [
+        "Disparaît et réapparaît juste à côté de toi avec une entaille basse et rapide.",
+        "Arrive quand tu es loin : continue de bouger pour qu'elle rate, puis punis sa récupération."
+      ],
+      "pl": [
+        "Znika i pojawia się tuż obok ciebie z szybkim, niskim cięciem.",
+        "Pojawia się, gdy jesteś daleko: ruszaj się, by cięcie chybiło, i ukarz go, gdy wstaje."
+      ],
+      "pt-BR": [
+        "Some e reaparece bem ao seu lado com um corte rápido e baixo.",
+        "Vem quando você está longe: continue se movendo para o corte errar e castigue a recuperação dele."
+      ],
+      "ru": [
+        "Исчезает и появляется прямо рядом с вами с быстрым низким ударом.",
+        "Бывает, когда вы далеко: двигайтесь, чтобы удар прошёл мимо, и накажите его, пока он восстанавливается."
+      ],
+      "ko": [
+        "사라졌다가 당신 바로 옆에 나타나 빠르고 낮게 베어 냅니다.",
+        "멀리 있을 때 나옵니다: 계속 움직여 베기를 빗나가게 하고, 회복하는 틈을 노리세요."
+      ],
+      "ja": [
+        "姿を消し、あなたのすぐ隣に現れて素早く低い斬撃を放ちます。",
+        "遠くにいるときに使います：動き続けて斬撃を外させ、立ち直る隙を突きましょう。"
+      ],
+      "zh-Hans": [
+        "消失后在你身边出现，迅速低身斩击。",
+        "你离得远时使用：保持移动让斩击落空，然后趁他恢复时反击。"
+      ],
+      "zh-Hant": [
+        "消失後在你身邊出現，迅速低身斬擊。",
+        "你離得遠時使用：保持移動讓斬擊落空，然後趁他恢復時反擊。"
+      ]
+    },
+    "Energy ball": {
+      "en": [
+        "Throws several dark red orbs that float in the air for a moment and then burst into dark explosions.",
+        "Only when you are close and in the air: land or get away from the orbs before they burst."
+      ],
+      "de": [
+        "Wirft mehrere dunkelrote Kugeln, die kurz in der Luft schweben und dann in dunklen Explosionen zerplatzen.",
+        "Nur wenn du nah und in der Luft bist: Lande oder entferne dich von den Kugeln, bevor sie platzen."
+      ],
+      "es": [
+        "Lanza varios orbes rojo oscuro que flotan un momento en el aire y luego estallan en explosiones oscuras.",
+        "Solo cuando estás cerca y en el aire: aterriza o aléjate de los orbes antes de que estallen."
+      ],
+      "fr": [
+        "Lance plusieurs orbes rouge sombre qui flottent un instant dans les airs puis éclatent en explosions sombres.",
+        "Seulement quand tu es proche et en l'air : atterris ou éloigne-toi des orbes avant qu'ils n'éclatent."
+      ],
+      "pl": [
+        "Rzuca kilka ciemnoczerwonych kul, które chwilę unoszą się w powietrzu, a potem wybuchają mrocznymi eksplozjami.",
+        "Tylko gdy jesteś blisko i w powietrzu: wyląduj albo oddal się od kul, zanim wybuchną."
+      ],
+      "pt-BR": [
+        "Lança vários orbes vermelho-escuros que flutuam no ar por um momento e depois explodem em explosões sombrias.",
+        "Só quando você está perto e no ar: pouse ou se afaste dos orbes antes que explodam."
+      ],
+      "ru": [
+        "Бросает несколько тёмно-красных сфер, которые на мгновение зависают в воздухе, а затем взрываются тёмными взрывами.",
+        "Только когда вы рядом и в воздухе: приземлитесь или отойдите от сфер, пока они не взорвались."
+      ],
+      "ko": [
+        "검붉은 구슬 여러 개를 던지며, 구슬은 잠시 공중에 떠 있다가 어두운 폭발로 터집니다.",
+        "당신이 가까이에서 공중에 있을 때만 사용합니다: 터지기 전에 착지하거나 구슬에서 멀어지세요."
+      ],
+      "ja": [
+        "暗い赤の球をいくつか投げ、球は少し空中に浮かんでから暗い爆発となって弾けます。",
+        "あなたが近くで空中にいるときだけ使います：弾ける前に着地するか、球から離れましょう。"
+      ],
+      "zh-Hans": [
+        "扔出数个暗红色的球，球在空中漂浮片刻后爆成黑暗的爆炸。",
+        "只在你靠近且身在空中时使用：在球爆开前落地或远离它们。"
+      ],
+      "zh-Hant": [
+        "扔出數個暗紅色的球，球在空中漂浮片刻後爆成黑暗的爆炸。",
+        "只在你靠近且身在空中時使用：在球爆開前落地或遠離它們。"
+      ]
+    },
+    "Big bang": {
+      "en": [
+        "Below 30 % health: the hall goes dark, he slashes again and again while huge white slash lines criss-cross the screen and red pillars rise, then he ends with a giant dark red explosion around himself.",
+        "The white lines show where the next slashes cut: stand between them. Get far away from him before the final explosion. At most every 100 seconds."
+      ],
+      "de": [
+        "Unter 30 % LP: Die Halle wird dunkel, er schlägt immer wieder zu, während riesige weiße Hieblinien den Bildschirm kreuzen und rote Säulen aufsteigen, dann endet er mit einer gewaltigen dunkelroten Explosion um sich herum.",
+        "Die weißen Linien zeigen, wo die nächsten Hiebe schneiden: Stell dich dazwischen. Geh vor der letzten Explosion weit weg von ihm. Höchstens alle 100 Sekunden."
+      ],
+      "es": [
+        "Por debajo del 30 % de vida: la sala se oscurece, da tajos una y otra vez mientras enormes líneas blancas cruzan la pantalla y surgen pilares rojos, y termina con una gigantesca explosión rojo oscuro a su alrededor.",
+        "Las líneas blancas muestran por dónde cortarán los siguientes tajos: colócate entre ellas. Aléjate mucho antes de la explosión final. Como mucho cada 100 segundos."
+      ],
+      "fr": [
+        "Sous 30 % de vie : la salle s'assombrit, il frappe encore et encore pendant que d'immenses lignes blanches s'entrecroisent à l'écran et que des piliers rouges s'élèvent, puis il termine par une gigantesque explosion rouge sombre autour de lui.",
+        "Les lignes blanches montrent où frapperont les entailles suivantes : place-toi entre elles. Éloigne-toi beaucoup avant l'explosion finale. Au plus toutes les 100 secondes."
+      ],
+      "pl": [
+        "Poniżej 30% zdrowia: sala ciemnieje, tnie raz za razem, podczas gdy ogromne białe linie cięć krzyżują się na ekranie i wznoszą się czerwone słupy, a na koniec wywołuje wokół siebie gigantyczną ciemnoczerwoną eksplozję.",
+        "Białe linie pokazują, gdzie przetną następne cięcia: stań między nimi. Przed końcową eksplozją oddal się od niego daleko. Najwyżej co 100 sekund."
+      ],
+      "pt-BR": [
+        "Abaixo de 30 % de vida: o salão escurece, ele corta várias vezes enquanto enormes linhas brancas cruzam a tela e pilares vermelhos sobem, e termina com uma gigantesca explosão vermelho-escura ao redor de si.",
+        "As linhas brancas mostram onde os próximos cortes passam: fique entre elas. Afaste-se bastante antes da explosão final. No máximo a cada 100 segundos."
+      ],
+      "ru": [
+        "Ниже 30 % здоровья: зал темнеет, он рубит снова и снова, пока огромные белые линии разрезов перечёркивают экран и поднимаются красные столбы, а в конце вокруг него гремит гигантский тёмно-красный взрыв.",
+        "Белые линии показывают, где пройдут следующие разрезы: вставайте между ними. До последнего взрыва отойдите от него подальше. Не чаще раза в 100 секунд."
+      ],
+      "ko": [
+        "체력 30% 아래에서: 홀이 어두워지고, 거대한 하얀 베기 선이 화면을 교차하고 붉은 기둥이 솟는 동안 계속 베다가, 자기 주위에 거대한 검붉은 폭발을 일으키며 끝납니다.",
+        "하얀 선은 다음 베기가 지나갈 곳입니다: 선 사이에 서세요. 마지막 폭발 전에 그에게서 멀리 떨어지세요. 최대 100초마다 사용합니다."
+      ],
+      "ja": [
+        "体力30%未満で：ホールが暗くなり、巨大な白い斬撃の線が画面を交差し赤い柱が立ち上る中で何度も斬りつけ、最後に自分の周りで巨大な暗い赤の爆発を起こします。",
+        "白い線は次の斬撃が通る場所です：線の間に立ちましょう。最後の爆発の前に彼から遠く離れましょう。最大で100秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "体力低于30%时：大厅变暗，巨大的白色斩击线在画面上纵横交错，红色光柱升起，他不断斩击，最后在自己周围引发巨大的暗红色爆炸。",
+        "白线表示下一次斩击的位置：站在白线之间。最后的爆炸之前远远离开他。最多每100秒一次。"
+      ],
+      "zh-Hant": [
+        "體力低於30%時：大廳變暗，巨大的白色斬擊線在畫面上縱橫交錯，紅色光柱升起，他不斷斬擊，最後在自己周圍引發巨大的暗紅色爆炸。",
+        "白線表示下一次斬擊的位置：站在白線之間。最後的爆炸之前遠遠離開他。最多每100秒一次。"
+      ]
+    }
+  }
+}

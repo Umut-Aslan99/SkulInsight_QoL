@@ -1,0 +1,800 @@
+{
+  "key": "Pope",
+  "about": {
+    "en": "St. Joan II, the boss of the fourth chapter. In the first phase she sits on her throne behind a barrier while fanatics attack: break the two dark crystals beside her to end it (in the Dark Mirror the crystals take turns being shielded). In the second phase she flies over platforms, guarded by escort orbs circling the hall; in the Dark Mirror the platforms you stand on are attacked every now and then.",
+    "de": "St. Joan II, Boss des vierten Kapitels. In der ersten Phase sitzt sie hinter einer Barriere auf ihrem Thron, während Fanatiker angreifen: Zerstöre die beiden dunklen Kristalle neben ihr, um sie zu beenden (im Dunklen Spiegel sind die Kristalle abwechselnd geschützt). In der zweiten Phase fliegt sie über Plattformen, bewacht von Eskorte-Kugeln, die durch die Halle kreisen; im Dunklen Spiegel werden die Plattformen, auf denen du stehst, immer wieder angegriffen.",
+    "es": "San Juan II, jefa del cuarto capítulo. En la primera fase se sienta en su trono tras una barrera mientras los fanáticos atacan: rompe los dos cristales oscuros a su lado para terminarla (en el Espejo oscuro los cristales se turnan para estar protegidos). En la segunda fase vuela sobre plataformas, protegida por orbes de escolta que giran por la sala; en el Espejo oscuro las plataformas donde estás reciben ataques cada cierto tiempo.",
+    "fr": "St Jehan II, boss du quatrième chapitre. En première phase, elle siège sur son trône derrière une barrière pendant que les fanatiques attaquent : brise les deux cristaux sombres à ses côtés pour y mettre fin (dans le Miroir noir, les cristaux sont protégés à tour de rôle). En seconde phase, elle vole au-dessus de plateformes, gardée par des orbes d'escorte qui tournent dans la salle ; dans le Miroir noir, les plateformes où tu te tiens sont attaquées de temps en temps.",
+    "pl": "Św. Joanna II, boss czwartego rozdziału. W pierwszej fazie siedzi na tronie za barierą, a atakują fanatycy: zniszcz dwa mroczne kryształy obok niej, by ją zakończyć (w Ciemnym lustrze kryształy są na zmianę osłonięte). W drugiej fazie lata nad platformami, strzeżona przez kule eskorty krążące po sali; w Ciemnym lustrze platformy, na których stoisz, są co jakiś czas atakowane.",
+    "pt-BR": "Santa Joana II, chefe do quarto capítulo. Na primeira fase ela fica no trono atrás de uma barreira enquanto fanáticos atacam: quebre os dois cristais sombrios ao lado dela para encerrá-la (no Espelho Sombrio os cristais se revezam protegidos). Na segunda fase ela voa sobre plataformas, guardada por orbes de escolta que circulam pelo salão; no Espelho Sombrio as plataformas onde você está são atacadas de tempos em tempos.",
+    "ru": "Святая Иоанна II, босс четвёртой главы. В первой фазе она сидит на троне за барьером, пока атакуют фанатики: разбейте два тёмных кристалла рядом с ней, чтобы закончить её (в Тёмном зеркале кристаллы по очереди защищены). Во второй фазе она летает над платформами под охраной сфер, кружащих по залу; в Тёмном зеркале платформы, на которых вы стоите, время от времени атакуются.",
+    "ko": "성 요한나 2세, 네 번째 챕터의 보스입니다. 첫 번째 페이즈에서는 광신도들이 공격하는 동안 방벽 뒤 왕좌 위에 있으며, 옆의 어둠의 수정 두 개를 부수면 끝납니다(검은 거울에서는 수정이 번갈아 보호됩니다). 두 번째 페이즈에서는 홀을 도는 호위 구슬의 보호를 받으며 발판 위를 날아다니고, 검은 거울에서는 당신이 서 있는 발판이 때때로 공격받습니다.",
+    "ja": "聖ヨハンナ2世、第4章のボスです。第1フェーズでは狂信者たちが攻撃する間、障壁の奥の玉座に座っています。横にある2つの闇の水晶を壊すと終わります（闇の鏡では水晶が交代で守られます）。第2フェーズではホールを回る護衛の球に守られながら足場の上を飛び回り、闇の鏡ではあなたが立っている足場がときどき攻撃されます。",
+    "zh-Hans": "圣约翰娜2世，第四章的首领。第一阶段她坐在屏障后的王座上，由盲信者发动攻击：打碎她身旁的两颗黑暗水晶即可结束这一阶段（魔镜中水晶会轮流受到保护）。第二阶段她在平台上空飞行，由环绕大厅的护卫球保护；魔镜中你所站的平台会不时受到攻击。",
+    "zh-Hant": "聖瓊安二世，第四章的首領。第一階段她坐在屏障後的王座上，由盲信者發動攻擊：打碎她身旁的兩顆黑暗水晶即可結束這一階段（黑暗鏡子中水晶會輪流受到保護）。第二階段她在平台上空飛行，由環繞大廳的護衛球保護；黑暗鏡子中你所站的平台會不時受到攻擊。"
+  },
+  "moves": {
+    "Nervousness": {
+      "en": [
+        "Trembles on her throne, then a flash of light bursts in front of her and golden shock waves roll along the floor to both sides.",
+        "Jump over the shock waves as they reach you."
+      ],
+      "de": [
+        "Zittert auf ihrem Thron, dann blitzt vor ihr ein Licht auf und goldene Schockwellen rollen zu beiden Seiten über den Boden.",
+        "Spring über die Schockwellen, wenn sie dich erreichen."
+      ],
+      "es": [
+        "Tiembla en su trono; luego estalla un destello de luz delante de ella y ondas doradas recorren el suelo hacia ambos lados.",
+        "Salta sobre las ondas cuando te alcancen."
+      ],
+      "fr": [
+        "Tremble sur son trône, puis un éclair de lumière jaillit devant elle et des ondes de choc dorées roulent au sol des deux côtés.",
+        "Saute par-dessus les ondes de choc quand elles t'atteignent."
+      ],
+      "pl": [
+        "Drży na tronie, potem przed nią rozbłyska światło, a złote fale uderzeniowe toczą się po ziemi w obie strony.",
+        "Przeskakuj fale uderzeniowe, gdy do ciebie dotrą."
+      ],
+      "pt-BR": [
+        "Treme no trono, depois um clarão explode à frente dela e ondas de choque douradas rolam pelo chão para os dois lados.",
+        "Pule as ondas de choque quando chegarem até você."
+      ],
+      "ru": [
+        "Дрожит на троне, затем перед ней вспыхивает свет и золотые ударные волны катятся по полу в обе стороны.",
+        "Перепрыгивайте ударные волны, когда они до вас доходят."
+      ],
+      "ko": [
+        "왕좌에서 몸을 떨다가 앞에서 빛이 번쩍이고, 황금 충격파가 바닥을 따라 양쪽으로 퍼져 나갑니다.",
+        "충격파가 닿을 때 점프로 넘으세요."
+      ],
+      "ja": [
+        "玉座で身を震わせると、目の前で光が弾け、黄金の衝撃波が床を伝って両側へ広がります。",
+        "衝撃波が届いたらジャンプで飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "她在王座上颤抖，随后面前闪出一道光，金色冲击波沿地面向两边滚去。",
+        "冲击波到达时跳起越过。"
+      ],
+      "zh-Hant": [
+        "她在王座上顫抖，隨後面前閃出一道光，金色衝擊波沿地面向兩邊滾去。",
+        "衝擊波到達時跳起越過。"
+      ]
+    },
+    "Baptism": {
+      "en": [
+        "Raises her staff; a burst of light rays flashes from its head, then golden orbs fly up and rain down across the hall, leaving small light pillars where they land.",
+        "Watch the orbs as they come down and step between their landing spots."
+      ],
+      "de": [
+        "Hebt ihren Stab; aus seiner Spitze blitzt ein Strahlenkranz, dann fliegen goldene Kugeln hoch und regnen über die Halle nieder, wo sie kleine Lichtsäulen hinterlassen.",
+        "Beobachte die fallenden Kugeln und stell dich zwischen ihre Landestellen."
+      ],
+      "es": [
+        "Alza su báculo; de su punta estalla un haz de rayos de luz, luego orbes dorados suben y llueven sobre la sala, dejando pequeños pilares de luz donde caen.",
+        "Observa los orbes al caer y colócate entre sus puntos de impacto."
+      ],
+      "fr": [
+        "Lève son bâton ; une gerbe de rayons jaillit de sa pointe, puis des orbes dorés s'élèvent et retombent en pluie sur la salle, laissant de petits piliers de lumière là où ils tombent.",
+        "Observe les orbes qui retombent et place-toi entre leurs points d'impact."
+      ],
+      "pl": [
+        "Unosi laskę; z jej głowicy rozbłyskuje snop promieni, potem złote kule wzlatują i spadają deszczem na salę, zostawiając małe słupy światła tam, gdzie upadną.",
+        "Obserwuj spadające kule i stań między miejscami, w które trafią."
+      ],
+      "pt-BR": [
+        "Ergue o cetro; um feixe de raios de luz brilha da ponta, depois orbes dourados sobem e chovem pelo salão, deixando pequenos pilares de luz onde caem.",
+        "Observe os orbes caindo e fique entre os pontos onde eles caem."
+      ],
+      "ru": [
+        "Поднимает посох; из его навершия вспыхивает сноп лучей, затем золотые сферы взлетают и дождём падают на зал, оставляя небольшие столбы света там, где упадут.",
+        "Следите за падающими сферами и вставайте между местами их падения."
+      ],
+      "ko": [
+        "지팡이를 들어 올리면 끝에서 빛줄기가 터져 나오고, 황금 구슬이 솟아올랐다가 홀 전체에 비처럼 떨어지며 떨어진 곳에 작은 빛기둥을 남깁니다.",
+        "떨어지는 구슬을 보고 떨어지는 지점 사이에 서세요."
+      ],
+      "ja": [
+        "杖を掲げると先端から光の筋が弾け、黄金の球が舞い上がってホール中に降り注ぎ、落ちた場所に小さな光の柱を残します。",
+        "落ちてくる球をよく見て、落下地点の間に立ちましょう。"
+      ],
+      "zh-Hans": [
+        "她举起权杖，杖头迸出一束光芒，随后金色光球飞起并如雨般落向整个大厅，落地处留下小小的光柱。",
+        "注意落下的光球，站在它们的落点之间。"
+      ],
+      "zh-Hant": [
+        "她舉起權杖，杖頭迸出一束光芒，隨後金色光球飛起並如雨般落向整個大廳，落地處留下小小的光柱。",
+        "注意落下的光球，站在它們的落點之間。"
+      ]
+    },
+    "Worship": {
+      "en": [
+        "Columns of big golden orbs float in from the sides of the hall and sweep across it.",
+        "Watch where each column passes and move through the gaps between them."
+      ],
+      "de": [
+        "Säulen aus großen goldenen Kugeln schweben von den Seiten der Halle herein und ziehen quer durch sie hindurch.",
+        "Achte darauf, wo jede Säule vorbeizieht, und beweg dich durch die Lücken dazwischen."
+      ],
+      "es": [
+        "Columnas de grandes orbes dorados entran flotando por los lados de la sala y la atraviesan.",
+        "Fíjate por dónde pasa cada columna y muévete por los huecos entre ellas."
+      ],
+      "fr": [
+        "Des colonnes de gros orbes dorés flottent depuis les côtés de la salle et la traversent.",
+        "Repère où passe chaque colonne et faufile-toi dans les espaces entre elles."
+      ],
+      "pl": [
+        "Kolumny wielkich złotych kul wpływają z boków sali i przesuwają się przez nią.",
+        "Patrz, którędy przechodzi każda kolumna, i przemykaj przez luki między nimi."
+      ],
+      "pt-BR": [
+        "Colunas de grandes orbes dourados entram flutuando pelos lados do salão e o atravessam.",
+        "Repare por onde cada coluna passa e se mova pelos espaços entre elas."
+      ],
+      "ru": [
+        "Столбцы больших золотых сфер вплывают с краёв зала и проходят через него.",
+        "Следите, где проходит каждый столбец, и двигайтесь через промежутки между ними."
+      ],
+      "ko": [
+        "커다란 황금 구슬이 줄지어 홀 양옆에서 떠 들어와 홀을 가로지릅니다.",
+        "각 줄이 지나가는 곳을 보고 그 사이의 틈으로 움직이세요."
+      ],
+      "ja": [
+        "大きな黄金の球が列をなしてホールの両側から漂ってきて、ホールを横切ります。",
+        "それぞれの列が通る場所を見て、列と列の間の隙間を進みましょう。"
+      ],
+      "zh-Hans": [
+        "一列列巨大的金色光球从大厅两边飘进来，横穿整个大厅。",
+        "注意每一列经过的位置，从它们之间的空隙中穿过。"
+      ],
+      "zh-Hant": [
+        "一列列巨大的金色光球從大廳兩邊飄進來，橫穿整個大廳。",
+        "注意每一列經過的位置，從它們之間的空隙中穿過。"
+      ]
+    },
+    "Consecration": {
+      "en": [
+        "A thin line of light marks a spot, then a huge pillar of golden light beams down there and moves along the floor after you. Half of the time Nervousness follows.",
+        "Leave the marked line before the pillar comes down and keep ahead of it while it moves."
+      ],
+      "de": [
+        "Eine dünne Lichtlinie markiert eine Stelle, dann schlägt dort eine gewaltige goldene Lichtsäule ein und folgt dir über den Boden. In der Hälfte der Fälle folgt Nervosität.",
+        "Verlass die markierte Linie, bevor die Säule einschlägt, und bleib ihr voraus, während sie wandert."
+      ],
+      "es": [
+        "Una fina línea de luz marca un punto; luego un enorme pilar de luz dorada cae ahí y te persigue por el suelo. La mitad de las veces le sigue Nerviosismo.",
+        "Sal de la línea marcada antes de que caiga el pilar y mantente por delante mientras se mueve."
+      ],
+      "fr": [
+        "Une fine ligne de lumière marque un endroit, puis un immense pilier de lumière dorée s'y abat et te suit au sol. Une fois sur deux, Nervosité suit.",
+        "Quitte la ligne marquée avant que le pilier tombe et garde de l'avance pendant qu'il se déplace."
+      ],
+      "pl": [
+        "Cienka linia światła oznacza miejsce, potem uderza tam ogromny słup złotego światła i podąża za tobą po ziemi. W połowie przypadków następuje Nerwowość.",
+        "Zejdź z oznaczonej linii, zanim spadnie słup, i trzymaj się przed nim, gdy się przesuwa."
+      ],
+      "pt-BR": [
+        "Uma fina linha de luz marca um ponto, depois um enorme pilar de luz dourada desce ali e segue você pelo chão. Em metade das vezes, Nervosismo vem em seguida.",
+        "Saia da linha marcada antes de o pilar descer e fique à frente dele enquanto ele se move."
+      ],
+      "ru": [
+        "Тонкая линия света отмечает место, затем туда бьёт огромный столб золотого света и движется за вами по полу. В половине случаев следует Нервозность.",
+        "Уйдите с отмеченной линии до удара столба и держитесь впереди него, пока он движется."
+      ],
+      "ko": [
+        "가는 빛의 선이 한 곳을 표시한 뒤, 그곳에 거대한 황금 빛기둥이 내리꽂혀 바닥을 따라 당신을 쫓아옵니다. 절반의 확률로 긴장이 이어집니다.",
+        "빛기둥이 떨어지기 전에 표시된 선에서 벗어나고, 움직이는 동안 빛기둥보다 앞서 있으세요."
+      ],
+      "ja": [
+        "細い光の線がある場所を示すと、そこに巨大な黄金の光の柱が降り注ぎ、床に沿ってあなたを追ってきます。半分の確率で緊張が続きます。",
+        "柱が落ちる前に示された線から離れ、柱が動く間はその先を行きましょう。"
+      ],
+      "zh-Hans": [
+        "一道细细的光线标出一个位置，然后巨大的金色光柱在那里落下，并沿着地面追赶你。有一半的几率接着使用紧张。",
+        "在光柱落下前离开标记的光线，光柱移动时要跑在它前面。"
+      ],
+      "zh-Hant": [
+        "一道細細的光線標出一個位置，然後巨大的金色光柱在那裡落下，並沿著地面追趕你。有一半的機率接著使用緊張。",
+        "在光柱落下前離開標記的光線，光柱移動時要跑在它前面。"
+      ]
+    },
+    "Choice": {
+      "en": [
+        "Every fanatic in the hall sacrifices itself at once and turns into a tentacle.",
+        "Only after a dark crystal is broken, and only while fanatics are around: clear fanatics quickly so few are left to turn."
+      ],
+      "de": [
+        "Alle Fanatiker in der Halle opfern sich auf einmal und werden zu Tentakeln.",
+        "Nur nachdem ein dunkler Kristall zerstört ist, und nur, wenn Fanatiker da sind: Erledige Fanatiker schnell, damit sich nur wenige verwandeln."
+      ],
+      "es": [
+        "Todos los fanáticos de la sala se sacrifican a la vez y se convierten en tentáculos.",
+        "Solo tras romper un cristal oscuro y solo si hay fanáticos: acaba rápido con ellos para que queden pocos que transformar."
+      ],
+      "fr": [
+        "Tous les fanatiques de la salle se sacrifient d'un coup et se changent en tentacules.",
+        "Seulement après qu'un cristal sombre est brisé, et seulement s'il y a des fanatiques : élimine-les vite pour qu'il en reste peu à transformer."
+      ],
+      "pl": [
+        "Wszyscy fanatycy w sali naraz poświęcają się i zmieniają w macki.",
+        "Tylko po zniszczeniu mrocznego kryształu i tylko gdy są fanatycy: szybko się ich pozbywaj, by niewielu mogło się przemienić."
+      ],
+      "pt-BR": [
+        "Todos os fanáticos do salão se sacrificam de uma vez e viram tentáculos.",
+        "Só depois que um cristal sombrio é quebrado, e só se houver fanáticos: acabe com eles rápido para sobrarem poucos para se transformar."
+      ],
+      "ru": [
+        "Все фанатики в зале разом приносят себя в жертву и превращаются в щупальца.",
+        "Только после того, как разбит тёмный кристалл, и только если есть фанатики: быстро расправляйтесь с ними, чтобы превращаться было почти некому."
+      ],
+      "ko": [
+        "홀에 있는 모든 광신도가 한꺼번에 스스로를 희생해 촉수로 변합니다.",
+        "어둠의 수정이 하나 부서진 뒤, 광신도가 있을 때만 사용합니다: 광신도를 빨리 처치해 변할 수 있는 수를 줄이세요."
+      ],
+      "ja": [
+        "ホールにいるすべての狂信者が一斉に自らを捧げ、触手に変わります。",
+        "闇の水晶が1つ壊れた後、狂信者がいるときだけ使います：狂信者を素早く倒して、変わる数を減らしましょう。"
+      ],
+      "zh-Hans": [
+        "大厅里所有的盲信者同时献祭自己，变成触手。",
+        "只在一颗黑暗水晶被打碎后、且有盲信者时使用：尽快解决盲信者，让能变身的数量变少。"
+      ],
+      "zh-Hant": [
+        "大廳裡所有的盲信者同時獻祭自己，變成觸手。",
+        "只在一顆黑暗水晶被打碎後、且有盲信者時使用：盡快解決盲信者，讓能變身的數量變少。"
+      ]
+    },
+    "Summon escort": {
+      "en": [
+        "Opens the second phase: she teleports away, her throne vanishes, platforms appear, and she returns floating in the middle while purple escort orbs start circling the hall.",
+        "The escort orbs hurt on touch and shoot now and then: keep track of their circle while you fight."
+      ],
+      "de": [
+        "Eröffnet die zweite Phase: Sie teleportiert sich weg, ihr Thron verschwindet, Plattformen erscheinen, und sie kehrt schwebend in die Mitte zurück, während violette Eskorte-Kugeln durch die Halle zu kreisen beginnen.",
+        "Die Eskorte-Kugeln verletzen bei Berührung und schießen ab und zu: Behalte ihren Kreis im Blick, während du kämpfst."
+      ],
+      "es": [
+        "Abre la segunda fase: se teletransporta, su trono desaparece, aparecen plataformas y vuelve flotando al centro mientras orbes morados de escolta empiezan a girar por la sala.",
+        "Los orbes de escolta hacen daño al tocarlos y disparan de vez en cuando: no pierdas de vista su círculo mientras luchas."
+      ],
+      "fr": [
+        "Ouvre la seconde phase : elle se téléporte, son trône disparaît, des plateformes apparaissent et elle revient flotter au centre tandis que des orbes d'escorte violets se mettent à tourner dans la salle.",
+        "Les orbes d'escorte blessent au contact et tirent de temps en temps : garde leur cercle à l'œil pendant le combat."
+      ],
+      "pl": [
+        "Rozpoczyna drugą fazę: teleportuje się, jej tron znika, pojawiają się platformy, a ona wraca, unosząc się pośrodku, gdy fioletowe kule eskorty zaczynają krążyć po sali.",
+        "Kule eskorty ranią przy dotyku i co jakiś czas strzelają: śledź ich krąg podczas walki."
+      ],
+      "pt-BR": [
+        "Abre a segunda fase: ela se teleporta, o trono some, plataformas aparecem e ela volta flutuando no meio enquanto orbes roxos de escolta começam a circular pelo salão.",
+        "Os orbes de escolta machucam ao toque e atiram de vez em quando: fique de olho no círculo deles enquanto luta."
+      ],
+      "ru": [
+        "Открывает вторую фазу: она телепортируется, трон исчезает, появляются платформы, и она возвращается, паря в центре, а по залу начинают кружить фиолетовые сферы охраны.",
+        "Сферы охраны ранят при касании и время от времени стреляют: следите за их кругом во время боя."
+      ],
+      "ko": [
+        "두 번째 페이즈의 시작: 순간이동으로 사라지고 왕좌가 없어지며 발판이 나타나고, 가운데에 떠오른 채 돌아오면 보라색 호위 구슬이 홀을 돌기 시작합니다.",
+        "호위 구슬은 닿으면 피해를 주고 가끔 공격을 발사합니다: 싸우는 동안 구슬이 도는 원을 계속 살피세요."
+      ],
+      "ja": [
+        "第2フェーズの始まり：瞬間移動で消えて玉座がなくなり、足場が現れ、中央に浮かんで戻ってくると、紫の護衛の球がホールを回り始めます。",
+        "護衛の球は触れるとダメージを受け、ときどき攻撃を撃ってきます：戦いながら球の回る円を見ておきましょう。"
+      ],
+      "zh-Hans": [
+        "第二阶段的开场：她瞬移离开，王座消失，平台出现，然后她漂浮着回到中央，紫色的护卫球开始环绕大厅。",
+        "护卫球碰到会受伤，还会不时射击：战斗时留意它们环绕的圆圈。"
+      ],
+      "zh-Hant": [
+        "第二階段的開場：她瞬移離開，王座消失，平台出現，然後她漂浮著回到中央，紫色的護衛球開始環繞大廳。",
+        "護衛球碰到會受傷，還會不時射擊：戰鬥時留意它們環繞的圓圈。"
+      ]
+    },
+    "Control escort": {
+      "en": [
+        "Widens or tightens the circle of the escort orbs.",
+        "When the circle changes, step out of the orbs' new path."
+      ],
+      "de": [
+        "Weitet den Kreis der Eskorte-Kugeln oder zieht ihn enger.",
+        "Wenn sich der Kreis ändert, geh aus der neuen Bahn der Kugeln."
+      ],
+      "es": [
+        "Amplía o estrecha el círculo de los orbes de escolta.",
+        "Cuando cambie el círculo, sal de la nueva trayectoria de los orbes."
+      ],
+      "fr": [
+        "Élargit ou resserre le cercle des orbes d'escorte.",
+        "Quand le cercle change, sors de la nouvelle trajectoire des orbes."
+      ],
+      "pl": [
+        "Poszerza lub zwęża krąg kul eskorty.",
+        "Gdy krąg się zmienia, zejdź z nowej drogi kul."
+      ],
+      "pt-BR": [
+        "Alarga ou estreita o círculo dos orbes de escolta.",
+        "Quando o círculo mudar, saia do novo caminho dos orbes."
+      ],
+      "ru": [
+        "Расширяет или сужает круг сфер охраны.",
+        "Когда круг меняется, уйдите с нового пути сфер."
+      ],
+      "ko": [
+        "호위 구슬이 도는 원을 넓히거나 좁힙니다.",
+        "원이 바뀌면 구슬의 새 경로에서 벗어나세요."
+      ],
+      "ja": [
+        "護衛の球が回る円を広げたり狭めたりします。",
+        "円が変わったら、球の新しい通り道から離れましょう。"
+      ],
+      "zh-Hans": [
+        "扩大或缩小护卫球环绕的圆圈。",
+        "圆圈变化时，离开护卫球的新路线。"
+      ],
+      "zh-Hant": [
+        "擴大或縮小護衛球環繞的圓圈。",
+        "圓圈變化時，離開護衛球的新路線。"
+      ]
+    },
+    "Grace": {
+      "en": [
+        "Flies to the top of the hall; a golden halo shines and fans of light beams sweep down across the room, three times.",
+        "The beams fan out from her: stand in a gap between them and move when the next fan starts."
+      ],
+      "de": [
+        "Fliegt nach oben in die Halle; ein goldener Heiligenschein leuchtet und Fächer aus Lichtstrahlen fegen dreimal über den Raum.",
+        "Die Strahlen fächern sich von ihr aus: Stell dich in eine Lücke dazwischen und beweg dich, wenn der nächste Fächer beginnt."
+      ],
+      "es": [
+        "Vuela a lo alto de la sala; brilla un halo dorado y abanicos de rayos de luz barren la sala, tres veces.",
+        "Los rayos se abren desde ella en abanico: colócate en un hueco entre ellos y muévete cuando empiece el siguiente abanico."
+      ],
+      "fr": [
+        "S'envole en haut de la salle ; une auréole dorée brille et des éventails de rayons balaient la salle, trois fois.",
+        "Les rayons partent d'elle en éventail : place-toi dans un espace entre eux et bouge quand l'éventail suivant commence."
+      ],
+      "pl": [
+        "Wzlatuje pod sklepienie sali; świeci złota aureola, a wachlarze promieni światła omiatają salę trzy razy.",
+        "Promienie rozchodzą się od niej wachlarzem: stań w luce między nimi i ruszaj się, gdy zaczyna się następny wachlarz."
+      ],
+      "pt-BR": [
+        "Voa até o alto do salão; uma auréola dourada brilha e leques de raios de luz varrem o salão, três vezes.",
+        "Os raios se abrem a partir dela em leque: fique num espaço entre eles e se mova quando o próximo leque começar."
+      ],
+      "ru": [
+        "Взлетает под потолок зала; сияет золотой нимб, и веера световых лучей трижды проходят по залу.",
+        "Лучи расходятся от неё веером: встаньте в промежуток между ними и двигайтесь, когда начинается следующий веер."
+      ],
+      "ko": [
+        "홀 위쪽으로 날아올라 황금빛 후광이 빛나고, 부채꼴 빛줄기가 방을 세 번 휩쓸고 지나갑니다.",
+        "빛줄기가 그녀에게서 부채꼴로 퍼집니다: 빛줄기 사이의 틈에 서 있다가 다음 부채꼴이 시작되면 움직이세요."
+      ],
+      "ja": [
+        "ホールの上方へ飛び、黄金の光輪が輝くと、扇状の光線が部屋を3回なぎ払います。",
+        "光線は彼女から扇状に広がります：光線の間の隙間に立ち、次の扇が始まったら動きましょう。"
+      ],
+      "zh-Hans": [
+        "她飞到大厅上方，金色光环亮起，扇形的光束三次扫过房间。",
+        "光束从她身上呈扇形散开：站在光束之间的空隙里，下一次扇形开始时再移动。"
+      ],
+      "zh-Hant": [
+        "她飛到大廳上方，金色光環亮起，扇形的光束三次掃過房間。",
+        "光束從她身上呈扇形散開：站在光束之間的空隙裡，下一次扇形開始時再移動。"
+      ]
+    },
+    "Soul chase": {
+      "en": [
+        "Teleports to a new spot and sends a glowing soul orb that chases you for a while.",
+        "Keep moving so the orb trails behind you, and turn sharply to make it overshoot."
+      ],
+      "de": [
+        "Teleportiert sich an eine neue Stelle und schickt eine leuchtende Seelenkugel, die dich eine Weile verfolgt.",
+        "Bleib in Bewegung, damit die Kugel hinter dir herzieht, und schlag scharfe Haken, damit sie vorbeischießt."
+      ],
+      "es": [
+        "Se teletransporta a otro punto y lanza un orbe de alma brillante que te persigue un rato.",
+        "Sigue moviéndote para que el orbe quede detrás de ti y gira de golpe para que se pase de largo."
+      ],
+      "fr": [
+        "Se téléporte ailleurs et envoie un orbe d'âme lumineux qui te poursuit un moment.",
+        "Continue de bouger pour que l'orbe reste derrière toi, et fais des virages secs pour qu'il te dépasse."
+      ],
+      "pl": [
+        "Teleportuje się w nowe miejsce i wysyła świecącą kulę duszy, która przez chwilę cię goni.",
+        "Ruszaj się, żeby kula leciała za tobą, i ostro skręcaj, żeby cię minęła."
+      ],
+      "pt-BR": [
+        "Teleporta-se para outro ponto e envia um orbe de alma brilhante que persegue você por um tempo.",
+        "Continue se movendo para o orbe ficar atrás de você e faça curvas bruscas para ele passar direto."
+      ],
+      "ru": [
+        "Телепортируется в новое место и выпускает светящуюся сферу души, которая какое-то время преследует вас.",
+        "Двигайтесь, чтобы сфера тянулась позади, и резко меняйте направление, чтобы она проскочила мимо."
+      ],
+      "ko": [
+        "새 위치로 순간이동한 뒤, 한동안 당신을 쫓아오는 빛나는 영혼 구슬을 보냅니다.",
+        "구슬이 뒤따라오도록 계속 움직이고, 갑자기 방향을 꺾어 구슬이 지나치게 하세요."
+      ],
+      "ja": [
+        "別の場所へ瞬間移動し、しばらくあなたを追いかける光る魂の球を放ちます。",
+        "球が後ろをついてくるように動き続け、急に向きを変えて球を行き過ぎさせましょう。"
+      ],
+      "zh-Hans": [
+        "瞬移到新的位置，放出一颗发光的灵魂球，追赶你一段时间。",
+        "保持移动，让球跟在你身后，并急转弯让它冲过头。"
+      ],
+      "zh-Hant": [
+        "瞬移到新的位置，放出一顆發光的靈魂球，追趕你一段時間。",
+        "保持移動，讓球跟在你身後，並猛然轉向讓它衝過頭。"
+      ]
+    },
+    "Divine impact": {
+      "en": [
+        "Glowing orbs drop onto the platforms and burst into rings of holy light, one after another.",
+        "Watch where each orb lands and stay off that spot until its ring is gone."
+      ],
+      "de": [
+        "Leuchtende Kugeln fallen nacheinander auf die Plattformen und zerplatzen zu Ringen aus heiligem Licht.",
+        "Achte darauf, wo jede Kugel landet, und bleib dort weg, bis ihr Ring verschwunden ist."
+      ],
+      "es": [
+        "Orbes brillantes caen sobre las plataformas y estallan en anillos de luz sagrada, uno tras otro.",
+        "Fíjate dónde cae cada orbe y no pises ese punto hasta que desaparezca su anillo."
+      ],
+      "fr": [
+        "Des orbes lumineux tombent sur les plateformes et éclatent en anneaux de lumière sacrée, l'un après l'autre.",
+        "Repère où tombe chaque orbe et évite cet endroit jusqu'à ce que son anneau disparaisse."
+      ],
+      "pl": [
+        "Świecące kule spadają na platformy i jedna po drugiej rozbłyskują pierścieniami świętego światła.",
+        "Patrz, gdzie spada każda kula, i nie wchodź tam, aż jej pierścień zniknie."
+      ],
+      "pt-BR": [
+        "Orbes brilhantes caem nas plataformas e estouram em anéis de luz sagrada, um após o outro.",
+        "Repare onde cada orbe cai e fique longe desse ponto até o anel sumir."
+      ],
+      "ru": [
+        "Светящиеся сферы одна за другой падают на платформы и взрываются кольцами святого света.",
+        "Следите, куда падает каждая сфера, и не вставайте туда, пока её кольцо не исчезнет."
+      ],
+      "ko": [
+        "빛나는 구슬이 발판 위로 차례로 떨어져 신성한 빛의 고리로 터집니다.",
+        "구슬이 떨어지는 곳을 보고, 고리가 사라질 때까지 그곳을 피하세요."
+      ],
+      "ja": [
+        "光る球が足場の上に次々と落ち、聖なる光の輪となって弾けます。",
+        "球が落ちる場所を見て、輪が消えるまでそこに近づかないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "发光的球接连落到平台上，爆成神圣的光环。",
+        "注意每个球落下的位置，光环消失前不要站在那里。"
+      ],
+      "zh-Hant": [
+        "發光的球接連落到平台上，爆成神聖的光環。",
+        "注意每個球落下的位置，光環消失前不要站在那裡。"
+      ]
+    },
+    "Divine light": {
+      "en": [
+        "Teleports to the edge of the hall and fires a huge golden beam straight across the room at your height, once or twice in a row.",
+        "Change height right before she fires: jump up to another platform or drop down."
+      ],
+      "de": [
+        "Teleportiert sich an den Rand der Halle und feuert einen gewaltigen goldenen Strahl auf deiner Höhe quer durch den Raum, ein- oder zweimal hintereinander.",
+        "Wechsle kurz vor dem Schuss die Höhe: Spring auf eine andere Plattform oder lass dich fallen."
+      ],
+      "es": [
+        "Se teletransporta al borde de la sala y dispara un enorme rayo dorado recto a tu altura a través de la sala, una o dos veces seguidas.",
+        "Cambia de altura justo antes del disparo: salta a otra plataforma o déjate caer."
+      ],
+      "fr": [
+        "Se téléporte au bord de la salle et tire un immense rayon doré droit à travers la salle à ta hauteur, une ou deux fois d'affilée.",
+        "Change de hauteur juste avant le tir : saute sur une autre plateforme ou laisse-toi tomber."
+      ],
+      "pl": [
+        "Teleportuje się na skraj sali i wystrzeliwuje ogromny złoty promień prosto przez salę na twojej wysokości, raz lub dwa razy z rzędu.",
+        "Zmień wysokość tuż przed strzałem: wskocz na inną platformę albo zeskocz."
+      ],
+      "pt-BR": [
+        "Teleporta-se para a borda do salão e dispara um enorme raio dourado reto pelo salão na sua altura, uma ou duas vezes seguidas.",
+        "Mude de altura logo antes do disparo: pule para outra plataforma ou desça."
+      ],
+      "ru": [
+        "Телепортируется к краю зала и выпускает огромный золотой луч прямо через зал на вашей высоте, один или два раза подряд.",
+        "Смените высоту прямо перед выстрелом: запрыгните на другую платформу или спрыгните вниз."
+      ],
+      "ko": [
+        "홀 가장자리로 순간이동해 당신의 높이로 방을 가로지르는 거대한 황금 광선을 한두 번 연속으로 발사합니다.",
+        "발사 직전에 높이를 바꾸세요: 다른 발판으로 뛰어오르거나 아래로 내려가세요."
+      ],
+      "ja": [
+        "ホールの端へ瞬間移動し、あなたの高さで部屋をまっすぐ横切る巨大な黄金の光線を1、2回続けて放ちます。",
+        "撃つ直前に高さを変えましょう：別の足場へ跳び乗るか、下へ降りましょう。"
+      ],
+      "zh-Hans": [
+        "瞬移到大厅边缘，在你的高度横穿房间射出巨大的金色光束，连续一到两次。",
+        "在她发射前一刻改变高度：跳到另一个平台上，或者跳下去。"
+      ],
+      "zh-Hant": [
+        "瞬移到大廳邊緣，在你的高度橫穿房間射出巨大的金色光束，連續一到兩次。",
+        "在她發射前一刻改變高度：跳到另一個平台上，或者跳下去。"
+      ]
+    },
+    "Embrace": {
+      "en": [
+        "Flies to the middle and opens a black void that pulls you toward her, then it turns golden and bursts into rays of light, several times.",
+        "Work against the pull, then stand in a gap between the rays when the light bursts out."
+      ],
+      "de": [
+        "Fliegt in die Mitte und öffnet eine schwarze Leere, die dich zu ihr zieht; dann wird sie golden und bricht mehrmals in Lichtstrahlen auf.",
+        "Halte gegen den Sog an und stell dich in eine Lücke zwischen den Strahlen, wenn das Licht hervorbricht."
+      ],
+      "es": [
+        "Vuela al centro y abre un vacío negro que te atrae hacia ella; luego se vuelve dorado y estalla en rayos de luz varias veces.",
+        "Resiste la atracción y colócate en un hueco entre los rayos cuando estalle la luz."
+      ],
+      "fr": [
+        "S'envole au centre et ouvre un vide noir qui t'attire vers elle, puis il devient doré et éclate en rayons de lumière, plusieurs fois.",
+        "Résiste à l'attraction, puis place-toi dans un espace entre les rayons quand la lumière jaillit."
+      ],
+      "pl": [
+        "Leci na środek i otwiera czarną pustkę, która przyciąga cię do niej, potem pustka złocieje i kilka razy wybucha promieniami światła.",
+        "Opieraj się przyciąganiu, a gdy wybucha światło, stań w luce między promieniami."
+      ],
+      "pt-BR": [
+        "Voa até o meio e abre um vazio negro que puxa você para ela; depois ele fica dourado e explode em raios de luz várias vezes.",
+        "Resista à puxada e fique num espaço entre os raios quando a luz explodir."
+      ],
+      "ru": [
+        "Летит в центр и открывает чёрную пустоту, которая притягивает вас к ней, затем она становится золотой и несколько раз взрывается лучами света.",
+        "Сопротивляйтесь притяжению, а когда вырвется свет, встаньте в промежуток между лучами."
+      ],
+      "ko": [
+        "가운데로 날아가 당신을 끌어당기는 검은 공허를 열고, 이어서 그것이 황금빛으로 변해 여러 번 빛줄기로 터집니다.",
+        "끌어당기는 힘에 맞서 버티다가, 빛이 터질 때 빛줄기 사이의 틈에 서세요."
+      ],
+      "ja": [
+        "中央へ飛んで、あなたを引き寄せる黒い虚空を開き、それが黄金に変わって何度も光の筋となって弾けます。",
+        "引き寄せに逆らって踏ん張り、光が弾けたら光の筋の間の隙間に立ちましょう。"
+      ],
+      "zh-Hans": [
+        "飞到中央，打开一个把你吸向她的黑色虚空，随后虚空变成金色，多次迸发出光芒。",
+        "顶住吸力，光芒迸发时站在光束之间的空隙里。"
+      ],
+      "zh-Hant": [
+        "飛到中央，打開一個把你吸向她的黑色虛空，隨後虛空變成金色，多次迸發出光芒。",
+        "頂住吸力，光芒迸發時站在光束之間的空隙裡。"
+      ]
+    },
+    "Priest summon": {
+      "en": [
+        "Flies over the hall and drops glowing orbs that burst into clerics on the platforms.",
+        "Only when no cleric is left. Defeat them quickly."
+      ],
+      "de": [
+        "Fliegt über die Halle und wirft leuchtende Kugeln ab, aus denen auf den Plattformen Kleriker hervorgehen.",
+        "Nur wenn kein Kleriker mehr übrig ist. Erledige sie schnell."
+      ],
+      "es": [
+        "Vuela sobre la sala y deja caer orbes brillantes que se convierten en clérigos sobre las plataformas.",
+        "Solo cuando no queda ningún clérigo. Acaba con ellos rápido."
+      ],
+      "fr": [
+        "Survole la salle et lâche des orbes lumineux qui deviennent des prêtres sur les plateformes.",
+        "Seulement quand il ne reste plus aucun prêtre. Élimine-les vite."
+      ],
+      "pl": [
+        "Przelatuje nad salą i zrzuca świecące kule, z których na platformach powstają klerycy.",
+        "Tylko gdy nie został żaden kleryk. Szybko ich pokonaj."
+      ],
+      "pt-BR": [
+        "Voa sobre o salão e solta orbes brilhantes que viram clérigos nas plataformas.",
+        "Só quando não sobra nenhum clérigo. Derrote-os rápido."
+      ],
+      "ru": [
+        "Пролетает над залом и сбрасывает светящиеся сферы, из которых на платформах появляются клирики.",
+        "Только когда не осталось ни одного клирика. Быстро разберитесь с ними."
+      ],
+      "ko": [
+        "홀 위를 날며 빛나는 구슬을 떨어뜨리고, 구슬이 발판 위에서 사제로 변합니다.",
+        "사제가 하나도 남아 있지 않을 때만 사용합니다. 빨리 처치하세요."
+      ],
+      "ja": [
+        "ホールの上を飛び、光る球を落とすと、足場の上で司祭になります。",
+        "司祭が1人も残っていないときだけ使います。素早く倒しましょう。"
+      ],
+      "zh-Hans": [
+        "飞过大厅上空，投下发光的球，球在平台上变成祭司。",
+        "只在一个祭司都不剩时使用。尽快打倒他们。"
+      ],
+      "zh-Hant": [
+        "飛過大廳上空，投下發光的球，球在平台上變成祭司。",
+        "只在一個祭司都不剩時使用。盡快打倒他們。"
+      ]
+    },
+    "Purification": {
+      "en": [
+        "Teleports to the side; white flames rise on the platforms and grow into tentacles.",
+        "Only while a platform has no tentacle yet. Destroy the tentacles on the platforms you use."
+      ],
+      "de": [
+        "Teleportiert sich zur Seite; auf den Plattformen steigen weiße Flammen auf und wachsen zu Tentakeln.",
+        "Nur solange eine Plattform noch keinen Tentakel hat. Zerstöre die Tentakel auf den Plattformen, die du nutzt."
+      ],
+      "es": [
+        "Se teletransporta a un lado; en las plataformas surgen llamas blancas que se convierten en tentáculos.",
+        "Solo mientras alguna plataforma no tenga tentáculo. Destruye los tentáculos de las plataformas que uses."
+      ],
+      "fr": [
+        "Se téléporte sur le côté ; des flammes blanches s'élèvent sur les plateformes et deviennent des tentacules.",
+        "Seulement tant qu'une plateforme n'a pas encore de tentacule. Détruis les tentacules des plateformes que tu utilises."
+      ],
+      "pl": [
+        "Teleportuje się na bok; na platformach wznoszą się białe płomienie i wyrastają z nich macki.",
+        "Tylko dopóki któraś platforma nie ma jeszcze macki. Niszcz macki na platformach, z których korzystasz."
+      ],
+      "pt-BR": [
+        "Teleporta-se para o lado; chamas brancas sobem nas plataformas e viram tentáculos.",
+        "Só enquanto alguma plataforma não tiver tentáculo. Destrua os tentáculos das plataformas que você usa."
+      ],
+      "ru": [
+        "Телепортируется в сторону; на платформах поднимается белое пламя и вырастает в щупальца.",
+        "Только пока на какой-то платформе ещё нет щупальца. Уничтожайте щупальца на платформах, которыми пользуетесь."
+      ],
+      "ko": [
+        "옆으로 순간이동하면 발판 위에 하얀 불꽃이 피어올라 촉수로 자라납니다.",
+        "촉수가 없는 발판이 있을 때만 사용합니다. 당신이 쓰는 발판의 촉수를 부수세요."
+      ],
+      "ja": [
+        "横へ瞬間移動すると、足場の上に白い炎が立ち上り、触手に育ちます。",
+        "触手のない足場があるときだけ使います。使う足場の触手を壊しましょう。"
+      ],
+      "zh-Hans": [
+        "瞬移到一边，平台上升起白色火焰，长成触手。",
+        "只在还有平台没有触手时使用。摧毁你要用的平台上的触手。"
+      ],
+      "zh-Hant": [
+        "瞬移到一邊，平台上升起白色火焰，長成觸手。",
+        "只在還有平台沒有觸手時使用。摧毀你要用的平台上的觸手。"
+      ]
+    },
+    "Sacrament": {
+      "en": [
+        "Teleports away; purple circles mark spots all over the screen, then each one bursts into a flash of light.",
+        "Look for a spot no circle covers before they burst, and stay there."
+      ],
+      "de": [
+        "Teleportiert sich weg; violette Kreise markieren Stellen auf dem ganzen Bildschirm, dann platzt jeder in einem Lichtblitz auf.",
+        "Such dir vor dem Aufplatzen eine Stelle, die kein Kreis bedeckt, und bleib dort."
+      ],
+      "es": [
+        "Se teletransporta; círculos morados marcan puntos por toda la pantalla y luego cada uno estalla en un destello de luz.",
+        "Busca un punto que ningún círculo cubra antes de que estallen y quédate ahí."
+      ],
+      "fr": [
+        "Se téléporte ; des cercles violets marquent des endroits sur tout l'écran, puis chacun éclate en un flash de lumière.",
+        "Trouve un endroit qu'aucun cercle ne couvre avant qu'ils n'éclatent, et restes-y."
+      ],
+      "pl": [
+        "Teleportuje się; fioletowe kręgi oznaczają miejsca na całym ekranie, a potem każdy wybucha błyskiem światła.",
+        "Zanim wybuchną, znajdź miejsce, którego nie obejmuje żaden krąg, i zostań tam."
+      ],
+      "pt-BR": [
+        "Teleporta-se; círculos roxos marcam pontos pela tela inteira, depois cada um explode num clarão.",
+        "Procure um ponto que nenhum círculo cubra antes que explodam e fique ali."
+      ],
+      "ru": [
+        "Телепортируется; фиолетовые круги отмечают места по всему экрану, затем каждый взрывается вспышкой света.",
+        "До взрыва найдите место, которое не накрывает ни один круг, и оставайтесь там."
+      ],
+      "ko": [
+        "순간이동으로 사라진 뒤, 보라색 원이 화면 곳곳을 표시하고 원마다 빛으로 번쩍이며 터집니다.",
+        "터지기 전에 어떤 원도 덮지 않는 곳을 찾아 그곳에 머무르세요."
+      ],
+      "ja": [
+        "瞬間移動で消えると、紫の円が画面中のあちこちを示し、それぞれが光となって弾けます。",
+        "弾ける前に、どの円もかかっていない場所を見つけてそこに留まりましょう。"
+      ],
+      "zh-Hans": [
+        "瞬移离开，紫色圆圈标出整个画面上的许多位置，随后每个圆圈都会爆出一道闪光。",
+        "在爆开前找到没有被任何圆圈覆盖的位置，并待在那里。"
+      ],
+      "zh-Hant": [
+        "瞬移離開，紫色圓圈標出整個畫面上的許多位置，隨後每個圓圈都會爆出一道閃光。",
+        "在爆開前找到沒有被任何圓圈覆蓋的位置，並待在那裡。"
+      ]
+    },
+    "Divine cross": {
+      "en": [
+        "Golden rings mark spots on the platforms and light pillars rise there, then a huge cross of light beams appears over a platform and turns around its center.",
+        "Stay away from the center and move with the gaps as the cross turns. She rests for a long time afterwards."
+      ],
+      "de": [
+        "Goldene Ringe markieren Stellen auf den Plattformen und dort steigen Lichtsäulen auf, dann erscheint über einer Plattform ein riesiges Kreuz aus Lichtstrahlen und dreht sich um seine Mitte.",
+        "Bleib weg von der Mitte und beweg dich mit den Lücken, während sich das Kreuz dreht. Danach ruht sie lange."
+      ],
+      "es": [
+        "Anillos dorados marcan puntos en las plataformas y ahí surgen pilares de luz; luego aparece sobre una plataforma una enorme cruz de rayos de luz que gira sobre su centro.",
+        "Aléjate del centro y muévete con los huecos mientras gira la cruz. Después descansa mucho rato."
+      ],
+      "fr": [
+        "Des anneaux dorés marquent des endroits sur les plateformes et des piliers de lumière s'y élèvent, puis une immense croix de rayons apparaît au-dessus d'une plateforme et tourne autour de son centre.",
+        "Reste loin du centre et suis les espaces pendant que la croix tourne. Elle se repose longtemps ensuite."
+      ],
+      "pl": [
+        "Złote pierścienie oznaczają miejsca na platformach i wznoszą się tam słupy światła, potem nad jedną z platform pojawia się ogromny krzyż z promieni, który obraca się wokół środka.",
+        "Trzymaj się z dala od środka i przesuwaj się z lukami, gdy krzyż się obraca. Potem długo odpoczywa."
+      ],
+      "pt-BR": [
+        "Anéis dourados marcam pontos nas plataformas e pilares de luz sobem ali; depois uma enorme cruz de raios de luz aparece sobre uma plataforma e gira em torno do centro.",
+        "Fique longe do centro e se mova com os espaços enquanto a cruz gira. Depois ela descansa por um bom tempo."
+      ],
+      "ru": [
+        "Золотые кольца отмечают места на платформах, там поднимаются столбы света, затем над одной из платформ появляется огромный крест из лучей и вращается вокруг центра.",
+        "Держитесь подальше от центра и двигайтесь вместе с промежутками, пока крест вращается. После этого она долго отдыхает."
+      ],
+      "ko": [
+        "황금 고리가 발판 위의 지점을 표시하고 그곳에 빛기둥이 솟은 뒤, 한 발판 위에 거대한 빛의 십자가가 나타나 중심을 축으로 회전합니다.",
+        "중심에서 떨어져 있고, 십자가가 도는 동안 틈을 따라 움직이세요. 사용 후 오래 쉽니다."
+      ],
+      "ja": [
+        "黄金の輪が足場の上の場所を示し、そこに光の柱が立ち上った後、足場の上に巨大な光の十字が現れて中心を軸に回転します。",
+        "中心から離れ、十字が回る間は隙間に合わせて動きましょう。使った後は長く休みます。"
+      ],
+      "zh-Hans": [
+        "金色光环标出平台上的位置并在那里升起光柱，随后一个巨大的光之十字出现在某个平台上方，并绕中心旋转。",
+        "远离中心，十字旋转时随着空隙移动。之后她会休息很久。"
+      ],
+      "zh-Hant": [
+        "金色光環標出平台上的位置並在那裡升起光柱，隨後一個巨大的光之十字出現在某個平台上方，並繞中心旋轉。",
+        "遠離中心，十字旋轉時隨著空隙移動。之後她會休息很久。"
+      ]
+    },
+    "Super baptism": {
+      "en": [
+        "Flies to a corner and raises her staff; a storm of golden orbs bursts out and rains over the whole room, golden rings marking where they land.",
+        "Watch the rings on the floor and stand where there is none. She rests afterwards."
+      ],
+      "de": [
+        "Fliegt in eine Ecke und hebt ihren Stab; ein Sturm goldener Kugeln bricht hervor und regnet über den ganzen Raum, goldene Ringe zeigen, wo sie landen.",
+        "Achte auf die Ringe am Boden und stell dich dorthin, wo keiner ist. Danach ruht sie."
+      ],
+      "es": [
+        "Vuela a una esquina y alza su báculo; una tormenta de orbes dorados estalla y llueve sobre toda la sala, con anillos dorados que marcan dónde caen.",
+        "Fíjate en los anillos del suelo y colócate donde no haya ninguno. Después descansa."
+      ],
+      "fr": [
+        "S'envole dans un coin et lève son bâton ; une tempête d'orbes dorés jaillit et s'abat sur toute la salle, des anneaux dorés marquant les points d'impact.",
+        "Regarde les anneaux au sol et place-toi là où il n'y en a pas. Elle se repose ensuite."
+      ],
+      "pl": [
+        "Leci w róg i unosi laskę; wybucha burza złotych kul, które spadają deszczem na całą salę, a złote pierścienie pokazują, gdzie upadną.",
+        "Patrz na pierścienie na ziemi i stań tam, gdzie ich nie ma. Potem odpoczywa."
+      ],
+      "pt-BR": [
+        "Voa até um canto e ergue o cetro; uma tempestade de orbes dourados explode e chove pelo salão inteiro, com anéis dourados marcando onde caem.",
+        "Observe os anéis no chão e fique onde não houver nenhum. Depois ela descansa."
+      ],
+      "ru": [
+        "Летит в угол и поднимает посох; вырывается буря золотых сфер и дождём падает на весь зал, золотые кольца отмечают места падения.",
+        "Следите за кольцами на полу и вставайте туда, где их нет. После этого она отдыхает."
+      ],
+      "ko": [
+        "구석으로 날아가 지팡이를 들어 올리면 황금 구슬의 폭풍이 터져 나와 방 전체에 비처럼 쏟아지고, 황금 고리가 떨어질 곳을 표시합니다.",
+        "바닥의 고리를 보고 고리가 없는 곳에 서세요. 사용 후 잠시 쉽니다."
+      ],
+      "ja": [
+        "隅へ飛んで杖を掲げると、黄金の球の嵐が弾け出て部屋中に降り注ぎ、黄金の輪が落下地点を示します。",
+        "床の輪を見て、輪のない場所に立ちましょう。使った後は休みます。"
+      ],
+      "zh-Hans": [
+        "飞到角落举起权杖，金色光球如风暴般迸出，落满整个房间，金色光环标出落点。",
+        "注意地上的光环，站在没有光环的地方。之后她会休息。"
+      ],
+      "zh-Hant": [
+        "飛到角落舉起權杖，金色光球如風暴般迸出，落滿整個房間，金色光環標出落點。",
+        "注意地上的光環，站在沒有光環的地方。之後她會休息。"
+      ]
+    }
+  }
+}

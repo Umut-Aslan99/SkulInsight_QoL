@@ -93,6 +93,8 @@ public static class SettingsCatalog
     public const string ResetWindow = "ResetWindow";
     /// <summary>Action rows: every setting back to its default.</summary>
     public const string ResetAll = "ResetAll";
+    /// <summary>Action rows: delete everything the Codex gathered at the next game start (Codex/CodexReset).</summary>
+    public const string ResetCodex = "ResetCodex";
 
     private enum Unit { Plain, Seconds, Percent }
 
@@ -152,6 +154,7 @@ public static class SettingsCatalog
             Loc.N("Show current / maximum HP as text on the health bars of bosses, adventurers and dark enemies.")),
         ["Descriptions/ShowDamageNumbers"] = On(Loc.N("Damage numbers"),
             Loc.N("Add your real damage (with your current stats) to the descriptions of skulls, skills, swaps, items, essences and inscriptions.")),
+        ["Descriptions/Short"] = On(Loc.N("Short descriptions"), Loc.N("Short descriptions: one line per attack part with its total damage, without the calculation behind it.")),
         ["Descriptions/PreviewPickup"] = On(Loc.N("Pickup preview"),
             Loc.N("Items on the ground, in shops and in the swap menu show their numbers as if you had picked them up (their stats and inscription steps included).")),
         ["Combat Log/ToggleKey"] = On(Loc.N("Open / close key"), Loc.N("The key that opens and closes the combat log.")),
@@ -182,6 +185,12 @@ public static class SettingsCatalog
             Loc.N("Under a boss move in the Codex: when the boss uses it (HP range, distance, cooldown...), read from its AI. Shown once you have beaten the boss.")),
         ["Codex/FilmBossAttacks"] = On(Loc.N("Film boss attacks"),
             Loc.N("Film each boss attack once (a small picture 10 times a second, effects included) to show it in the Codex.")),
+        ["Codex/ProjectilePictures"] = On(Loc.N("Projectile pictures"),
+            Loc.N("Add the projectile an enemy fires (arrow, bolt, ...) to its pictures in the Codex, the first time it fires one.")),
+        ["Codex/CompactFilms"] = On(Loc.N("Compact films"),
+            Loc.N("Save boss films as compact pictures (about a quarter of the size, nearly the same look). Off: lossless pictures, about 1 GB more once every boss is filmed.")),
+        ["Codex/CleanFilms"] = On(Loc.N("Clean films"),
+            Loc.N("Boss films show only the boss: damage numbers, the effects of your skills and items, your summons and status effects on the boss (poison, burn, freeze, ...) are left out.")),
     };
 
     /// <summary>Whether "Section/Key" has its own label and range here (tests: every number in Plugin.cs must).</summary>
@@ -227,6 +236,12 @@ public static class SettingsCatalog
             if (item != null)
                 items.Add((rank, order++, item));
         }
+        int codexRank = Array.FindIndex(Sections, s => s.section == "Codex");
+        items.Add((codexRank < 0 ? int.MaxValue - 1 : codexRank, int.MaxValue, new SettingItem
+        {
+            Section = Heading("Codex"), Label = Loc.T("Reset Codex"), Kind = SettingKind.Action, Action = ResetCodex,
+            Help = Loc.T("Deletes everything the Codex has gathered (progress, films, pictures) the next time the game starts, so you can fill it again from the start. The move notes stay. Select it again before restarting to keep everything."),
+        }));
         items.Add((int.MaxValue, order, new SettingItem
         {
             Section = Loc.T("All settings"), Label = Loc.T("Reset everything"), Kind = SettingKind.Action, Action = ResetAll,

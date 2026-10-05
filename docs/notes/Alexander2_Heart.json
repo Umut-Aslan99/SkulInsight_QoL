@@ -1,0 +1,1168 @@
+{
+  "key": "Alexander2_Heart",
+  "about": {
+    "en": "Alexander's second form: the heart of his giant war machine. While both hands fight, they attack together with it; once a hand is destroyed, the heart fights on with stronger patterns built from three parts: dark balls rolling across the floor, dark lasers from its eye and its cannons, and dark ground (oil on the floor that ignites).",
+    "de": "Alexanders zweite Form: das Herz seiner riesigen Kriegsmaschine. Solange beide Hände kämpfen, greifen sie gemeinsam mit ihm an; ist eine Hand zerstört, kämpft das Herz mit stärkeren Mustern aus drei Teilen weiter: dunkle Kugeln, die über den Boden rollen, dunkle Laser aus seinem Auge und seinen Kanonen, und dunkler Boden (Öl am Boden, das sich entzündet).",
+    "es": "La segunda forma de Alexander: el corazón de su gigantesca máquina de guerra. Mientras las dos manos luchan, atacan junto a él; cuando una mano es destruida, el corazón sigue con patrones más fuertes hechos de tres partes: bolas oscuras que ruedan por el suelo, láseres oscuros de su ojo y sus cañones, y suelo oscuro (aceite en el suelo que se enciende).",
+    "fr": "La deuxième forme d'Alexander : le cœur de sa gigantesque machine de guerre. Tant que les deux mains combattent, elles attaquent avec lui ; une fois une main détruite, le cœur continue avec des motifs plus forts faits de trois éléments : des boules sombres qui roulent au sol, des lasers sombres tirés de son œil et de ses canons, et un sol sombre (de l'huile au sol qui s'enflamme).",
+    "pl": "Druga forma Alexandra: serce jego gigantycznej machiny wojennej. Dopóki walczą obie dłonie, atakują razem z nim; gdy jedna dłoń zostanie zniszczona, serce walczy dalej silniejszymi wzorami z trzech części: mrocznych kul toczących się po ziemi, mrocznych laserów z oka i dział oraz mrocznej ziemi (oleju na podłodze, który się zapala).",
+    "pt-BR": "A segunda forma de Alexander: o coração da sua gigantesca máquina de guerra. Enquanto as duas mãos lutam, elas atacam junto com ele; quando uma mão é destruída, o coração continua com padrões mais fortes feitos de três partes: bolas sombrias rolando pelo chão, lasers sombrios do olho e dos canhões, e chão sombrio (óleo no chão que pega fogo).",
+    "ru": "Вторая форма Александра: сердце его гигантской боевой машины. Пока сражаются обе руки, они атакуют вместе с ним; когда одна рука уничтожена, сердце продолжает более сильными приёмами из трёх частей: тёмные шары, катящиеся по полу, тёмные лазеры из глаза и пушек, и тёмная земля (масло на полу, которое воспламеняется).",
+    "ko": "알렉산더의 두 번째 형태: 거대한 전쟁 기계의 심장입니다. 두 손이 모두 싸우는 동안에는 함께 공격하고, 손 하나가 파괴되면 심장이 세 가지 요소로 이루어진 더 강한 공격으로 싸웁니다: 바닥을 구르는 어둠의 구슬, 눈과 대포에서 나오는 어둠의 레이저, 그리고 어둠의 바닥(불이 붙는 바닥의 기름).",
+    "ja": "アレクサンダーの第2形態：巨大な戦争機械の心臓です。両手が戦っている間は一緒に攻撃し、片手が破壊されると、心臓は3つの要素からなるより強いパターンで戦います：床を転がる闇の球、目と大砲から放たれる闇のレーザー、そして闇の床（火がつく床の油）。",
+    "zh-Hans": "亚历山大的第二形态：他巨型战争机器的心脏。两只手都在战斗时会一起攻击；一只手被摧毁后，心脏会以更强的模式继续战斗，由三部分组成：沿地面滚动的黑暗球、从眼睛和炮台射出的黑暗激光，以及黑暗地面（地上会被点燃的油）。",
+    "zh-Hant": "亞歷山大的第二形態：他巨型戰爭機器的心臟。兩隻手都在戰鬥時會一起攻擊；一隻手被摧毀後，心臟會以更強的模式繼續戰鬥，由三部分組成：沿地面滾動的黑暗球、從眼睛和砲台射出的黑暗雷射，以及黑暗地面（地上會被點燃的油）。"
+  },
+  "moves": {
+    "Ball-laser": {
+      "en": [
+        "Glowing pink rune balls roll across the floor while a laser column shoots down from the heart's eye.",
+        "Jump over the rolling balls and keep away from the laser column and the burning floor."
+      ],
+      "de": [
+        "Leuchtende rosa Runenkugeln rollen über den Boden, während aus dem Auge des Herzens eine Lasersäule herabschießt.",
+        "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+      ],
+      "es": [
+        "Bolas de runas rosas brillantes ruedan por el suelo mientras una columna de láser baja del ojo del corazón.",
+        "Salta sobre las bolas que ruedan y aléjate de la columna de láser y del suelo en llamas."
+      ],
+      "fr": [
+        "Des boules de runes roses lumineuses roulent au sol pendant qu'une colonne laser descend de l'œil du cœur.",
+        "Saute par-dessus les boules qui roulent et reste loin de la colonne laser et du sol en feu."
+      ],
+      "pl": [
+        "Świecące różowe kule z runami toczą się po ziemi, a z oka serca w dół strzela słup lasera.",
+        "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+      ],
+      "pt-BR": [
+        "Bolas de runas rosa brilhantes rolam pelo chão enquanto uma coluna de laser desce do olho do coração.",
+        "Pule as bolas que rolam e fique longe da coluna de laser e do chão em chamas."
+      ],
+      "ru": [
+        "Светящиеся розовые шары с рунами катятся по полу, пока из глаза сердца вниз бьёт лазерный столб.",
+        "Перепрыгивайте катящиеся шары и держитесь подальше от лазерного столба и горящего пола."
+      ],
+      "ko": [
+        "빛나는 분홍빛 룬 구슬이 바닥을 구르는 동안, 심장의 눈에서 레이저 기둥이 아래로 내리꽂힙니다.",
+        "굴러오는 구슬을 점프로 넘고, 레이저 기둥과 불타는 바닥에서 떨어지세요."
+      ],
+      "ja": [
+        "光るピンクのルーンの球が床を転がる間、心臓の目からレーザーの柱が降り注ぎます。",
+        "転がる球を飛び越え、レーザーの柱と燃える床から離れましょう。"
+      ],
+      "zh-Hans": [
+        "发光的粉色符文球沿地面滚动，同时心脏的眼睛向下射出激光柱。",
+        "跳过滚动的球，远离激光柱和燃烧的地面。"
+      ],
+      "zh-Hant": [
+        "發光的粉色符文球沿地面滾動，同時心臟的眼睛向下射出雷射柱。",
+        "跳過滾動的球，遠離雷射柱和燃燒的地面。"
+      ]
+    },
+    "Ground-ball": {
+      "en": [
+        "The floor bursts into dark flames in spots while pink rune balls roll across it.",
+        "Jump over the rolling balls and keep away from the laser column and the burning floor."
+      ],
+      "de": [
+        "Der Boden bricht stellenweise in dunkle Flammen aus, während rosa Runenkugeln darüber rollen.",
+        "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+      ],
+      "es": [
+        "El suelo estalla en llamas oscuras en algunos puntos mientras bolas de runas rosas ruedan por él.",
+        "Salta sobre las bolas que ruedan y aléjate de la columna de láser y del suelo en llamas."
+      ],
+      "fr": [
+        "Le sol s'embrase de flammes sombres par endroits pendant que des boules de runes roses le parcourent.",
+        "Saute par-dessus les boules qui roulent et reste loin de la colonne laser et du sol en feu."
+      ],
+      "pl": [
+        "Podłoga miejscami wybucha mrocznymi płomieniami, a po niej toczą się różowe kule z runami.",
+        "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+      ],
+      "pt-BR": [
+        "O chão explode em chamas sombrias em alguns pontos enquanto bolas de runas rosa rolam por ele.",
+        "Pule as bolas que rolam e fique longe da coluna de laser e do chão em chamas."
+      ],
+      "ru": [
+        "Пол местами вспыхивает тёмным пламенем, пока по нему катятся розовые шары с рунами.",
+        "Перепрыгивайте катящиеся шары и держитесь подальше от лазерного столба и горящего пола."
+      ],
+      "ko": [
+        "바닥 곳곳에서 어두운 불꽃이 터지는 동안 분홍빛 룬 구슬이 굴러갑니다.",
+        "굴러오는 구슬을 점프로 넘고, 레이저 기둥과 불타는 바닥에서 떨어지세요."
+      ],
+      "ja": [
+        "床のあちこちで暗い炎が噴き出す中、ピンクのルーンの球が転がります。",
+        "転がる球を飛び越え、レーザーの柱と燃える床から離れましょう。"
+      ],
+      "zh-Hans": [
+        "地面多处冒出黑暗火焰，同时粉色符文球在上面滚动。",
+        "跳过滚动的球，远离激光柱和燃烧的地面。"
+      ],
+      "zh-Hant": [
+        "地面多處冒出黑暗火焰，同時粉色符文球在上面滾動。",
+        "跳過滾動的球，遠離雷射柱和燃燒的地面。"
+      ]
+    },
+    "Ground-laser": {
+      "en": [
+        "The floor bursts into dark flames in spots while the heart fires a laser column and its cannon sweeps a beam along the floor.",
+        "Jump over the cannon beam and stay off the burning spots."
+      ],
+      "de": [
+        "Der Boden bricht stellenweise in dunkle Flammen aus, während das Herz eine Lasersäule feuert und seine Kanone einen Strahl über den Boden fegt.",
+        "Spring über den Kanonenstrahl und meide die brennenden Stellen."
+      ],
+      "es": [
+        "El suelo estalla en llamas oscuras en algunos puntos mientras el corazón dispara una columna de láser y su cañón barre el suelo con un rayo.",
+        "Salta sobre el rayo del cañón y evita los puntos en llamas."
+      ],
+      "fr": [
+        "Le sol s'embrase de flammes sombres par endroits pendant que le cœur tire une colonne laser et que son canon balaie le sol d'un rayon.",
+        "Saute par-dessus le rayon du canon et évite les endroits en feu."
+      ],
+      "pl": [
+        "Podłoga miejscami wybucha mrocznymi płomieniami, a serce strzela słupem lasera, a jego działo omiata podłogę promieniem.",
+        "Przeskocz promień działa i omijaj płonące miejsca."
+      ],
+      "pt-BR": [
+        "O chão explode em chamas sombrias em alguns pontos enquanto o coração dispara uma coluna de laser e o canhão varre o chão com um raio.",
+        "Pule o raio do canhão e evite os pontos em chamas."
+      ],
+      "ru": [
+        "Пол местами вспыхивает тёмным пламенем, пока сердце бьёт лазерным столбом, а его пушка проводит лучом по полу.",
+        "Перепрыгните луч пушки и обходите горящие места."
+      ],
+      "ko": [
+        "바닥 곳곳에서 어두운 불꽃이 터지는 동안 심장이 레이저 기둥을 쏘고, 대포가 바닥을 따라 광선을 휩씁니다.",
+        "대포 광선을 점프로 넘고 불타는 곳을 피하세요."
+      ],
+      "ja": [
+        "床のあちこちで暗い炎が噴き出す中、心臓がレーザーの柱を放ち、大砲が床に沿って光線を薙ぎ払います。",
+        "大砲の光線を飛び越え、燃えている場所を避けましょう。"
+      ],
+      "zh-Hans": [
+        "地面多处冒出黑暗火焰，同时心脏射出激光柱，炮台沿地面扫射光束。",
+        "跳过炮台光束，避开燃烧的位置。"
+      ],
+      "zh-Hant": [
+        "地面多處冒出黑暗火焰，同時心臟射出雷射柱，砲台沿地面掃射光束。",
+        "跳過砲台光束，避開燃燒的位置。"
+      ]
+    },
+    "Laser-laser": {
+      "en": [
+        "The heart fires a laser column down while its cannons sweep bright beams across the floor from the sides.",
+        "Jump over each sweeping beam and avoid the column."
+      ],
+      "de": [
+        "Das Herz feuert eine Lasersäule nach unten, während seine Kanonen von den Seiten helle Strahlen über den Boden fegen.",
+        "Spring über jeden fegenden Strahl und meide die Säule."
+      ],
+      "es": [
+        "El corazón dispara una columna de láser hacia abajo mientras sus cañones barren el suelo con rayos brillantes desde los lados.",
+        "Salta sobre cada rayo y evita la columna."
+      ],
+      "fr": [
+        "Le cœur tire une colonne laser vers le bas pendant que ses canons balaient le sol de rayons éclatants depuis les côtés.",
+        "Saute par-dessus chaque rayon et évite la colonne."
+      ],
+      "pl": [
+        "Serce strzela w dół słupem lasera, a jego działa z boków omiatają podłogę jasnymi promieniami.",
+        "Przeskakuj każdy promień i omijaj słup."
+      ],
+      "pt-BR": [
+        "O coração dispara uma coluna de laser para baixo enquanto os canhões varrem o chão com raios brilhantes dos lados.",
+        "Pule cada raio e evite a coluna."
+      ],
+      "ru": [
+        "Сердце бьёт вниз лазерным столбом, а его пушки с боков проводят по полу яркими лучами.",
+        "Перепрыгивайте каждый луч и избегайте столба."
+      ],
+      "ko": [
+        "심장이 아래로 레이저 기둥을 쏘는 동안, 양옆의 대포가 바닥을 따라 밝은 광선을 휩씁니다.",
+        "휩쓰는 광선마다 점프로 넘고 기둥을 피하세요."
+      ],
+      "ja": [
+        "心臓が下へレーザーの柱を放つ間、両側の大砲が床に沿ってまばゆい光線を薙ぎ払います。",
+        "薙ぎ払う光線を飛び越え、柱を避けましょう。"
+      ],
+      "zh-Hans": [
+        "心脏向下射出激光柱，同时左右两边的炮台沿地面扫射明亮的光束。",
+        "跳过每道扫射的光束，避开光柱。"
+      ],
+      "zh-Hant": [
+        "心臟向下射出雷射柱，同時兩側的砲台沿地面掃射明亮的光束。",
+        "跳過每道掃射的光束，避開光柱。"
+      ]
+    },
+    "Wave generator": {
+      "en": [
+        "A big rune wheel rolls across the floor while a laser column shoots down from the heart's eye.",
+        "Jump over the rolling balls and keep away from the laser column and the burning floor."
+      ],
+      "de": [
+        "Ein großes Runenrad rollt über den Boden, während aus dem Auge des Herzens eine Lasersäule herabschießt.",
+        "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+      ],
+      "es": [
+        "Una gran rueda de runas rueda por el suelo mientras una columna de láser baja del ojo del corazón.",
+        "Salta sobre las bolas que ruedan y aléjate de la columna de láser y del suelo en llamas."
+      ],
+      "fr": [
+        "Une grande roue de runes roule au sol pendant qu'une colonne laser descend de l'œil du cœur.",
+        "Saute par-dessus les boules qui roulent et reste loin de la colonne laser et du sol en feu."
+      ],
+      "pl": [
+        "Wielkie koło z runami toczy się po ziemi, a z oka serca w dół strzela słup lasera.",
+        "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+      ],
+      "pt-BR": [
+        "Uma grande roda de runas rola pelo chão enquanto uma coluna de laser desce do olho do coração.",
+        "Pule as bolas que rolam e fique longe da coluna de laser e do chão em chamas."
+      ],
+      "ru": [
+        "Большое колесо рун катится по полу, пока из глаза сердца вниз бьёт лазерный столб.",
+        "Перепрыгивайте катящиеся шары и держитесь подальше от лазерного столба и горящего пола."
+      ],
+      "ko": [
+        "커다란 룬 바퀴가 바닥을 구르는 동안, 심장의 눈에서 레이저 기둥이 아래로 내리꽂힙니다.",
+        "굴러오는 구슬을 점프로 넘고, 레이저 기둥과 불타는 바닥에서 떨어지세요."
+      ],
+      "ja": [
+        "大きなルーンの輪が床を転がる間、心臓の目からレーザーの柱が降り注ぎます。",
+        "転がる球を飛び越え、レーザーの柱と燃える床から離れましょう。"
+      ],
+      "zh-Hans": [
+        "巨大的符文轮沿地面滚动，同时心脏的眼睛向下射出激光柱。",
+        "跳过滚动的球，远离激光柱和燃烧的地面。"
+      ],
+      "zh-Hant": [
+        "巨大的符文輪沿地面滾動，同時心臟的眼睛向下射出雷射柱。",
+        "跳過滾動的球，遠離雷射柱和燃燒的地面。"
+      ]
+    },
+    "Enhanced dark ball": {
+      "en": [
+        "Pink rune balls roll across the floor. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+        "Jump over the rolling balls and keep away from the laser column and the burning floor."
+      ],
+      "de": [
+        "Rosa Runenkugeln rollen über den Boden. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+        "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+      ],
+      "es": [
+        "Bolas de runas rosas ruedan por el suelo. La versión mejorada, tras destruir una mano: más y más grande, con el suelo iluminado por fuego oscuro.",
+        "Salta sobre las bolas que ruedan y aléjate de la columna de láser y del suelo en llamas."
+      ],
+      "fr": [
+        "Des boules de runes roses roulent au sol. La version renforcée, après la destruction d'une main : plus nombreux et plus gros, le sol éclairé par un feu sombre.",
+        "Saute par-dessus les boules qui roulent et reste loin de la colonne laser et du sol en feu."
+      ],
+      "pl": [
+        "Różowe kule z runami toczą się po ziemi. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+        "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+      ],
+      "pt-BR": [
+        "Bolas de runas rosa rolam pelo chão. A versão fortalecida, depois que uma mão é destruída: mais e maior, com o chão aceso por fogo sombrio.",
+        "Pule as bolas que rolam e fique longe da coluna de laser e do chão em chamas."
+      ],
+      "ru": [
+        "Розовые шары с рунами катятся по полу. Усиленная версия после уничтожения руки: больше и мощнее, а пол горит тёмным огнём.",
+        "Перепрыгивайте катящиеся шары и держитесь подальше от лазерного столба и горящего пола."
+      ],
+      "ko": [
+        "분홍빛 룬 구슬이 바닥을 굴러갑니다.손 하나가 파괴된 뒤의 강화판: 더 많고 더 크며, 바닥이 어두운 불로 밝혀집니다.",
+        "굴러오는 구슬을 점프로 넘고, 레이저 기둥과 불타는 바닥에서 떨어지세요."
+      ],
+      "ja": [
+        "ピンクのルーンの球が床を転がります。片手が破壊された後の強化版：数も大きさも増え、床が暗い炎で照らされます。",
+        "転がる球を飛び越え、レーザーの柱と燃える床から離れましょう。"
+      ],
+      "zh-Hans": [
+        "粉色符文球沿地面滚动。一只手被摧毁后的强化版：数量更多、规模更大，地面被黑暗火焰点亮。",
+        "跳过滚动的球，远离激光柱和燃烧的地面。"
+      ],
+      "zh-Hant": [
+        "粉色符文球沿地面滾動。一隻手被摧毀後的強化版：數量更多、規模更大，地面被黑暗火焰點亮。",
+        "跳過滾動的球，遠離雷射柱和燃燒的地面。"
+      ]
+    },
+    "Enhanced dark laser": {
+      "en": [
+        "The heart's cannons sweep beams along the floor and a laser column shoots down. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+        "Jump over the beams and keep away from the column."
+      ],
+      "de": [
+        "Die Kanonen des Herzens fegen Strahlen über den Boden und eine Lasersäule schießt herab. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+        "Spring über die Strahlen und halte dich von der Säule fern."
+      ],
+      "es": [
+        "Los cañones del corazón barren el suelo con rayos y baja una columna de láser. La versión mejorada, tras destruir una mano: más y más grande, con el suelo iluminado por fuego oscuro.",
+        "Salta sobre los rayos y aléjate de la columna."
+      ],
+      "fr": [
+        "Les canons du cœur balaient le sol de rayons et une colonne laser descend. La version renforcée, après la destruction d'une main : plus nombreux et plus gros, le sol éclairé par un feu sombre.",
+        "Saute par-dessus les rayons et reste loin de la colonne."
+      ],
+      "pl": [
+        "Działa serca omiatają podłogę promieniami, a w dół strzela słup lasera. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+        "Przeskakuj promienie i trzymaj się z dala od słupa."
+      ],
+      "pt-BR": [
+        "Os canhões do coração varrem o chão com raios e uma coluna de laser desce. A versão fortalecida, depois que uma mão é destruída: mais e maior, com o chão aceso por fogo sombrio.",
+        "Pule os raios e fique longe da coluna."
+      ],
+      "ru": [
+        "Пушки сердца проводят лучами по полу, и вниз бьёт лазерный столб. Усиленная версия после уничтожения руки: больше и мощнее, а пол горит тёмным огнём.",
+        "Перепрыгивайте лучи и держитесь подальше от столба."
+      ],
+      "ko": [
+        "심장의 대포가 바닥을 따라 광선을 휩쓸고, 레이저 기둥이 내리꽂힙니다.손 하나가 파괴된 뒤의 강화판: 더 많고 더 크며, 바닥이 어두운 불로 밝혀집니다.",
+        "광선을 점프로 넘고 기둥에서 떨어지세요."
+      ],
+      "ja": [
+        "心臓の大砲が床に沿って光線を薙ぎ払い、レーザーの柱が降り注ぎます。片手が破壊された後の強化版：数も大きさも増え、床が暗い炎で照らされます。",
+        "光線を飛び越え、柱から離れましょう。"
+      ],
+      "zh-Hans": [
+        "心脏的炮台沿地面扫射光束，激光柱向下射出。一只手被摧毁后的强化版：数量更多、规模更大，地面被黑暗火焰点亮。",
+        "跳过光束，远离光柱。"
+      ],
+      "zh-Hant": [
+        "心臟的砲台沿地面掃射光束，雷射柱向下射出。一隻手被摧毀後的強化版：數量更多、規模更大，地面被黑暗火焰點亮。",
+        "跳過光束，遠離光柱。"
+      ]
+    },
+    "Enhanced dark ground": {
+      "en": [
+        "Red lines slash across the floor and dark fire bursts out there. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+        "Step off the red lines before the fire comes."
+      ],
+      "de": [
+        "Rote Linien schneiden über den Boden und dort bricht dunkles Feuer hervor. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+        "Verlass die roten Linien, bevor das Feuer kommt."
+      ],
+      "es": [
+        "Líneas rojas cortan el suelo y brota fuego oscuro ahí. La versión mejorada, tras destruir una mano: más y más grande, con el suelo iluminado por fuego oscuro.",
+        "Sal de las líneas rojas antes de que llegue el fuego."
+      ],
+      "fr": [
+        "Des lignes rouges tranchent le sol et un feu sombre y jaillit. La version renforcée, après la destruction d'une main : plus nombreux et plus gros, le sol éclairé par un feu sombre.",
+        "Quitte les lignes rouges avant que le feu arrive."
+      ],
+      "pl": [
+        "Czerwone linie przecinają podłogę i wybucha tam mroczny ogień. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+        "Zejdź z czerwonych linii, zanim pojawi się ogień."
+      ],
+      "pt-BR": [
+        "Linhas vermelhas cortam o chão e fogo sombrio irrompe ali. A versão fortalecida, depois que uma mão é destruída: mais e maior, com o chão aceso por fogo sombrio.",
+        "Saia das linhas vermelhas antes de o fogo vir."
+      ],
+      "ru": [
+        "Красные линии рассекают пол, и там вспыхивает тёмный огонь. Усиленная версия после уничтожения руки: больше и мощнее, а пол горит тёмным огнём.",
+        "Уйдите с красных линий до появления огня."
+      ],
+      "ko": [
+        "붉은 선이 바닥을 가르고 그곳에서 어두운 불이 터져 나옵니다.손 하나가 파괴된 뒤의 강화판: 더 많고 더 크며, 바닥이 어두운 불로 밝혀집니다.",
+        "불이 오기 전에 붉은 선에서 벗어나세요."
+      ],
+      "ja": [
+        "赤い線が床を切り裂き、そこから暗い炎が噴き出します。片手が破壊された後の強化版：数も大きさも増え、床が暗い炎で照らされます。",
+        "炎が来る前に赤い線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "红线划过地面，黑暗火焰随之迸发。一只手被摧毁后的强化版：数量更多、规模更大，地面被黑暗火焰点亮。",
+        "在火焰出现前离开红线。"
+      ],
+      "zh-Hant": [
+        "紅線劃過地面，黑暗火焰隨之迸發。一隻手被摧毀後的強化版：數量更多、規模更大，地面被黑暗火焰點亮。",
+        "在火焰出現前離開紅線。"
+      ]
+    },
+    "Enhanced wave generator": {
+      "en": [
+        "A rune wheel rolls across the floor, the laser column shoots down, and dark fire bursts up along the floor. The enhanced version, after a hand is destroyed: more and bigger, with the floor lit up by dark fire.",
+        "Jump over the rolling balls and keep away from the laser column and the burning floor."
+      ],
+      "de": [
+        "Ein Runenrad rollt über den Boden, die Lasersäule schießt herab, und dunkles Feuer bricht entlang des Bodens hervor. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+        "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+      ],
+      "es": [
+        "Una rueda de runas rueda por el suelo, baja la columna de láser y brota fuego oscuro a lo largo del suelo. La versión mejorada, tras destruir una mano: más y más grande, con el suelo iluminado por fuego oscuro.",
+        "Salta sobre las bolas que ruedan y aléjate de la columna de láser y del suelo en llamas."
+      ],
+      "fr": [
+        "Une roue de runes roule au sol, la colonne laser descend et un feu sombre jaillit le long du sol. La version renforcée, après la destruction d'une main : plus nombreux et plus gros, le sol éclairé par un feu sombre.",
+        "Saute par-dessus les boules qui roulent et reste loin de la colonne laser et du sol en feu."
+      ],
+      "pl": [
+        "Koło z runami toczy się po ziemi, w dół strzela słup lasera, a wzdłuż podłogi wybucha mroczny ogień. Wzmocniona wersja po zniszczeniu dłoni: więcej i większe, a podłoga świeci mrocznym ogniem.",
+        "Przeskakuj toczące się kule i trzymaj się z dala od słupa lasera i płonącej podłogi."
+      ],
+      "pt-BR": [
+        "Uma roda de runas rola pelo chão, a coluna de laser desce e fogo sombrio irrompe ao longo do chão. A versão fortalecida, depois que uma mão é destruída: mais e maior, com o chão aceso por fogo sombrio.",
+        "Pule as bolas que rolam e fique longe da coluna de laser e do chão em chamas."
+      ],
+      "ru": [
+        "Колесо рун катится по полу, вниз бьёт лазерный столб, и вдоль пола вспыхивает тёмный огонь. Усиленная версия после уничтожения руки: больше и мощнее, а пол горит тёмным огнём.",
+        "Перепрыгивайте катящиеся шары и держитесь подальше от лазерного столба и горящего пола."
+      ],
+      "ko": [
+        "룬 바퀴가 바닥을 구르고, 레이저 기둥이 내리꽂히며, 바닥을 따라 어두운 불이 솟구칩니다.손 하나가 파괴된 뒤의 강화판: 더 많고 더 크며, 바닥이 어두운 불로 밝혀집니다.",
+        "굴러오는 구슬을 점프로 넘고, 레이저 기둥과 불타는 바닥에서 떨어지세요."
+      ],
+      "ja": [
+        "ルーンの輪が床を転がり、レーザーの柱が降り注ぎ、床に沿って暗い炎が噴き上がります。片手が破壊された後の強化版：数も大きさも増え、床が暗い炎で照らされます。",
+        "転がる球を飛び越え、レーザーの柱と燃える床から離れましょう。"
+      ],
+      "zh-Hans": [
+        "符文轮沿地面滚动，激光柱向下射出，黑暗火焰沿地面迸发。一只手被摧毁后的强化版：数量更多、规模更大，地面被黑暗火焰点亮。",
+        "跳过滚动的球，远离激光柱和燃烧的地面。"
+      ],
+      "zh-Hant": [
+        "符文輪沿地面滾動，雷射柱向下射出，黑暗火焰沿地面迸發。一隻手被摧毀後的強化版：數量更多、規模更大，地面被黑暗火焰點亮。",
+        "跳過滾動的球，遠離雷射柱和燃燒的地面。"
+      ]
+    },
+    "Dark big bang": {
+      "en": [
+        "A blue and a red orb appear on both sides, drift toward each other, and meet in the middle in a huge dark explosion.",
+        "Get to the edge of the room before the orbs meet."
+      ],
+      "de": [
+        "Eine blaue und eine rote Kugel erscheinen auf beiden Seiten, treiben aufeinander zu und treffen sich in der Mitte in einer gewaltigen dunklen Explosion.",
+        "Geh an den Rand des Raums, bevor sich die Kugeln treffen."
+      ],
+      "es": [
+        "Aparecen un orbe azul y uno rojo a ambos lados, se acercan entre sí y se juntan en el centro en una enorme explosión oscura.",
+        "Ve al borde de la sala antes de que se junten los orbes."
+      ],
+      "fr": [
+        "Un orbe bleu et un orbe rouge apparaissent de chaque côté, dérivent l'un vers l'autre et se rejoignent au milieu dans une immense explosion sombre.",
+        "Va au bord de la salle avant que les orbes se rejoignent."
+      ],
+      "pl": [
+        "Po obu stronach pojawiają się niebieska i czerwona kula, dryfują ku sobie i spotykają się pośrodku w ogromnej mrocznej eksplozji.",
+        "Przejdź na skraj sali, zanim kule się spotkają."
+      ],
+      "pt-BR": [
+        "Um orbe azul e um vermelho aparecem dos dois lados, flutuam um em direção ao outro e se encontram no meio numa enorme explosão sombria.",
+        "Vá para a borda do salão antes de os orbes se encontrarem."
+      ],
+      "ru": [
+        "По бокам появляются синяя и красная сферы, плывут навстречу друг другу и встречаются посередине в огромном тёмном взрыве.",
+        "Уйдите к краю зала, пока сферы не встретились."
+      ],
+      "ko": [
+        "양쪽에 푸른 구슬과 붉은 구슬이 나타나 서로를 향해 다가가다가, 가운데에서 만나 거대한 어둠의 폭발을 일으킵니다.",
+        "구슬이 만나기 전에 방 가장자리로 가세요."
+      ],
+      "ja": [
+        "両側に青い球と赤い球が現れ、互いに近づき、中央でぶつかって巨大な闇の爆発を起こします。",
+        "球がぶつかる前に部屋の端へ行きましょう。"
+      ],
+      "zh-Hans": [
+        "左右两边出现一蓝一红两个球体，相互靠近，在中央相遇并引发巨大的黑暗爆炸。",
+        "在两个球相遇前移动到房间边缘。"
+      ],
+      "zh-Hant": [
+        "兩側出現一藍一紅兩個球體，相互靠近，在中央相遇並引發巨大的黑暗爆炸。",
+        "在兩個球相遇前移動到房間邊緣。"
+      ]
+    },
+    "Cosmic explosion": {
+      "en": [
+        "Dark fire lights the floor, a black hole opens in the room, and after a while it erupts in blinding rays and a huge golden explosion.",
+        "Get far from the black hole before it erupts."
+      ],
+      "de": [
+        "Dunkles Feuer erhellt den Boden, ein schwarzes Loch öffnet sich im Raum und bricht nach einer Weile in grellen Strahlen und einer gewaltigen goldenen Explosion aus.",
+        "Entferne dich weit vom schwarzen Loch, bevor es ausbricht."
+      ],
+      "es": [
+        "Fuego oscuro ilumina el suelo, se abre un agujero negro en la sala y, al rato, estalla en rayos cegadores y una enorme explosión dorada.",
+        "Aléjate del agujero negro antes de que estalle."
+      ],
+      "fr": [
+        "Un feu sombre éclaire le sol, un trou noir s'ouvre dans la salle et, au bout d'un moment, il éclate en rayons aveuglants et en une immense explosion dorée.",
+        "Éloigne-toi du trou noir avant qu'il éclate."
+      ],
+      "pl": [
+        "Mroczny ogień oświetla podłogę, w sali otwiera się czarna dziura, która po chwili wybucha oślepiającymi promieniami i ogromną złotą eksplozją.",
+        "Oddal się od czarnej dziury, zanim wybuchnie."
+      ],
+      "pt-BR": [
+        "Fogo sombrio ilumina o chão, um buraco negro se abre no salão e, depois de um tempo, explode em raios ofuscantes e uma enorme explosão dourada.",
+        "Afaste-se do buraco negro antes de ele explodir."
+      ],
+      "ru": [
+        "Тёмный огонь освещает пол, в зале открывается чёрная дыра, а через некоторое время она взрывается ослепительными лучами и огромным золотым взрывом.",
+        "Отойдите подальше от чёрной дыры, пока она не взорвалась."
+      ],
+      "ko": [
+        "어두운 불이 바닥을 밝히고 방 안에 블랙홀이 열린 뒤, 잠시 후 눈부신 광선과 거대한 황금 폭발로 터집니다.",
+        "블랙홀이 터지기 전에 멀리 떨어지세요."
+      ],
+      "ja": [
+        "暗い炎が床を照らし、部屋にブラックホールが開き、しばらくするとまばゆい光線と巨大な黄金の爆発となって噴き出します。",
+        "ブラックホールが噴き出す前に遠く離れましょう。"
+      ],
+      "zh-Hans": [
+        "黑暗火焰照亮地面，房间里出现黑洞，片刻后迸发出耀眼的光芒和巨大的金色爆炸。",
+        "在黑洞爆发前远离它。"
+      ],
+      "zh-Hant": [
+        "黑暗火焰照亮地面，房間裡出現黑洞，片刻後迸發出耀眼的光芒和巨大的金色爆炸。",
+        "在黑洞爆發前遠離它。"
+      ]
+    },
+    "Celestial meteor": {
+      "en": [
+        "Sparks fall onto the floor, red circles mark spots, and meteors crash down there in pink explosions.",
+        "Stay out of the red circles."
+      ],
+      "de": [
+        "Funken fallen auf den Boden, rote Kreise markieren Stellen, und dort krachen Meteore in rosa Explosionen herab.",
+        "Bleib aus den roten Kreisen heraus."
+      ],
+      "es": [
+        "Caen chispas al suelo, círculos rojos marcan puntos y ahí caen meteoros en explosiones rosas.",
+        "No te metas en los círculos rojos."
+      ],
+      "fr": [
+        "Des étincelles tombent au sol, des cercles rouges marquent des endroits et des météores s'y écrasent dans des explosions roses.",
+        "Reste hors des cercles rouges."
+      ],
+      "pl": [
+        "Na podłogę spadają iskry, czerwone kręgi oznaczają miejsca, a tam spadają meteory w różowych eksplozjach.",
+        "Nie wchodź w czerwone kręgi."
+      ],
+      "pt-BR": [
+        "Faíscas caem no chão, círculos vermelhos marcam pontos e meteoros caem ali em explosões rosa.",
+        "Fique fora dos círculos vermelhos."
+      ],
+      "ru": [
+        "На пол падают искры, красные круги отмечают места, и туда обрушиваются метеоры в розовых взрывах.",
+        "Не заходите в красные круги."
+      ],
+      "ko": [
+        "불꽃이 바닥에 떨어지고 붉은 원이 지점을 표시한 뒤, 그곳에 분홍빛 폭발과 함께 운석이 떨어집니다.",
+        "붉은 원 안에 들어가지 마세요."
+      ],
+      "ja": [
+        "火花が床に落ち、赤い円が場所を示すと、そこに隕石がピンクの爆発とともに落ちてきます。",
+        "赤い円の中に入らないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "火花落到地面，红圈标出位置，陨石随即伴随粉色爆炸砸下。",
+        "不要进入红圈。"
+      ],
+      "zh-Hant": [
+        "火花落到地面，紅圈標出位置，隕石隨即伴隨粉色爆炸砸下。",
+        "不要進入紅圈。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "The heart is stunned for a while.",
+        "Attack the heart with everything you have."
+      ],
+      "de": [
+        "Das Herz ist eine Weile betäubt.",
+        "Greif das Herz mit allem an, was du hast."
+      ],
+      "es": [
+        "El corazón queda aturdido un rato.",
+        "Ataca el corazón con todo lo que tengas."
+      ],
+      "fr": [
+        "Le cœur est étourdi un moment.",
+        "Attaque le cœur avec tout ce que tu as."
+      ],
+      "pl": [
+        "Serce jest przez chwilę ogłuszone.",
+        "Atakuj serce wszystkim, co masz."
+      ],
+      "pt-BR": [
+        "O coração fica atordoado por um tempo.",
+        "Ataque o coração com tudo o que tiver."
+      ],
+      "ru": [
+        "Сердце на время оглушено.",
+        "Атакуйте сердце всем, что у вас есть."
+      ],
+      "ko": [
+        "심장이 한동안 기절합니다.",
+        "가진 모든 것으로 심장을 공격하세요."
+      ],
+      "ja": [
+        "心臓がしばらく気絶します。",
+        "持てるすべてで心臓を攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "心脏陷入眩晕一段时间。",
+        "用尽全力攻击心脏。"
+      ],
+      "zh-Hant": [
+        "心臟陷入暈眩一段時間。",
+        "用盡全力攻擊心臟。"
+      ]
+    },
+    "Groggy 2": {
+      "en": [
+        "The heart is stunned for a while.",
+        "Attack the heart with everything you have."
+      ],
+      "de": [
+        "Das Herz ist eine Weile betäubt.",
+        "Greif das Herz mit allem an, was du hast."
+      ],
+      "es": [
+        "El corazón queda aturdido un rato.",
+        "Ataca el corazón con todo lo que tengas."
+      ],
+      "fr": [
+        "Le cœur est étourdi un moment.",
+        "Attaque le cœur avec tout ce que tu as."
+      ],
+      "pl": [
+        "Serce jest przez chwilę ogłuszone.",
+        "Atakuj serce wszystkim, co masz."
+      ],
+      "pt-BR": [
+        "O coração fica atordoado por um tempo.",
+        "Ataque o coração com tudo o que tiver."
+      ],
+      "ru": [
+        "Сердце на время оглушено.",
+        "Атакуйте сердце всем, что у вас есть."
+      ],
+      "ko": [
+        "심장이 한동안 기절합니다.",
+        "가진 모든 것으로 심장을 공격하세요."
+      ],
+      "ja": [
+        "心臓がしばらく気絶します。",
+        "持てるすべてで心臓を攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "心脏陷入眩晕一段时间。",
+        "用尽全力攻击心脏。"
+      ],
+      "zh-Hant": [
+        "心臟陷入暈眩一段時間。",
+        "用盡全力攻擊心臟。"
+      ]
+    },
+    "Chase laser": {
+      "en": [
+        "While both hands fight: the cannon above fires a laser column straight down and slides it after you along the floor.",
+        "Keep moving: the column follows you."
+      ],
+      "de": [
+        "Solange beide Hände kämpfen: Die Kanone oben feuert eine Lasersäule senkrecht nach unten und schiebt sie dir über den Boden hinterher.",
+        "Bleib in Bewegung: Die Säule folgt dir."
+      ],
+      "es": [
+        "Mientras luchan ambas manos: el cañón de arriba dispara una columna de láser hacia abajo y la desliza por el suelo tras de ti.",
+        "No dejes de moverte: la columna te sigue."
+      ],
+      "fr": [
+        "Tant que les deux mains combattent : le canon du haut tire une colonne laser vers le bas et la fait glisser au sol derrière toi.",
+        "Reste en mouvement : la colonne te suit."
+      ],
+      "pl": [
+        "Dopóki walczą obie dłonie: działo u góry strzela w dół słupem lasera i przesuwa go po podłodze za tobą.",
+        "Ruszaj się bez przerwy: słup podąża za tobą."
+      ],
+      "pt-BR": [
+        "Enquanto as duas mãos lutam: o canhão de cima dispara uma coluna de laser para baixo e a arrasta pelo chão atrás de você.",
+        "Continue se movendo: a coluna segue você."
+      ],
+      "ru": [
+        "Пока сражаются обе руки: пушка сверху бьёт вниз лазерным столбом и ведёт его по полу за вами.",
+        "Не останавливайтесь: столб следует за вами."
+      ],
+      "ko": [
+        "두 손이 모두 싸우는 동안: 위쪽 대포가 레이저 기둥을 아래로 발사하고, 바닥을 따라 당신을 뒤쫓게 합니다.",
+        "계속 움직이세요. 기둥이 당신을 따라옵니다."
+      ],
+      "ja": [
+        "両手が戦っている間：上の大砲がレーザーの柱を真下に放ち、床に沿ってあなたを追いかけさせます。",
+        "動き続けましょう。柱はあなたを追ってきます。"
+      ],
+      "zh-Hans": [
+        "双手都在战斗时：上方的炮台向下射出激光柱，并沿地面追着你移动。",
+        "不停移动，光柱会跟着你。"
+      ],
+      "zh-Hant": [
+        "雙手都在戰鬥時：上方的砲台向下射出雷射柱，並沿地面追著你移動。",
+        "不停移動，光柱會跟著你。"
+      ]
+    },
+    "Enhanced chase laser": {
+      "en": [
+        "After a hand is destroyed, the stronger version: the cannon above fires a laser column down and chases you with it along the floor.",
+        "Keep running ahead of the column."
+      ],
+      "de": [
+        "Nachdem eine Hand zerstört ist, die stärkere Version: Die Kanone oben feuert eine Lasersäule nach unten und jagt dich damit über den Boden.",
+        "Lauf der Säule immer voraus."
+      ],
+      "es": [
+        "Tras destruir una mano, la versión más fuerte: el cañón de arriba dispara una columna de láser hacia abajo y te persigue con ella por el suelo.",
+        "Corre siempre por delante de la columna."
+      ],
+      "fr": [
+        "Après la destruction d'une main, la version plus forte : le canon du haut tire une colonne laser vers le bas et te poursuit avec au sol.",
+        "Garde toujours de l'avance sur la colonne."
+      ],
+      "pl": [
+        "Po zniszczeniu dłoni mocniejsza wersja: działo u góry strzela w dół słupem lasera i goni cię nim po podłodze.",
+        "Uciekaj cały czas przed słupem."
+      ],
+      "pt-BR": [
+        "Depois que uma mão é destruída, a versão mais forte: o canhão de cima dispara uma coluna de laser para baixo e persegue você pelo chão.",
+        "Corra sempre à frente da coluna."
+      ],
+      "ru": [
+        "После уничтожения руки — усиленная версия: пушка сверху бьёт вниз лазерным столбом и гонится им за вами по полу.",
+        "Всё время бегите впереди столба."
+      ],
+      "ko": [
+        "손 하나가 파괴된 뒤의 강화판: 위쪽 대포가 레이저 기둥을 아래로 발사하며 바닥을 따라 당신을 쫓습니다.",
+        "기둥보다 앞서 계속 달리세요."
+      ],
+      "ja": [
+        "片手が破壊された後の強化版：上の大砲がレーザーの柱を真下に放ち、床に沿ってあなたを追います。",
+        "柱より先へ走り続けましょう。"
+      ],
+      "zh-Hans": [
+        "一只手被摧毁后的强化版：上方的炮台向下射出激光柱，沿地面追赶你。",
+        "一直跑在光柱前面。"
+      ],
+      "zh-Hant": [
+        "一隻手被摧毀後的強化版：上方的砲台向下射出雷射柱，沿地面追趕你。",
+        "一直跑在光柱前面。"
+      ]
+    },
+    "Curtain laser": {
+      "en": [
+        "After a hand is destroyed: the cannon above fires a laser column straight down and sweeps it slowly across the whole floor like a curtain.",
+        "Stay ahead of the column, or slip past it while it moves."
+      ],
+      "de": [
+        "Nachdem eine Hand zerstört ist: Die Kanone oben feuert eine Lasersäule senkrecht nach unten und zieht sie langsam wie einen Vorhang über den ganzen Boden.",
+        "Bleib vor der Säule oder schlüpf an ihr vorbei, während sie wandert."
+      ],
+      "es": [
+        "Tras destruir una mano: el cañón de arriba dispara una columna de láser hacia abajo y la pasa despacio por todo el suelo, como una cortina.",
+        "Mantente por delante de la columna o pásala mientras avanza."
+      ],
+      "fr": [
+        "Après la destruction d'une main : le canon du haut tire une colonne laser vers le bas et la fait passer lentement sur tout le sol, comme un rideau.",
+        "Reste devant la colonne ou passe de l'autre côté pendant qu'elle avance."
+      ],
+      "pl": [
+        "Po zniszczeniu dłoni: działo u góry strzela w dół słupem lasera i powoli przeciąga go po całej podłodze jak kurtynę.",
+        "Trzymaj się przed słupem albo prześlizgnij się obok niego."
+      ],
+      "pt-BR": [
+        "Depois que uma mão é destruída: o canhão de cima dispara uma coluna de laser para baixo e a passa devagar por todo o chão, como uma cortina.",
+        "Fique à frente da coluna ou passe por ela enquanto se move."
+      ],
+      "ru": [
+        "После уничтожения руки: пушка сверху бьёт вниз лазерным столбом и медленно проводит его по всему полу, как занавес.",
+        "Держитесь впереди столба или проскочите мимо него."
+      ],
+      "ko": [
+        "손 하나가 파괴된 뒤: 위쪽 대포가 레이저 기둥을 아래로 발사하고, 장막처럼 바닥 전체를 천천히 쓸고 지나갑니다.",
+        "기둥보다 앞서 있거나, 지나가는 틈에 빠져나가세요."
+      ],
+      "ja": [
+        "片手が破壊された後：上の大砲がレーザーの柱を真下に放ち、カーテンのように床全体をゆっくり横切らせます。",
+        "柱の先にいるか、動いている間にすり抜けましょう。"
+      ],
+      "zh-Hans": [
+        "一只手被摧毁后：上方的炮台向下射出激光柱，像幕布一样缓缓扫过整个地面。",
+        "待在光柱前方，或趁它移动时从旁穿过。"
+      ],
+      "zh-Hant": [
+        "一隻手被摧毀後：上方的砲台向下射出雷射柱，像布幕一樣緩緩掃過整個地面。",
+        "待在光柱前方，或趁它移動時從旁穿過。"
+      ]
+    },
+    "Targeting laser": {
+      "en": [
+        "With both hands destroyed: the cannon jumps from spot to spot and fires short laser columns down at where you stand.",
+        "Keep moving: each shot hits the spot you were on."
+      ],
+      "de": [
+        "Wenn beide Hände zerstört sind: Die Kanone springt von Stelle zu Stelle und feuert kurze Lasersäulen auf deinen Standort.",
+        "Bleib in Bewegung: Jeder Schuss trifft die Stelle, an der du warst."
+      ],
+      "es": [
+        "Con ambas manos destruidas: el cañón salta de un punto a otro y dispara columnas cortas de láser hacia donde estás.",
+        "Muévete: cada disparo cae donde estabas."
+      ],
+      "fr": [
+        "Une fois les deux mains détruites : le canon saute d'un point à l'autre et tire de courtes colonnes laser là où tu te tiens.",
+        "Bouge sans arrêt : chaque tir frappe l'endroit où tu étais."
+      ],
+      "pl": [
+        "Gdy obie dłonie są zniszczone: działo przeskakuje z miejsca na miejsce i strzela krótkimi słupami lasera tam, gdzie stoisz.",
+        "Ruszaj się: każdy strzał trafia w miejsce, gdzie stałeś."
+      ],
+      "pt-BR": [
+        "Com as duas mãos destruídas: o canhão salta de ponto em ponto e dispara colunas curtas de laser onde você está.",
+        "Continue se movendo: cada tiro acerta onde você estava."
+      ],
+      "ru": [
+        "Когда обе руки уничтожены: пушка перескакивает с места на место и бьёт короткими лазерными столбами туда, где вы стоите.",
+        "Двигайтесь: каждый выстрел бьёт в место, где вы были."
+      ],
+      "ko": [
+        "두 손이 모두 파괴되면: 대포가 이곳저곳으로 옮겨 다니며 당신이 선 자리에 짧은 레이저 기둥을 발사합니다.",
+        "계속 움직이세요. 한 발 한 발이 당신이 있던 자리를 노립니다."
+      ],
+      "ja": [
+        "両手が破壊されると：大砲があちこちへ移りながら、あなたの立つ場所へ短いレーザーの柱を撃ち込みます。",
+        "動き続けましょう。一発ごとにあなたがいた場所を狙います。"
+      ],
+      "zh-Hans": [
+        "双手都被摧毁后：炮台在各处之间跳动，向你所站的位置射出短激光柱。",
+        "不停移动，每一击都会打在你刚才的位置。"
+      ],
+      "zh-Hant": [
+        "雙手都被摧毀後：砲台在各處之間跳動，向你所站的位置射出短雷射柱。",
+        "不停移動，每一擊都會打在你剛才的位置。"
+      ]
+    },
+    "Heart beat": {
+      "en": [
+        "With both hands destroyed: the heart's core throbs, then a ring of pink lightning bursts out of it and spreads across the whole room; it often beats again right after.",
+        "Jump over the ring's lower edge as it passes you."
+      ],
+      "de": [
+        "Wenn beide Hände zerstört sind: Der Kern des Herzens pocht, dann bricht ein Ring aus rosa Blitzen hervor und breitet sich über den ganzen Raum aus; oft schlägt es gleich noch einmal.",
+        "Spring über den unteren Rand des Rings, wenn er dich erreicht."
+      ],
+      "es": [
+        "Con ambas manos destruidas: el núcleo del corazón late y un anillo de rayos rosas sale de él y se extiende por toda la sala; a menudo late otra vez enseguida.",
+        "Salta sobre el borde inferior del anillo cuando te alcance."
+      ],
+      "fr": [
+        "Une fois les deux mains détruites : le noyau du cœur palpite, puis un anneau d'éclairs roses en jaillit et s'étend à toute la salle ; il bat souvent de nouveau aussitôt.",
+        "Saute par-dessus le bord inférieur de l'anneau quand il t'atteint."
+      ],
+      "pl": [
+        "Gdy obie dłonie są zniszczone: rdzeń serca pulsuje, po czym wybucha z niego pierścień różowych błyskawic i rozchodzi się po całej sali; często zaraz uderza jeszcze raz.",
+        "Przeskocz dolną krawędź pierścienia, gdy do ciebie dotrze."
+      ],
+      "pt-BR": [
+        "Com as duas mãos destruídas: o núcleo do coração pulsa e um anel de raios rosa sai dele e se espalha pela sala inteira; muitas vezes bate de novo logo em seguida.",
+        "Pule a borda de baixo do anel quando ele chegar até você."
+      ],
+      "ru": [
+        "Когда обе руки уничтожены: ядро сердца пульсирует, затем из него вырывается кольцо розовых молний и расходится по всему залу; часто сразу следует ещё один удар.",
+        "Перепрыгните нижний край кольца, когда оно до вас дойдёт."
+      ],
+      "ko": [
+        "두 손이 모두 파괴되면: 심장의 핵이 고동친 뒤 분홍빛 번개 고리가 터져 나와 방 전체로 퍼집니다. 곧바로 한 번 더 뛰는 일이 많습니다.",
+        "고리의 아래쪽 가장자리가 다가오면 점프로 넘으세요."
+      ],
+      "ja": [
+        "両手が破壊されると：心臓の核が脈打ち、ピンクの稲妻の輪が飛び出して部屋全体に広がります。すぐにもう一度脈打つこともよくあります。",
+        "輪の下の縁が来たら飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "双手都被摧毁后：心脏核心搏动，随后一圈粉色闪电从中爆出并扩散到整个房间，常常紧接着再跳一次。",
+        "光环下缘经过你时跳过去。"
+      ],
+      "zh-Hant": [
+        "雙手都被摧毀後：心臟核心搏動，隨後一圈粉色閃電從中爆出並擴散到整個房間，常常緊接著再跳一次。",
+        "光環下緣經過你時跳過去。"
+      ]
+    },
+    "Drill missile": {
+      "en": [
+        "Red circles mark spots on the floor, then drill missiles burst up there in pink explosions.",
+        "Step out of the red circles."
+      ],
+      "de": [
+        "Rote Kreise markieren Stellen am Boden, dann brechen dort Bohrraketen in rosa Explosionen hervor.",
+        "Geh aus den roten Kreisen."
+      ],
+      "es": [
+        "Círculos rojos marcan puntos en el suelo y ahí brotan misiles taladro en explosiones rosas.",
+        "Sal de los círculos rojos."
+      ],
+      "fr": [
+        "Des cercles rouges marquent des endroits au sol, puis des missiles foreuses y jaillissent dans des explosions roses.",
+        "Sors des cercles rouges."
+      ],
+      "pl": [
+        "Czerwone kręgi oznaczają miejsca na podłodze, a potem wyrywają się tam pociski wiertła w różowych eksplozjach.",
+        "Wyjdź z czerwonych kręgów."
+      ],
+      "pt-BR": [
+        "Círculos vermelhos marcam pontos no chão e mísseis broca irrompem ali em explosões rosa.",
+        "Saia dos círculos vermelhos."
+      ],
+      "ru": [
+        "Красные круги отмечают места на полу, затем там вырываются ракеты-буры в розовых взрывах.",
+        "Выйдите из красных кругов."
+      ],
+      "ko": [
+        "붉은 원이 바닥의 지점을 표시한 뒤, 그곳에서 드릴 미사일이 분홍빛 폭발과 함께 솟아오릅니다.",
+        "붉은 원에서 벗어나세요."
+      ],
+      "ja": [
+        "赤い円が床の場所を示し、そこからドリルミサイルがピンクの爆発とともに飛び出します。",
+        "赤い円から出ましょう。"
+      ],
+      "zh-Hans": [
+        "红圈标出地面上的位置，随后钻头导弹在那里伴随粉色爆炸钻出。",
+        "离开红圈。"
+      ],
+      "zh-Hant": [
+        "紅圈標出地面上的位置，隨後鑽頭飛彈在那裡伴隨粉色爆炸鑽出。",
+        "離開紅圈。"
+      ]
+    },
+    "Dark ring": {
+      "en": [
+        "A dark ring forms on the left or right of the heart and bursts in a flash of dark energy.",
+        "Move to the other side when the ring appears."
+      ],
+      "de": [
+        "Links oder rechts vom Herzen bildet sich ein dunkler Ring und zerplatzt in einem Blitz dunkler Energie.",
+        "Wechsle auf die andere Seite, wenn der Ring erscheint."
+      ],
+      "es": [
+        "Un anillo oscuro se forma a la izquierda o a la derecha del corazón y estalla en un destello de energía oscura.",
+        "Pásate al otro lado cuando aparezca el anillo."
+      ],
+      "fr": [
+        "Un anneau noir se forme à gauche ou à droite du cœur et éclate dans un flash d'énergie sombre.",
+        "Passe de l'autre côté quand l'anneau apparaît."
+      ],
+      "pl": [
+        "Po lewej lub prawej stronie serca tworzy się mroczny pierścień i wybucha błyskiem mrocznej energii.",
+        "Przejdź na drugą stronę, gdy pojawi się pierścień."
+      ],
+      "pt-BR": [
+        "Um anel sombrio se forma à esquerda ou à direita do coração e explode num clarão de energia sombria.",
+        "Vá para o outro lado quando o anel aparecer."
+      ],
+      "ru": [
+        "Слева или справа от сердца возникает тёмное кольцо и взрывается вспышкой тёмной энергии.",
+        "Переходите на другую сторону, когда появляется кольцо."
+      ],
+      "ko": [
+        "심장의 왼쪽이나 오른쪽에 암흑 고리가 생겨나 어두운 에너지의 섬광과 함께 터집니다.",
+        "고리가 나타나면 반대쪽으로 이동하세요."
+      ],
+      "ja": [
+        "心臓の左か右に暗黒の輪が現れ、闇のエネルギーの閃光とともに弾けます。",
+        "輪が現れたら反対側へ移りましょう。"
+      ],
+      "zh-Hans": [
+        "心脏的左边或右边出现一个黑暗之环，随即在黑暗能量的闪光中爆开。",
+        "黑暗之环出现时移到另一边。"
+      ],
+      "zh-Hant": [
+        "心臟左側或右側出現一個黑暗之環，隨即在黑暗能量的閃光中爆開。",
+        "黑暗之環出現時移到另一邊。"
+      ]
+    },
+    "Dark bouncy ball": {
+      "en": [
+        "Dark balls are launched and bounce across the room, off the floor and the walls.",
+        "Watch their bounces and jump over them or pass under them."
+      ],
+      "de": [
+        "Dunkle Kugeln werden abgefeuert und springen durch den Raum, vom Boden und von den Wänden ab.",
+        "Achte auf ihre Sprünge und spring darüber oder lauf darunter durch."
+      ],
+      "es": [
+        "Lanza bolas oscuras que rebotan por la sala, en el suelo y en las paredes.",
+        "Observa sus rebotes y sáltalas o pasa por debajo."
+      ],
+      "fr": [
+        "Des boules noires sont lancées et rebondissent dans la salle, sur le sol et les murs.",
+        "Observe leurs rebonds et saute par-dessus ou passe dessous."
+      ],
+      "pl": [
+        "Wystrzelone mroczne kule odbijają się po sali od podłogi i ścian.",
+        "Obserwuj ich odbicia i przeskakuj je albo przechodź pod nimi."
+      ],
+      "pt-BR": [
+        "Bolas sombrias são lançadas e quicam pela sala, no chão e nas paredes.",
+        "Observe os quiques e pule sobre elas ou passe por baixo."
+      ],
+      "ru": [
+        "Тёмные шары вылетают и прыгают по залу, отскакивая от пола и стен.",
+        "Следите за отскоками и перепрыгивайте шары или пробегайте под ними."
+      ],
+      "ko": [
+        "암흑구가 발사되어 바닥과 벽에 부딪히며 방 안을 통통 튀어 다닙니다.",
+        "튀는 궤적을 보고 점프로 넘거나 아래로 지나가세요."
+      ],
+      "ja": [
+        "暗黒球が放たれ、床や壁に跳ね返りながら部屋中を跳ね回ります。",
+        "跳ね方をよく見て、飛び越えるか下をくぐりましょう。"
+      ],
+      "zh-Hans": [
+        "发射出黑暗球，在地面和墙壁间弹跳，穿过整个房间。",
+        "看清弹跳轨迹，跳过或从下方穿过。"
+      ],
+      "zh-Hant": [
+        "發射出黑暗球，在地面和牆壁間彈跳，穿過整個房間。",
+        "看清彈跳軌跡，跳過或從下方穿過。"
+      ]
+    },
+    "Bouncy ball": {
+      "en": [
+        "Small rune balls bounce along the floor. With one hand left, a big rune wheel (the enhanced wave generator) rolls across the room with them.",
+        "Jump over the balls and the wheel."
+      ],
+      "de": [
+        "Kleine Runenkugeln hüpfen über den Boden. Mit nur noch einer Hand rollt zusammen mit ihnen ein großes Runenrad (der verstärkte Wellengenerator) durch den Raum.",
+        "Spring über die Kugeln und das Rad."
+      ],
+      "es": [
+        "Pequeñas bolas rúnicas rebotan por el suelo. Con una sola mano, una gran rueda rúnica (el generador de ondas potenciado) rueda por la sala con ellas.",
+        "Salta las bolas y la rueda."
+      ],
+      "fr": [
+        "De petites boules runiques rebondissent au sol. Avec une seule main restante, une grande roue runique (le générateur d'ondes renforcé) roule à travers la salle avec elles.",
+        "Saute par-dessus les boules et la roue."
+      ],
+      "pl": [
+        "Małe runiczne kule skaczą po podłodze. Gdy zostaje jedna dłoń, razem z nimi toczy się przez salę wielkie runiczne koło (wzmocniony generator fal).",
+        "Przeskakuj kule i koło."
+      ],
+      "pt-BR": [
+        "Pequenas bolas rúnicas quicam pelo chão. Com só uma mão restante, uma grande roda rúnica (o gerador de ondas aprimorado) rola pela sala junto com elas.",
+        "Pule as bolas e a roda."
+      ],
+      "ru": [
+        "Маленькие рунные шары прыгают по полу. Когда остаётся одна рука, вместе с ними по залу катится большое рунное колесо (усиленный генератор волн).",
+        "Перепрыгивайте шары и колесо."
+      ],
+      "ko": [
+        "작은 룬 구체들이 바닥을 따라 튀어 다닙니다. 손이 하나만 남으면 커다란 룬 바퀴(강화 파동 생성기)가 함께 방을 굴러갑니다.",
+        "구체와 바퀴를 점프로 넘으세요."
+      ],
+      "ja": [
+        "小さなルーンの球が床を跳ねていきます。片手だけになると、大きなルーンの輪（強化波動発生器）も一緒に部屋を転がります。",
+        "球と輪を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "小符文球沿地面弹跳。只剩一只手时，一个巨大的符文轮（强化波动发生器）会随之滚过房间。",
+        "跳过符文球和符文轮。"
+      ],
+      "zh-Hant": [
+        "小符文球沿地面彈跳。只剩一隻手時，一個巨大的符文輪（強化波動發生器）會隨之滾過房間。",
+        "跳過符文球和符文輪。"
+      ]
+    },
+    "Oil ball": {
+      "en": [
+        "Balls of dark oil fall onto the floor and leave pools that burn in purple flames. With one hand left, the heart adds a laser column from its eye or rolling dark balls; with no hands left, a rotating laser.",
+        "Stay off the burning pools and watch for the laser."
+      ],
+      "de": [
+        "Kugeln aus dunklem Öl fallen auf den Boden und hinterlassen Lachen, die in violetten Flammen brennen. Mit nur noch einer Hand kommt eine Lasersäule aus dem Auge des Herzens oder rollende Dunkelkugeln dazu; ohne Hände ein rotierender Laser.",
+        "Meide die brennenden Lachen und achte auf den Laser."
+      ],
+      "es": [
+        "Caen al suelo bolas de aceite oscuro que dejan charcos ardiendo en llamas moradas. Con una sola mano, el corazón añade una columna de láser desde su ojo o esferas oscuras rodantes; sin manos, un láser giratorio.",
+        "No pises los charcos en llamas y vigila el láser."
+      ],
+      "fr": [
+        "Des boules d'huile noire tombent au sol et laissent des flaques qui brûlent de flammes violettes. Avec une seule main restante, le cœur y ajoute une colonne laser de son œil ou des sphères noires qui roulent ; sans mains, un laser rotatif.",
+        "Évite les flaques en feu et surveille le laser."
+      ],
+      "pl": [
+        "Kule mrocznego oleju spadają na podłogę i zostawiają kałuże płonące fioletowym ogniem. Gdy zostaje jedna dłoń, serce dodaje słup lasera z oka albo toczące się mroczne kule; bez dłoni obracający się laser.",
+        "Omijaj płonące kałuże i uważaj na laser."
+      ],
+      "pt-BR": [
+        "Bolas de óleo sombrio caem no chão e deixam poças que queimam em chamas roxas. Com só uma mão restante, o coração acrescenta uma coluna de laser do olho ou esferas sombrias rolando; sem mãos, um laser giratório.",
+        "Fique longe das poças em chamas e cuidado com o laser."
+      ],
+      "ru": [
+        "Шары тёмного масла падают на пол и оставляют лужи, горящие фиолетовым огнём. Когда остаётся одна рука, сердце добавляет лазерный столб из глаза или катящиеся тёмные сферы; без рук — вращающийся лазер.",
+        "Не наступайте в горящие лужи и следите за лазером."
+      ],
+      "ko": [
+        "어두운 기름 구체가 바닥에 떨어져 보랏빛 불꽃으로 타오르는 웅덩이를 남깁니다. 손이 하나만 남으면 심장의 눈에서 레이저 기둥이나 굴러가는 암흑구가 더해지고, 손이 모두 없으면 회전 레이저가 더해집니다.",
+        "불타는 웅덩이를 피하고 레이저를 조심하세요."
+      ],
+      "ja": [
+        "暗い油の玉が床に落ち、紫の炎で燃える溜まりを残します。片手だけになると心臓の目からのレーザーの柱か転がる暗黒球が加わり、両手がなくなると回転レーザーが加わります。",
+        "燃える溜まりを避け、レーザーに注意しましょう。"
+      ],
+      "zh-Hans": [
+        "黑暗油球落到地面，留下燃烧着紫色火焰的油池。只剩一只手时，心脏还会从眼中射出激光柱或滚出黑暗球；双手都没了时则加上旋转激光。",
+        "避开燃烧的油池，留意激光。"
+      ],
+      "zh-Hant": [
+        "黑暗油球落到地面，留下燃燒著紫色火焰的油池。只剩一隻手時，心臟還會從眼中射出雷射柱或滾出黑暗球；雙手都沒了時則加上旋轉雷射。",
+        "避開燃燒的油池，留意雷射。"
+      ]
+    },
+    "Buzz saw": {
+      "en": [
+        "Saw blades shoot out and roll along the floor. With one hand left it is often followed by red lines that slash the floor and burst into dark fire, and about every two minutes by the Cosmic explosion: a black hole opens and erupts in a huge golden blast.",
+        "Jump over the saws; get far from the black hole before it erupts."
+      ],
+      "de": [
+        "Sägeblätter schießen heraus und rollen über den Boden. Mit nur noch einer Hand folgen oft rote Linien, die den Boden aufschneiden und in dunklem Feuer aufbrechen, und etwa alle zwei Minuten die Kosmische Explosion: Ein schwarzes Loch öffnet sich und bricht in einer riesigen goldenen Explosion aus.",
+        "Spring über die Sägen; entfern dich vom schwarzen Loch, bevor es ausbricht."
+      ],
+      "es": [
+        "Salen hojas de sierra que ruedan por el suelo. Con una sola mano suelen seguirle líneas rojas que cortan el suelo y estallan en fuego oscuro, y cada dos minutos más o menos la Explosión cósmica: se abre un agujero negro que estalla en una enorme explosión dorada.",
+        "Salta las sierras; aléjate del agujero negro antes de que estalle."
+      ],
+      "fr": [
+        "Des lames de scie jaillissent et roulent au sol. Avec une seule main restante, suivent souvent des lignes rouges qui tranchent le sol et s'embrasent de feu sombre, et environ toutes les deux minutes l'Explosion cosmique : un trou noir s'ouvre et éclate en une immense explosion dorée.",
+        "Saute par-dessus les scies ; éloigne-toi du trou noir avant qu'il n'éclate."
+      ],
+      "pl": [
+        "Wylatują piły tarczowe i toczą się po podłodze. Gdy zostaje jedna dłoń, często następują czerwone linie, które przecinają podłogę i wybuchają mrocznym ogniem, a mniej więcej co dwie minuty Kosmiczna eksplozja: otwiera się czarna dziura i wybucha ogromną złotą eksplozją.",
+        "Przeskakuj piły; oddal się od czarnej dziury, zanim wybuchnie."
+      ],
+      "pt-BR": [
+        "Lâminas de serra saem e rolam pelo chão. Com só uma mão restante, costumam vir depois linhas vermelhas que cortam o chão e explodem em fogo sombrio e, a cada dois minutos mais ou menos, a Explosão cósmica: um buraco negro se abre e explode num enorme clarão dourado.",
+        "Pule as serras; afaste-se do buraco negro antes que ele exploda."
+      ],
+      "ru": [
+        "Вылетают пилы и катятся по полу. Когда остаётся одна рука, за ними часто следуют красные линии, которые рассекают пол и вспыхивают тёмным огнём, а примерно раз в две минуты — Космический взрыв: открывается чёрная дыра и взрывается огромной золотой вспышкой.",
+        "Перепрыгивайте пилы; уйдите подальше от чёрной дыры до взрыва."
+      ],
+      "ko": [
+        "톱날이 튀어나와 바닥을 따라 굴러갑니다. 손이 하나만 남으면 바닥을 가르고 어두운 불로 터지는 붉은 선이 뒤따르는 일이 많고, 약 2분마다 우주 폭발이 일어납니다. 블랙홀이 열린 뒤 거대한 황금빛 폭발로 터집니다.",
+        "톱날을 점프로 넘고, 블랙홀이 터지기 전에 멀리 떨어지세요."
+      ],
+      "ja": [
+        "ノコギリの刃が飛び出して床を転がります。片手だけになると、床を切り裂いて暗い炎を噴く赤い線が続くことが多く、約2分ごとに宇宙爆発が起きます：ブラックホールが開き、巨大な金色の爆発となって弾けます。",
+        "刃を飛び越え、ブラックホールが弾ける前に遠くへ離れましょう。"
+      ],
+      "zh-Hans": [
+        "锯片飞出，沿地面滚动。只剩一只手时，之后常会出现划开地面并迸发黑暗火焰的红线；大约每两分钟还会有宇宙爆炸：一个黑洞张开，随后化作巨大的金色爆炸。",
+        "跳过锯片；在黑洞爆发前远离它。"
+      ],
+      "zh-Hant": [
+        "鋸片飛出，沿地面滾動。只剩一隻手時，之後常會出現劃開地面並迸發黑暗火焰的紅線；大約每兩分鐘還會有宇宙爆炸：一個黑洞張開，隨後化作巨大的金色爆炸。",
+        "跳過鋸片；在黑洞爆發前遠離它。"
+      ]
+    }
+  }
+}

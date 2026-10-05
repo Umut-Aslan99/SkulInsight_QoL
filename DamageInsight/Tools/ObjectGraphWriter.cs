@@ -32,6 +32,8 @@ public sealed class ObjectGraphWriter
 
     /// <summary>Characters (minions, summons) referenced by the written data; only summarized inline.</summary>
     public readonly List<Characters.Character> ReferencedCharacters = new();
+    /// <summary>Weapons outside the written hierarchy (a skill's transformed body: StartWeaponPolymorph).</summary>
+    public readonly List<Characters.Gear.Weapons.Weapon> ReferencedWeapons = new();
 
     /// <summary>
     /// Addressables links (AssetReference GUIDs) met in the written data: prefabs the game loads on demand,
@@ -204,6 +206,8 @@ public sealed class ObjectGraphWriter
                     WriteCharacterSummary(character);
                     return;
                 }
+                if (c is Characters.Gear.Weapons.Weapon weapon && !ReferencedWeapons.Contains(weapon))
+                    ReferencedWeapons.Add(weapon);
                 WriteComponent(c, null, depth);
                 return;
             case GameObject go:

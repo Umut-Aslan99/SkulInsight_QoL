@@ -130,7 +130,8 @@ ru, pl, fr). It is used at once on the next language change or game start; pleas
 
 A book with every enemy, boss, adventurer, skull, item, essence and inscription you have met: your kills, damage
 dealt and taken, deaths, and descriptions. Nothing is shipped with the mod: every picture and film is created on
-your own PC while you play.
+your own PC while you play. Since 0.11 every boss move has a note (what it does, how to deal with it), and
+films show only the boss (switch "Clean films" off on the settings page to see everything).
 
 ![Codex enemy page](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-enemy.png)
 
@@ -251,12 +252,12 @@ are in `BepInEx/LogOutput.log` as `[SelfTest]` lines. Please report it.
 <details>
 <summary><b>Known gaps in this version</b></summary>
 
-- King Alexander's second phase is not in the Codex yet (its moves are not recognized); some Dark Mirror films are
-  cut too short or split into parts (Dark Skul's bone rains, javelins, ...). Fixes come in 0.11.
-- Some move names are still rough (a few First Hero and First Dark Hero moves appear in parts).
+- King Alexander's hands, First Hero's later forms and the bomb phase have no films or notes yet.
+- Films made before 0.11 may end early or show your own effects: use "Refilm" on a move, or "Reset Codex" on the
+  settings page to start the book over (the move notes stay).
+- A few skull skills still show no damage numbers (transformations like Hell Bike and Bone Howl, Davy Jones' special
+  cannonballs, the Golden Gargoyle's statue, the Genie's lamp).
 - Translations are not checked by native speakers yet; corrections are welcome (see *All game languages*).
-- Move descriptions exist only for some bosses so far.
-- Films can show effects of your own items around the boss.
 </details>
 
 <details>
@@ -270,7 +271,8 @@ Open an issue on [GitHub](https://github.com/Umut-Aslan99/SkulInsight_QoL/issues
 
 ## Coming next
 
-- **0.11:** Codex films and animations cleaned up (complete boss moves, effects and projectiles of enemies).
+- **0.11 (this version):** complete boss films that show only the boss, notes for every boss move, compact
+  films, Reset Codex, more skull skills with damage numbers.
 - **0.12:** full Codex entries for skulls, items, essences, inscriptions and dark abilities, unlocked by playing; a
   character page with your whole build.
 - **0.13:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics.

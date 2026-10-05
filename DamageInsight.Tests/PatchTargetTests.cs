@@ -41,6 +41,20 @@ public class PatchTargetTests
             .ToList();
         Assert.True(patchMethods.Count > 0, "No patch methods (Prefix/Postfix/Finalizer/...) found.");
 
+        // Targets computed by the patch class itself (TargetMethod / TargetMethods): each must exist.
+        var computed = ComputedTargets(patchClass);
+        if (computed != null)
+        {
+            Assert.True(computed.Count > 0, "TargetMethod(s) found no game method.");
+            foreach (var target in computed)
+            {
+                Assert.True(target != null, "TargetMethod(s) returned a missing game method.");
+                foreach (var patchMethod in patchMethods)
+                    CheckInjectedParameters(patchMethod, target);
+            }
+            return;
+        }
+
         foreach (var patchMethod in patchMethods)
         {
             var methodInfo = HarmonyMethod.Merge(HarmonyMethodExtensions.GetFromMethod(patchMethod));
@@ -53,6 +67,17 @@ public class PatchTargetTests
 
             CheckInjectedParameters(patchMethod, target);
         }
+    }
+
+    /// <summary>The game methods a patch class picks itself (Harmony's TargetMethod / TargetMethods), or null.</summary>
+    private static List<MethodBase> ComputedTargets(Type patchClass)
+    {
+        const BindingFlags any = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+        if (patchClass.GetMethod("TargetMethods", any) is { } many)
+            return ((IEnumerable<MethodBase>)many.Invoke(null, null)).ToList();
+        if (patchClass.GetMethod("TargetMethod", any) is { } one)
+            return new List<MethodBase> { (MethodBase)one.Invoke(null, null) };
+        return null;
     }
 
     private static readonly string[] PatchMethodNames = { "Prefix", "Postfix", "Finalizer", "Transpiler" };

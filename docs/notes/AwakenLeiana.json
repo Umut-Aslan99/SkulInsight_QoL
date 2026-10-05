@@ -1,0 +1,294 @@
+{
+  "key": "AwakenLeiana",
+  "about": {
+    "en": "The surviving Leiana sister, awakened in dark power after her twin fell. She fights alone with darker, stronger versions of the sisters' moves, and uses Rush and Dimension pierce whenever they are ready.",
+    "de": "Die überlebende Leiana-Schwester, in dunkler Macht erwacht, nachdem ihre Zwillingsschwester fiel. Sie kämpft allein mit dunkleren, stärkeren Versionen der Angriffe der Schwestern und setzt Ansturm und Dimensionsstich ein, sobald sie bereit sind.",
+    "es": "La hermana Leiana superviviente, despertada con un poder oscuro tras la caída de su gemela. Lucha sola con versiones más oscuras y fuertes de los movimientos de las hermanas, y usa Embestida y Perforación dimensional en cuanto están listas.",
+    "fr": "La sœur Leiana survivante, éveillée par un pouvoir sombre après la chute de sa jumelle. Elle combat seule avec des versions plus sombres et plus fortes des attaques des sœurs, et utilise Ruée et Percée dimensionnelle dès qu'elles sont prêtes.",
+    "pl": "Ocalała siostra Leiana, przebudzona mroczną mocą po upadku bliźniaczki. Walczy sama mroczniejszymi i silniejszymi wersjami ruchów sióstr, a Szarży i Przebicia wymiaru używa, gdy tylko są gotowe.",
+    "pt-BR": "A irmã Leiana sobrevivente, despertada com um poder sombrio após a queda da gêmea. Luta sozinha com versões mais sombrias e fortes dos golpes das irmãs, e usa Investida e Perfuração dimensional sempre que ficam prontas.",
+    "ru": "Выжившая сестра Леяна, пробудившая тёмную силу после гибели близнеца. Она сражается одна более тёмными и сильными версиями приёмов сестёр, а Натиск и Пространственный прокол применяет, как только они готовы.",
+    "ko": "쌍둥이가 쓰러진 뒤 어둠의 힘으로 각성한, 살아남은 레이아나 자매. 자매의 기술을 더 어둡고 강하게 바꿔 혼자 싸우며, 돌진과 차원 관통은 준비되는 대로 사용합니다.",
+    "ja": "双子の片割れが倒れた後、闇の力で覚醒した生き残りのレイアナ。姉妹の技をより暗く強力にして単独で戦い、突進と次元貫通は使えるようになるたびに使います。",
+    "zh-Hans": "双胞胎之一倒下后，以黑暗之力觉醒的幸存的蕾安娜。她独自战斗，使用姐妹招式更黑暗、更强大的版本，突进和次元贯穿一旦就绪就会使用。",
+    "zh-Hant": "雙胞胎之一倒下後，以黑暗之力覺醒的倖存的萊安娜。她獨自戰鬥，使用姐妹招式更黑暗、更強大的版本，突進和次元貫穿一旦就緒就會使用。"
+  },
+  "moves": {
+    "Golden meteor": {
+      "en": [
+        "Appears high above you and dives straight down in a purple pillar; dark spikes burst up on both sides of the impact. She does it two or three times in a row.",
+        "She aims at where you stand each time: keep moving after every dive and stay away from both sides of the landing spot."
+      ],
+      "de": [
+        "Erscheint hoch über dir und stürzt in einer violetten Säule senkrecht herab; zu beiden Seiten des Aufpralls brechen dunkle Stacheln hervor. Das macht sie zwei- oder dreimal hintereinander.",
+        "Sie zielt jedes Mal auf die Stelle, an der du stehst: Bleib nach jedem Sturz in Bewegung und halte dich von beiden Seiten des Aufschlagpunkts fern."
+      ],
+      "es": [
+        "Aparece muy por encima de ti y cae en picado en vertical dentro de un pilar morado; a ambos lados del impacto brotan púas oscuras. Lo hace dos o tres veces seguidas.",
+        "Cada vez apunta a donde estás: sigue moviéndote tras cada caída y mantente lejos de ambos lados del punto de impacto."
+      ],
+      "fr": [
+        "Apparaît très haut au-dessus de toi et plonge à la verticale dans un pilier violet ; des pointes sombres jaillissent des deux côtés de l'impact. Elle le fait deux ou trois fois d'affilée.",
+        "Elle vise à chaque fois l'endroit où tu te tiens : continue de bouger après chaque plongeon et reste loin des deux côtés du point d'impact."
+      ],
+      "pl": [
+        "Pojawia się wysoko nad tobą i pikuje pionowo w fioletowym słupie; po obu stronach uderzenia wyrastają mroczne kolce. Robi to dwa lub trzy razy z rzędu.",
+        "Za każdym razem celuje w miejsce, w którym stoisz: ruszaj się po każdym ataku i trzymaj się z dala od obu stron miejsca uderzenia."
+      ],
+      "pt-BR": [
+        "Aparece bem acima de você e mergulha em linha reta dentro de um pilar roxo; espinhos sombrios brotam dos dois lados do impacto. Ela faz isso duas ou três vezes seguidas.",
+        "Ela mira onde você está a cada vez: continue se movendo depois de cada mergulho e fique longe dos dois lados do ponto de impacto."
+      ],
+      "ru": [
+        "Появляется высоко над вами и отвесно пикирует в фиолетовом столбе; по обе стороны от удара вырываются тёмные шипы. Делает это два или три раза подряд.",
+        "Каждый раз она целится туда, где вы стоите: двигайтесь после каждого пике и держитесь подальше от обеих сторон места удара."
+      ],
+      "ko": [
+        "당신의 머리 위 높은 곳에 나타나 보랏빛 기둥과 함께 수직으로 내리꽂히고, 착지 지점 양옆으로 검은 가시가 솟아납니다. 두세 번 연속으로 사용합니다.",
+        "매번 당신이 서 있는 곳을 노립니다: 내리꽂힐 때마다 계속 움직이고 착지 지점 양옆에서 떨어져 있으세요."
+      ],
+      "ja": [
+        "あなたの真上の高い所に現れ、紫の柱とともに真下へ急降下します。着地点の両側から黒いトゲが突き出します。2、3回続けて使います。",
+        "毎回あなたの立っている場所を狙います：急降下のたびに動き続け、着地点の両側から離れていましょう。"
+      ],
+      "zh-Hans": [
+        "出现在你上方高处，伴随紫色光柱垂直俯冲而下，落地点左右两边会冒出黑色尖刺。会连续使用两到三次。",
+        "她每次都瞄准你所站的位置：每次俯冲后都要继续移动，并远离落地点的左右两边。"
+      ],
+      "zh-Hant": [
+        "出現在你上方高處，伴隨紫色光柱垂直俯衝而下，落地點兩側會冒出黑色尖刺。會連續使用兩到三次。",
+        "她每次都瞄準你所站的位置：每次俯衝後都要繼續移動，並遠離落地點的兩側。"
+      ]
+    },
+    "Meteor in air": {
+      "en": [
+        "Leaps up to the side and dives diagonally at you with a purple streak, two or three times in a row.",
+        "Each dive aims at your spot: dash away as she comes down, then again for the next dive. In the Dark Mirror the dive comes much faster."
+      ],
+      "de": [
+        "Springt seitlich hoch und stürzt mit einem violetten Streifen schräg auf dich herab, zwei- oder dreimal hintereinander.",
+        "Jeder Sturz zielt auf deine Stelle: Sprinte weg, wenn sie herabkommt, und dann noch einmal für den nächsten Sturz. Im Dunklen Spiegel kommt der Sturz viel schneller."
+      ],
+      "es": [
+        "Salta hacia un lado y cae en picado en diagonal hacia ti con una estela morada, dos o tres veces seguidas.",
+        "Cada caída apunta a tu posición: aléjate corriendo cuando baje y otra vez para la siguiente caída. En el Espejo oscuro la caída llega mucho más rápido."
+      ],
+      "fr": [
+        "Bondit sur le côté et plonge en diagonale vers toi dans une traînée violette, deux ou trois fois d'affilée.",
+        "Chaque plongeon vise ta position : sprinte hors de là quand elle redescend, puis encore pour le plongeon suivant. Dans le Miroir noir, le plongeon arrive bien plus vite."
+      ],
+      "pl": [
+        "Wyskakuje w górę w bok i pikuje ukośnie na ciebie z fioletową smugą, dwa lub trzy razy z rzędu.",
+        "Każdy atak celuje w twoje miejsce: odskocz zrywem, gdy spada, i jeszcze raz przy następnym. W Ciemnym lustrze atak z góry spada dużo szybciej."
+      ],
+      "pt-BR": [
+        "Salta para o lado e mergulha na diagonal na sua direção com um rastro roxo, duas ou três vezes seguidas.",
+        "Cada mergulho mira onde você está: corra para longe quando ela descer, e de novo no mergulho seguinte. No Espelho Sombrio o mergulho vem muito mais rápido."
+      ],
+      "ru": [
+        "Взмывает вверх в сторону и пикирует наискосок к вам фиолетовой полосой, два или три раза подряд.",
+        "Каждое пике нацелено на ваше место: уходите рывком, когда она падает, и снова при следующем пике. В Тёмном зеркале пике намного быстрее."
+      ],
+      "ko": [
+        "옆으로 뛰어올라 보랏빛 줄기를 그리며 당신을 향해 비스듬히 내리꽂힙니다. 두세 번 연속으로 사용합니다.",
+        "매번 당신의 위치를 노립니다: 내려올 때 대쉬로 피하고, 다음 내리꽂기 때도 다시 피하세요. 검은 거울에서는 훨씬 빠르게 내리꽂힙니다."
+      ],
+      "ja": [
+        "横へ跳び上がり、紫の筋を描いてあなたへななめに急降下します。2、3回続けて使います。",
+        "毎回あなたの位置を狙います：降りてくるときにダッシュで離れ、次の急降下でももう一度離れましょう。闇の鏡では急降下がずっと速くなります。"
+      ],
+      "zh-Hans": [
+        "向一边高高跃起，拖着紫色光痕朝你俯冲，会连续使用两到三次。",
+        "每次俯冲都瞄准你的位置：她落下时迅速闪开，下一次俯冲时再闪开一次。魔镜中俯冲会快得多。"
+      ],
+      "zh-Hant": [
+        "向側上方躍起，拖著紫色光痕朝你俯衝，會連續使用兩到三次。",
+        "每次俯衝都瞄準你的位置：她落下時迅速閃開，下一次俯衝時再閃開一次。黑暗鏡子中俯衝會快得多。"
+      ]
+    },
+    "Meteor in ground 2": {
+      "en": [
+        "Hops back, then dashes along the whole floor in a purple streak; dark tendrils then rise from the floor one after another along her path.",
+        "Jump over her as she passes, then keep off the floor she crossed until the tendrils are gone."
+      ],
+      "de": [
+        "Hüpft zurück und sprintet dann als violetter Streifen über den ganzen Boden; danach steigen nacheinander dunkle Ranken entlang ihres Wegs aus dem Boden.",
+        "Spring über sie, wenn sie vorbeizieht, und meide danach den Boden, den sie überquert hat, bis die Ranken verschwunden sind."
+      ],
+      "es": [
+        "Da un salto atrás y luego recorre todo el suelo como una estela morada; después, zarcillos oscuros brotan del suelo uno tras otro a lo largo de su recorrido.",
+        "Sáltala cuando pase y luego no pises el suelo que cruzó hasta que desaparezcan los zarcillos."
+      ],
+      "fr": [
+        "Fait un bond en arrière, puis traverse tout le sol en une traînée violette ; des vrilles sombres surgissent ensuite du sol l'une après l'autre le long de son trajet.",
+        "Saute par-dessus elle quand elle passe, puis évite le sol qu'elle a traversé jusqu'à ce que les vrilles disparaissent."
+      ],
+      "pl": [
+        "Odskakuje do tyłu, a potem pędzi przez całą podłogę jako fioletowa smuga; następnie wzdłuż jej drogi jedna po drugiej wyrastają z ziemi mroczne macki.",
+        "Przeskocz ją, gdy przebiega, a potem trzymaj się z dala od podłogi, którą przebiegła, aż macki znikną."
+      ],
+      "pt-BR": [
+        "Dá um salto para trás e depois atravessa o chão inteiro como um rastro roxo; em seguida, tentáculos sombrios surgem do chão um após o outro ao longo do caminho.",
+        "Pule por cima dela quando ela atravessar e depois evite esse trecho do chão até os tentáculos sumirem."
+      ],
+      "ru": [
+        "Отскакивает назад, затем проносится по всему полу фиолетовой полосой; после этого вдоль её пути одно за другим из пола поднимаются тёмные щупальца.",
+        "Перепрыгните её, когда она проносится мимо, а затем держитесь подальше от пройденного ею пола, пока щупальца не исчезнут."
+      ],
+      "ko": [
+        "뒤로 뛰어 물러난 뒤 보랏빛 줄기가 되어 바닥 전체를 가로지르고, 이어서 그 경로를 따라 검은 촉수가 차례로 바닥에서 솟아오릅니다.",
+        "가로지를 때 점프로 넘고, 촉수가 사라질 때까지 그녀가 지나간 바닥을 피하세요."
+      ],
+      "ja": [
+        "後ろへ跳んでから、紫の筋となって床全体を駆け抜けます。その後、通った道に沿って黒い触手が次々と床から立ち上ります。",
+        "駆け抜けるときはジャンプで飛び越え、触手が消えるまで彼女が通った床を避けましょう。"
+      ],
+      "zh-Hans": [
+        "向后跳开，然后化作紫色光痕冲过整个地面，随后沿着她的路径，黑色触手接连从地面升起。",
+        "她冲过时跳起越过，然后在触手消失前避开她经过的地面。"
+      ],
+      "zh-Hant": [
+        "向後跳開，然後化作紫色光痕衝過整個地面，隨後沿著她的路徑，黑色觸手接連從地面升起。",
+        "她衝過時跳起越過，然後在觸手消失前避開她經過的地面。"
+      ]
+    },
+    "Rush": {
+      "en": [
+        "Teleports around the hall, then purple lines criss-cross the whole screen and flash into slashes all at once.",
+        "The lines are the warning: find a spot between them before they flash. She uses it whenever it is ready again (not in the first 15 seconds after the awakening) and rests for a moment afterwards."
+      ],
+      "de": [
+        "Teleportiert sich durch die Halle, dann kreuzen violette Linien den ganzen Bildschirm und blitzen alle auf einmal zu Hieben auf.",
+        "Die Linien sind die Warnung: Such dir eine Stelle zwischen ihnen, bevor sie aufblitzen. Sie setzt ihn ein, sobald er wieder bereit ist (nicht in den ersten 15 Sekunden nach dem Erwachen), und ruht danach kurz."
+      ],
+      "es": [
+        "Se teletransporta por la sala; luego líneas moradas se entrecruzan por toda la pantalla y estallan en tajos a la vez.",
+        "Las líneas son el aviso: busca un hueco entre ellas antes de que estallen. La usa en cuanto vuelve a estar lista (no en los primeros 15 segundos tras el despertar) y después descansa un momento."
+      ],
+      "fr": [
+        "Se téléporte à travers la salle, puis des lignes violettes s'entrecroisent sur tout l'écran et se changent toutes à la fois en entailles éclatantes.",
+        "Les lignes sont l'avertissement : trouve une place entre elles avant qu'elles n'éclatent. Elle l'utilise dès qu'elle est de nouveau prête (pas dans les 15 premières secondes après l'éveil) et se repose un instant ensuite."
+      ],
+      "pl": [
+        "Teleportuje się po sali, a potem fioletowe linie przecinają cały ekran i naraz rozbłyskują cięciami.",
+        "Linie to ostrzeżenie: znajdź miejsce między nimi, zanim rozbłysną. Używa jej, gdy tylko znów jest gotowa (nie w pierwszych 15 sekundach po przebudzeniu), a potem chwilę odpoczywa."
+      ],
+      "pt-BR": [
+        "Teleporta-se pelo salão, depois linhas roxas se cruzam por toda a tela e explodem em cortes todas de uma vez.",
+        "As linhas são o aviso: encontre um espaço entre elas antes que explodam. Ela usa isso sempre que fica pronto de novo (não nos primeiros 15 segundos após o despertar) e depois descansa um momento."
+      ],
+      "ru": [
+        "Телепортируется по залу, затем фиолетовые линии перечёркивают весь экран и разом вспыхивают разрезами.",
+        "Линии и есть предупреждение: найдите место между ними, пока они не вспыхнули. Применяет, как только приём снова готов (не в первые 15 секунд после пробуждения), а потом ненадолго замирает."
+      ],
+      "ko": [
+        "홀 곳곳으로 순간이동한 뒤, 보랏빛 선이 화면 전체를 교차하며 가로지르고 한꺼번에 베기로 번쩍입니다.",
+        "선이 신호입니다: 번쩍이기 전에 선 사이의 빈 곳을 찾으세요. 준비되는 대로 사용하며(각성 후 처음 15초 동안은 쓰지 않음), 사용 후 잠시 쉽니다."
+      ],
+      "ja": [
+        "ホール中を瞬間移動し、紫の線が画面全体に交差して、一斉に斬撃となって閃きます。",
+        "線が合図です：閃く前に線と線の間の空いた場所を見つけましょう。使えるようになるたびに使い（覚醒後の最初の15秒間は除く）、使った後は少し休みます。"
+      ],
+      "zh-Hans": [
+        "在大厅中四处瞬移，然后紫色线条在整个画面上纵横交错，同时化作斩击闪现。",
+        "线条就是预警：在闪现前找到线条之间的空位。一旦就绪就会使用（觉醒后的前15秒不会使用），之后会停顿片刻。"
+      ],
+      "zh-Hant": [
+        "在大廳中四處瞬移，然後紫色線條在整個畫面上縱橫交錯，同時化作斬擊閃現。",
+        "線條就是預警：在閃現前找到線條之間的空位。一旦就緒就會使用（覺醒後的前15秒不會使用），之後會停頓片刻。"
+      ]
+    },
+    "Dimension pierce": {
+      "en": [
+        "Stands still while purple lines appear at a slant, then one or two thick purple beams strike along them, one after the other.",
+        "Leave each line before its beam falls: it strikes along the whole line. She uses it whenever it is ready again."
+      ],
+      "de": [
+        "Steht still, während schräge violette Linien erscheinen, dann schlagen nacheinander ein oder zwei dicke violette Strahlen an ihnen entlang ein.",
+        "Verlass jede Linie, bevor ihr Strahl fällt: Er trifft die ganze Linie entlang. Sie setzt ihn ein, sobald er wieder bereit ist."
+      ],
+      "es": [
+        "Se queda quieta mientras aparecen líneas moradas en diagonal; luego uno o dos gruesos rayos morados golpean a lo largo de ellas, uno tras otro.",
+        "Sal de cada línea antes de que caiga su rayo: golpea a lo largo de toda la línea. La usa en cuanto vuelve a estar lista."
+      ],
+      "fr": [
+        "Reste immobile pendant que des lignes violettes apparaissent en biais, puis un ou deux épais rayons violets frappent le long de ces lignes, l'un après l'autre.",
+        "Quitte chaque ligne avant que son rayon ne tombe : il frappe sur toute la ligne. Elle l'utilise dès qu'elle est de nouveau prête."
+      ],
+      "pl": [
+        "Stoi w miejscu, gdy pojawiają się ukośne fioletowe linie, a potem wzdłuż nich uderzają, jeden po drugim, jeden lub dwa grube fioletowe promienie.",
+        "Zejdź z każdej linii, zanim spadnie jej promień: uderza wzdłuż całej linii. Używa go, gdy tylko znów jest gotowe."
+      ],
+      "pt-BR": [
+        "Fica parada enquanto linhas roxas aparecem na diagonal, depois um ou dois raios roxos grossos atingem ao longo delas, um após o outro.",
+        "Saia de cada linha antes que o raio dela caia: ele atinge a linha inteira. Ela usa isso sempre que fica pronto de novo."
+      ],
+      "ru": [
+        "Стоит на месте, пока появляются косые фиолетовые линии, затем вдоль них один за другим бьют один или два толстых фиолетовых луча.",
+        "Уходите с каждой линии до удара её луча: он бьёт по всей длине. Применяет, как только приём снова готов."
+      ],
+      "ko": [
+        "제자리에 선 채 보랏빛 선이 비스듬히 나타나고, 그 선을 따라 두꺼운 보랏빛 광선이 한두 번 차례로 내리꽂힙니다.",
+        "광선이 떨어지기 전에 각 선에서 벗어나세요: 선 전체를 따라 내리꽂힙니다. 다시 준비되면 바로 사용합니다."
+      ],
+      "ja": [
+        "その場に立ったまま紫の線がななめに現れ、その線に沿って太い紫の光線が1、2本、次々と降り注ぎます。",
+        "光線が落ちる前にそれぞれの線から離れましょう：線全体に沿って当たります。再び使えるようになると、すぐに使ってきます。"
+      ],
+      "zh-Hans": [
+        "她站着不动，紫色线条出现，然后一到两道粗大的紫色光束沿线接连劈下。",
+        "在光束落下前离开每条线：光束会沿整条线命中。一旦再次就绪，她就会使用。"
+      ],
+      "zh-Hant": [
+        "她站著不動，紫色線條出現，然後一到兩道粗大的紫色光束沿線接連劈下。",
+        "在光束落下前離開每條線：光束會沿整條線命中。一旦再次就緒，她就會使用。"
+      ]
+    },
+    "Range attack homing": {
+      "en": [
+        "Dark purple orbs appear in the air around her and fire purple beams that meet where you stand. In the Dark Mirror there are more orbs.",
+        "The beams aim at your spot when they fire: keep moving so they cross behind you."
+      ],
+      "de": [
+        "Dunkelviolette Kugeln erscheinen um sie herum in der Luft und feuern violette Strahlen ab, die sich dort treffen, wo du stehst. Im Dunklen Spiegel sind es mehr Kugeln.",
+        "Die Strahlen zielen beim Abfeuern auf deine Stelle: Bleib in Bewegung, damit sie sich hinter dir kreuzen."
+      ],
+      "es": [
+        "Aparecen orbes morados oscuros en el aire a su alrededor que disparan rayos morados que se juntan donde estás. En el Espejo oscuro hay más orbes.",
+        "Los rayos apuntan a tu posición al dispararse: sigue moviéndote para que se crucen detrás de ti."
+      ],
+      "fr": [
+        "Des orbes violet sombre apparaissent dans les airs autour d'elle et tirent des rayons violets qui se rejoignent là où tu te tiens. Dans le Miroir noir, il y a plus d'orbes.",
+        "Les rayons visent ta position au moment du tir : continue de bouger pour qu'ils se croisent derrière toi."
+      ],
+      "pl": [
+        "Wokół niej w powietrzu pojawiają się ciemnofioletowe kule i strzelają fioletowymi promieniami, które zbiegają się tam, gdzie stoisz. W Ciemnym lustrze kul jest więcej.",
+        "Promienie celują w twoje miejsce w chwili strzału: ruszaj się, żeby skrzyżowały się za tobą."
+      ],
+      "pt-BR": [
+        "Orbes roxos escuros surgem no ar ao redor dela e disparam raios roxos que se encontram onde você está. No Espelho Sombrio há mais orbes.",
+        "Os raios miram onde você está no momento do disparo: continue se movendo para que se cruzem atrás de você."
+      ],
+      "ru": [
+        "Вокруг неё в воздухе появляются тёмно-фиолетовые сферы и выпускают фиолетовые лучи, сходящиеся там, где вы стоите. В Тёмном зеркале сфер больше.",
+        "Лучи целятся в ваше место в момент выстрела: двигайтесь, чтобы они скрестились позади вас."
+      ],
+      "ko": [
+        "그녀 주위의 공중에 검보랏빛 구슬이 나타나 당신이 서 있는 곳으로 모이는 보랏빛 광선을 발사합니다. 검은 거울에서는 구슬이 더 많습니다.",
+        "광선은 발사되는 순간 당신의 위치를 노립니다: 계속 움직여서 광선이 등 뒤에서 교차하게 하세요."
+      ],
+      "ja": [
+        "彼女の周りの空中に暗い紫の球が現れ、あなたの立っている場所へ集まる紫の光線を放ちます。闇の鏡では球が多くなります。",
+        "光線は放たれる瞬間のあなたの位置を狙います：動き続けて、光線が背後で交差するようにしましょう。"
+      ],
+      "zh-Hans": [
+        "她周围的空中出现暗紫色球体，射出紫色光束，光束会汇聚到你所站的位置。魔镜中球体更多。",
+        "光束在发射时瞄准你的位置：保持移动，让光束在你身后交汇。"
+      ],
+      "zh-Hant": [
+        "她周圍的空中出現暗紫色球體，射出紫色光束，光束會會聚到你所站的位置。黑暗鏡子中球體更多。",
+        "光束在發射時瞄準你的位置：保持移動，讓光束在你身後交會。"
+      ]
+    }
+  }
+}

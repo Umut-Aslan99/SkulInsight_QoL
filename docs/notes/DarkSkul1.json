@@ -1,0 +1,754 @@
+{
+  "key": "DarkSkul1",
+  "about": {
+    "en": "A dark copy of Skul, met only in the Dark Mirror. He fights with his bone and his own head; below 55 % health he adds Special bone rain, Raise bone rain and Earthshatter.",
+    "de": "Eine dunkle Kopie von Skul, nur im Dunklen Spiegel. Er kämpft mit seinem Knochen und seinem eigenen Kopf; unter 55 % LP kommen Spezial-Knochenregen, Knochenregen beschwören und Erdspalter dazu.",
+    "es": "Una copia oscura de Skul, solo en el Espejo oscuro. Lucha con su hueso y su propia cabeza; por debajo del 55 % de vida añade Lluvia de huesos especial, Alzar lluvia de huesos y Rompetierra.",
+    "fr": "Une copie sombre de Skul, rencontrée seulement dans le Miroir noir. Il se bat avec son os et sa propre tête ; sous 55 % de vie, il ajoute Pluie d'os spéciale, Lever une pluie d'os et Brise-terre.",
+    "pl": "Mroczna kopia Skula, spotykana tylko w Ciemnym lustrze. Walczy kością i własną głową; poniżej 55% zdrowia dochodzą Specjalny deszcz kości, Wywołanie deszczu kości i Rozłupanie ziemi.",
+    "pt-BR": "Uma cópia sombria de Skul, só no Espelho Sombrio. Luta com seu osso e a própria cabeça; abaixo de 55 % de vida acrescenta Chuva de ossos especial, Erguer chuva de ossos e Quebra-terra.",
+    "ru": "Тёмная копия Скала, встречается только в Тёмном зеркале. Сражается костью и собственной головой; ниже 55 % здоровья добавляет Особый костяной дождь, Вызов костяного дождя и Раскол земли.",
+    "ko": "검은 거울에서만 만나는 스컬의 어두운 복제. 뼈와 자기 머리로 싸우며, 체력 55% 아래에서는 특수 뼈의 비, 뼈의 비 일으키기, 대지 분쇄를 더합니다.",
+    "ja": "闇の鏡でのみ出会うスカルの闇の複製。骨と自分の頭で戦い、体力55%未満では特殊な骨の雨、骨の雨を起こす、大地粉砕も使います。",
+    "zh-Hans": "只在魔镜中遇到的小骨的黑暗复制体。用骨头和自己的头战斗，体力低于55%时还会使用特殊骨雨、唤起骨雨和大地粉碎。",
+    "zh-Hant": "只在黑暗鏡子中遇到的孤骨的黑暗複製體。用骨頭和自己的頭戰鬥，體力低於55%時還會使用特殊骨雨、喚起骨雨和大地粉碎。"
+  },
+  "moves": {
+    "Dash": {
+      "en": [
+        "A quick dash along the floor.",
+        "Usually leads into an attack: be ready to dodge."
+      ],
+      "de": [
+        "Ein schneller Sprint am Boden.",
+        "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+      ],
+      "es": [
+        "Una carrera rápida a ras de suelo.",
+        "Suele llevar a un ataque: prepárate para esquivar."
+      ],
+      "fr": [
+        "Un sprint rapide au sol.",
+        "Mène généralement à une attaque : prépare-toi à esquiver."
+      ],
+      "pl": [
+        "Szybki zryw po ziemi.",
+        "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+      ],
+      "pt-BR": [
+        "Uma corrida rápida pelo chão.",
+        "Costuma levar a um ataque: prepare-se para desviar."
+      ],
+      "ru": [
+        "Быстрый рывок по полу.",
+        "Обычно ведёт к атаке: будьте готовы увернуться."
+      ],
+      "ko": [
+        "바닥을 따라 빠르게 대쉬합니다.",
+        "대개 공격으로 이어지니 피할 준비를 하세요."
+      ],
+      "ja": [
+        "床に沿って素早くダッシュします。",
+        "たいてい攻撃につながるので、かわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "贴地快速疾驰。",
+        "通常会接攻击：准备好闪避。"
+      ],
+      "zh-Hant": [
+        "貼地快速衝刺。",
+        "通常會接攻擊：準備好閃避。"
+      ]
+    },
+    "Upper attack": {
+      "en": [
+        "Swings his bone upward in a big purple arc in front of him.",
+        "Stay out of the arc in front of him; Upper attack finish can follow from above."
+      ],
+      "de": [
+        "Schwingt seinen Knochen in einem großen violetten Bogen vor sich nach oben.",
+        "Bleib aus dem Bogen vor ihm heraus; danach kann Aufwärtsangriff (Abschluss) von oben folgen."
+      ],
+      "es": [
+        "Blande su hueso hacia arriba en un gran arco morado delante de él.",
+        "No te quedes en el arco delante de él; puede seguir Ataque ascendente (remate) desde arriba."
+      ],
+      "fr": [
+        "Balance son os vers le haut en un grand arc violet devant lui.",
+        "Reste hors de l'arc devant lui ; Attaque montante (finition) peut suivre d'en haut."
+      ],
+      "pl": [
+        "Wymachuje kością w górę wielkim fioletowym łukiem przed sobą.",
+        "Nie stój w łuku przed nim; z góry może nastąpić Atak w górę (wykończenie)."
+      ],
+      "pt-BR": [
+        "Gira o osso para cima num grande arco roxo à sua frente.",
+        "Fique fora do arco à frente dele; Ataque ascendente (finalização) pode vir de cima."
+      ],
+      "ru": [
+        "Взмахивает костью вверх большой фиолетовой дугой перед собой.",
+        "Не стойте в дуге перед ним; сверху может последовать Атака вверх (добивание)."
+      ],
+      "ko": [
+        "뼈를 앞쪽으로 크게 보랏빛 호를 그리며 올려 휘두릅니다.",
+        "그의 앞쪽 호 안에 서 있지 마세요. 위에서 올려치기 마무리가 이어질 수 있습니다."
+      ],
+      "ja": [
+        "骨を目の前で大きな紫の弧を描いて振り上げます。",
+        "目の前の弧に入らないようにしましょう。上から打ち上げ攻撃フィニッシュが続くことがあります。"
+      ],
+      "zh-Hans": [
+        "在身前挥起骨头，划出巨大的紫色弧线。",
+        "不要站在他身前的弧线内；之后可能从上方接上挑攻击终结。"
+      ],
+      "zh-Hant": [
+        "在身前揮起骨頭，劃出巨大的紫色弧線。",
+        "不要站在他身前的弧線內；之後可能從上方接上挑攻擊終結。"
+      ]
+    },
+    "Upper attack finish": {
+      "en": [
+        "Leaps into the air and smashes down with a purple rune circle and a burst of dust.",
+        "Move away from the spot below him."
+      ],
+      "de": [
+        "Springt in die Luft und schlägt mit einem violetten Runenkreis und einer Staubwolke nieder.",
+        "Geh weg von der Stelle unter ihm."
+      ],
+      "es": [
+        "Salta y cae golpeando con un círculo de runas morado y una nube de polvo.",
+        "Aléjate del punto bajo él."
+      ],
+      "fr": [
+        "Bondit dans les airs et s'abat avec un cercle de runes violet et un nuage de poussière.",
+        "Éloigne-toi de l'endroit sous lui."
+      ],
+      "pl": [
+        "Wyskakuje w powietrze i uderza w dół z fioletowym kręgiem run i chmurą pyłu.",
+        "Odsuń się z miejsca pod nim."
+      ],
+      "pt-BR": [
+        "Salta e desce golpeando com um círculo de runas roxo e uma nuvem de poeira.",
+        "Saia do ponto abaixo dele."
+      ],
+      "ru": [
+        "Взмывает в воздух и обрушивается с фиолетовым кругом рун и облаком пыли.",
+        "Уйдите с места под ним."
+      ],
+      "ko": [
+        "공중으로 뛰어올라 보랏빛 룬 원과 먼지를 일으키며 내려찍습니다.",
+        "그의 아래에서 벗어나세요."
+      ],
+      "ja": [
+        "空中へ跳び上がり、紫のルーンの円と土煙とともに叩きつけます。",
+        "彼の真下から離れましょう。"
+      ],
+      "zh-Hans": [
+        "跃到空中，伴随紫色符文圈和尘土砸下。",
+        "离开他的正下方。"
+      ],
+      "zh-Hant": [
+        "躍到空中，伴隨紫色符文圈和塵土砸下。",
+        "離開他的正下方。"
+      ]
+    },
+    "Head hunting": {
+      "en": [
+        "Leaps at you and smashes down with a purple slash and a burst of dust.",
+        "Comes when you are far away: dash away from where he lands."
+      ],
+      "de": [
+        "Springt auf dich zu und schlägt mit einem violetten Hieb und einer Staubwolke nieder.",
+        "Kommt, wenn du weit weg bist: Sprinte von seinem Landepunkt weg."
+      ],
+      "es": [
+        "Salta hacia ti y cae con un tajo morado y una nube de polvo.",
+        "Llega cuando estás lejos: aléjate corriendo de donde aterriza."
+      ],
+      "fr": [
+        "Bondit sur toi et s'abat avec une entaille violette et un nuage de poussière.",
+        "Arrive quand tu es loin : sprinte loin de son point d'atterrissage."
+      ],
+      "pl": [
+        "Skacze na ciebie i uderza w dół fioletowym cięciem w chmurze pyłu.",
+        "Pojawia się, gdy jesteś daleko: odskocz od miejsca lądowania."
+      ],
+      "pt-BR": [
+        "Salta até você e desce com um corte roxo e uma nuvem de poeira.",
+        "Vem quando você está longe: corra para longe de onde ele pousa."
+      ],
+      "ru": [
+        "Прыгает на вас и обрушивается с фиолетовым ударом и облаком пыли.",
+        "Бывает, когда вы далеко: уходите рывком от места приземления."
+      ],
+      "ko": [
+        "당신에게 뛰어들어 보랏빛 베기와 먼지를 일으키며 내려찍습니다.",
+        "멀리 있을 때 나옵니다: 착지하는 곳에서 대쉬로 벗어나세요."
+      ],
+      "ja": [
+        "あなたへ跳びかかり、紫の斬撃と土煙とともに叩きつけます。",
+        "遠くにいるときに使います：着地点からダッシュで離れましょう。"
+      ],
+      "zh-Hans": [
+        "跃向你，伴随紫色斩击和尘土砸下。",
+        "你离得远时使用：从他落地的位置闪开。"
+      ],
+      "zh-Hant": [
+        "躍向你，伴隨紫色斬擊和塵土砸下。",
+        "你離得遠時使用：從他落地的位置閃開。"
+      ]
+    },
+    "Throw head": {
+      "en": [
+        "Throws his head along the floor; it bursts in purple flashes across the room and comes back to him.",
+        "Jump over the head on the way out and on the way back."
+      ],
+      "de": [
+        "Wirft seinen Kopf über den Boden; er zerplatzt quer durch den Raum in violetten Blitzen und kehrt zu ihm zurück.",
+        "Spring auf dem Hin- und Rückweg über den Kopf."
+      ],
+      "es": [
+        "Lanza su cabeza a ras de suelo; estalla en destellos morados por la sala y vuelve a él.",
+        "Salta sobre la cabeza a la ida y a la vuelta."
+      ],
+      "fr": [
+        "Lance sa tête au ras du sol ; elle éclate en éclairs violets à travers la salle et revient vers lui.",
+        "Saute par-dessus la tête à l'aller et au retour."
+      ],
+      "pl": [
+        "Rzuca głową po ziemi; wybucha fioletowymi błyskami w całej sali i wraca do niego.",
+        "Przeskocz głowę w drodze tam i z powrotem."
+      ],
+      "pt-BR": [
+        "Lança a cabeça pelo chão; ela explode em clarões roxos pelo salão e volta para ele.",
+        "Pule a cabeça na ida e na volta."
+      ],
+      "ru": [
+        "Бросает голову вдоль пола; она вспыхивает фиолетовым по всему залу и возвращается к нему.",
+        "Перепрыгивайте голову туда и обратно."
+      ],
+      "ko": [
+        "머리를 바닥을 따라 던지면 방을 가로지르며 보랏빛으로 번쩍이고, 다시 그에게 돌아옵니다.",
+        "날아갈 때와 돌아올 때 머리를 점프로 넘으세요."
+      ],
+      "ja": [
+        "頭を床に沿って投げると、部屋を横切りながら紫に弾け、彼の元へ戻ってきます。",
+        "行きと帰りに頭を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "沿地面扔出自己的头，头在房间里爆出紫色闪光，然后飞回他手中。",
+        "头飞出去和飞回来时都要跳过。"
+      ],
+      "zh-Hant": [
+        "沿地面扔出自己的頭，頭在房間裡爆出紫色閃光，然後飛回他手中。",
+        "頭飛出去和飛回來時都要跳過。"
+      ]
+    },
+    "Jump throw head": {
+      "en": [
+        "Jumps and throws his head down at you; a red line marks where it strikes.",
+        "Step off the red line."
+      ],
+      "de": [
+        "Springt und wirft seinen Kopf auf dich herab; eine rote Linie zeigt, wo er einschlägt.",
+        "Verlass die rote Linie."
+      ],
+      "es": [
+        "Salta y te lanza la cabeza hacia abajo; una línea roja marca dónde golpea.",
+        "Sal de la línea roja."
+      ],
+      "fr": [
+        "Saute et te lance sa tête vers le bas ; une ligne rouge marque l'impact.",
+        "Quitte la ligne rouge."
+      ],
+      "pl": [
+        "Skacze i rzuca w ciebie głową z góry; czerwona linia pokazuje miejsce uderzenia.",
+        "Zejdź z czerwonej linii."
+      ],
+      "pt-BR": [
+        "Salta e arremessa a cabeça em você de cima; uma linha vermelha marca onde ela atinge.",
+        "Saia da linha vermelha."
+      ],
+      "ru": [
+        "Прыгает и бросает в вас голову сверху; красная линия отмечает место удара.",
+        "Уйдите с красной линии."
+      ],
+      "ko": [
+        "점프해 당신을 향해 머리를 아래로 던지며, 붉은 선이 떨어질 곳을 표시합니다.",
+        "붉은 선에서 벗어나세요."
+      ],
+      "ja": [
+        "跳んであなたへ頭を投げ下ろします。赤い線が当たる場所を示します。",
+        "赤い線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "跳起向你扔下头颅，红线标出落点。",
+        "离开红线。"
+      ],
+      "zh-Hant": [
+        "跳起向你扔下頭顱，紅線標出落點。",
+        "離開紅線。"
+      ]
+    },
+    "Melee attack": {
+      "en": [
+        "Two wide sweeps of his bone in front of him.",
+        "Step back out of reach, then hit him after the second sweep."
+      ],
+      "de": [
+        "Zwei weite Schwünge mit seinem Knochen vor sich.",
+        "Geh aus der Reichweite und triff ihn nach dem zweiten Schwung."
+      ],
+      "es": [
+        "Dos amplios barridos con su hueso delante de él.",
+        "Retrocede fuera de su alcance y golpéalo tras el segundo barrido."
+      ],
+      "fr": [
+        "Deux larges balayages de son os devant lui.",
+        "Recule hors de portée, puis frappe-le après le second balayage."
+      ],
+      "pl": [
+        "Dwa szerokie zamachy kością przed sobą.",
+        "Cofnij się poza zasięg i uderz go po drugim zamachu."
+      ],
+      "pt-BR": [
+        "Dois amplos golpes do osso à sua frente.",
+        "Recue para fora do alcance e acerte-o depois do segundo golpe."
+      ],
+      "ru": [
+        "Два широких взмаха костью перед собой.",
+        "Отступите из зоны досягаемости и бейте после второго взмаха."
+      ],
+      "ko": [
+        "앞쪽으로 뼈를 두 번 크게 휘두릅니다.",
+        "닿지 않는 곳으로 물러났다가 두 번째 휘두르기 후에 공격하세요."
+      ],
+      "ja": [
+        "目の前で骨を2回大きく振り払います。",
+        "届かない所まで下がり、2回目の振りの後に攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "在身前大幅挥动骨头两次。",
+        "退到够不到的地方，第二次挥击后攻击他。"
+      ],
+      "zh-Hant": [
+        "在身前大幅揮動骨頭兩次。",
+        "退到夠不到的地方，第二次揮擊後攻擊他。"
+      ]
+    },
+    "Swing attack": {
+      "en": [
+        "Drags his bone along the floor: red warning lines move across the room and bone spikes shoot up behind them one after another.",
+        "Watch the red lines and step out of each one before its spike comes."
+      ],
+      "de": [
+        "Zieht seinen Knochen über den Boden: Rote Warnlinien wandern durch den Raum und dahinter schießen nacheinander Knochenstacheln hoch.",
+        "Achte auf die roten Linien und verlass jede, bevor ihr Stachel kommt."
+      ],
+      "es": [
+        "Arrastra su hueso por el suelo: líneas rojas de aviso recorren la sala y tras ellas brotan púas de hueso una tras otra.",
+        "Fíjate en las líneas rojas y sal de cada una antes de que salga su púa."
+      ],
+      "fr": [
+        "Traîne son os au sol : des lignes d'avertissement rouges traversent la salle et des pointes d'os jaillissent derrière elles l'une après l'autre.",
+        "Surveille les lignes rouges et quitte chacune avant que sa pointe jaillisse."
+      ],
+      "pl": [
+        "Wlecze kość po ziemi: czerwone linie ostrzegawcze przesuwają się przez salę, a za nimi jeden po drugim wyrastają kościane kolce.",
+        "Obserwuj czerwone linie i zejdź z każdej, zanim wyrośnie kolec."
+      ],
+      "pt-BR": [
+        "Arrasta o osso pelo chão: linhas vermelhas de aviso cruzam o salão e espinhos de osso sobem atrás delas, um após o outro.",
+        "Observe as linhas vermelhas e saia de cada uma antes de o espinho subir."
+      ],
+      "ru": [
+        "Тащит кость по полу: красные линии предупреждения движутся по залу, а за ними одна за другой вырастают костяные шипы.",
+        "Следите за красными линиями и уходите с каждой до появления шипа."
+      ],
+      "ko": [
+        "뼈를 바닥에 끌면 붉은 경고선이 방을 가로질러 이동하고, 그 뒤로 뼈 가시가 차례로 솟아오릅니다.",
+        "붉은 선을 보고 가시가 솟기 전에 선에서 벗어나세요."
+      ],
+      "ja": [
+        "骨を床に引きずると、赤い警告線が部屋を移動し、その後ろから骨のトゲが次々と突き出します。",
+        "赤い線を見て、トゲが出る前にそれぞれの線から離れましょう。"
+      ],
+      "zh-Hans": [
+        "拖着骨头划过地面：红色警示线横穿房间，骨刺随后接连冒出。",
+        "注意红线，在骨刺冒出前离开每条线。"
+      ],
+      "zh-Hant": [
+        "拖著骨頭劃過地面：紅色警示線橫穿房間，骨刺隨後接連冒出。",
+        "注意紅線，在骨刺冒出前離開每條線。"
+      ]
+    },
+    "Hard smash": {
+      "en": [
+        "Smashes the ground in front of him with a burst of purple spikes, then smashes again with a dark eruption.",
+        "Keep away from the front until both smashes are done."
+      ],
+      "de": [
+        "Schlägt vor sich auf den Boden, sodass violette Stacheln hervorbrechen, und schlägt dann mit einem dunklen Ausbruch erneut zu.",
+        "Bleib vorn weg, bis beide Schläge vorbei sind."
+      ],
+      "es": [
+        "Golpea el suelo delante de él con un estallido de púas moradas y luego vuelve a golpear con una erupción oscura.",
+        "Mantente lejos del frente hasta que acaben los dos golpes."
+      ],
+      "fr": [
+        "Frappe le sol devant lui dans une gerbe de pointes violettes, puis frappe encore dans une éruption sombre.",
+        "Reste loin de l'avant jusqu'à la fin des deux frappes."
+      ],
+      "pl": [
+        "Uderza w ziemię przed sobą z wybuchem fioletowych kolców, a potem uderza znowu z mroczną erupcją.",
+        "Trzymaj się z dala od przodu, aż skończą się oba uderzenia."
+      ],
+      "pt-BR": [
+        "Golpeia o chão à sua frente com uma explosão de espinhos roxos, depois golpeia de novo com uma erupção sombria.",
+        "Fique longe da frente até os dois golpes acabarem."
+      ],
+      "ru": [
+        "Бьёт по земле перед собой со вспышкой фиолетовых шипов, затем бьёт снова с тёмным извержением.",
+        "Держитесь подальше от его фронта, пока не закончатся оба удара."
+      ],
+      "ko": [
+        "앞쪽 땅을 내리쳐 보랏빛 가시를 터뜨린 뒤, 어두운 분출과 함께 다시 내리칩니다.",
+        "두 번 내리칠 때까지 앞쪽에서 떨어져 있으세요."
+      ],
+      "ja": [
+        "目の前の地面を叩いて紫のトゲを炸裂させ、さらに暗い噴出とともにもう一度叩きます。",
+        "2回の叩きつけが終わるまで正面から離れていましょう。"
+      ],
+      "zh-Hans": [
+        "砸向身前的地面，迸出紫色尖刺，然后伴随黑暗的喷发再砸一次。",
+        "两次重击结束前远离他的正前方。"
+      ],
+      "zh-Hant": [
+        "砸向身前的地面，迸出紫色尖刺，然後伴隨黑暗的噴發再砸一次。",
+        "兩次重擊結束前遠離他的正前方。"
+      ]
+    },
+    "Leap and throw bone": {
+      "en": [
+        "Leaps up and throws spinning bones that scatter down across the floor.",
+        "Comes when you are close. Watch where the bones fall and step between them."
+      ],
+      "de": [
+        "Springt hoch und wirft kreisende Knochen, die sich über den Boden verteilen.",
+        "Kommt, wenn du nah bist. Achte darauf, wo die Knochen fallen, und stell dich dazwischen."
+      ],
+      "es": [
+        "Salta y lanza huesos giratorios que caen esparcidos por el suelo.",
+        "Llega cuando estás cerca. Fíjate dónde caen los huesos y colócate entre ellos."
+      ],
+      "fr": [
+        "Bondit et lance des os tournoyants qui retombent éparpillés au sol.",
+        "Arrive quand tu es proche. Repère où tombent les os et place-toi entre eux."
+      ],
+      "pl": [
+        "Wyskakuje i rzuca wirujące kości, które spadają rozrzucone po ziemi.",
+        "Pojawia się, gdy jesteś blisko. Patrz, gdzie spadają kości, i stań między nimi."
+      ],
+      "pt-BR": [
+        "Salta e lança ossos girando que caem espalhados pelo chão.",
+        "Vem quando você está perto. Repare onde os ossos caem e fique entre eles."
+      ],
+      "ru": [
+        "Подпрыгивает и бросает вращающиеся кости, которые падают по всему полу.",
+        "Бывает, когда вы рядом. Следите, куда падают кости, и вставайте между ними."
+      ],
+      "ko": [
+        "뛰어올라 회전하는 뼈를 던지고, 뼈는 바닥 곳곳으로 흩어져 떨어집니다.",
+        "가까이 있을 때 나옵니다. 뼈가 떨어지는 곳을 보고 그 사이에 서세요."
+      ],
+      "ja": [
+        "跳び上がって回転する骨を投げ、骨は床のあちこちに散らばって落ちます。",
+        "近くにいるときに使います。骨が落ちる場所を見て、その間に立ちましょう。"
+      ],
+      "zh-Hans": [
+        "跃起扔出旋转的骨头，骨头散落在地面各处。",
+        "你靠近时使用。注意骨头落下的位置，站在它们之间。"
+      ],
+      "zh-Hant": [
+        "躍起扔出旋轉的骨頭，骨頭散落在地面各處。",
+        "你靠近時使用。注意骨頭落下的位置，站在它們之間。"
+      ]
+    },
+    "Execution": {
+      "en": [
+        "The room goes dark, red lines mark spots and bone spikes shoot up there, then he strikes with a blinding flash and a purple explosion.",
+        "Stay off the red lines, then get away from the flash."
+      ],
+      "de": [
+        "Der Raum wird dunkel, rote Linien markieren Stellen, an denen Knochenstacheln hochschießen, dann schlägt er mit einem grellen Blitz und einer violetten Explosion zu.",
+        "Bleib von den roten Linien weg und entferne dich dann vom Blitz."
+      ],
+      "es": [
+        "La sala se oscurece, líneas rojas marcan puntos donde brotan púas de hueso, y luego ataca con un destello cegador y una explosión morada.",
+        "No pises las líneas rojas y luego aléjate del destello."
+      ],
+      "fr": [
+        "La salle s'assombrit, des lignes rouges marquent des endroits où jaillissent des pointes d'os, puis il frappe dans un éclair aveuglant et une explosion violette.",
+        "Évite les lignes rouges, puis éloigne-toi de l'éclair."
+      ],
+      "pl": [
+        "Sala ciemnieje, czerwone linie oznaczają miejsca, gdzie wyrastają kościane kolce, a potem uderza z oślepiającym błyskiem i fioletową eksplozją.",
+        "Omijaj czerwone linie, a potem oddal się od błysku."
+      ],
+      "pt-BR": [
+        "O salão escurece, linhas vermelhas marcam pontos onde espinhos de osso sobem, depois ele ataca com um clarão ofuscante e uma explosão roxa.",
+        "Fique fora das linhas vermelhas e depois se afaste do clarão."
+      ],
+      "ru": [
+        "Зал темнеет, красные линии отмечают места, где вырастают костяные шипы, затем он бьёт с ослепительной вспышкой и фиолетовым взрывом.",
+        "Не стойте на красных линиях, затем уходите от вспышки."
+      ],
+      "ko": [
+        "방이 어두워지고 붉은 선이 표시한 곳에 뼈 가시가 솟은 뒤, 눈부신 섬광과 보랏빛 폭발로 공격합니다.",
+        "붉은 선을 피하고, 섬광에서 멀어지세요."
+      ],
+      "ja": [
+        "部屋が暗くなり、赤い線が示す場所に骨のトゲが突き出した後、まばゆい閃光と紫の爆発で攻撃します。",
+        "赤い線を避け、それから閃光から離れましょう。"
+      ],
+      "zh-Hans": [
+        "房间变暗，红线标出的位置冒出骨刺，然后他伴随耀眼的闪光和紫色爆炸发动攻击。",
+        "避开红线，然后远离闪光。"
+      ],
+      "zh-Hant": [
+        "房間變暗，紅線標出的位置冒出骨刺，然後他伴隨耀眼的閃光和紫色爆炸發動攻擊。",
+        "避開紅線，然後遠離閃光。"
+      ]
+    },
+    "Seperate body": {
+      "en": [
+        "Breaks apart in a purple flash; dark crystal shards strike down around the room one after another while his bones fly about, then he puts himself back together.",
+        "Keep moving: the shards strike in many spots. In the second phase at most every 30 seconds."
+      ],
+      "de": [
+        "Zerfällt in einem violetten Blitz; dunkle Kristallsplitter schlagen nacheinander im Raum ein, während seine Knochen umherfliegen, dann setzt er sich wieder zusammen.",
+        "Bleib in Bewegung: Die Splitter schlagen an vielen Stellen ein. In der zweiten Phase höchstens alle 30 Sekunden."
+      ],
+      "es": [
+        "Se deshace en un destello morado; fragmentos de cristal oscuro caen uno tras otro por la sala mientras sus huesos vuelan, y luego se recompone.",
+        "Sigue moviéndote: los fragmentos caen en muchos puntos. En la segunda fase, como mucho cada 30 segundos."
+      ],
+      "fr": [
+        "Se disloque dans un éclair violet ; des éclats de cristal sombre s'abattent l'un après l'autre dans la salle pendant que ses os volent, puis il se reconstitue.",
+        "Continue de bouger : les éclats tombent à de nombreux endroits. En seconde phase, au plus toutes les 30 secondes."
+      ],
+      "pl": [
+        "Rozpada się w fioletowym błysku; mroczne odłamki kryształu uderzają jeden po drugim w całej sali, a jego kości latają wokół, po czym składa się z powrotem.",
+        "Ruszaj się: odłamki uderzają w wielu miejscach. W drugiej fazie najwyżej co 30 sekund."
+      ],
+      "pt-BR": [
+        "Se desfaz num clarão roxo; fragmentos de cristal sombrio caem um após o outro pelo salão enquanto seus ossos voam, depois ele se recompõe.",
+        "Continue se movendo: os fragmentos caem em muitos pontos. Na segunda fase, no máximo a cada 30 segundos."
+      ],
+      "ru": [
+        "Распадается во фиолетовой вспышке; осколки тёмного кристалла один за другим бьют по залу, пока его кости летают вокруг, затем он собирается обратно.",
+        "Двигайтесь: осколки бьют во многих местах. Во второй фазе не чаще раза в 30 секунд."
+      ],
+      "ko": [
+        "보랏빛 섬광과 함께 흩어지고, 뼈가 날아다니는 동안 어두운 수정 조각이 방 곳곳에 차례로 내리꽂힌 뒤 다시 몸을 합칩니다.",
+        "계속 움직이세요: 조각이 여러 곳에 떨어집니다. 두 번째 페이즈에서는 최대 30초마다 사용합니다."
+      ],
+      "ja": [
+        "紫の閃光とともにばらばらになり、骨が飛び回る間に暗い水晶の破片が部屋のあちこちへ次々と降り注ぎ、その後また元の体に戻ります。",
+        "動き続けましょう：破片はあちこちに落ちます。第2フェーズでは最大で30秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "在紫色闪光中散开，骨头四处飞舞，黑暗水晶碎片接连劈向房间各处，然后他重新组合。",
+        "保持移动：碎片会落在许多位置。第二阶段最多每30秒一次。"
+      ],
+      "zh-Hant": [
+        "在紫色閃光中散開，骨頭四處飛舞，黑暗水晶碎片接連劈向房間各處，然後他重新組合。",
+        "保持移動：碎片會落在許多位置。第二階段最多每30秒一次。"
+      ]
+    },
+    "Bone rain": {
+      "en": [
+        "Throws bones high into the air that rain down as purple bolts.",
+        "Comes when you are far away: keep moving while the bolts fall."
+      ],
+      "de": [
+        "Wirft Knochen hoch in die Luft, die als violette Blitze herabregnen.",
+        "Kommt, wenn du weit weg bist: Bleib in Bewegung, während die Blitze fallen."
+      ],
+      "es": [
+        "Lanza huesos muy alto que caen como rayos morados.",
+        "Llega cuando estás lejos: sigue moviéndote mientras caen los rayos."
+      ],
+      "fr": [
+        "Lance des os très haut qui retombent en éclairs violets.",
+        "Arrive quand tu es loin : continue de bouger pendant que les éclairs tombent."
+      ],
+      "pl": [
+        "Rzuca kości wysoko w powietrze, które spadają jak fioletowe błyskawice.",
+        "Pojawia się, gdy jesteś daleko: ruszaj się, gdy spadają błyskawice."
+      ],
+      "pt-BR": [
+        "Lança ossos bem alto que caem como raios roxos.",
+        "Vem quando você está longe: continue se movendo enquanto os raios caem."
+      ],
+      "ru": [
+        "Подбрасывает кости высоко в воздух, и они падают фиолетовыми молниями.",
+        "Бывает, когда вы далеко: двигайтесь, пока падают молнии."
+      ],
+      "ko": [
+        "뼈를 높이 던지면 보랏빛 번개처럼 쏟아져 내립니다.",
+        "멀리 있을 때 나옵니다: 번개가 떨어지는 동안 계속 움직이세요."
+      ],
+      "ja": [
+        "骨を高く放り投げ、紫の稲妻となって降り注ぎます。",
+        "遠くにいるときに使います：稲妻が落ちる間は動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "把骨头高高抛起，化作紫色闪电落下。",
+        "你离得远时使用：闪电落下时保持移动。"
+      ],
+      "zh-Hant": [
+        "把骨頭高高拋起，化作紫色閃電落下。",
+        "你離得遠時使用：閃電落下時保持移動。"
+      ]
+    },
+    "Special bone rain": {
+      "en": [
+        "A dark swarm of bones gathers around him, then shoots up and rains down as purple bolts over a wide area.",
+        "Get far from him while the bones gather, and keep moving while they fall."
+      ],
+      "de": [
+        "Ein dunkler Schwarm Knochen sammelt sich um ihn, schießt dann hoch und regnet als violette Blitze über eine große Fläche nieder.",
+        "Geh weit weg, während sich die Knochen sammeln, und bleib in Bewegung, während sie fallen."
+      ],
+      "es": [
+        "Un oscuro enjambre de huesos se reúne a su alrededor, sale disparado hacia arriba y cae como rayos morados sobre una gran zona.",
+        "Aléjate mientras se reúnen los huesos y sigue moviéndote mientras caen."
+      ],
+      "fr": [
+        "Un essaim sombre d'os se rassemble autour de lui, puis s'élève et retombe en éclairs violets sur une large zone.",
+        "Éloigne-toi pendant que les os se rassemblent, et continue de bouger pendant qu'ils tombent."
+      ],
+      "pl": [
+        "Wokół niego zbiera się mroczny rój kości, który wystrzeliwuje w górę i spada fioletowymi błyskawicami na dużym obszarze.",
+        "Oddal się, gdy kości się zbierają, i ruszaj się, gdy spadają."
+      ],
+      "pt-BR": [
+        "Um enxame sombrio de ossos se junta ao redor dele, depois sobe e cai como raios roxos sobre uma área grande.",
+        "Afaste-se enquanto os ossos se juntam e continue se movendo enquanto caem."
+      ],
+      "ru": [
+        "Вокруг него собирается тёмный рой костей, затем взмывает и обрушивается фиолетовыми молниями на большую площадь.",
+        "Отойдите подальше, пока кости собираются, и двигайтесь, пока они падают."
+      ],
+      "ko": [
+        "어두운 뼈 무리가 그의 주위에 모였다가 솟구쳐 넓은 범위에 보랏빛 번개로 쏟아집니다.",
+        "뼈가 모이는 동안 멀리 떨어지고, 떨어지는 동안 계속 움직이세요."
+      ],
+      "ja": [
+        "暗い骨の群れが彼の周りに集まり、舞い上がって広い範囲に紫の稲妻として降り注ぎます。",
+        "骨が集まる間に遠く離れ、落ちてくる間は動き続けましょう。"
+      ],
+      "zh-Hans": [
+        "大群黑暗的骨头聚集在他周围，然后飞起，化作紫色闪电落在大片区域。",
+        "骨头聚集时远离他，落下时保持移动。"
+      ],
+      "zh-Hant": [
+        "大群黑暗的骨頭聚集在他周圍，然後飛起，化作紫色閃電落在大片區域。",
+        "骨頭聚集時遠離他，落下時保持移動。"
+      ]
+    },
+    "Raise bone rain": {
+      "en": [
+        "Jumps up and crashes down with his bone; bones rise out of the floor across the room.",
+        "Be in the air or on a high spot when the bones rise."
+      ],
+      "de": [
+        "Springt hoch und kracht mit seinem Knochen herab; überall im Raum steigen Knochen aus dem Boden.",
+        "Sei in der Luft oder weit oben, wenn die Knochen aufsteigen."
+      ],
+      "es": [
+        "Salta y cae de golpe con su hueso; brotan huesos del suelo por toda la sala.",
+        "Estate en el aire o en un lugar alto cuando broten los huesos."
+      ],
+      "fr": [
+        "Bondit et s'abat avec son os ; des os surgissent du sol dans toute la salle.",
+        "Sois en l'air ou en hauteur quand les os surgissent."
+      ],
+      "pl": [
+        "Wyskakuje i spada z kością; z podłogi w całej sali wyrastają kości.",
+        "Bądź w powietrzu albo wysoko, gdy wyrastają kości."
+      ],
+      "pt-BR": [
+        "Salta e despenca com o osso; ossos saem do chão por todo o salão.",
+        "Esteja no ar ou num lugar alto quando os ossos subirem."
+      ],
+      "ru": [
+        "Подпрыгивает и обрушивается с костью; по всему залу из пола поднимаются кости.",
+        "Будьте в воздухе или повыше, когда поднимаются кости."
+      ],
+      "ko": [
+        "뛰어올라 뼈와 함께 내려찍고, 방 곳곳의 바닥에서 뼈가 솟아오릅니다.",
+        "뼈가 솟을 때 공중이나 높은 곳에 있으세요."
+      ],
+      "ja": [
+        "跳び上がって骨とともに叩きつけ、部屋中の床から骨が突き出します。",
+        "骨が突き出すときは空中か高い所にいましょう。"
+      ],
+      "zh-Hans": [
+        "跃起后带着骨头砸下，房间各处的地面冒出骨头。",
+        "骨头冒出时待在空中或高处。"
+      ],
+      "zh-Hant": [
+        "躍起後帶著骨頭砸下，房間各處的地面冒出骨頭。",
+        "骨頭冒出時待在空中或高處。"
+      ]
+    },
+    "Earthshatter": {
+      "en": [
+        "A crosshair marks you, he hurls his bone at it, and a wave of purple crystal spikes erupts along the floor.",
+        "Move off the crosshair, then jump over or away from the spike wave."
+      ],
+      "de": [
+        "Ein Fadenkreuz markiert dich, er schleudert seinen Knochen darauf, und eine Welle violetter Kristallstacheln bricht über den Boden.",
+        "Verlass das Fadenkreuz und spring dann über die Stachelwelle oder weg davon."
+      ],
+      "es": [
+        "Una mira te marca, lanza su hueso hacia ella y una ola de púas de cristal moradas brota por el suelo.",
+        "Sal de la mira y luego salta sobre la ola de púas o aléjate de ella."
+      ],
+      "fr": [
+        "Un viseur te marque, il y projette son os, et une vague de pointes de cristal violettes jaillit au sol.",
+        "Quitte le viseur, puis saute par-dessus la vague de pointes ou éloigne-toi."
+      ],
+      "pl": [
+        "Celownik oznacza ciebie, on rzuca w niego kością, a po ziemi przetacza się fala fioletowych kryształowych kolców.",
+        "Zejdź z celownika, a potem przeskocz falę kolców albo się od niej oddal."
+      ],
+      "pt-BR": [
+        "Uma mira marca você, ele arremessa o osso nela e uma onda de espinhos de cristal roxos irrompe pelo chão.",
+        "Saia da mira e depois pule a onda de espinhos ou se afaste dela."
+      ],
+      "ru": [
+        "Прицел отмечает вас, он швыряет в него кость, и по полу прокатывается волна фиолетовых кристаллических шипов.",
+        "Уйдите с прицела, затем перепрыгните волну шипов или отойдите от неё."
+      ],
+      "ko": [
+        "조준점이 당신을 표시하고, 그곳으로 뼈를 던지면 바닥을 따라 보랏빛 수정 가시가 물결처럼 솟구칩니다.",
+        "조준점에서 벗어난 뒤, 가시 물결을 점프로 넘거나 멀어지세요."
+      ],
+      "ja": [
+        "照準があなたを示し、そこへ骨を投げつけると、床に沿って紫の水晶のトゲが波のように噴き出します。",
+        "照準から離れ、トゲの波を飛び越えるか遠ざかりましょう。"
+      ],
+      "zh-Hans": [
+        "准星标记你，他把骨头掷向那里，随后一波紫色水晶尖刺沿地面迸发。",
+        "离开准星，然后跳过尖刺波或远离它。"
+      ],
+      "zh-Hant": [
+        "準星標記你，他把骨頭擲向那裡，隨後一波紫色水晶尖刺沿地面迸發。",
+        "離開準星，然後跳過尖刺波或遠離它。"
+      ]
+    }
+  }
+}

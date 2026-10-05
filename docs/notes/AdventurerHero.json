@@ -1,0 +1,373 @@
+{
+  "key": "AdventurerHero",
+  "moves": {
+    "Dash short": {
+      "en": [
+        "A short dash toward you.",
+        "Usually leads into an attack: be ready to dodge."
+      ],
+      "de": [
+        "Ein kurzer Sprint auf dich zu.",
+        "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+      ],
+      "es": [
+        "Una carrera corta hacia ti.",
+        "Suele llevar a un ataque: prepárate para esquivar."
+      ],
+      "fr": [
+        "Un court sprint vers toi.",
+        "Mène généralement à une attaque : prépare-toi à esquiver."
+      ],
+      "pl": [
+        "Krótki zryw w twoją stronę.",
+        "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+      ],
+      "pt-BR": [
+        "Uma corrida curta até você.",
+        "Costuma levar a um ataque: prepare-se para desviar."
+      ],
+      "ru": [
+        "Короткий рывок к вам.",
+        "Обычно ведёт к атаке: будьте готовы увернуться."
+      ],
+      "ko": [
+        "당신을 향해 짧게 대쉬합니다.",
+        "대개 공격으로 이어지니 피할 준비를 하세요."
+      ],
+      "ja": [
+        "あなたへ短くダッシュします。",
+        "たいてい攻撃につながるので、かわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "朝你短距离疾驰。",
+        "通常会接攻击：准备好闪避。"
+      ],
+      "zh-Hant": [
+        "朝你短距離衝刺。",
+        "通常會接攻擊：準備好閃避。"
+      ]
+    },
+    "Dash long": {
+      "en": [
+        "A long dash toward you.",
+        "Usually leads into an attack: be ready to dodge."
+      ],
+      "de": [
+        "Ein langer Sprint auf dich zu.",
+        "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+      ],
+      "es": [
+        "Una carrera larga hacia ti.",
+        "Suele llevar a un ataque: prepárate para esquivar."
+      ],
+      "fr": [
+        "Un long sprint vers toi.",
+        "Mène généralement à une attaque : prépare-toi à esquiver."
+      ],
+      "pl": [
+        "Długi zryw w twoją stronę.",
+        "Zwykle prowadzi do ataku: bądź gotów uniknąć."
+      ],
+      "pt-BR": [
+        "Uma corrida longa até você.",
+        "Costuma levar a um ataque: prepare-se para desviar."
+      ],
+      "ru": [
+        "Длинный рывок к вам.",
+        "Обычно ведёт к атаке: будьте готовы увернуться."
+      ],
+      "ko": [
+        "당신을 향해 길게 대쉬합니다.",
+        "대개 공격으로 이어지니 피할 준비를 하세요."
+      ],
+      "ja": [
+        "あなたへ長くダッシュします。",
+        "たいてい攻撃につながるので、かわす準備をしましょう。"
+      ],
+      "zh-Hans": [
+        "朝你长距离疾驰。",
+        "通常会接攻击：准备好闪避。"
+      ],
+      "zh-Hant": [
+        "朝你長距離衝刺。",
+        "通常會接攻擊：準備好閃避。"
+      ]
+    },
+    "Back dash": {
+      "en": [
+        "Hops back away from you.",
+        "Comes when you are close, at most every 10 seconds."
+      ],
+      "de": [
+        "Springt zurück, weg von dir.",
+        "Kommt, wenn du nah bist, höchstens alle 10 Sekunden."
+      ],
+      "es": [
+        "Salta hacia atrás, alejándose de ti.",
+        "Llega cuando estás cerca, como mucho cada 10 segundos."
+      ],
+      "fr": [
+        "Bondit en arrière pour s'éloigner de toi.",
+        "Arrive quand tu es proche, au plus toutes les 10 secondes."
+      ],
+      "pl": [
+        "Odskakuje do tyłu, od ciebie.",
+        "Pojawia się, gdy jesteś blisko, najwyżej co 10 sekund."
+      ],
+      "pt-BR": [
+        "Salta para trás, se afastando de você.",
+        "Vem quando você está perto, no máximo a cada 10 segundos."
+      ],
+      "ru": [
+        "Отскакивает назад, подальше от вас.",
+        "Бывает, когда вы рядом, не чаще раза в 10 секунд."
+      ],
+      "ko": [
+        "당신에게서 멀어지도록 뒤로 물러납니다.",
+        "가까이 있을 때 최대 10초마다 사용합니다."
+      ],
+      "ja": [
+        "あなたから離れるように後ろへ跳びます。",
+        "近くにいるとき、最大で10秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "向后跳开，远离你。",
+        "你靠近时使用，最多每10秒一次。"
+      ],
+      "zh-Hant": [
+        "向後跳開，遠離你。",
+        "你靠近時使用，最多每10秒一次。"
+      ]
+    },
+    "Energy blast": {
+      "en": [
+        "Raises the sword and bursts a blue energy dome in front.",
+        "Step back out of the dome's reach, then hit back."
+      ],
+      "de": [
+        "Hebt das Schwert und lässt vor sich eine blaue Energiekuppel aufplatzen.",
+        "Geh aus der Reichweite der Kuppel und schlag dann zurück."
+      ],
+      "es": [
+        "Alza la espada y hace estallar una cúpula de energía azul delante.",
+        "Retrocede fuera del alcance de la cúpula y luego contraataca."
+      ],
+      "fr": [
+        "Lève l'épée et fait éclater un dôme d'énergie bleue devant lui.",
+        "Recule hors de portée du dôme, puis contre-attaque."
+      ],
+      "pl": [
+        "Unosi miecz i przed sobą wywołuje wybuch niebieskiej kopuły energii.",
+        "Cofnij się poza zasięg kopuły, a potem kontratakuj."
+      ],
+      "pt-BR": [
+        "Ergue a espada e explode uma cúpula de energia azul à frente.",
+        "Recue para fora do alcance da cúpula e depois contra-ataque."
+      ],
+      "ru": [
+        "Поднимает меч и взрывает перед собой синий купол энергии.",
+        "Отойдите за пределы купола, затем контратакуйте."
+      ],
+      "ko": [
+        "검을 들어 앞쪽에 푸른 에너지 반구를 터뜨립니다.",
+        "반구가 닿지 않는 곳으로 물러났다가 반격하세요."
+      ],
+      "ja": [
+        "剣を掲げ、目の前で青いエネルギーのドームを炸裂させます。",
+        "ドームの届かない所まで下がり、それから反撃しましょう。"
+      ],
+      "zh-Hans": [
+        "举剑在身前爆出蓝色能量罩。",
+        "退出能量罩范围，然后反击。"
+      ],
+      "zh-Hant": [
+        "舉劍在身前爆出藍色能量罩。",
+        "退出能量罩範圍，然後反擊。"
+      ]
+    },
+    "Combo attack": {
+      "en": [
+        "A chain of sword slashes while stepping in, ending with an energy blast.",
+        "Back off until the final burst is over, then attack."
+      ],
+      "de": [
+        "Eine Kette von Schwerthieben im Vorrücken, zum Schluss eine Energieexplosion.",
+        "Zieh dich zurück, bis die letzte Explosion vorbei ist, dann greif an."
+      ],
+      "es": [
+        "Una cadena de tajos con la espada mientras avanza, que termina con una explosión de energía.",
+        "Retrocede hasta que pase la explosión final y luego ataca."
+      ],
+      "fr": [
+        "Un enchaînement d'entailles à l'épée en avançant, qui finit par une explosion d'énergie.",
+        "Recule jusqu'à la fin de l'explosion finale, puis attaque."
+      ],
+      "pl": [
+        "Seria cięć mieczem w marszu, zakończona wybuchem energii.",
+        "Wycofaj się, aż minie końcowy wybuch, a potem atakuj."
+      ],
+      "pt-BR": [
+        "Uma sequência de cortes de espada enquanto avança, terminando numa explosão de energia.",
+        "Recue até a explosão final acabar e depois ataque."
+      ],
+      "ru": [
+        "Серия ударов мечом с шагом вперёд, завершаемая взрывом энергии.",
+        "Отходите, пока не закончится последний взрыв, затем атакуйте."
+      ],
+      "ko": [
+        "앞으로 나서며 검으로 연속해서 베고, 에너지 폭발로 마무리합니다.",
+        "마지막 폭발이 끝날 때까지 물러났다가 공격하세요."
+      ],
+      "ja": [
+        "踏み込みながら剣で連続して斬り、エネルギーの爆発で締めくくります。",
+        "最後の爆発が終わるまで下がり、それから攻撃しましょう。"
+      ],
+      "zh-Hans": [
+        "边前进边连续挥剑斩击，最后以能量爆发收尾。",
+        "后退到最后的爆发结束，然后攻击。"
+      ],
+      "zh-Hant": [
+        "邊前進邊連續揮劍斬擊，最後以能量爆發收尾。",
+        "後退到最後的爆發結束，然後攻擊。"
+      ]
+    },
+    "Energy ball": {
+      "en": [
+        "Thrusts the sword and fires blue energy balls straight ahead.",
+        "Jump over the balls or change height."
+      ],
+      "de": [
+        "Stößt das Schwert vor und feuert blaue Energiekugeln geradeaus.",
+        "Spring über die Kugeln oder wechsle die Höhe."
+      ],
+      "es": [
+        "Lanza una estocada y dispara bolas de energía azul hacia delante.",
+        "Salta sobre las bolas o cambia de altura."
+      ],
+      "fr": [
+        "Porte un coup d'estoc et tire des boules d'énergie bleue droit devant.",
+        "Saute par-dessus les boules ou change de hauteur."
+      ],
+      "pl": [
+        "Pchnięciem miecza wystrzeliwuje niebieskie kule energii prosto przed siebie.",
+        "Przeskocz kule albo zmień wysokość."
+      ],
+      "pt-BR": [
+        "Estoca com a espada e dispara bolas de energia azul para a frente.",
+        "Pule as bolas ou mude de altura."
+      ],
+      "ru": [
+        "Делает выпад мечом и выпускает вперёд синие энергетические шары.",
+        "Перепрыгните шары или смените высоту."
+      ],
+      "ko": [
+        "검을 찔러 앞으로 푸른 에너지 구체를 쏘아 보냅니다.",
+        "구체를 점프로 넘거나 높이를 바꾸세요."
+      ],
+      "ja": [
+        "剣を突き出し、まっすぐ前へ青いエネルギー弾を放ちます。",
+        "弾を飛び越えるか、高さを変えましょう。"
+      ],
+      "zh-Hans": [
+        "刺出长剑，向正前方射出蓝色能量球。",
+        "跳过能量球，或改变高度。"
+      ],
+      "zh-Hant": [
+        "刺出長劍，向正前方射出藍色能量球。",
+        "跳過能量球，或改變高度。"
+      ]
+    },
+    "Sword aura wave (special skill)": {
+      "en": [
+        "The special skill: charges up, then sends several sword aura waves along the floor.",
+        "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+      ],
+      "de": [
+        "Die Spezialfähigkeit: lädt auf und schickt dann mehrere Schwertaura-Wellen über den Boden.",
+        "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+      ],
+      "es": [
+        "La habilidad especial: se carga y luego lanza varias ondas de aura de espada a ras de suelo.",
+        "Por debajo de la mitad de la vida. Inflige suficiente daño durante el lanzamiento para romperlo: quedará aturdido."
+      ],
+      "fr": [
+        "La compétence spéciale : se charge, puis envoie plusieurs vagues d'aura d'épée au ras du sol.",
+        "Sous la moitié de la vie. Inflige assez de dégâts pendant l'incantation pour l'interrompre : le lanceur sera sonné."
+      ],
+      "pl": [
+        "Umiejętność specjalna: ładuje się, a potem posyła po ziemi kilka fal aury miecza.",
+        "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+      ],
+      "pt-BR": [
+        "A habilidade especial: carrega e depois envia várias ondas de aura de espada pelo chão.",
+        "Abaixo da metade da vida. Cause dano suficiente durante a conjuração para quebrá-la: quem conjura fica atordoado."
+      ],
+      "ru": [
+        "Особый навык: накапливает силу, затем посылает вдоль пола несколько волн ауры меча.",
+        "Ниже половины здоровья. Нанесите достаточно урона во время подготовки, чтобы сорвать её: противник будет оглушён."
+      ],
+      "ko": [
+        "특수 스킬: 힘을 모은 뒤 바닥을 따라 검기 파동을 여러 번 날립니다.",
+        "체력이 절반 아래일 때 사용합니다. 시전하는 동안 충분한 피해를 주면 끊을 수 있고, 시전자는 그로기 상태가 됩니다."
+      ],
+      "ja": [
+        "特殊スキル：力をためてから、床に沿って剣気の波を何度も放ちます。",
+        "体力が半分を切ると使います。詠唱中に十分なダメージを与えると中断でき、使い手はグロッキーになります。"
+      ],
+      "zh-Hans": [
+        "特殊技能：蓄力后沿地面放出多道剑气波。",
+        "体力低于一半时使用。施放期间造成足够伤害即可打断，施放者会陷入虚弱。"
+      ],
+      "zh-Hant": [
+        "特殊技能：蓄力後沿地面放出多道劍氣波。",
+        "體力低於一半時使用。施放期間造成足夠傷害即可打斷，施放者會陷入虛弱。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "Stunned after the special skill was broken: stands dazed for a few seconds.",
+        "Free hits: use your strongest skills now."
+      ],
+      "de": [
+        "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+        "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+      ],
+      "es": [
+        "Aturdido tras romperse la habilidad especial: se queda atontado unos segundos.",
+        "Golpes gratis: usa ahora tus habilidades más fuertes."
+      ],
+      "fr": [
+        "Étourdi après l'interruption de la compétence spéciale : reste sonné quelques secondes.",
+        "Coups gratuits : utilise maintenant tes compétences les plus fortes."
+      ],
+      "pl": [
+        "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+        "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+      ],
+      "pt-BR": [
+        "Atordoado depois que a habilidade especial foi quebrada: fica tonto por alguns segundos.",
+        "Golpes livres: use agora suas habilidades mais fortes."
+      ],
+      "ru": [
+        "Оглушён после срыва особого навыка: несколько секунд стоит без движения.",
+        "Бесплатные удары: используйте сейчас самые сильные навыки."
+      ],
+      "ko": [
+        "특수 스킬이 끊겨 기절한 상태: 몇 초 동안 멍하니 서 있습니다.",
+        "마음껏 공격할 기회입니다: 가장 강한 스킬을 쓰세요."
+      ],
+      "ja": [
+        "特殊スキルを中断されて気絶した状態：数秒間ふらふらと立ち尽くします。",
+        "攻撃し放題です：一番強いスキルを使いましょう。"
+      ],
+      "zh-Hans": [
+        "特殊技能被打断后陷入眩晕：呆立几秒。",
+        "可以随意攻击：现在使用你最强的技能。"
+      ],
+      "zh-Hant": [
+        "特殊技能被打斷後陷入暈眩：呆立幾秒。",
+        "可以隨意攻擊：現在使用你最強的技能。"
+      ]
+    }
+  }
+}

@@ -35,7 +35,52 @@ public static class BossAttacks
     /// pieces of a fight (Pope's dark crystals), shown on the boss's page instead of their own.
     /// </summary>
     public static bool HasAi(Character c) =>
-        c != null && (c.GetComponentInChildren<Characters.AI.AIController>(true) != null || c.GetComponentInChildren<BD.Behavior>(true) != null);
+        c != null && (c.GetComponentInChildren<Characters.AI.AIController>(true) != null || TreesOf(c).Count > 0);
+
+    private static readonly Dictionary<int, (List<BD.Behavior> trees, float at)> TreeCache = new();
+
+    /// <summary>
+    /// The BehaviorDesigner trees that run a character: its own, or for a boss without one (King Alexander's heart in
+    /// phase 2) the loaded trees elsewhere in the scene whose tasks point at it more than at any other character.
+    /// Without a tree it looks again at most every 2 s (a tree loads a moment after the fight starts).
+    /// </summary>
+    public static List<BD.Behavior> TreesOf(Character c)
+    {
+        var own = c.GetComponentsInChildren<BD.Behavior>(true).ToList();
+        if (own.Count > 0 || c.type != Character.Type.Boss)
+            return own;
+        int id = c.GetInstanceID();
+        if (TreeCache.TryGetValue(id, out var cached) && (cached.trees.Count > 0 || Time.unscaledTime - cached.at < 2f))
+            return cached.trees.Where(t => t != null).ToList();
+        var found = new List<BD.Behavior>();
+        try
+        {
+            var manager = BD.BehaviorManager.instance;
+            foreach (var behavior in UnityEngine.Object.FindObjectsOfType<BD.Behavior>())
+            {
+                if (Covers(behavior.GetComponentInParent<Character>()) || manager?.behaviorTreeMap == null ||
+                    !manager.behaviorTreeMap.TryGetValue(behavior, out var running) || running?.taskList == null)
+                    continue;
+                var counts = new Dictionary<Character, int>();
+                foreach (var task in running.taskList.Where(t => t != null))
+                    foreach (var f in Fields(task.GetType(), typeof(BDTasks.Task)))
+                        if (Read(f, task) is BD.SharedVariable { } shared && shared.GetValue() is Character target && target != null)
+                            counts[target] = counts.TryGetValue(target, out int n) ? n + 1 : 1;
+                if (counts.Count > 0 && counts.OrderByDescending(p => p.Value).First().Key == c)
+                {
+                    found.Add(behavior);
+                    Plugin.Log.LogInfo($"Codex: {CodexCatalog.CleanName(c.name)} is run by the tree on '{behavior.gameObject.name}' " +
+                                       $"({running.taskList.Count} tasks; it points at {string.Join(", ", counts.Select(p => $"{CodexCatalog.CleanName(p.Key.name)} {p.Value}x"))}).");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Plugin.Log.LogWarning($"Codex: looking for the tree of {c.name} failed: {e.Message}");
+        }
+        TreeCache[id] = (found, Time.unscaledTime);
+        return found;
+    }
 
     public static AttackGraph Of(Character enemy)
     {
@@ -148,6 +193,11 @@ public static class BossAttacks
                         .Where(m => m?.animationInfo != null).SelectMany(m => ClipNames(m.animationInfo)));
                 case CharacterAnimationController.AnimationInfo info:
                     return "anim|" + string.Join("/", ClipNames(info));
+                case Characters.Operations.OperationInfos operations:
+                    // First Dark Hero names every operations object "Operations": told apart by the object, or his
+                    // thorns, dark orbs and wall blasts would look alike and be merged into one move ("Dark").
+                    string name = CodexCatalog.CleanName(operations.name);
+                    return "operations|" + (GenericOperations.IsMatch(name) ? name + "#" + operations.GetInstanceID() : name);
                 default:
                     return step?.ToString() ?? "";
             }
@@ -157,6 +207,9 @@ public static class BossAttacks
             return step?.ToString() ?? "";
         }
     }
+
+    private static readonly System.Text.RegularExpressions.Regex GenericOperations =
+        new(@"(?i)^\s*(operations?|operation\s*infos?)?\s*\d*\s*$");
 
     /// <summary>
     /// Yggdrasil's blocks (PlayAnimations, Sweeping, Awakening) play animations by tag through its animation
@@ -188,8 +241,16 @@ public static class BossAttacks
     }
 
     /// <summary>A move name from a step's first animation: "DivineImpact_Ready" → "Divine impact" (null if none).</summary>
+    /// <summary>Whether operations hurt or summon something (an attack), rather than set something up.</summary>
+    private static bool Attacks(Characters.Operations.OperationInfos operations) =>
+        operations.GetComponentsInChildren<Characters.Operations.CharacterOperation>(true).Any(o => o != null &&
+            (o.GetType().Namespace is { } ns && (ns.StartsWith("Characters.Operations.Attack") || ns.StartsWith("Characters.Operations.Summon")) ||
+             System.Text.RegularExpressions.Regex.IsMatch(o.GetType().Name, "Projectile|Summon|Attack")));
+
     private static string StepName(object step)
     {
+        if (step is Characters.Operations.OperationInfos operations)
+            return operations != null ? AttackGraph.Tidy(CodexCatalog.CleanName(operations.name)) : null;
         try
         {
             var info = step is Characters.Actions.Action action
@@ -211,7 +272,7 @@ public static class BossAttacks
     private static bool HasRun(Type type)
     {
         if (!Runnable.TryGetValue(type, out bool has))
-            Runnable[type] = has = AccessTools.Method(type, "CRun") is { } m && typeof(IEnumerator).IsAssignableFrom(m.ReturnType);
+            Runnable[type] = has = AttackGraph.FindMethod(type, "CRun") is { } m && typeof(IEnumerator).IsAssignableFrom(m.ReturnType);
         return has;
     }
 
@@ -309,7 +370,7 @@ public static class BossAttacks
     /// </summary>
     private static void AddBehaviorDesigner(AttackGraph graph, Character enemy)
     {
-        foreach (var behavior in enemy.GetComponentsInChildren<BD.Behavior>(true))
+        foreach (var behavior in TreesOf(enemy))
         {
             // The running tree: BehaviorDesigner copies referenced sub-trees ("Earthquake", "SpecialSkill_Main") into
             // it when it loads, and these task objects are the ones that run. The saved tree only has the references.
@@ -358,6 +419,28 @@ public static class BossAttacks
         // Conditions (CanUseAction, CheckActionRunning) only look at an action; cancelling one doesn't play it.
         if (task is BDTasks.Conditional || task.GetType().Name.StartsWith("Cancel"))
             return steps;
+        // King Alexander's phase 2 plays animations by tag through his animation controller (like Yggdrasil's blocks):
+        // the animation is the step ("Dark ground dark ball").
+        var (controller, tag) = task switch
+        {
+            BDTasks.Spine.PlayEmperorAnimation play => (play._controller?.Value, play._tag),
+            BDTasks.Spine.PlayEmperorAnimationForStunOrFreeze stun => (stun._controller?.Value, stun._tag),
+            _ => (null, default),
+        };
+        if (controller != null)
+        {
+            if (controller._mapper != null && controller._mapper.TryGetValue(tag, out var info) && info != null)
+                steps.Add(info);
+            return steps;
+        }
+        // Attacks without an animation of their own (King Alexander's heart: buzz saws, drill missiles, lasers): the
+        // operations are the step when they attack or summon; setup ("Reset laser", "Turn off eye") is no step.
+        if (task is BDTasks.RunOperations run)
+        {
+            if (run._operations?.Value is { } operations && operations != null && Attacks(operations))
+                steps.Add(operations);
+            return steps;
+        }
         foreach (var f in Fields(task.GetType(), typeof(BDTasks.Task)))
         {
             var value = Read(f, task);
@@ -429,6 +512,8 @@ public static class BossAttacks
         string where = path != null ? " <" + path + ">" : "";
         if (step is CharacterAnimationController.AnimationInfo info)
             return $"animation{where} [{string.Join("/", ClipNames(info))}]";
+        if (step is Characters.Operations.OperationInfos operations)
+            return $"operations{where} {(operations != null ? CodexCatalog.CleanName(operations.name) : "?")}";
         if (!(step is Characters.Actions.Action action))
             return step?.ToString() ?? "?";
         string clips = "";

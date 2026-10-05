@@ -5,48 +5,1259 @@
       "about": "Der uralte Baum, der das erste Kapitel bewacht. Er kämpft mit seinem Kopf und zwei riesigen Händen und erwacht in einer zweiten Phase, sobald die Hälfte seiner LP weg ist.",
       "moves": {
         "Fist slam": {
-          "what": "Hebt eine Hand hoch, folgt kurz deiner Position und schlägt zu.",
-          "tip": "Bleib in Bewegung, bis die Hand fällt, dann sprinte zur Seite. Die Hand bleibt nach dem Aufprall kurz liegen: ein sicheres Fenster für einen Gegenangriff."
+          "what": "Hebt beide Hände und schlägt zwei- oder dreimal hintereinander eine Faust dort nieder, wo du stehst; beim Aufprall wirbelt Staub auf. Im Dunklen Spiegel schießt nach jedem Schlag ein Wurzelstachel aus dem Boden.",
+          "tip": "Die Faust folgt dir, bis sie fällt: bleib in Bewegung und sprinte kurz vorher zur Seite. Zwischen den Schlägen ruht die Faust kurz am Boden, ein sicherer Moment für einen Gegenangriff. Im Dunklen Spiegel geh vom Aufschlagpunkt weg: der Stachel kommt gleich danach."
         },
         "Sweeping": {
-          "what": "Eine Hand fegt am Boden über die ganze Arena.",
-          "tip": "Beim Fegen steigen Holzplattformen auf: spring auf eine oder spring im richtigen Moment über die Hand."
+          "what": "Zieht beide Hände zurück und fegt dann am Boden durch die Arena: erst mit der einen Hand, dann mit der anderen.",
+          "tip": "Spring über jede Hand, wenn sie dich erreicht; der zweite Feger folgt kurz nach dem ersten, heb dir also einen Sprung dafür auf."
         },
         "Energy bomb": {
-          "what": "Lädt Energie im Kopf auf und feuert Bomben, die beim Aufschlag explodieren.",
-          "tip": "Achte, wohin die Bomben zielen, und verlass die Stelle; die Explosionen sind kurz, du kannst gleich wieder hinein."
-        },
-        "Laser": {
-          "what": "Sammelt Licht im Kopf und feuert einen Strahl.",
-          "tip": "Das Aufladen ist deine Warnung. Verlass die Linie des Strahls, bevor er feuert, statt durchzusprinten."
+          "what": "Legt die Hände ab, sammelt dunkle Energie und glüht rot, dann feuert es aus dem Kopf Energiebomben, die beim Aufschlag in dunkle Flammen aufgehen. Danach ist es erschöpft (Benommen).",
+          "tip": "Bleib in Bewegung: die Bomben schlagen nacheinander an verschiedenen Stellen ein und ihre Flammen bleiben kurz. Wenn der Beschuss endet, bricht der Baum zusammen: mach dich bereit, seinen Kopf anzugreifen."
         },
         "Groggy": {
-          "what": "Erschöpft sinkt der Kopf zu Boden und der Baum greift ein paar Sekunden nicht an.",
-          "tip": "Dein größtes Schadensfenster: setz jetzt deine Fertigkeiten und stärksten Angriffe auf den Kopf ein."
+          "what": "Nach seinem Energieangriff ist der Baum erschöpft: sein Kopf kracht in einer Staubwolke zu Boden und bleibt etwa zwei Sekunden unten, bevor er sich wieder hebt.",
+          "tip": "Dein größtes Schadensfenster: setz deine Fertigkeiten und stärksten Angriffe auf den Kopf ein, solange er unten ist."
         },
         "Phase 2 · Awakening": {
-          "what": "Dunkler Quarz bricht aus dem Baum: Phase 2 beginnt. Seine Angriffe werden härter und kommen in Kombinationen.",
-          "tip": "Nutze die Verwandlung, um dich neu zu positionieren und deine Abklingzeiten aufzuladen."
+          "what": "Bei halben LP blitzt der Baum weiß auf, hebt die Hände und verwandelt sich: dunkler Quarz bricht hervor, seine Blätter werden blau und lila Blitze durchziehen ihn. Phase 2 beginnt, mit härteren Angriffen in Kombinationen.",
+          "tip": "Die Verwandlung selbst richtet keinen Schaden an: nutze sie, um dich neu zu positionieren und deine Abklingzeiten aufzuladen."
         },
         "Phase 2 · Fist power slam": {
-          "what": "Ein schwererer Schlag, der beim Aufprall eine Trümmerwelle über den Boden schickt.",
-          "tip": "Der Hand auszuweichen reicht nicht: spring oder sprinte über die folgende Trümmerwelle."
+          "what": "Wie Faustschlag, aber härter und viermal hintereinander, jede Faust fällt an deiner Position. Im Dunklen Spiegel bricht nach jedem Schlag ein rosa Stachel hervor.",
+          "tip": "Bleib die ganze Zeit in Bewegung und sprinte bei jeder fallenden Faust zur Seite. Schlag eine ruhende Faust nur, wenn die nächste nicht schon auf dich fällt."
         },
         "Phase 2 · Both fist power slam": {
-          "what": "Beide Hände schlagen gleichzeitig zu und decken einen großen Teil der Arena ab.",
-          "tip": "Bleib nahe der Mitte und warte, bis beide Hände festgelegt sind, bevor du ausweichst; die Lücke dazwischen ist dein Ausweg."
-        },
-        "Phase 2 · Sweeping combo": {
-          "what": "Zwei Fegeschläge hintereinander: erst von einer Seite, dann von der anderen.",
-          "tip": "Bleib auf einer Plattform oder halte einen weiteren Sprung bereit: der zweite folgt fast sofort."
+          "what": "Eine rote Linie blitzt als Warnung über den Boden, dann schlagen beide Fäuste gleichzeitig links und rechts nieder, dreimal. Im Dunklen Spiegel schießt danach eine Reihe rosa Stacheln am Boden hoch.",
+          "tip": "Die Fäuste landen links und rechts: der Platz dazwischen, unter dem Kopf, ist deine beste Stelle. Im Dunklen Spiegel spring, wenn die Stacheln aufsteigen."
         },
         "Phase 2 · Energy corps": {
-          "what": "Beschwört einen Ring aus Energiekugeln, die nacheinander auf dich zufliegen.",
-          "tip": "Lauf in eine Richtung weiter, damit die Kugeln hinter dir verfehlen; greif erst an, wenn die letzte vorbei ist."
+          "what": "Glüht in lila Licht und schießt etwa acht Sekunden lang einen Strom von Energiekugeln ab; sie fallen über die Arena und gehen in lila Flammen auf. Danach ist es erschöpft (Benommen).",
+          "tip": "Bleib in Bewegung und halte dich von den Flammen am Boden fern. Wenn der Strom endet, bricht der Baum zusammen: dein Moment, ihn zu bestrafen."
         },
         "Phase 2 · Groggy": {
-          "what": "Wieder erschöpft: der Kopf sinkt und der Baum hört auf anzugreifen.",
-          "tip": "Wie in Phase 1: gib alles auf den Kopf."
+          "what": "Erschöpft nach dem Energiekorps: der Kopf kracht in einer Staubwolke nieder und bleibt etwa zwei Sekunden unten.",
+          "tip": "Wie in Phase 1: alles auf den Kopf."
+        },
+        "Phase 2 · Sweeping": {
+          "what": "Vier Feger am Boden hintereinander, die Hände wechseln sich ab.",
+          "tip": "Spring über jede Hand, wenn sie dich erreicht, und lande bereit für die nächste. Greif erst an, wenn beide Hände wieder am Baum sind."
+        }
+      }
+    },
+    "LeianaShortHair": {
+      "about": "Zwillingsschwestern und der ganze Stolz der Goldmähnenritter, Boss des zweiten Kapitels. Sie wechseln sich ab: In der Paarphase greifen beide zusammen an, in der Einzelphase kämpft eine Schwester etwa 20 Sekunden lang allein, während die andere unerreichbar im Hintergrund wartet. Fällt eine Schwester, erwacht die andere als Leiana die Erweckte.",
+      "moves": {
+        "Pair phase · Twin meteor": {
+          "what": "Zwei dünne gelbe Ziellinien kreuzen sich zu einem X. Die Schwestern stürzen als helle Streifen an ihnen entlang herab, treffen sich am Kreuzungspunkt, stehen auf und sprinten davon. Eine Linie zielt auf dich, die andere dorthin, wohin du läufst.",
+          "tip": "Die Linien zeigen beide Bahnen vor dem Sturz: Geh aus beiden heraus, nicht nur aus der näheren. Am Kreuzungspunkt stehst du am schlechtesten."
+        },
+        "Pair phase · Twin meteor pierce": {
+          "what": "Die Schwestern stehen an entgegengesetzten Enden der Halle und sammeln goldene Energie. Zielsuchende goldene Blitze fliegen von beiden Seiten durch die Halle, dann stoßen beide ihre Speere am Boden entlang und sprinten davon.",
+          "tip": "Die Blitze kommen von beiden Seiten und biegen zu dir ab: Bleib in Bewegung und wechsle spät die Richtung, damit sie verfehlen. Spring über die Speerstöße am Ende."
+        },
+        "Pair phase · Twin meteor chain": {
+          "what": "Eine Schwester macht einen tiefen Ausfall am Boden entlang, die andere stürzt gleich danach von oben herab. Das machen sie zweimal, von neuen Stellen aus.",
+          "tip": "Jede Runde kommt in zwei Schlägen, erst der tiefe Ausfall, dann der Sturz von oben: Weich einem aus und beweg dich sofort wieder. Greif erst nach der letzten Runde an."
+        },
+        "Pair phase · Twin meteor ground": {
+          "what": "Beide gehen an entgegengesetzten Enden der Halle in die Hocke, machen gleichzeitig einen Ausfall am Boden entlang, kreuzen sich in der Mitte und sprinten davon.",
+          "tip": "Das Hocken ist die Warnung: Spring über die Ausfälle. Sie kreuzen sich in der Mitte, also warte nicht dort."
+        },
+        "Single phase · Golden meteor": {
+          "what": "Eröffnet jede Einzelphase: Die Schwester springt hoch über die Halle und stürzt mit goldenem Speer senkrecht herab; beim Aufprall sprühen goldene Funken.",
+          "tip": "Geh weg von der Stelle unter ihr, solange sie in der Luft ist. Nach der Landung braucht sie einen Moment zum Aufstehen, eine gute Gelegenheit zum Zuschlagen. Im Dunklen Spiegel kommt der Sturz viel schneller."
+        },
+        "Single phase · Dimension pierce": {
+          "what": "Sie steht still; dünne gelbe Warnlinien erscheinen schräg, dann schlagen helle goldene Strahlen an ihnen entlang herab.",
+          "tip": "Verlass die Warnlinien, bevor die Strahlen fallen: Sie treffen die ganze Linie entlang. Sie setzt ihn ein, sobald er wieder bereit ist."
+        },
+        "Single phase · Backstep": {
+          "what": "Hüpft zurück, weg von dir; nahe einer Wand hüpft sie in die andere Richtung. Sie setzt ihn ein, wenn du nah bist.",
+          "tip": "Manchmal folgt direkt nach dem Sprung Zielsuchender Fernangriff: Mach dich bereit, goldenen Blitzen auszuweichen."
+        },
+        "Single phase · Meteor in air": {
+          "what": "Springt seitlich hoch und stürzt dann mit einem goldenen Streifen schräg auf dich zu Boden; beim Aufprall sprühen Funken.",
+          "tip": "Sie stürzt auf die Stelle, an der du stehst: Sprinte davon weg, wenn sie herabkommt. Sie setzt ihn aus der Nähe und aus der Ferne ein. Im Dunklen Spiegel kommt der Sturz viel schneller."
+        },
+        "Single phase · Rising pierce": {
+          "what": "Ein Blitz schlägt in sie ein, während sie ihren Speer hebt, dann schießen Reihen goldener Lichtsäulen aus dem Boden und breiten sich in Wellen von ihr aus zu beiden Seiten aus.",
+          "tip": "Der Blitz ist die Warnung: Geh weg von ihr und schlüpf durch eine Lücke, wenn eine Welle Säulen dich erreicht. Nicht in den ersten 10 Sekunden einer Einzelphase, danach immer, sobald er wieder bereit ist."
+        },
+        "Single phase · Range attack homing": {
+          "what": "Hält ihren Speer zurück und feuert in Wellen goldene Zickzack-Blitze ab, die zu dir abbiegen.",
+          "tip": "Kommt nach einem Rückschritt. Bleib in Bewegung und wechsle spät die Richtung, dann biegen die Blitze zu langsam ab und verfehlen dich."
+        },
+        "Single phase · Rush": {
+          "what": "Sprintet heran und macht dann mehrmals hin und her Ausfälle mit dem Speer quer über den Boden. Im Dunklen Spiegel endet sie mit einem weiteren langen Ausfall.",
+          "tip": "Jeder Ausfall läuft am Boden entlang: Spring darüber. Nach dem letzten Ausfall ruht sie kurz, deine Chance zum Angriff."
+        },
+        "Single phase · Dash": {
+          "what": "Sprintet am Boden entlang direkt dorthin, wo du stehst. Sie setzt ihn ein, wenn du weit weg bist.",
+          "tip": "Danach folgt Ansturm oder Meteor am Boden: Sei bereit zu springen, sobald sie anhält."
+        },
+        "Single phase · Meteor in ground": {
+          "what": "Geht in die Hocke, macht dann mit vorgestrecktem Speer einen tiefen Ausfall am Boden entlang und steht auf. Im Dunklen Spiegel läuft mit dem Ausfall eine goldene Welle weit über den Boden.",
+          "tip": "Das Hocken ist die Warnung: Spring über den Ausfall. Sie setzt ihn aus der Nähe und nach einem Sprint ein."
+        },
+        "Awakening": {
+          "what": "Fällt eine Schwester, kniet die andere nieder, violette Blitze und dunkler Rauch hüllen sie ein, ein weißer Blitz erfüllt die Halle und sie erhebt sich als Leiana die Erweckte.",
+          "tip": "Sie behält ihre restlichen LP und heilt zusätzlich 40 % ihres neuen Maximums. Fallen beide Schwestern im selben Moment, kehrt eine mit vollen LP zurück: Bring eine zu Fall, während die andere schon geschwächt ist."
+        },
+        "Single phase · Meteor in ground 2": {
+          "what": "Stößt tief über den Boden in einem goldenen Streif von einem Ende der Halle zum anderen. Sie macht das nur innerhalb der Paarangriffe Zwillingsmeteor (Boden) und Zwillingsmeteor-Kette.",
+          "tip": "Spring über sie, wenn sie vorbeikommt."
+        }
+      }
+    },
+    "AwakenLeiana": {
+      "about": "Die überlebende Leiana-Schwester, in dunkler Macht erwacht, nachdem ihre Zwillingsschwester fiel. Sie kämpft allein mit dunkleren, stärkeren Versionen der Angriffe der Schwestern und setzt Ansturm und Dimensionsstich ein, sobald sie bereit sind.",
+      "moves": {
+        "Golden meteor": {
+          "what": "Erscheint hoch über dir und stürzt in einer violetten Säule senkrecht herab; zu beiden Seiten des Aufpralls brechen dunkle Stacheln hervor. Das macht sie zwei- oder dreimal hintereinander.",
+          "tip": "Sie zielt jedes Mal auf die Stelle, an der du stehst: Bleib nach jedem Sturz in Bewegung und halte dich von beiden Seiten des Aufschlagpunkts fern."
+        },
+        "Meteor in air": {
+          "what": "Springt seitlich hoch und stürzt mit einem violetten Streifen schräg auf dich herab, zwei- oder dreimal hintereinander.",
+          "tip": "Jeder Sturz zielt auf deine Stelle: Sprinte weg, wenn sie herabkommt, und dann noch einmal für den nächsten Sturz. Im Dunklen Spiegel kommt der Sturz viel schneller."
+        },
+        "Meteor in ground 2": {
+          "what": "Hüpft zurück und sprintet dann als violetter Streifen über den ganzen Boden; danach steigen nacheinander dunkle Ranken entlang ihres Wegs aus dem Boden.",
+          "tip": "Spring über sie, wenn sie vorbeizieht, und meide danach den Boden, den sie überquert hat, bis die Ranken verschwunden sind."
+        },
+        "Rush": {
+          "what": "Teleportiert sich durch die Halle, dann kreuzen violette Linien den ganzen Bildschirm und blitzen alle auf einmal zu Hieben auf.",
+          "tip": "Die Linien sind die Warnung: Such dir eine Stelle zwischen ihnen, bevor sie aufblitzen. Sie setzt ihn ein, sobald er wieder bereit ist (nicht in den ersten 15 Sekunden nach dem Erwachen), und ruht danach kurz."
+        },
+        "Dimension pierce": {
+          "what": "Steht still, während schräge violette Linien erscheinen, dann schlagen nacheinander ein oder zwei dicke violette Strahlen an ihnen entlang ein.",
+          "tip": "Verlass jede Linie, bevor ihr Strahl fällt: Er trifft die ganze Linie entlang. Sie setzt ihn ein, sobald er wieder bereit ist."
+        },
+        "Range attack homing": {
+          "what": "Dunkelviolette Kugeln erscheinen um sie herum in der Luft und feuern violette Strahlen ab, die sich dort treffen, wo du stehst. Im Dunklen Spiegel sind es mehr Kugeln.",
+          "tip": "Die Strahlen zielen beim Abfeuern auf deine Stelle: Bleib in Bewegung, damit sie sich hinter dir kreuzen."
+        }
+      }
+    },
+    "Chimera": {
+      "about": "Ein monströses Geschöpf aus dem Labor der Alchemisten, Boss des dritten Kapitels. Unter der Hälfte seiner LP werden alle Angriffe schneller, und alle 30 Sekunden kommt Trümmerfall dazu, eine Kombination mit Gifthauch und Trümmer zerstören.",
+      "moves": {
+        "Bite": {
+          "what": "Stößt die Köpfe nach vorn und beißt direkt vor sich in den Boden.",
+          "tip": "Nur wenn du direkt vor ihr stehst, und selten. Halte etwas Abstand zu den Köpfen, wenn du gerade nicht angreifst."
+        },
+        "Stomp": {
+          "what": "Hebt eine Vorderpranke und stampft vor sich auf den Boden, ein- bis dreimal hintereinander.",
+          "tip": "Nur wenn du nah bist, höchstens alle 7 Sekunden. Geh aus der Reichweite, wenn sich die Pranke hebt, und komm nach dem letzten Stampfen zurück."
+        },
+        "Venom fall": {
+          "what": "Bäumt sich auf und brüllt zur Decke, dann strömt Gift in vier über den Raum verteilten Säulen von der Decke, eine nach der anderen, die letzten beiden zusammen. Im Dunklen Spiegel folgt am Ende ein weiterer Angriff.",
+          "tip": "Jede Säule fällt an ihrer eigenen Stelle: Stell dich zwischen sie und beweg dich erst, wenn die nächste beginnt. Danach ruht sie eine Weile (länger unter halben LP und im Dunklen Spiegel), eine gute Zeit zum Angreifen. Höchstens alle 7 Sekunden."
+        },
+        "Venom ball": {
+          "what": "Öffnet das Maul und spuckt eine große Giftkugel, die durch den Raum springt.",
+          "tip": "Danach geht es ohne Pause mit dem nächsten Angriff weiter: Behalte die Kugel im Blick, während du dem nächsten Angriff ausweichst."
+        },
+        "Venom cannon": {
+          "what": "Schießt Giftklumpen in hohen Bögen durch den Raum; wo sie landen, platzen sie zu violetten Stacheln auf.",
+          "tip": "Achte darauf, wo die Klumpen herunterkommen, und bleib dort weg, bis die Stacheln verschwunden sind."
+        },
+        "Subject drop": {
+          "what": "Bäumt sich auf und brüllt zur Decke; Felsbrocken und grüne Probenbehälter fallen herab, und aus den Behältern kommen kleine Versuchsobjekte, die mitkämpfen.",
+          "tip": "Alle 20 Sekunden. Erledige die Versuchsobjekte schnell oder behalte sie im Blick, während du gegen die Schimäre kämpfst."
+        },
+        "Wreck drop": {
+          "what": "Ab der Hälfte der LP: springt außer Sicht, eine rote Warnlinie leuchtet über den ganzen Boden, dann kracht sie in einer Staubwolke herunter und Trümmer fallen von der Decke. Danach folgen immer Gifthauch und Trümmer zerstören.",
+          "tip": "Sei in der Luft, wenn die rote Linie leuchtet und sie landet. Die Trümmer bleiben stehen: Nutze sie als Deckung vor dem folgenden Gifthauch. Alle 30 Sekunden."
+        },
+        "Venom breath": {
+          "what": "Versprüht aus der Schlange auf ihrem Rücken einen Giftstrahl, erst vor die eigenen Füße, dann quer durch den ganzen Raum.",
+          "tip": "Kommt nur direkt nach Trümmerfall. Versteck dich hinter einem Trümmerstück auf der von der Schimäre abgewandten Seite: Die Trümmer fangen das Gift ab."
+        },
+        "Wreck destroy": {
+          "what": "Bäumt sich auf und schlägt mit einem gewaltigen Stampfer auf, der alle Trümmer am Boden zerschmettert.",
+          "tip": "Das Ende der Trümmer-Kombination. Geh vor dem Aufschlag von den Trümmern weg: Jedes Stück platzt beim Zerbrechen."
+        }
+      }
+    },
+    "Pope": {
+      "about": "St. Joan II, Boss des vierten Kapitels. In der ersten Phase sitzt sie hinter einer Barriere auf ihrem Thron, während Fanatiker angreifen: Zerstöre die beiden dunklen Kristalle neben ihr, um sie zu beenden (im Dunklen Spiegel sind die Kristalle abwechselnd geschützt). In der zweiten Phase fliegt sie über Plattformen, bewacht von Eskorte-Kugeln, die durch die Halle kreisen; im Dunklen Spiegel werden die Plattformen, auf denen du stehst, immer wieder angegriffen.",
+      "moves": {
+        "Nervousness": {
+          "what": "Zittert auf ihrem Thron, dann blitzt vor ihr ein Licht auf und goldene Schockwellen rollen zu beiden Seiten über den Boden.",
+          "tip": "Spring über die Schockwellen, wenn sie dich erreichen."
+        },
+        "Baptism": {
+          "what": "Hebt ihren Stab; aus seiner Spitze blitzt ein Strahlenkranz, dann fliegen goldene Kugeln hoch und regnen über die Halle nieder, wo sie kleine Lichtsäulen hinterlassen.",
+          "tip": "Beobachte die fallenden Kugeln und stell dich zwischen ihre Landestellen."
+        },
+        "Worship": {
+          "what": "Säulen aus großen goldenen Kugeln schweben von den Seiten der Halle herein und ziehen quer durch sie hindurch.",
+          "tip": "Achte darauf, wo jede Säule vorbeizieht, und beweg dich durch die Lücken dazwischen."
+        },
+        "Consecration": {
+          "what": "Eine dünne Lichtlinie markiert eine Stelle, dann schlägt dort eine gewaltige goldene Lichtsäule ein und folgt dir über den Boden. In der Hälfte der Fälle folgt Nervosität.",
+          "tip": "Verlass die markierte Linie, bevor die Säule einschlägt, und bleib ihr voraus, während sie wandert."
+        },
+        "Choice": {
+          "what": "Alle Fanatiker in der Halle opfern sich auf einmal und werden zu Tentakeln.",
+          "tip": "Nur nachdem ein dunkler Kristall zerstört ist, und nur, wenn Fanatiker da sind: Erledige Fanatiker schnell, damit sich nur wenige verwandeln."
+        },
+        "Summon escort": {
+          "what": "Eröffnet die zweite Phase: Sie teleportiert sich weg, ihr Thron verschwindet, Plattformen erscheinen, und sie kehrt schwebend in die Mitte zurück, während violette Eskorte-Kugeln durch die Halle zu kreisen beginnen.",
+          "tip": "Die Eskorte-Kugeln verletzen bei Berührung und schießen ab und zu: Behalte ihren Kreis im Blick, während du kämpfst."
+        },
+        "Control escort": {
+          "what": "Weitet den Kreis der Eskorte-Kugeln oder zieht ihn enger.",
+          "tip": "Wenn sich der Kreis ändert, geh aus der neuen Bahn der Kugeln."
+        },
+        "Grace": {
+          "what": "Fliegt nach oben in die Halle; ein goldener Heiligenschein leuchtet und Fächer aus Lichtstrahlen fegen dreimal über den Raum.",
+          "tip": "Die Strahlen fächern sich von ihr aus: Stell dich in eine Lücke dazwischen und beweg dich, wenn der nächste Fächer beginnt."
+        },
+        "Soul chase": {
+          "what": "Teleportiert sich an eine neue Stelle und schickt eine leuchtende Seelenkugel, die dich eine Weile verfolgt.",
+          "tip": "Bleib in Bewegung, damit die Kugel hinter dir herzieht, und schlag scharfe Haken, damit sie vorbeischießt."
+        },
+        "Divine impact": {
+          "what": "Leuchtende Kugeln fallen nacheinander auf die Plattformen und zerplatzen zu Ringen aus heiligem Licht.",
+          "tip": "Achte darauf, wo jede Kugel landet, und bleib dort weg, bis ihr Ring verschwunden ist."
+        },
+        "Divine light": {
+          "what": "Teleportiert sich an den Rand der Halle und feuert einen gewaltigen goldenen Strahl auf deiner Höhe quer durch den Raum, ein- oder zweimal hintereinander.",
+          "tip": "Wechsle kurz vor dem Schuss die Höhe: Spring auf eine andere Plattform oder lass dich fallen."
+        },
+        "Embrace": {
+          "what": "Fliegt in die Mitte und öffnet eine schwarze Leere, die dich zu ihr zieht; dann wird sie golden und bricht mehrmals in Lichtstrahlen auf.",
+          "tip": "Halte gegen den Sog an und stell dich in eine Lücke zwischen den Strahlen, wenn das Licht hervorbricht."
+        },
+        "Priest summon": {
+          "what": "Fliegt über die Halle und wirft leuchtende Kugeln ab, aus denen auf den Plattformen Kleriker hervorgehen.",
+          "tip": "Nur wenn kein Kleriker mehr übrig ist. Erledige sie schnell."
+        },
+        "Purification": {
+          "what": "Teleportiert sich zur Seite; auf den Plattformen steigen weiße Flammen auf und wachsen zu Tentakeln.",
+          "tip": "Nur solange eine Plattform noch keinen Tentakel hat. Zerstöre die Tentakel auf den Plattformen, die du nutzt."
+        },
+        "Sacrament": {
+          "what": "Teleportiert sich weg; violette Kreise markieren Stellen auf dem ganzen Bildschirm, dann platzt jeder in einem Lichtblitz auf.",
+          "tip": "Such dir vor dem Aufplatzen eine Stelle, die kein Kreis bedeckt, und bleib dort."
+        },
+        "Divine cross": {
+          "what": "Goldene Ringe markieren Stellen auf den Plattformen und dort steigen Lichtsäulen auf, dann erscheint über einer Plattform ein riesiges Kreuz aus Lichtstrahlen und dreht sich um seine Mitte.",
+          "tip": "Bleib weg von der Mitte und beweg dich mit den Lücken, während sich das Kreuz dreht. Danach ruht sie lange."
+        },
+        "Super baptism": {
+          "what": "Fliegt in eine Ecke und hebt ihren Stab; ein Sturm goldener Kugeln bricht hervor und regnet über den ganzen Raum, goldene Ringe zeigen, wo sie landen.",
+          "tip": "Achte auf die Ringe am Boden und stell dich dorthin, wo keiner ist. Danach ruht sie."
+        }
+      }
+    },
+    "FirstHero1": {
+      "about": "Erster Held, das Schwert von Carleon, Boss des fünften Kapitels. Seine erste Form kämpft mit einem Speer: Über 65 % LP nutzt er seine Grundangriffe, darunter verstärkte Versionen mit roten Schockwellen, Heldenlandung, Attentat und Energiekugel, und unter 30 % LP auch Urknall.",
+      "moves": {
+        "Landing": {
+          "what": "Springt hoch in die Luft und kracht in einer feurigen Explosion aus Trümmern auf deine Position herab, dann braucht er einen Moment zum Aufstehen.",
+          "tip": "Geh vor der Landung weg von der Stelle unter ihm. Während er nach der Landung aufsteht, kannst du ihn treffen."
+        },
+        "Landing short": {
+          "what": "Eine Landung ohne lange Erholung: Er springt, kracht in einer feurigen Explosion herab und ist schnell wieder bereit.",
+          "tip": "Raus unter ihm, bevor er landet; danach bleibt wenig Zeit für einen Gegenangriff."
+        },
+        "Landing (skip end motion)": {
+          "what": "Eine Landung, die statt des Aufstehens direkt in einen Sprint am Boden übergeht.",
+          "tip": "Nachdem du der Landung ausgewichen bist, sei bereit, über den Sprint zu springen."
+        },
+        "Landing long": {
+          "what": "Eine Landung mit voller Erholung, gefolgt von einem Rückwärtssprint, einem Sprint auf dich zu und zwei Hieben.",
+          "tip": "Weich der Landung aus und geh dann vor den folgenden Hieben zurück; greif nach dem letzten an."
+        },
+        "Skip landing long end motion -> double slash": {
+          "what": "Eine Landung ohne Erholung: Direkt nach dem Aufprall sprintet er zurück, sprintet auf dich zu und schlägt zweimal zu.",
+          "tip": "Weich der Landung aus und halte Abstand: Die Hiebe kommen direkt danach."
+        },
+        "Dash": {
+          "what": "Ein schneller Sprint am Boden, um die Position zu wechseln.",
+          "tip": "Leitet meist einen anderen Angriff ein: Achte darauf, was folgt."
+        },
+        "Back dash": {
+          "what": "Springt zurück, weg von dir.",
+          "tip": "Kommt, wenn du nah bist; oft greift er direkt danach wieder an."
+        },
+        "Dash chase": {
+          "what": "Geht in die Hocke, sprintet dann am Boden direkt auf dich zu und setzt mit einem Hieb nach.",
+          "tip": "Spring über den Sprint und halte dich dann vom Hieb fern."
+        },
+        "Dash chase + Slam": {
+          "what": "Sprintet am Boden auf dich zu und rammt dann seinen Speer mit einer Staubwolke in den Boden.",
+          "tip": "Spring über den Sprint und geh vor dem Schlag zurück. Manchmal lässt er die Erholung aus und macht sofort weiter."
+        },
+        "Slam": {
+          "what": "Hebt seinen Speer und rammt ihn mit einer Staubwolke vor sich in den Boden.",
+          "tip": "Geh aus der Reichweite, wenn der Speer hochgeht."
+        },
+        "Dash after landing -> slam": {
+          "what": "Nach einer Landung sprintet er auf dich zu und rammt seinen Speer mit einer Staubwolke in den Boden.",
+          "tip": "Nachdem du der Landung ausgewichen bist, spring über den Sprint und geh vor dem Schlag zurück."
+        },
+        "Horizontal slash": {
+          "what": "Zieht seinen Speer zurück und schwingt ihn dann in einem weiten waagrechten Bogen vor sich.",
+          "tip": "Geh während des Ausholens aus der Reichweite und triff ihn nach dem Schwung."
+        },
+        "Vertical slash": {
+          "what": "Tritt vor und schwingt seinen Speer in einem hohen senkrechten Bogen vor sich nach oben.",
+          "tip": "Der Bogen reicht hoch: Weich lieber nach hinten aus, statt über ihn zu springen."
+        },
+        "Long slash": {
+          "what": "Lehnt sich zurück und macht dann einen weiten Ausfall mit einem langen, fegenden Hieb am Boden entlang.",
+          "tip": "Er reicht weit: Spring darüber oder bleib weit außer Reichweite."
+        },
+        "Triple dash slash": {
+          "what": "Sprintet dreimal über den Boden und schlägt am Ende jedes Sprints zu; der letzte ist ein langer Hieb.",
+          "tip": "Bleib in Bewegung und spring über jeden Sprint; greif nach dem langen Hieb an."
+        },
+        "Slash combo": {
+          "what": "Eine lange Kette: Querhieb, ein Sprunghieb, ein Rückwärtssprint, dann ein Sprint auf dich zu, der in einem langen Hieb endet.",
+          "tip": "Zieh dich während der Kette zurück und warte den letzten langen Hieb ab, bevor du angreifst."
+        },
+        "Rush": {
+          "what": "Sprintet heran und entfesselt einen Wirbel aus kreisenden Speerschwüngen und Hieben, zum Schluss ein Querhieb.",
+          "tip": "Geh weg und warte ab: Der Wirbel deckt eine große Fläche ab. Höchstens alle 40 Sekunden."
+        },
+        "Hero landing": {
+          "what": "Springt außer Sicht und die Halle verdunkelt sich; rote Blitzsäulen schlagen nacheinander an den Stellen ein, die rote Linien am Boden markieren, dann landet er.",
+          "tip": "Achte auf die roten Markierungen am Boden und stell dich dorthin, wo keine sind. Er setzt sie gleich zu Beginn einer neuen LP-Phase ein und später wieder."
+        },
+        "Enhanced pierce": {
+          "what": "Geht in die Hocke, stößt dann den Speer nach vorn und schickt eine rote Sichel-Schockwelle am Boden entlang.",
+          "tip": "Spring über die Schockwelle: Sie fliegt viel weiter, als der Speer reicht."
+        },
+        "Enhanced horizontal slash": {
+          "what": "Schwingt den Speer einmal ganz um sich herum und hinterlässt einen Ring aus roten und schwarzen Hieben.",
+          "tip": "Der Ring deckt beide Seiten ab: Geh weit weg, bevor er ausholt."
+        },
+        "Enhanced vertical slash": {
+          "what": "Ein langsamer, schwerer Aufwärtsschwung des Speers in einem riesigen senkrechten Bogen.",
+          "tip": "Das Ausholen dauert lange: Geh aus der Reichweite und triff ihn nach dem Schwung."
+        },
+        "Enhanced slash combo": {
+          "what": "Sprunghiebe in Folge, dann landet er und eine Reihe roter Stacheln bricht vor ihm aus dem Boden; zum Schluss ein langer Hieb.",
+          "tip": "Halte dich bei der Landung aus der Reihe vor ihm heraus; greif nach dem langen Hieb an."
+        },
+        "Enhanced rush": {
+          "what": "Wie Ansturm, aber jeder kreisende Schwung wirft rot-schwarze Sichelhiebe, und zum Schluss zieht sich eine lange rote Hieblinie über den Boden.",
+          "tip": "Geh weit weg und spring über die letzte Hieblinie. Höchstens alle 50 Sekunden."
+        },
+        "Grab dash": {
+          "what": "Sprintet auf dich zu, um dich zu packen; erwischt er dich, wirft er dich.",
+          "tip": "Spring über den Sprint: Ein verfehlter Griff macht ihn angreifbar."
+        },
+        "Grab combo": {
+          "what": "Greift aus nächster Nähe nach dir; erwischt er dich, folgt eine Kombo und er wirft dich.",
+          "tip": "Steh nicht direkt neben ihm, wenn er den Arm zurückzieht."
+        },
+        "Assassination": {
+          "what": "Verschwindet und taucht direkt neben dir mit einem schnellen, tiefen Hieb wieder auf.",
+          "tip": "Kommt, wenn du weit weg bist: Bleib in Bewegung, damit der Hieb verfehlt, und nutze dann seine Erholung."
+        },
+        "Energy ball": {
+          "what": "Wirft mehrere dunkelrote Kugeln, die kurz in der Luft schweben und dann in dunklen Explosionen zerplatzen.",
+          "tip": "Nur wenn du nah und in der Luft bist: Lande oder entferne dich von den Kugeln, bevor sie platzen."
+        },
+        "Big bang": {
+          "what": "Unter 30 % LP: Die Halle wird dunkel, er schlägt immer wieder zu, während riesige weiße Hieblinien den Bildschirm kreuzen und rote Säulen aufsteigen, dann endet er mit einer gewaltigen dunkelroten Explosion um sich herum.",
+          "tip": "Die weißen Linien zeigen, wo die nächsten Hiebe schneiden: Stell dich dazwischen. Geh vor der letzten Explosion weit weg von ihm. Höchstens alle 100 Sekunden."
+        }
+      }
+    },
+    "AdventurerArcher": {
+      "moves": {
+        "Arrow shot": {
+          "what": "Spannt den Bogen und schießt einen schnellen Pfeil geradeaus.",
+          "tip": "Spring über den Pfeil oder rück zwischen den Schüssen nach."
+        },
+        "Push": {
+          "what": "Wirbelt mit dem Bogen herum, um dich zurückzustoßen, wenn du nah kommst.",
+          "tip": "Weich kurz zurück, wenn die Drehung beginnt, und geh dann wieder ran."
+        },
+        "Bird hunt": {
+          "what": "Unter dir erscheint eine rote Markierung am Boden, dann schlägt ein grüner Lichtstrahl darauf ein.",
+          "tip": "Verlass die rote Markierung, bevor der Strahl fällt."
+        },
+        "Back step": {
+          "what": "Springt zurück, weg von dir.",
+          "tip": "Kommt, wenn du nah bist: Setz schnell nach, bevor der nächste Schuss kommt."
+        },
+        "Back step trap": {
+          "what": "Springt zurück und hinterlässt eine Falle am Boden, wo sie stand.",
+          "tip": "Lauf nicht direkt hinterher: Spring über die Falle."
+        },
+        "Arrow rain (special skill)": {
+          "what": "Die Spezialfähigkeit: ein Pfeilregen über eine große Fläche.",
+          "tip": "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+        },
+        "Groggy": {
+          "what": "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+          "tip": "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+        }
+      }
+    },
+    "AdventurerCleric": {
+      "moves": {
+        "Consecration": {
+          "what": "Eine rote Linie markiert einen Streifen Boden, dann lodert dort eine Weile goldenes heiliges Licht auf.",
+          "tip": "Verlass den markierten Streifen und bleib weg, bis das Licht erlischt."
+        },
+        "Holy cross": {
+          "what": "Eine rote Linie markiert eine Stelle, dann erscheint dort ein großes goldenes Kreuz und zerplatzt.",
+          "tip": "Verlass die markierte Stelle, bevor das Kreuz erscheint."
+        },
+        "Heal": {
+          "what": "Kniet nieder und betet; grünes Licht heilt die Abenteurer.",
+          "tip": "Triff sie, während sie betet, und besiege sie zuerst, damit die Gruppe nicht mehr geheilt wird."
+        },
+        "Reinforce": {
+          "what": "Betet, während eine blaue Aura um sie aufsteigt: ein Segen, der die Gruppe stärkt.",
+          "tip": "Greif sie während des Gebets an, damit die Gruppe nicht stärker wird."
+        },
+        "Massive heal (special skill)": {
+          "what": "Die Spezialfähigkeit: eine große Heilung für die ganze Gruppe.",
+          "tip": "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+        },
+        "Groggy": {
+          "what": "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+          "tip": "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+        }
+      }
+    },
+    "AdventurerHero": {
+      "moves": {
+        "Dash short": {
+          "what": "Ein kurzer Sprint auf dich zu.",
+          "tip": "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+        },
+        "Dash long": {
+          "what": "Ein langer Sprint auf dich zu.",
+          "tip": "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+        },
+        "Back dash": {
+          "what": "Springt zurück, weg von dir.",
+          "tip": "Kommt, wenn du nah bist, höchstens alle 10 Sekunden."
+        },
+        "Energy blast": {
+          "what": "Hebt das Schwert und lässt vor sich eine blaue Energiekuppel aufplatzen.",
+          "tip": "Geh aus der Reichweite der Kuppel und schlag dann zurück."
+        },
+        "Combo attack": {
+          "what": "Eine Kette von Schwerthieben im Vorrücken, zum Schluss eine Energieexplosion.",
+          "tip": "Zieh dich zurück, bis die letzte Explosion vorbei ist, dann greif an."
+        },
+        "Energy ball": {
+          "what": "Stößt das Schwert vor und feuert blaue Energiekugeln geradeaus.",
+          "tip": "Spring über die Kugeln oder wechsle die Höhe."
+        },
+        "Sword aura wave (special skill)": {
+          "what": "Die Spezialfähigkeit: lädt auf und schickt dann mehrere Schwertaura-Wellen über den Boden.",
+          "tip": "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+        },
+        "Groggy": {
+          "what": "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+          "tip": "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+        }
+      }
+    },
+    "AdventurerMagician": {
+      "moves": {
+        "Fire ball": {
+          "what": "Schwebt in der Luft und schießt eine Reihe Feuerbälle geradeaus.",
+          "tip": "Wechsle die Höhe oder spring über die Feuerbälle."
+        },
+        "Flame impact": {
+          "what": "Feuerkugeln fallen in deiner Nähe herab und zerplatzen zu Flammenringen.",
+          "tip": "Achte darauf, wo die Kugeln fallen, und bleib aus den Ringen heraus."
+        },
+        "Phoenix landing": {
+          "what": "Fliegt hoch; eine Feuersäule schlägt ein und sie landet in einem Flammenstoß.",
+          "tip": "Geh weg von der Säule: Der Landestoß verletzt rundherum."
+        },
+        "Take off": {
+          "what": "Fliegt in die Luft.",
+          "tip": "Der nächste Angriff kommt von oben."
+        },
+        "Fire ball sub": {
+          "what": "Wenn sie einem anderen Abenteurer hilft: Große Flammenringe fliegen von hinten herein.",
+          "tip": "Behalte die Ringe im Blick, während du gegen den anderen Abenteurer kämpfst."
+        },
+        "World on fire (special skill)": {
+          "what": "Die Spezialfähigkeit: fliegt hoch und lässt Feuerkugeln über die ganze Gegend regnen.",
+          "tip": "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+        },
+        "Groggy": {
+          "what": "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+          "tip": "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+        }
+      }
+    },
+    "AdventurerThief": {
+      "moves": {
+        "Flash cut": {
+          "what": "Verschwindet und sprintet mit einem schnellen Hieb durch dich hindurch.",
+          "tip": "Bleib in Bewegung und spring, wenn der Dieb vor dir auftaucht."
+        },
+        "Giant shuriken": {
+          "what": "Wirft einen großen violetten Shuriken, der durch den Raum fliegt und zurückkehrt.",
+          "tip": "Weich zweimal aus: auf dem Hinweg und auf dem Rückweg."
+        },
+        "Shadow step": {
+          "what": "Teleportiert sich direkt neben dich.",
+          "tip": "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+        },
+        "Shuriken": {
+          "what": "Wirft kleine Shuriken nach dir.",
+          "tip": "Spring darüber oder weich zwischen ihnen aus."
+        },
+        "Shadow step air": {
+          "what": "Teleportiert sich in deiner Nähe in die Luft und schlägt nach unten zu.",
+          "tip": "Geh unter ihm weg."
+        },
+        "Multiple bunshin (special skill)": {
+          "what": "Die Spezialfähigkeit: Schattenklone erscheinen und schlagen mehrmals quer über den Boden.",
+          "tip": "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+        },
+        "Groggy": {
+          "what": "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+          "tip": "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+        }
+      }
+    },
+    "VeteranMagician": {
+      "moves": {
+        "Flame rain (start)": {
+          "what": "Fliegt hoch und lässt Feuertropfen regnen, die auf Boden und Plattformen Flammen entfachen.",
+          "tip": "Achte darauf, wo die Tropfen landen, und meide die brennenden Stellen, bis sie erlöschen."
+        },
+        "Flame rain": {
+          "what": "Fliegt hoch und lässt Feuertropfen regnen, die auf Boden und Plattformen Flammen entfachen.",
+          "tip": "Achte darauf, wo die Tropfen landen, und meide die brennenden Stellen, bis sie erlöschen."
+        },
+        "Flame wing": {
+          "what": "Breitet Flammenflügel aus und fegt eine Feuerwelle durch den Raum; die Glut entflammt am Boden.",
+          "tip": "Geh über oder unter die Welle und meide dann die Flammen am Boden."
+        },
+        "Fire ball": {
+          "what": "Schießt Feuerbälle, die eine Rauchspur hinterlassen.",
+          "tip": "Wechsle die Höhe oder spring darüber."
+        },
+        "Flame circle": {
+          "what": "Feuerbälle kreisen in einer wachsenden Spirale um sie und fliegen dann in alle Richtungen.",
+          "tip": "Halte Abstand und such die Lücken zwischen den Feuerbällen, wenn sie sich verteilen."
+        },
+        "Flame impact": {
+          "what": "Schickt Flammenringe nach vorn.",
+          "tip": "Spring über die Ringe oder wechsle die Höhe."
+        },
+        "Phoenix landing": {
+          "what": "Stürzt in einem Feuerstreifen herab.",
+          "tip": "Geh weg von der Stelle, auf die sie zustürzt."
+        },
+        "Flame storm": {
+          "what": "Der Bildschirm verdunkelt sich und Flammen kriechen über den Boden, dann brechen riesige Feuersäulen in Gruppen mit Lücken dazwischen durch den Raum.",
+          "tip": "Such dir vor dem Ausbruch eine Lücke zwischen den Säulengruppen und bleib darin."
+        },
+        "World on fire": {
+          "what": "Eine Feuersäule steigt auf, dann verteilen sich Reihen von Feuerkugeln im Raum und lassen Flammen herabfallen.",
+          "tip": "Bleib zwischen den Kugeln und beweg dich, während die Flammen fallen."
+        },
+        "Rising (high)": {
+          "what": "Fliegt hoch hinauf.",
+          "tip": "Wechselt die Höhe für ihren nächsten Zauber."
+        },
+        "Rising (low)": {
+          "what": "Fliegt ein Stück hoch.",
+          "tip": "Wechselt die Höhe für ihren nächsten Zauber."
+        }
+      }
+    },
+    "VeteranWarrior": {
+      "moves": {
+        "Stamping": {
+          "what": "Springt auf dich zu und stampft auf; beim Aufprall fliegen Steine hoch.",
+          "tip": "Geh weg von der Stelle, an der er landet."
+        },
+        "Guard": {
+          "what": "Hebt einen goldenen Schild, der Angriffe von vorn abblockt.",
+          "tip": "Greif von hinten an oder warte, bis er ihn senkt. Wenn du nah bist, höchstens alle 10 Sekunden."
+        },
+        "Mace rush": {
+          "what": "Stürmt mit schleifendem Streitkolben über den Boden und schlägt dann eine Felssäule hoch.",
+          "tip": "Spring über den Ansturm und halte dich von der Felssäule fern."
+        },
+        "Body tank": {
+          "what": "Stürmt mehrmals mit dem Schild voran über den Boden und rammt alles auf seinem Weg.",
+          "tip": "Spring über jeden Ansturm; triff ihn von hinten, wenn er vorbei ist."
+        },
+        "Mace slam": {
+          "what": "Schlägt den Streitkolben in den Boden; an deiner Stelle erscheint eine rote Markierung und dort schießt ein Felsstachel hoch.",
+          "tip": "Verlass die rote Markierung sofort."
+        },
+        "Whirlwind": {
+          "what": "Dreht sich mit dem Streitkolben und bewegt sich als Wirbelwind auf dich zu.",
+          "tip": "Halte Abstand, bis er aufhört zu wirbeln. Unter 70 % LP, höchstens alle 50 Sekunden."
+        },
+        "Earthquake": {
+          "what": "Schlägt auf den Boden; rote Linien leuchten am Boden auf und Felsen brechen hervor.",
+          "tip": "Sei in der Luft oder auf einer Plattform, wenn die Felsen hervorbrechen."
+        },
+        "Fury of earth": {
+          "what": "Sammelt Kraft, während sich der Bildschirm verdunkelt, springt hoch, eine rote Linie leuchtet am Boden und Felsen regnen über den ganzen Raum.",
+          "tip": "Triff ihn, während er Kraft sammelt, und weich dann zwischen den fallenden Felsen aus. Unter 40 % LP, höchstens alle 80 Sekunden."
+        }
+      }
+    },
+    "DarkSkul1": {
+      "about": "Eine dunkle Kopie von Skul, nur im Dunklen Spiegel. Er kämpft mit seinem Knochen und seinem eigenen Kopf; unter 55 % LP kommen Spezial-Knochenregen, Knochenregen beschwören und Erdspalter dazu.",
+      "moves": {
+        "Dash": {
+          "what": "Ein schneller Sprint am Boden.",
+          "tip": "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+        },
+        "Upper attack": {
+          "what": "Schwingt seinen Knochen in einem großen violetten Bogen vor sich nach oben.",
+          "tip": "Bleib aus dem Bogen vor ihm heraus; danach kann Aufwärtsangriff (Abschluss) von oben folgen."
+        },
+        "Upper attack finish": {
+          "what": "Springt in die Luft und schlägt mit einem violetten Runenkreis und einer Staubwolke nieder.",
+          "tip": "Geh weg von der Stelle unter ihm."
+        },
+        "Head hunting": {
+          "what": "Springt auf dich zu und schlägt mit einem violetten Hieb und einer Staubwolke nieder.",
+          "tip": "Kommt, wenn du weit weg bist: Sprinte von seinem Landepunkt weg."
+        },
+        "Throw head": {
+          "what": "Wirft seinen Kopf über den Boden; er zerplatzt quer durch den Raum in violetten Blitzen und kehrt zu ihm zurück.",
+          "tip": "Spring auf dem Hin- und Rückweg über den Kopf."
+        },
+        "Jump throw head": {
+          "what": "Springt und wirft seinen Kopf auf dich herab; eine rote Linie zeigt, wo er einschlägt.",
+          "tip": "Verlass die rote Linie."
+        },
+        "Melee attack": {
+          "what": "Zwei weite Schwünge mit seinem Knochen vor sich.",
+          "tip": "Geh aus der Reichweite und triff ihn nach dem zweiten Schwung."
+        },
+        "Swing attack": {
+          "what": "Zieht seinen Knochen über den Boden: Rote Warnlinien wandern durch den Raum und dahinter schießen nacheinander Knochenstacheln hoch.",
+          "tip": "Achte auf die roten Linien und verlass jede, bevor ihr Stachel kommt."
+        },
+        "Hard smash": {
+          "what": "Schlägt vor sich auf den Boden, sodass violette Stacheln hervorbrechen, und schlägt dann mit einem dunklen Ausbruch erneut zu.",
+          "tip": "Bleib vorn weg, bis beide Schläge vorbei sind."
+        },
+        "Leap and throw bone": {
+          "what": "Springt hoch und wirft kreisende Knochen, die sich über den Boden verteilen.",
+          "tip": "Kommt, wenn du nah bist. Achte darauf, wo die Knochen fallen, und stell dich dazwischen."
+        },
+        "Execution": {
+          "what": "Der Raum wird dunkel, rote Linien markieren Stellen, an denen Knochenstacheln hochschießen, dann schlägt er mit einem grellen Blitz und einer violetten Explosion zu.",
+          "tip": "Bleib von den roten Linien weg und entferne dich dann vom Blitz."
+        },
+        "Seperate body": {
+          "what": "Zerfällt in einem violetten Blitz; dunkle Kristallsplitter schlagen nacheinander im Raum ein, während seine Knochen umherfliegen, dann setzt er sich wieder zusammen.",
+          "tip": "Bleib in Bewegung: Die Splitter schlagen an vielen Stellen ein. In der zweiten Phase höchstens alle 30 Sekunden."
+        },
+        "Bone rain": {
+          "what": "Wirft Knochen hoch in die Luft, die als violette Blitze herabregnen.",
+          "tip": "Kommt, wenn du weit weg bist: Bleib in Bewegung, während die Blitze fallen."
+        },
+        "Special bone rain": {
+          "what": "Ein dunkler Schwarm Knochen sammelt sich um ihn, schießt dann hoch und regnet als violette Blitze über eine große Fläche nieder.",
+          "tip": "Geh weit weg, während sich die Knochen sammeln, und bleib in Bewegung, während sie fallen."
+        },
+        "Raise bone rain": {
+          "what": "Springt hoch und kracht mit seinem Knochen herab; überall im Raum steigen Knochen aus dem Boden.",
+          "tip": "Sei in der Luft oder weit oben, wenn die Knochen aufsteigen."
+        },
+        "Earthshatter": {
+          "what": "Ein Fadenkreuz markiert dich, er schleudert seinen Knochen darauf, und eine Welle violetter Kristallstacheln bricht über den Boden.",
+          "tip": "Verlass das Fadenkreuz und spring dann über die Stachelwelle oder weg davon."
+        }
+      }
+    },
+    "DarkSkul2": {
+      "about": "Die zweite Phase von Dark Skul. Er wechselt zwischen drei Formen: Balance (die Angriffe seiner ersten Phase), Kraft (feurige Fäuste) und Tempo (Speer und schnelle Sprints). Unter 55 % LP hat jede Form einen großen Spezialangriff.",
+      "moves": {
+        "Dash": {
+          "what": "Ein schneller Sprint am Boden.",
+          "tip": "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+        },
+        "Upper attack": {
+          "what": "Schwingt seinen Knochen in einem großen violetten Bogen vor sich nach oben.",
+          "tip": "Bleib aus dem Bogen vor ihm heraus; danach kann Aufwärtsangriff (Abschluss) von oben folgen."
+        },
+        "Upper attack finish": {
+          "what": "Springt in die Luft und schlägt mit einem violetten Runenkreis und einer Staubwolke nieder.",
+          "tip": "Geh weg von der Stelle unter ihm."
+        },
+        "Head hunting": {
+          "what": "Springt auf dich zu und schlägt mit einem violetten Hieb und einer Staubwolke nieder.",
+          "tip": "Kommt, wenn du weit weg bist: Sprinte von seinem Landepunkt weg."
+        },
+        "Throw head": {
+          "what": "Wirft seinen Kopf über den Boden; er zerplatzt quer durch den Raum in violetten Blitzen und kehrt zu ihm zurück.",
+          "tip": "Spring auf dem Hin- und Rückweg über den Kopf."
+        },
+        "Jump throw head": {
+          "what": "Springt und wirft seinen Kopf auf dich herab; eine rote Linie zeigt, wo er einschlägt.",
+          "tip": "Verlass die rote Linie."
+        },
+        "Melee attack": {
+          "what": "Zwei weite Schwünge mit seinem Knochen vor sich.",
+          "tip": "Geh aus der Reichweite und triff ihn nach dem zweiten Schwung."
+        },
+        "Swing attack": {
+          "what": "Zieht seinen Knochen über den Boden: Rote Warnlinien wandern durch den Raum und dahinter schießen nacheinander Knochenstacheln hoch.",
+          "tip": "Achte auf die roten Linien und verlass jede, bevor ihr Stachel kommt."
+        },
+        "Hard smash": {
+          "what": "Schlägt vor sich auf den Boden, sodass violette Stacheln hervorbrechen, und schlägt dann mit einem dunklen Ausbruch erneut zu.",
+          "tip": "Bleib vorn weg, bis beide Schläge vorbei sind."
+        },
+        "Leap and throw bone": {
+          "what": "Springt hoch und wirft kreisende Knochen, die sich über den Boden verteilen.",
+          "tip": "Kommt, wenn du nah bist. Achte darauf, wo die Knochen fallen, und stell dich dazwischen."
+        },
+        "Execution": {
+          "what": "Der Raum wird dunkel, rote Linien markieren Stellen, an denen Knochenstacheln hochschießen, dann schlägt er mit einem grellen Blitz und einer violetten Explosion zu.",
+          "tip": "Bleib von den roten Linien weg und entferne dich dann vom Blitz."
+        },
+        "Seperate body": {
+          "what": "Zerfällt in einem violetten Blitz; dunkle Kristallsplitter schlagen nacheinander im Raum ein, während seine Knochen umherfliegen, dann setzt er sich wieder zusammen.",
+          "tip": "Bleib in Bewegung: Die Splitter schlagen an vielen Stellen ein. In der zweiten Phase höchstens alle 30 Sekunden."
+        },
+        "Bone rain": {
+          "what": "Wirft Knochen hoch in die Luft, die als violette Blitze herabregnen.",
+          "tip": "Kommt, wenn du weit weg bist: Bleib in Bewegung, während die Blitze fallen."
+        },
+        "Special bone rain": {
+          "what": "Ein dunkler Schwarm Knochen sammelt sich um ihn, schießt dann hoch und regnet als violette Blitze über eine große Fläche nieder.",
+          "tip": "Geh weit weg, während sich die Knochen sammeln, und bleib in Bewegung, während sie fallen."
+        },
+        "Raise bone rain": {
+          "what": "Springt hoch und kracht mit seinem Knochen herab; überall im Raum steigen Knochen aus dem Boden.",
+          "tip": "Sei in der Luft oder weit oben, wenn die Knochen aufsteigen."
+        },
+        "Earthshatter normal": {
+          "what": "Ein Fadenkreuz markiert dich, er schleudert seinen Knochen darauf, und eine Welle violetter Kristallstacheln bricht über den Boden.",
+          "tip": "Verlass das Fadenkreuz und spring dann über die Stachelwelle oder weg davon."
+        },
+        "Punch": {
+          "what": "Kraft-Form: Schlägt immer wieder nach vorn, jeder Schlag explodiert vor ihm in Feuer.",
+          "tip": "Bleib aus den Explosionen vor ihm heraus; greif von hinten oder nach dem letzten Schlag an."
+        },
+        "Punch fast ignition": {
+          "what": "Kraft-Form: Geht in die Hocke und entfesselt dann einen schnellen Schlaghagel mit einer Kette feuriger Explosionen weit vor sich.",
+          "tip": "Das Hocken ist die Warnung: Geh hinter ihn oder weit weg."
+        },
+        "Rush": {
+          "what": "Kraft-Form: Stürmt mit vorgestreckter Faust auf dich zu und endet in einem Ausbruch violetter Stacheln.",
+          "tip": "Spring über den Ansturm und halte dich von seinem Ende fern."
+        },
+        "Finish": {
+          "what": "Kraft-Form: Beendet einen Ansturm mit einem Hieb und stampft dann auf den Boden.",
+          "tip": "Weich nach dem Ansturm zurück: Das Stampfen kommt direkt danach."
+        },
+        "Groggy": {
+          "what": "Kraft-Form: Sinkt kurz erschöpft zu Boden.",
+          "tip": "Ein sicherer Moment zum Angreifen."
+        },
+        "Stamping": {
+          "what": "Kraft-Form: Springt durch den Raum und stampft mit feurigen Explosionen auf.",
+          "tip": "Achte darauf, wo er landet, und geh dort weg."
+        },
+        "Stamping center": {
+          "what": "Kraft-Form: Springt in die Mitte des Raums und stampft auf.",
+          "tip": "Halte dich von der Mitte fern, wenn er springt."
+        },
+        "Stomp": {
+          "what": "Kraft-Form: Springt hoch; eine rote Linie leuchtet am Boden, rote Markierungen erscheinen und Feuersäulen brechen in einer Reihe hervor.",
+          "tip": "Runter vom markierten Boden: Sei in der Luft oder auf einer Plattform, wenn das Feuer ausbricht."
+        },
+        "Stomp bone recovery": {
+          "what": "Kraft-Form: Nach den Feuersäulen hebt er seinen Knochen wieder auf.",
+          "tip": "Eine kurze Pause: eine Gelegenheit, ihn zu treffen."
+        },
+        "Special move": {
+          "what": "Kraft-Form: Sammelt Kraft, drückt dann immer wieder auf den Boden und endet mit einem gewaltigen Stoß nach unten.",
+          "tip": "Halte Abstand, bis der letzte, größte Stoß vorbei ist."
+        },
+        "To power switching": {
+          "what": "Wechselt in einer dunklen Rauchwolke in die Kraft-Form; violette Kugeln fallen und um ihn platzen feurige Explosionen.",
+          "tip": "Halte Abstand, während er wechselt."
+        },
+        "To balance switching": {
+          "what": "Wechselt in einer dunklen Rauchwolke in die Balance-Form und schwingt dann seinen Knochen in großen violetten Bögen.",
+          "tip": "Halte Abstand, während er wechselt."
+        },
+        "To speed switching": {
+          "what": "Wechselt in die Tempo-Form: ein weißer Sichelhieb, dann eine lange rote Hieblinie am Boden und rote Sichelwellen.",
+          "tip": "Spring über die rote Linie am Boden."
+        },
+        "Fast move aerial": {
+          "what": "Tempo-Form: Schießt durch die Luft an eine neue Stelle.",
+          "tip": "Tempo-Angriffe sind schnell: Bleib in Bewegung und achte auf den folgenden Angriff."
+        },
+        "Fast move on ground": {
+          "what": "Tempo-Form: Schießt am Boden an eine neue Stelle.",
+          "tip": "Tempo-Angriffe sind schnell: Bleib in Bewegung und achte auf den folgenden Angriff."
+        },
+        "Wide sweep": {
+          "what": "Tempo-Form: Ein Fadenkreuz markiert dich, dann sprintet er mit einem riesigen violetten Fegehieb heran.",
+          "tip": "Verlass das Fadenkreuz sofort."
+        },
+        "Joint sweep": {
+          "what": "Tempo-Form: Ein Fadenkreuz markiert dich, ein violetter Hieb und Ringportale erscheinen, dann zieht ein langer violetter Fegeschlag über den Boden.",
+          "tip": "Verlass das Fadenkreuz und spring dann über den Fegeschlag am Boden."
+        },
+        "First step horizontal dash": {
+          "what": "Tempo-Form: Ein Fadenkreuz markiert dich, ein violetter Hieb, dann sprintet er mit einem Hieb waagrecht durch den Raum.",
+          "tip": "Spring über den Sprint."
+        },
+        "First step falling dash": {
+          "what": "Tempo-Form: Ein Fadenkreuz markiert dich, ein violetter Hieb, dann stürzt er schräg von oben auf dich zu.",
+          "tip": "Sprinte vom Fadenkreuz weg, wenn er herabkommt."
+        },
+        "Spike field": {
+          "what": "Tempo-Form: Huscht umher, eine rote Linie leuchtet über den ganzen Boden, und ein Feld weißer Stacheln bricht daraus hervor.",
+          "tip": "Sei in der Luft oder auf einer Plattform, wenn die Stacheln hochkommen."
+        },
+        "Fast move 2 javelin combo": {
+          "what": "Tempo-Form: Huscht heran und sticht mehrmals hintereinander mit dem Speer zu.",
+          "tip": "Bleib in Bewegung, bis die Kombo endet."
+        },
+        "Punto (fade)": {
+          "what": "Tempo-Form: Ein violettes Ringportal öffnet sich, er sticht daraus hervor und ein Streifen schießt über den Boden.",
+          "tip": "Spring über den Streifen am Boden."
+        },
+        "Spike spot (fade)": {
+          "what": "Tempo-Form: Ein Fadenkreuz erscheint am Boden, eine rote Linie läuft daran entlang, und dort schlägt er aus dem Boden hervor.",
+          "tip": "Verlass das Fadenkreuz."
+        },
+        "Javelin": {
+          "what": "Tempo-Form: Eine rote Ziellinie zieht sich durch den Raum, dann schleudert er seinen Speer daran entlang.",
+          "tip": "Verlass die rote Linie, bevor er wirft."
+        },
+        "Javelin grab on wall": {
+          "what": "Tempo-Form: Hängt an der Wand und wirft eine Reihe Speere quer durch den Raum.",
+          "tip": "Weich den Speeren aus: Trifft dich einer, wird der Bildschirm rot und er setzt mit einer Kombo nach."
+        },
+        "Javelin grab on ground": {
+          "what": "Tempo-Form: Eine Reihe weißer Stacheln steigt auf, dann wirft er Speere vom Boden aus.",
+          "tip": "Weich den Speeren aus: Trifft dich einer, wird der Bildschirm rot und er setzt mit einer Kombo nach."
+        },
+        "Star fall ready": {
+          "what": "Geht in die Hocke und sammelt Kraft, eine dunkle Säule steigt auf, und violette Sterne fliegen hoch und regnen herab.",
+          "tip": "Bleib in Bewegung, während die Sterne fallen. Höchstens alle 30 Sekunden."
+        },
+        "Super bone rain": {
+          "what": "Ein dunkler Schwarm Knochen sammelt sich um ihn, schießt dann hoch und regnet als violette Blitze über eine große Fläche nieder.",
+          "tip": "Geh weit weg, während sich die Knochen sammeln, und bleib in Bewegung, während sie fallen."
+        },
+        "Speed": {
+          "what": "Spezialangriff der Tempo-Form: eine lange Kette aus roten Warnlinien, Knochenstacheln, violetten Hieben und Sprints, zum Schluss ein Stachelfeld über den ganzen Boden.",
+          "tip": "Bleib die ganze Zeit von den roten Linien weg und sei am Ende in der Luft oder auf einer Plattform."
+        },
+        "Power": {
+          "what": "Spezialangriff der Kraft-Form: feurige Faustschläge und Explosionen, eine violette Kuppel und ein Knochenregen.",
+          "tip": "Halte bei den Schlägen Abstand und bleib unter den Knochen in Bewegung."
+        },
+        "Grab combination": {
+          "what": "Spezialangriff der Balance-Form: Sprintet heran, um dich zu packen; erwischt er dich, verändert sich der Raum, Blitze schlagen ein und er schlägt immer wieder zu, bevor Stacheln hervorbrechen.",
+          "tip": "Vermeide den Griff um jeden Preis: Spring über seinen Sprint."
+        },
+        "Unstoppable": {
+          "what": "Kraft-Form: Während seines Ansturms stürmt er immer weiter vorwärts; Treffer halten ihn nicht auf.",
+          "tip": "Geh ihm aus dem Weg; versuch nicht, den Ansturm aufzuhalten."
+        }
+      }
+    },
+    "FirstDarkHero": {
+      "about": "Der Erste Held, von der Dunkelheit verschlungen, nur im Dunklen Spiegel. Er springt mit seiner dunklen Klinge zwischen Boden und Wänden hin und her und kämpft in drei Stufen: Jede Stufe bringt neue Angriffe, die letzte Überrennen, Hinrichtung, Dornenhölle (Wand) und Urknall.",
+      "moves": {
+        "Dash ground to wall": {
+          "what": "Sprintet vom Boden an eine Wand hoch.",
+          "tip": "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+        },
+        "Dash wall to wall": {
+          "what": "Sprintet von einer Wand zur anderen.",
+          "tip": "Leitet meist einen Angriff ein: Sei bereit auszuweichen."
+        },
+        "Raid": {
+          "what": "Stürzt mit einem violetten Hiebstreifen schräg von der Wand quer durch den Raum.",
+          "tip": "Achte darauf, an welcher Wand er hängt, und geh aus seiner Sturzbahn."
+        },
+        "Wall to target raid": {
+          "what": "Sprintet von der Wand aus entlang einer dunklen Linie mit Hieben direkt auf dich zu.",
+          "tip": "Die dunkle Linie zeigt seinen Weg: Geh davon runter."
+        },
+        "Dark blast ground": {
+          "what": "Schlägt auf den Boden; dünne leuchtende Linien markieren Stellen, dann brechen dort dunkle Ausbrüche mit einer Dämonenfratze hervor, gefolgt von einer dunklen Sichel.",
+          "tip": "Verlass die leuchtenden Linien vor den Ausbrüchen."
+        },
+        "Air slash wave": {
+          "what": "Springt hoch und feuert sichelförmige Hiebwellen auf den Boden, die in dunkle Flammen aufgehen.",
+          "tip": "Achte darauf, wo die Wellen landen, und bleib aus den Flammen heraus."
+        },
+        "Air slash wave (enhanced)": {
+          "what": "Sichelförmige Hiebwellen, dann eine riesige Säule dunkler Energie, gefolgt von Reihen roter Klauen und dunkler Dornen, die über den Boden hervorbrechen.",
+          "tip": "Halte dich von der Säule fern und such die Lücken zwischen den Klauen. Höchstens alle 90 Sekunden."
+        },
+        "Dark stomp (enhanced)": {
+          "what": "Springt und stampft immer wieder auf; wo er landet, steigen hohe Säulen dunkler Energie auf.",
+          "tip": "Bleib in Bewegung, weg von jeder Landestelle."
+        },
+        "Dark seed (enhanced)": {
+          "what": "Wirft einen Schwall stacheliger dunkler Samen, die sich im Raum verteilen und am Boden zerplatzen.",
+          "tip": "Achte darauf, wo die Samen landen, und stell dich dazwischen."
+        },
+        "Triple thorn": {
+          "what": "Geht in die Hocke, dann brechen vor ihm nacheinander drei Reihen dunkler Dornen aus dem Boden.",
+          "tip": "Geh hinter ihn oder weit weg von seiner Vorderseite."
+        },
+        "Slash wave": {
+          "what": "Schwingt seine Klinge und schickt eine violette Hiebwelle über den Boden.",
+          "tip": "Spring über die Welle."
+        },
+        "Double slash": {
+          "what": "Zwei schnelle Hiebe vor sich.",
+          "tip": "Kommt, wenn du nah bist: Geh zurück und schlag dann zu."
+        },
+        "Grab dash try": {
+          "what": "Sprintet am Boden heran, um dich zu packen.",
+          "tip": "Spring über den Sprint: Erwischt er dich, schmettert er dich nieder."
+        },
+        "Grab dash smash": {
+          "what": "Erwischt dich sein Griffsprint, rammt er dich in den Boden.",
+          "tip": "Spring über den Sprint: Erwischt er dich, schmettert er dich nieder."
+        },
+        "Grab dash smash (enhanced)": {
+          "what": "Wie Griffsprint-Schmettern, aber der Aufprall lässt auch Säulen dunkler Energie aufsteigen.",
+          "tip": "Spring über den Sprint: Erwischt er dich, schmettert er dich nieder."
+        },
+        "Dash grab fail": {
+          "what": "Sein Griffsprint ging daneben: Er stolpert und fängt sich wieder.",
+          "tip": "Deine Chance, ihn zu treffen."
+        },
+        "Grab": {
+          "what": "Greift aus nächster Nähe nach dir; erwischt er dich, folgen Schläge.",
+          "tip": "Steh nicht direkt neben ihm."
+        },
+        "Dimension slash": {
+          "what": "Um dich wächst ein weißer Ring, dann schneidet ein riesiger weißer Sichelhieb hindurch, gefolgt von Hieben aus dem Boden.",
+          "tip": "Raus aus dem Ring, bevor er zerschnitten wird."
+        },
+        "Dimension rush": {
+          "what": "Stürmt über den Boden und lässt hinter sich eine Spur dunkler Dornen aufsteigen.",
+          "tip": "Spring über ihn und bleib von den Dornen weg."
+        },
+        "Zigzag rush": {
+          "what": "Rast im Zickzack durch den Raum und schlägt dabei zu.",
+          "tip": "Bleib in Bewegung und spring, wenn er auf dich zukommt."
+        },
+        "Dark cannon": {
+          "what": "Lädt eine dunkle Kugel auf und feuert einen Strahl, dann treibt die Kugel auf dich zu und zerplatzt in weiß-violetten Blitzen.",
+          "tip": "Weich dem Strahl aus und entferne dich dann weit von der Kugel, bevor sie platzt."
+        },
+        "Giant mouth": {
+          "what": "Eine rote Linie leuchtet am Boden, Vorhänge dunkler Energie steigen auf und ein riesiges dunkles Maul bricht aus dem Boden, dann folgen dunkle Ranken.",
+          "tip": "Runter vom Boden, wenn die rote Linie leuchtet. Höchstens alle 90 Sekunden."
+        },
+        "Thorny hell on ground": {
+          "what": "Eine rote Linie leuchtet über den ganzen Boden, dann bricht ein Feld dunkler Dornen hervor.",
+          "tip": "Sei in der Luft oder auf einer Plattform, wenn die Dornen hochkommen."
+        },
+        "Thorny hell on wall": {
+          "what": "Hängt an einer Wand, die Wand glüht rot, dann schießen Reihen dunkler Dornen quer durch den Raum.",
+          "tip": "Such die Lücke zwischen den Reihen und bleib darin."
+        },
+        "Overrun": {
+          "what": "Dunkle Linien kreuzen den Bildschirm und er schlägt immer wieder an ihnen entlang; dann schließt sich ein roter Rahmen um den Raum und der Boden füllt sich mit Stacheln.",
+          "tip": "Bleib zwischen den Linien und sei in der Luft, wenn der rote Rahmen erscheint."
+        },
+        "Execution": {
+          "what": "Ein weißer Ring zieht sich um dich zusammen; erwischt er dich, wird der Bildschirm rot und er trifft dich hart. Das macht er mehrmals.",
+          "tip": "Sprinte aus jedem Ring heraus, bevor er sich schließt."
+        },
+        "Big bang": {
+          "what": "Hiebe kreuzen den Raum, dann treibt eine dunkle Kugel dir hinterher, lädt sich auf und zerplatzt in einer riesigen Blitzexplosion.",
+          "tip": "Lock die Kugel weg und entferne dich so weit wie möglich, bevor sie platzt."
+        },
+        "Summon thorn": {
+          "what": "Neben seinen anderen Angriffen, etwa jede halbe Minute: Dunkle Dornen brechen aus dem Boden.",
+          "tip": "Achte auf den Boden und geh weg, wenn die Dornen wachsen."
+        },
+        "Dark orb fragments": {
+          "what": "Ab der zweiten Stufe, neben seinen anderen Angriffen: Kleine dunkle Kugeln erscheinen überall im Raum in der Luft und schlagen dann zu.",
+          "tip": "Bleib in Bewegung und steh nicht unter ihnen."
+        },
+        "Dark blast wall": {
+          "what": "Ab der zweiten Stufe, neben seinen anderen Angriffen: Aus der Wand bricht eine dunkle Explosion hervor.",
+          "tip": "Halte dich dann von den Wänden fern."
+        },
+        "Dark orb": {
+          "what": "In der letzten Stufe, etwa alle 100 Sekunden, neben seinen anderen Angriffen: Eine große dunkle Kugel erscheint im Raum.",
+          "tip": "Halte Abstand zur Kugel."
+        }
+      }
+    },
+    "Alexander1": {
+      "about": "Alexander, Imperator von Carleon, der Endboss des Dunklen Spiegels. In seiner ersten Form schwebt er über der Arena, wirft dunkle Materie, feuert Laser und Raketen und verändert sogar den Boden. Dann kämpft sein Herz (zweite Form), und zuletzt kämpft er geschwächt zu Fuß (vierte Form).",
+      "moves": {
+        "Warp quick": {
+          "what": "Verschwindet und taucht in einem Blitz dunkler Energie woanders wieder auf.",
+          "tip": "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
+        },
+        "Only warp in": {
+          "what": "Taucht nach dem Verschwinden wieder auf.",
+          "tip": "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
+        },
+        "Only warp out": {
+          "what": "Verschwindet zwischen den Angriffen.",
+          "tip": "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
+        },
+        "Dark matter (vertical)": {
+          "what": "Lässt eine Kugel dunkler Materie unter sich auf den Boden fallen.",
+          "tip": "Geh unter ihm weg."
+        },
+        "Dark matter (horizontal small)": {
+          "what": "Neben ihm bilden sich zwei große Kugeln dunkler Materie, dann fliegen sie und kleinere Kugeln quer durch den Raum.",
+          "tip": "Achte auf die Höhe der Kugeln und spring darüber oder lass dich darunter fallen."
+        },
+        "Dark matter (horizontal big)": {
+          "what": "Vor ihm schwillt eine riesige Kugel dunkler Materie an und rollt durch den Raum.",
+          "tip": "Geh auf einer Plattform darüber oder spring darüber, wenn sie vorbeirollt."
+        },
+        "Dark matter (horizontal burst)": {
+          "what": "Feuert nacheinander Kugeln dunkler Materie durch den Raum, die beim Aufprall zerplatzen.",
+          "tip": "Wechsle zwischen den Schüssen die Höhe."
+        },
+        "Flame impact": {
+          "what": "Wirft eine dunkle Kugel; rote Sicheln schlagen ein, und wo sie landet, zerplatzt sie zu einer wirbelnden kosmischen Kugel.",
+          "tip": "Geh weg von der Stelle, an der die Kugel landet."
+        },
+        "Chasing missile 3": {
+          "what": "Drei violette Raketen sammeln sich oben und stürzen dann nacheinander auf dich zu.",
+          "tip": "Die Raketen folgen dir: Bleib in Bewegung und schlag Haken, damit sie hinter dir einschlagen."
+        },
+        "Chasing missile 10": {
+          "what": "Zehn violette Raketen sammeln sich oben und stürzen dann nacheinander auf dich zu.",
+          "tip": "Die Raketen folgen dir: Bleib in Bewegung und schlag Haken, damit sie hinter dir einschlagen."
+        },
+        "Hexagon laser": {
+          "what": "Steigt auf, und eine leuchtende Kugel über ihm feuert Laserstrahlen in alle Richtungen, die sich um ihn drehen, während dunkle Kugeln durch den Raum treiben.",
+          "tip": "Bleib in einer Lücke zwischen den Strahlen und beweg dich mit, wenn sie sich drehen. Höchstens alle 20 Sekunden."
+        },
+        "To island": {
+          "what": "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu einer einzelnen Insel über der Leere.",
+          "tip": "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+        },
+        "To island with platform": {
+          "what": "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu einer Insel über der Leere mit Plattformen.",
+          "tip": "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+        },
+        "To side": {
+          "what": "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu zwei Seiten mit der Leere in der Mitte.",
+          "tip": "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+        },
+        "To flat spatial compression": {
+          "what": "Hüllt sich in eine magische Kugel, ein heller Blitz erfüllt den Bildschirm, und die Arena wird zu wieder einem flachen Boden.",
+          "tip": "Der Boden verändert seine Form: Achte darauf, wo sich die Leere öffnet, und bleib auf festem Boden. Höchstens alle 20 Sekunden."
+        },
+        "Spatial compression": {
+          "what": "Der Raum um ihn wird in einen leuchtenden Kasten verdichtet: Der Raum wird zu einer Sternenleere in einem Würfel.",
+          "tip": "Im Kasten folgt eine Explosion: Halte Abstand zu ihm."
+        },
+        "Explosion": {
+          "what": "Im verdichteten Raum wirbeln rote Sicheln um ihn und zerplatzen zu Energieringen.",
+          "tip": "Bleib so weit von ihm weg, wie der Kasten erlaubt."
+        },
+        "Spatial decompression": {
+          "what": "Der Kasten bricht auf und Kugeln dunkler Materie brechen heraus.",
+          "tip": "Achte darauf, wohin die Kugeln fliegen, und geh ihnen aus dem Weg."
+        },
+        "Horizontal laser": {
+          "what": "Feuert einen langen Laserstrahl, der über den Boden fegt, und schickt dann Raketen hinter dir her.",
+          "tip": "Spring über den Strahl und bleib dann für die Raketen in Bewegung."
+        },
+        "Horizontal long laser (platform)": {
+          "what": "In der Insel-Arena: Schwebt oben und feuert dann einen langen Laser auf Plattformhöhe quer über den ganzen Bildschirm.",
+          "tip": "Runter von den Plattformen, bevor er feuert. Höchstens alle 100 Sekunden."
+        },
+        "Vertical long laser": {
+          "what": "Feuert einen langen Laser senkrecht von oben herab.",
+          "tip": "Geh seitlich aus seiner Bahn."
+        },
+        "Special move": {
+          "what": "Sechseck-Laser, dann wird die Arena flach, und er leuchtet in einem riesigen goldenen Runenkreis, während riesige Speere durch den Raum fegen und rosa Lasersäulen um ihn hervorbrechen.",
+          "tip": "Eine lange Kombination: Weich jedem Speer aus, wenn er vorbeifegt, und halte Abstand, wenn die Lasersäulen hervorbrechen. Höchstens alle 20 Sekunden."
+        }
+      }
+    },
+    "Alexander2_Heart": {
+      "about": "Alexanders zweite Form: das Herz seiner riesigen Kriegsmaschine. Solange beide Hände kämpfen, greifen sie gemeinsam mit ihm an; ist eine Hand zerstört, kämpft das Herz mit stärkeren Mustern aus drei Teilen weiter: dunkle Kugeln, die über den Boden rollen, dunkle Laser aus seinem Auge und seinen Kanonen, und dunkler Boden (Öl am Boden, das sich entzündet).",
+      "moves": {
+        "Ball-laser": {
+          "what": "Leuchtende rosa Runenkugeln rollen über den Boden, während aus dem Auge des Herzens eine Lasersäule herabschießt.",
+          "tip": "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+        },
+        "Ground-ball": {
+          "what": "Der Boden bricht stellenweise in dunkle Flammen aus, während rosa Runenkugeln darüber rollen.",
+          "tip": "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+        },
+        "Ground-laser": {
+          "what": "Der Boden bricht stellenweise in dunkle Flammen aus, während das Herz eine Lasersäule feuert und seine Kanone einen Strahl über den Boden fegt.",
+          "tip": "Spring über den Kanonenstrahl und meide die brennenden Stellen."
+        },
+        "Laser-laser": {
+          "what": "Das Herz feuert eine Lasersäule nach unten, während seine Kanonen von den Seiten helle Strahlen über den Boden fegen.",
+          "tip": "Spring über jeden fegenden Strahl und meide die Säule."
+        },
+        "Wave generator": {
+          "what": "Ein großes Runenrad rollt über den Boden, während aus dem Auge des Herzens eine Lasersäule herabschießt.",
+          "tip": "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+        },
+        "Enhanced dark ball": {
+          "what": "Rosa Runenkugeln rollen über den Boden. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+          "tip": "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+        },
+        "Enhanced dark laser": {
+          "what": "Die Kanonen des Herzens fegen Strahlen über den Boden und eine Lasersäule schießt herab. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+          "tip": "Spring über die Strahlen und halte dich von der Säule fern."
+        },
+        "Enhanced dark ground": {
+          "what": "Rote Linien schneiden über den Boden und dort bricht dunkles Feuer hervor. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+          "tip": "Verlass die roten Linien, bevor das Feuer kommt."
+        },
+        "Enhanced wave generator": {
+          "what": "Ein Runenrad rollt über den Boden, die Lasersäule schießt herab, und dunkles Feuer bricht entlang des Bodens hervor. Die verstärkte Version, nachdem eine Hand zerstört ist: mehr und größer, und der Boden leuchtet in dunklem Feuer.",
+          "tip": "Spring über die rollenden Kugeln und halte dich von der Lasersäule und dem brennenden Boden fern."
+        },
+        "Dark big bang": {
+          "what": "Eine blaue und eine rote Kugel erscheinen auf beiden Seiten, treiben aufeinander zu und treffen sich in der Mitte in einer gewaltigen dunklen Explosion.",
+          "tip": "Geh an den Rand des Raums, bevor sich die Kugeln treffen."
+        },
+        "Cosmic explosion": {
+          "what": "Dunkles Feuer erhellt den Boden, ein schwarzes Loch öffnet sich im Raum und bricht nach einer Weile in grellen Strahlen und einer gewaltigen goldenen Explosion aus.",
+          "tip": "Entferne dich weit vom schwarzen Loch, bevor es ausbricht."
+        },
+        "Celestial meteor": {
+          "what": "Funken fallen auf den Boden, rote Kreise markieren Stellen, und dort krachen Meteore in rosa Explosionen herab.",
+          "tip": "Bleib aus den roten Kreisen heraus."
+        },
+        "Groggy": {
+          "what": "Das Herz ist eine Weile betäubt.",
+          "tip": "Greif das Herz mit allem an, was du hast."
+        },
+        "Groggy 2": {
+          "what": "Das Herz ist eine Weile betäubt.",
+          "tip": "Greif das Herz mit allem an, was du hast."
+        },
+        "Chase laser": {
+          "what": "Solange beide Hände kämpfen: Die Kanone oben feuert eine Lasersäule senkrecht nach unten und schiebt sie dir über den Boden hinterher.",
+          "tip": "Bleib in Bewegung: Die Säule folgt dir."
+        },
+        "Enhanced chase laser": {
+          "what": "Nachdem eine Hand zerstört ist, die stärkere Version: Die Kanone oben feuert eine Lasersäule nach unten und jagt dich damit über den Boden.",
+          "tip": "Lauf der Säule immer voraus."
+        },
+        "Curtain laser": {
+          "what": "Nachdem eine Hand zerstört ist: Die Kanone oben feuert eine Lasersäule senkrecht nach unten und zieht sie langsam wie einen Vorhang über den ganzen Boden.",
+          "tip": "Bleib vor der Säule oder schlüpf an ihr vorbei, während sie wandert."
+        },
+        "Targeting laser": {
+          "what": "Wenn beide Hände zerstört sind: Die Kanone springt von Stelle zu Stelle und feuert kurze Lasersäulen auf deinen Standort.",
+          "tip": "Bleib in Bewegung: Jeder Schuss trifft die Stelle, an der du warst."
+        },
+        "Heart beat": {
+          "what": "Wenn beide Hände zerstört sind: Der Kern des Herzens pocht, dann bricht ein Ring aus rosa Blitzen hervor und breitet sich über den ganzen Raum aus; oft schlägt es gleich noch einmal.",
+          "tip": "Spring über den unteren Rand des Rings, wenn er dich erreicht."
+        },
+        "Drill missile": {
+          "what": "Rote Kreise markieren Stellen am Boden, dann brechen dort Bohrraketen in rosa Explosionen hervor.",
+          "tip": "Geh aus den roten Kreisen."
+        },
+        "Dark ring": {
+          "what": "Links oder rechts vom Herzen bildet sich ein dunkler Ring und zerplatzt in einem Blitz dunkler Energie.",
+          "tip": "Wechsle auf die andere Seite, wenn der Ring erscheint."
+        },
+        "Dark bouncy ball": {
+          "what": "Dunkle Kugeln werden abgefeuert und springen durch den Raum, vom Boden und von den Wänden ab.",
+          "tip": "Achte auf ihre Sprünge und spring darüber oder lauf darunter durch."
+        },
+        "Bouncy ball": {
+          "what": "Kleine Runenkugeln hüpfen über den Boden. Mit nur noch einer Hand rollt zusammen mit ihnen ein großes Runenrad (der verstärkte Wellengenerator) durch den Raum.",
+          "tip": "Spring über die Kugeln und das Rad."
+        },
+        "Oil ball": {
+          "what": "Kugeln aus dunklem Öl fallen auf den Boden und hinterlassen Lachen, die in violetten Flammen brennen. Mit nur noch einer Hand kommt eine Lasersäule aus dem Auge des Herzens oder rollende Dunkelkugeln dazu; ohne Hände ein rotierender Laser.",
+          "tip": "Meide die brennenden Lachen und achte auf den Laser."
+        },
+        "Buzz saw": {
+          "what": "Sägeblätter schießen heraus und rollen über den Boden. Mit nur noch einer Hand folgen oft rote Linien, die den Boden aufschneiden und in dunklem Feuer aufbrechen, und etwa alle zwei Minuten die Kosmische Explosion: Ein schwarzes Loch öffnet sich und bricht in einer riesigen goldenen Explosion aus.",
+          "tip": "Spring über die Sägen; entfern dich vom schwarzen Loch, bevor es ausbricht."
+        }
+      }
+    },
+    "Alexander4": {
+      "about": "Alexanders letzte Form: Geschwächt kämpft er zu Fuß mit Quarzkristallen, Bomben und Teleports. Unter der Hälfte der LP kommt Überrennen 2 dazu.",
+      "moves": {
+        "Grapple": {
+          "what": "Sprintet auf dich zu; erwischt er dich, springt er mit dir hoch und schmettert dich in einer dunklen Explosion nieder.",
+          "tip": "Spring über den Sprint, um dem Griff zu entgehen."
+        },
+        "Surrounded bomb quartz": {
+          "what": "Wirft eine schwarze Bombe; rote Linien markieren einen Stern um sie, dann brechen entlang der Linien Quarzkristalle hervor.",
+          "tip": "Stell dich zwischen die roten Linien, bevor die Kristalle hervorbrechen."
+        },
+        "Surrounded bomb quartz 2": {
+          "what": "Wirft eine schwarze Bombe; rote Linien markieren einen Stern um sie, dann brechen entlang der Linien Quarzkristalle hervor. Mehr Linien, größere Kristalle.",
+          "tip": "Stell dich zwischen die roten Linien, bevor die Kristalle hervorbrechen."
+        },
+        "Shoving": {
+          "what": "Stößt mit einer langen Quarzlanze nach vorn.",
+          "tip": "Spring über die Lanze oder geh aus ihrer Bahn."
+        },
+        "Teleport to player behind + Shoving": {
+          "what": "Teleportiert sich direkt hinter dich und stößt mit seiner Quarzlanze zu.",
+          "tip": "Wenn er verschwindet, beweg dich sofort: Die Lanze kommt von hinten. Höchstens alle 45 Sekunden."
+        },
+        "Overrun": {
+          "what": "Kleine violette Bomben regnen über den Raum und rosa Stacheln bedecken den Boden, während er mit einer riesigen Quarzlanze zuschlägt; zum Schluss eine große rote Explosion.",
+          "tip": "Meide den stacheligen Boden, weich der Lanze aus und geh vor der roten Explosion weg. Höchstens alle 45 Sekunden."
+        },
+        "Overrun 2": {
+          "what": "Unter der Hälfte der LP: Quarzkristalle wachsen im Raum, ein weißer Blitz erfüllt den Bildschirm, Laser fegen hindurch, und eine riesige Kristallgruppe bricht hervor.",
+          "tip": "Bleib in Bewegung, spring über die Laser und halte dich von den Kristallen fern. Höchstens alle 45 Sekunden."
+        },
+        "Summon bombman": {
+          "what": "Beschwört kleine Bombenwesen, die im Raum herabfallen und zu Säulen aus Quarz und Licht explodieren.",
+          "tip": "Achte darauf, wo sie landen, und halte Abstand, bis sie explodiert sind."
+        },
+        "Dimensional": {
+          "what": "Schickt eine dunkle Kugel über den Boden auf dich zu.",
+          "tip": "Spring über die Kugel."
+        },
+        "Curse of quartz": {
+          "what": "Schwarze Ringe schließen sich um ihn, ein weißer Blitz erfüllt den Bildschirm, und ein Quarzkristall fliegt auf dich zu.",
+          "tip": "Weich dem Kristall aus, sobald der Blitz endet."
+        },
+        "Teleport to": {
+          "what": "Teleportiert sich an eine neue Stelle, während eine Reihe Quarzstacheln über den Boden hervorbricht.",
+          "tip": "Sei in der Luft, wenn die Stacheln hochkommen."
+        },
+        "Teleport out": {
+          "what": "Verschwindet vor einem Angriff.",
+          "tip": "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
         }
       }
     }

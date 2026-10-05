@@ -575,9 +575,17 @@ public sealed class CodexWindow : MonoBehaviour
         var posed = enemy && tier > 0 ? new List<CodexClip>(CodexAnimations.Load(storage)) : new List<CodexClip>();
         _partClips.Clear();
         if (enemy && tier > 0)
-            foreach (var part in PartsOfFight(entry))
-                foreach (var clip in CodexAnimations.Load(CodexMode.StorageKey(part.Key, dark)))
-                    _partClips.Add(PartClip(part.Name, clip));
+        {
+            // Pieces built twice (Pope's left and right dark crystals have the same pictures) are shown once, under the
+            // name they share ("Dark Crystal").
+            var pieces = PartsOfFight(entry).SelectMany(part => CodexAnimations.Load(CodexMode.StorageKey(part.Key, dark))
+                .Select(clip => (part.Name, clip, id: clip.Label + "|" + CodexAnimations.SheetId(clip.File)))).ToList();
+            foreach (var same in pieces.GroupBy(p => p.id))
+            {
+                var names = same.Select(p => p.Name).Distinct().ToList();
+                _partClips.Add(PartClip(names.Count > 1 ? SharedName(names) : names[0], same.First().clip));
+            }
+        }
         posed.AddRange(_partClips);
         // A boss's moves the player hasn't seen yet are a black "???" (the list is complete, the moves are earned).
         _seenMoves = entry.Category == CodexCategory.Bosses && !CodexTiers.RevealAllMet
@@ -654,6 +662,20 @@ public sealed class CodexWindow : MonoBehaviour
     private static readonly Dictionary<string, CodexClip> PartClips = new();
 
     /// <summary>A fight piece's clip under "Dark crystal left · Activate" (a copy: the loaded list is shared).</summary>
+    /// <summary>The words several names share at the start ("Dark Crystal Left" + "... Right"), else at the end, else the first.</summary>
+    private static string SharedName(List<string> names)
+    {
+        var words = names.Select(n => n.Split(' ')).ToList();
+        int lead = 0, tail = 0, shortest = words.Min(w => w.Length);
+        while (lead < shortest && words.All(w => w[lead] == words[0][lead]))
+            lead++;
+        while (tail < shortest && words.All(w => w[w.Length - 1 - tail] == words[0][words[0].Length - 1 - tail]))
+            tail++;
+        return lead > 0 ? string.Join(" ", words[0].Take(lead))
+            : tail > 0 ? string.Join(" ", words[0].Skip(words[0].Length - tail))
+            : names[0];
+    }
+
     private static CodexClip PartClip(string partName, CodexClip clip)
     {
         string label = $"{partName} · {clip.Label}";

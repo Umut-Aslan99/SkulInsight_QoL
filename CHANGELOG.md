@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.11.0 (cleaner films and animations, move notes)
+
+- Codex films: a take now waits for what the move leaves behind (falling bones, meteors, javelins, a thrown head)
+  instead of stopping when the boss's own motion ends. Short takes filmed by older versions are filmed again once.
+- Codex moves: a windup and its hit are one move (Dark Skul's "Special move"), long and short dashes are one "Dash",
+  and the setup at the start of a fight ("Initialize") is no longer listed. Your progress is updated automatically.
+- King Alexander's second phase: his heart's attacks are read and filmed (21 moves: its patterns and the machine's
+  lasers, drill missiles, buzz saws, oil and bouncy balls).
+- First Dark Hero: the attacks he makes beside his other moves (thorns, dark orb fragments, wall blasts, the big dark
+  orb) are listed as moves of their own.
+- Codex pictures: sets that only showed the idle pose ("Jump", "Fall" of enemies that never jump) are hidden; pieces
+  that appear twice (Pope's two dark crystals) are shown once; an enemy's projectile is added to its pictures the
+  first time it fires one.
+- Codex move notes: every boss move now has a short note in all languages: what it does and how to deal with
+  it (Yggdrasil, Leiana sisters, Chimera, St. Joan II, First Hero, the adventurers, Dark Skul, First Dark Hero, King
+  Alexander), including numbers from the game (cooldowns, health thresholds, Dark Mirror differences).
+- Codex "When:" line: cooldowns written as cool-time blocks are read too (First Hero's Big bang, St. Joan's Super
+  baptism and Divine cross) and "while you are in the air" is shown where a move needs it.
+- Clean films (new setting, on): boss films leave out your damage numbers, your skill and item effects, your summons
+  and status effects on the boss (poison, burn, freeze, ...).
+- Compact films (new setting, on): new films take about a quarter of the space (JPG instead of PNG).
+- Entrances, sleeping and deaths are no longer filmed (the book never showed them); existing ones are removed once.
+- Reset Codex (settings page, Codex section): deletes everything the Codex gathered at the next game start, so you can
+  fill it again; the move notes stay.
+- Damage numbers: the counter hit of parry skills (Shield Bash, Evading Slash, Ready to Charge), Minotaurus' Stomp and
+  Headbutt, Nature's Grip and more skull skills now show their damage (about 50 more skill parts).
+- Transformations: skulls that change into another body (Nightmare's Hell Bike, Devil Berserker, King Arthur, Archmage,
+  Yaksha, Dominator) list that body's attacks with damage numbers in their description.
+- Short descriptions (new setting, off): popups show one line per attack part with its total damage instead of the
+  full calculation (player request, GitHub issue #3).
+
 ## 0.10.2 (cooldown seconds everywhere, screenshots)
 
 - **Player request:** cooldown seconds now also on the **skill icons** of both skulls, the **swap** icon and the

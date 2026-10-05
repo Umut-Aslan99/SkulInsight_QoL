@@ -1,0 +1,432 @@
+{
+  "key": "Chimera",
+  "about": {
+    "en": "A monstrous creature bred in the alchemists' laboratory, the boss of the third chapter. Below half health all its moves get faster, and every 30 seconds it adds Wreck drop, a combo with Venom breath and Wreck destroy.",
+    "de": "Ein monströses Geschöpf aus dem Labor der Alchemisten, Boss des dritten Kapitels. Unter der Hälfte seiner LP werden alle Angriffe schneller, und alle 30 Sekunden kommt Trümmerfall dazu, eine Kombination mit Gifthauch und Trümmer zerstören.",
+    "es": "Una criatura monstruosa creada en el laboratorio de los alquimistas, jefe del tercer capítulo. Por debajo de la mitad de su vida todos sus movimientos se aceleran, y cada 30 segundos añade Caída de restos, un combo con Aliento venenoso y Destruir restos.",
+    "fr": "Une créature monstrueuse née dans le laboratoire des alchimistes, boss du troisième chapitre. Sous la moitié de sa vie, toutes ses attaques accélèrent, et toutes les 30 secondes elle ajoute Chute de débris, un enchaînement avec Souffle de venin et Destruction des débris.",
+    "pl": "Potworna istota wyhodowana w laboratorium alchemików, boss trzeciego rozdziału. Poniżej połowy zdrowia wszystkie jej ruchy przyspieszają, a co 30 sekund dochodzi Spadający wrak, kombinacja z ruchami Jadowity oddech i Zniszczenie wraku.",
+    "pt-BR": "Uma criatura monstruosa criada no laboratório dos alquimistas, chefe do terceiro capítulo. Abaixo da metade da vida todos os golpes ficam mais rápidos, e a cada 30 segundos ela acrescenta Queda de destroços, um combo com Sopro venenoso e Destruir destroços.",
+    "ru": "Чудовищное существо из лаборатории алхимиков, босс третьей главы. Когда здоровья меньше половины, все её приёмы ускоряются, а каждые 30 секунд добавляется Падение обломков: связка с приёмами Ядовитое дыхание и Разрушение обломков.",
+    "ko": "연금술사들의 실험실에서 태어난 괴물로, 세 번째 챕터의 보스입니다. 체력이 절반 아래로 내려가면 모든 기술이 빨라지고, 30초마다 독 브레스, 잔해 파괴로 이어지는 잔해 낙하 연계를 사용합니다.",
+    "ja": "錬金術師たちの研究所で生み出された怪物で、第3章のボスです。体力が半分を切るとすべての技が速くなり、30秒ごとに残骸落下から毒のブレス、残骸破壊へと続く連携を使います。",
+    "zh-Hans": "在炼金术师的实验室中诞生的怪物，第三章的首领。体力低于一半时所有招式都会变快，并且每30秒使用一次残骸坠落，接着是毒息和残骸破坏的连招。",
+    "zh-Hant": "在鍊金術師的實驗室中誕生的怪物，第三章的首領。體力低於一半時所有招式都會變快，並且每30秒使用一次殘骸墜落，接著是毒息和殘骸破壞的連招。"
+  },
+  "moves": {
+    "Bite": {
+      "en": [
+        "Lunges its heads forward and bites at the floor right in front of it.",
+        "Only when you are right in front of it, and rarely. Keep a little distance from its heads when you are not attacking."
+      ],
+      "de": [
+        "Stößt die Köpfe nach vorn und beißt direkt vor sich in den Boden.",
+        "Nur wenn du direkt vor ihr stehst, und selten. Halte etwas Abstand zu den Köpfen, wenn du gerade nicht angreifst."
+      ],
+      "es": [
+        "Lanza sus cabezas hacia delante y muerde el suelo justo delante de ella.",
+        "Solo cuando estás justo delante, y rara vez. Mantén algo de distancia de sus cabezas cuando no estés atacando."
+      ],
+      "fr": [
+        "Projette ses têtes en avant et mord le sol juste devant elle.",
+        "Seulement quand tu es juste devant elle, et rarement. Garde un peu de distance avec ses têtes quand tu n'attaques pas."
+      ],
+      "pl": [
+        "Wyrzuca głowy do przodu i gryzie ziemię tuż przed sobą.",
+        "Tylko gdy stoisz tuż przed nią, i rzadko. Trzymaj się trochę z dala od jej głów, gdy nie atakujesz."
+      ],
+      "pt-BR": [
+        "Lança as cabeças para a frente e morde o chão bem à sua frente.",
+        "Só quando você está bem na frente dela, e raramente. Mantenha um pouco de distância das cabeças quando não estiver atacando."
+      ],
+      "ru": [
+        "Выбрасывает головы вперёд и кусает пол прямо перед собой.",
+        "Только когда вы прямо перед ней, и редко. Держитесь чуть подальше от её голов, когда не атакуете."
+      ],
+      "ko": [
+        "머리들을 앞으로 내밀어 바로 앞의 바닥을 물어뜯습니다.",
+        "당신이 바로 앞에 있을 때만, 그것도 가끔 사용합니다. 공격하지 않을 때는 머리에서 조금 떨어져 있으세요."
+      ],
+      "ja": [
+        "頭を前に突き出し、すぐ目の前の床に噛みつきます。",
+        "あなたが目の前にいるときだけ、それもまれに使います。攻撃していないときは頭から少し離れていましょう。"
+      ],
+      "zh-Hans": [
+        "把头向前猛伸，撕咬正前方的地面。",
+        "只在你位于它正前方时使用，而且很少使用。不攻击时，和它的头保持一点距离。"
+      ],
+      "zh-Hant": [
+        "把頭向前猛伸，撕咬正前方的地面。",
+        "只在你位於牠正前方時使用，而且很少使用。不攻擊時，和牠的頭保持一點距離。"
+      ]
+    },
+    "Stomp": {
+      "en": [
+        "Raises a front paw and stomps the floor in front of it, one to three times in a row.",
+        "Only when you are close, at most every 7 seconds. Step back out of reach when the paw rises and come back in after the last stomp."
+      ],
+      "de": [
+        "Hebt eine Vorderpranke und stampft vor sich auf den Boden, ein- bis dreimal hintereinander.",
+        "Nur wenn du nah bist, höchstens alle 7 Sekunden. Geh aus der Reichweite, wenn sich die Pranke hebt, und komm nach dem letzten Stampfen zurück."
+      ],
+      "es": [
+        "Levanta una pata delantera y pisotea el suelo delante de ella, de una a tres veces seguidas.",
+        "Solo cuando estás cerca, como mucho cada 7 segundos. Retrocede fuera de su alcance cuando alce la pata y vuelve tras el último pisotón."
+      ],
+      "fr": [
+        "Lève une patte avant et écrase le sol devant elle, une à trois fois d'affilée.",
+        "Seulement quand tu es proche, au plus toutes les 7 secondes. Recule hors de portée quand la patte se lève et reviens après le dernier écrasement."
+      ],
+      "pl": [
+        "Unosi przednią łapę i tupie w ziemię przed sobą, od jednego do trzech razy z rzędu.",
+        "Tylko gdy jesteś blisko, najwyżej co 7 sekund. Cofnij się poza zasięg, gdy łapa się unosi, i wróć po ostatnim tupnięciu."
+      ],
+      "pt-BR": [
+        "Ergue uma pata dianteira e pisa no chão à sua frente, de uma a três vezes seguidas.",
+        "Só quando você está perto, no máximo a cada 7 segundos. Recue para fora do alcance quando a pata subir e volte depois do último pisão."
+      ],
+      "ru": [
+        "Поднимает переднюю лапу и бьёт ею по полу перед собой, от одного до трёх раз подряд.",
+        "Только когда вы близко, не чаще раза в 7 секунд. Отступите из зоны досягаемости, когда лапа поднимается, и вернитесь после последнего удара."
+      ],
+      "ko": [
+        "앞발을 들어 앞쪽 바닥을 한 번에서 세 번까지 연속으로 짓밟습니다.",
+        "당신이 가까이 있을 때만, 최대 7초마다 사용합니다. 앞발이 올라가면 닿지 않는 곳으로 물러났다가, 마지막 짓밟기 후에 다시 다가가세요."
+      ],
+      "ja": [
+        "前足を振り上げ、目の前の床を1回から3回続けて踏みつけます。",
+        "あなたが近くにいるときだけ、最大で7秒ごとに使います。前足が上がったら届かない所まで下がり、最後の踏みつけの後に戻りましょう。"
+      ],
+      "zh-Hans": [
+        "抬起一只前爪，重踏前方的地面，连续一到三次。",
+        "只在你靠近时使用，最多每7秒一次。前爪抬起时退到它够不到的地方，最后一次重踏后再靠近。"
+      ],
+      "zh-Hant": [
+        "抬起一隻前爪，重踏前方的地面，連續一到三次。",
+        "只在你靠近時使用，最多每7秒一次。前爪抬起時退到牠夠不到的地方，最後一次重踏後再靠近。"
+      ]
+    },
+    "Venom fall": {
+      "en": [
+        "Rears up and roars at the ceiling, then venom pours down from the ceiling in four columns spread across the room, one after another, the last two together. In the Dark Mirror an extra attack follows at the end.",
+        "Each column falls in its own spot: stand between them and move only when the next one starts. Afterwards it rests for a while (longer below half health and in the Dark Mirror), a good time to attack. At most every 7 seconds."
+      ],
+      "de": [
+        "Bäumt sich auf und brüllt zur Decke, dann strömt Gift in vier über den Raum verteilten Säulen von der Decke, eine nach der anderen, die letzten beiden zusammen. Im Dunklen Spiegel folgt am Ende ein weiterer Angriff.",
+        "Jede Säule fällt an ihrer eigenen Stelle: Stell dich zwischen sie und beweg dich erst, wenn die nächste beginnt. Danach ruht sie eine Weile (länger unter halben LP und im Dunklen Spiegel), eine gute Zeit zum Angreifen. Höchstens alle 7 Sekunden."
+      ],
+      "es": [
+        "Se alza y ruge hacia el techo; luego cae veneno del techo en cuatro columnas repartidas por la sala, una tras otra, las dos últimas a la vez. En el Espejo oscuro le sigue un ataque más al final.",
+        "Cada columna cae en su propio sitio: colócate entre ellas y muévete solo cuando empiece la siguiente. Después descansa un rato (más por debajo de la mitad de su vida y en el Espejo oscuro), buen momento para atacar. Como mucho cada 7 segundos."
+      ],
+      "fr": [
+        "Se cabre et rugit vers le plafond, puis du venin tombe du plafond en quatre colonnes réparties dans la salle, l'une après l'autre, les deux dernières ensemble. Dans le Miroir noir, une attaque de plus suit à la fin.",
+        "Chaque colonne tombe à son propre endroit : place-toi entre elles et ne bouge que lorsque la suivante commence. Ensuite, elle se repose un moment (plus longtemps sous la moitié de sa vie et dans le Miroir noir) : bon moment pour attaquer. Au plus toutes les 7 secondes."
+      ],
+      "pl": [
+        "Staje dęba i ryczy w stronę sufitu, a potem z sufitu leje się jad w czterech kolumnach rozłożonych po sali, jedna po drugiej, dwie ostatnie razem. W Ciemnym lustrze na końcu następuje jeszcze jeden atak.",
+        "Każda kolumna spada w swoim miejscu: stań między nimi i ruszaj się dopiero, gdy zaczyna się następna. Potem chwilę odpoczywa (dłużej poniżej połowy zdrowia i w Ciemnym lustrze): dobry moment na atak. Najwyżej co 7 sekund."
+      ],
+      "pt-BR": [
+        "Empina-se e ruge para o teto, depois veneno despenca do teto em quatro colunas espalhadas pelo salão, uma após a outra, as duas últimas juntas. No Espelho Sombrio um ataque extra vem no final.",
+        "Cada coluna cai no seu próprio lugar: fique entre elas e só se mova quando a próxima começar. Depois ela descansa um tempo (mais abaixo da metade da vida e no Espelho Sombrio), boa hora para atacar. No máximo a cada 7 segundos."
+      ],
+      "ru": [
+        "Встаёт на дыбы и ревёт в потолок, затем с потолка льётся яд четырьмя столбами по всему залу, один за другим, последние два вместе. В Тёмном зеркале в конце следует ещё одна атака.",
+        "Каждый столб падает в своём месте: встаньте между ними и двигайтесь, только когда начинается следующий. Потом она какое-то время отдыхает (дольше, когда здоровья меньше половины, и в Тёмном зеркале): хорошее время для атаки. Не чаще раза в 7 секунд."
+      ],
+      "ko": [
+        "몸을 일으켜 천장을 향해 포효한 뒤, 천장에서 방 곳곳의 네 군데로 독이 기둥처럼 차례로 쏟아지며, 마지막 두 개는 함께 떨어집니다. 검은 거울에서는 마지막에 공격이 하나 더 이어집니다.",
+        "기둥마다 떨어지는 자리가 정해져 있습니다: 기둥 사이에 서 있다가 다음 기둥이 시작될 때만 움직이세요. 그 후 한동안 쉬니(체력이 절반 아래일 때와 검은 거울에서는 더 길게) 공격하기 좋은 때입니다. 최대 7초마다 사용합니다."
+      ],
+      "ja": [
+        "身を起こして天井に向かって咆哮すると、天井から部屋のあちこち4か所に毒が柱のように次々と降り注ぎ、最後の2本は同時に落ちます。闇の鏡では最後にもう1つ攻撃が続きます。",
+        "柱はそれぞれ決まった場所に落ちます：柱と柱の間に立ち、次の柱が始まったときだけ動きましょう。その後しばらく休むので（体力が半分を切ると、また闇の鏡ではさらに長く）、攻撃のチャンスです。最大で7秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "它直起身子朝天花板咆哮，然后毒液从天花板上分四处如柱子般接连落下，最后两根同时落下。魔镜中最后还会再接一次攻击。",
+        "每根毒柱都落在固定的位置：站在毒柱之间，只在下一根开始时移动。之后它会休息一阵（体力低于一半时和魔镜中更久），是攻击的好时机。最多每7秒一次。"
+      ],
+      "zh-Hant": [
+        "牠直起身子朝天花板咆哮，然後毒液從天花板上分四處如柱子般接連落下，最後兩根同時落下。黑暗鏡子中最後還會再接一次攻擊。",
+        "每根毒柱都落在固定的位置：站在毒柱之間，只在下一根開始時移動。之後牠會休息一陣（體力低於一半時和黑暗鏡子中更久），是攻擊的好時機。最多每7秒一次。"
+      ]
+    },
+    "Venom ball": {
+      "en": [
+        "Opens its jaws and spits a big ball of venom that bounces through the room.",
+        "It goes straight into its next move without a pause: keep an eye on the ball while you dodge what comes next."
+      ],
+      "de": [
+        "Öffnet das Maul und spuckt eine große Giftkugel, die durch den Raum springt.",
+        "Danach geht es ohne Pause mit dem nächsten Angriff weiter: Behalte die Kugel im Blick, während du dem nächsten Angriff ausweichst."
+      ],
+      "es": [
+        "Abre las fauces y escupe una gran bola de veneno que rebota por la sala.",
+        "Pasa directamente a su siguiente movimiento sin pausa: no pierdas de vista la bola mientras esquivas lo que venga."
+      ],
+      "fr": [
+        "Ouvre la gueule et crache une grosse boule de venin qui rebondit dans la salle.",
+        "Elle enchaîne sur l'attaque suivante sans pause : garde un œil sur la boule pendant que tu esquives la suite."
+      ],
+      "pl": [
+        "Otwiera paszczę i pluje wielką kulą jadu, która odbija się po sali.",
+        "Od razu, bez przerwy, przechodzi do następnego ruchu: miej kulę na oku, unikając tego, co nadchodzi."
+      ],
+      "pt-BR": [
+        "Abre a bocarra e cospe uma grande bola de veneno que quica pelo salão.",
+        "Ela passa direto para o próximo golpe sem pausa: fique de olho na bola enquanto desvia do que vem a seguir."
+      ],
+      "ru": [
+        "Раскрывает пасть и выплёвывает большой ядовитый шар, который скачет по залу.",
+        "Сразу, без паузы, переходит к следующему приёму: следите за шаром, уворачиваясь от того, что будет дальше."
+      ],
+      "ko": [
+        "입을 벌려 방 안을 이리저리 튀어 다니는 커다란 독 구체를 뱉습니다.",
+        "쉬지 않고 바로 다음 기술로 이어집니다: 다음 공격을 피하면서 구체도 계속 지켜보세요."
+      ],
+      "ja": [
+        "口を開け、部屋の中を跳ね回る大きな毒の玉を吐き出します。",
+        "休まずにすぐ次の技へ移ります：次の攻撃をかわしながら、玉からも目を離さないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "张开大口，吐出一个会在房间里弹跳的巨大毒球。",
+        "之后会毫不停顿地接下一个招式：躲避接下来的攻击时，也要留意毒球。"
+      ],
+      "zh-Hant": [
+        "張開大口，吐出一個會在房間裡彈跳的巨大毒球。",
+        "之後會毫不停頓地接下一個招式：躲避接下來的攻擊時，也要留意毒球。"
+      ]
+    },
+    "Venom cannon": {
+      "en": [
+        "Fires blobs of venom in high arcs across the room; they burst into purple spikes where they land.",
+        "Watch where the blobs come down and keep out of those spots until the spikes are gone."
+      ],
+      "de": [
+        "Schießt Giftklumpen in hohen Bögen durch den Raum; wo sie landen, platzen sie zu violetten Stacheln auf.",
+        "Achte darauf, wo die Klumpen herunterkommen, und bleib dort weg, bis die Stacheln verschwunden sind."
+      ],
+      "es": [
+        "Dispara pegotes de veneno en arcos altos por la sala; al caer estallan en púas moradas.",
+        "Fíjate dónde caen los pegotes y no te acerques a esos puntos hasta que desaparezcan las púas."
+      ],
+      "fr": [
+        "Tire des paquets de venin en hautes paraboles à travers la salle ; ils éclatent en pointes violettes là où ils tombent.",
+        "Repère où les paquets retombent et reste loin de ces endroits jusqu'à ce que les pointes disparaissent."
+      ],
+      "pl": [
+        "Wystrzeliwuje grudy jadu wysokimi łukami przez salę; tam, gdzie spadną, rozpryskują się w fioletowe kolce.",
+        "Patrz, gdzie spadają grudy, i trzymaj się z dala od tych miejsc, aż kolce znikną."
+      ],
+      "pt-BR": [
+        "Dispara bolhas de veneno em arcos altos pelo salão; elas estouram em espinhos roxos onde caem.",
+        "Repare onde as bolhas caem e fique longe desses pontos até os espinhos sumirem."
+      ],
+      "ru": [
+        "Выстреливает сгустками яда по высокой дуге через зал; там, где они падают, вырастают фиолетовые шипы.",
+        "Следите, куда падают сгустки, и держитесь подальше от этих мест, пока шипы не исчезнут."
+      ],
+      "ko": [
+        "독 덩어리를 방을 가로질러 높은 포물선으로 쏘며, 떨어진 곳에서 보랏빛 가시로 터집니다.",
+        "덩어리가 떨어지는 곳을 보고, 가시가 사라질 때까지 그곳에 가지 마세요."
+      ],
+      "ja": [
+        "毒の塊を高い弧を描くように部屋の向こうへ撃ち出し、落ちた場所で紫のトゲとなって弾けます。",
+        "塊が落ちる場所を見て、トゲが消えるまでそこに近づかないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "以高高的弧线把毒液团射过房间，毒液团落地处会爆成紫色尖刺。",
+        "注意毒液团落下的位置，尖刺消失前不要靠近那里。"
+      ],
+      "zh-Hant": [
+        "以高高的弧線把毒液團射過房間，毒液團落地處會爆成紫色尖刺。",
+        "注意毒液團落下的位置，尖刺消失前不要靠近那裡。"
+      ]
+    },
+    "Subject drop": {
+      "en": [
+        "Rears up and roars at the ceiling; rocks and green specimen tanks fall, and the tanks release small test subjects that join the fight.",
+        "Every 20 seconds. Deal with the test subjects quickly, or keep them in view while you fight Chimera."
+      ],
+      "de": [
+        "Bäumt sich auf und brüllt zur Decke; Felsbrocken und grüne Probenbehälter fallen herab, und aus den Behältern kommen kleine Versuchsobjekte, die mitkämpfen.",
+        "Alle 20 Sekunden. Erledige die Versuchsobjekte schnell oder behalte sie im Blick, während du gegen die Schimäre kämpfst."
+      ],
+      "es": [
+        "Se alza y ruge hacia el techo; caen rocas y tanques verdes de muestras, y de los tanques salen pequeños sujetos de prueba que se unen a la pelea.",
+        "Cada 20 segundos. Acaba rápido con los sujetos de prueba o no los pierdas de vista mientras luchas contra la Quimera."
+      ],
+      "fr": [
+        "Se cabre et rugit vers le plafond ; des rochers et des cuves vertes d'échantillons tombent, et les cuves libèrent de petits sujets d'expérience qui rejoignent le combat.",
+        "Toutes les 20 secondes. Élimine vite les sujets d'expérience ou garde-les à l'œil pendant que tu combats la Chimère."
+      ],
+      "pl": [
+        "Staje dęba i ryczy w stronę sufitu; spadają kamienie i zielone zbiorniki z próbkami, a z nich wychodzą małe obiekty doświadczalne, które dołączają do walki.",
+        "Co 20 sekund. Szybko rozpraw się z obiektami doświadczalnymi albo miej je na oku, walcząc z Chimerą."
+      ],
+      "pt-BR": [
+        "Empina-se e ruge para o teto; caem pedras e tanques verdes de amostras, e dos tanques saem pequenas cobaias que entram na luta.",
+        "A cada 20 segundos. Acabe rápido com as cobaias ou fique de olho nelas enquanto luta contra a Quimera."
+      ],
+      "ru": [
+        "Встаёт на дыбы и ревёт в потолок; падают камни и зелёные колбы с образцами, а из колб выходят маленькие подопытные, которые вступают в бой.",
+        "Каждые 20 секунд. Быстро разберитесь с подопытными или не упускайте их из виду, сражаясь с Химерой."
+      ],
+      "ko": [
+        "몸을 일으켜 천장을 향해 포효하면 바위와 초록색 표본통이 떨어지고, 표본통에서 작은 실험체들이 나와 싸움에 끼어듭니다.",
+        "20초마다 사용합니다. 실험체를 빨리 처치하거나, 키메라와 싸우는 동안 계속 지켜보세요."
+      ],
+      "ja": [
+        "身を起こして天井に向かって咆哮すると、岩と緑の標本容器が落ちてきて、容器から小さな被験体が出てきて戦いに加わります。",
+        "20秒ごとに使います。被験体を素早く倒すか、キメラと戦いながら目を離さないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "它直起身子朝天花板咆哮，石块和绿色的标本罐落下，罐中会放出小型实验体加入战斗。",
+        "每20秒一次。尽快解决实验体，或在与奇美拉战斗时留意它们。"
+      ],
+      "zh-Hant": [
+        "牠直起身子朝天花板咆哮，石塊和綠色的標本罐落下，罐中會放出小型實驗體加入戰鬥。",
+        "每20秒一次。盡快解決實驗體，或在與奇美拉戰鬥時留意牠們。"
+      ]
+    },
+    "Wreck drop": {
+      "en": [
+        "From half health on: leaps out of sight, a red warning line glows along the whole floor, then it crashes back down in a cloud of dust and rubble falls from the ceiling. Venom breath and Wreck destroy always follow.",
+        "Be in the air when the red line glows and it lands. The rubble stays standing: use it as cover from the Venom breath that comes next. Every 30 seconds."
+      ],
+      "de": [
+        "Ab der Hälfte der LP: springt außer Sicht, eine rote Warnlinie leuchtet über den ganzen Boden, dann kracht sie in einer Staubwolke herunter und Trümmer fallen von der Decke. Danach folgen immer Gifthauch und Trümmer zerstören.",
+        "Sei in der Luft, wenn die rote Linie leuchtet und sie landet. Die Trümmer bleiben stehen: Nutze sie als Deckung vor dem folgenden Gifthauch. Alle 30 Sekunden."
+      ],
+      "es": [
+        "Desde la mitad de su vida: salta fuera de la vista, una línea roja de aviso brilla en todo el suelo, luego cae de golpe en una nube de polvo y caen restos del techo. Siempre le siguen Aliento venenoso y Destruir restos.",
+        "Estate en el aire cuando brille la línea roja y aterrice. Los restos quedan en pie: úsalos como cobertura contra el Aliento venenoso que viene después. Cada 30 segundos."
+      ],
+      "fr": [
+        "À partir de la moitié de sa vie : bondit hors de vue, une ligne d'avertissement rouge s'allume sur tout le sol, puis elle retombe dans un nuage de poussière et des débris tombent du plafond. Souffle de venin et Destruction des débris suivent toujours.",
+        "Sois en l'air quand la ligne rouge s'allume et qu'elle atterrit. Les débris restent debout : sers-t'en comme abri contre le Souffle de venin qui suit. Toutes les 30 secondes."
+      ],
+      "pl": [
+        "Od połowy zdrowia: wyskakuje poza zasięg wzroku, na całej podłodze świeci czerwona linia ostrzegawcza, potem spada z hukiem w chmurze pyłu, a z sufitu spada gruz. Zawsze następują po tym Jadowity oddech i Zniszczenie wraku.",
+        "Bądź w powietrzu, gdy świeci czerwona linia i ona ląduje. Gruz zostaje na miejscu: użyj go jako osłony przed następującym Jadowitym oddechem. Co 30 sekund."
+      ],
+      "pt-BR": [
+        "A partir da metade da vida: salta para fora de vista, uma linha vermelha de aviso brilha no chão inteiro, depois ela despenca numa nuvem de poeira e destroços caem do teto. Sopro venenoso e Destruir destroços sempre vêm em seguida.",
+        "Esteja no ar quando a linha vermelha brilhar e ela pousar. Os destroços ficam de pé: use-os como proteção contra o Sopro venenoso que vem depois. A cada 30 segundos."
+      ],
+      "ru": [
+        "С половины здоровья: прыгает из виду, по всему полу загорается красная линия предупреждения, затем она обрушивается вниз в облаке пыли, а с потолка падают обломки. Затем всегда следуют Ядовитое дыхание и Разрушение обломков.",
+        "Будьте в воздухе, когда горит красная линия и она приземляется. Обломки остаются стоять: прячьтесь за ними от следующего Ядовитого дыхания. Каждые 30 секунд."
+      ],
+      "ko": [
+        "체력이 절반 아래일 때부터: 보이지 않는 곳으로 뛰어오르고, 바닥 전체에 붉은 경고선이 빛난 뒤, 먼지구름과 함께 내려찍으며 천장에서 잔해가 떨어집니다. 그 뒤에는 항상 독 브레스와 잔해 파괴가 이어집니다.",
+        "붉은 선이 빛나고 착지할 때 공중에 있으세요. 잔해는 그대로 서 있습니다: 이어지는 독 브레스를 막는 엄폐물로 쓰세요. 30초마다 사용합니다."
+      ],
+      "ja": [
+        "体力が半分を切ってから：見えない所まで跳び上がり、床全体に赤い警告線が光った後、土煙とともに落ちてきて、天井から残骸が降ってきます。その後は必ず毒のブレスと残骸破壊が続きます。",
+        "赤い線が光って着地するときは空中にいましょう。残骸はその場に残ります：続く毒のブレスから身を守る盾にしましょう。30秒ごとに使います。"
+      ],
+      "zh-Hans": [
+        "体力低于一半后：它跃出视野，整个地面亮起红色警示线，然后在尘土中重重落下，天花板上掉下残骸。之后一定会接毒息和残骸破坏。",
+        "红线亮起、它落地时要待在空中。残骸会留在原地：用它们来挡住接下来的毒息。每30秒一次。"
+      ],
+      "zh-Hant": [
+        "體力低於一半後：牠躍出視野，整個地面亮起紅色警示線，然後在塵土中重重落下，天花板上掉下殘骸。之後一定會接毒息和殘骸破壞。",
+        "紅線亮起、牠落地時要待在空中。殘骸會留在原地：用它們來擋住接下來的毒息。每30秒一次。"
+      ]
+    },
+    "Venom breath": {
+      "en": [
+        "Sprays a stream of venom from the snake on its back, first at its own feet, then sweeping out across the whole room.",
+        "Comes only right after Wreck drop. Hide behind a piece of rubble on the side away from Chimera: the rubble catches the venom."
+      ],
+      "de": [
+        "Versprüht aus der Schlange auf ihrem Rücken einen Giftstrahl, erst vor die eigenen Füße, dann quer durch den ganzen Raum.",
+        "Kommt nur direkt nach Trümmerfall. Versteck dich hinter einem Trümmerstück auf der von der Schimäre abgewandten Seite: Die Trümmer fangen das Gift ab."
+      ],
+      "es": [
+        "Rocía un chorro de veneno desde la serpiente de su espalda, primero a sus propios pies y luego barriendo toda la sala.",
+        "Solo llega justo después de Caída de restos. Escóndete detrás de un resto, en el lado opuesto a la Quimera: los restos frenan el veneno."
+      ],
+      "fr": [
+        "Crache un jet de venin depuis le serpent sur son dos, d'abord à ses propres pieds, puis en balayant toute la salle.",
+        "Ne vient que juste après Chute de débris. Cache-toi derrière un débris, du côté opposé à la Chimère : les débris arrêtent le venin."
+      ],
+      "pl": [
+        "Wypuszcza strumień jadu z węża na grzbiecie, najpierw pod własne łapy, a potem omiatając całą salę.",
+        "Pojawia się tylko zaraz po ruchu Spadający wrak. Schowaj się za kawałkiem gruzu, po stronie dalszej od Chimery: gruz zatrzymuje jad."
+      ],
+      "pt-BR": [
+        "Borrifa um jato de veneno pela serpente nas costas, primeiro nos próprios pés, depois varrendo o salão inteiro.",
+        "Só vem logo depois de Queda de destroços. Esconda-se atrás de um destroço, do lado oposto à Quimera: os destroços seguram o veneno."
+      ],
+      "ru": [
+        "Выпускает струю яда из змеи на спине, сначала себе под ноги, затем проводя ею по всему залу.",
+        "Бывает только сразу после приёма Падение обломков. Спрячьтесь за обломком со стороны, дальней от Химеры: обломки задерживают яд."
+      ],
+      "ko": [
+        "등에 달린 뱀에서 독 줄기를 뿜어, 처음에는 자기 발밑을, 이어서 방 전체를 휩씁니다.",
+        "잔해 낙하 직후에만 사용합니다. 키메라 반대편 쪽의 잔해 뒤에 숨으세요: 잔해가 독을 막아 줍니다."
+      ],
+      "ja": [
+        "背中の蛇から毒の流れを吐き出し、まず自分の足元へ、続いて部屋全体をなぎ払います。",
+        "残骸落下の直後にだけ使います。キメラと反対側の残骸の陰に隠れましょう：残骸が毒を防いでくれます。"
+      ],
+      "zh-Hans": [
+        "从背上的蛇口中喷出一道毒液，先喷向自己脚下，再扫过整个房间。",
+        "只在残骸坠落之后使用。躲在残骸背对奇美拉的一边：残骸会挡住毒液。"
+      ],
+      "zh-Hant": [
+        "從背上的蛇口中噴出一道毒液，先噴向自己腳下，再掃過整個房間。",
+        "只在殘骸墜落之後使用。躲在殘骸背對奇美拉的一邊：殘骸會擋住毒液。"
+      ]
+    },
+    "Wreck destroy": {
+      "en": [
+        "Rears up and slams down with a huge stomp that smashes all the rubble on the floor.",
+        "The end of the rubble combo. Step away from the rubble before the slam: each piece bursts when it breaks."
+      ],
+      "de": [
+        "Bäumt sich auf und schlägt mit einem gewaltigen Stampfer auf, der alle Trümmer am Boden zerschmettert.",
+        "Das Ende der Trümmer-Kombination. Geh vor dem Aufschlag von den Trümmern weg: Jedes Stück platzt beim Zerbrechen."
+      ],
+      "es": [
+        "Se alza y cae con un pisotón enorme que destroza todos los restos del suelo.",
+        "El final del combo de los restos. Aléjate de los restos antes del golpe: cada uno estalla al romperse."
+      ],
+      "fr": [
+        "Se cabre et retombe dans un écrasement énorme qui brise tous les débris au sol.",
+        "La fin de l'enchaînement des débris. Éloigne-toi des débris avant l'impact : chacun éclate en se brisant."
+      ],
+      "pl": [
+        "Staje dęba i uderza potężnym tupnięciem, które rozbija cały gruz na ziemi.",
+        "Koniec kombinacji z gruzem. Odejdź od gruzu przed uderzeniem: każdy kawałek wybucha, gdy się rozpada."
+      ],
+      "pt-BR": [
+        "Empina-se e desce com um pisão enorme que esmaga todos os destroços do chão.",
+        "O fim do combo dos destroços. Afaste-se dos destroços antes do impacto: cada pedaço estoura ao se quebrar."
+      ],
+      "ru": [
+        "Встаёт на дыбы и обрушивается мощным ударом, который разбивает все обломки на полу.",
+        "Конец связки с обломками. Отойдите от обломков до удара: каждый обломок взрывается, когда разбивается."
+      ],
+      "ko": [
+        "몸을 일으켰다가 엄청난 짓밟기로 내려찍어 바닥의 잔해를 모두 부숩니다.",
+        "잔해 연계의 마지막입니다. 내려찍기 전에 잔해에서 떨어지세요: 잔해는 부서질 때 터집니다."
+      ],
+      "ja": [
+        "身を起こし、巨大な踏みつけで床の残骸をすべて叩き壊します。",
+        "残骸の連携の締めくくりです。叩きつけの前に残骸から離れましょう：残骸は壊れるときに弾けます。"
+      ],
+      "zh-Hans": [
+        "直起身子，用巨大的重踏砸下，把地上的残骸全部粉碎。",
+        "这是残骸连招的结尾。在砸下前远离残骸：每块残骸碎裂时都会爆开。"
+      ],
+      "zh-Hant": [
+        "直起身子，用巨大的重踏砸下，把地上的殘骸全部粉碎。",
+        "這是殘骸連招的結尾。在砸下前遠離殘骸：每塊殘骸碎裂時都會爆開。"
+      ]
+    }
+  }
+}

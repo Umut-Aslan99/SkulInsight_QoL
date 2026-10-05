@@ -7,8 +7,8 @@ picking up an item would do to your build.
 A quality-of-life mod: it changes nothing about the game's balance or saves. It only shows information the game
 already uses internally. Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.10.2: cooldown seconds on your skills, swap and quintessence too (a player request).** Please report
-> bugs and ideas (see [Feedback](#feedback--bug-reports)).
+> **Version 0.11.0: every boss move has a note on how to deal with it, and the Codex films are clean and compact.**
+> Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
 ![A boss fight with the mod: damage numbers with their source, boss HP and the mini log](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
 
@@ -104,6 +104,11 @@ Press **K** for a book with every enemy, boss, adventurer, skull, item, essence 
   by fight phase. Moves you haven't seen yet are shown as a black **???**, so you know what is still missing.
 - **Fight films:** the first time a boss does a move, the mod films it (small picture, 10 per second). Switch between
   posed **Animations** and **Attacks (filmed)** in the book; "Refilm" replaces a take you don't like.
+- **Move notes (new in 0.11):** every boss move has a short note: what it does and how to deal with it, with
+  numbers from the game (cooldowns, health thresholds, Dark Mirror differences), in all game languages.
+- **Clean, compact films (new in 0.11):** films show only the boss (no damage numbers, none of your own effects,
+  summons or status effects) and take about a quarter of the space. Both can be switched off on the settings page.
+- **Reset Codex (new in 0.11):** start the book over from the settings page; the move notes stay.
 - **Dark Mirror** versions of bosses are kept separately (switch in the book).
 - Everything is created on your own PC while you play; the mod ships no game art.
 
@@ -177,6 +182,9 @@ The same settings are in the settings file (created on the first start):
 | Codex | Enabled / ToggleKey | on / K | The Codex book |
 | Codex | ShowMoveHints | on | Under a beaten boss's moves: when it uses them |
 | Codex | FilmBossAttacks | on | Film each boss move once for the Codex |
+| Codex | CleanFilms | on | Films show only the boss (no damage numbers, own effects, summons, status effects) |
+| Codex | CompactFilms | on | Save films as compact pictures (about a quarter of the size) |
+| Codex | ProjectilePictures | on | Add an enemy's projectile to its pictures the first time it fires one |
 | Codex balance | (unlock numbers) | | Runs / wins / pickups it takes to unlock ★★ and ★★★ in the Codex |
 
 ## Compatibility
@@ -192,12 +200,13 @@ The same settings are in the settings file (created on the first start):
 - The pickup preview covers item stats and plain stat inscriptions. Conditional buffs and bonus-inscription items
   are not included yet. Skulls and essences on the ground have no preview yet.
 - Shock and ember damage from some sources may be labelled with a generic tag.
-- Codex, first version:
-  - Dark Mirror: the Dark Skul's second phase and King Alexander are not fully analysed yet; some Dark Mirror-only
-    moves may be missing or split into parts.
-  - A few move names are still rough (some First Hero and First Dark Hero moves appear in parts).
-  - Move descriptions exist only for some bosses so far ("When" hints exist for every boss move).
-  - Films can show effects of your own items around the boss.
+- Codex:
+  - King Alexander's hands, First Hero's later forms, the bomb phase and the Dark Mirror helpers (Supporting
+    Thief/Warrior) have no notes yet. King Alexander's heart fights with several attacks at once, so some of its
+    films show two attacks.
+  - Films made before 0.11 may still show your own effects or end early; "Refilm" or "Reset Codex" takes them again.
+  - A few skull skills still show no damage numbers (Bone Howl, Davy Jones'
+    special cannonballs, the Golden Gargoyle's statue, the Genie's lamp).
 - Translations were made with the help of the game's own terms but not checked by native speakers yet; corrections
   are very welcome (see *All game languages*). The config file and the developer tools stay English.
 

@@ -23,6 +23,7 @@ public sealed class CodexClip
     public string File = "";
     public int CellWidth, CellHeight, Columns, Count;
     public float[] Durations = new float[0];
+    public int Take = 1;             // films: the recorder that took it (2 since 0.11: a take waits for the move's effects)
     public Sprite[] Frames;          // null until loaded
     public bool Loading, Failed;
     public bool Ready => Frames != null;
@@ -73,6 +74,63 @@ public static class CodexAnimations
         ToSample.Enqueue((enemy, key));
         if (!_sampling && runner != null)
             runner.StartCoroutine(SampleQueue());
+    }
+
+    private static readonly HashSet<int> ProjectilesSeen = new();   // projectile objects already looked at (pooled, reused)
+    private static readonly HashSet<string> ProjectilesTried = new(); // "key|label" asked for this session
+
+    /// <summary>
+    /// An enemy fired a projectile (CodexPatches): the first time per enemy and projectile, its animation is added to
+    /// the enemy's saved sets as "Projectile: Arrow". A capture only sees the enemy's own object, not what it fires.
+    /// Bosses and adventurers are left out (their films show their projectiles), and enemies not captured yet.
+    /// </summary>
+    public static void NoteProjectile(Character owner, Characters.Projectiles.Projectile projectile)
+    {
+        try
+        {
+            if (owner == null || projectile == null || !ProjectilesSeen.Add(projectile.GetInstanceID()) ||
+                !Plugin.CodexEnabled.Value || !Plugin.CodexProjectiles.Value || BossAttacks.Covers(owner) || CodexTracker.EntryOf(owner) is not { } entry)
+                return;
+            string key = CodexMode.Current(entry.key);
+            string label = Lang.Loc.N("Projectile") + ": " + OwnerNames.Humanize(CodexCatalog.CleanName(projectile.name));
+            if (!Has(key) || !ProjectilesTried.Add(key + "|" + label) || Load(key).Any(c => c.Label == label))
+                return;
+            var frames = SampleProjectile(projectile);
+            if (frames.Count == 0)
+                return;
+            var request = new CodexDeveloper.Request { Key = key, Append = true };
+            request.SpriteClips.Add((label, frames));
+            CodexDeveloper.Enqueue(request);
+        }
+        catch (Exception e)
+        {
+            Plugin.Log.LogWarning($"Codex: looking at a projectile of {owner?.name} failed: {e.Message}");
+        }
+    }
+
+    /// <summary>A projectile's frames: every clip of its animator in turn, or its one picture if it has none.</summary>
+    private static List<(Sprite sprite, float duration)> SampleProjectile(Characters.Projectiles.Projectile projectile)
+    {
+        var frames = new List<(Sprite, float)>();
+        var animator = projectile.GetComponentsInChildren<Animator>(true).FirstOrDefault(a => a.runtimeAnimatorController != null);
+        var renderer = animator != null ? animator.GetComponent<SpriteRenderer>() ?? animator.GetComponentInChildren<SpriteRenderer>(true)
+            : projectile.GetComponentInChildren<SpriteRenderer>(true);
+        if (renderer == null)
+            return frames;
+        var original = renderer.sprite;
+        try
+        {
+            if (animator != null)
+                foreach (var clip in animator.runtimeAnimatorController.animationClips.Where(c => c != null && !c.name.StartsWith("Empty")).Distinct())
+                    frames.AddRange(Sample(clip, animator.gameObject, renderer));
+            if (frames.Count == 0 && original != null)
+                frames.Add((original, 0.1f));
+        }
+        finally
+        {
+            renderer.sprite = original;
+        }
+        return frames;
     }
 
     // ---------------------------------------------------------------- phase 1: sampling (during play, tiny)
@@ -552,10 +610,43 @@ public static class CodexAnimations
     {
         if (Cache.TryGetValue(key, out var clips))
             return clips;
-        clips = ReadIndex(FolderOf(key), key);
+        clips = WithoutIdleCopies(ReadIndex(FolderOf(key), key));
         Cache[key] = clips;
         Portraits.Remove(key);
         return clips;
+    }
+
+    /// <summary>
+    /// Sets that only show the idle pose are left out ("Jump" and "Fall" of enemies that never jump: the game gives them
+    /// the idle animation). Their sheet is the same file as an idle set's, byte for byte (188 of 1124 sets in a test).
+    /// </summary>
+    private static List<CodexClip> WithoutIdleCopies(List<CodexClip> clips)
+    {
+        var idles = clips.Where(c => IdleSet.IsMatch(c.Label)).ToList();
+        if (idles.Count == 0 || idles.Count == clips.Count)
+            return clips;
+        var idleSheets = new HashSet<string>(idles.Select(c => SheetId(c.File)));
+        return clips.Where(c => idles.Contains(c) || !idleSheets.Contains(SheetId(c.File))).ToList();
+    }
+
+    private static readonly System.Text.RegularExpressions.Regex IdleSet = new(@"(?i)(^|: | · )idle\b");
+    private static readonly Dictionary<string, string> SheetIds = new();
+
+    /// <summary>What a saved sheet looks like, as a short text: two sheets with the same id are the same picture.</summary>
+    public static string SheetId(string file)
+    {
+        if (SheetIds.TryGetValue(file, out var id))
+            return id;
+        try
+        {
+            using var md5 = System.Security.Cryptography.MD5.Create();
+            id = Convert.ToBase64String(md5.ComputeHash(File.ReadAllBytes(file)));
+        }
+        catch (Exception)
+        {
+            id = file; // unreadable: only equal to itself
+        }
+        return SheetIds[file] = id;
     }
 
     private static List<CodexClip> ReadIndex(string folder, string key)
@@ -582,6 +673,7 @@ public static class CodexAnimations
                     Columns = Math.Max(1, (int)node.Num("cols")),
                     Count = count,
                     Durations = durations.Length == count ? durations : Enumerable.Repeat(1f / 12f, count).ToArray(),
+                    Take = (int)node.Num("take", 1),
                 });
             }
         }

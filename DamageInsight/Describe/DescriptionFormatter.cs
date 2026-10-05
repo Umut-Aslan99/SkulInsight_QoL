@@ -165,6 +165,9 @@ public static class DescriptionFormatter
 
     private static bool UnknownBase(Hit hit, StatSnapshot stats) => hit.UsesSkullDamage && Base(hit, stats).max <= 0;
 
+    /// <summary>Short descriptions (setting Descriptions/Short, set by GearDescriptions): only the totals per step.</summary>
+    public static bool Short;
+
     /// <summary>All hits of a section, one step per line ("Hit 1: …").</summary>
     public static string Section(Section section, StatSnapshot stats, string title = null)
     {
@@ -177,7 +180,8 @@ public static class DescriptionFormatter
         {
             if (step.Hits.Count == 0)
                 continue;
-            string hits = section.Compact ? CompactHits(step.Hits, stats) : string.Join(" + ", step.Hits.Select(h => HitLine(h, stats)));
+            string hits = Short ? ShortHits(step.Hits, stats)
+                : section.Compact ? CompactHits(step.Hits, stats) : string.Join(" + ", step.Hits.Select(h => HitLine(h, stats)));
             lines.Add(string.IsNullOrEmpty(step.Label) ? hits : Loc.F("{0}: {1}", step.Label, hits));
         }
         foreach (var note in section.Notes)
@@ -216,6 +220,25 @@ public static class DescriptionFormatter
         string amount = UnknownBase(first, stats) ? "" : $" = <color={colour}>{Range(min, max)} {attributes}</color>";
         return $"{Loc.P("{0} hit", "{0} hits", count)}{amount}<color={DimColor}> ({percents} {of}{atk})" +
                (notes.Count > 0 ? " · " + string.Join(" · ", notes) : "") + "</color>";
+    }
+
+    /// <summary>Several hits as their total only: "4 hits = 202–317 Physical" (one hit: "51–80 Physical").</summary>
+    public static string ShortHits(List<Hit> hits, StatSnapshot stats)
+    {
+        int count = hits.Sum(h => Math.Max(1, h.Count));
+        double min = 0, max = 0;
+        foreach (var h in hits)
+        {
+            var (hMin, hMax) = FinalRange(h, stats);
+            min += hMin * Math.Max(1, h.Count);
+            max += hMax * Math.Max(1, h.Count);
+        }
+        var first = hits[0];
+        if (UnknownBase(first, stats))
+            return Loc.P("{0} hit", "{0} hits", count);
+        string colour = first.Attribute == "Magic" ? MagicColor : first.Attribute == "Fixed" ? FixedColor : PhysicalColor;
+        string amount = $"<color={colour}>{Range(min, max)} {string.Join("/", hits.Select(AttributeName).Distinct())}</color>";
+        return count > 1 ? $"{Loc.P("{0} hit", "{0} hits", count)} = {amount}" : amount;
     }
 
     public static string Range(double min, double max) =>

@@ -28,6 +28,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<float> DamageNumberFadeTime;
     internal static ConfigEntry<bool> BossHealthNumbers;
     internal static ConfigEntry<bool> DescriptionNumbers;
+    internal static ConfigEntry<bool> DescriptionsShort;
     internal static ConfigEntry<KeyboardShortcut> CombatLogKey;
     internal static ConfigEntry<bool> CombatLogUseDialogueBackground;
     internal static ConfigEntry<float> CombatLogOpacity;
@@ -46,6 +47,9 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<KeyboardShortcut> CodexKey;
     internal static ConfigEntry<bool> CodexRecordFights;
     internal static ConfigEntry<bool> CodexMoveHints;
+    internal static ConfigEntry<bool> CodexProjectiles;
+    internal static ConfigEntry<bool> CodexCleanFilms;
+    internal static ConfigEntry<bool> CodexCompactFilms;
     internal static ConfigEntry<bool> CodexMoveCounter;   // bound in developer builds only (null otherwise)
     internal static ConfigEntry<bool> CodexRunLog;        // bound in developer builds only (null otherwise)
     internal static ConfigEntry<bool> PreferNewMoves;     // bound in developer builds only (null otherwise)
@@ -87,6 +91,8 @@ public class Plugin : BaseUnityPlugin
             "Show current / maximum HP as text on boss, adventurer and dark enemy health bars.");
         DescriptionNumbers = Config.Bind("Descriptions", "ShowDamageNumbers", true,
             "Add real damage numbers (with your current stats) to skull, skill, swap, item, essence and inscription descriptions.");
+        DescriptionsShort = Config.Bind("Descriptions", "Short", false,
+            "Short descriptions: one line per attack part with its total damage, without the calculation behind it.");
         PickupPreview = Config.Bind("Descriptions", "PreviewPickup", true,
             "Items on the ground, in shops and in the swap menu show their numbers as if you had picked them up (their stats and inscription steps included).");
         CombatLogKey = Config.Bind("Combat Log", "ToggleKey", new KeyboardShortcut(UnityEngine.KeyCode.L),
@@ -122,6 +128,12 @@ public class Plugin : BaseUnityPlugin
             "Shown once you have beaten the boss.");
         CodexRecordFights = Config.Bind("Codex", "FilmBossAttacks", true,
             "Film each boss attack once (a small picture 10 times a second, effects included) to show it in the Codex.");
+        CodexProjectiles = Config.Bind("Codex", "ProjectilePictures", true,
+            "Add the projectile an enemy fires (arrow, bolt, ...) to its pictures in the Codex, the first time it fires one.");
+        CodexCompactFilms = Config.Bind("Codex", "CompactFilms", true,
+            "Save boss films as compact pictures (about a quarter of the size, nearly the same look). Off: lossless pictures, about 1 GB more once every boss is filmed.");
+        CodexCleanFilms = Config.Bind("Codex", "CleanFilms", true,
+            "Boss films show only the boss: damage numbers, the effects of your skills and items, your summons and status effects on the boss (poison, burn, freeze, ...) are left out.");
         DamageInsight.Codex.CodexBalance.Bind(Config);
 #if DEV
         DumpIcons = Config.Bind("Developer", "DumpIconsOnce", false,
@@ -145,8 +157,10 @@ public class Plugin : BaseUnityPlugin
         CodexRunLog = Config.Bind("Developer", "CodexRunLog", true,
             "Codex balancing: per run, every map's enemies (planned, appeared, killed) and time, to Codex\\Debug\\runs.");
         PreferNewMoves = Config.Bind("Developer", "PreferNewMoves", false,
-            "Codex testing: bosses pick moves the Codex hasn't seen yet first, then moves they haven't done in this fight, " +
-            "so every move shows up (and is filmed) quickly. Their conditions (HP range, distance, cooldowns) still apply.");
+            "Codex testing: bosses do the moves the Codex hasn't seen or filmed yet, one after another. Tree bosses (Dark Skul, " +
+            "First Dark Hero, King Alexander, adventurers, Yggdrasil, Pope, First Hero) are led to them: distance, HP, cooldown " +
+            "and chance checks are passed, and they change form first when a move needs another form. Bosses run by their own " +
+            "code (Leiana sisters, Awakened Leiana, Chimera) start a missing move of the same kind instead of a filmed one.");
         DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
         CodexDevReveal.SettingChanged += (_, _) => DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
 #endif
@@ -159,6 +173,8 @@ public class Plugin : BaseUnityPlugin
 
         gameObject.AddComponent<DamageInsight.UI.CombatLogWindow>();
         gameObject.AddComponent<DamageInsight.UI.MiniLog>();
+        DamageInsight.Codex.CodexReset.RunIfRequested(); // a requested reset happens before anything reads the Codex
+        DamageInsight.Codex.CodexMigrations.Run(); // before anything reads the saved moves and films
         gameObject.AddComponent<DamageInsight.Codex.CodexWindow>();
         gameObject.AddComponent<DamageInsight.Codex.FightRecorder>();
         UnityEngine.Application.quitting += () => DamageInsight.Codex.CodexTracker.SaveIfNeeded(force: true);

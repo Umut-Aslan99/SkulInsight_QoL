@@ -69,6 +69,9 @@ public static class CodexTracker
         }
     }
 
+    /// <summary>Saved data was changed from outside (a migration): save it soon.</summary>
+    internal static void MarkChanged() => Changed();
+
     private static void Changed()
     {
         _dirty = true;

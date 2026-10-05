@@ -24,6 +24,7 @@ public static class MoveHints
         Loc.N("when you are farther away"), Loc.N("when you are not too far"), Loc.N("when you are close"),
         Loc.N("only if the grab catches you"), Loc.N("at {0}–{1} % HP"), Loc.N("in stage {0}"), Loc.N("in Balance form"),
         Loc.N("in Power form"), Loc.N("in Speed form"), Loc.N("while helping another adventurer"),
+        Loc.N("while both hands fight"), Loc.N("after a hand is destroyed"), Loc.N("while you are in the air"),
     };
 
     /// <summary>A stored (English) hint in the current language.</summary>
@@ -78,7 +79,7 @@ public static class MoveHints
             }
         }
         foreach (var entry in entries)
-            Walk(entry, new List<string>(), new HashSet<AttackGraph.Unit> { entry });
+            Walk(entry, Inside(entry), new HashSet<AttackGraph.Unit> { entry });
         if (paths.Count == 0)
             return "";
         var common = paths.Skip(1).Aggregate(new HashSet<string>(paths[0]), (set, path) => { set.IntersectWith(path); return set; });
@@ -87,7 +88,34 @@ public static class MoveHints
         // "at 65–30 % HP" already says "above 30 % HP" (the check inside that range).
         foreach (var range in ordered.Select(p => RangePhrase.Match(p)).Where(m => m.Success).ToList())
             ordered.RemoveAll(p => p == $"above {range.Groups[2].Value} % HP" || p == $"below {range.Groups[1].Value} % HP");
+        // Two cooldowns (the pattern's and the move's own): the longer one is what counts.
+        var cooldowns = ordered.Where(p => EveryPhrase.IsMatch(p)).ToList();
+        if (cooldowns.Count > 1)
+        {
+            string longest = cooldowns.OrderByDescending(p => int.Parse(EveryPhrase.Match(p).Groups[1].Value)).First();
+            ordered.RemoveAll(p => cooldowns.Contains(p) && p != longest);
+        }
         return string.Join(" · ", ordered.Take(4));
+    }
+
+    /// <summary>
+    /// The checks a move makes itself before it starts, innermost first (King Alexander's Celestial meteor: a 150 s
+    /// cooldown inside its own block): the leading conditions of its sequences, down through wrappers.
+    /// </summary>
+    private static List<string> Inside(AttackGraph.Unit entry)
+    {
+        var phrases = new List<string>();
+        var node = entry;
+        for (int depth = 0; depth < 8 && node != null; depth++)
+        {
+            if (node.Kind == AttackGraph.Kind.Sequence)
+                foreach (var check in node.Calls.TakeWhile(c => c.Steps.Count == 0))
+                    Add(phrases, Phrase(check));
+            var moving = node.Calls.Where(c => c.Steps.Count > 0).ToList();
+            node = node.Own.Count == 0 && moving.Count == 1 ? moving[0] : null;
+        }
+        phrases.Reverse();
+        return phrases;
     }
 
     private static void Add(List<string> parts, string phrase)
@@ -97,7 +125,7 @@ public static class MoveHints
     }
 
     private static readonly Regex HealthBelow = new(@"Health(?:Condition|Comparison)\((?:compare|operation)=(\w+), (?:percent|value)=([\d.]+)");
-    private static readonly Regex Cooldown = new(@"(?:^|\W)(?:CoolDown\(coolTime|ChronometerCoolDown\(duration)=([\d.]+)");
+    private static readonly Regex Cooldown = new(@"(?:^|\W)(?:CoolDown\(coolTime|ChronometerCoolDown\(duration|CoolTime\(value)=([\d.]+)");
     private static readonly Regex ChanceNote = new(@"(?:Chance\(successChance|RandomProbability\(successProbability)=([\d.]+)");
     private static readonly Regex Distance = new(@"CompareCharacterDistance\(axis=\w+, distance=([\d.]+), comparer=(\w+)");
     private static readonly Regex Trigger = new(@"EnterTrigger\(inverter=(True|False)");
@@ -105,6 +133,7 @@ public static class MoveHints
     private static readonly Regex Range = new(@"(?i)\b(short|middle|long) range\b");
     private static readonly Regex Step = new(@"(?i)^step == (\d)\?");
     private static readonly Regex RangePhrase = new(@"^at (\d+)–(\d+) % HP$");
+    private static readonly Regex EveryPhrase = new(@"^at most every (\d+) s$");
 
     /// <summary>What one block checks, in words, or null.</summary>
     public static string Phrase(AttackGraph.Unit unit)
@@ -132,6 +161,8 @@ public static class MoveHints
         }
         if (note.StartsWith("Grabbed"))
             return "only if the grab catches you";
+        if (note.StartsWith("TargetIsGrounded(inverter=True"))
+            return "while you are in the air";
         if (PhaseRange.Match(label) is { Success: true } ph)
             return $"at {ph.Groups[1].Value}–{ph.Groups[2].Value} % HP";
         if (Step.Match(label) is { Success: true } s)
@@ -144,6 +175,9 @@ public static class MoveHints
             return "in Speed form";
         if (name.Contains("서브 패턴"))
             return "while helping another adventurer";
+        // King Alexander's phase 2: his hands fight first, the heart comes out when both are destroyed.
+        if (note.StartsWith("CheckEmperorHandLived"))
+            return note.Contains("TwoHand") ? "while both hands fight" : "after a hand is destroyed";
         return null;
     }
 

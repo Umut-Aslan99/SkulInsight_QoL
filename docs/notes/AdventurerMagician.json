@@ -1,0 +1,327 @@
+{
+  "key": "AdventurerMagician",
+  "moves": {
+    "Fire ball": {
+      "en": [
+        "Floats in the air and shoots a stream of fireballs straight ahead.",
+        "Change height or jump over the fireballs."
+      ],
+      "de": [
+        "Schwebt in der Luft und schießt eine Reihe Feuerbälle geradeaus.",
+        "Wechsle die Höhe oder spring über die Feuerbälle."
+      ],
+      "es": [
+        "Flota en el aire y dispara una ráfaga de bolas de fuego hacia delante.",
+        "Cambia de altura o salta sobre las bolas de fuego."
+      ],
+      "fr": [
+        "Flotte dans les airs et tire une salve de boules de feu droit devant.",
+        "Change de hauteur ou saute par-dessus les boules de feu."
+      ],
+      "pl": [
+        "Unosi się w powietrzu i wystrzeliwuje serię kul ognia prosto przed siebie.",
+        "Zmień wysokość albo przeskocz kule ognia."
+      ],
+      "pt-BR": [
+        "Flutua no ar e dispara uma sequência de bolas de fogo para a frente.",
+        "Mude de altura ou pule as bolas de fogo."
+      ],
+      "ru": [
+        "Парит в воздухе и выпускает вперёд поток огненных шаров.",
+        "Смените высоту или перепрыгните огненные шары."
+      ],
+      "ko": [
+        "공중에 떠서 앞으로 화염구를 연달아 발사합니다.",
+        "높이를 바꾸거나 화염구를 점프로 넘으세요."
+      ],
+      "ja": [
+        "空中に浮かび、まっすぐ前へ火の玉を連射します。",
+        "高さを変えるか、火の玉を飛び越えましょう。"
+      ],
+      "zh-Hans": [
+        "浮在空中，向正前方连续射出火球。",
+        "改变高度或跳过火球。"
+      ],
+      "zh-Hant": [
+        "浮在空中，向正前方連續射出火球。",
+        "改變高度或跳過火球。"
+      ]
+    },
+    "Flame impact": {
+      "en": [
+        "Fire orbs drop near you and burst into rings of flame.",
+        "Watch where the orbs fall and stay out of the rings."
+      ],
+      "de": [
+        "Feuerkugeln fallen in deiner Nähe herab und zerplatzen zu Flammenringen.",
+        "Achte darauf, wo die Kugeln fallen, und bleib aus den Ringen heraus."
+      ],
+      "es": [
+        "Caen orbes de fuego cerca de ti y estallan en anillos de llamas.",
+        "Fíjate dónde caen los orbes y mantente fuera de los anillos."
+      ],
+      "fr": [
+        "Des orbes de feu tombent près de toi et éclatent en anneaux de flammes.",
+        "Repère où tombent les orbes et reste hors des anneaux."
+      ],
+      "pl": [
+        "Obok ciebie spadają ogniste kule i wybuchają pierścieniami płomieni.",
+        "Patrz, gdzie spadają kule, i trzymaj się z dala od pierścieni."
+      ],
+      "pt-BR": [
+        "Orbes de fogo caem perto de você e explodem em anéis de chamas.",
+        "Repare onde os orbes caem e fique fora dos anéis."
+      ],
+      "ru": [
+        "Рядом с вами падают огненные сферы и взрываются кольцами пламени.",
+        "Следите, куда падают сферы, и держитесь подальше от колец."
+      ],
+      "ko": [
+        "당신 근처로 불의 구슬이 떨어져 불꽃 고리로 터집니다.",
+        "구슬이 떨어지는 곳을 보고 고리 밖에 있으세요."
+      ],
+      "ja": [
+        "あなたの近くに火の球が落ち、炎の輪となって弾けます。",
+        "球が落ちる場所を見て、輪の外にいましょう。"
+      ],
+      "zh-Hans": [
+        "火球落在你附近，爆成火焰环。",
+        "注意火球落下的位置，远离火焰环。"
+      ],
+      "zh-Hant": [
+        "火球落在你附近，爆成火焰環。",
+        "注意火球落下的位置，遠離火焰環。"
+      ]
+    },
+    "Phoenix landing": {
+      "en": [
+        "Flies up; a pillar of fire strikes down and she lands in a burst of flame.",
+        "Move away from the pillar: the landing burst hurts all around her."
+      ],
+      "de": [
+        "Fliegt hoch; eine Feuersäule schlägt ein und sie landet in einem Flammenstoß.",
+        "Geh weg von der Säule: Der Landestoß verletzt rundherum."
+      ],
+      "es": [
+        "Vuela hacia arriba; cae un pilar de fuego y aterriza en una explosión de llamas.",
+        "Aléjate del pilar: la explosión al aterrizar hace daño a su alrededor."
+      ],
+      "fr": [
+        "S'envole ; un pilier de feu s'abat et elle atterrit dans une gerbe de flammes.",
+        "Éloigne-toi du pilier : la gerbe de l'atterrissage blesse tout autour d'elle."
+      ],
+      "pl": [
+        "Wzlatuje; uderza słup ognia, a ona ląduje w wybuchu płomieni.",
+        "Odsuń się od słupa: wybuch przy lądowaniu rani wszystko wokół."
+      ],
+      "pt-BR": [
+        "Voa para cima; um pilar de fogo desce e ela pousa numa explosão de chamas.",
+        "Afaste-se do pilar: a explosão do pouso machuca ao redor dela."
+      ],
+      "ru": [
+        "Взлетает; бьёт столб огня, и она приземляется во вспышке пламени.",
+        "Отойдите от столба: вспышка при приземлении бьёт вокруг неё."
+      ],
+      "ko": [
+        "날아올랐다가 불기둥이 내리꽂히고, 불꽃이 터지며 착지합니다.",
+        "불기둥에서 떨어지세요: 착지할 때의 폭발이 주변 전체에 피해를 줍니다."
+      ],
+      "ja": [
+        "飛び上がると炎の柱が降り注ぎ、炎を弾けさせながら着地します。",
+        "柱から離れましょう：着地の爆発は周り全体に当たります。"
+      ],
+      "zh-Hans": [
+        "飞起后火柱劈下，她在火焰爆发中落地。",
+        "远离火柱：落地时的爆发会伤及她周围。"
+      ],
+      "zh-Hant": [
+        "飛起後火柱劈下，她在火焰爆發中落地。",
+        "遠離火柱：落地時的爆發會傷及她周圍。"
+      ]
+    },
+    "Take off": {
+      "en": [
+        "Flies up into the air.",
+        "The next attack comes from above."
+      ],
+      "de": [
+        "Fliegt in die Luft.",
+        "Der nächste Angriff kommt von oben."
+      ],
+      "es": [
+        "Vuela hacia arriba.",
+        "El siguiente ataque llega desde arriba."
+      ],
+      "fr": [
+        "S'envole dans les airs.",
+        "La prochaine attaque vient d'en haut."
+      ],
+      "pl": [
+        "Wzlatuje w powietrze.",
+        "Następny atak nadejdzie z góry."
+      ],
+      "pt-BR": [
+        "Voa para o alto.",
+        "O próximo ataque vem de cima."
+      ],
+      "ru": [
+        "Взлетает в воздух.",
+        "Следующая атака будет сверху."
+      ],
+      "ko": [
+        "공중으로 날아오릅니다.",
+        "다음 공격은 위에서 옵니다."
+      ],
+      "ja": [
+        "空中へ飛び上がります。",
+        "次の攻撃は上から来ます。"
+      ],
+      "zh-Hans": [
+        "飞上空中。",
+        "下一次攻击来自上方。"
+      ],
+      "zh-Hant": [
+        "飛上空中。",
+        "下一次攻擊來自上方。"
+      ]
+    },
+    "Fire ball sub": {
+      "en": [
+        "While helping another adventurer: big rings of flame fly in from behind the fight.",
+        "Keep an eye on the rings while you fight the other adventurer."
+      ],
+      "de": [
+        "Wenn sie einem anderen Abenteurer hilft: Große Flammenringe fliegen von hinten herein.",
+        "Behalte die Ringe im Blick, während du gegen den anderen Abenteurer kämpfst."
+      ],
+      "es": [
+        "Mientras ayuda a otro aventurero: grandes anillos de llamas llegan volando desde detrás.",
+        "No pierdas de vista los anillos mientras luchas contra el otro aventurero."
+      ],
+      "fr": [
+        "En aidant un autre aventurier : de grands anneaux de flammes arrivent de l'arrière.",
+        "Garde un œil sur les anneaux pendant que tu combats l'autre aventurier."
+      ],
+      "pl": [
+        "Gdy pomaga innemu awanturnikowi: z tyłu nadlatują wielkie pierścienie płomieni.",
+        "Miej pierścienie na oku, walcząc z drugim awanturnikiem."
+      ],
+      "pt-BR": [
+        "Enquanto ajuda outro aventureiro: grandes anéis de chamas chegam voando de trás.",
+        "Fique de olho nos anéis enquanto luta contra o outro aventureiro."
+      ],
+      "ru": [
+        "Когда помогает другому герою: сзади прилетают большие кольца пламени.",
+        "Следите за кольцами, сражаясь с другим героем."
+      ],
+      "ko": [
+        "다른 모험가를 도울 때: 커다란 불꽃 고리가 뒤쪽에서 날아옵니다.",
+        "다른 모험가와 싸우는 동안 고리를 계속 살피세요."
+      ],
+      "ja": [
+        "他の冒険家を助けているとき：大きな炎の輪が後ろから飛んできます。",
+        "他の冒険家と戦いながら、輪から目を離さないようにしましょう。"
+      ],
+      "zh-Hans": [
+        "协助其他冒险家时：巨大的火焰环从后方飞来。",
+        "与其他冒险家战斗时留意火焰环。"
+      ],
+      "zh-Hant": [
+        "協助其他冒險家時：巨大的火焰環從後方飛來。",
+        "與其他冒險家戰鬥時留意火焰環。"
+      ]
+    },
+    "World on fire (special skill)": {
+      "en": [
+        "The special skill: flies up and rains orbs of fire over the whole area.",
+        "Below half health. Deal enough damage during the cast to break it: the caster falls Groggy."
+      ],
+      "de": [
+        "Die Spezialfähigkeit: fliegt hoch und lässt Feuerkugeln über die ganze Gegend regnen.",
+        "Unter der Hälfte der LP. Füge während des Wirkens genug Schaden zu, um es zu unterbrechen: Dann ist der Wirker benommen."
+      ],
+      "es": [
+        "La habilidad especial: vuela hacia arriba y hace llover orbes de fuego sobre toda la zona.",
+        "Por debajo de la mitad de la vida. Inflige suficiente daño durante el lanzamiento para romperlo: quedará aturdido."
+      ],
+      "fr": [
+        "La compétence spéciale : s'envole et fait pleuvoir des orbes de feu sur toute la zone.",
+        "Sous la moitié de la vie. Inflige assez de dégâts pendant l'incantation pour l'interrompre : le lanceur sera sonné."
+      ],
+      "pl": [
+        "Umiejętność specjalna: wzlatuje i zrzuca deszcz ognistych kul na cały obszar.",
+        "Poniżej połowy zdrowia. Zadaj dość obrażeń podczas rzucania, by je przerwać: rzucający będzie oszołomiony."
+      ],
+      "pt-BR": [
+        "A habilidade especial: voa para cima e faz chover orbes de fogo sobre toda a área.",
+        "Abaixo da metade da vida. Cause dano suficiente durante a conjuração para quebrá-la: quem conjura fica atordoado."
+      ],
+      "ru": [
+        "Особый навык: взлетает и обрушивает огненные сферы на всю округу.",
+        "Ниже половины здоровья. Нанесите достаточно урона во время подготовки, чтобы сорвать её: противник будет оглушён."
+      ],
+      "ko": [
+        "특수 스킬: 날아올라 주변 전체에 불의 구슬을 비처럼 쏟아냅니다.",
+        "체력이 절반 아래일 때 사용합니다. 시전하는 동안 충분한 피해를 주면 끊을 수 있고, 시전자는 그로기 상태가 됩니다."
+      ],
+      "ja": [
+        "特殊スキル：飛び上がり、辺り一帯に火の球を降らせます。",
+        "体力が半分を切ると使います。詠唱中に十分なダメージを与えると中断でき、使い手はグロッキーになります。"
+      ],
+      "zh-Hans": [
+        "特殊技能：飞起后向整个区域降下火球。",
+        "体力低于一半时使用。施放期间造成足够伤害即可打断，施放者会陷入虚弱。"
+      ],
+      "zh-Hant": [
+        "特殊技能：飛起後向整個區域降下火球。",
+        "體力低於一半時使用。施放期間造成足夠傷害即可打斷，施放者會陷入虛弱。"
+      ]
+    },
+    "Groggy": {
+      "en": [
+        "Stunned after the special skill was broken: stands dazed for a few seconds.",
+        "Free hits: use your strongest skills now."
+      ],
+      "de": [
+        "Betäubt, nachdem die Spezialfähigkeit unterbrochen wurde: steht ein paar Sekunden benommen da.",
+        "Freie Treffer: Setz jetzt deine stärksten Fähigkeiten ein."
+      ],
+      "es": [
+        "Aturdido tras romperse la habilidad especial: se queda atontado unos segundos.",
+        "Golpes gratis: usa ahora tus habilidades más fuertes."
+      ],
+      "fr": [
+        "Étourdi après l'interruption de la compétence spéciale : reste sonné quelques secondes.",
+        "Coups gratuits : utilise maintenant tes compétences les plus fortes."
+      ],
+      "pl": [
+        "Ogłuszony po przerwaniu umiejętności specjalnej: stoi oszołomiony przez kilka sekund.",
+        "Darmowe trafienia: użyj teraz najsilniejszych umiejętności."
+      ],
+      "pt-BR": [
+        "Atordoado depois que a habilidade especial foi quebrada: fica tonto por alguns segundos.",
+        "Golpes livres: use agora suas habilidades mais fortes."
+      ],
+      "ru": [
+        "Оглушён после срыва особого навыка: несколько секунд стоит без движения.",
+        "Бесплатные удары: используйте сейчас самые сильные навыки."
+      ],
+      "ko": [
+        "특수 스킬이 끊겨 기절한 상태: 몇 초 동안 멍하니 서 있습니다.",
+        "마음껏 공격할 기회입니다: 가장 강한 스킬을 쓰세요."
+      ],
+      "ja": [
+        "特殊スキルを中断されて気絶した状態：数秒間ふらふらと立ち尽くします。",
+        "攻撃し放題です：一番強いスキルを使いましょう。"
+      ],
+      "zh-Hans": [
+        "特殊技能被打断后陷入眩晕：呆立几秒。",
+        "可以随意攻击：现在使用你最强的技能。"
+      ],
+      "zh-Hant": [
+        "特殊技能被打斷後陷入暈眩：呆立幾秒。",
+        "可以隨意攻擊：現在使用你最強的技能。"
+      ]
+    }
+  }
+}
