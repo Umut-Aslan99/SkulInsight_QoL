@@ -9,7 +9,7 @@ internally (and, if you use them, keeps several save slots side by side). Every 
 
 > **Version 0.12.1:** the What's new button closes with a click; buttons light up and play the game's menu sounds.
 >
-> **Version 0.12.0: the Codex becomes a full reference (boxed pages, skill boxes, every number with its formula), short descriptions with every number on Shift, a damage table per item in the combat log, and save slots.** The game shows what's new once after the update; every detail is in the [changelog](<REPO_URL>/blob/main/CHANGELOG.md).
+> **Version 0.12.0: the Codex becomes a full reference (boxed pages, skill boxes, every number with its formula), short descriptions with every number on Shift, a damage table per item in the combat log, and save slots.** The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
 ![A boss fight with the mod: damage numbers with their source, boss HP and the mini log](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
@@ -190,6 +190,16 @@ please send it in so everyone gets it.
 3. Copy `DamageInsight.dll` into `Skul/BepInEx/plugins/SkulInsight_QoL/`.
 4. Start the game.
 
+### Linux and Steam Deck
+The mod runs through **Proton**. Skul's native Linux version can't load it.
+1. Steam → right-click Skul → *Properties* → *Compatibility*: force Proton (for example Proton 9.0).
+2. Start Skul once from Steam without mods, then quit (this creates Skul's Proton prefix).
+3. Leave Skul's launch options empty (the Flatpak version of r2modman is the exception).
+4. Install the mod in r2modman or Gale and press **Start modded**.
+
+Errors, Steam Deck, manual installation and a check script:
+[Linux and Steam Deck guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md).
+
 ## Configuration
 
 **In the game:** pause (Esc) → **SkulInsight QoL** (right under the game's Settings). Every setting below is there,
@@ -228,7 +238,8 @@ The same settings are in the settings file (created on the first start):
 | Codex balance | (unlock numbers) | | Runs / wins / pickups it takes to unlock ★★ and ★★★ in the Codex |
 
 ## Compatibility
-- Made for Skul: The Hero Slayer **1.9.x** (Steam, Windows) with BepInExPack Skul (BepInEx 5.4.21+).
+- Made for Skul: The Hero Slayer **1.9.x** (Steam: Windows, or Linux and Steam Deck through Proton) with
+  BepInExPack Skul (BepInEx 5.4.21+).
 - Doesn't change balance or content. Your save is only touched when you switch save slots (a backup of the game's
   save is made before every switch). Safe to add or remove at any time.
 - Should work next to content mods. Items the mod doesn't understand simply show no extra numbers.
@@ -259,8 +270,9 @@ The same settings are in the settings file (created on the first start):
 - **0.15:** optional Codex rewards (tokens for skipped gear, adventurer coins, Omen coins)
 
 ## Feedback / bug reports
-Please open an issue on GitHub: <REPO_URL>/issues. Attach
-`BepInEx/LogOutput.log` and tell us the mod version and what you did. Screenshots help a lot.
+Please open an issue on GitHub: https://github.com/Umut-Aslan99/SkulInsight_QoL/issues. Attach
+`BepInEx/LogOutput.log` and tell us the mod version and what you did. Screenshots help a lot. On Linux, please
+also attach the report of the [check script](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md#the-check-script).
 
 ## Credits
 - **DocRun**: idea, design and testing

@@ -22,7 +22,7 @@ Push-Location $root
 try {
     # Only tracked files, so build output and local files never leave the machine.
     foreach ($file in (git ls-files)) {
-        if ($exclude | Where-Object { $file -like $_ }) { continue }
+        if ($file -notlike "tools/linux/*" -and ($exclude | Where-Object { $file -like $_ })) { continue }
         $dest = Join-Path $Target $file
         New-Item -ItemType Directory -Force (Split-Path -Parent $dest) | Out-Null
         Copy-Item $file $dest

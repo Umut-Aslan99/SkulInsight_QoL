@@ -16,5 +16,7 @@ labels: bug
 - SkulInsight QoL version:
 - Skul version (top right in the main menu):
 - Other mods:
+- System: Windows / Linux (which distribution) / Steam Deck
 
 **Log:** please attach `BepInEx/LogOutput.log` (in r2modman/Gale: Settings > Browse profile folder).
+On Linux, please also attach `skul-linux-report.txt` from the check script (see docs/LINUX.md, "The check script").

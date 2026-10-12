@@ -236,6 +236,20 @@ Skul is installed automatically.
 </details>
 
 <details>
+<summary><b>Linux and Steam Deck</b></summary>
+
+The mod runs through **Proton**. Skul's native Linux version can't load it.
+
+1. Steam → right-click Skul → *Properties* → *Compatibility*: force Proton (for example Proton 9.0).
+2. Start Skul once from Steam without mods, then quit (this creates Skul's Proton prefix).
+3. Leave Skul's launch options empty (the Flatpak version of r2modman is the exception).
+4. Install the mod in r2modman or Gale and press **Start modded**.
+
+Errors, Steam Deck, manual installation and a check script: the
+[Linux and Steam Deck guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md).
+</details>
+
+<details>
 <summary><b>All settings</b></summary>
 
 | Section | Setting | Default | What it does |
@@ -266,6 +280,21 @@ Skul is installed automatically.
 It changes nothing about balance or drops: it only shows information the game already uses internally. Your save
 is only touched when you switch save slots (Esc → SkulInsight QoL → Save slots); the game's save is backed up before
 every switch.
+</details>
+
+<details>
+<summary><b>Linux: error about user.reg, or the game starts without the mod</b></summary>
+
+- **`ENOENT … compatdata/1147560/pfx/user.reg`** or **"compatibility data does not exist"**: Skul has never run through
+  Proton. Force Proton (Steam → *Properties* → *Compatibility*), start Skul once without mods, then press Start
+  modded again.
+- **Skul closes right away after Start modded:** Skul's launch options contain `linux_wrapper.sh` (r2modman's setup
+  for native games). Clear the launch options.
+- **The game starts without the mod:** Steam runs the native Linux version (the game folder has `Skul.x86_64`, no
+  `Skul.exe`). Force Proton.
+
+More fixes and a check script: the
+[Linux and Steam Deck guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md).
 </details>
 
 <details>
