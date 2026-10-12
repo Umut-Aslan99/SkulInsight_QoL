@@ -69,6 +69,16 @@ public static class CodexTracker
         }
     }
 
+    /// <summary>Save slot switch: another slot's Codex folder is in place now; its progress is read afresh.</summary>
+    internal static void ForgetSlot()
+    {
+        _progress = null;
+        _dirty = false;
+        CountedThisRun.Clear();
+        _runPlayer = 0;
+        Version++;
+    }
+
     /// <summary>Saved data was changed from outside (a migration): save it soon.</summary>
     internal static void MarkChanged() => Changed();
 
@@ -78,7 +88,10 @@ public static class CodexTracker
         Version++;
     }
 
-    private static bool Enabled => Plugin.CodexEnabled.Value;
+    private static bool Enabled => Plugin.CodexEnabled.Value && !Paused;
+
+    /// <summary>Nothing is recorded (the QA capture plays every gear in the test map).</summary>
+    public static bool Paused;
 
     // ------------------------------------------------------------------ enemies
 
@@ -117,6 +130,9 @@ public static class CodexTracker
         if (target.health.dead && CountedThisRun.Add(target.GetInstanceID()))
         {
             enemy.Kills++;
+            OnEliteKilled(target);
+            if (target.type == Character.Type.Boss && LateChapter())
+                OnRunWon();
             RunRecorder.OnKilled(EntryOf(target).Value.id);
             // Kills are when the enemy is out of the fight: capturing its animations can't disturb anything.
             CodexAnimations.RequestCapture(target, EntryOf(target).Value.key, CodexWindow.Instance);
@@ -281,6 +297,11 @@ public static class CodexTracker
             p.Seen++;
             changed = true;
         }
+        if (inscription.step > p.MaxStep)
+        {
+            p.MaxStep = inscription.step;
+            changed = true;
+        }
         if (inscription.isMaxStep && CountedThisRun.Add(id.GetHashCode() ^ 0x3A3A))
         {
             p.PickedUp++;
@@ -291,13 +312,114 @@ public static class CodexTracker
     }
 
     /// <summary>Called every frame by the plugin: a new player object means a new run (per-run counting resets).</summary>
+    /// <summary>Chapter 5 or later (normal or Dark Mirror): a boss there counts as a won run.</summary>
+    private static bool LateChapter()
+    {
+        var type = Singletons.Singleton<Services.Service>.Instance?.levelManager?.currentChapter?.type;
+        return type is Level.Chapter.Type.Chapter5 or Level.Chapter.Type.HardmodeChapter5 or Level.Chapter.Type.HardmodeChapter6;
+    }
+
+    /// <summary>A boss of chapter 5+ fell: every skill on your two skulls counts as won (its Codex box opens).</summary>
+    private static void OnRunWon()
+    {
+        var weapons = Singletons.Singleton<Services.Service>.Instance?.levelManager?.player?.playerComponents?.inventory?.weapon;
+        if (weapons == null)
+            return;
+        foreach (var skull in new[] { weapons.current, weapons.next })
+        {
+            if (skull == null || skull.currentSkills == null)
+                continue;
+            var p = Progress.Get(CodexCatalog.GearId(Characters.Gear.Gear.Type.Weapon, skull.name.Replace("(Clone)", "").Trim()));
+            foreach (var skill in skull.currentSkills)
+                if (skill != null && p.AddWonSkill(skill.key))
+                    Plugin.Log.LogInfo($"Codex: skill {skill.key} of {skull.name} revealed (won run)");
+        }
+        Changed();
+    }
+
     public static void Tick(Character player)
     {
         if (player != null && player.GetInstanceID() != _runPlayer)
         {
             _runPlayer = player.GetInstanceID();
             CountedThisRun.Clear();
+            WatchedWeapons.Clear();
         }
+        if (player != null)
+            WatchSkills(player);
         SaveIfNeeded();
+    }
+
+    // ------------------------------------------------------------------ dark enemies' abilities
+
+    /// <summary>A dark enemy rolled its abilities (DarkAbilityAttacher.Attach): each is met, on this enemy.</summary>
+    public static void OnEliteAbilities(Characters.Abilities.Darks.DarkAbilityAttacher attacher)
+    {
+        if (!Enabled || attacher?._abilities == null)
+            return;
+        var owner = attacher._owner;
+        string carrier = owner != null && EntryOf(owner) is { } e ? e.id : null;
+        foreach (var ability in attacher._abilities)
+        {
+            if (ability == null)
+                continue;
+            var p = Progress.Get(CodexElites.Id(ability.name.Replace("(Clone)", "").Trim()));
+            p.Seen++;
+            if (carrier != null)
+                p.AddSummoner(carrier);
+        }
+        Changed();
+    }
+
+    /// <summary>A dark enemy died: its abilities count a kill.</summary>
+    private static void OnEliteKilled(Character target)
+    {
+        var attacher = target.attach != null ? target.attach.GetComponentInChildren<Characters.Abilities.Darks.DarkAbilityAttacher>(true) : null;
+        if (attacher?._abilities == null)
+            return;
+        foreach (var ability in attacher._abilities)
+            if (ability != null)
+                Progress.Get(CodexElites.Id(ability.name.Replace("(Clone)", "").Trim())).Kills++;
+    }
+
+    // ------------------------------------------------------------------ skills used
+
+    private static readonly HashSet<int> WatchedWeapons = new();
+
+    /// <summary>
+    /// A skull page shows a skill's numbers once the skill was used: listens to the held skulls' own action events
+    /// (the SkillInfo sits on the skill's action object).
+    /// </summary>
+    private static void WatchSkills(Character player)
+    {
+        var weapons = player.playerComponents?.inventory?.weapon?.weapons;
+        if (weapons == null)
+            return;
+        foreach (var weapon in weapons)
+        {
+            if (weapon == null || !WatchedWeapons.Add(weapon.GetInstanceID()))
+                continue;
+            var held = weapon;
+            held.onStartAction += action => OnActionStarted(held, action);
+        }
+    }
+
+    private static void OnActionStarted(Characters.Gear.Weapons.Weapon weapon, Characters.Actions.Action action)
+    {
+        try
+        {
+            if (!Enabled || weapon == null || action == null)
+                return;
+            var skill = action.GetComponent<Characters.Gear.Weapons.SkillInfo>();
+            if (skill == null)
+                return;
+            var p = Progress.Get(CodexCatalog.GearId(Characters.Gear.Gear.Type.Weapon, weapon.name.Replace("(Clone)", "").Trim()));
+            if (p.AddSkill(skill.key))
+                Changed();
+        }
+        catch (Exception e)
+        {
+            Plugin.Log.LogDebug($"Codex: skill use not noted: {e.Message}");
+        }
     }
 }

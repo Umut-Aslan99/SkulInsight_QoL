@@ -17,7 +17,8 @@ public enum CodexCategory
     Items,
     Essences,
     Inscriptions,
-    DarkAbilities,
+    DarkAbilities,  // the player's Dark Mirror abilities (Characters.Gear.Upgrades)
+    Elites,         // dark enemies' abilities (Characters.Abilities.Darks)
 }
 
 /// <summary>One page of the Codex: an enemy, boss, skull, item, essence or inscription.</summary>
@@ -51,11 +52,48 @@ public sealed class EntryProgress
     /// <summary>A piece of a boss fight without a mind of its own (Pope's dark crystals): shown on that boss's page.</summary>
     public string PartOf = "";
 
-    /// <summary>Bosses/adventurers whose fights it appeared in (their summons), comma-separated entry ids.</summary>
+    /// <summary>
+    /// Bosses/adventurers whose fights it appeared in (their summons), comma-separated entry ids. For a dark enemy
+    /// ability (elite:...): the enemies it was seen on.
+    /// </summary>
     public string SummonedBy = "";
 
     /// <summary>Moves this boss/adventurer was seen doing, "|"-separated, per mode (Normal / Dark Mirror).</summary>
     public string Moves = "", MovesDark = "";
+
+    /// <summary>Skulls: the skills used at least once (SkillInfo keys, "|"-separated); their numbers show on the page.</summary>
+    public string SkillsUsed = "";
+
+    /// <summary>Inscriptions: the highest step reached (1 = first step); higher steps' texts stay greyed.</summary>
+    public int MaxStep;
+
+    /// <summary>
+    /// Skulls: the skills that were on one of your skulls when you beat a boss of chapter 5 or later (Umut 2026-10-12:
+    /// a skill's box on the skull's page is revealed by a won run with it), "|"-separated SkillInfo keys.
+    /// </summary>
+    public string SkillsWon = "";
+
+    public bool WonSkill(string key) => ("|" + SkillsWon + "|").Contains("|" + key + "|");
+
+    /// <summary>Notes a skill held at a won run; true if it is new.</summary>
+    public bool AddWonSkill(string key)
+    {
+        if (string.IsNullOrEmpty(key) || WonSkill(key))
+            return false;
+        SkillsWon = SkillsWon.Length == 0 ? key : SkillsWon + "|" + key;
+        return true;
+    }
+
+    public bool UsedSkill(string key) => ("|" + SkillsUsed + "|").Contains("|" + key + "|");
+
+    /// <summary>Notes a used skill; true if it is new.</summary>
+    public bool AddSkill(string key)
+    {
+        if (string.IsNullOrEmpty(key) || UsedSkill(key))
+            return false;
+        SkillsUsed = SkillsUsed.Length == 0 ? key : SkillsUsed + "|" + key;
+        return true;
+    }
 
     public IEnumerable<string> MovesSeen(bool dark) => (dark ? MovesDark : Moves).Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -118,6 +156,12 @@ public sealed class CodexProgress
                 sb.Append(",\"moves\":").Append(LogJson.Quote(p.Moves));
             if (p.MovesDark.Length > 0)
                 sb.Append(",\"movesDark\":").Append(LogJson.Quote(p.MovesDark));
+            if (p.SkillsUsed.Length > 0)
+                sb.Append(",\"skillsUsed\":").Append(LogJson.Quote(p.SkillsUsed));
+            if (p.SkillsWon.Length > 0)
+                sb.Append(",\"skillsWon\":").Append(LogJson.Quote(p.SkillsWon));
+            if (p.MaxStep > 0)
+                sb.Append(",\"maxStep\":").Append(p.MaxStep);
             sb
               .Append('}');
         }
@@ -152,6 +196,9 @@ public sealed class CodexProgress
                 SummonedBy = n.Str("summonedBy") ?? "",
                 Moves = n.Str("moves") ?? "",
                 MovesDark = n.Str("movesDark") ?? "",
+                SkillsUsed = n.Str("skillsUsed") ?? "",
+                SkillsWon = n.Str("skillsWon") ?? "",
+                MaxStep = (int)n.Num("maxStep"),
             };
         }
         return progress;
@@ -190,16 +237,21 @@ public static class CodexTiers
     /// <summary>Developer builds: everything met is shown fully (no kills needed to see pictures and films).</summary>
     public static bool RevealAllMet;
 
+    /// <summary>Developer builds: every entry fully revealed, met or not (Umut 2026-10-12: to check every page's layout).</summary>
+    public static bool UnlockAll;
+
     /// <summary>0 = unknown ("???"), 1 = seen, 2 = known, 3 = mastered. Thresholds: <see cref="CodexBalance"/>.</summary>
     public static int Tier(CodexCategory category, EntryProgress p, string id = null)
     {
+        if (UnlockAll)
+            return Max;
         if (p == null)
             return 0;
         if (RevealAllMet && (p.Seen > 0 || p.Kills > 0 || p.PickedUp > 0))
             return Max;
         int need2 = Need(category, id, 2), need3 = Need(category, id, 3);
-        int have = category is CodexCategory.Enemies or CodexCategory.Bosses ? p.Kills : p.PickedUp;
-        bool met = category == CodexCategory.Enemies ? p.Seen > 0 || p.Kills > 0 : p.Seen > 0;
+        int have = category is CodexCategory.Enemies or CodexCategory.Bosses or CodexCategory.Elites ? p.Kills : p.PickedUp;
+        bool met = category is CodexCategory.Enemies or CodexCategory.Elites ? p.Seen > 0 || p.Kills > 0 : p.Seen > 0;
         return have >= need3 ? 3 : have >= need2 ? 2 : met ? 1 : 0;
     }
 
@@ -208,6 +260,7 @@ public static class CodexTiers
     {
         CodexCategory.Enemies => CodexBalance.EnemyKillsFor(id, tier),
         CodexCategory.Bosses => (int)(tier >= 3 ? CodexBalance.BossWins3.Value : CodexBalance.BossWins2.Value),
+        CodexCategory.Elites => (int)(tier >= 3 ? CodexBalance.EliteKills3.Value : CodexBalance.EliteKills2.Value),
         _ => (int)(tier >= 3 ? CodexBalance.GearPicks3.Value : CodexBalance.GearPicks2.Value),
     };
 
@@ -215,7 +268,7 @@ public static class CodexTiers
     public static (string text, int have, int need)? Next(CodexCategory category, EntryProgress p, string id = null)
     {
         int tier = Tier(category, p, id);
-        bool enemy = category is CodexCategory.Enemies or CodexCategory.Bosses;
+        bool enemy = category is CodexCategory.Enemies or CodexCategory.Bosses or CodexCategory.Elites;
         int kills = p?.Kills ?? 0, picks = p?.PickedUp ?? 0;
         if (tier == 0)
             return (enemy ? Loc.T("Encounter it to reveal it") : Loc.T("Find it to reveal it"), 0, 1);
@@ -229,6 +282,9 @@ public static class CodexTiers
                 ? Loc.P("Defeat it to learn more", "Defeat it {0} times to learn more", need)
                 : Loc.P("Defeat it to master it", "Defeat it {0} times to master it", need), kills, need),
             CodexCategory.Enemies => (learn ? Loc.F("Kill {0} to learn more", need) : Loc.F("Kill {0} to master it", need), kills, need),
+            CodexCategory.Elites => (learn
+                ? Loc.P("Kill a dark enemy with it to learn more", "Kill {0} dark enemies with it to learn more", need)
+                : Loc.P("Kill a dark enemy with it to master it", "Kill {0} dark enemies with it to master it", need), kills, need),
             _ => (learn
                 ? Loc.P("Pick it up to learn more", "Pick it up {0} times to learn more", need)
                 : Loc.P("Pick it up to master it", "Pick it up {0} times to master it", need), picks, need),

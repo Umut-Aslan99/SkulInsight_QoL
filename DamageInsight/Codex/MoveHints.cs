@@ -204,6 +204,9 @@ public static class MoveHints
 
     private static readonly Dictionary<string, Dictionary<string, string>> Cache = new();
 
+    /// <summary>Save slot switch: hints come from the next slot's Codex folder.</summary>
+    internal static void ForgetSlot() => Cache.Clear();
+
     /// <summary>The hint for a move of a boss (storage key: "Pope", "Pope@DM"), or null.</summary>
     public static string Get(string key, string label)
     {

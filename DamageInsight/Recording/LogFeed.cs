@@ -17,6 +17,8 @@ public sealed class LogFeed
     public readonly List<DamageRecord> Shown = new();
     public readonly Dictionary<DamageSource, double> TotalBySource = new();
     public readonly Dictionary<Damage.Attribute, double> TotalByAttribute = new();
+    /// <summary>The player's damage per piece of gear (the damage table, GearTable).</summary>
+    public readonly Dictionary<(GearGroup group, string name), GearTotal> TotalByGear = new();
 
     /// <summary>Increases whenever Shown changes.</summary>
     public int Version { get; private set; }
@@ -52,6 +54,7 @@ public sealed class LogFeed
             Shown.Clear();
             TotalBySource.Clear();
             TotalByAttribute.Clear();
+            TotalByGear.Clear();
             _filterVersion = Filter.Version;
             _clearCount = clearCount;
             _room = currentRoom;
@@ -73,6 +76,7 @@ public sealed class LogFeed
             Shown.Add(r);
             Add(TotalBySource, r.Source, r.Amount);
             Add(TotalByAttribute, r.Attribute, r.Amount);
+            GearTable.Add(TotalByGear, r);
             added = true;
         }
         _processedTotal = totalAdded;

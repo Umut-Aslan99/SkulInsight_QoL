@@ -278,6 +278,9 @@ public static class CodexPortraits
 {
     private static readonly Dictionary<string, Sprite> Cache = new();
 
+    /// <summary>Save slot switch: portraits come from the next slot's Codex folder.</summary>
+    internal static void ForgetSlot() => Cache.Clear();
+
     /// <summary>A still picture: the first frame of the captured animations (idle), else an older single portrait.</summary>
     public static Sprite Get(string key)
     {

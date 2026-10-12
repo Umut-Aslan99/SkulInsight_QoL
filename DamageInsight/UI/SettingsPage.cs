@@ -57,6 +57,8 @@ public sealed class SettingsPage : global::UI.Dialogue
     private bool _starsInFont = true;
 
     private readonly List<Row> _rows = new();
+    /// <summary>Section headings with their place in the list (y from the top), see <see cref="ShowHeadingsInView"/>.</summary>
+    private readonly List<(TMP_Text text, float top, float bottom)> _headings = new();
     private readonly Dictionary<GameObject, Row> _rowsByObject = new();
 
     private GameObject _lastSelected;
@@ -317,6 +319,22 @@ public sealed class SettingsPage : global::UI.Dialogue
             }
             _content.anchoredPosition = new Vector2(0f, next);
         }
+        ShowHeadingsInView();
+    }
+
+    /// <summary>
+    /// A heading just below the list showed over the page frame (the game's heading text wasn't cut off by the list's
+    /// mask). Headings are drawn only while they are wholly inside the list.
+    /// </summary>
+    private void ShowHeadingsInView()
+    {
+        float offset = _content.anchoredPosition.y, view = _viewport.rect.height;
+        foreach (var (text, top, bottom) in _headings)
+        {
+            bool inside = top >= offset - 1f && bottom <= offset + view + 1f;
+            if (text.enabled != inside)
+                text.enabled = inside;
+        }
     }
 
     private void ScrollTo(Row row)
@@ -390,6 +408,7 @@ public sealed class SettingsPage : global::UI.Dialogue
         _language = Loc.Version;
 
         var items = SettingsCatalog.Build(Plugin.CodexKey.ConfigFile, InscriptionIconNames(), InscriptionName);
+        _slotsHeading = items.FirstOrDefault(i => i.Entry?.Definition.Section == SettingsCatalog.SaveSlotsSection)?.Section;
         float y = 0f;
         foreach (var section in items.GroupBy(i => i.Section))
         {
@@ -399,6 +418,8 @@ public sealed class SettingsPage : global::UI.Dialogue
             var head = Clone(heading, _content).GetComponent<TMP_Text>();
             head.text = section.Key;
             head.enableWordWrapping = false;
+            head.maskable = true; // the game's heading is static text; in our list it must be cut at the edges
+            _headings.Add((head, y, y + HeaderHeight));
             var hr = head.rectTransform;
             hr.anchorMin = hr.anchorMax = new Vector2(0f, 1f);
             hr.pivot = Vector2.zero;
@@ -605,6 +626,9 @@ public sealed class SettingsPage : global::UI.Dialogue
             case SettingKind.Action when item.Action == SettingsCatalog.ResetCodex && Codex.CodexReset.Requested:
                 row.ValueText.text = Loc.T("At the next start");
                 break;
+            case SettingKind.Action when item.ButtonLabel != null:
+                row.ValueText.text = item.ButtonLabel;
+                break;
             default:
                 row.ValueText.text = Localized("label/pause/settings/data/reset", "Reset");
                 break;
@@ -634,6 +658,10 @@ public sealed class SettingsPage : global::UI.Dialogue
         row.Index = index;
         row.Item.Entry.BoxedValue = row.Values[index]; // applies at once; BepInEx saves the file
         ShowIcon(row);
+        if (row.Item.HelpProvider != null)
+            ShowHelp(row.Item); // the save state slot: show what the newly chosen slot holds
+        if (row.Item.Entry?.Definition.Section == SettingsCatalog.SaveSlotsSection)
+            RefreshSlots(); // the number of slots changes the slot row's values
     }
 
     private void Pressed(Row row)
@@ -654,8 +682,104 @@ public sealed class SettingsPage : global::UI.Dialogue
             case SettingKind.Action when row.Item.Action == SettingsCatalog.ResetCodex:
                 ConfirmResetCodex(row);
                 break;
+            case SettingKind.Action when row.Item.Action is SettingsCatalog.SlotPlay or SettingsCatalog.SlotCopy or SettingsCatalog.SlotClear:
+                SlotAction(row);
+                break;
         }
     }
+
+    // ---------------------------------------------------------------- save slots
+
+    /// <summary>Play / Copy / Clear on the selected save slot; each asks first.</summary>
+    private void SlotAction(Row row)
+    {
+        var focus = row.Root.GetComponent<Selectable>();
+        void Refocus() => Focus(focus);
+        int slot = SaveSlots.SlotSwitcher.Selected, playing = SaveSlots.SlotStore.Active;
+        bool hasGame = SaveSlots.SlotStore.HasGame(slot);
+        var confirm = Scenes.Scene<Scenes.GameBase>.instance?.uiManager?.confirm;
+        void Ask(string question, Action yes)
+        {
+            if (confirm == null)
+                yes();
+            else
+                confirm.Open(question, () => Guard.Run("Settings page (save slots)", yes), Refocus);
+        }
+        void Report(string message)
+        {
+            if (this == null || !isActiveAndEnabled)
+                return; // a copy finished after the page was closed
+            RefreshSlots();
+            _helpBody.text = message + "\n\n" + row.Item.CurrentHelp;
+            Refocus();
+        }
+
+        switch (row.Item.Action)
+        {
+            case SettingsCatalog.SlotPlay:
+            {
+                string why = SaveSlots.SlotSwitcher.CannotSwitch(slot);
+                if (why != null)
+                    Report(why);
+                else
+                    Ask(hasGame
+                        ? Loc.F("Play slot {0}? Your current game stays in slot {1}. The game goes back to the title screen.", slot, playing)
+                        : Loc.F("Start a new game in slot {0}? Your current game stays in slot {1}. The game goes back to the title screen.", slot, playing),
+                        () =>
+                        {
+                            string message = SaveSlots.SlotSwitcher.Switch(slot, CloseAll);
+                            if (message != null)
+                                Report(message);
+                        });
+                break;
+            }
+            case SettingsCatalog.SlotCopy:
+            {
+                string why = SaveSlots.SlotSwitcher.CannotCopy(slot);
+                if (why != null)
+                    Report(why);
+                else
+                    Ask(hasGame
+                        ? Loc.F("Replace slot {0} with a copy of your game (and its Codex)?", slot)
+                        : Loc.F("Copy your game (and its Codex) into slot {0}?", slot),
+                        () =>
+                        {
+                            _helpBody.text = Loc.F("Copying your game into slot {0}...", slot);
+                            SaveSlots.SlotSwitcher.Copy(slot, Report);
+                        });
+                break;
+            }
+            case SettingsCatalog.SlotClear:
+            {
+                string why = SaveSlots.SlotSwitcher.CannotCopy(slot);
+                if (why != null)
+                    Report(why);
+                else if (!hasGame)
+                    Report(Loc.F("Slot {0} is empty.", slot));
+                else
+                    Ask(Loc.F("Clear slot {0}? Its game and its Codex are deleted.", slot), () => Report(SaveSlots.SlotSwitcher.Clear(slot)));
+                break;
+            }
+        }
+    }
+
+    /// <summary>The page and the pause menu go away (a slot switch goes back to the title screen).</summary>
+    private void CloseAll()
+    {
+        Close();
+        if (_panel != null)
+            _panel.gameObject.SetActive(false);
+    }
+
+    /// <summary>The save slot rows show the slots' current contents again (after Copy / Clear, or a new slot count).</summary>
+    private void RefreshSlots()
+    {
+        foreach (var row in _rows)
+            if (row.Item.Section == _slotsHeading)
+                ShowValue(row);
+    }
+
+    private string _slotsHeading;
 
     /// <summary>Reset Codex: asks first; selected again while requested, it withdraws the request.</summary>
     private void ConfirmResetCodex(Row row)
@@ -797,8 +921,9 @@ public sealed class SettingsPage : global::UI.Dialogue
     private void ShowHelp(SettingItem item)
     {
         _helpTitle.text = Stars(item.Label);
-        _helpBody.text = Stars(item.Help).Replace('\\', '/'); // TMP would read the "\r" in "Debug\runs" as a line break
-        _helpDefault.text = item.Entry != null ? Loc.F("Default: {0}", item.DefaultText) : "";
+        _helpBody.text = Stars(item.CurrentHelp).Replace('\\', '/'); // TMP would read the "\r" in "Debug\runs" as a line break
+        // No default for the save state slot: it picks a slot, it isn't a setting to put back.
+        _helpDefault.text = item.Entry != null && item.HelpProvider == null ? Loc.F("Default: {0}", item.DefaultText) : "";
     }
 
     // ---------------------------------------------------------------- helpers

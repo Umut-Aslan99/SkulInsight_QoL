@@ -43,6 +43,20 @@
       <HintPath>$(SkulManaged)\Plugins.Common.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <!-- Save slots: the game's save file model and the platform that writes it; the object pools a return to the
+         title screen empties. -->
+    <Reference Include="Plugins.ObjectPool">
+      <HintPath>$(SkulManaged)\Plugins.ObjectPool.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Platforms" Publicize="true">
+      <HintPath>$(SkulManaged)\Platforms.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Platforms.Common" Publicize="true">
+      <HintPath>$(SkulManaged)\Platforms.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Plugins.Singletons" Publicize="true">
       <HintPath>$(SkulManaged)\Plugins.Singletons.dll</HintPath>
       <Private>false</Private>
@@ -61,6 +75,15 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(SkulManaged)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- The game's key bindings (KeyMapper): its "details" keys show the mod's numbers too. -->
+    <Reference Include="UserInput" Publicize="true">
+      <HintPath>$(SkulManaged)\UserInput.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="InControl">
+      <HintPath>$(SkulManaged)\InControl.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <!-- Adventurers and some Dark Mirror bosses run BehaviorDesigner trees; the Codex reads their attacks from them. -->

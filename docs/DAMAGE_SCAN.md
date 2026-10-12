@@ -61,6 +61,13 @@ files). Fix idea for 0.12: like summons (`ObjectGraphWriter.ReferencedCharacters
 collect referenced polymorph weapons, analyze each as a weapon and show its attacks under the skill ("Transformed:
 Basic attack ..."); in the scan test, link `<skull>_Polymorph.json` by name.
 
+## 0.12 fixes (2026-10-07, commit 99d89d6)
+Genie Fairy Lamp (ChangeAction follow-up), Golden Gargoyle Stone_3 (ending operations), Davy Jones' four skills
+(special cannonballs via PushCannonBall/FireCannonBall), The Chosen Mage's Badge (Items.Customs scripts) now have
+numbers; World Tree Seed deals no damage (false positive). Also fixed on the way: Minotaurus' Blunt Strike following
+hit, Glacial Skull's swap shards, Davy Jones' normal attack listing every cannonball type. Scan: skull sections
+1273/1339, items+essences 130/179. Details: V012_LOG.md step 4.
+
 ## Next steps (0.12)
 1. Look at one skill per mechanism in the scan JSON (which operation types carry the hit) and teach GearAnalyzer
    that pattern; check with this test (numbers must go up) and DescriptionFormatterTests.

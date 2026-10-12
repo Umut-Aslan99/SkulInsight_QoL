@@ -40,6 +40,11 @@ public sealed class CombatLogWindow : MonoBehaviour
 
     private enum ChartMode { Source, Type }
 
+    /// <summary>The big area: every hit, or the damage table per piece of gear (GearTable).</summary>
+    private enum ViewMode { Hits, Table }
+    private ViewMode _view = ViewMode.Hits;
+    private ViewMode _viewShown = ViewMode.Hits;
+
     private ChartMode _chartMode = ChartMode.Source;
     private int _minDamageIndex;
 
@@ -118,8 +123,8 @@ public sealed class CombatLogWindow : MonoBehaviour
     {
         if (_rebuild)
             Guard.Run("Combat log (language)", Rebuild);
-        if (!DamageInsight.Codex.CodexWindow.IsTyping && !SettingsPage.IsOpen &&
-            (Plugin.CombatLogKey.Value.IsDown() || (IsOpen && Input.GetKeyDown(KeyCode.Escape))))
+        if ((Plugin.CombatLogKey.Value.IsDown() || (IsOpen && Input.GetKeyDown(KeyCode.Escape)))
+            && !SettingsPage.IsOpen && !TextInput.IsTyping())
             SetOpen(!IsOpen);
         if (!IsOpen)
             return;
@@ -127,10 +132,11 @@ public sealed class CombatLogWindow : MonoBehaviour
         UpdateFeed();
         UpdateTooltip();
         float now = Time.unscaledTime;
-        if (Feed.Version != _textVersion && now >= _nextText)
+        if ((Feed.Version != _textVersion || _view != _viewShown) && now >= _nextText)
         {
             _nextText = now + TextInterval;
             _textVersion = Feed.Version;
+            _viewShown = _view;
             DrawLog();
         }
         if ((Feed.Version != _chartVersion || _chartMode != _chartModeShown) && now >= _nextChart)
@@ -245,6 +251,10 @@ public sealed class CombatLogWindow : MonoBehaviour
         foreach (Damage.Attribute attribute in Enum.GetValues(typeof(Damage.Attribute)))
             Toggle(type, p, DescriptionFormatter.AttributeName(attribute.ToString()), () => Filter.Attributes.Contains(attribute),
                 on => Set(Filter.Attributes, attribute, on), DamageSources.AttributeColor(attribute));
+
+        var view = Group(p, Loc.T("View"));
+        Radio(view, p, new[] { (Loc.T("Hits"), ViewMode.Hits), (Loc.T("Damage table"), ViewMode.Table) },
+            () => _view, v => _view = v, changesFilter: false);
 
         var chart = Group(p, Loc.T("Chart"));
         Radio(chart, p, new[] { (Loc.T("By source"), ChartMode.Source), (Loc.T("By type"), ChartMode.Type) },
@@ -507,6 +517,15 @@ public sealed class CombatLogWindow : MonoBehaviour
 
     private void DrawLog()
     {
+        if (_view == ViewMode.Table)
+        {
+            bool fresh = _viewShown != ViewMode.Table || _lineMap.Count > 0;
+            _lineMap.Clear(); // no hit under the mouse in the table
+            _logText.text = GearTable.Text(Feed.TotalByGear);
+            if (fresh)
+                _scroll.verticalNormalizedPosition = 1f;
+            return;
+        }
         bool wasAtBottom = _scroll.verticalNormalizedPosition <= 0.01f || _logText.text.Length == 0;
         _logText.text = LogText.Build(Feed.Shown, DamageLog.Rooms, MaxLines, _lineMap);
         _hoverLine = -1;

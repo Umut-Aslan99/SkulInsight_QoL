@@ -30,6 +30,7 @@ public static class GearAnalyzer
         "_action", "_owner", "_container", "nextLevelReference", "_dropped", "_equipped", "_constraints",
         "_effect", "_effects", "_chronoToGlobe", "_chronoToOwner", "_chronoToTarget", "_layer", "_terrainLayer",
         "_animationInfo", "_sound", "_setItemKeys", "_groupItemKeys", "_stat", "actionsByType",
+        "_fastAttack", // The Chosen Mage's Badge: the same fireball hit as _normalAttack, only while spinning fast
     };
 
     // Fields holding a hit's base damage directly (instead of using the nearest AttackDamage).
@@ -40,6 +41,12 @@ public static class GearAnalyzer
 
     // Abilities attached to the enemy that compute damage with the enemy's own stats.
     private static readonly HashSet<string> EnemyStatOwners = new() { "HitBomb", "DotDamage" };
+
+    // Operations that only change a gauge or a stat but link the skull's passive ability: following the link would
+    // count the passive's own hits as damage of every hit that runs them (QA 2026-10-11: the transformed King
+    // Arthur listed his sword wave on every combo hit; every hit only adds mana). The Mummies' passives hand out guns: their
+    // links to every gun counted all guns as "Passive" damage (the guns are listed as basic attacks already).
+    private static readonly HashSet<string> NoDamageOperations = new() { "AddKingArthurMana", "WizardManaChargingSpeedBonus", "MummyPassive", "MummyGunDropPassive" };
 
     public static Breakdown Analyze(GearDoc doc)
     {
@@ -55,7 +62,7 @@ public static class GearAnalyzer
             b.BaseMin = root.Num("_minAttackDamage");
             b.BaseMax = root.Num("_maxAttackDamage");
         }
-        var walker = new Walker(damageSources);
+        var walker = new Walker(damageSources, doc.Components);
 
         switch (b.Category)
         {
@@ -67,6 +74,12 @@ public static class GearAnalyzer
                 break;
             case "essences":
                 AnalyzeRoot(doc, b, walker, "Quintessence", "Active");
+                break;
+            case "upgrades": // the player's dark abilities (the Dark Mirror shop; the Codex's dark ability pages)
+                AnalyzeUpgrade(doc, b, walker);
+                break;
+            case "darks": // a dark enemy's ability (the Codex's elite pages)
+                AnalyzeRoot(doc, b, walker, "DarkAbility", "Effect");
                 break;
             case "inscriptions":
                 AnalyzeInscription(doc, b, walker);
@@ -170,22 +183,39 @@ public static class GearAnalyzer
             foreach (var motion in plan[i].motions)
                 walker.Walk(motion, step);
             if (i == 0)
+            {
                 walker.WalkField(action, "_operations", step); // action-level operations run with every motion; count once
+                walker.WalkField(action, "_endingOperations", step); // SimpleActionWithEnding: e.g. Golden Gargoyle's statue bursting
+            }
             section.Steps.Add(step);
         }
         if (plan.Count == 0)
         {
             var step = new Step();
             walker.WalkField(action, "_operations", step);
+            walker.WalkField(action, "_endingOperations", step);
             section.Steps.Add(step);
         }
         foreach (var s in section.Steps)
             Collapse(s.Hits);
         // Charge variants often share the same hits (e.g. the anticipation motion); drop empty steps.
         section.Steps.RemoveAll(st => st.Hits.Count == 0 && section.Steps.Count > 1);
+        // Parts without damage were dropped: number the rest 1, 2, 3 ("Part 3, 5, 7" read like missing parts; QA T3).
+        int part = 1;
+        foreach (var s in section.Steps.Where(s => s.IsPart))
+            s.Label = Loc.F("Part {0}", part++);
         // A chain where only one part deals damage: "Part 3" means nothing to the player.
         if (section.Steps.Count == 1 && section.Steps[0].IsPart)
             section.Steps[0].Label = "";
+        // Davy Jones: every 3rd reload loads an enhanced version of the cannonball this action fires or loads.
+        if (walker.TakeCannonBall(out string cannonBall))
+        {
+            var enhanced = new Step { Label = Loc.T("Enhanced cannonball") };
+            walker.WalkCannonBall("Enhanced_" + cannonBall, enhanced);
+            Collapse(enhanced.Hits);
+            if (enhanced.Hits.Count > 0)
+                section.Steps.Add(enhanced);
+        }
     }
 
     /// <summary>
@@ -243,6 +273,38 @@ public static class GearAnalyzer
         return plan;
     }
 
+    /// <summary>
+    /// A dark ability (UpgradeObject): its permanent part (Upgrade._passive) and one section per level
+    /// (Upgrade._abilityByLevel: only that level's ability is attached), Key = the level.
+    /// </summary>
+    private static void AnalyzeUpgrade(GearDoc doc, Breakdown b, Walker walker)
+    {
+        var root = doc.Components.FirstOrDefault(x => x.Is("UpgradeObject"));
+        if (root.IsNull)
+            return;
+        var upgrade = root.Child("_upgrade");
+        if (upgrade.IsNull)
+            return;
+        var passive = new Section { Kind = "Passive" };
+        var passiveStep = new Step();
+        walker.WalkField(upgrade, "_passive", passiveStep);
+        Collapse(passiveStep.Hits);
+        passive.Steps.Add(passiveStep);
+        if (passive.HasHits)
+            b.Sections.Add(passive);
+        var levels = upgrade.Child("_abilityByLevel").List("_components").ToList();
+        for (int i = 0; i < levels.Count; i++)
+        {
+            var section = new Section { Kind = "Level", Key = (i + 1).ToString(System.Globalization.CultureInfo.InvariantCulture) };
+            var step = new Step();
+            walker.Walk(levels[i], step);
+            Collapse(step.Hits);
+            section.Steps.Add(step);
+            if (section.HasHits)
+                b.Sections.Add(section);
+        }
+    }
+
     private static void AnalyzeRoot(GearDoc doc, Breakdown b, Walker walker, string rootType, string kind)
     {
         var root = doc.Components.FirstOrDefault(x => x.Is(rootType));
@@ -250,7 +312,10 @@ public static class GearAnalyzer
             return;
         var section = new Section { Kind = kind, Cooldown = Cooldown(root) };
         var step = new Step();
-        walker.Walk(root, step, isRoot: true);
+        // Items with their own scripts on the equipped object (The Chosen Mage's Badge and its fireballs) keep their
+        // hits there, not under the item's abilities; outer scripts first, so the parts they hold count once.
+        var customs = doc.Components.Where(x => x.Type.Contains(".Items.Customs.")).OrderBy(x => (x.Path ?? "").Length);
+        walker.Walk(new[] { root }.Concat(customs), step, rootFirst: true);
         Collapse(step.Hits);
         section.Steps.Add(step);
         b.Sections.Add(section);
@@ -385,13 +450,44 @@ public static class GearAnalyzer
     private sealed class Walker
     {
         private readonly List<(string path, double min, double max)> _damageSources;
+        private readonly Dictionary<string, Node> _actionsByPath = new();
+        private readonly Node _cannonFire; // Davy Jones: the cannon shot that fires whatever cannonball is loaded
+        private string _cannonBall; // the cannonball type the last walked action fires or loads (TakeCannonBall)
 
-        public Walker(List<Node> damageSources)
+        public Walker(List<Node> damageSources, IEnumerable<Node> components)
         {
             _damageSources = damageSources
                 .Select(x => (x.Path ?? "", x.Num("_minAttackDamage"), x.Num("_maxAttackDamage")))
                 .OrderByDescending(x => x.Item1.Length)
                 .ToList();
+            foreach (var c in components)
+            {
+                if (c.Path != null && c.Has("_inputMethod") && c.Has("_type") && !_actionsByPath.ContainsKey(c.Path))
+                    _actionsByPath[c.Path] = c;
+                if (_cannonFire.IsNull && c.Is("FireCannonBall"))
+                    _cannonFire = c;
+            }
+        }
+
+        /// <summary>The cannonball type met since the last call (Davy Jones), for the "Enhanced cannonball" step.</summary>
+        public bool TakeCannonBall(out string type)
+        {
+            type = _cannonBall;
+            _cannonBall = null;
+            return type != null;
+        }
+
+        /// <summary>Walks the projectile the cannon fires for one cannonball type ("Skill2", "Enhanced_Normal", ...).</summary>
+        public void WalkCannonBall(string type, Step step) =>
+            WalkCannonBall(type, WithPathBase(Start, _cannonFire.Path), step, new HashSet<object>());
+
+        private void WalkCannonBall(string type, Ctx ctx, Step step, HashSet<object> visited)
+        {
+            if (_cannonFire.IsNull)
+                return;
+            foreach (var entry in _cannonFire.Child("_selector").List("_projectiles"))
+                if (entry.Str("type") == type)
+                    Visit(entry.Child("projectilePrefab"), ctx, step, visited, false);
         }
 
         private struct Ctx
@@ -409,6 +505,18 @@ public static class GearAnalyzer
 
         public void Walk(Node node, Step step, bool isRoot = false) =>
             Visit(node, Start, step, new HashSet<object>(), isRoot);
+
+        /// <summary>Walks several nodes into one step, each object counted once (the first node may be the gear root).</summary>
+        public void Walk(IEnumerable<Node> nodes, Step step, bool rootFirst)
+        {
+            var visited = new HashSet<object>();
+            bool first = rootFirst;
+            foreach (var node in nodes)
+            {
+                Visit(node, Start, step, visited, first);
+                first = false;
+            }
+        }
 
         public void WalkField(Node owner, string field, Step step)
         {
@@ -446,10 +554,12 @@ public static class GearAnalyzer
                 return;
             string type = node.ShortType;
             bool startsAction = type is "DoAction" or "RunAction" or "TriggerActionStart";
-            if (!isRoot && !startsAction && (type == "Weapon" || type == "Item" || type == "Quintessence" || type.EndsWith("Action")))
+            if (!isRoot && !startsAction && type != "ChangeAction" && (type == "Weapon" || type == "Item" || type == "Quintessence" || type.EndsWith("Action")))
                 return; // another gear or action: not part of this hit list
             if (type == "$character")
                 return; // summoned character: handled separately (minions)
+            if (NoDamageOperations.Contains(type))
+                return;
             // A reference to a whole object that contains the gear itself (e.g. the Werewolf's Hunt has a ToObject
             // operation targeting the skull's own object): it lists every component of the gear, so following it
             // would pull every other action's hits into this one.
@@ -469,12 +579,37 @@ public static class GearAnalyzer
                 // cooldown) is not a new attack; following it would pull in every charge level.
                 bool backLink = !target.IsNull && target.Path != null && node.Path != null && node.Path.StartsWith(target.Path + "/");
                 if (!target.IsNull && !backLink && visited.Add(target.Data))
+                    VisitAction(target, WithPathBase(ctx, target.Path), step, visited);
+                return;
+            }
+
+            // A skill that swaps itself for a follow-up while it runs (ChangeAction: Genie's lamp punch, Minotaurus'
+            // following hit): the follow-up is a hidden "Custom" action on the same button, so its hits belong here.
+            // Swaps to other real skills (air versions, enhanced forms) are skills of their own and listed there.
+            if (type == "ChangeAction")
+            {
+                foreach (var info in node.List("_skillsToChange"))
+                    if (info.Path != null && _actionsByPath.TryGetValue(info.Path, out var followUp)
+                        && followUp.Str("_type") == "Custom" && visited.Add(followUp.Data))
+                        VisitAction(followUp, WithPathBase(ctx, followUp.Path), step, visited);
+                return;
+            }
+
+            // Davy Jones: the cannon fires the loaded cannonball (a normal attack fires a normal one); a skill loads its
+            // own special cannonball, whose hits are that skill's damage. Loading normal ones (reload, swap) deals none.
+            if (type == "FireCannonBall")
+            {
+                WalkCannonBall("Normal", ctx, step, visited);
+                _cannonBall = "Normal";
+                return;
+            }
+            if (type == "PushCannonBall")
+            {
+                string ball = node.Str("_type") ?? "";
+                if (ball.StartsWith("Skill"))
                 {
-                    var targetCtx = WithPathBase(ctx, target.Path);
-                    foreach (var motion in MotionsOf(target))
-                        Visit(motion, targetCtx, step, visited, false);
-                    foreach (var op in target.List("_operations"))
-                        Visit(op, targetCtx, step, visited, false);
+                    WalkCannonBall(ball, WithPathBase(ctx, _cannonFire.Path), step, visited);
+                    _cannonBall = ball;
                 }
                 return;
             }
@@ -549,6 +684,17 @@ public static class GearAnalyzer
                     }
                 }
             }
+        }
+
+        /// <summary>An action started by another one: its motions and its own (and ending) operations.</summary>
+        private void VisitAction(Node action, Ctx ctx, Step step, HashSet<object> visited)
+        {
+            foreach (var motion in MotionsOf(action))
+                Visit(motion, ctx, step, visited, false);
+            foreach (var op in action.List("_operations"))
+                Visit(op, ctx, step, visited, false);
+            foreach (var op in action.List("_endingOperations"))
+                Visit(op, ctx, step, visited, false);
         }
 
         private static void Emit(Node owner, Node hitInfo, Ctx ctx, Step step)

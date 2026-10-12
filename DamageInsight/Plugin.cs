@@ -21,6 +21,8 @@ public class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log;
 
     internal static ConfigEntry<string> Language;
+    internal static ConfigEntry<bool> WhatsNewEnabled;
+    internal static ConfigEntry<string> LastVersionSeen;
 
     internal static ConfigEntry<bool> DamageSourceTags;
     internal static ConfigEntry<bool> DamageSourceIcons;
@@ -28,7 +30,9 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<float> DamageNumberFadeTime;
     internal static ConfigEntry<bool> BossHealthNumbers;
     internal static ConfigEntry<bool> DescriptionNumbers;
-    internal static ConfigEntry<bool> DescriptionsShort;
+    internal static ConfigEntry<bool> DescriptionsHoldToShow;
+    internal static ConfigEntry<bool> DescriptionsCompact;
+    internal static ConfigEntry<KeyboardShortcut> DescriptionsHoldKey;
     internal static ConfigEntry<KeyboardShortcut> CombatLogKey;
     internal static ConfigEntry<bool> CombatLogUseDialogueBackground;
     internal static ConfigEntry<float> CombatLogOpacity;
@@ -50,6 +54,9 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> CodexProjectiles;
     internal static ConfigEntry<bool> CodexCleanFilms;
     internal static ConfigEntry<bool> CodexCompactFilms;
+    internal static ConfigEntry<bool> CodexOpenOnYou;
+    internal static ConfigEntry<int> SaveSlotSelected;
+    internal static ConfigEntry<int> SaveSlotCount;
     internal static ConfigEntry<bool> CodexMoveCounter;   // bound in developer builds only (null otherwise)
     internal static ConfigEntry<bool> CodexRunLog;        // bound in developer builds only (null otherwise)
     internal static ConfigEntry<bool> PreferNewMoves;     // bound in developer builds only (null otherwise)
@@ -61,6 +68,8 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> DevToolsEnabled;
     internal static ConfigEntry<KeyboardShortcut> DevRoomKey;
     internal static ConfigEntry<bool> CodexDevReveal;
+    internal static ConfigEntry<bool> QaCaptureOnce;
+    internal static ConfigEntry<bool> CodexUnlockAll;
 
     private bool _iconDumpRunning;
     private bool _gearScanRunning;
@@ -78,6 +87,10 @@ public class Plugin : BaseUnityPlugin
             new AcceptableValueList<string>(System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(
                 new[] { DamageInsight.Lang.LanguageWatcher.Auto }, System.Linq.Enumerable.Select(DamageInsight.Lang.Loc.Languages, l => l.code))))));
         DamageInsight.Lang.Loc.OverrideFolder = System.IO.Path.Combine(Paths.BepInExRootPath, "DamageInsight", "Lang");
+        WhatsNewEnabled = Config.Bind("General", "WhatsNew", true,
+            "After an update, show once (in the castle) what's new in this version.");
+        LastVersionSeen = Config.Bind("General", "LastVersionSeen", "",
+            "The version whose 'What's new' was last shown (kept by the mod).");
         DamageSourceTags = Config.Bind("Damage Numbers", "ShowSourceTag", true,
             "Mark damage numbers with where the damage came from (icon or ATK, SKILL, ITEM, ...).");
         DamageSourceIcons = Config.Bind("Damage Numbers", "UseIcons", true,
@@ -91,8 +104,12 @@ public class Plugin : BaseUnityPlugin
             "Show current / maximum HP as text on boss, adventurer and dark enemy health bars.");
         DescriptionNumbers = Config.Bind("Descriptions", "ShowDamageNumbers", true,
             "Add real damage numbers (with your current stats) to skull, skill, swap, item, essence and inscription descriptions.");
-        DescriptionsShort = Config.Bind("Descriptions", "Short", false,
-            "Short descriptions: one line per attack part with its total damage, without the calculation behind it.");
+        DescriptionsCompact = Config.Bind("Descriptions", "Compact", true,
+            "Compact numbers in the game's description boxes: one line per attack with its totals. Off: every hit with its formula (base x hit % x attack %). The Codex always shows the formula.");
+        DescriptionsHoldToShow = Config.Bind("Descriptions", "HoldToShow", true,
+            "The numbers in the game's description boxes show only while you hold HoldKey (the boxes stay short, like the game's own 'hold for details'). Off: always shown.");
+        DescriptionsHoldKey = Config.Bind("Descriptions", "HoldKey", new KeyboardShortcut(UnityEngine.KeyCode.LeftShift),
+            "Key to hold for the numbers in the game's description boxes (inventory, items on the ground, shops, swap menu). Either Shift works.");
         PickupPreview = Config.Bind("Descriptions", "PreviewPickup", true,
             "Items on the ground, in shops and in the swap menu show their numbers as if you had picked them up (their stats and inscription steps included).");
         CombatLogKey = Config.Bind("Combat Log", "ToggleKey", new KeyboardShortcut(UnityEngine.KeyCode.L),
@@ -134,7 +151,15 @@ public class Plugin : BaseUnityPlugin
             "Save boss films as compact pictures (about a quarter of the size, nearly the same look). Off: lossless pictures, about 1 GB more once every boss is filmed.");
         CodexCleanFilms = Config.Bind("Codex", "CleanFilms", true,
             "Boss films show only the boss: damage numbers, the effects of your skills and items, your summons and status effects on the boss (poison, burn, freeze, ...) are left out.");
+        CodexOpenOnYou = Config.Bind("Codex", "OpenOnYou", true,
+            "During a run, the Codex opens on the You page (your skulls, items, inscriptions and stats). Off: it opens on the page you read last.");
         DamageInsight.Codex.CodexBalance.Bind(Config);
+        SaveSlotSelected = Config.Bind("Save Slots", "Slot", 1,
+            "The save slot that Play, Copy and Clear use. The panel on the right shows what it holds.");
+        SaveSlotCount = Config.Bind("Save Slots", "Slots", 3, "How many save slots there are (3 to 5).");
+        DamageInsight.SaveSlots.SlotStore.Folder = System.IO.Path.Combine(Paths.BepInExRootPath, "DamageInsight", "SaveSlots");
+        DamageInsight.SaveSlots.SlotStore.Load();
+        DamageInsight.SaveSlots.SlotSwitcher.ConnectSettingsPage();
 #if DEV
         DumpIcons = Config.Bind("Developer", "DumpIconsOnce", false,
             "Save the game's icons as PNGs to BepInEx\\DamageInsight\\IconDump when entering a run. Turns itself off afterwards.");
@@ -161,8 +186,21 @@ public class Plugin : BaseUnityPlugin
             "First Dark Hero, King Alexander, adventurers, Yggdrasil, Pope, First Hero) are led to them: distance, HP, cooldown " +
             "and chance checks are passed, and they change form first when a move needs another form. Bosses run by their own " +
             "code (Leiana sisters, Awakened Leiana, Chimera) start a missing move of the same kind instead of a filmed one.");
-        DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
-        CodexDevReveal.SettingChanged += (_, _) => DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value;
+        QaCaptureOnce = Config.Bind("Developer", "QaCaptureOnce", false,
+            "QA: in the castle or a run, play every skull, item and quintessence through the game's screens in the test map (ground popup, " +
+            "inventory, detail views) and save a picture and the text facts of each to BepInEx\\DamageInsight\\QA. Your inventory is emptied. Turns itself off.");
+        CodexUnlockAll = Config.Bind("Developer", "CodexUnlockEverything", false,
+            "Codex testing: every page fully unlocked, met or not (every entry, skill box, inscription step, boss move). " +
+            "Only shows: your progress stays as it is.");
+        void ApplyReveal()
+        {
+            DamageInsight.Codex.CodexTiers.UnlockAll = CodexUnlockAll.Value;
+            DamageInsight.Codex.CodexTiers.RevealAllMet = CodexDevReveal.Value || CodexUnlockAll.Value;
+            DamageInsight.Codex.CodexWindow.Instance?.Invalidate();
+        }
+        ApplyReveal();
+        CodexDevReveal.SettingChanged += (_, _) => ApplyReveal();
+        CodexUnlockAll.SettingChanged += (_, _) => ApplyReveal();
 #endif
 
         // Apply every [HarmonyPatch] class one by one, so a patch broken by a game update only
@@ -173,6 +211,7 @@ public class Plugin : BaseUnityPlugin
 
         gameObject.AddComponent<DamageInsight.UI.CombatLogWindow>();
         gameObject.AddComponent<DamageInsight.UI.MiniLog>();
+        gameObject.AddComponent<DamageInsight.UI.WhatsNew>();
         DamageInsight.Codex.CodexReset.RunIfRequested(); // a requested reset happens before anything reads the Codex
         DamageInsight.Codex.CodexMigrations.Run(); // before anything reads the saved moves and films
         gameObject.AddComponent<DamageInsight.Codex.CodexWindow>();
@@ -180,6 +219,7 @@ public class Plugin : BaseUnityPlugin
         UnityEngine.Application.quitting += () => DamageInsight.Codex.CodexTracker.SaveIfNeeded(force: true);
 #if DEV
         gameObject.AddComponent<DevTranslator>();
+        gameObject.AddComponent<QaCapture>();
 #endif
 
         Log.LogInfo($"{MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION} loaded");
@@ -188,6 +228,7 @@ public class Plugin : BaseUnityPlugin
     private void Update()
     {
         DamageInsight.Lang.LanguageWatcher.Tick();
+        DamageInsight.Describe.ExtraInfo.Tick();
         var player = Singleton<Service>.Instance?.levelManager?.player;
         bool inRun = player != null;
         DamageInsight.Codex.CodexTracker.Tick(player);

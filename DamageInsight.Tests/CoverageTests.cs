@@ -135,4 +135,32 @@ public class CoverageTests
             DescriptionFormatter.Short = false;
         }
     }
+
+    /// <summary>
+    /// Dev aid: prints the analysis of the scans named in DUMP_GEAR ("weapons/Genie,items/TheChosenMagesBadge") to
+    /// the test output. Does nothing without the variable.
+    /// </summary>
+    [FixtureFact]
+    public void Dump_named_gear()
+    {
+        string folder = Fixture.FullScanFolder();
+        string names = Environment.GetEnvironmentVariable("DUMP_GEAR");
+        if (folder == null || string.IsNullOrWhiteSpace(names))
+            return;
+        foreach (string name in names.Split(','))
+        {
+            var b = GearAnalyzer.Analyze(GearDoc.Parse(File.ReadAllText(Path.Combine(folder, name.Trim() + ".json"))));
+            _out.WriteLine($"== {name} base {b.BaseMin}-{b.BaseMax}");
+            foreach (var s in b.Sections)
+            {
+                _out.WriteLine($"  [{s.Kind}] {s.Key} {s.Title} cd {s.Cooldown}");
+                foreach (var st in s.Steps)
+                {
+                    _out.WriteLine($"    step '{st.Label}'");
+                    foreach (var h in st.Hits)
+                        _out.WriteLine($"      {h.Count}x {h.MultMin:0.###}-{h.MultMax:0.###} {h.Attribute} {h.MotionType} {h.AttackType} base {h.BaseMin}-{h.BaseMax} ({h.BaseSource}) chance {h.Chance} owner {h.Owner} at {h.OwnerPath}");
+                }
+            }
+        }
+    }
 }

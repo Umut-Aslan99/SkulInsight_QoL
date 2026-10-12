@@ -171,6 +171,8 @@ public static class CodexCatalog
             Plugin.Log.LogWarning($"Codex: dark abilities could not be listed: {e.Message}");
         }
 
+        CodexElites.AddTo(list);
+
         // Enemies without a game key that were met before (their names are stored with the progress).
         foreach (var pair in CodexTracker.Progress.Entries)
             if (pair.Key.StartsWith("named:") && pair.Value.Name.Length > 0)
@@ -226,6 +228,16 @@ public static class CodexCatalog
             return ("", "");
         string keyBase = reference.displayNameKey.Substring(0, reference.displayNameKey.Length - "/name".Length);
         return (Localize(keyBase + "/desc"), Localize(keyBase + "/flavor"));
+    }
+
+    /// <summary>A quintessence's active name and text ("&lt;key&gt;/active/name", ".../active/desc"), or empty.</summary>
+    public static (string name, string description) ActiveTexts(CodexEntry entry)
+    {
+        var reference = GearOf(entry);
+        if (reference == null || string.IsNullOrEmpty(reference.displayNameKey) || !reference.displayNameKey.EndsWith("/name"))
+            return ("", "");
+        string keyBase = reference.displayNameKey.Substring(0, reference.displayNameKey.Length - "/name".Length);
+        return (Localize(keyBase + "/active/name"), Localize(keyBase + "/active/desc"));
     }
 
     public static Sprite DarkIcon(CodexEntry entry)

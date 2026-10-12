@@ -1260,6 +1260,51 @@
           "tip": "Er taucht in der Nähe wieder auf: Sei bereit für den nächsten Angriff."
         }
       }
+    },
+    "elite:Protection": {
+      "about": "Hebt vorne einen Schild, der deine Angriffe von dieser Seite abblockt. Der Schild hält Schaden in Höhe von 30 % der max. LP des Gegners aus; zerbrochen kommt er nach 10 Sekunden zurück. Greif von hinten an."
+    },
+    "elite:Immortal": {
+      "about": "Alle 20 Sekunden ruft er einen Helfer in der Nähe herbei. Besiege den Helfer innerhalb von 10 Sekunden, sonst heilt sich der Gegner um 30 % seiner max. LP."
+    },
+    "elite:IntenseCold": {
+      "about": "Umgibt sich mit eisiger Luft. In seiner Nähe sind deine Standardangriffe 30 % langsamer, du bewegst dich 50 % langsamer und dein Sprint ist 20 % kürzer."
+    },
+    "elite:Tornado": {
+      "about": "Alle 8 Sekunden startet ein Wirbelsturm an einem Ende des Bodens, auf dem du stehst, und fegt darüber hinweg."
+    },
+    "elite:Brawler": {
+      "about": "Alle 6 Sekunden löst er einen Angriff auf dem Boden um sich herum aus."
+    },
+    "elite:Penance": {
+      "about": "Triffst du ihn, schlägt er mit einem Ausbruch um sich herum zurück (höchstens alle 3 Sekunden)."
+    },
+    "elite:Conductor": {
+      "about": "Alle 7 Sekunden fliegt ein Geschoss von einem zufälligen Punkt um dich herum auf dich zu."
+    },
+    "elite:Disaster": {
+      "about": "Alle 15 Sekunden wirft er drei Geschosse in die Luft, die um ihn herum herabregnen."
+    },
+    "elite:Judgement": {
+      "about": "Alle 5 Sekunden schlägt etwas dort ein, wo du stehst. Bleib in Bewegung."
+    },
+    "elite:DivinePower": {
+      "about": "Alle 10 Sekunden heilt er die Gegner um sich herum um 50 % ihrer max. LP (nicht sich selbst). Besiege ihn zuerst."
+    },
+    "elite:Cannoneer": {
+      "about": "Stellt alle 10 Sekunden eine Kanone neben sich auf, bis zu 3 gleichzeitig."
+    },
+    "elite:Quarantine": {
+      "about": "Ein Ring aus dunkler Energie umgibt ihn. Den Ring zu berühren tut weh (30 % seines Angriffs, einmal pro Sekunde); innerhalb und außerhalb des Rings bist du sicher."
+    },
+    "elite:Regeneration": {
+      "about": "Trägt einen Schild im Wert von 50 % seiner max. LP. Erleidet er 4 Sekunden lang keinen Schaden, füllt sich der Schild schnell wieder auf (20 % pro Sekunde). Bleib dran."
+    },
+    "elite:Legion": {
+      "about": "Stärkt die Gegner um sich herum: 50 % mehr LP und Angriff, 20 % größer, und sie zucken nicht mehr zusammen und werden nicht mehr zurückgestoßen."
+    },
+    "elite:PlateArmor": {
+      "about": "Seine Rüstung lenkt die ersten 10 Treffer ab: sie verursachen keinen Schaden."
     }
   }
 }

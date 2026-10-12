@@ -1260,6 +1260,51 @@
           "tip": "Reaparece cerca: prepárate para el siguiente ataque."
         }
       }
+    },
+    "elite:Protection": {
+      "about": "Levanta un escudo por delante que bloquea tus ataques desde ese lado. El escudo aguanta daño igual al 30 % de la vida máxima del enemigo; si se rompe, vuelve a los 10 segundos. Atácalo por la espalda."
+    },
+    "elite:Immortal": {
+      "about": "Cada 20 segundos llama a un ayudante cerca. Elimina al ayudante en 10 segundos o el enemigo se curará un 30 % de su vida máxima."
+    },
+    "elite:IntenseCold": {
+      "about": "Se rodea de aire helado. Cerca de él, tus ataques básicos son un 30 % más lentos, te mueves un 50 % más lento y tu desplazamiento es un 20 % más corto."
+    },
+    "elite:Tornado": {
+      "about": "Cada 8 segundos un tornado sale de un extremo del suelo en el que estás y lo recorre."
+    },
+    "elite:Brawler": {
+      "about": "Cada 6 segundos desata un ataque en el suelo a su alrededor."
+    },
+    "elite:Penance": {
+      "about": "Cuando lo golpeas, responde con una explosión a su alrededor (como mucho cada 3 segundos)."
+    },
+    "elite:Conductor": {
+      "about": "Cada 7 segundos un disparo vuela hacia ti desde un punto al azar a tu alrededor."
+    },
+    "elite:Disaster": {
+      "about": "Cada 15 segundos lanza tres proyectiles al aire que caen a su alrededor."
+    },
+    "elite:Judgement": {
+      "about": "Cada 5 segundos cae un golpe donde estás. No te quedes quieto."
+    },
+    "elite:DivinePower": {
+      "about": "Cada 10 segundos cura a los enemigos cercanos un 50 % de su vida máxima (no a sí mismo). Elimínalo primero."
+    },
+    "elite:Cannoneer": {
+      "about": "Coloca un cañón a su lado cada 10 segundos, hasta 3 a la vez."
+    },
+    "elite:Quarantine": {
+      "about": "Un anillo de energía oscura lo rodea. Tocar el anillo duele (30 % de su ataque, una vez por segundo); dentro y fuera del anillo estás a salvo."
+    },
+    "elite:Regeneration": {
+      "about": "Lleva un escudo equivalente al 50 % de su vida máxima. Si no recibe daño durante 4 segundos, el escudo se recarga rápido (20 % por segundo). No dejes de presionar."
+    },
+    "elite:Legion": {
+      "about": "Fortalece a los enemigos cercanos: 50 % más de vida y ataque, un 20 % más grandes, y ya no se inmutan ni salen despedidos."
+    },
+    "elite:PlateArmor": {
+      "about": "Su armadura desvía los primeros 10 golpes que recibe: no hacen daño."
     }
   }
 }

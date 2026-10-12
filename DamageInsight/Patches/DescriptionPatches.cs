@@ -14,6 +14,24 @@ namespace DamageInsight.Patches;
 /// </summary>
 public static class DescriptionPatches
 {
+    /// <summary>True while the Codex reads the game's own text (it adds its numbers itself): no numbers appended.</summary>
+    public static bool Plain;
+
+    /// <summary>The game's text without our numbers.</summary>
+    public static string PlainText(System.Func<string> read)
+    {
+        bool before = Plain;
+        Plain = true;
+        try
+        {
+            return read();
+        }
+        finally
+        {
+            Plain = before;
+        }
+    }
+
     [HarmonyPatch(typeof(Gear), nameof(Gear.description), MethodType.Getter)]
     public static class GearDescription
     {
@@ -23,14 +41,15 @@ public static class DescriptionPatches
                 Weapon weapon => GearDescriptions.ForWeapon(weapon),
                 Item item => GearDescriptions.ForItem(item),
                 _ => "",
-            });
+            }) + Guard.Text("Hold to show hint", () => ExtraInfo.Hint(__instance));
     }
 
     [HarmonyPatch(typeof(Weapon), nameof(Weapon.activeDescription), MethodType.Getter)]
     public static class SwapDescription
     {
         private static void Postfix(Weapon __instance, ref string __result) =>
-            __result += Guard.Text("Swap description numbers", () => GearDescriptions.ForSwap(__instance));
+            __result += Guard.Text("Swap description numbers", () => GearDescriptions.ForSwap(__instance))
+                + Guard.Text("Swap hint", () => ExtraInfo.HintIf(GearDescriptions.HasSwapNumbers(__instance)));
     }
 
     [HarmonyPatch(typeof(Quintessence), nameof(Quintessence.activeDescription), MethodType.Getter)]
@@ -44,7 +63,8 @@ public static class DescriptionPatches
     public static class InscriptionDescription
     {
         private static void Postfix(Inscription __instance, int step, ref string __result) =>
-            __result += Guard.Text("Inscription description numbers", () => GearDescriptions.ForInscription(__instance, step));
+            __result += Plain ? "" : Guard.Text("Inscription description numbers", () => GearDescriptions.ForInscription(__instance, step))
+                + Guard.Text("Inscription hint", () => ExtraInfo.HintIf(GearDescriptions.FirstNumberStep(__instance) == step));
     }
 
     /// <summary>
@@ -66,13 +86,14 @@ public static class DescriptionPatches
     public static class InscriptionSuperDescription
     {
         private static void Postfix(Inscription __instance, ref string __result) =>
-            __result += Guard.Text("Tuned description numbers", () => GearDescriptions.ForInscriptionSuper(__instance));
+            __result += Plain ? "" : Guard.Text("Tuned description numbers", () => GearDescriptions.ForInscriptionSuper(__instance));
     }
 
     [HarmonyPatch(typeof(SkillInfo), nameof(SkillInfo.description), MethodType.Getter)]
     public static class SkillDescription
     {
         private static void Postfix(SkillInfo __instance, ref string __result) =>
-            __result += Guard.Text("Skill description numbers", () => GearDescriptions.ForSkill(__instance));
+            __result += Guard.Text("Skill description numbers", () => GearDescriptions.ForSkill(__instance))
+                + Guard.Text("Skill hint", () => ExtraInfo.HintIf(GearDescriptions.HasSkillNumbers(__instance)));
     }
 }

@@ -79,3 +79,62 @@ public class SelfReferenceTests
         Assert.Equal(2, System.Linq.Enumerable.Count(System.Linq.Enumerable.SelectMany(passive.Steps, st => st.Hits)));
     }
 }
+
+/// <summary>The 0.12 damage-scan leftovers, checked on the full gear scan (skipped when it isn't on this machine).</summary>
+public class DamageScanLeftoverTests
+{
+    private static Breakdown Scan(string file)
+    {
+        string folder = Fixture.FullScanFolder();
+        return folder == null ? null : GearAnalyzer.Analyze(GearDoc.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(folder, file))));
+    }
+
+    private static GearHit[] Hits(Section s) => s.Steps.SelectMany(st => st.Hits).ToArray();
+
+    [FixtureFact]
+    public void Genie_LampPunchIsTheFollowUpAction()
+    {
+        var b = Scan("weapons/Genie.json");
+        if (b == null)
+            return;
+        var punch = Assert.Single(Hits(b.Find("Skill", "FairyLamp")));
+        Assert.Equal(2.5, punch.MultMin, precision: 3);
+    }
+
+    [FixtureFact]
+    public void GoldenGargoyle_StatueBurstsWhenItEnds()
+    {
+        var b = Scan("weapons/Gargoyle_3.json");
+        if (b == null)
+            return;
+        var burst = Assert.Single(Hits(b.Find("Skill", "Stone_3")));
+        Assert.Equal((4.3, "Magic"), (System.Math.Round(burst.MultMin, 3), burst.Attribute));
+    }
+
+    [FixtureFact]
+    public void DavyJones_SkillsDealTheirCannonballsDamage()
+    {
+        var b = Scan("weapons/DavyJones.json");
+        if (b == null)
+            return;
+        var anchor = b.Find("Skill", "DropTheAnchor");
+        Assert.Contains(anchor.Steps[0].Hits, h => System.Math.Abs(h.MultMin - 8.64) < 0.001);
+        Assert.Equal("Enhanced cannonball", anchor.Steps[1].Label);
+        Assert.Contains(anchor.Steps[1].Hits, h => System.Math.Abs(h.MultMin - 21.6) < 0.001);
+        // The normal attack fires only normal cannonballs (it listed every cannonball type before).
+        var fire = b.Sections.First(s => s.Kind == "Basic" && s.Steps.Count == 2);
+        Assert.All(Hits(fire), h => Assert.Equal("Basic", h.MotionType));
+    }
+
+    [FixtureFact]
+    public void ChosenMagesBadge_FireballsAndTheirExplosions()
+    {
+        var b = Scan("items/TheChosenMagesBadge.json");
+        if (b == null)
+            return;
+        var hits = Hits(b.Find("Effect"));
+        Assert.Equal(2, hits.Length);
+        Assert.All(hits, h => Assert.Equal((3, "Magic"), (h.Count, h.Attribute)));
+        Assert.Equal(new[] { 1.8, 4.0 }, hits.Select(h => System.Math.Round(h.MultMin, 3)).OrderBy(x => x));
+    }
+}

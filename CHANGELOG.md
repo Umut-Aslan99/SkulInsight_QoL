@@ -1,5 +1,99 @@
 # Changelog
 
+## 0.12.0 (the Codex becomes a full reference; short descriptions, all numbers on Shift; save slots)
+
+**Highlights**
+- **The Codex is your reference book:** three sections (**You**, **Bestiary**, **Arsenal**) with every skull, item,
+  quintessence, inscription and dark ability, all their numbers, and clickable links between them.
+- **Short descriptions in the game, every number in the Codex:** the game's description boxes stay short and show the
+  mod's numbers while you **hold Shift**, as one compact line per attack. The Codex keeps every hit with its
+  calculation.
+- **Save slots:** keep up to 5 whole games side by side, each with its own Codex, and switch between them from the
+  settings page.
+
+**Codex**
+- Sections on the title row: **You**, **Bestiary** (enemies, bosses, dark enemies) and **Arsenal** (skulls, items,
+  quintessences, inscriptions, dark abilities), each with its own tabs.
+- Links and Back: names in page texts are clickable (an item's inscriptions, an inscription's items, a skull's
+  awakened forms, what an item turns into). "< Back" (top right), Backspace or the mouse's back button returns to the
+  page before.
+- Arsenal pages with real numbers (without your items, so pages compare): skulls (type, passive, awakening path,
+  every attack, each skill with cooldown and damage, swap, transformed bodies, summons), items (inscriptions, damage
+  per part, what they turn into), quintessences, inscriptions (every step, the tuned form, every item that carries it)
+  and the Dark Mirror's dark abilities (each level's values, price and, for the damaging ones, their damage per level).
+- **Boxed pages:** every section of a Codex page (Attacks, Skills, Swap, Damage, Inscriptions, Steps, the stats sheet,
+  ...) is a framed box with an icon, so pages read at a glance.
+- **Skill boxes on skull pages:** each skill gets a box with its icon, name, description and numbers. A skill stays a
+  "?" until you **win a run with it**: beat a boss of chapter 5 or later (normal or Dark Mirror) while the skill is on
+  one of your skulls. The You page always shows the skills you hold.
+- **Every number with its whole formula:** each hit on a Codex page shows base x hit % x attack % (also when a factor is
+  100 %), so every page reads the same way. Arsenal pages use neutral stats (100 % attack) to compare gear; **hold
+  Shift** on a page to see the numbers with your run's stats instead: what that item or skull would do in your build.
+- **You** page: your run as a Codex inventory: both skulls, the quintessence, your dark abilities, the 9 items, your
+  inscriptions with what the next step needs ("2 more for step 3") and a stats sheet (the game's stats plus the hidden
+  damage stats, each explained). Click anything to read it in full with your current numbers. During a run the book
+  opens on this page (setting Codex/OpenOnYou).
+- Dark enemies (Bestiary): the 15 abilities dark elites can have (Protection, Immortal, Intense Cold, Tornado, ...)
+  with what they do and their numbers; met and killed are tracked like other entries (unlock numbers on the settings
+  page).
+
+**Save slots** (Esc → SkulInsight QoL → Save slots)
+- Up to 5 slots (setting: 3 to 5), each a whole game: story, NPCs, the witch's upgrades, the Dark Mirror, currencies
+  and the run in progress, with its own Codex.
+- **Play** switches: the game you were playing goes into its slot (a run in progress waits at the room you entered
+  last), the other game comes in through the title screen; an empty slot starts a new game. **Copy my game here**
+  copies your current game (with its Codex) into a slot; **Clear** empties one.
+- Each slot shows a summary (run, story, NPCs, witch levels, dark quartz, Dark Mirror, deaths, last played). Keys,
+  sound and language stay the same in every slot. The game's save is backed up before every switch (the newest 5
+  backups are kept).
+
+**Descriptions in the game**
+- **Hold Shift for the numbers** (player request): the inventory, items on the ground and in shops, and the swap menu
+  show the game's own text plus "Hold Shift for damage numbers" (also on skills, swaps and inscriptions in the detail
+  views); hold Shift and the mod's numbers appear. Either Shift key works. Settings: Descriptions/HoldToShow (on) and
+  Descriptions/HoldKey.
+- **Compact numbers:** one line per attack with its hits side by side ("Basic attack: 10–12 · 22–24 · 36–42 Magic"),
+  equal hits merged ("4 x 11–13"), one line per summon, a transformed body's basic, jump and dash attack, and "All
+  numbers: Codex (K)" under skull texts. The longest skull texts went from 79 lines to 10 and now fit their boxes in
+  every language. Setting "Compact numbers" (on; off: every hit with its formula). It replaces the "Short descriptions"
+  setting.
+- Summons have real names (Recruit, Archer, Assassin, Man-at-Arms, Hamlet, King Lear, Clone, Crew, Turret...) instead
+  of internal ones like "Recruit 4 Swap BuddyArcher"; a quintessence's summon uses the quintessence's name, and a
+  transformed body's skills use the game's own skill names.
+- Inscription texts in the game's boxes are compact too: status numbers (burn, poison, bleed...) and each extra
+  attack on one line without the calculation (a long German burn text ran into the next step); the Codex keeps it.
+- Chain attacks are numbered "Part 1, 2, 3" (parts without damage were counted before: "Part 3, 5, 7").
+
+**Combat log**
+- **Damage table** (View: Damage table, in the combat log's filter bar): your damage per piece of gear instead of only
+  per source: each skull split into basic attack, skills, dash and swap, every item, quintessence, inscription and
+  dark ability on its own row, statuses and summons, each with damage, share, hits and the biggest hit. Follows the
+  log's filters (room, enemies, type). Needs "Record calculations" (on by default) to know which item dealt a hit.
+
+**Damage numbers fixed**
+- The transformed King Arthur (King of Heroes) no longer lists "+ 24-28 Magic + 24-28 Magic" on every hit: gaining mana
+  was counted as his sword wave's damage.
+- The Mummies' "Passive" line no longer adds up every gun's hits (the guns are listed as basic attacks).
+- Damage numbers for the last skull skills that had none: the Genie's lamp punch, the Golden Gargoyle's statue burst,
+  Davy Jones' special cannonballs (plus the enhanced cannonball of every 3rd reload), Minotaurus' Blunt Strike
+  follow-up hit, the Glacial Skull's swap shards; The Chosen Mage's Badge shows its fireballs and their explosions.
+  Davy Jones' normal attack no longer lists every cannonball type.
+
+**What's new window**
+- The first time 0.12.0 reaches the castle, a small window lists these highlights once (setting "What's new"), so you
+  see what changed even when you update through a mod manager.
+
+**Other fixes**
+- The mini log no longer covers the inventory or other game menus: it hides while one is open.
+- Typing in a text field (the Codex search, the game's developer menu) no longer opens the combat log (L) or closes the
+  Codex (K); the letter goes into the text.
+- On the settings page, a section heading no longer shows over the page frame below the list.
+
+**Languages**
+- Every new text in all game languages, including enemy projectile and move names met in the Dark Mirror.
+- Every description was checked in all 11 languages: in the game (each skull, item and quintessence on the ground and
+  in the inventory) and offline (every text the mod writes).
+
 ## 0.11.0 (cleaner films and animations, move notes)
 
 - Codex films: a take now waits for what the move leaves behind (falling bones, meteors, javelins, a thrown head)

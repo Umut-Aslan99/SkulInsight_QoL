@@ -9,5 +9,8 @@ obj/
 TestResults/
 .claude/
 
+# Python caches (tools/qa)
+__pycache__/
+
 # Release packages
 release/out/

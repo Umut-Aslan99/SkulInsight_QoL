@@ -4,10 +4,10 @@
 item and skull descriptions with your actual damage, a combat log that explains every hit, and a preview of what
 picking up an item would do to your build.
 
-A quality-of-life mod: it changes nothing about the game's balance or saves. It only shows information the game
-already uses internally. Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
+A quality-of-life mod: it changes nothing about the game's balance. It only shows information the game already uses
+internally (and, if you use them, keeps several save slots side by side). Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.11.0: every boss move has a note on how to deal with it, and the Codex films are clean and compact.**
+> **Version 0.12.0: the Codex becomes a full reference (boxed pages, skill boxes, every number with its formula), short descriptions with every number on Shift, a damage table per item in the combat log, and save slots.** The game shows what's new once after the update; every detail is in the [changelog](<REPO_URL>/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
 ![A boss fight with the mod: damage numbers with their source, boss HP and the mini log](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
@@ -29,7 +29,11 @@ Bosses, dark elites, veterans and the adventurer party show `current / max` HP (
 
 ### Real numbers in every description (League-of-Legends style)
 Descriptions of skulls, skills, swaps, items, essences and inscriptions show the damage **with your current
-stats**, e.g. `60–94 Physical (7–11 skull dmg x 530% x 160% phys. atk)`.
+stats**. **Hold Shift** (or the game's own details key) to see the numbers: the game's boxes stay short and show "Hold Shift for damage numbers"
+(setting Descriptions/HoldToShow). In the boxes each attack is one compact line, e.g. `Basic attack: 10–12 · 22–24 ·
+36–42 Magic`, with "All numbers: Codex (K)"; the Codex shows every hit with its calculation, e.g. `60–94 Physical
+(7–11 skull dmg x 530% x 160% phys. atk)` (setting "Compact numbers"; off: the formula in the boxes too). On Arsenal
+pages, hold Shift to see what a piece of gear would do with your run's stats.
 - **Skulls:** every hit of the basic combo, jump and dash attacks, charge levels (uncharged / charged / charge N)
   and passives.
 - **Items and essences:**
@@ -70,6 +74,9 @@ the stat sheet and back.
 - Every hit, grouped by room, updated live.
 - Filters: dealt / taken, room / all rooms, enemy type, damage type, source, crits only, minimum damage.
 - Pie chart of your damage by source or damage type.
+- **Damage table (new in 0.12):** View → Damage table: your damage per piece of gear: each skull's basic attack,
+  skills, dash and swap, every item, quintessence, inscription and dark ability, statuses and summons, with share,
+  hits and biggest hit. See which item really carries your build.
 - **Hover a line to see its full calculation.** Click to pin it. Each step shows its icon, its multiplier and the
   running total:
   - base damage
@@ -110,6 +117,21 @@ Press **K** for a book with every enemy, boss, adventurer, skull, item, essence 
   summons or status effects) and take about a quarter of the space. Both can be switched off on the settings page.
 - **Reset Codex (new in 0.11):** start the book over from the settings page; the move notes stay.
 - **Dark Mirror** versions of bosses are kept separately (switch in the book).
+- **Sections (new in 0.12):** **You**, **Bestiary** (enemies, bosses, dark enemies) and **Arsenal** (skulls, items,
+  quintessences, inscriptions, dark abilities). Names in the texts are links; "< Back", Backspace or the mouse's back
+  button go to the page before.
+- **Arsenal pages (new in 0.12):** every skull, item, quintessence, inscription and Dark Mirror ability with its full
+  text and real numbers: a skull's awakening path, attacks and skills, an item's inscriptions and transformation, an
+  inscription's steps and the items that carry it.
+- **You page (new in 0.12):** your run as a Codex inventory: skulls, quintessence, items, dark abilities, inscriptions
+  with what the next step needs, and a stats sheet with the hidden damage stats explained. Click anything to read it in
+  full with your current numbers.
+- **Dark enemies (new in 0.12):** what each of the 15 dark elite abilities does, with its numbers.
+- **Boxed pages and skill boxes (new in 0.12):** every section is a framed box with an icon. Each skull shows its skills
+  as boxes (icon, name, numbers) that stay a **?** until you win a run with them: beat a boss of chapter 5 or later
+  while the skill is on one of your skulls.
+- **Every number with its formula (new in 0.12):** base x hit % x attack %. Arsenal pages compare gear at 100 %
+  attack; **hold Shift** to see the numbers with your run's stats. Dark abilities show their damage per level.
 - Everything is created on your own PC while you play; the mod ships no game art.
 
 ![A boss page playing the moves the mod filmed, with notes on how to deal with them](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-film.gif)
@@ -119,6 +141,17 @@ Press **K** for a book with every enemy, boss, adventurer, skull, item, essence 
 ![A Dark Mirror boss page playing a filmed move](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-boss.png)
 
 ![An inscription page with every step](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-inscription.png)
+
+### Save slots
+Keep up to 5 games side by side, like profiles: pause (Esc) → **SkulInsight QoL** → **Save slots**.
+- Each slot is a whole game: story, NPCs, the witch's upgrades, the Dark Mirror, currencies and the run in progress,
+  with its own Codex.
+- **Play** switches to a slot: the game you were playing goes into its slot (a run in progress waits at the room you
+  entered last) and the other game comes in through the title screen. An empty slot starts a new game.
+- **Copy my game here** copies your current game (with its Codex) into a slot; **Clear** empties one.
+- Each slot shows a summary: run, story, NPCs, witch levels, dark quartz, Dark Mirror, deaths, last played.
+- Your keys, sound and language stay the same in every slot. The game's save is backed up before every switch.
+- Number of slots: 3 to 5 (setting).
 
 ### Settings in the game
 Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings: every setting of the mod in one list, styled
@@ -173,6 +206,9 @@ The same settings are in the settings file (created on the first start):
 | Boss Health Bar | ShowNumbers | on | HP numbers on big health bars |
 | Descriptions | ShowDamageNumbers | on | Real numbers in all descriptions |
 | Descriptions | PreviewPickup | on | Pickup / swap preview |
+| Descriptions | HoldToShow / HoldKey | on / Shift | Numbers in the game's boxes only while the key is held |
+| Descriptions | Compact | on | One line per attack in the game's boxes (off: every hit with its formula) |
+| General | WhatsNew | on | Show what's new once after an update |
 | Combat Log | ToggleKey | L | Opens the combat log |
 | Combat Log | RecordCalculations | on | Per-hit calculation (hover a line) |
 | Combat Log | SaveToFile | on | Log files in `BepInEx/DamageInsight/CombatLogs` (newest 30 kept) |
@@ -185,11 +221,13 @@ The same settings are in the settings file (created on the first start):
 | Codex | CleanFilms | on | Films show only the boss (no damage numbers, own effects, summons, status effects) |
 | Codex | CompactFilms | on | Save films as compact pictures (about a quarter of the size) |
 | Codex | ProjectilePictures | on | Add an enemy's projectile to its pictures the first time it fires one |
+| Codex | OpenOnYou | on | During a run the book opens on the You page |
 | Codex balance | (unlock numbers) | | Runs / wins / pickups it takes to unlock ★★ and ★★★ in the Codex |
 
 ## Compatibility
 - Made for Skul: The Hero Slayer **1.9.x** (Steam, Windows) with BepInExPack Skul (BepInEx 5.4.21+).
-- Doesn't touch saves, balance or content; safe to add or remove at any time.
+- Doesn't change balance or content. Your save is only touched when you switch save slots (a backup of the game's
+  save is made before every switch). Safe to add or remove at any time.
 - Should work next to content mods. Items the mod doesn't understand simply show no extra numbers.
   Please report anything odd.
 - After a game update the mod checks all of its hooks at startup and switches off only what broke. The results
@@ -205,15 +243,14 @@ The same settings are in the settings file (created on the first start):
     Thief/Warrior) have no notes yet. King Alexander's heart fights with several attacks at once, so some of its
     films show two attacks.
   - Films made before 0.11 may still show your own effects or end early; "Refilm" or "Reset Codex" takes them again.
-  - A few skull skills still show no damage numbers (Bone Howl, Davy Jones'
-    special cannonballs, the Golden Gargoyle's statue, the Genie's lamp).
+  - Arsenal pages show what you have met; a skill's numbers appear after you used it once.
 - Translations were made with the help of the game's own terms but not checked by native speakers yet; corrections
   are very welcome (see *All game languages*). The config file and the developer tools stay English.
 
 ## Roadmap
-- **0.11:** Codex films and animations cleaned up (complete boss moves, effects and projectiles of enemies)
-- **0.12:** full Codex entries for skulls, items, essences, inscriptions and dark abilities (lore, skills, all
-  numbers), unlocked by playing; a character page with your whole build
+- **0.12 (this version):** full Codex entries for skulls, items, essences, inscriptions and dark abilities, the You
+  page with your whole build, dark enemy abilities, short descriptions with every number on Shift, save slots
+- **0.12.1:** records and achievements
 - **0.13:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics
 - **0.14:** Dark Mirror page (levels 0–10 with the game's values, Darktech machines, elite abilities)
 - **0.15:** optional Codex rewards (tokens for skipped gear, adventurer coins, Omen coins)

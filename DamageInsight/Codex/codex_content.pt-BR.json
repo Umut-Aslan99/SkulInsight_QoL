@@ -1260,6 +1260,51 @@
           "tip": "Ele reaparece perto: prepare-se para o próximo ataque."
         }
       }
+    },
+    "elite:Protection": {
+      "about": "Ergue um escudo na frente que bloqueia seus ataques por esse lado. O escudo aguenta dano igual a 30% do HP máximo do inimigo; quebrado, volta após 10 segundos. Ataque pelas costas."
+    },
+    "elite:Immortal": {
+      "about": "A cada 20 segundos chama um ajudante por perto. Abata o ajudante em até 10 segundos, ou o inimigo recupera 30% do HP máximo."
+    },
+    "elite:IntenseCold": {
+      "about": "Cerca-se de ar gelado. Perto dele, seus ataques básicos ficam 30% mais lentos, você se move 50% mais devagar e sua investida fica 20% mais curta."
+    },
+    "elite:Tornado": {
+      "about": "A cada 8 segundos um tornado começa numa ponta do chão onde você está e o atravessa."
+    },
+    "elite:Brawler": {
+      "about": "A cada 6 segundos dispara um ataque no chão ao seu redor."
+    },
+    "elite:Penance": {
+      "about": "Quando você o acerta, ele revida com uma explosão ao redor (no máximo a cada 3 segundos)."
+    },
+    "elite:Conductor": {
+      "about": "A cada 7 segundos um disparo voa até você de um ponto aleatório ao seu redor."
+    },
+    "elite:Disaster": {
+      "about": "A cada 15 segundos lança três projéteis para o alto, que caem ao seu redor."
+    },
+    "elite:Judgement": {
+      "about": "A cada 5 segundos um golpe cai onde você está. Continue se movendo."
+    },
+    "elite:DivinePower": {
+      "about": "A cada 10 segundos cura os inimigos ao redor em 50% do HP máximo deles (não a si mesmo). Abata-o primeiro."
+    },
+    "elite:Cannoneer": {
+      "about": "Coloca um canhão ao seu lado a cada 10 segundos, até 3 ao mesmo tempo."
+    },
+    "elite:Quarantine": {
+      "about": "Um anel de energia sombria o cerca. Tocar o anel machuca (30% do ataque dele, uma vez por segundo); dentro e fora do anel você está seguro."
+    },
+    "elite:Regeneration": {
+      "about": "Usa um escudo de 50% do HP máximo. Se ficar 4 segundos sem sofrer dano, o escudo recarrega rápido (20% por segundo). Não pare de atacar."
+    },
+    "elite:Legion": {
+      "about": "Fortalece os inimigos ao redor: 50% a mais de HP e ataque, 20% maiores, e eles não recuam nem são empurrados."
+    },
+    "elite:PlateArmor": {
+      "about": "Sua armadura desvia os primeiros 10 golpes que recebe: eles não causam dano."
     }
   }
 }

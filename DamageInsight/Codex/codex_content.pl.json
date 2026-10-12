@@ -1260,6 +1260,51 @@
           "tip": "Pojawia się w pobliżu: bądź gotów na następny atak."
         }
       }
+    },
+    "elite:Protection": {
+      "about": "Unosi z przodu tarczę, która blokuje twoje ataki z tej strony. Tarcza wytrzymuje obrażenia równe 30% maks. zdrowia wroga; po rozbiciu wraca po 10 sekundach. Atakuj od tyłu."
+    },
+    "elite:Immortal": {
+      "about": "Co 20 sekund przyzywa w pobliżu pomocnika. Zabij go w ciągu 10 sekund, inaczej wróg uleczy 30% maks. zdrowia."
+    },
+    "elite:IntenseCold": {
+      "about": "Otacza się lodowatym powietrzem. W jego pobliżu twoje ataki podstawowe są o 30% wolniejsze, poruszasz się o 50% wolniej, a zryw jest o 20% krótszy."
+    },
+    "elite:Tornado": {
+      "about": "Co 8 sekund tornado rusza z jednego końca podłoża, na którym stoisz, i przetacza się przez nie."
+    },
+    "elite:Brawler": {
+      "about": "Co 6 sekund wyzwala atak na ziemi wokół siebie."
+    },
+    "elite:Penance": {
+      "about": "Gdy go trafisz, oddaje wybuchem wokół siebie (najwyżej co 3 sekundy)."
+    },
+    "elite:Conductor": {
+      "about": "Co 7 sekund leci w ciebie pocisk z losowego punktu wokół ciebie."
+    },
+    "elite:Disaster": {
+      "about": "Co 15 sekund wyrzuca w powietrze trzy pociski, które spadają wokół niego."
+    },
+    "elite:Judgement": {
+      "about": "Co 5 sekund uderzenie spada tam, gdzie stoisz. Nie stój w miejscu."
+    },
+    "elite:DivinePower": {
+      "about": "Co 10 sekund leczy pobliskich wrogów o 50% ich maks. zdrowia (nie siebie). Zabij go najpierw."
+    },
+    "elite:Cannoneer": {
+      "about": "Co 10 sekund stawia obok siebie armatę, maksymalnie 3 naraz."
+    },
+    "elite:Quarantine": {
+      "about": "Otacza go pierścień ciemnej energii. Dotknięcie pierścienia rani (30% jego ataku, raz na sekundę); wewnątrz i na zewnątrz pierścienia jesteś bezpieczny."
+    },
+    "elite:Regeneration": {
+      "about": "Nosi tarczę wartą 50% jego maks. zdrowia. Jeśli przez 4 sekundy nie otrzyma obrażeń, tarcza szybko się odnawia (20% na sekundę). Nie przestawaj atakować."
+    },
+    "elite:Legion": {
+      "about": "Wzmacnia pobliskich wrogów: 50% więcej zdrowia i ataku, są o 20% więksi i nie wzdrygają się ani nie dają się odrzucić."
+    },
+    "elite:PlateArmor": {
+      "about": "Jego zbroja odbija pierwsze 10 trafień: nie zadają obrażeń."
     }
   }
 }

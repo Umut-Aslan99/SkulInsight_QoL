@@ -36,6 +36,14 @@ public static class RunRecorder
 
     private static bool On => Plugin.CodexRunLog?.Value == true;
 
+    /// <summary>Save slot switch: the run being logged belongs to the slot left behind.</summary>
+    internal static void ForgetSlot()
+    {
+        Maps.Clear();
+        _current = null;
+        _file = null;
+    }
+
     /// <summary>A map's enemy waves were set up (<c>EnemyWaveContainer.Initialize</c>).</summary>
     public static void OnMapStarted(EnemyWaveContainer container)
     {

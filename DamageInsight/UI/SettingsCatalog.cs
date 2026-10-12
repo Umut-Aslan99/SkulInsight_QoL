@@ -31,6 +31,14 @@ public sealed class SettingItem
     public bool Wraps = true;
     /// <summary>The value is an icon spec (see <see cref="IconLibrary"/>); the page shows the icon next to it.</summary>
     public bool ShowsIcon;
+    /// <summary>Help made when the row is selected (the save state slot: what it holds); null: <see cref="Help"/>.</summary>
+    public Func<string> HelpProvider;
+    /// <summary>Action rows: the text on the button (null: the game's "Reset").</summary>
+    public string ButtonLabel;
+    /// <summary>Choice rows whose values change while playing (save state slots: as many as set); null: the steps.</summary>
+    internal Func<List<object>> StepsProvider;
+
+    public string CurrentHelp => HelpProvider?.Invoke() ?? Help;
 
     internal readonly List<object> Steps = new();
     internal Func<object, string> Formatter = v => Convert.ToString(v, CultureInfo.InvariantCulture);
@@ -45,7 +53,7 @@ public sealed class SettingItem
     /// </summary>
     public List<object> Values()
     {
-        var values = new List<object>(Steps);
+        var values = StepsProvider != null ? StepsProvider() : new List<object>(Steps);
         object current = Entry?.BoxedValue;
         if (current == null || values.Any(v => Same(v, current)))
             return values;
@@ -95,6 +103,18 @@ public static class SettingsCatalog
     public const string ResetAll = "ResetAll";
     /// <summary>Action rows: delete everything the Codex gathered at the next game start (Codex/CodexReset).</summary>
     public const string ResetCodex = "ResetCodex";
+    /// <summary>Action rows: save the run into the selected save state slot / load it / delete it.</summary>
+    public const string SlotPlay = "SlotPlay", SlotCopy = "SlotCopy", SlotClear = "SlotClear";
+    /// <summary>The config section of the save slots.</summary>
+    public const string SaveSlotsSection = "Save Slots";
+
+    /// <summary>
+    /// What the save slot rows show, set by the game side (SaveSlots.SlotSwitcher); plain values in tests:
+    /// how many slots there are, a slot's short value text ("2", "2 (empty)") and its details for the help panel.
+    /// </summary>
+    public static Func<int> SlotCount = () => 3;
+    public static Func<int, string> SlotValue = slot => slot.ToString(CultureInfo.InvariantCulture);
+    public static Func<int, string> SlotDetails = _ => "";
 
     private enum Unit { Plain, Seconds, Percent }
 
@@ -110,6 +130,7 @@ public static class SettingsCatalog
     private static readonly (string section, string heading)[] Sections =
     {
         ("General", Loc.N("General")),
+        (SaveSlotsSection, Loc.N("Save slots")),
         ("Damage Numbers", Loc.N("Damage numbers")),
         ("Damage Icons", Loc.N("Damage icons")),
         ("Boss Health Bar", Loc.N("Boss health bars")),
@@ -126,6 +147,7 @@ public static class SettingsCatalog
     {
         ["Enemies"] = Loc.N("Codex unlocks: enemies"),
         ["Bosses"] = Loc.N("Codex unlocks: bosses"),
+        ["Elites"] = Loc.N("Codex unlocks: dark enemies"),
         ["Gear"] = Loc.N("Codex unlocks: gear"),
     };
 
@@ -154,7 +176,12 @@ public static class SettingsCatalog
             Loc.N("Show current / maximum HP as text on the health bars of bosses, adventurers and dark enemies.")),
         ["Descriptions/ShowDamageNumbers"] = On(Loc.N("Damage numbers"),
             Loc.N("Add your real damage (with your current stats) to the descriptions of skulls, skills, swaps, items, essences and inscriptions.")),
-        ["Descriptions/Short"] = On(Loc.N("Short descriptions"), Loc.N("Short descriptions: one line per attack part with its total damage, without the calculation behind it.")),
+        ["Descriptions/Compact"] = On(Loc.N("Compact numbers"),
+            Loc.N("On: the game's description boxes show one line per attack with its total. Off: every hit with its formula (base x hit % x attack %). The Codex always shows the formula.")),
+        ["Descriptions/HoldToShow"] = On(Loc.N("Hold to show numbers"),
+            Loc.N("The numbers in the game's description boxes show only while you hold the key below, so the boxes stay short. Off: always shown.")),
+        ["Descriptions/HoldKey"] = On(Loc.N("Hold key"),
+            Loc.N("The key to hold for the numbers in the inventory, on items on the ground, in shops and in the swap menu. Either Shift works.")),
         ["Descriptions/PreviewPickup"] = On(Loc.N("Pickup preview"),
             Loc.N("Items on the ground, in shops and in the swap menu show their numbers as if you had picked them up (their stats and inscription steps included).")),
         ["Combat Log/ToggleKey"] = On(Loc.N("Open / close key"), Loc.N("The key that opens and closes the combat log.")),
@@ -162,7 +189,10 @@ public static class SettingsCatalog
             Loc.N("Use the NPC dialogue box artwork as the window background (off: a plain dark panel).")),
         ["Combat Log/BackgroundOpacity"] = Number(Loc.N("Background"), 0, 1, 0.05, Unit.Percent,
             Loc.N("How solid the dialogue background is (0% invisible, 100% solid).")),
-        ["Combat Log/WindowRect"] = new Spec { Hidden = true }, // the "Window position" reset row stands in for it
+        ["Combat Log/WindowRect"] = new Spec { Hidden = true },
+        ["General/LastVersionSeen"] = new Spec { Hidden = true }, // kept by the "What's new" window
+        ["General/WhatsNew"] = On(Loc.N("What's new"),
+            Loc.N("After an update, show once (in the castle) what's new in this version.")), // the "Window position" reset row stands in for it
         ["Combat Log/RecordCalculations"] = On(Loc.N("Calculations"),
             Loc.N("Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.")),
         ["Combat Log/SaveToFile"] = On(Loc.N("Save to file"),
@@ -189,6 +219,11 @@ public static class SettingsCatalog
             Loc.N("Add the projectile an enemy fires (arrow, bolt, ...) to its pictures in the Codex, the first time it fires one.")),
         ["Codex/CompactFilms"] = On(Loc.N("Compact films"),
             Loc.N("Save boss films as compact pictures (about a quarter of the size, nearly the same look). Off: lossless pictures, about 1 GB more once every boss is filmed.")),
+        ["Codex/OpenOnYou"] = On(Loc.N("Open on You"),
+            Loc.N("During a run, the Codex opens on the You page (your skulls, items, inscriptions and stats). Off: it opens on the page you read last.")),
+        ["Save Slots/Slot"] = Number(Loc.N("Slot"), 1, 5, 1, Unit.Plain,
+            Loc.N("Left / right: choose a slot. Each slot is a whole game of its own: story, rescued NPCs, the Witch, Dark Mirror, your run and its own Codex.")),
+        ["Save Slots/Slots"] = Number(Loc.N("Number of slots"), 3, 5, 1, Unit.Plain, Loc.N("How many save slots there are (3 to 5).")),
         ["Codex/CleanFilms"] = On(Loc.N("Clean films"),
             Loc.N("Boss films show only the boss: damage numbers, the effects of your skills and items, your summons and status effects on the boss (poison, burn, freeze, ...) are left out.")),
     };
@@ -235,6 +270,35 @@ public static class SettingsCatalog
             var item = Item(pair.Value, icons, inscriptionName);
             if (item != null)
                 items.Add((rank, order++, item));
+
+            if (section == SaveSlotsSection && pair.Key.Key == "Slot" && item != null)
+            {
+                // The slot row lists as many slots as set and shows what the selected one holds; Save, Load and Delete
+                // follow it.
+                var slotEntry = pair.Value;
+                item.StepsProvider = () => Enumerable.Range(1, SlotCount()).Select(i => (object)i).ToList();
+                item.Formatter = v => SlotValue(Convert.ToInt32(v, CultureInfo.InvariantCulture));
+                item.Wraps = true;
+                string slotHelp = item.Help;
+                item.HelpProvider = () => SlotDetails(Convert.ToInt32(slotEntry.BoxedValue, CultureInfo.InvariantCulture)) + "\n\n" + slotHelp;
+                foreach (var (action, label, button, help) in new[]
+                         {
+                             (SlotPlay, Loc.N("Play this slot"), Loc.N("Play"),
+                                 Loc.N("Switches to the selected slot. Your current game stays in its own slot (a run too, at the room you entered last) and the game goes back to the title screen. An empty slot starts a new game.")),
+                             (SlotCopy, Loc.N("Copy my game here"), Loc.N("Copy"),
+                                 Loc.N("Copies the game you are playing, with its Codex, into the selected slot. What the slot held is replaced.")),
+                             (SlotClear, Loc.N("Clear this slot"), Loc.N("Clear"),
+                                 Loc.N("Empties the selected slot: its game and its Codex are deleted. The slot you are playing can't be cleared.")),
+                         })
+                {
+                    items.Add((rank, order++, new SettingItem
+                    {
+                        Section = Heading(section), Label = Loc.T(label), Kind = SettingKind.Action, Action = action,
+                        ButtonLabel = Loc.T(button),
+                        HelpProvider = () => Loc.T(help) + "\n\n" + SlotDetails(Convert.ToInt32(slotEntry.BoxedValue, CultureInfo.InvariantCulture)),
+                    }));
+                }
+            }
         }
         int codexRank = Array.FindIndex(Sections, s => s.section == "Codex");
         items.Add((codexRank < 0 ? int.MaxValue - 1 : codexRank, int.MaxValue, new SettingItem

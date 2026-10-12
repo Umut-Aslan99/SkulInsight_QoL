@@ -36,7 +36,7 @@ $manifest = [ordered]@{
     name           = $name
     version_number = $version
     website_url    = $RepoUrl
-    description    = "Codex bestiary with boss moves and fight films, real damage in descriptions, damage source tags, boss HP numbers, a combat log that explains every hit, pickup preview. In-game settings, all 11 game languages."
+    description    = "Codex with boss moves, fight films, full gear pages and your build; real damage in descriptions, damage source tags, boss HP numbers, a combat log that explains every hit, pickup preview. In-game settings, 11 languages."
     dependencies   = @("BepInEx-BepInExPack_Skul-5.4.2100")
 }
 if ($manifest.description.Length -gt 250) { throw "Description longer than 250 characters" }

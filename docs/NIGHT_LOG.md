@@ -1,165 +1,127 @@
-# Night log 2026-10-05 (unattended work session)
-
-Running log, updated after every step, so an auto-compaction or a new session loses nothing. Newest entries at the
-bottom of "Steps". Decisions Claude made for Umut are marked **[DECISION]**: Umut may change any of them.
+# Night log 2026-10-11 (unattended work session: the QA night capture)
+Running log, updated after every step, so an auto-compaction or a new session loses nothing.
+Decisions Claude made for Umut are marked **[DECISION]**: Umut may change any of them.
+The previous night's log (2026-10-05, 0.11) is in git history (`git show 662e045:docs/NIGHT_LOG.md`).
 
 ## Setup (read first when resuming)
-- Umut is asleep. Plan (his words, 2026-10-05 ~01:00): keep working on everything alone (0.11 finish, then the
-  backlog: 0.12+), decide open questions and mark them, write test todos for the morning, document stepwise, stop
-  before the session limit, then shut the PC down.
-- **Usage watcher**: `C:\Users\Umut\ClaudeNight\usage-watch.ps1` runs hidden (started 01:00, PID 7656 at 01:14):
-  screenshot of the top-left usage panel every 5 min → `C:\Users\Umut\ClaudeNight\usage_latest.png` (Read it to see
-  Session (5hr) % and Weekly %), keeps the PC awake. Watchdog: touch `C:\Users\Umut\ClaudeNight\heartbeat.txt` at
-  every usage check; if it is older than 45 min the PC shuts down (5 min warning, `shutdown /a` cancels). If the
-  watcher is not running (check: process with "usage-watch" in its command line), start it again:
-  `Start-Process powershell -WindowStyle Hidden -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\Users\Umut\ClaudeNight\usage-watch.ps1','-CropWidth','360','-CropHeight','320'`
-- **Stop rule [DECISION]**: wrap up at Session ≈ 90% (Umut said max 95%) or Weekly ≥ 85% (was 62% at 00:46), then:
-  update PROJECT_STATUS START HERE + this log + morning todos, commit, run
-  `powershell -File C:\Users\Umut\ClaudeNight\shutdown-pc.ps1` (stops the watcher, shutdown in 5 min).
-- Usage readings: 00:46 27% / 62%; 00:58 35% / 63%; 01:05 41% / 64%; 01:10 (see shot). Cost ≈ 0.3 % per tool call
-  at ~130k context: work in few, large steps.
+- Plan (Umut's words, 21:52): "Take the left one and make sure that bepinex command or steam dont take focus either.
+  You can actually start the FULL night shift now." Goal given to the skill: QA capture all 11 languages via
+  tools/qa/night-capture.ps1 (game on the left monitor, no focus stealing), analyse with tools/qa/captures.py +
+  contact sheets, findings into docs/QA_FINDINGS.md, fix clear findings in batches (tests pass, no deploy while the
+  game runs); max Session 90 %; no release/push; no PC shutdown (Umut didn't ask for one).
+- Context: Umut is awake and playing League of Legends on the main screen (the usage screenshot shows it), so the
+  usage panel can't be read; the capture runs on the left monitor without taking the focus. QA background:
+  docs/QA_LOG.md (steps 1-8), docs/QA_CAPTURE_PLAN.md, docs/QA_FINDINGS.md.
+- Watcher: night-check.ps1 (skill night-shift); state in C:\Users\Umut\ClaudeNight.
+  **[DECISION]** watcher restarted with -WatchdogMinutes 720 (effectively no watchdog shutdown): Umut is at the PC
+  and asked for no shutdown; a stuck Claude must not switch his PC off mid-game.
+- Stop rule [DECISION]: Session ~90 % (max 90) or Weekly >= 85 %. The panel isn't visible while Umut plays, so pace
+  by cost: few, long waits (one background wait per check), analysis in big steps.
+- Usage readings: 21:53 panel not visible (League of Legends on the main screen); 21:56 S 61 % / W 69 %
+  (watcher on the left monitor from then on); 22:11 S 65 % / W 70 %.
+- Capture run: `night_2026-10-11_2154` (started 21:54, background task, log SkulModding/QA/night-full.log; game window
+  at -1920,0 1920x1080 = the left monitor). Order en, de, ru, ko, zh-Hans, ja, zh-Hant, fr, es, pt-BR, pl; ~40 min
+  per language. A stopped run continues with `night-capture.ps1 -Languages all -Run night_2026-10-11_2154`.
+- Branches: code and docs on main, merged into save-states (Umut's game branch). No deploy while Skul runs.
+
+## Queue
+1. Watch the capture; analyse each language when it is done (captures.py report + contact sheets; Read the sheets).
+2. While it runs (no deploy, tests only): QA findings N3 (Balrog / Thunderlord / Warrior: the same hit in every step:
+   real or a link?), N4 (Abyss Meteor 4000 %), T3 (part numbers that skip: number only parts with damage).
+3. Findings from the capture: write them into QA_FINDINGS.md, fix the clear ones (build after the capture ends).
+4. If budget is left: swap-menu samples for the capture tool; spec for phase 2 (Codex pages capture).
 
 ## Steps (newest last)
-1. 00:20-00:45 Film review finished for every filmed boss (see FILM_REVIEW.md "Review complete"); commits up to ffca6b4.
-2. Clean films (dcb0952): setting Codex/CleanFilms (on). Films hide damage numbers (FloatingText), the player's
-   skill/item effects and hit sparks (effects started while the game acts for the player: FilmClutterPatches hook
-   OperationInfos.CRun MoveNext + the 4 SpawnOnHitPoint hit-effect classes + EffectPool.Play), the player's
-   OperationRunners (summoned item fields) and minions, and status looks on the boss (all RuntimeAnimatorControllers
-   in CharacterStatusSetting + CommonResource stun/freeze). Not covered: particles, status colour tint on the boss
-   sprite. PatchTargetTests now understand TargetMethod(s). Untested in game.
-3. Non-moves (55bbaa7): entrances/sleep/deaths (FightRecorder.IsMove false) are no longer filmed; migration
-   "0.11 no entrance films" drops the existing ones once (12 films, 57 MB here). Book and counter already ignored them.
-4. Projectile picture labels (924ce61): full projectile name instead of 14 chars + "..."; Umut's 21 cut sets moved to
-   `Codex/_cut_projectile_backup_20261005-0100` (recaptured when those enemies shoot again); 34 new names from the
-   2026-10-04 22:20 DM run translated (all 10 languages).
-5. Compact films (2b164a2): setting Codex/CompactFilms (on): new takes saved as JPG q85 (measured 97 MB → 23 MB on 20
-   sheets, ~23 %). **[DECISION]** quality 85; existing PNG takes stay until refilmed or the Codex is reset.
-   Umut's films: 1.4 GB now (all PNG).
-6. Reset Codex (done 01:20, see commit after 2b164a2): settings page action "Reset Codex" in the Codex section; confirm dialog; writes
-   Codex/reset-requested.txt; at the next game start CodexReset.RunIfRequested (before CodexMigrations) deletes
-   progress.json*, Replays, Animations, Hints, Debug and "_*" backup folders, keeps migrations.txt; selecting again
-   withdraws. Notes stay (they are in the DLL). Test Codex_reset_deletes_the_gathered_data_and_keeps_the_rest.
-   Translations done (zh: 清除, the fonts lack 删/刪; zh-Hant Codex = 圖錄). 304 tests pass. Deployed.
+1. 21:54 Night started: watcher (12 h watchdog), full capture started (run night_2026-10-11_2154, left monitor
+   confirmed by the window position), this log. Before it (21:50, f271b21 and earlier): night-capture.ps1 switches
+   BepInEx's console window off for the run (it took the focus), logs the window position.
+2. 22:00 Umut: the usage panel is on the left monitor (VS Code over the background game). Watcher: screen.txt =
+   "left" makes usage-watch.ps1 photograph the left monitor's top-left (skill updated). Reading 21:56: Session 61 %
+   (reset ~22:19), Weekly 69 % (resets in 5 days): Weekly is the limit tonight (stop at 85 %).
+   QA N3 checked: real data, not link bugs (QA_FINDINGS). QA T3 fixed: part numbers without gaps (GearAnalyzer;
+   corpus 42 -> 0); not deployed yet (the capture runs), tests pass (349). Dev dump prints each hit's owner path.
+   Watcher: night-check restarted a default watcher (45 min watchdog) next to the manual one -> watchdog.txt (720)
+   is read by every watcher start (skill updated); one watcher since 22:00.
+3. 22:24 English of the first pass analysed (run night_2026-10-11_2154, ~2050 pictures): no text outside its panel,
+   no real overlap, no missing glyphs. The only flags were the ground popup's covered one-skill box behind the
+   two-skill boxes (checked by eye on the flagged sheet: clean) -> captures.py ignores that pair.
+   But the sample sheet showed two items left in the inventory for the rest of the run (Lake in a Bottle and Undine
+   Water Spirit turn into another item when picked up; the new item was never discarded): their inscriptions and
+   stats changed every later number (skull skills ~2.2x). And the inventory crops were full-screen (a full-screen
+   overlay image counted as the panel: ~7.6 GB per night, "outside" blind in the inventory).
+   -> First pass stopped at 22:27 (English + a little German; kept on disk, 695 MB, for comparison **[DECISION]**:
+   deleted only after Umut's look). Tool fixes (round 6, deployed): transformed items found and discarded,
+   inventory emptied after every gear, lasting stat changes logged ("[QA] ... stats changed for good"), overlays
+   ignored, skulls first and items/quintessences holding Little Bone. Check run 22:29 (6 gear): crops 40-280 KB,
+   both transforming items captured, nothing left behind.
+4. 22:31 Second (full) pass started: run name in SkulModding/QA/night-full2.log, all 11 languages, ~37 min each.
+   Known: Icarus's Dagger's ground popup fails inside the game's popup code ("key not present"), its inventory
+   pictures work (finding, not ours to fix unless it is our description code).
+   Send-to-back (22:35): the started game covered VS Code on the left monitor (usage panel hidden): the Skul window is
+   sent behind every other window without activating it; pictures keep coming and are fresh (checked); built into
+   night-capture.ps1 for later runs (1bbcf11). Reading 22:33: S 5 % (new window) / W 71 %.
+   Icarus's Dagger checked: a cut item (not obtainable, no name, inscriptions "None"): the game's popup fails on it.
+5. 23:05 English of pass 2 analysed: 2092 pictures, 0 outside, 0 overlap, 0 missing glyphs (422 MB, ~4.6 GB for
+   all languages). Failures: Dracula, Skul_Tutorial, Icarus's Dagger (G1). The stat log caught the Olive Tree Cudgel
+   (physical 1 -> 2 for good, G2): items after it in every language show doubled physical numbers (layout unaffected)
+   **[DECISION]** keep the run going (layout is what the capture checks; neutral numbers come from the corpus); the
+   tool takes the cudgel last from the next run on (not deployed while the game runs). Brawl's "2" checked: real.
+   Umut (23:00) asked for a changelog of the upcoming version when all work is done -> wrap-up: the 0.12.0 section of
+   CHANGELOG.md rewritten as player release notes, text in the morning summary.
+6. 23:15 Changelog 0.12.0 rewritten as player release notes (3ef468e). Umut (23:12): "What about save games" ->
+   asked: save slots ship in **0.12.0** (his answer). save-states merged into main (1b0fb09, clean, 355 tests pass);
+   changelog (highlight + Save slots section), README (intro, version line, hold Shift / compact / Codex in the
+   description section, new Save slots section, compatibility line about saves, roadmap), wiki (intro, Save slots
+   section, FAQ about the save, roadmap) and the store description (228 chars, "hold Shift", "save slots") updated.
+   Work continues on main only. Morning: README screenshots still show the old long descriptions (new ones with the
+   compact lines and a Save slots picture would help; Umut's call).
+7. 23:59 German and Russian analysed (6218 pictures in the run): 3 flags. L7 fixed (German Arson step text ran into
+   step 2: compact boxes drop status calculations, inscription parts one line each; StatusDescriptions.Details,
+   DescriptionLayout.InscriptionParts, ForInscription sets compact for game boxes); corpus de checked; 355 tests
+   pass; changelog line. G3 (Russian squad labels, the game's own text) noted. Not deployed (capture running).
+   Paths for Umut (asked): changelog, README, wiki, findings, screenshots folder, save slots folder.
+8. 00:50 Korean and Chinese (Simplified) analysed (10298 pictures in the run): no flag, no missing glyph; a ko/zh
+   sample sheet checked by eye (glyphs render, mod lines inside the panels; Korean breaks words at line ends like the
+   game's own Korean texts). Reading 23:59: S 14 % / W 72 %. Remaining: ja, zh-Hant, fr, es, pt-BR, pl (~2.5 h),
+   analysed together at the end; then deploy (L7, T3, tool fixes) and a short German/Russian check run.
+9. 01:50 Umut asked: were all 14,800 pictures analysed? Answer: every picture by its JSON facts (outside, overlap,
+   glyphs), ~80 by eye (flagged + samples); not every picture by eye (millions of tokens). Added a readability check
+   to captures.py (text shrunk below 90 % of the box's normal size, over all JSONs): finding R1 (Umut decides).
+   Umut asked for: (a) PC shutdown when all is done -> last wrap-up step runs shutdown-pc.ps1 **[DECISION]**: plus
+   the watchdog back on at 75 min (watchdog.txt) as the stuck-Claude safety; (b) keep the 60 min prompt cache warm
+   -> a background timer (sleep 44 min) wakes this session; every tick: check-in, progress, next timer.
+10. 03:35 Full capture finished at 03:23: 22,517 pictures, 11 languages (3.4 GB), 44 failures = the 3 special/cut gear
+    x languages (G1), focus never taken after the start. Last six languages: the Arson step (L7) again in es, fr, pl,
+    pt-BR; the game's squad labels (G3) in es, pt-BR, pl; French flavor texts over the rarity label (G4, game). Deployed
+    tonight's fixes (L7, T3, tool) and ran a check (de, es, fr, ru: Burning Scripture, Manatech Cogwheel, Guan Yu 3,
+    Davy Jones): the Arson step fits in all four (checked by eye in German). Spanish "3ª" is the game's text (G5).
+    Readings: 02:31 tick; 03:15 S 29 % / W 74 %.
 
-7. 01:30 Damage scan (0.12 prep): new test CoverageTests.Damage_scan_lists_gear_without_numbers → damage-scan.tsv;
-   summary + mechanism table in docs/DAMAGE_SCAN.md (items/essences 129/179 with numbers, real gaps ~10 = summons;
-   skull sections 1208/1331, 90 real gaps: rushes, shields, summoned buddies, grabs, Champion combos).
-   Usage 01:20: 49 % / 65 %.
-
-8. 01:45 GearAnalyzer reads the motion fields the scan found skipped (parry counter hits, Minotaurus stomp, streak
-   start/end, powerbomb landing, grabs): skull sections with numbers 1208 → 1262 (real gaps 90 → 48). 3 new labels
-   translated. 305 tests pass. **[DECISION]** enhanced variants (`_enhancedMotions`) stay out (would mix hits).
-   Morning: check descriptions of e.g. Skeleton-Shield "Shield Bash", Samurai "Evading Slash", Ent Skull "Nature's
-   Grip", Minotaurus "Stomp": they should now show damage numbers.
-
-9. 01:55 Changelog 0.11 draft updated (ec9a077). GrabAction hold motions read too (Champion): 1266/1338. Summon
-   "gaps" are only a blind spot of the scan test (runtime analyzes referenced characters). Usage 01:47: 60 % / 67 %
-   (≈0.5 % per call).
-
-10. 02:05 Log noise: the boss analysis probed component types with AccessTools.Method(type, "CRun"), HarmonyX
-   logged a warning per miss (268 in the 22:20 log). Quiet lookup AttackGraph.FindMethod. Usage 02:00: 65 % / 67 %.
-
-11. 02:15 docs/V012_SPEC.md: 0.12 spec (scope, entry pages, unlock rules, character page, short descriptions,
-   build order, test plan) with every choice marked [DECISION]; DAMAGE_SCAN.md findings for the last gaps (polymorph
-   skills, cannonballs, statue, lamp).
-
-12. ~01:40 (clock was misread earlier: steps 9-11 were 01:25-01:35, not 01:55-02:15) PROJECT_STATUS START HERE
-   rewritten (e9cfa53), memory skul-resume-plan updated, README + Thunderstore wiki prepared for 0.11 (features,
-   config rows, known gaps, coming next). Version line in README still says 0.10.2: change at release.
-   Usage 01:40: 70 % / 68 %.
-
-13. ~01:55 Transformation skills: ObjectGraphWriter.ReferencedWeapons collects weapons outside the skull's hierarchy;
-   GearDescriptions analyzes those named "*Polymorph*" like a skull and the skull's passive description gets
-   "Transformed by a skill: / Transformed by the swap:" blocks (basic, jump, dash, skills of the transformed body).
-   Guarded (Build try/catch); untested in game. **[DECISION]** shown in the skull description (not under the skill),
-   because the mod can't yet tell which skill starts which body. Texts in all 10 languages.
-
-14. ~02:00 Scan test counts transformed bodies: 7/7 have attack numbers (GhostRider_3 + swap, Berserker_2,
-   Dominator, KingArthur, Wizard_4, Yaksha), so step 13 should show numbers for all of them in game.
-   Usage ~01:58: 76 % / 69 %. Wrapping up at ~78 %: the rest of the budget stays as a safety margin.
-
-15. ~02:08 (0.12 item, after the planned end) Short descriptions (GitHub issue #3): setting Descriptions/Short
-   (**[DECISION]** off by default): popups show one line per attack part with the total ("4 hits = 202–317
-   Physical") instead of every hit's calculation (DescriptionFormatter.Short / ShortHits; set per Build). Settings
-   row + texts in all 10 languages; test Short_descriptions_show_only_the_totals. 306 tests pass. Deployed.
-
-## End of the night (~02:12, Session 81 %, Weekly 70 %)
-Everything is committed (last commits: ce58bc3 and this log) and installed in Umut's game (Debug build). The PC is
-shut down by `C:\Users\Umut\ClaudeNight\shutdown-pc.ps1` (5 min warning). Next session: read PROJECT_STATUS START
-HERE, then this log.
+## End of the night (03:40, Session ~30 % of a fresh window, Weekly ~74 %)
+Last code commit before this log: see git log (QA findings and wrap-up commit). Deployed: main (Debug, 03:29). Tests:
+355 pass. The PC shuts down at the end (Umut asked at 01:45; 5 minute warning, `shutdown /a` cancels).
 
 ## Decisions made tonight (Umut: change any of them)
-1. Stop rule: wrapped up at ~78 % session (margin to the 95 % Umut allowed; the next task was a larger design change).
-2. Clean films and Compact films are **on** by default; compact = JPG quality 85; existing PNG takes stay until
-   refilmed or the Codex is reset.
-3. Reset Codex deletes at the next game start (not immediately) and also removes the dev backup folders ("_*").
-4. Entrances, sleeping and deaths are never filmed (they were never shown).
-5. Analyzer: enhanced variants (`_enhancedMotions`) are not mixed into normal hits; parry waiting stance, grab misses
-   are not counted; grab hold motions are.
-6. Transformed bodies are listed in the skull's passive description ("Transformed by a skill / the swap"), not under
-   the specific skill (no mapping skill → body yet).
-7. 0.12 scope and page rules: see docs/V012_SPEC.md (records/achievements → 0.12.1, neutral numbers on entry pages,
-   short descriptions setting off by default, ...).
+1. Watchdog: 720 min while Umut was at the PC (no surprise shutdown), back to 75 min when he asked for the shutdown;
+   watchdog.txt and screen.txt (usage panel on the left monitor) are read by every watcher start.
+2. The first capture pass was stopped after English (items left in the inventory, full-screen crops) and redone;
+   its folder (night_2026-10-11_2154, 695 MB) is kept until Umut has looked.
+3. The second pass kept running although the Olive Tree Cudgel doubles physical attack for good (G2): the capture
+   checks layout; neutral numbers come from the offline corpus. The tool takes the cudgel last from now on.
+4. Captures show the numbers (as if Shift were held) and the detail views; skulls first, items and quintessences
+   holding Little Bone; a full-screen picture per gear only in English.
+5. Compact boxes also drop the calculation from status lines and write inscription parts one per line (L7): the
+   same rule as Umut's decision for the skull texts; the Codex keeps everything.
+6. captures.py ignores the ground popup's covered one-skill box (it measured as overlapping, checked by eye).
+(Save slots in 0.12.0 was Umut's decision.)
 
 ## Morning todos for Umut
-1. Start Skul. The log (`BepInEx/LogOutput.log`, Claude reads it) should once say "removed the entrance, sleep and
-   death films of N bosses". The ~270 "Could not find method" warnings should be gone.
-2. Settings page → Codex: rows "Clean films", "Compact films", "Reset Codex" with help texts (try one other language).
-3. Fight a boss with poison/burn items or a summon: the new take (Codex/Replays/<boss>/clip_*.jpg) should show no
-   damage numbers, no own effects, no poison clouds. Does the JPG look fine in the book?
-4. Skull descriptions: Shield Bash, Evading Slash, Ready to Charge (counter hits), Nature's Grip, Minotaurus' Stomp /
-   Headbutt, Champion's Combination / Dirty Smash should now show damage numbers; Nightmare and Devil Berserker show
-   "Transformed by a skill:" blocks (also King Arthur, Archmage, Yaksha, Dominator).
-5. Decide: full Codex reset now (Settings → Codex → Reset Codex → restart) so all films are re-taken clean and compact
-   (frees ~1.4 GB of old PNG films + ~420 MB of old backups).
-6. King Alexander retest (one fight through all forms), then release 0.11.0 (Claude runs the release script).
-7. Read docs/V012_SPEC.md and change any [DECISION] you don't like.
-8. Settings → Descriptions → "Short descriptions" on: skull/item popups show one total line per part. Keep it off by default?
-
-## Day session 2026-10-05 (Umut testing, Claude on call)
-16. ~11:00 Umut reached Dark Skul phase 2 (37/46 moves filmed); the 9 missing were Balance-form far-range moves
-   (Bone rain, Dash, Throw head, Jump throw head, Execution, Head hunting) plus Melee attack, Hard smash and Stamping center.
-   PreferNewMoves couldn't reach them: it never steered the form change (a form's moves are not below its switch node),
-   never passed distance checks, and the form change waits on a 30 s cooldown.
-   **Move director** (Codex/MoveDirector.cs + .Live.cs, hooks in PreferNewMovesPatches): for BehaviorDesigner bosses
-   (Dark Skul 1/2, First Dark Hero, adventurers) PreferNewMoves now plans the way from the tree root to the next missing
-   move: Selectors start at the child on the way, WeightedSelector/OneByOneSelector take it, gating checks on the way
-   (distance, wall, HP, ChronometerCoolDown, CanUseChronometerCoolDown, RandomProbability; also inside
-   ConditionalEvaluators) return what the way needs; a check on a value the tree sets (IntComparison/BoolComparison:
-   Dark Skul's form, First Dark Hero's step) is reached through the SetInt/SetBool that sets it (the form change runs
-   first). Real-event checks (Grabbed, IsNullSharedVariable = head thrown, CanUseAction, CheckWithinSight, IsGrounded)
-   are left to the game. Moves come one after another in the book's order, fewest form changes first; a move that
-   doesn't come within 30 s (or the boss starts nothing for 8 s) is put aside for 90 s. Log lines "Move director: ...",
-   move counter shows "Director: next X (first Y)". **[DECISION]** no new setting: PreferNewMoves (dev) does it; block
-   AIs (First Hero, Pope) keep the old steering. 2 projectile names from the morning run translated. 315 tests pass.
-17. ~12:00 Umut: the director for every boss. Three ways, all under Developer/PreferNewMoves:
-   - BehaviorDesigner trees (step 16): Dark Skul 1/2, First Dark Hero, King Alexander (heart/phases), adventurers.
-   - Behaviour blocks (Codex/MoveDirector.Blocks.cs): Yggdrasil, Pope, First Hero 1-3 (SimpleAI). The AI's top blocks
-     are found through its fields (also Pope.Sequence's Phase1/Phase2); Selector/Sequence/WeightedSelector/
-     UniformSelector/RandomBehaviour are led, Conditional/Chance/CoolTime/Count are gates (forced: HealthCondition,
-     CoolDown, BehaviourCoolTime, BetweenTargetAndWall, CompareDistanceFromWall, CheckCollision, TargetIsGrounded;
-     left alone: BehaviourResult, BreakedDarkCrystal, CanChoice, CanPurify, CanStartAction, MonsterCount, ...).
-     A way counts only if one of its blocks started in the last 20 s (BehaviourInfo.CRun hook): blocks run from the
-     AI's own loop, Pope's phase 2 can't be reached from phase 1. First Hero's combo system picks combos itself.
-   - Coroutine AIs (Codex/MoveDirector.Coroutines.cs): Leiana sisters, Awakened Leiana, Chimera. Their attack
-     coroutines (Cast...) get a prefix: an attack the AI starts itself (not inside another attack: AttackTracker now
-     keeps the stack of running tracked MoveNext calls, InsideAttack()) that is filmed already becomes the first missing
-     attack of the same kind (same dispatcher, or the same " · " fight part for the sisters, whose conductor is the
-     master AI); arguments carried over by type ("left"), else defaults. 3 swaps without a film: put aside 90 s.
-   **[DECISION]** forcing HP checks lets a block boss do later-phase moves early (inside the same AI); swapping can
-   break Chimera's scripted wreck sequence while moves are missing. 321 tests pass. Untested in game.
-18. ~13:30 Review 2 of all films after Umut's full run (docs/FILM_REVIEW.md "Review 2"): takes match the notes for
-   every boss filmed in natural play; the director's takes (Dark Skul 2's last 10, King Alexander heart) were rushed
-   (cut or running into the next move). Fixes: pacing (MoveDirector.Pacing.cs: wait for each led/swapped move's take,
-   pause a BehaviorDesigner tree from the move's end until the take is saved, max 10 s); First Dark Hero's operations
-   all named "Operations" got merged into "Dark" (BossAttacks.StepKeyOf: generic operation names keyed by object);
-   10 heart operation names translated (Buzz saw, Drill missile, Chase laser, ...). 321 tests pass. Open: heart move
-   model (Umut decides), notes for the heart (11) and 5 other moves, retake Dark Skul 2's 10 and the heart with pacing.
-19. ~14:30 Umut: agreed to finish (definition of done: every move listed, seen, described; films are evidence only).
-   **[DECISION]** heart moves stay as listed now (operation + pattern as one move; split possibly in 0.12). Notes
-   written for 17 moves in 11 languages (heart 11: Chase/Enhanced chase/Curtain/Targeting laser, Heart beat, Drill
-   missile, Dark ring, Dark bouncy ball, Bouncy ball, Oil ball, Buzz saw; Dark Skul 2 Unstoppable; First Dark Hero
-   Summon thorn, Dark orb fragments, Dark blast wall, Dark orb (the last three from the AI only, check on the next
-   fight); Leiana single Meteor in ground 2). First Dark Hero's labels after the step-key fix checked offline (dump
-   with distinct keys). Supporting Thief/Warrior: no notes (never on camera), listed as known gap. Version 0.11.0:
-   csproj, CHANGELOG, README, wiki; package zip builds. Waiting for Umut's go to publish.
+1. Play a run and **hold Shift** on skulls, skills, items and inscriptions: are the compact lines easy to read? Decide
+   R1: some boxes shrink their font while Shift is held (German swap texts down to 57 %): accept, or shorter lines?
+2. **Olive Tree Cudgel (G2):** pick it up in a normal run and drop/destroy it: does physical attack stay doubled? Then
+   it is the game's own behaviour (or a game bug worth knowing).
+3. Read the **0.12.0 changelog** (CHANGELOG.md, top): good as the release notes? Then the 0.12 test (docs/V012_LOG.md
+   test todos, now also hold Shift and save slots) and your go for the release (`release/release.ps1` from main).
+4. Optional: new README screenshots (compact lines, the Save slots section).
+5. Optional: the night's pictures are in `<Skul>/BepInEx/DamageInsight/QA/night_2026-10-11_2231` (3.4 GB, report.md
+   and sheets/); say when the first pass (695 MB) and the test runs can go.

@@ -141,10 +141,12 @@ public static class DamageTracePatch
             {
                 trace.Origin = origin.Name;
                 trace.OriginIcon = origin.Icon;
+                trace.OriginKind = origin.Kind;
             }
             else if (DamageSources.CurrentStatus is { } status)
             {
                 trace.Origin = DamageSources.Title(status); // a status tick (see StatusContextPatch)
+                trace.OriginKind = DamageInsight.Recording.OriginKinds.Status;
             }
             else if (damage.attacker.projectile != null)
             {
@@ -153,6 +155,7 @@ public static class DamageTracePatch
                 {
                     trace.Origin = fired.Name;
                     trace.OriginIcon = fired.Icon;
+                    trace.OriginKind = fired.Kind;
                 }
                 else
                 {

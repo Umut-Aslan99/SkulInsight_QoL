@@ -52,6 +52,10 @@ public static partial class CodexBalance
     public static readonly Setting BossWins2 = Add("BossWins2", "Bosses", Loc.N("Boss wins to ★★"), 1f, 1f, 10f, 1f, "");
     public static readonly Setting BossWins3 = Add("BossWins3", "Bosses", Loc.N("Boss wins to ★★★"), 3f, 1f, 30f, 1f, "");
 
+    // Dark enemies' abilities: kills of dark enemies that had the ability.
+    public static readonly Setting EliteKills2 = Add("EliteKills2", "Elites", Loc.N("Dark enemy kills to ★★"), 1f, 1f, 20f, 1f, "");
+    public static readonly Setting EliteKills3 = Add("EliteKills3", "Elites", Loc.N("Dark enemy kills to ★★★"), 5f, 1f, 50f, 1f, "");
+
     // Skulls, items, quintessences: pickups.
     public static readonly Setting GearPicks2 = Add("GearPicks2", "Gear", Loc.N("Pickups to ★★"), 1f, 1f, 10f, 1f, "");
     public static readonly Setting GearPicks3 = Add("GearPicks3", "Gear", Loc.N("Pickups to ★★★"), 5f, 1f, 50f, 1f, "");

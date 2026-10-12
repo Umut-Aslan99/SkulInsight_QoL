@@ -39,6 +39,13 @@ public static class CodexPatches
         });
     }
 
+    [HarmonyPatch(typeof(Characters.Abilities.Darks.DarkAbilityAttacher), nameof(Characters.Abilities.Darks.DarkAbilityAttacher.Attach))]
+    public static class EliteAbilitiesRolled
+    {
+        private static void Postfix(Characters.Abilities.Darks.DarkAbilityAttacher __instance) =>
+            Safe(() => CodexTracker.OnEliteAbilities(__instance));
+    }
+
     [HarmonyPatch(typeof(Level.EnemyWaveContainer), nameof(Level.EnemyWaveContainer.Initialize))]
     public static class MapEnemies
     {

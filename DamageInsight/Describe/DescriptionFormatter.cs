@@ -103,7 +103,7 @@ public static class DescriptionFormatter
         string colour = hit.Attribute == "Magic" ? MagicColor : hit.Attribute == "Fixed" ? FixedColor : PhysicalColor;
         string attribute = AttributeName(hit);
         return UnknownBase(hit, stats)
-            ? $"<color={colour}>{Loc.F("{0} of skull damage, {1}", Percent(hit.MultMin, hit.MultMax), attribute)}</color>"
+            ? $"<color={colour}>{(EnemyOwner ? Loc.F("{0} of the enemy's damage, {1}", Percent(hit.MultMin, hit.MultMax), attribute) : Loc.F("{0} of skull damage, {1}", Percent(hit.MultMin, hit.MultMax), attribute))}</color>"
             : $"<color={colour}>{Range(min, max)} {attribute}</color>";
     }
 
@@ -118,6 +118,12 @@ public static class DescriptionFormatter
         _ => attribute,
     };
 
+    /// <summary>
+    /// The Codex (Umut 2026-10-12: "the source of full knowledge"): every hit shows its whole formula, base x hit % x
+    /// attack %, also when a factor is 100 %, so every page reads the same way.
+    /// </summary>
+    public static bool FullFormula;
+
     /// <summary>How the amount is made: "8–12 x 125% x 160% phys. atk", or "" if it's just the base.</summary>
     public static string Breakdown(Hit hit, StatSnapshot stats)
     {
@@ -127,14 +133,14 @@ public static class DescriptionFormatter
         {
             var (baseMin, baseMax) = Base(hit, stats);
             parts.Add(hit.UsesSkullDamage ? Loc.F("{0} skull dmg", Range(baseMin, baseMax)) : Range(baseMin, baseMax));
-            if (Math.Abs(hit.MultMin - 1) > 1e-6 || Math.Abs(hit.MultMax - 1) > 1e-6)
+            if (FullFormula || Math.Abs(hit.MultMin - 1) > 1e-6 || Math.Abs(hit.MultMax - 1) > 1e-6)
             {
                 parts.Add(Percent(hit.MultMin, hit.MultMax));
                 scaled = true;
             }
         }
         double factor = stats.FactorFor(hit);
-        if (hit.Attribute != "Fixed" && !hit.UsesEnemyStats && Math.Abs(factor - 1) > 1e-6)
+        if (hit.Attribute != "Fixed" && !hit.UsesEnemyStats && (FullFormula || Math.Abs(factor - 1) > 1e-6))
         {
             parts.Add(Percent(factor, factor) + " " + AttackStatName(hit));
             scaled = true;
@@ -164,6 +170,9 @@ public static class DescriptionFormatter
     }
 
     private static bool UnknownBase(Hit hit, StatSnapshot stats) => hit.UsesSkullDamage && Base(hit, stats).max <= 0;
+
+    /// <summary>The Codex's dark enemy pages: hits that borrow the owner's damage are an enemy's, not a skull's.</summary>
+    public static bool EnemyOwner;
 
     /// <summary>Short descriptions (setting Descriptions/Short, set by GearDescriptions): only the totals per step.</summary>
     public static bool Short;
@@ -215,7 +224,7 @@ public static class DescriptionFormatter
             : first.UsesSkullDamage ? Loc.F("of {0} skull dmg", Range(baseMin, baseMax))
             : Loc.F("of {0}", Range(baseMin, baseMax));
         double factor = stats.FactorFor(first);
-        string atk = Math.Abs(factor - 1) > 1e-6 && first.Attribute != "Fixed" ? $", x{Percent(factor, factor)} {AttackStatName(first)}" : "";
+        string atk = (FullFormula || Math.Abs(factor - 1) > 1e-6) && first.Attribute != "Fixed" ? $", x{Percent(factor, factor)} {AttackStatName(first)}" : "";
         var notes = Notes(first, repeats: false);
         string amount = UnknownBase(first, stats) ? "" : $" = <color={colour}>{Range(min, max)} {attributes}</color>";
         return $"{Loc.P("{0} hit", "{0} hits", count)}{amount}<color={DimColor}> ({percents} {of}{atk})" +

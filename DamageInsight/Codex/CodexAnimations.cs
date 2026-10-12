@@ -585,6 +585,20 @@ public static class CodexAnimations
     }
 
     private static readonly Dictionary<string, (DateTime written, List<CodexClip> clips)> ReplayCache = new();
+
+    /// <summary>Save slot switch: pictures and films are read again from the next slot's Codex folder.</summary>
+    internal static void ForgetSlot()
+    {
+        ToSample.Clear();
+        Tried.Clear();
+        Cache.Clear();
+        ProjectilesSeen.Clear();
+        ProjectilesTried.Clear();
+        ReplayCache.Clear();
+        Portraits.Clear();
+        SheetIds.Clear();
+    }
+
     private static readonly Dictionary<string, (Sprite still, Sprite outline)> Portraits = new();
 
     /// <summary>

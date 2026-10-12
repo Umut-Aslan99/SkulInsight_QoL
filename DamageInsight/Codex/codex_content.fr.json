@@ -1260,6 +1260,51 @@
           "tip": "Il réapparaît tout près : prépare-toi à l'attaque suivante."
         }
       }
+    },
+    "elite:Protection": {
+      "about": "Lève un bouclier devant lui qui bloque tes attaques de ce côté. Le bouclier encaisse des dégâts égaux à 30 % des PV max de l'ennemi ; une fois brisé, il revient au bout de 10 secondes. Frappe-le dans le dos."
+    },
+    "elite:Immortal": {
+      "about": "Toutes les 20 secondes, il appelle un assistant à proximité. Élimine l'assistant en moins de 10 secondes, sinon l'ennemi récupère 30 % de ses PV max."
+    },
+    "elite:IntenseCold": {
+      "about": "S'entoure d'air glacial. Près de lui, tes attaques de base sont 30 % plus lentes, tu te déplaces 50 % plus lentement et ton sprint est 20 % plus court."
+    },
+    "elite:Tornado": {
+      "about": "Toutes les 8 secondes, une tornade part d'un bout du sol où tu te tiens et le traverse."
+    },
+    "elite:Brawler": {
+      "about": "Toutes les 6 secondes, il déclenche une attaque au sol autour de lui."
+    },
+    "elite:Penance": {
+      "about": "Quand tu le frappes, il riposte par une déflagration autour de lui (au plus toutes les 3 secondes)."
+    },
+    "elite:Conductor": {
+      "about": "Toutes les 7 secondes, un tir fond sur toi depuis un point au hasard autour de toi."
+    },
+    "elite:Disaster": {
+      "about": "Toutes les 15 secondes, il lance trois projectiles en l'air qui retombent autour de lui."
+    },
+    "elite:Judgement": {
+      "about": "Toutes les 5 secondes, une frappe tombe là où tu te tiens. Ne reste pas immobile."
+    },
+    "elite:DivinePower": {
+      "about": "Toutes les 10 secondes, il soigne les ennemis autour de lui de 50 % de leurs PV max (pas lui-même). Élimine-le en premier."
+    },
+    "elite:Cannoneer": {
+      "about": "Place un canon à côté de lui toutes les 10 secondes, jusqu'à 3 à la fois."
+    },
+    "elite:Quarantine": {
+      "about": "Un anneau d'énergie sombre l'entoure. Toucher l'anneau fait mal (30 % de son attaque, une fois par seconde) ; à l'intérieur et à l'extérieur, tu es en sécurité."
+    },
+    "elite:Regeneration": {
+      "about": "Porte un bouclier valant 50 % de ses PV max. S'il ne subit aucun dégât pendant 4 secondes, le bouclier se recharge vite (20 % par seconde). Ne relâche pas la pression."
+    },
+    "elite:Legion": {
+      "about": "Renforce les ennemis autour de lui : 50 % de PV et d'attaque en plus, 20 % plus grands, et ils ne bronchent plus ni ne sont repoussés."
+    },
+    "elite:PlateArmor": {
+      "about": "Son armure dévie les 10 premiers coups qu'il reçoit : ils ne font aucun dégât."
     }
   }
 }

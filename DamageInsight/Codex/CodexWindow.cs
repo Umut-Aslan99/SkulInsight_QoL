@@ -20,7 +20,7 @@ namespace DamageInsight.Codex;
 /// haven't discovered yet). Right: the selected entry with its portrait/icon, what you know about it and what
 /// unlocks the next tier. Built from code the first time it is opened; pauses the game while open.
 /// </summary>
-public sealed class CodexWindow : MonoBehaviour
+public sealed partial class CodexWindow : MonoBehaviour
 {
     public static bool IsOpen { get; private set; }
 
@@ -51,6 +51,7 @@ public sealed class CodexWindow : MonoBehaviour
         _rows.Clear();
         _tabs.Clear();
         _showChips.Clear();
+        ForgetPageWidgets();
         _textShownFor = null;
         _animatedId = null;
         _listDirty = true;
@@ -83,7 +84,12 @@ public sealed class CodexWindow : MonoBehaviour
     private readonly Dictionary<CodexCategory, UiKit.Chip> _tabs = new();
 
     private Image _portrait;
-    private TextMeshProUGUI _portraitMark, _title, _subtitle, _nextText, _stats, _description;
+    private TextMeshProUGUI _portraitMark, _title, _subtitle, _nextText, _stats;
+    private RectTransform _blocks;   // the page: text, section boxes and skill tiles (PageBlocks)
+    private string _pageText;
+    private static readonly Color SectionShade = new Color32(0xE2, 0xD3, 0xB6, 0xFF);
+    private static readonly Color SectionBorder = new Color32(0xA8, 0x8C, 0x6A, 0xFF);
+    private static readonly Color TileShade = new Color32(0xCF, 0xBC, 0x98, 0xFF);
     private Image _barFill;
     private ScrollRect _descriptionScroll;
 
@@ -103,12 +109,20 @@ public sealed class CodexWindow : MonoBehaviour
     private TextMeshProUGUI _clipLabel;
     private UiKit.Chip _clipPrev, _clipNext;
 
-    private CodexCategory _category = CodexCategory.Enemies;
+    private readonly CodexNavigation _nav = new();
+    private CodexCategory _category => _nav.Category;
+    private string _selectedId => _nav.SelectedId;
     private string _query = "";
-    private string _selectedId;
     private List<CodexEntry> _shown = new();
     private int _drawnVersion = -1;
     private bool _listDirty = true;
+
+    /// <summary>Draws the list and the page again (a reveal setting changed).</summary>
+    public void Invalidate()
+    {
+        _listDirty = true;
+        _pageText = null;
+    }
     private float _nextRefresh;
 
     private sealed class Row
@@ -123,15 +137,19 @@ public sealed class CodexWindow : MonoBehaviour
     {
         if (_rebuild)
             DamageInsight.Patches.Guard.Run("Codex (language)", Rebuild);
-        bool typing = IsTyping;
-        if (!typing && !DamageInsight.UI.SettingsPage.IsOpen && Plugin.CodexKey.Value.IsDown())
+        // Typing in any text field (this search, the game's developer menu, ...) keeps K and Backspace for the text.
+        if (Plugin.CodexKey.Value.IsDown() && !DamageInsight.UI.SettingsPage.IsOpen && !DamageInsight.UI.TextInput.IsTyping())
             SetOpen(!IsOpen);
         else if (IsOpen && Input.GetKeyDown(KeyCode.Escape))
         {
-            if (typing)
+            if (IsTyping)
                 EventSystem.current?.SetSelectedGameObject(null);
             else
                 SetOpen(false);
+        }
+        else if (IsOpen && (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Mouse3)) && !DamageInsight.UI.TextInput.IsTyping())
+        {
+            GoBack();
         }
         // Pictures noted on kills are developed in the background all the time (about 1.5 ms per frame here,
         // the heavy part on another thread), whether the book is open or not.
@@ -145,6 +163,14 @@ public sealed class CodexWindow : MonoBehaviour
         }
         if (!IsOpen)
             return;
+
+        // Shift on an Arsenal page: your run's numbers instead of the neutral ones (not while typing in the search).
+        bool runStats = !DamageInsight.UI.TextInput.IsTyping() && DamageInsight.Describe.ExtraInfo.HoldKeyDown();
+        if (runStats != CodexPages.RunStats)
+        {
+            CodexPages.RunStats = runStats;
+            DamageInsight.Patches.Guard.Run("Codex run stats", DrawDetail);
+        }
 
         int waiting = CodexAnimations.Waiting;
         if (waiting != _waitingShown)
@@ -195,6 +221,7 @@ public sealed class CodexWindow : MonoBehaviour
         }
         if (open)
         {
+            OnOpened();
             EnsureEventSystem();
             _listDirty = true;
             _nextRefresh = 0f;
@@ -299,12 +326,19 @@ public sealed class CodexWindow : MonoBehaviour
 
     private void BuildLeft(RectTransform page)
     {
-        Label(page, Loc.T("Codex"), 40, Ink, TextAlignmentOptions.TopLeft).rectTransform.Place(32, 22, 400, 50);
-        _progressText = Label(page, "", 17, InkDim, TextAlignmentOptions.TopRight);
-        _progressText.rectTransform.Place(PageWidth - 32 - 360, 36, 360, 26);
+        Label(page, Loc.T("Codex"), 40, Ink, TextAlignmentOptions.TopLeft).rectTransform.Place(32, 22, 170, 50);
+        BuildSectionRow(page);
+
+        // What the list shows: search, sub-tabs, filters and the entries (the You section shows its own panel).
+        _listPanel = UiKit.Rect("List panel", page).Fill();
+        var panel = _listPanel;
+        _progressText = Label(panel, "", 16, InkDim, TextAlignmentOptions.MidlineLeft);
+        _progressText.rectTransform.Place(32, BookHeight - 24 - 27, PageWidth - 64, 24);
+        _progressText.enableWordWrapping = false;
+        _progressText.overflowMode = TextOverflowModes.Ellipsis;
 
         // Search field
-        var box = UiKit.Image("Search", page, PageShade).rectTransform.Place(32, 84, PageWidth - 64, 40);
+        var box = UiKit.Image("Search", panel, PageShade).rectTransform.Place(32, 84, PageWidth - 64, 40);
         var area = UiKit.Rect("Text Area", box).Fill(8);
         area.gameObject.AddComponent<RectMask2D>();
         var text = Label(area, "", 20, Ink, TextAlignmentOptions.MidlineLeft);
@@ -328,23 +362,23 @@ public sealed class CodexWindow : MonoBehaviour
             _nextRefresh = 0f;
         });
 
-        // Category tabs
-        float x = 32;
-        foreach (CodexCategory category in Enum.GetValues(typeof(CodexCategory)))
+        // Sub-tabs: each section's categories, from the left (only the current section's are shown).
+        foreach (CodexSection section in Enum.GetValues(typeof(CodexSection)))
         {
-            string label = TabLabel(category);
-            float width = UiKit.ChipWidth(label);
-            var chip = new UiKit.Chip(page, label, x, 136, width, () =>
+            float x = 32;
+            foreach (var category in CodexNavigation.TabsOf(section))
             {
-                _category = category;
-                _selectedId = null;
-                _listDirty = true;
-                _nextRefresh = 0f;
-                RefreshTabs();
-                _listScroll.verticalNormalizedPosition = 1f;
-            });
-            _tabs[category] = chip;
-            x += width + 6;
+                string label = TabLabel(category);
+                float width = UiKit.ChipWidth(label);
+                var chip = new UiKit.Chip(panel, label, x, 136, width, () =>
+                {
+                    _nav.SwitchCategory(category);
+                    OnNavigated();
+                    _listScroll.verticalNormalizedPosition = 1f;
+                });
+                _tabs[category] = chip;
+                x += width + 6;
+            }
         }
         RefreshTabs();
 
@@ -354,7 +388,7 @@ public sealed class CodexWindow : MonoBehaviour
         {
             string label = show switch { ShowFilter.Found => Loc.T("Found"), ShowFilter.Unknown => Loc.T("Unknown"), _ => Loc.T("All") };
             float width = UiKit.ChipWidth(label);
-            var chip = new UiKit.Chip(page, label, fx, 172, width, () =>
+            var chip = new UiKit.Chip(panel, label, fx, 172, width, () =>
             {
                 _show = show;
                 _listDirty = true;
@@ -364,19 +398,20 @@ public sealed class CodexWindow : MonoBehaviour
             _showChips[show] = chip;
             fx += width + 6;
         }
-        _sortChip = new UiKit.Chip(page, Loc.F("Sort: {0}", SortName(SortOrder.Book)), 0, 0, 150, () =>
+        _sortChip = new UiKit.Chip(panel, Loc.F("Sort: {0}", SortName(SortOrder.Book)), 0, 0, 150, () =>
         {
             _sort = (SortOrder)(((int)_sort + 1) % Enum.GetValues(typeof(SortOrder)).Length);
             _listDirty = true;
             _nextRefresh = 0f;
             RefreshFilterChips();
         });
-        float sortWidth = Mathf.Max(150f, Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>().Max(s => UiKit.ChipWidth(Loc.F("Sort: {0}", SortName(s)))));
+        float sortWidth = Mathf.Max(150f, Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>()
+            .Max(s => Math.Max(UiKit.ChipWidth(Loc.F("Sort: {0}", SortName(s))), UiKit.ChipWidth(Loc.F("Sort: {0}", SortName(s, CodexCategory.Items))))));
         _sortChip.Background.rectTransform.Place(PageWidth - 32 - sortWidth, 172, sortWidth, 28);
         RefreshFilterChips();
 
         // Entry list
-        var frame = UiKit.Image("List", page, PageShade).rectTransform.Place(32, 210, PageWidth - 64, BookHeight - 24 - 210 - 28);
+        var frame = UiKit.Image("List", panel, PageShade).rectTransform.Place(32, 210, PageWidth - 64, BookHeight - 24 - 210 - 32);
         var viewport = UiKit.Rect("Viewport", frame).Fill(4);
         viewport.gameObject.AddComponent<RectMask2D>();
         viewport.gameObject.AddComponent<Image>().color = new Color(0, 0, 0, 0); // catches the mouse wheel
@@ -397,6 +432,10 @@ public sealed class CodexWindow : MonoBehaviour
         _listScroll.horizontal = false;
         _listScroll.movementType = ScrollRect.MovementType.Clamped;
         _listScroll.scrollSensitivity = 40f;
+
+        _youPanel = UiKit.Rect("You panel", page).Fill();
+        BuildYou(_youPanel);
+        RefreshSections();
     }
 
     /// <summary>
@@ -414,7 +453,7 @@ public sealed class CodexWindow : MonoBehaviour
         _subtitle = Label(page, "", 18, InkDim, TextAlignmentOptions.Center);
         _subtitle.rectTransform.Place(32, 70, width, 26);
 
-        var frame = UiKit.Image("Portrait frame", page, PageShade).rectTransform.Place(32, 102, width, 330);
+        var frame = _portraitFrame = UiKit.Image("Portrait frame", page, PageShade).rectTransform.Place(32, 102, width, 330);
         _portrait = UiKit.Image("Portrait", frame, Color.white);
         _portrait.rectTransform.Fill(12);
         _portrait.preserveAspect = true;
@@ -446,7 +485,7 @@ public sealed class CodexWindow : MonoBehaviour
 
         _nextText = Label(page, "", 16, Ink, TextAlignmentOptions.TopLeft);
         _nextText.rectTransform.Place(32, 476, width, 26);
-        var bar = UiKit.Image("Bar", page, PageShade).rectTransform.Place(32, 502, width, 10);
+        var bar = _bar = UiKit.Image("Bar", page, PageShade).rectTransform.Place(32, 502, width, 10);
         _barFill = UiKit.Image("Fill", bar, Accent);
         _barFill.rectTransform.anchorMin = Vector2.zero;
         _barFill.rectTransform.anchorMax = new Vector2(0, 1);
@@ -455,16 +494,20 @@ public sealed class CodexWindow : MonoBehaviour
         _stats = Label(page, "", 1, Ink, TextAlignmentOptions.TopLeft); // unused (kept for the empty state)
         _stats.rectTransform.Place(0, 0, 0, 0);
 
-        var textFrame = UiKit.Rect("Text", page).Place(32, 524, width, BookHeight - 24 - 524 - 24);
+        var textFrame = _textFrame = UiKit.Rect("Text", page).Place(32, 524, width, BookHeight - 24 - 524 - 24);
         var viewport = UiKit.Rect("Viewport", textFrame).Fill();
         viewport.gameObject.AddComponent<RectMask2D>();
         viewport.gameObject.AddComponent<Image>().color = new Color(0, 0, 0, 0);
-        _description = Label(viewport, "", 18, Ink, TextAlignmentOptions.TopLeft);
-        var content = _description.rectTransform;
+        var content = _blocks = UiKit.Rect("Blocks", viewport);
         content.anchorMin = new Vector2(0, 1);
         content.anchorMax = new Vector2(1, 1);
         content.pivot = new Vector2(0.5f, 1);
         content.sizeDelta = Vector2.zero;
+        var stack = content.gameObject.AddComponent<VerticalLayoutGroup>();
+        stack.spacing = 12;
+        stack.childControlWidth = stack.childControlHeight = true;
+        stack.childForceExpandWidth = true;
+        stack.childForceExpandHeight = false;
         content.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         _descriptionScroll = textFrame.gameObject.AddComponent<ScrollRect>();
         _descriptionScroll.viewport = viewport;
@@ -505,6 +548,10 @@ public sealed class CodexWindow : MonoBehaviour
             sb.Append($"\n\n<size=85%><color=#8A7058>{Loc.P("{0} frame · {1} s", "{0} frames · {1} s", clip.Count, seconds.ToString("0.0", CultureInfo.InvariantCulture))}</color></size>");
             return sb.ToString();
         }
+        if (!IsEnemy(entry) && entry.Category != CodexCategory.Elites && tier >= (entry.Category == CodexCategory.Inscriptions ? 1 : 2))
+            return CodexPages.Text(entry, p, tier);
+        if (entry.Category == CodexCategory.Elites)
+            return CodexElites.Text(entry, p, tier, null);
         string about = CodexContent.About(entry.Key);
         string text = Stats(entry, p, tier);
         string description = Description(entry, tier);
@@ -521,7 +568,7 @@ public sealed class CodexWindow : MonoBehaviour
     {
         foreach (var pair in _showChips)
             pair.Value.SetOn(pair.Key == _show);
-        _sortChip.Label.text = Loc.F("Sort: {0}", SortName(_sort));
+        _sortChip.Label.text = Loc.F("Sort: {0}", SortName(_sort, _category));
         _sortChip.SetOn(_sort != SortOrder.Book);
     }
 
@@ -660,6 +707,9 @@ public sealed class CodexWindow : MonoBehaviour
         CodexCatalog.Entries.Where(e => CodexTracker.Progress.Peek(e.Id)?.IsSummonedBy(entry.Id) == true).ToList();
 
     private static readonly Dictionary<string, CodexClip> PartClips = new();
+
+    /// <summary>Save slot switch: pictures made for pages come from the next slot's Codex.</summary>
+    internal static void ForgetSlot() => PartClips.Clear();
 
     /// <summary>A fight piece's clip under "Dark crystal left · Activate" (a copy: the loaded list is shared).</summary>
     /// <summary>The words several names share at the start ("Dark Crystal Left" + "... Right"), else at the end, else the first.</summary>
@@ -830,6 +880,118 @@ public sealed class CodexWindow : MonoBehaviour
     {
         foreach (var pair in _tabs)
             pair.Value.SetOn(pair.Key == _category);
+        if (_sortChip != null)
+            RefreshFilterChips(); // "Sort: Kills" / "Sort: Taken" follows the tab
+    }
+
+    /// <summary>
+    /// Shows a page: the text before the first section as it is, every section as a framed box with its icon and title,
+    /// skill tiles as an icon square (or a "?") with their text (PageBlocks). Rebuilt only when the text changes.
+    /// </summary>
+    private void SetPage(string text)
+    {
+        text ??= "";
+        if (text == _pageText || _blocks == null)
+            return;
+        _pageText = text;
+        foreach (Transform child in _blocks)
+        {
+            child.gameObject.SetActive(false); // out of the layout now, destroyed at the end of the frame
+            Destroy(child.gameObject);
+        }
+        foreach (var block in PageBlocks.Parse(text))
+        {
+            Transform parent = _blocks;
+            if (block.Title != null)
+            {
+                var box = UiKit.Image("Section", _blocks, SectionShade);
+                var outline = box.gameObject.AddComponent<Outline>();
+                outline.effectColor = SectionBorder;
+                outline.effectDistance = new Vector2(1.5f, -1.5f);
+                var layout = box.gameObject.AddComponent<VerticalLayoutGroup>();
+                layout.padding = new RectOffset(12, 12, 8, 12);
+                layout.spacing = 6;
+                layout.childControlWidth = layout.childControlHeight = true;
+                layout.childForceExpandWidth = true;
+                layout.childForceExpandHeight = false;
+
+                var header = UiKit.Rect("Header", box.transform);
+                var row = header.gameObject.AddComponent<HorizontalLayoutGroup>();
+                row.spacing = 8;
+                row.childAlignment = TextAnchor.MiddleLeft;
+                row.childControlWidth = row.childControlHeight = true;
+                row.childForceExpandWidth = row.childForceExpandHeight = false;
+                var sprite = PageIcon(block.Icon);
+                if (sprite != null)
+                {
+                    var icon = UiKit.Image("Icon", header, Color.white);
+                    icon.sprite = sprite;
+                    icon.preserveAspect = true;
+                    var size = icon.gameObject.AddComponent<LayoutElement>();
+                    size.minWidth = size.preferredWidth = size.minHeight = size.preferredHeight = 28;
+                }
+                var title = Label(header, $"<b>{block.Title}</b>", 20, Accent, TextAlignmentOptions.MidlineLeft);
+                title.enableWordWrapping = false;
+                title.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1;
+                parent = box.transform;
+            }
+            foreach (var item in block.Items)
+            {
+                if (item.Kind == PageBlocks.Kind.Text)
+                {
+                    var t = Label(parent, item.Text, 18, Ink, TextAlignmentOptions.TopLeft);
+                    AddLinkClicks(t);
+                    continue;
+                }
+                // A skill tile: the icon in a square (or a big "?"), the text next to it.
+                var tile = UiKit.Rect("Tile", parent);
+                var tileRow = tile.gameObject.AddComponent<HorizontalLayoutGroup>();
+                tileRow.spacing = 10;
+                tileRow.childAlignment = TextAnchor.UpperLeft;
+                tileRow.childControlWidth = tileRow.childControlHeight = true;
+                tileRow.childForceExpandWidth = tileRow.childForceExpandHeight = false;
+                var square = UiKit.Image("Square", tile, TileShade);
+                var squareOutline = square.gameObject.AddComponent<Outline>();
+                squareOutline.effectColor = SectionBorder;
+                squareOutline.effectDistance = new Vector2(1.5f, -1.5f);
+                var squareSize = square.gameObject.AddComponent<LayoutElement>();
+                squareSize.minWidth = squareSize.preferredWidth = squareSize.minHeight = squareSize.preferredHeight = 64;
+                var tileSprite = PageIcon(item.Icon);
+                if (tileSprite != null)
+                {
+                    var icon = UiKit.Image("Icon", square.transform, Color.white);
+                    icon.sprite = tileSprite;
+                    icon.preserveAspect = true;
+                    icon.rectTransform.Fill(6);
+                }
+                else
+                {
+                    var mark = Label(square.transform, "?", 40, InkDim, TextAlignmentOptions.Center);
+                    mark.rectTransform.Fill();
+                }
+                var tileText = Label(tile, item.Text, 17, Ink, TextAlignmentOptions.TopLeft);
+                tileText.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1;
+                AddLinkClicks(tileText);
+            }
+        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_blocks);
+    }
+
+    /// <summary>A page icon: "skillkey:&lt;key&gt;" (the game's skill icon) or an IconLibrary spec; null for none.</summary>
+    private static Sprite PageIcon(string spec)
+    {
+        if (string.IsNullOrEmpty(spec))
+            return null;
+        try
+        {
+            if (spec.StartsWith("skillkey:", StringComparison.Ordinal))
+                return GameResources.GearResource.instance?.GetSkillIcon(spec.Substring("skillkey:".Length));
+            return DamageInsight.UI.IconLibrary.Resolve(spec);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
     private static TextMeshProUGUI Label(Transform parent, string text, float size, Color color, TextAlignmentOptions alignment)
@@ -843,6 +1005,11 @@ public sealed class CodexWindow : MonoBehaviour
 
     private void DrawList()
     {
+        if (_nav.Section == CodexSection.You)
+        {
+            DrawYouList();
+            return;
+        }
         var progress = CodexTracker.Progress;
         // Pieces of a boss fight (Pope's dark crystals) live on the boss's page, not in the list.
         var all = CodexCatalog.Entries.Where(e => !(progress.Peek(e.Id)?.PartOf.Length > 0) && !CodexCatalog.TwinOf.ContainsKey(e.Id)).ToList();
@@ -863,7 +1030,7 @@ public sealed class CodexWindow : MonoBehaviour
         int known = all.Count(e => CodexTiers.Tier(e.Category, CodexTracker.Page(e.Id), e.Id) > 0);
         int knownHere = inCategory.Count(e => CodexTiers.Tier(e.Category, CodexTracker.Page(e.Id), e.Id) > 0);
         string developing = _waitingShown > 0 ? $"  ·  <color=#9C3B2A>{Loc.P("developing {0} picture…", "developing {0} pictures…", _waitingShown)}</color>" : "";
-        _progressText.text = $"{TabLabel(_category)}: {knownHere} / {inCategory.Count}\n<size=80%>{Loc.F("All: {0} / {1} discovered", known, all.Count)}{developing}</size>";
+        _progressText.text = $"{TabLabel(_category)}: {knownHere} / {inCategory.Count}  ·  {Loc.F("All: {0} / {1} discovered", known, all.Count)}{developing}";
 
         while (_rows.Count < _shown.Count)
             _rows.Add(NewRow());
@@ -887,13 +1054,15 @@ public sealed class CodexWindow : MonoBehaviour
         }
 
         if (_selectedId == null && _shown.Count > 0)
-            _selectedId = _shown[0].Id;
+            _nav.SelectQuietly(_shown[0].Id);
+        if (_scrollToSelected)
+            ScrollListTo(_shown.FindIndex(e => e.Id == _selectedId));
     }
 
     private static string Counter(CodexEntry entry, EntryProgress p)
     {
         string stars = new string('★', CodexTiers.Tier(entry.Category, p, entry.Id)) + new string('☆', CodexTiers.Max - CodexTiers.Tier(entry.Category, p, entry.Id));
-        if (IsEnemy(entry))
+        if (IsEnemy(entry) || entry.Category == CodexCategory.Elites)
             return $"{Loc.P("{0} kill", "{0} kills", p?.Kills ?? 0)}  {stars}";
         if (entry.Category == CodexCategory.Inscriptions)
             return $"{Loc.F("{0}x completed", p?.PickedUp ?? 0)}  {stars}";
@@ -932,7 +1101,7 @@ public sealed class CodexWindow : MonoBehaviour
         button.navigation = new Navigation { mode = Navigation.Mode.None };
         button.onClick.AddListener(() =>
         {
-            _selectedId = row.Id;
+            _nav.Select(row.Id);
             _listDirty = true;
             _nextRefresh = 0f;
             EventSystem.current?.SetSelectedGameObject(null);
@@ -942,13 +1111,18 @@ public sealed class CodexWindow : MonoBehaviour
 
     private void DrawDetail()
     {
+        if (_nav.Section == CodexSection.You)
+        {
+            DrawYouDetail();
+            return;
+        }
         var entry = CodexCatalog.Entries.FirstOrDefault(e => e.Id == _selectedId);
         if (entry == null)
         {
             _title.text = "";
             _subtitle.text = "";
             _stats.text = "";
-            _description.text = "";
+            SetPage("");
             _nextText.text = "";
             _portrait.color = new Color(0, 0, 0, 0);
             _portraitMark.text = "";
@@ -959,6 +1133,7 @@ public sealed class CodexWindow : MonoBehaviour
         var p = CodexTracker.Page(entry.Id);
         int tier = CodexTiers.Tier(entry.Category, p, entry.Id);
         bool enemy = IsEnemy(entry);
+        ApplyLayout(enemy ? PageLayout.Creature : PageLayout.Gear);
 
         // Portrait: nothing, a black silhouette, or in colour; enemies are animated.
         _stage = enemy ? Stage(entry, p, tier) : (tier > 0 ? 3 : 0);
@@ -982,7 +1157,7 @@ public sealed class CodexWindow : MonoBehaviour
         float fill = next == null ? 1f : next.Value.need > 0 ? Mathf.Clamp01((float)next.Value.have / next.Value.need) : 0f;
         _barFill.rectTransform.anchorMax = new Vector2(fill, 1);
 
-        _description.text = tier == 0 ? "" : DetailText(entry, p, tier);
+        SetPage(tier == 0 ? "" : DetailText(entry, p, tier));
         string shownFor = entry.Id + "#" + (_showingFilms ? "film" : "") + _clipIndex;
         if (shownFor != _textShownFor)
         {
@@ -1120,6 +1295,8 @@ public sealed class CodexWindow : MonoBehaviour
                 return Enum.TryParse(entry.Key, out Inscription.Key key) ? SafeInscriptionIcon(key) : null;
             case CodexCategory.DarkAbilities:
                 return CodexCatalog.DarkIcon(entry);
+            case CodexCategory.Elites:
+                return CodexElites.Icon(entry);
             default:
                 return CodexCatalog.GearIcon(entry);
         }
@@ -1147,6 +1324,7 @@ public sealed class CodexWindow : MonoBehaviour
         CodexCategory.Items => Loc.T("Item"),
         CodexCategory.Essences => Loc.T("Essence"),
         CodexCategory.DarkAbilities => Loc.T("Dark ability"),
+        CodexCategory.Elites => Loc.T("Dark enemy ability"),
         _ => Loc.T("Inscription"),
     };
 
@@ -1157,14 +1335,16 @@ public sealed class CodexWindow : MonoBehaviour
         CodexCategory.Skulls => Loc.T("Skulls"),
         CodexCategory.Items => Loc.T("Items"),
         CodexCategory.Essences => Loc.T("Essences"),
-        CodexCategory.DarkAbilities => Loc.T("Dark"),
+        CodexCategory.DarkAbilities => Loc.T("Dark abilities"),
+        CodexCategory.Elites => Loc.T("Dark enemies"),
         _ => Loc.T("Inscriptions"),
     };
 
-    private static string SortName(SortOrder sort) => sort switch
+    /// <summary>The sort's name; "Kills" sorts gear by how often it was taken, so it says "Taken" there (Umut 2026-10-12).</summary>
+    private static string SortName(SortOrder sort, CodexCategory category = CodexCategory.Enemies) => sort switch
     {
         SortOrder.Name => Loc.T("Name"),
-        SortOrder.Kills => Loc.T("Kills"),
+        SortOrder.Kills => category is CodexCategory.Enemies or CodexCategory.Bosses or CodexCategory.Elites ? Loc.T("Kills") : Loc.T("Taken"),
         _ => Loc.T("Book"),
     };
 

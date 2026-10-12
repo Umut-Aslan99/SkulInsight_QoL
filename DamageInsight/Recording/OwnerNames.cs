@@ -24,7 +24,8 @@ public static class OwnerNames
     {
         public readonly string Name;
         public readonly Sprite Icon;
-        public Owner(string name, Sprite icon) { Name = name; Icon = icon; }
+        public readonly string Kind; // OriginKinds: Skull, Item, Quintessence, Inscription, DarkAbility ("" = other)
+        public Owner(string name, Sprite icon, string kind = "") { Name = name; Icon = icon; Kind = kind ?? ""; }
     }
 
     private static readonly Dictionary<object, Owner> ByObject = new();
@@ -174,10 +175,10 @@ public static class OwnerNames
         foreach (var gear in UnityEngine.Object.FindObjectsOfType<Gear>(true))
             roots.Add((gear, OwnerOf(gear)));
         foreach (var upgrade in UnityEngine.Object.FindObjectsOfType<UpgradeObject>(true))
-            roots.Add((upgrade, new Owner(upgrade.displayName, upgrade.icon)));
+            roots.Add((upgrade, new Owner(upgrade.displayName, upgrade.icon, OriginKinds.DarkAbility)));
         foreach (var inscription in UnityEngine.Object.FindObjectsOfType<InscriptionInstance>(true))
             if (inscription.keyword != null)
-                roots.Add((inscription, new Owner(inscription.keyword.name, inscription.keyword.activeIcon)));
+                roots.Add((inscription, new Owner(inscription.keyword.name, inscription.keyword.activeIcon, OriginKinds.Inscription)));
 
         foreach (var (root, owner) in roots)
         {
@@ -236,9 +237,9 @@ public static class OwnerNames
             if (t.GetComponent<Gear>() is { } gear)
                 return OwnerOf(gear);
             if (t.GetComponent<UpgradeObject>() is { } upgrade)
-                return new Owner(upgrade.displayName, upgrade.icon);
+                return new Owner(upgrade.displayName, upgrade.icon, OriginKinds.DarkAbility);
             if (t.GetComponent<InscriptionInstance>() is { keyword: not null } inscription)
-                return new Owner(inscription.keyword.name, inscription.keyword.activeIcon);
+                return new Owner(inscription.keyword.name, inscription.keyword.activeIcon, OriginKinds.Inscription);
         }
         return null;
     }
@@ -249,7 +250,13 @@ public static class OwnerNames
         try { icon = gear.thumbnail; } catch (Exception) { /* no dropped sprite */ }
         string name;
         try { name = gear.displayName; } catch (Exception) { name = Humanize(gear.name); }
-        return new Owner(string.IsNullOrEmpty(name) ? Humanize(gear.name) : name, icon);
+        string kind = gear switch
+        {
+            Characters.Gear.Weapons.Weapon => OriginKinds.Skull,
+            Characters.Gear.Quintessences.Quintessence => OriginKinds.Quintessence,
+            _ => OriginKinds.Item,
+        };
+        return new Owner(string.IsNullOrEmpty(name) ? Humanize(gear.name) : name, icon, kind);
     }
 
     private static FieldInfo[] FieldsOf(Type type, Dictionary<Type, FieldInfo[]> cache, Func<FieldInfo, bool> match)

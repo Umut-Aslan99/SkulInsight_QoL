@@ -50,7 +50,7 @@ public class SettingsCatalogTests : IDisposable
         Assert.Equal("Damage icons", sections[1]);
         Assert.True(sections.IndexOf("Combat log") < sections.IndexOf("Codex"));
         Assert.True(sections.IndexOf("Codex") < sections.IndexOf("Codex unlocks: enemies"));
-        Assert.Equal(new[] { "Codex unlocks: enemies", "Codex unlocks: bosses", "Codex unlocks: gear" },
+        Assert.Equal(new[] { "Codex unlocks: enemies", "Codex unlocks: bosses", "Codex unlocks: dark enemies", "Codex unlocks: gear" },
             sections.Where(s => s.StartsWith("Codex unlocks")));
         Assert.Equal(SettingsCatalog.ResetAll, items.Last().Action);
     }

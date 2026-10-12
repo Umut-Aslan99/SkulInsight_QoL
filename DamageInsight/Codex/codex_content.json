@@ -1260,6 +1260,51 @@
           "tip": "He reappears close by: be ready for the next attack."
         }
       }
+    },
+    "elite:Protection": {
+      "about": "Raises a shield on its front that blocks your attacks from that side. The shield holds damage equal to 30% of the enemy's max HP; once broken, it comes back after 10 seconds. Hit it from behind."
+    },
+    "elite:Immortal": {
+      "about": "Every 20 seconds it calls a helper close by. Kill the helper within 10 seconds, or the enemy heals 30% of its max HP."
+    },
+    "elite:IntenseCold": {
+      "about": "Surrounds itself with freezing air. While you are near it, your basic attacks are 30% slower, you move 50% slower and your dash is 20% shorter."
+    },
+    "elite:Tornado": {
+      "about": "Every 8 seconds a tornado starts at one end of the floor you stand on and sweeps across it."
+    },
+    "elite:Brawler": {
+      "about": "Every 6 seconds it sets off an attack on the ground around itself."
+    },
+    "elite:Penance": {
+      "about": "When you hit it, it strikes back with a burst around itself (at most once every 3 seconds)."
+    },
+    "elite:Conductor": {
+      "about": "Every 7 seconds a shot flies at you from a random point around you."
+    },
+    "elite:Disaster": {
+      "about": "Every 15 seconds it throws three projectiles into the air that rain down around it."
+    },
+    "elite:Judgement": {
+      "about": "Every 5 seconds a strike falls where you stand. Keep moving."
+    },
+    "elite:DivinePower": {
+      "about": "Every 10 seconds it heals the enemies around it by 50% of their max HP (not itself). Kill it first."
+    },
+    "elite:Cannoneer": {
+      "about": "Places a cannon next to itself every 10 seconds, up to 3 at a time."
+    },
+    "elite:Quarantine": {
+      "about": "A ring of dark energy surrounds it. Touching the ring hurts (30% of its attack, once a second); inside and outside the ring you are safe."
+    },
+    "elite:Regeneration": {
+      "about": "Wears a shield worth 50% of its max HP. If it takes no damage for 4 seconds, the shield refills quickly (20% per second). Keep up the pressure."
+    },
+    "elite:Legion": {
+      "about": "Strengthens the enemies around it: 50% more HP and attack, 20% bigger, and they no longer flinch or get knocked back."
+    },
+    "elite:PlateArmor": {
+      "about": "Its armor turns aside the first 10 hits it takes: they deal no damage."
     }
   }
 }

@@ -80,9 +80,15 @@ public sealed class MiniLog : MonoBehaviour
         }
     }
 
+    /// <summary>Hidden whatever the setting says (the QA capture takes pictures of the game's boxes).</summary>
+    public static bool Hidden;
+
     private static bool ShouldShow()
     {
-        if (!Plugin.MiniLogEnabled.Value || CombatLogWindow.IsOpen)
+        if (!Plugin.MiniLogEnabled.Value || CombatLogWindow.IsOpen || Hidden)
+            return false;
+        // A game menu is open (inventory, pause, swap menu): the log would cover it (QA 2026-10-11, finding U1).
+        if (global::UI.Dialogue.anyDialogueOpened)
             return false;
         if (Singleton<Service>.Instance?.levelManager?.player == null)
             return false;

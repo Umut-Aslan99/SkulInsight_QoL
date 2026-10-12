@@ -933,7 +933,8 @@ public sealed class FightRecorder : MonoBehaviour
         for (int i = 0; i < keep; i++)
             durations.Add(i + 1 < keep ? Mathf.Clamp(reel.Times[i + 1] - reel.Times[i], 0.05f, 0.5f) : Interval);
         string folder = CodexAnimations.ReplayFolderOf(film.Key), key = film.Key;
-        Task.Run(() => Save(folder, label, frames, durations))
+        int generation = _generation;
+        Task.Run(() => Save(folder, label, frames, durations, generation))
             .ContinueWith(t => Plugin.Log.LogInfo(t.IsFaulted
                 ? $"Codex: saving the film of {key} {label} failed: {t.Exception?.GetBaseException().Message}"
                 : $"Codex: filmed {key}: {label} ({frames.Count} frames; ended by {why}{(aftermath > 0 ? $", {aftermath} effects still running" : "")})."));
@@ -941,9 +942,32 @@ public sealed class FightRecorder : MonoBehaviour
     }
 
     private static readonly object SaveLock = new();
+    private static int _generation; // grows when a save slot switch puts another Codex folder in place
+
+    /// <summary>Runs <paramref name="action"/> while no film is being written (save slots move or copy the Codex folder).</summary>
+    internal static void WhileNoFilmIsSaved(Action action)
+    {
+        lock (SaveLock)
+            action();
+    }
+
+    /// <summary>
+    /// Save slot switch: drops the takes being filmed (their bosses go away with the scene); films still waiting to be
+    /// written are thrown away instead of landing in the next slot's folder.
+    /// </summary>
+    internal static void ForgetSlot()
+    {
+        lock (SaveLock)
+            _generation++;
+        if (_instance != null)
+        {
+            _instance._films.Clear();
+            _instance._closing.Clear();
+        }
+    }
 
     /// <summary>Background thread: appends one move as a sheet to the boss's replay folder.</summary>
-    private static void Save(string folder, string label, List<Color32[]> frames, List<float> durations)
+    private static void Save(string folder, string label, List<Color32[]> frames, List<float> durations, int generation)
     {
         int columns = Math.Max(1, Math.Min(frames.Count, 4096 / Width));
         int count = Math.Min(frames.Count, columns * (4096 / Height));
@@ -966,6 +990,8 @@ public sealed class FightRecorder : MonoBehaviour
 
         lock (SaveLock)
         {
+            if (generation != _generation)
+                return; // filmed in another save slot's game
             Directory.CreateDirectory(folder);
             // Keep every other move's entry as it is; an older take of this move is replaced (refilm).
             var entries = OtherEntries(folder, l => l == label, out _);

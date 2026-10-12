@@ -5,7 +5,7 @@ from, puts your real damage into every description, explains each hit in a comba
 adds the **Codex**: a bestiary with every enemy, boss and item, complete boss move lists and fight films you
 record yourself.
 
-It is a quality-of-life mod: it changes nothing about balance, drops or saves, and every feature can be switched
+It is a quality-of-life mod: it changes nothing about balance or drops (save slots, if you use them, keep several whole games side by side), and every feature can be switched
 off. It is safe to add or remove at any time.
 
 ![Overview](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
@@ -126,12 +126,35 @@ your changes, e.g. `{"strings": {"Combat Log": "Kampflog"}}` (codes: en, ko, ja,
 ru, pl, fr). It is used at once on the next language change or game start; please send it in so everyone gets it.
 </details>
 
+### Save slots (new in 0.12)
+Keep up to 5 games side by side, like profiles: pause (Esc) → **SkulInsight QoL** → **Save slots**.
+- Each slot is a whole game: story, NPCs, the witch's upgrades, the Dark Mirror, currencies and the run in progress,
+  with its own Codex.
+- **Play** switches to a slot: the game you were playing goes into its slot (a run in progress waits at the room you
+  entered last) and the other game comes in through the title screen. An empty slot starts a new game.
+- **Copy my game here** copies your current game (with its Codex) into a slot; **Clear** empties one.
+- Each slot shows a summary: run, story, NPCs, witch levels, dark quartz, Dark Mirror, deaths, last played.
+- Your keys, sound and language stay the same in every slot. The game's save is backed up before every switch.
+- Number of slots: 3 to 5 (setting).
+
 ## The Codex (K), new in 0.10
 
 A book with every enemy, boss, adventurer, skull, item, essence and inscription you have met: your kills, damage
 dealt and taken, deaths, and descriptions. Nothing is shipped with the mod: every picture and film is created on
 your own PC while you play. Since 0.11 every boss move has a note (what it does, how to deal with it), and
 films show only the boss (switch "Clean films" off on the settings page to see everything).
+
+Since 0.12 the book has three sections on its title row:
+- **You**: your run as a Codex inventory (skulls, quintessence, items, dark abilities, inscriptions with what the
+  next step needs, and a stats sheet with the hidden damage stats explained). Click anything to read it in full with
+  your current numbers. During a run the book opens here (setting *Codex → OpenOnYou*).
+- **Bestiary**: enemies, bosses and the 15 **dark enemy** abilities (what each does, with its numbers).
+- **Arsenal**: a full page for every skull, item, quintessence, inscription and Dark Mirror ability, with real
+  numbers: a skull's awakening path, attacks and skills (a skill's numbers appear after you used it once), an
+  item's inscriptions and transformation, an inscription's steps and every item that carries it.
+
+Names in the texts are links. **< Back** (top right), Backspace or the mouse's back button return to the page
+before.
 
 ![Codex enemy page](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/codex-enemy.png)
 
@@ -230,6 +253,7 @@ Skul is installed automatically.
 | Cooldown Ticker | Enabled / Opacity | on / 0.55 | Seconds on HUD icons |
 | Codex | Enabled / ToggleKey | on / K | The Codex book |
 | Codex | FilmBossAttacks | on | Film each boss move once |
+| Codex | OpenOnYou | on | During a run the book opens on the You page |
 </details>
 
 ---
@@ -239,7 +263,9 @@ Skul is installed automatically.
 <details>
 <summary><b>Does it change the game or my save?</b></summary>
 
-No. It only shows information the game already uses internally. Your save, balance and drops are untouched.
+It changes nothing about balance or drops: it only shows information the game already uses internally. Your save
+is only touched when you switch save slots (Esc → SkulInsight QoL → Save slots); the game's save is backed up before
+every switch.
 </details>
 
 <details>
@@ -255,8 +281,7 @@ are in `BepInEx/LogOutput.log` as `[SelfTest]` lines. Please report it.
 - King Alexander's hands, First Hero's later forms and the bomb phase have no films or notes yet.
 - Films made before 0.11 may end early or show your own effects: use "Refilm" on a move, or "Reset Codex" on the
   settings page to start the book over (the move notes stay).
-- A few skull skills still show no damage numbers (transformations like Hell Bike and Bone Howl, Davy Jones' special
-  cannonballs, the Golden Gargoyle's statue, the Genie's lamp).
+- Arsenal pages show what you have met; a skill's numbers appear after you used it once.
 - Translations are not checked by native speakers yet; corrections are welcome (see *All game languages*).
 </details>
 
@@ -271,9 +296,8 @@ Open an issue on [GitHub](https://github.com/Umut-Aslan99/SkulInsight_QoL/issues
 
 ## Coming next
 
-- **0.11 (this version):** complete boss films that show only the boss, notes for every boss move, compact
-  films, Reset Codex, more skull skills with damage numbers.
-- **0.12:** full Codex entries for skulls, items, essences, inscriptions and dark abilities, unlocked by playing; a
-  character page with your whole build.
+- **0.12 (this version):** full Codex entries for skulls, items, essences, inscriptions and dark abilities, the
+  You page with your whole build, dark enemy abilities, damage numbers for the last skull skills.
+- **0.12.1:** records and achievements.
 - **0.13:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics.
 - **0.14:** Dark Mirror page. **0.15:** optional Codex rewards.

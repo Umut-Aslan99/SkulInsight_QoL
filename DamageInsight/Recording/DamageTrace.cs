@@ -65,6 +65,7 @@ public readonly struct TraceRow
 public sealed class DamageTrace
 {
     public string Origin = "";          // what dealt the hit: "Wind Spirit Sylphid", "Warlord", "Oberon attack"...
+    public string OriginKind = "";      // OriginKinds: Skull, Item, Quintessence, Inscription, DarkAbility, Status
     public object OriginIcon;
     public DamageState Start;           // as created by Stat.GetDamage, before any effect
     public readonly List<(string label, double value)> StatParts = new(); // "Magic atk" 3.55, "Attack damage" 1.1

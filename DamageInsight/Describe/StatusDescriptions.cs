@@ -124,6 +124,10 @@ public static class StatusDescriptions
     /// <summary>The dim "(breakdown · extra · can't crit)" suffix.</summary>
     private static string Details(Hit hit, StatSnapshot stats, string extra = "")
     {
+        // Compact (the game's boxes): no calculation; it ran into the next inscription step in German (QA night
+        // 2026-10-11, Feuerschutz step 1). The Codex writes it.
+        if (DescriptionLayout.Compact)
+            return "";
         var parts = new List<string>();
         string breakdown = DescriptionFormatter.Breakdown(hit, stats);
         if (breakdown.Length > 0) parts.Add(breakdown);
