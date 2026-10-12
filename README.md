@@ -7,6 +7,8 @@ picking up an item would do to your build.
 A quality-of-life mod: it changes nothing about the game's balance. It only shows information the game already uses
 internally (and, if you use them, keeps several save slots side by side). Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
+> **Version 0.12.1:** the What's new button closes with a click; buttons light up and play the game's menu sounds.
+>
 > **Version 0.12.0: the Codex becomes a full reference (boxed pages, skill boxes, every number with its formula), short descriptions with every number on Shift, a damage table per item in the combat log, and save slots.** The game shows what's new once after the update; every detail is in the [changelog](<REPO_URL>/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
@@ -209,6 +211,7 @@ The same settings are in the settings file (created on the first start):
 | Descriptions | HoldToShow / HoldKey | on / Shift | Numbers in the game's boxes only while the key is held |
 | Descriptions | Compact | on | One line per attack in the game's boxes (off: every hit with its formula) |
 | General | WhatsNew | on | Show what's new once after an update |
+| General | MenuSounds | on | The mod's buttons play the game's menu sounds (hover, click) |
 | Combat Log | ToggleKey | L | Opens the combat log |
 | Combat Log | RecordCalculations | on | Per-hit calculation (hover a line) |
 | Combat Log | SaveToFile | on | Log files in `BepInEx/DamageInsight/CombatLogs` (newest 30 kept) |

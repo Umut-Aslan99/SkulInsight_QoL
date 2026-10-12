@@ -630,6 +630,8 @@
     "How solid the dialogue background is (0% invisible, 100% solid).": "Насколько плотный фон диалога (0% — невидим, 100% — сплошной).",
     "What's new": "Что нового",
     "After an update, show once (in the castle) what's new in this version.": "После обновления один раз показывать (в замке), что нового в этой версии.",
+    "Menu sounds": "Звуки меню",
+    "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.": "Кнопки мода воспроизводят звуки меню игры, когда на них наводят мышь или нажимают.",
     "Calculations": "Расчёты",
     "Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.": "Записывает, как получилось число каждого удара (показатели, предметы, гравировки, тёмные способности, криты, ослабления); наведите на строку журнала, чтобы увидеть.",
     "Save to file": "Сохранять в файл",

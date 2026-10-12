@@ -596,6 +596,8 @@
     "How solid the dialogue background is (0% invisible, 100% solid).": "会話ウィンドウ背景の不透明度（0%で透明、100%で不透明）。",
     "What's new": "新着情報",
     "After an update, show once (in the castle) what's new in this version.": "アップデート後に一度だけ（城で）このバージョンの新着情報を表示します。",
+    "Menu sounds": "メニューサウンド",
+    "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.": "マウスを重ねたりクリックしたりすると、MODのボタンがゲームのメニューサウンドを鳴らします。",
     "Calculations": "計算記録",
     "Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.": "各攻撃の数値がどう決まったかを記録します（ステータス、アイテム、刻印、闇の力、クリティカル、弱体化）。ログの行にカーソルを合わせると表示されます。",
     "Save to file": "ファイルに保存",

@@ -193,6 +193,8 @@ public static class SettingsCatalog
         ["General/LastVersionSeen"] = new Spec { Hidden = true }, // kept by the "What's new" window
         ["General/WhatsNew"] = On(Loc.N("What's new"),
             Loc.N("After an update, show once (in the castle) what's new in this version.")), // the "Window position" reset row stands in for it
+        ["General/MenuSounds"] = On(Loc.N("Menu sounds"),
+            Loc.N("The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.")),
         ["Combat Log/RecordCalculations"] = On(Loc.N("Calculations"),
             Loc.N("Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.")),
         ["Combat Log/SaveToFile"] = On(Loc.N("Save to file"),

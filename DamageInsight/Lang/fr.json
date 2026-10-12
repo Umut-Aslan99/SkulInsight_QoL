@@ -613,6 +613,8 @@
     "How solid the dialogue background is (0% invisible, 100% solid).": "L'opacité du fond de dialogue (0 % invisible, 100 % opaque).",
     "What's new": "Nouveautés",
     "After an update, show once (in the castle) what's new in this version.": "Après une mise à jour, montre une fois (au château) les nouveautés de cette version.",
+    "Menu sounds": "Sons du menu",
+    "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.": "Les boutons du mod jouent les sons du menu du jeu quand la souris les survole ou clique dessus.",
     "Calculations": "Calculs",
     "Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.": "Enregistre comment le chiffre de chaque coup est obtenu (stats, objets, inscriptions, aptitudes noires, critiques, affaiblissements) ; survole une ligne du journal pour le voir.",
     "Save to file": "Enregistrer dans un fichier",

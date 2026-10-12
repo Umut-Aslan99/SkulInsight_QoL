@@ -22,6 +22,7 @@ public class Plugin : BaseUnityPlugin
 
     internal static ConfigEntry<string> Language;
     internal static ConfigEntry<bool> WhatsNewEnabled;
+    internal static ConfigEntry<bool> MenuSoundsEnabled;
     internal static ConfigEntry<string> LastVersionSeen;
 
     internal static ConfigEntry<bool> DamageSourceTags;
@@ -89,6 +90,8 @@ public class Plugin : BaseUnityPlugin
         DamageInsight.Lang.Loc.OverrideFolder = System.IO.Path.Combine(Paths.BepInExRootPath, "DamageInsight", "Lang");
         WhatsNewEnabled = Config.Bind("General", "WhatsNew", true,
             "After an update, show once (in the castle) what's new in this version.");
+        MenuSoundsEnabled = Config.Bind("General", "MenuSounds", true,
+            "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.");
         LastVersionSeen = Config.Bind("General", "LastVersionSeen", "",
             "The version whose 'What's new' was last shown (kept by the mod).");
         DamageSourceTags = Config.Bind("Damage Numbers", "ShowSourceTag", true,

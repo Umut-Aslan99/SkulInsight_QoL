@@ -561,6 +561,8 @@
     "How solid the dialogue background is (0% invisible, 100% solid).": "How solid the dialogue background is (0% invisible, 100% solid).",
     "What's new": "What's new",
     "After an update, show once (in the castle) what's new in this version.": "After an update, show once (in the castle) what's new in this version.",
+    "Menu sounds": "Menu sounds",
+    "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.": "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.",
     "Calculations": "Calculations",
     "Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.": "Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.",
     "Save to file": "Save to file",

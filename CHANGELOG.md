@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.1 (hotfix: the What's new button)
+
+- **What's new:** the "Got it" button now closes the window with a click (before, only Esc or Enter did), and the
+  mouse cursor stays visible while it is open. Players who already saw the 0.12 window don't get it again.
+- **Buttons:** every button of the mod (Codex, combat log, What's new) lights up under the mouse and plays the game's
+  own menu sounds when you move onto it or click it. New setting **Menu sounds** (on) turns the sounds off.
+
 ## 0.12.0 (the Codex becomes a full reference; short descriptions, all numbers on Shift; save slots)
 
 **Highlights**

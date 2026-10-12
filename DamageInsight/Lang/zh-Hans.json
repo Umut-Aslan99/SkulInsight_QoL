@@ -596,6 +596,8 @@
     "How solid the dialogue background is (0% invisible, 100% solid).": "对话框背景的不透明度（0%透明，100%不透明）。",
     "What's new": "更新内容",
     "After an update, show once (in the castle) what's new in this version.": "更新后在城堡中显示一次本版本的更新内容。",
+    "Menu sounds": "菜单音效",
+    "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.": "鼠标移到或点击模组的按钮时，播放游戏的菜单音效。",
     "Calculations": "计算记录",
     "Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.": "记录每次攻击数值的来由（属性、道具、刻印、黑暗技能、暴击、减益）；将鼠标悬停在记录行上即可查看。",
     "Save to file": "保存到文件",

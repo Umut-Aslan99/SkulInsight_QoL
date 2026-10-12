@@ -596,6 +596,8 @@
     "How solid the dialogue background is (0% invisible, 100% solid).": "대화창 배경의 불투명도 (0% 투명, 100% 불투명).",
     "What's new": "새로운 내용",
     "After an update, show once (in the castle) what's new in this version.": "업데이트 후 한 번 (성에서) 이번 버전의 새로운 내용을 보여 줍니다.",
+    "Menu sounds": "메뉴 효과음",
+    "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.": "마우스를 올리거나 클릭하면 모드의 버튼이 게임의 메뉴 효과음을 재생합니다.",
     "Calculations": "계산 기록",
     "Record how every hit's number came about (stats, items, inscriptions, dark abilities, crits, debuffs); hover a log line to see it.": "모든 공격의 숫자가 어떻게 나왔는지 기록합니다 (능력치, 아이템, 각인, 검은 능력, 치명타, 약화). 기록 줄에 마우스를 올리면 보입니다.",
     "Save to file": "파일로 저장",

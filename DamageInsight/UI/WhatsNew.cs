@@ -17,6 +17,16 @@ public sealed class WhatsNew : MonoBehaviour
     private float _castleSince = -1f;
     private bool _shown;
 
+    /// <summary>The window is open (the cursor stays visible: CursorPatch).</summary>
+    public static bool IsOpen { get; private set; }
+
+    /// <summary>"0.12" of "0.12.1": a hotfix of the same version doesn't show the same highlights again.</summary>
+    private static string Feature(string version)
+    {
+        var parts = (version ?? "").Split('.');
+        return parts.Length >= 2 ? parts[0] + "." + parts[1] : version ?? "";
+    }
+
     /// <summary>The highlights of this version (English keys, translated when shown).</summary>
     private static string[] Highlights() => new[]
     {
@@ -30,7 +40,7 @@ public sealed class WhatsNew : MonoBehaviour
     private void Update()
     {
         if (_shown || Plugin.WhatsNewEnabled == null || !Plugin.WhatsNewEnabled.Value
-            || Plugin.LastVersionSeen.Value == MyPluginInfo.PLUGIN_VERSION)
+            || Feature(Plugin.LastVersionSeen.Value) == Feature(MyPluginInfo.PLUGIN_VERSION))
             return;
         // Only in the castle, a moment after arriving (never in the middle of a fight).
         var chapter = Singleton<Service>.Instance?.levelManager?.currentChapter;
@@ -52,6 +62,16 @@ public sealed class WhatsNew : MonoBehaviour
     private void Show()
     {
         _canvas = UiKit.OverlayCanvas("SkulInsight What's new", 2100);
+        // Clicks need a raycaster on the canvas and an event system (the button did nothing without them: 0.12.0).
+        _canvas.gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+        if (UnityEngine.EventSystems.EventSystem.current == null)
+        {
+            var events = new GameObject("DamageInsight_EventSystem");
+            DontDestroyOnLoad(events);
+            events.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            events.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+        }
+        IsOpen = true;
         var panel = UiKit.Image("Panel", _canvas.transform, new Color32(0x1B, 0x12, 0x24, 0xF2));
         var rect = panel.rectTransform;
         rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
@@ -76,6 +96,8 @@ public sealed class WhatsNew : MonoBehaviour
         body.fontSizeMax = 18;
 
         var close = new UiKit.Chip(rect, Loc.T("Got it"), 0, 0, 160, Close, UiKit.ChipOn);
+        close.SetOn(true);
+        close.ClickSound = false;
         close.Background.rectTransform.anchorMin = close.Background.rectTransform.anchorMax = new Vector2(0.5f, 0f);
         close.Background.rectTransform.pivot = new Vector2(0.5f, 0f);
         close.Background.rectTransform.anchoredPosition = new Vector2(0, 22);
@@ -94,9 +116,11 @@ public sealed class WhatsNew : MonoBehaviour
 
     private void Close()
     {
+        MenuSounds.Play(MenuSounds.Kind.Close);
         Plugin.LastVersionSeen.Value = MyPluginInfo.PLUGIN_VERSION;
         if (_canvas != null)
             Destroy(_canvas.gameObject);
         _canvas = null;
+        IsOpen = false;
     }
 }

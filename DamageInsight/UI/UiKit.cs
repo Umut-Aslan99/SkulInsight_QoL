@@ -161,6 +161,11 @@ public static class UiKit
         public readonly Image Background;
         public readonly TextMeshProUGUI Label;
         private readonly Color _onColor;
+        private Color _color = ChipOff;
+        private bool _hovered;
+
+        /// <summary>Off for a button that plays its own sound (the What's new button closes with the close sound).</summary>
+        public bool ClickSound = true;
 
         public Chip(Transform parent, string label, float x, float y, float width, Action onClick, Color? onColor = null)
         {
@@ -172,6 +177,8 @@ public static class UiKit
             button.navigation = new Navigation { mode = Navigation.Mode.None };
             button.onClick.AddListener(() =>
             {
+                if (ClickSound)
+                    MenuSounds.Play(MenuSounds.Kind.Select);
                 onClick();
                 // Don't keep the chip "selected": the game's Submit key would click it again.
                 EventSystem.current?.SetSelectedGameObject(null);
@@ -180,14 +187,39 @@ public static class UiKit
             Label = Text("Label", Background.transform, label, 16, TextAlignmentOptions.Center);
             Label.enableWordWrapping = false;
             Label.rectTransform.Fill();
+
+            // Lights up under the mouse (Umut 2026-10-12: no sign the button can be clicked).
+            Background.gameObject.AddComponent<HoverTint>().Changed = hovered =>
+            {
+                if (hovered && !_hovered)
+                    MenuSounds.Play(MenuSounds.Kind.Select);
+                _hovered = hovered;
+                Paint();
+            };
         }
 
         public void SetOn(bool on)
         {
-            Background.color = on ? _onColor : ChipOff;
+            _color = on ? _onColor : ChipOff;
+            Paint();
             // Dark text on bright chips, light text on dark ones.
             bool bright = on && (_onColor.r * 0.3f + _onColor.g * 0.59f + _onColor.b * 0.11f) > 0.6f;
             Label.color = on ? (bright ? new Color32(0x1A, 0x14, 0x20, 0xFF) : TextColor) : DimTextColor;
         }
+
+        private void Paint()
+        {
+            if (Background != null)
+                Background.color = _hovered ? Color.Lerp(_color, Color.white, 0.22f) with { a = 1f } : _color;
+        }
+    }
+
+    /// <summary>Reports the mouse entering and leaving (and leaving when hidden).</summary>
+    private sealed class HoverTint : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    {
+        public Action<bool> Changed;
+        public void OnPointerEnter(PointerEventData eventData) => Changed?.Invoke(true);
+        public void OnPointerExit(PointerEventData eventData) => Changed?.Invoke(false);
+        private void OnDisable() => Changed?.Invoke(false);
     }
 }
