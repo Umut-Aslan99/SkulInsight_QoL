@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.12.2 (crash reports; skill details beside the box)
+
+- **Crash reports:** the mod keeps a report of every game session in `BepInEx/DamageInsight/CrashReports` (the newest
+  20). It lists what happened (chapters, maps, your build per map), every error with where it came from, and says
+  **whose code it was in**: the game's own, SkulInsight's, a game method SkulInsight hooks into, or another mod. If
+  the screen stays black for 20 seconds (a level that never finishes loading), a message says so and the report
+  notes the game's state and a verdict. If the game closes unexpectedly, the next start says so and adds Unity's log
+  of that session. Please attach the newest report to bug reports (settings page: **Crash reports folder**, Open).
+  New setting **Crash reports** (on).
+- **Skill details beside the box:** holding the details key on a skull or item on the ground (or in a shop) shows
+  the mod's numbers in its box since 0.12, and the game's skill / inscription boxes opened right on top of them. They
+  now open next to the box (left and right, where the screen has room).
+- 11 boss move names met since 0.12 are translated.
+
 ## 0.12.1 (hotfix: the What's new button)
 
 - **What's new:** the "Got it" button now closes the window with a click (before, only Esc or Enter did), and the

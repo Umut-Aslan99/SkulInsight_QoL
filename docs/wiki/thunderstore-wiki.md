@@ -317,8 +317,11 @@ are in `BepInEx/LogOutput.log` as `[SelfTest]` lines. Please report it.
 <details>
 <summary><b>Reporting a bug</b></summary>
 
-Open an issue on [GitHub](https://github.com/Umut-Aslan99/SkulInsight_QoL/issues) and attach
-`BepInEx/LogOutput.log`, the mod version and what you did. Screenshots help a lot.
+Open an issue on [GitHub](https://github.com/Umut-Aslan99/SkulInsight_QoL/issues) and attach the newest file from
+`BepInEx/DamageInsight/CrashReports` (in the game: Esc → SkulInsight QoL → Crash reports folder → Open),
+`BepInEx/LogOutput.log`, the mod version and what you did. Screenshots help a lot. After a crash, start the game
+once more before sending: the crashed session's report is completed at the next start, with a verdict on whose code
+the errors were in (the game's, SkulInsight's or another mod's).
 </details>
 
 ---

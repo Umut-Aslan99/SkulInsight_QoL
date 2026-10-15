@@ -41,6 +41,7 @@ public static class Guard
 
     public static void Report(string where, Exception e)
     {
+        Crash.CrashReporter.Caught(where, e); // counted every time (the log line is written once)
         if (Reported.Add(where))
             Plugin.Log.LogWarning($"{where} failed; the game continues without it (logged once): {e}");
     }

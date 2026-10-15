@@ -7,7 +7,7 @@ picking up an item would do to your build.
 A quality-of-life mod: it changes nothing about the game's balance. It only shows information the game already uses
 internally (and, if you use them, keeps several save slots side by side). Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.12.1:** the What's new button closes with a click; buttons light up and play the game's menu sounds.
+> **Version 0.12.2:** crash reports (whose code an error was in, a stuck black screen, an unexpected end); the game's skill details open beside an item's box instead of covering its numbers.
 >
 > **Version 0.12.0: the Codex becomes a full reference (boxed pages, skill boxes, every number with its formula), short descriptions with every number on Shift, a damage table per item in the combat log, and save slots.** The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
@@ -32,7 +32,8 @@ Bosses, dark elites, veterans and the adventurer party show `current / max` HP (
 ### Real numbers in every description (League-of-Legends style)
 Descriptions of skulls, skills, swaps, items, essences and inscriptions show the damage **with your current
 stats**. **Hold Shift** (or the game's own details key) to see the numbers: the game's boxes stay short and show "Hold Shift for damage numbers"
-(setting Descriptions/HoldToShow). In the boxes each attack is one compact line, e.g. `Basic attack: 10–12 · 22–24 ·
+(setting Descriptions/HoldToShow). On items on the ground, the game's skill and inscription details open beside the
+box so they don't cover the numbers. In the boxes each attack is one compact line, e.g. `Basic attack: 10–12 · 22–24 ·
 36–42 Magic`, with "All numbers: Codex (K)"; the Codex shows every hit with its calculation, e.g. `60–94 Physical
 (7–11 skull dmg x 530% x 160% phys. atk)` (setting "Compact numbers"; off: the formula in the boxes too). On Arsenal
 pages, hold Shift to see what a piece of gear would do with your run's stats.
@@ -166,6 +167,13 @@ default. Changes apply at once and are saved right away.
 
 ![Choosing the icon for each damage source](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-icons.png)
 
+### Crash reports
+Every game session leaves a report in `BepInEx/DamageInsight/CrashReports` (the newest 20): what happened (chapters,
+maps, your build), every error with **whose code it was in** (the game's, SkulInsight's, a game method SkulInsight
+hooks into, or another mod) and a verdict. A screen that stays black for 20 seconds and a game that closed
+unexpectedly are noticed and said on screen. Settings page: **Crash reports folder** → Open. Please attach the newest
+report to bug reports.
+
 ### All game languages
 The mod's texts follow the game's language (English, 한국어, 日本語, 简体中文, 繁體中文, Deutsch, Español, Português (Brasil), Русский, Polski, Français) and switch live when you change it.
 The settings page has a *Language* row to pick a different one. To fix a translation without waiting for an
@@ -222,6 +230,7 @@ The same settings are in the settings file (created on the first start):
 | Descriptions | Compact | on | One line per attack in the game's boxes (off: every hit with its formula) |
 | General | WhatsNew | on | Show what's new once after an update |
 | General | MenuSounds | on | The mod's buttons play the game's menu sounds (hover, click) |
+| General | CrashReports | on | A report per game session in `BepInEx/DamageInsight/CrashReports` (newest 20 kept) |
 | Combat Log | ToggleKey | L | Opens the combat log |
 | Combat Log | RecordCalculations | on | Per-hit calculation (hover a line) |
 | Combat Log | SaveToFile | on | Log files in `BepInEx/DamageInsight/CombatLogs` (newest 30 kept) |
@@ -270,8 +279,10 @@ The same settings are in the settings file (created on the first start):
 - **0.15:** optional Codex rewards (tokens for skipped gear, adventurer coins, Omen coins)
 
 ## Feedback / bug reports
-Please open an issue on GitHub: https://github.com/Umut-Aslan99/SkulInsight_QoL/issues. Attach
-`BepInEx/LogOutput.log` and tell us the mod version and what you did. Screenshots help a lot. On Linux, please
+Please open an issue on GitHub: https://github.com/Umut-Aslan99/SkulInsight_QoL/issues. Attach the newest file
+from `BepInEx/DamageInsight/CrashReports` (settings page: **Crash reports folder** → Open) and `BepInEx/LogOutput.log`,
+and tell us the mod version and what you did. After a crash, start the game once more before you send it: the
+report of the crashed session is completed at the next start. Screenshots help a lot. On Linux, please
 also attach the report of the [check script](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md#the-check-script).
 
 ## Credits

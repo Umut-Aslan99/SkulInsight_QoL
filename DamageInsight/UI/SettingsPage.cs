@@ -682,6 +682,9 @@ public sealed class SettingsPage : global::UI.Dialogue
             case SettingKind.Action when row.Item.Action == SettingsCatalog.ResetCodex:
                 ConfirmResetCodex(row);
                 break;
+            case SettingKind.Action when row.Item.Action == SettingsCatalog.OpenCrashReports:
+                Crash.CrashReporter.OpenFolder();
+                break;
             case SettingKind.Action when row.Item.Action is SettingsCatalog.SlotPlay or SettingsCatalog.SlotCopy or SettingsCatalog.SlotClear:
                 SlotAction(row);
                 break;

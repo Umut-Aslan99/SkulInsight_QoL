@@ -23,6 +23,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<string> Language;
     internal static ConfigEntry<bool> WhatsNewEnabled;
     internal static ConfigEntry<bool> MenuSoundsEnabled;
+    internal static ConfigEntry<bool> CrashReports;
     internal static ConfigEntry<string> LastVersionSeen;
 
     internal static ConfigEntry<bool> DamageSourceTags;
@@ -71,6 +72,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> CodexDevReveal;
     internal static ConfigEntry<bool> QaCaptureOnce;
     internal static ConfigEntry<bool> CodexUnlockAll;
+    internal static ConfigEntry<KeyboardShortcut> CrashTestKey;
 
     private bool _iconDumpRunning;
     private bool _gearScanRunning;
@@ -92,6 +94,10 @@ public class Plugin : BaseUnityPlugin
             "After an update, show once (in the castle) what's new in this version.");
         MenuSoundsEnabled = Config.Bind("General", "MenuSounds", true,
             "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.");
+        CrashReports = Config.Bind("General", "CrashReports", true,
+            "Keep a report of every game session in BepInEx\\DamageInsight\\CrashReports (the newest 20): errors with what happened " +
+            "before them and whose code they were in (the game's, SkulInsight's or another mod's), a stuck black screen, a session " +
+            "that ended unexpectedly. Says so on screen. Send the report with a bug report.");
         LastVersionSeen = Config.Bind("General", "LastVersionSeen", "",
             "The version whose 'What's new' was last shown (kept by the mod).");
         DamageSourceTags = Config.Bind("Damage Numbers", "ShowSourceTag", true,
@@ -195,6 +201,10 @@ public class Plugin : BaseUnityPlugin
         CodexUnlockAll = Config.Bind("Developer", "CodexUnlockEverything", false,
             "Codex testing: every page fully unlocked, met or not (every entry, skill box, inscription step, boss move). " +
             "Only shows: your progress stays as it is.");
+        CrashTestKey = Config.Bind("Developer", "CrashTestKey", new KeyboardShortcut(UnityEngine.KeyCode.F10),
+            "Crash report test (in a run): the first press logs a test error from the mod's code and turns the screen black " +
+            "(after 20 s the 'stuck' notice and report entry appear), the second press brings the screen back. With Ctrl held: the game " +
+            "crashes hard on purpose (like a real crash; start it again to see the 'ended unexpectedly' notice).");
         void ApplyReveal()
         {
             DamageInsight.Codex.CodexTiers.UnlockAll = CodexUnlockAll.Value;
@@ -206,9 +216,14 @@ public class Plugin : BaseUnityPlugin
         CodexUnlockAll.SettingChanged += (_, _) => ApplyReveal();
 #endif
 
+        // Crash reports start before the patches, so a patch that fails is in the report too.
+        DamageInsight.Crash.CrashReporter.Begin(gameObject, Config);
+
         // Apply every [HarmonyPatch] class one by one, so a patch broken by a game update only
         // disables its own feature. Results go to the log as [SelfTest] lines.
-        SelfTest.ReportPatches(PatchRegistry.ApplyAll(new Harmony(MyPluginInfo.PLUGIN_GUID)));
+        var patches = PatchRegistry.ApplyAll(new Harmony(MyPluginInfo.PLUGIN_GUID));
+        SelfTest.ReportPatches(patches);
+        DamageInsight.Crash.CrashReporter.Note($"patches applied: {System.Linq.Enumerable.Count(patches, r => r.Ok)}/{patches.Count}");
         DamageLog.Recorded += record => SelfTest.Observe(record);
         LogFile.Attach();
 

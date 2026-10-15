@@ -103,6 +103,8 @@ public static class SettingsCatalog
     public const string ResetAll = "ResetAll";
     /// <summary>Action rows: delete everything the Codex gathered at the next game start (Codex/CodexReset).</summary>
     public const string ResetCodex = "ResetCodex";
+    /// <summary>Action rows: open the crash reports folder (Crash/CrashReporter).</summary>
+    public const string OpenCrashReports = "OpenCrashReports";
     /// <summary>Action rows: save the run into the selected save state slot / load it / delete it.</summary>
     public const string SlotPlay = "SlotPlay", SlotCopy = "SlotCopy", SlotClear = "SlotClear";
     /// <summary>The config section of the save slots.</summary>
@@ -193,6 +195,8 @@ public static class SettingsCatalog
         ["General/LastVersionSeen"] = new Spec { Hidden = true }, // kept by the "What's new" window
         ["General/WhatsNew"] = On(Loc.N("What's new"),
             Loc.N("After an update, show once (in the castle) what's new in this version.")), // the "Window position" reset row stands in for it
+        ["General/CrashReports"] = On(Loc.N("Crash reports"),
+            Loc.N("Keep a report of every game session in BepInEx/DamageInsight/CrashReports (the newest 20): errors, what happened before them, and whose code they were in (the game's, SkulInsight's or another mod's). Says so on screen when the game seems stuck or the last session ended unexpectedly. Send the report with a bug report.")),
         ["General/MenuSounds"] = On(Loc.N("Menu sounds"),
             Loc.N("The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.")),
         ["Combat Log/RecordCalculations"] = On(Loc.N("Calculations"),
@@ -272,6 +276,16 @@ public static class SettingsCatalog
             var item = Item(pair.Value, icons, inscriptionName);
             if (item != null)
                 items.Add((rank, order++, item));
+
+            if (section == "General" && pair.Key.Key == "CrashReports")
+            {
+                items.Add((rank, order++, new SettingItem
+                {
+                    Section = Heading(section), Label = Loc.T("Crash reports folder"), Kind = SettingKind.Action, Action = OpenCrashReports,
+                    ButtonLabel = Loc.T("Open"),
+                    Help = Loc.T("Opens the folder with the crash reports (one file per game session, named by its start time). Add the newest one to your bug report."),
+                }));
+            }
 
             if (section == SaveSlotsSection && pair.Key.Key == "Slot" && item != null)
             {
