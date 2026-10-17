@@ -20,6 +20,12 @@ public static class SlotStore
 {
     public const int MaxSlots = 5;
 
+    /// <summary>
+    /// The daily run's slot (0.13): hidden from the settings page, made from an evened-out copy of the player's game for
+    /// each day's run (Daily/DailyProfile). It borrows the Codex of the slot it was entered from.
+    /// </summary>
+    public const int DailySlot = 9;
+
     /// <summary>Set by the plugin at start (tests use a temporary folder).</summary>
     public static string Folder = "";
 
@@ -44,7 +50,7 @@ public static class SlotStore
                 return;
             var root = GearDoc.ParseNode(File.ReadAllText(StatePath, Encoding.UTF8));
             int active = (int)root.Num("active", 1);
-            Active = active is >= 1 and <= MaxSlots ? active : 1;
+            Active = active is >= 1 and <= MaxSlots || active == DailySlot ? active : 1;
             if (root.Raw("lastPlayed") is Dictionary<string, object> played)
                 foreach (var pair in played)
                     if (int.TryParse(pair.Key, out int slot) && pair.Value is string text

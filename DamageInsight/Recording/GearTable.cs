@@ -44,6 +44,12 @@ public sealed class GearTotal
 /// </summary>
 public static class GearTable
 {
+    /// <summary>
+    /// The gear behind an origin known only by an object's code name (CodexOrigins at run time; null in tests): the
+    /// table puts such hits in their gear's row instead of "Other".
+    /// </summary>
+    public static System.Func<string, (GearGroup group, string name)?> ResolveOrigin;
+
     /// <summary>The group and row a hit counts for, or null for hits that aren't the player's damage.</summary>
     public static (GearGroup group, string name)? KeyOf(in DamageRecord r)
     {
@@ -71,6 +77,8 @@ public static class GearTable
             }
             if (r.AttackerKind == EntityKind.PlayerMinion)
                 return (GearGroup.Summons, origin);
+            if (ResolveOrigin?.Invoke(origin) is { } gear)
+                return gear.group == GearGroup.Skulls ? (GearGroup.Skulls, Loc.F("{0}: {1}", gear.name, AttackKind(r.Source))) : gear;
             return (GearGroup.Other, origin);
         }
         // No trace (combat log calculations off) or no known origin: by its source only.

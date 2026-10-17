@@ -19,6 +19,11 @@ public enum CodexCategory
     Inscriptions,
     DarkAbilities,  // the player's Dark Mirror abilities (Characters.Gear.Upgrades)
     Elites,         // dark enemies' abilities (Characters.Abilities.Darks)
+    YouBuild,       // the You section's tabs (0.13): your build now
+    Runs,           // the run history
+    Records,        // the run history added up, and the game's own records
+    DailyToday,     // the Daily section's boards (0.13): today's and the month's
+    DailyMonth,
 }
 
 /// <summary>One page of the Codex: an enemy, boss, skull, item, essence or inscription.</summary>

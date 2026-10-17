@@ -121,6 +121,9 @@ internal static class SlotSwitcher
             return Loc.T("Please wait: the save slots are busy.");
         if (slot == SlotStore.Active)
             return Loc.F("Slot {0} is the game you are playing.", slot);
+        // The daily run borrows the Codex of the slot it came from: it goes back there, and only there.
+        if (SlotStore.Active == SlotStore.DailySlot && slot != DamageInsight.Daily.DailyRun.Origin)
+            return Loc.T("You are playing today's daily run: leave it first (Codex, Daily).");
         if (Singleton<Service>.Instance?.levelManager == null || Scene<GameBase>.instance == null)
             return Loc.T("Switch save slots during the game (castle or run).");
         return null;
@@ -130,7 +133,13 @@ internal static class SlotSwitcher
     /// Plays <paramref name="slot"/>. <paramref name="closeMenus"/> closes the page that asked (the pause menu).
     /// Returns a message when it can't.
     /// </summary>
-    public static string Switch(int slot, Action closeMenus)
+    public static string Switch(int slot, Action closeMenus) => Switch(slot, closeMenus, keepCodex: false);
+
+    /// <summary>
+    /// <paramref name="keepCodex"/>: the Codex folder stays where it is (the daily slot borrows the Codex of the slot it
+    /// is entered from, and gives it back when it is left).
+    /// </summary>
+    public static string Switch(int slot, Action closeMenus, bool keepCodex)
     {
         string why = CannotSwitch(slot);
         if (why != null)
@@ -143,20 +152,24 @@ internal static class SlotSwitcher
             closeMenus?.Invoke();
             CodexTracker.SaveIfNeeded(force: true);
             FightRecorder.ForgetSlot();
+            DamageInsight.History.RunJournal.ForgetSlot();
             BackupGameSave();
 
             // 1. The Codex: this slot's folder goes to the slot, the next slot's folder (if any) takes its place.
-            FightRecorder.WhileNoFilmIsSaved(() =>
+            if (!keepCodex)
             {
-                Directory.CreateDirectory(SlotStore.SlotFolder(from));
-                if (Directory.Exists(SlotStore.CodexPath(from)))
-                    Directory.Delete(SlotStore.CodexPath(from), recursive: true);
-                if (Directory.Exists(CodexFolder))
-                    Directory.Move(CodexFolder, SlotStore.CodexPath(from));
-                codexMoved = true;
-                if (Directory.Exists(SlotStore.CodexPath(slot)))
-                    Directory.Move(SlotStore.CodexPath(slot), CodexFolder);
-            });
+                FightRecorder.WhileNoFilmIsSaved(() =>
+                {
+                    Directory.CreateDirectory(SlotStore.SlotFolder(from));
+                    if (Directory.Exists(SlotStore.CodexPath(from)))
+                        Directory.Delete(SlotStore.CodexPath(from), recursive: true);
+                    if (Directory.Exists(CodexFolder))
+                        Directory.Move(CodexFolder, SlotStore.CodexPath(from));
+                    codexMoved = true;
+                    if (Directory.Exists(SlotStore.CodexPath(slot)))
+                        Directory.Move(SlotStore.CodexPath(slot), CodexFolder);
+                });
+            }
 
             // 2. The game save: kept in the slot being left; the next slot's comes in (or a new game). Everything that
             // can fail (files) happens before the game's save data in memory is replaced.

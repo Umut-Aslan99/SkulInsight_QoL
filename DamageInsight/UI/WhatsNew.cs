@@ -30,11 +30,10 @@ public sealed class WhatsNew : MonoBehaviour
     /// <summary>The highlights of this version (English keys, translated when shown).</summary>
     private static string[] Highlights() => new[]
     {
-        Loc.T("The Codex (K) is your reference book: You, Bestiary and Arsenal, boxed pages, every number with its formula. Hold Shift on an Arsenal page to see the numbers with your run's stats."),
-        Loc.T("Skill boxes: win a run with a skill (beat a boss of chapter 5 or later while you have it) to reveal it on the skull's page."),
-        Loc.T("Descriptions stay short: hold Shift (or the game's details key) to see the mod's numbers."),
-        Loc.T("Combat log (L), View: Damage table: your damage per skull, item, inscription and more."),
-        Loc.T("Save slots: keep up to 5 games side by side (Esc, SkulInsight QoL, Save slots)."),
+        Loc.T("Run history (Codex, You, Runs): every run kept like a match history: how it ended, the build, each piece of gear's damage and a timeline, all linked to the Codex. Star a run to keep it whole; End screen shows the game's result panel again."),
+        Loc.T("Records (Codex, You, Records): your bests over all runs, per skull, against bosses, and the game's own counters."),
+        Loc.T("Daily run (Codex, Daily; online, off until you turn it on): the same run for everyone each day, one try, in its own save slot with everything unlocked. Your own game isn't touched."),
+        Loc.T("Daily and monthly boards: open anyone's run like your run history, see how its points came about (with bonuses for the day's records and your streak) and give it a thumbs up."),
     };
 
     private void Update()

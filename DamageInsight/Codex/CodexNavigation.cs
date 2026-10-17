@@ -9,6 +9,7 @@ public enum CodexSection
     You,
     Bestiary,
     Arsenal,
+    Daily,
 }
 
 /// <summary>
@@ -42,6 +43,18 @@ public sealed class CodexNavigation
     /// <summary>The You page's first selection: the skull you hold.</summary>
     public const string YouDefault = "you:skull0";
 
+    /// <summary>The Records tab's first page: the totals.</summary>
+    public const string RecordsDefault = "records:totals";
+
+    /// <summary>The You section's tabs (0.13): the build now, the records and the run history; achievements follow.</summary>
+    public static readonly CodexCategory[] YouTabs = { CodexCategory.YouBuild, CodexCategory.Records, CodexCategory.Runs };
+
+    /// <summary>The Daily section's tabs (0.13): today's board and the month's.</summary>
+    public static readonly CodexCategory[] DailyTabs = { CodexCategory.DailyToday, CodexCategory.DailyMonth };
+
+    /// <summary>The Daily section's page (it has one: today's run).</summary>
+    public const string DailyPage = "daily";
+
     public static readonly CodexCategory[] BestiaryTabs = { CodexCategory.Enemies, CodexCategory.Bosses, CodexCategory.Elites };
 
     public static readonly CodexCategory[] ArsenalTabs =
@@ -58,21 +71,40 @@ public sealed class CodexNavigation
     public bool CanGoBack => _history.Count > 0;
     public int HistoryCount => _history.Count;
 
-    public static CodexSection SectionOf(CodexCategory category) =>
-        category is CodexCategory.Enemies or CodexCategory.Bosses or CodexCategory.Elites ? CodexSection.Bestiary : CodexSection.Arsenal;
+    public static CodexSection SectionOf(CodexCategory category) => category switch
+    {
+        CodexCategory.YouBuild or CodexCategory.Runs or CodexCategory.Records => CodexSection.You,
+        CodexCategory.DailyToday or CodexCategory.DailyMonth => CodexSection.Daily,
+        CodexCategory.Enemies or CodexCategory.Bosses or CodexCategory.Elites => CodexSection.Bestiary,
+        _ => CodexSection.Arsenal,
+    };
 
-    /// <summary>The sub-tabs of a section (none for You).</summary>
+    /// <summary>The sub-tabs of a section.</summary>
     public static IReadOnlyList<CodexCategory> TabsOf(CodexSection section) => section switch
     {
+        CodexSection.You => YouTabs,
+        CodexSection.Daily => DailyTabs,
         CodexSection.Bestiary => BestiaryTabs,
         CodexSection.Arsenal => ArsenalTabs,
         _ => Array.Empty<CodexCategory>(),
     };
 
-    /// <summary>Where a section opens the first time: its first sub-tab (You: the skull you hold).</summary>
-    public static Place DefaultOf(CodexSection section) => section == CodexSection.You
-        ? new Place(CodexSection.You, CodexCategory.Skulls, YouDefault)
-        : new Place(section, TabsOf(section)[0], null);
+    /// <summary>Where a section opens the first time: its first sub-tab (You: the build, on the skull you hold).</summary>
+    public static Place DefaultOf(CodexSection section) => section switch
+    {
+        CodexSection.You => new Place(CodexSection.You, CodexCategory.YouBuild, YouDefault),
+        CodexSection.Daily => new Place(CodexSection.Daily, CodexCategory.DailyToday, DailyPage),
+        _ => new Place(section, TabsOf(section)[0], null),
+    };
+
+    /// <summary>The page a tab opens on when it has nothing selected yet (the You build: the skull you hold; records: the totals).</summary>
+    public static string FirstOf(CodexCategory category) => category switch
+    {
+        CodexCategory.YouBuild => YouDefault,
+        CodexCategory.Records => RecordsDefault,
+        CodexCategory.DailyToday or CodexCategory.DailyMonth => DailyPage,
+        _ => null,
+    };
 
     /// <summary>
     /// Shows a page. The page before goes on the history, unless it had nothing selected yet (a list that just
@@ -110,7 +142,7 @@ public sealed class CodexNavigation
     {
         if (category == Current.Category && SectionOf(category) == Current.Section)
             return;
-        Go(new Place(SectionOf(category), category, null));
+        Go(new Place(SectionOf(category), category, FirstOf(category)));
     }
 
     /// <summary>Selects without making a history step (the first entry of a list that just opened).</summary>

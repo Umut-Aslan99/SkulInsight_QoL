@@ -24,6 +24,10 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> WhatsNewEnabled;
     internal static ConfigEntry<bool> MenuSoundsEnabled;
     internal static ConfigEntry<bool> CrashReports;
+    internal static ConfigEntry<bool> RunHistory;
+    internal static ConfigEntry<int> RunHistoryKeep;
+    internal static ConfigEntry<bool> DailyEnabled;
+    internal static ConfigEntry<string> DailyServer;
     internal static ConfigEntry<string> LastVersionSeen;
 
     internal static ConfigEntry<bool> DamageSourceTags;
@@ -94,6 +98,19 @@ public class Plugin : BaseUnityPlugin
             "After an update, show once (in the castle) what's new in this version.");
         MenuSoundsEnabled = Config.Bind("General", "MenuSounds", true,
             "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.");
+        RunHistory = Config.Bind("General", "RunHistory", true,
+            "Keep every run in the Codex: how it ended, the end screen's numbers, the build, the damage of each piece of gear, " +
+            "the maps and a timeline of skulls, items and inscriptions. Per save slot, in BepInEx\\DamageInsight\\Codex\\Runs.");
+        RunHistoryKeep = Config.Bind("General", "RunHistoryKeep", 100,
+            "How many of the newest runs keep all their details (timeline, damage, picture). Older runs without a star keep " +
+            "only their summary (20-1000).");
+        DailyEnabled = Config.Bind("Daily", "Enabled", false,
+            "Daily runs (online): everyone plays the same seed each day, one try, daily and monthly boards. Connects to the " +
+            "daily run server and sends a random player id made by the mod, the name you enter and your daily run (its numbers, " +
+            "build, damage and timeline). Off " +
+            "until you turn it on (Codex, Daily).");
+        DailyServer = Config.Bind("Daily", "Server", "https://skul.umut-aslan.dev",
+            "The daily run server's address.");
         CrashReports = Config.Bind("General", "CrashReports", true,
             "Keep a report of every game session in BepInEx\\DamageInsight\\CrashReports (the newest 20): errors with what happened " +
             "before them and whose code they were in (the game's, SkulInsight's or another mod's), a stuck black screen, a session " +
@@ -226,6 +243,9 @@ public class Plugin : BaseUnityPlugin
         DamageInsight.Crash.CrashReporter.Note($"patches applied: {System.Linq.Enumerable.Count(patches, r => r.Ok)}/{patches.Count}");
         DamageLog.Recorded += record => SelfTest.Observe(record);
         LogFile.Attach();
+        DamageInsight.History.RunJournal.Attach();
+        DamageInsight.Codex.CodexOrigins.Attach();
+        gameObject.AddComponent<DamageInsight.Daily.DailyService>();
 
         gameObject.AddComponent<DamageInsight.UI.CombatLogWindow>();
         gameObject.AddComponent<DamageInsight.UI.MiniLog>();
@@ -250,6 +270,8 @@ public class Plugin : BaseUnityPlugin
         var player = Singleton<Service>.Instance?.levelManager?.player;
         bool inRun = player != null;
         DamageInsight.Codex.CodexTracker.Tick(player);
+        Guard.Run("Run history", () => DamageInsight.History.RunJournal.Tick(player));
+        Guard.Run("Daily run", DamageInsight.Daily.DailyRun.Tick);
         if (inRun)
             SelfTest.CheckRun();
 #if DEV

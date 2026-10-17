@@ -137,6 +137,32 @@ Keep up to 5 games side by side, like profiles: pause (Esc) → **SkulInsight Qo
 - Your keys, sound and language stay the same in every slot. The game's save is backed up before every switch.
 - Number of slots: 3 to 5 (setting).
 
+### Run history and records (new in 0.13)
+Codex (`K`) → **You** → **Runs**: every run you play, like a match history.
+- Each row: how the run ended (the boss or the killer in a frame), Normal / Dark Mirror level / Rookie mode, your
+  skulls and items, kills, damage, gold, time and date.
+- A run's page: **Overview** (how it went, the bosses defeated, the build with every inscription, the numbers, your
+  stats at the end), **Damage** (each piece of gear's share) and **Timeline** (skulls, items and inscriptions as
+  they came, map by map). Every name links to its Codex page.
+- **End screen** shows the game's own result panel again with the run's numbers.
+- **Star** a run to keep it whole forever; older runs without a star keep only their summary (setting).
+- **Records** (You → Records): totals, best runs, per skull, against bosses, deaths and the game's own counters.
+
+### Daily run (new in 0.13; online, off until you turn it on)
+Codex (`K`) → **Daily**: every day one run for everyone, one try.
+- The same seed and the same difficulty for everyone (a weekday schedule from Normal to Dark Mirror 10).
+- Played in a separate daily save slot made from your game: every gear unlocked, the Witch at her top, every Dark
+  Mirror level open, 15,000 dark quartz, no DLC gear. Your own game waits as it is; **Back to my game** returns.
+- After the run: a name (12 characters) for the **daily** and **monthly** boards. Points for the result, stages,
+  bosses, kills, damage, little damage taken, gold left and a fast win, times the difficulty, plus bonuses for the
+  day's records (first win, fastest win, most damage, ...) and a daily streak.
+- **Click a run on the board**: its build, damage and timeline like your own run history, its points part by part,
+  and a thumbs up.
+- Fair play: one try (a daily run can't be continued), runs with other mods loaded don't count, no Steam
+  achievements from the daily slot.
+- It talks to the daily run server (skul.umut-aslan.dev) only after you turn it on, and sends a random player id
+  made by the mod, the name you enter and your daily run (numbers, build, damage, timeline). Nothing else.
+
 ## The Codex (K), new in 0.10
 
 A book with every enemy, boss, adventurer, skull, item, essence and inscription you have met: your kills, damage
@@ -328,8 +354,7 @@ the errors were in (the game's, SkulInsight's or another mod's).
 
 ## Coming next
 
-- **0.12 (this version):** full Codex entries for skulls, items, essences, inscriptions and dark abilities, the
-  You page with your whole build, dark enemy abilities, damage numbers for the last skull skills.
-- **0.12.1:** records and achievements.
-- **0.13:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics.
-- **0.14:** Dark Mirror page. **0.15:** optional Codex rewards.
+- **0.13 (this version):** run history, records, daily run with online boards.
+- **0.14:** Skul's achievements per save slot, and the mod's own achievements for daily runs.
+- **0.15:** Dark Mirror page. **0.16:** optional Codex rewards.
+- **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics.

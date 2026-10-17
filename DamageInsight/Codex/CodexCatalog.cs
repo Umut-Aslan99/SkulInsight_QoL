@@ -78,7 +78,47 @@ public static class CodexCatalog
     public static readonly Dictionary<string, string> TwinOf = new() { ["enemy:LeianaLongHair"] = "enemy:LeianaShortHair" };
 
     /// <summary>The name of a page that shows several entries.</summary>
-    private static readonly Dictionary<string, string> PageNames = new() { ["enemy:LeianaShortHair"] = Loc.N("Leiana sisters") };
+    /// <summary>Our own page names (none at the moment: the bosses' names come from the game, BossNames).</summary>
+    private static readonly Dictionary<string, string> PageNames = new();
+
+    /// <summary>
+    /// The bosses' own names and titles: the texts of their health bars and title cards ("label/healthbar/&lt;boss&gt;/
+    /// name" and ".../title", read from the game's string table on 2026-10-17 with tools/unity/boss_names.py and
+    /// loctable.py). The game has no "enemy/name/..." text for bosses, so without these their pages carried code
+    /// names ("Alexander1", "First hero1"). On the first phase's page; the run pages name a boss by it.
+    /// The hidden boss's name is "Skul" (the player's own name) and its title "Dark Skeleton": the title names it.
+    /// </summary>
+    private static readonly Dictionary<string, (string name, string title)> BossNames = new()
+    {
+        ["enemy:Yggdrasil"] = ("label/healthbar/chapter1/name", "label/healthbar/chapter1/title"),
+        ["enemy:LeianaShortHair"] = ("label/healthbar/chapter2/name", "label/healthbar/chapter2/title"),
+        ["enemy:Chimera"] = ("label/healthbar/chapter3/name", "label/healthbar/chapter3/title"),
+        ["enemy:Pope"] = ("label/healthbar/chapter4/name", "label/healthbar/chapter4/title"),
+        ["enemy:FirstHero1"] = ("label/healthbar/chapter5/name", "label/healthbar/chapter5/title"),
+        ["enemy:DarkSkul1"] = ("label/healthbar/darkSkeleton/title", "label/healthbar/darkSkeleton/name"),
+        ["enemy:Alexander1"] = ("label/healthbar/chapter6/name", "label/healthbar/chapter6/title"),
+    };
+
+    /// <summary>
+    /// The other phases of a boss fight (each has its own page): named after the boss's first page, "First Hero · dark
+    /// form", "Alexander · phase 4" (Umut 2026-10-17: "First Hero" stood twice in the list, the rest were code names).
+    /// </summary>
+    private static readonly Dictionary<string, (string boss, Func<string, string> name)> BossPhases = new()
+    {
+        ["enemy:FirstHero2"] = ("enemy:FirstHero1", n => Loc.F("{0} · phase {1}", n, 2)),
+        ["enemy:FirstHero3"] = ("enemy:FirstHero1", n => Loc.F("{0} · phase {1}", n, 3)),
+        ["enemy:FirstDarkHero"] = ("enemy:FirstHero1", n => Loc.F("{0} · dark form", n)),
+        ["enemy:AwakenLeiana"] = ("enemy:LeianaShortHair", n => Loc.F("{0} · awakened", n)),
+        ["enemy:DarkSkul2"] = ("enemy:DarkSkul1", n => Loc.F("{0} · phase {1}", n, 2)),
+        ["enemy:Alexander2_Heart"] = ("enemy:Alexander1", n => Loc.F("{0} · phase {1}", n, 2)),
+        ["enemy:Alexander2_Left"] = ("enemy:Alexander1", n => Loc.F("{0} · left hand", n)),
+        ["enemy:Alexander2_Right"] = ("enemy:Alexander1", n => Loc.F("{0} · right hand", n)),
+        ["enemy:Alexander3"] = ("enemy:Alexander1", n => Loc.F("{0} · phase {1}", n, 3)),
+        ["enemy:Alexander4"] = ("enemy:Alexander1", n => Loc.F("{0} · phase {1}", n, 4)),
+    };
+
+    /// <summary>A boss's title in the current language ("Emperor of Carleon"), or "".</summary>
+    public static string BossTitle(string id) => BossNames.TryGetValue(id ?? "", out var keys) ? Localize(keys.title) : "";
 
     static CodexCatalog() => Loc.Changed += () => _entries = null; // names come from the game's texts: list them again
 
@@ -180,8 +220,16 @@ public static class CodexCatalog
                     pair.Value.Category == "Bosses" ? CodexCategory.Bosses : CodexCategory.Enemies, list.Count));
 
         foreach (var entry in list)
+        {
+            if (BossNames.TryGetValue(entry.Id, out var keys) && Localize(keys.name) is { Length: > 0 } bossName)
+                entry.Name = bossName;
             if (PageNames.TryGetValue(entry.Id, out var pageName))
                 entry.Name = Loc.T(pageName);
+        }
+        foreach (var entry in list)
+            if (BossPhases.TryGetValue(entry.Id, out var phase) && list.FirstOrDefault(e => e.Id == phase.boss) is { } boss &&
+                boss.Name != OwnerNamesHumanized(boss.Key))
+                entry.Name = phase.name(boss.Name);
 
         Plugin.Log.LogInfo($"Codex catalog: {list.Count} entries " +
                            string.Join(", ", list.GroupBy(e => e.Category).Select(g => $"{g.Key} {g.Count()}")));
@@ -210,6 +258,8 @@ public static class CodexCatalog
             });
         }
     }
+
+    private static string OwnerNamesHumanized(string key) => Recording.OwnerNames.Humanize(key);
 
     public static string EnemyName(Characters.Key key)
     {
@@ -262,9 +312,41 @@ public static class CodexCatalog
         }
     }
 
+    /// <summary>
+    /// A fragment by a run's id ("fragment:RibsOfTerror", the dropped object's name): the Dark Mirror's fragments have
+    /// no Codex page; their names and icons are in the game's FragmentResource (its icon dictionary stays empty).
+    /// </summary>
+    public static Characters.Gear.Fragments.FragmentResource.Reference FragmentOf(string id)
+    {
+        try
+        {
+            string name = id.StartsWith("fragment:", StringComparison.Ordinal) ? id.Substring("fragment:".Length) : id;
+            var references = Characters.Gear.Fragments.FragmentResource.instance?.fragmentReferences;
+            if (references == null || name.Length == 0)
+                return null;
+            return references.FirstOrDefault(f => string.Equals(f.name, name, StringComparison.OrdinalIgnoreCase))
+                   ?? references.FirstOrDefault(f => !string.IsNullOrEmpty(f.name) &&
+                                                     (f.name.EndsWith(name, StringComparison.OrdinalIgnoreCase) ||
+                                                      name.EndsWith(f.name, StringComparison.OrdinalIgnoreCase)));
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    public static Sprite FragmentIcon(string id) =>
+        FragmentOf(id) is { } fragment ? fragment.icon != null ? fragment.icon : fragment.thumbnail : null;
+
     public static Sprite GearIcon(CodexEntry entry)
     {
         var reference = GearOf(entry);
-        return reference == null ? null : reference.thumbnail != null ? reference.thumbnail : reference.icon;
+        if (reference == null)
+            return null;
+        // Skulls: the inventory's head icon. Their thumbnail is the small sprite lying on the floor (Umut 2026-10-16: the
+        // skull icons looked "small and weird" in lists, run pages and their own Arsenal page).
+        if (entry.Category == CodexCategory.Skulls)
+            return reference.icon != null ? reference.icon : reference.thumbnail;
+        return reference.thumbnail != null ? reference.thumbnail : reference.icon;
     }
 }

@@ -215,6 +215,30 @@ public static class UiKit
     }
 
     /// <summary>Reports the mouse entering and leaving (and leaving when hidden).</summary>
+    /// <summary>Calls <paramref name="changed"/> when the mouse moves onto (true) or off (false) the object.</summary>
+    public static void OnHover(GameObject target, Action<bool> changed) =>
+        target.AddComponent<HoverTint>().Changed = changed;
+
+    /// <summary>Lightens an image while the mouse is on it (list rows, icons).</summary>
+    public static void HoverLight(Image image)
+    {
+        Color original = image.color;
+        bool lit = false;
+        OnHover(image.gameObject, on =>
+        {
+            if (image == null || on == lit)
+                return;
+            lit = on;
+            if (on)
+            {
+                original = image.color;
+                image.color = Color.Lerp(original with { a = 1f }, Color.white, 0.25f) with { a = Mathf.Max(original.a, 0.35f) };
+            }
+            else
+                image.color = original;
+        });
+    }
+
     private sealed class HoverTint : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public Action<bool> Changed;

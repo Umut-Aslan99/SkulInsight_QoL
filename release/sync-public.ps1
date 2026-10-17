@@ -12,7 +12,7 @@ if (-not (Test-Path (Join-Path $Target ".git"))) { throw "$Target is not a git r
 [xml]$project = Get-Content (Join-Path $root "DamageInsight/DamageInsight.csproj")
 $version = ($project.Project.PropertyGroup | Where-Object { $_.Version } | Select-Object -First 1).Version
 
-$exclude = @("docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "docs/CODEX_FINAL.md", "docs/ATTACK_ANALYSIS.md", "docs/GAME_KNOWLEDGE.md", "tools/*", "docs/design/*", "DamageInsight.Tests/Fixtures/*")
+$exclude = @("docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "docs/CODEX_FINAL.md", "docs/ATTACK_ANALYSIS.md", "docs/GAME_KNOWLEDGE.md", "tools/*", "docs/design/*", "DamageInsight.Tests/Fixtures/*", "server/*")
 # Published although under an excluded folder: the Linux check script (docs/LINUX.md links to it).
 $include = @("tools/linux/*")
 $keep = @(".git", "DamageInsight.Tests/Fixtures/README.md")

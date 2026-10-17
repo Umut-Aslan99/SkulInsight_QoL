@@ -133,6 +133,7 @@ public static class SettingsCatalog
     {
         ("General", Loc.N("General")),
         (SaveSlotsSection, Loc.N("Save slots")),
+        ("Daily", Loc.N("Daily run")),
         ("Damage Numbers", Loc.N("Damage numbers")),
         ("Damage Icons", Loc.N("Damage icons")),
         ("Boss Health Bar", Loc.N("Boss health bars")),
@@ -193,10 +194,17 @@ public static class SettingsCatalog
             Loc.N("How solid the dialogue background is (0% invisible, 100% solid).")),
         ["Combat Log/WindowRect"] = new Spec { Hidden = true },
         ["General/LastVersionSeen"] = new Spec { Hidden = true }, // kept by the "What's new" window
+        ["Daily/Enabled"] = On(Loc.N("Daily runs (online)"),
+            Loc.N("Everyone plays the same run each day, one try, with daily and monthly boards (Codex, Daily). Sends a random player id made by the mod, the name you enter and your daily run (its numbers, build, damage and timeline) to the daily run server; nothing else.")),
+        ["Daily/Server"] = new Spec { Hidden = true },
         ["General/WhatsNew"] = On(Loc.N("What's new"),
             Loc.N("After an update, show once (in the castle) what's new in this version.")), // the "Window position" reset row stands in for it
         ["General/CrashReports"] = On(Loc.N("Crash reports"),
             Loc.N("Keep a report of every game session in BepInEx/DamageInsight/CrashReports (the newest 20): errors, what happened before them, and whose code they were in (the game's, SkulInsight's or another mod's). Says so on screen when the game seems stuck or the last session ended unexpectedly. Send the report with a bug report.")),
+        ["General/RunHistory"] = On(Loc.N("Run history"),
+            Loc.N("Keep every run in the Codex: how it ended, the end screen's numbers, your build, the damage of each piece of gear, the maps and a timeline of skulls, items and inscriptions. Each save slot keeps its own.")),
+        ["General/RunHistoryKeep"] = Number(Loc.N("Runs kept whole"), 20, 1000, 10, Unit.Plain,
+            Loc.N("How many of your newest runs keep all their details (timeline, damage, picture). Older runs keep only their summary, unless you starred them.")),
         ["General/MenuSounds"] = On(Loc.N("Menu sounds"),
             Loc.N("The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.")),
         ["Combat Log/RecordCalculations"] = On(Loc.N("Calculations"),

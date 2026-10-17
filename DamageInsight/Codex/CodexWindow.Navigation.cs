@@ -22,7 +22,7 @@ public sealed partial class CodexWindow
     private UiKit.Chip _backChip;
     private bool _scrollToSelected;
 
-    private enum PageLayout { Creature, Gear, Sheet }
+    private enum PageLayout { Creature, Gear, Sheet, Run }
     private PageLayout? _layout;
 
     private void ForgetPageWidgets()
@@ -31,6 +31,9 @@ public sealed partial class CodexWindow
         _backChip = null;
         _layout = null;
         ForgetYouWidgets();
+        ForgetRunWidgets();
+        ForgetDailyWidgets();
+        ForgetRecordWidgets();
     }
 
     private void BuildSectionRow(RectTransform page)
@@ -60,6 +63,7 @@ public sealed partial class CodexWindow
     private static string SectionLabel(CodexSection section) => section switch
     {
         CodexSection.You => Loc.T("You"),
+        CodexSection.Daily => Loc.T("Daily"),
         CodexSection.Bestiary => Loc.T("Bestiary"),
         _ => Loc.T("Arsenal"),
     };
@@ -69,9 +73,24 @@ public sealed partial class CodexWindow
     {
         foreach (var pair in _sectionChips)
             pair.Value.SetOn(pair.Key == _nav.Section);
-        bool you = _nav.Section == CodexSection.You;
-        _listPanel?.gameObject.SetActive(!you);
-        _youPanel?.gameObject.SetActive(you);
+        bool you = _nav.Section == CodexSection.You, runs = you && _nav.Category == CodexCategory.Runs,
+            records = you && _nav.Category == CodexCategory.Records;
+        bool daily = _nav.Section == CodexSection.Daily;
+        _listPanel?.gameObject.SetActive(!you && !daily);
+        _dailyPanel?.gameObject.SetActive(daily);
+        foreach (var pair in _dailyTabs)
+        {
+            pair.Value.Background.gameObject.SetActive(daily);
+            pair.Value.SetOn(pair.Key == _nav.Category);
+        }
+        _youPanel?.gameObject.SetActive(you && !runs && !records);
+        _runsPanel?.gameObject.SetActive(runs);
+        _recordsPanel?.gameObject.SetActive(records);
+        foreach (var pair in _youTabs)
+        {
+            pair.Value.Background.gameObject.SetActive(you);
+            pair.Value.SetOn(pair.Key == _nav.Category);
+        }
         foreach (var pair in _tabs)
             pair.Value.Background.gameObject.SetActive(CodexNavigation.SectionOf(pair.Key) == _nav.Section);
         _backChip?.Background.gameObject.SetActive(_nav.CanGoBack);
@@ -102,7 +121,14 @@ public sealed partial class CodexWindow
             return;
         if (id.StartsWith("you:"))
         {
-            _nav.Go(new CodexNavigation.Place(CodexSection.You, CodexCategory.Skulls, id));
+            _nav.Go(new CodexNavigation.Place(CodexSection.You, CodexCategory.YouBuild, id));
+            OnNavigated();
+            return;
+        }
+        if (id.StartsWith(DamageInsight.History.RecordPages.RunLink, StringComparison.Ordinal))
+        {
+            // A best on the Records page: its run's page in the Runs tab.
+            _nav.Go(new CodexNavigation.Place(CodexSection.You, CodexCategory.Runs, id.Substring(DamageInsight.History.RecordPages.RunLink.Length)));
             OnNavigated();
             return;
         }
@@ -154,8 +180,9 @@ public sealed partial class CodexWindow
         float next = creature ? 476 : 262;
         _nextText.rectTransform.Place(32, next, width, 26);
         _bar.Place(32, next + 26, width, 10);
-        _bar.gameObject.SetActive(layout != PageLayout.Sheet);
-        float textTop = creature ? 524 : layout == PageLayout.Gear ? 306 : 264;
+        _bar.gameObject.SetActive(layout is PageLayout.Creature or PageLayout.Gear);
+        _nextText.gameObject.SetActive(layout != PageLayout.Run);
+        float textTop = creature ? 524 : layout == PageLayout.Gear ? 306 : layout == PageLayout.Run ? 300 : 264;
         _textFrame.Place(32, textTop, width, BookHeight - 24 - textTop - 24);
         _portraitMark.fontSize = creature ? 150 : 90;
     }

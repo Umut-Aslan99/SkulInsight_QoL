@@ -14,7 +14,7 @@ if (-not $Target) { $Target = Join-Path (Split-Path -Parent $root) "SkulInsight_
 if (Test-Path (Join-Path $Target ".git")) { throw "$Target already has a git repository; update it by hand instead." }
 
 $exclude = @(
-    "docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "docs/ATTACK_ANALYSIS.md", "docs/GAME_KNOWLEDGE.md", "tools/*",
+    "docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "docs/ATTACK_ANALYSIS.md", "docs/GAME_KNOWLEDGE.md", "tools/*", "server/*",
     "DamageInsight.Tests/Fixtures/*"
 )
 New-Item -ItemType Directory -Force $Target | Out-Null

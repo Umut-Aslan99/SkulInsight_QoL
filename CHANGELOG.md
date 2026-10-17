@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.13.0 (run history, records, daily run)
+
+- **Run history** (Codex → You → **Runs**): every run is kept, like a match history. A row shows how the run ended
+  (the boss or the killer in a frame), the kind of run (Normal, Dark Mirror level, Rookie mode), your skulls and
+  items, kills, damage, gold, time and date. A run's page has **Overview** (how it went, the bosses defeated, the
+  build with every inscription, the numbers and your stats at the end), **Damage** (each piece of gear's share) and
+  **Timeline** (skulls, items and inscriptions as they came, map by map). Every name links to its Codex page.
+  **End screen** shows the game's own result panel again with the run's numbers. **Star** a run to keep it whole
+  forever; older runs without a star keep only their summary. New settings **Run history** (on) and **Runs kept
+  whole** (100).
+- **Records** (Codex → You → **Records**): your bests over all runs: totals, best runs, per skull, against bosses,
+  deaths and the game's own counters. A record links to its run.
+- **Daily run** (Codex → **Daily**; online, off until you turn it on): every day one run for everyone with the same
+  seed and the same difficulty (a weekday schedule from Normal to Dark Mirror 10), and one try.
+  - You play it in a separate daily save slot made from your game: every gear unlocked, the Witch at her top, every
+    Dark Mirror level open, 15,000 dark quartz, no DLC gear, so everyone starts equal. Your own game waits as it is;
+    **Back to my game** returns to it.
+  - After the run you enter a name (12 characters) for the **daily and monthly boards**. Points for the result,
+    stages, bosses, kills, damage, little damage taken, gold left and a fast win, times the day's difficulty, plus
+    bonuses for the **day's records** (first win, fastest win, most damage, least damage taken, most gold, most
+    kills) and a **daily streak**.
+  - **Click a run on the board** to see it like your own run history (build, damage, timeline), how its points came
+    about part by part, and give it a **thumbs up**.
+  - Fair play: a daily run can't be continued (closing the game or going back to the title screen ends it as it
+    was); runs with other mods loaded or gear the game doesn't know stay off the boards; no Steam achievements from
+    the daily slot.
+  - Sent to the daily run server (skul.umut-aslan.dev): a random player id made by the mod, the name you enter and
+    your daily run (its numbers, build, damage and timeline). Nothing else, nothing from your own save slots. New
+    setting **Daily runs (online)** (off).
+- All new texts in every game language.
+
 ## 0.12.2 (crash reports; skill details beside the box)
 
 - **Crash reports:** the mod keeps a report of every game session in `BepInEx/DamageInsight/CrashReports` (the newest

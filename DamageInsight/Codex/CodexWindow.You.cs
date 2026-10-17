@@ -39,6 +39,7 @@ public sealed partial class CodexWindow
     private RectTransform _youContent;
 
     private const int InscriptionRows = 9;
+    private const float YouTop = 40f, InscriptionStep = 31f;
 
     private void ForgetYouWidgets()
     {
@@ -54,6 +55,7 @@ public sealed partial class CodexWindow
         _youEmpty = Label(panel, Loc.T("Start a run to see your character here."), 22, InkDim, TextAlignmentOptions.Center);
         _youEmpty.rectTransform.Place(32, 300, PageWidth - 64, 120);
         _youContent = UiKit.Rect("You content", panel).Fill();
+        _youContent.offsetMax = new Vector2(0, -YouTop); // below the You tabs
         var page = _youContent;
         float half = (PageWidth - 64 - 8) / 2f;
 
@@ -73,9 +75,9 @@ public sealed partial class CodexWindow
 
         Heading(page, Loc.T("Inscriptions"), 32, 408);
         for (int i = 0; i < InscriptionRows * 2; i++)
-            _inscriptionSlots.Add(NewSlot(page, 32 + (i / InscriptionRows) * (half + 8), 434 + (i % InscriptionRows) * 34, half, 32, 26, null));
+            _inscriptionSlots.Add(NewSlot(page, 32 + (i / InscriptionRows) * (half + 8), 434 + (i % InscriptionRows) * InscriptionStep, half, InscriptionStep - 2, 24, null));
 
-        _statsSlot = NewSlot(page, 32, BookHeight - 24 - 60, half, 44, 32, "you:stats");
+        _statsSlot = NewSlot(page, 32, BookHeight - 24 - 60 - YouTop, half, 44, 32, "you:stats");
         _statsSlot.Label.text = $"<b>{StatsTitle()}</b>";
         _statsSlot.Label.fontSize = 20;
     }
@@ -331,6 +333,7 @@ public sealed partial class CodexWindow
         _portrait.sprite = icon;
         _portrait.color = icon == null ? new Color(0, 0, 0, 0) : Color.white;
         _title.text = title;
+        _title.color = Ink;
         _subtitle.text = subtitle;
         SetPage(text);
         string shownFor = "you#" + id;

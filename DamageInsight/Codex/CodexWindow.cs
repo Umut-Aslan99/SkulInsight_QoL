@@ -137,6 +137,9 @@ public sealed partial class CodexWindow : MonoBehaviour
     {
         if (_rebuild)
             DamageInsight.Patches.Guard.Run("Codex (language)", Rebuild);
+        if (EndScreenView.IsOpen)
+            return; // a run's end screen lies over the book and takes the keys
+        DamageInsight.Patches.Guard.Run("Codex (daily run)", OpenForDailyResult);
         // Typing in any text field (this search, the game's developer menu, ...) keeps K and Backspace for the text.
         if (Plugin.CodexKey.Value.IsDown() && !DamageInsight.UI.SettingsPage.IsOpen && !DamageInsight.UI.TextInput.IsTyping())
             SetOpen(!IsOpen);
@@ -179,10 +182,14 @@ public sealed partial class CodexWindow : MonoBehaviour
             _listDirty = true;
         }
 
-        if ((_listDirty || CodexTracker.Version != _drawnVersion) && Time.unscaledTime >= _nextRefresh)
+        if ((_listDirty || CodexTracker.Version != _drawnVersion || DamageInsight.History.RunJournal.Version != _runsDrawnVersion ||
+             DamageInsight.Daily.DailyService.Version != _dailyDrawnVersion) &&
+            Time.unscaledTime >= _nextRefresh)
         {
             _nextRefresh = Time.unscaledTime + 0.25f;
             _drawnVersion = CodexTracker.Version;
+            _runsDrawnVersion = DamageInsight.History.RunJournal.Version;
+            _dailyDrawnVersion = DamageInsight.Daily.DailyService.Version;
             _listDirty = false;
             DrawList();
             DrawDetail();
@@ -228,6 +235,7 @@ public sealed partial class CodexWindow : MonoBehaviour
         }
         else
         {
+            EndScreenView.Close();
             CodexTracker.SaveIfNeeded(force: true);
         }
     }
@@ -365,6 +373,8 @@ public sealed partial class CodexWindow : MonoBehaviour
         // Sub-tabs: each section's categories, from the left (only the current section's are shown).
         foreach (CodexSection section in Enum.GetValues(typeof(CodexSection)))
         {
+            if (section is CodexSection.You or CodexSection.Daily)
+                continue; // their tabs sit on the page itself (BuildYouTabs, BuildDaily): this panel is hidden there
             float x = 32;
             foreach (var category in CodexNavigation.TabsOf(section))
             {
@@ -435,6 +445,13 @@ public sealed partial class CodexWindow : MonoBehaviour
 
         _youPanel = UiKit.Rect("You panel", page).Fill();
         BuildYou(_youPanel);
+        _runsPanel = UiKit.Rect("Runs panel", page).Fill();
+        BuildRuns(_runsPanel);
+        _dailyPanel = UiKit.Rect("Daily panel", page).Fill();
+        BuildDaily(_dailyPanel);
+        _recordsPanel = UiKit.Rect("Records panel", page).Fill();
+        BuildRecords(_recordsPanel);
+        BuildYouTabs(page);
         RefreshSections();
     }
 
@@ -464,7 +481,7 @@ public sealed partial class CodexWindow : MonoBehaviour
         _filmChip = new UiKit.Chip(frame, Loc.T("Refilm"), 0, 0, filmWidth, ToggleRefilm);
         _filmChip.Background.rectTransform.PlaceTopRight(8, 8, filmWidth, 28);
         // "Normal" / "Dark Mirror": which version of the moves to show (only when a Dark Mirror version exists).
-        float modeWidth = Mathf.Max(150f, UiKit.ChipWidth(Loc.T("Dark Mirror")));
+        float modeWidth = Mathf.Max(150f, Mathf.Max(UiKit.ChipWidth(Loc.T("Dark Mirror")), UiKit.ChipWidth(Loc.T("Dark Mirror only"))));
         _modeChip = new UiKit.Chip(frame, Loc.T("Normal"), 0, 0, modeWidth, ToggleMode);
         _modeChip.Background.rectTransform.Place(8, 8, modeWidth, 28);
         // "Short Hair" / "Long Hair": which member of a shared page (the Leiana sisters) is shown.
@@ -617,8 +634,11 @@ public sealed partial class CodexWindow : MonoBehaviour
             _frameTime = 0f;
         }
         _modeChip.Background.gameObject.SetActive(hasDark && tier > 0);
-        _modeChip.Label.text = dark ? Loc.T("Dark Mirror") : Loc.T("Normal");
+        // Only one version captured in this save slot: say so, and the chip doesn't pretend to switch (Umut 2026-10-17).
+        bool both = hasDark && hasNormal;
+        _modeChip.Label.text = !both ? Loc.T("Dark Mirror only") : dark ? Loc.T("Dark Mirror") : Loc.T("Normal");
         _modeChip.SetOn(dark);
+        _modeChip.Background.GetComponent<Button>().interactable = both;
         var posed = enemy && tier > 0 ? new List<CodexClip>(CodexAnimations.Load(storage)) : new List<CodexClip>();
         _partClips.Clear();
         if (enemy && tier > 0)
@@ -943,6 +963,21 @@ public sealed partial class CodexWindow : MonoBehaviour
                     AddLinkClicks(t);
                     continue;
                 }
+                if (item.Kind == PageBlocks.Kind.Icons)
+                {
+                    AddIconRow(parent, item);
+                    continue;
+                }
+                if (item.Kind == PageBlocks.Kind.Bar)
+                {
+                    AddBarRow(parent, item);
+                    continue;
+                }
+                if (item.Kind == PageBlocks.Kind.Line)
+                {
+                    AddLine(parent, item);
+                    continue;
+                }
                 // A skill tile: the icon in a square (or a big "?"), the text next to it.
                 var tile = UiKit.Rect("Tile", parent);
                 var tileRow = tile.gameObject.AddComponent<HorizontalLayoutGroup>();
@@ -986,6 +1021,10 @@ public sealed partial class CodexWindow : MonoBehaviour
         {
             if (spec.StartsWith("skillkey:", StringComparison.Ordinal))
                 return GameResources.GearResource.instance?.GetSkillIcon(spec.Substring("skillkey:".Length));
+            if (spec.StartsWith("pix:", StringComparison.Ordinal))
+                return PixelIcons.Get(spec.Substring("pix:".Length));
+            if (spec.StartsWith("codex:", StringComparison.Ordinal))
+                return RunIcon(spec.Substring("codex:".Length));
             return DamageInsight.UI.IconLibrary.Resolve(spec);
         }
         catch (Exception)
@@ -1007,7 +1046,17 @@ public sealed partial class CodexWindow : MonoBehaviour
     {
         if (_nav.Section == CodexSection.You)
         {
-            DrawYouList();
+            if (_category == CodexCategory.Runs)
+                DrawRunsList();
+            else if (_category == CodexCategory.Records)
+                DrawRecordsList();
+            else
+                DrawYouList();
+            return;
+        }
+        if (_nav.Section == CodexSection.Daily)
+        {
+            DrawDailyList();
             return;
         }
         var progress = CodexTracker.Progress;
@@ -1113,13 +1162,30 @@ public sealed partial class CodexWindow : MonoBehaviour
     {
         if (_nav.Section == CodexSection.You)
         {
-            DrawYouDetail();
+            ShowDailyControls(false);
+            if (_category == CodexCategory.Runs)
+                DrawRunDetail();
+            else if (_category == CodexCategory.Records)
+                DrawRecordDetail();
+            else
+            {
+                ShowRunChips(false);
+                DrawYouDetail();
+            }
+            return;
+        }
+        ShowRunChips(false);
+        ShowDailyControls(false);
+        if (_nav.Section == CodexSection.Daily)
+        {
+            DrawDailyDetail();
             return;
         }
         var entry = CodexCatalog.Entries.FirstOrDefault(e => e.Id == _selectedId);
         if (entry == null)
         {
             _title.text = "";
+            _title.color = Ink;
             _subtitle.text = "";
             _stats.text = "";
             SetPage("");
@@ -1149,6 +1215,7 @@ public sealed partial class CodexWindow : MonoBehaviour
         _portraitMark.text = sprite != null ? "" : tier == 0 ? "?" : enemy ? $"<size=22%>{Loc.T("No picture yet.\nKill it once more to capture it.")}</size>" : "";
 
         _title.text = tier > 0 ? entry.Name : "???";
+        _title.color = Ink;
         string stars = new string('★', tier) + new string('☆', CodexTiers.Max - tier);
         _subtitle.text = tier > 0 ? $"{Loc.Name(entry.Group)} · {CategoryName(entry.Category)}   <color=#9C3B2A>{stars}</color>" : $"{CategoryName(entry.Category)}   {stars}";
 
@@ -1290,7 +1357,8 @@ public sealed partial class CodexWindow : MonoBehaviour
         {
             case CodexCategory.Enemies:
             case CodexCategory.Bosses:
-                return CodexPortraits.Get(entry.Key);
+                // Met only in the Dark Mirror (King Alexander, Dark Skul): its pictures are kept as "<key>@DM".
+                return CodexPortraits.Get(entry.Key) ?? CodexPortraits.Get(CodexMode.StorageKey(entry.Key, true));
             case CodexCategory.Inscriptions:
                 return Enum.TryParse(entry.Key, out Inscription.Key key) ? SafeInscriptionIcon(key) : null;
             case CodexCategory.DarkAbilities:
@@ -1337,6 +1405,11 @@ public sealed partial class CodexWindow : MonoBehaviour
         CodexCategory.Essences => Loc.T("Essences"),
         CodexCategory.DarkAbilities => Loc.T("Dark abilities"),
         CodexCategory.Elites => Loc.T("Dark enemies"),
+        CodexCategory.YouBuild => Loc.T("Build"),
+        CodexCategory.Runs => Loc.T("Runs"),
+        CodexCategory.Records => Loc.T("Records"),
+        CodexCategory.DailyToday => Loc.T("Today"),
+        CodexCategory.DailyMonth => Loc.T("This month"),
         _ => Loc.T("Inscriptions"),
     };
 

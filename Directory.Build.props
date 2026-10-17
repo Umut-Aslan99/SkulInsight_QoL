@@ -53,6 +53,16 @@
       <HintPath>$(SkulManaged)\Platforms.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <!-- Daily runs: the run seed's IntData (GameData.Save.randomSeed is set to the day's seed). -->
+    <Reference Include="Plugins.Data">
+      <HintPath>$(SkulManaged)\Plugins.Data.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- Daily runs: GearReference.dlcTitle (DLC gear is left out of the daily slot's pools). -->
+    <Reference Include="Platforms.Dlc">
+      <HintPath>$(SkulManaged)\Platforms.Dlc.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Platforms.Common" Publicize="true">
       <HintPath>$(SkulManaged)\Platforms.Common.dll</HintPath>
       <Private>false</Private>
