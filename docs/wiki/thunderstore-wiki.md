@@ -146,7 +146,12 @@ Codex (`K`) → **You** → **Runs**: every run you play, like a match history.
   they came, map by map). Every name links to its Codex page.
 - **End screen** shows the game's own result panel again with the run's numbers.
 - **Star** a run to keep it whole forever; older runs without a star keep only their summary (setting).
+
+![Run history: every run as a row, and a run's page with the bosses, the build and every inscription, all linked to the Codex](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/run-history.png)
+
 - **Records** (You → Records): totals, best runs, per skull, against bosses, deaths and the game's own counters.
+
+![Records: totals, bests, skulls, bosses, deaths and the game's own counters](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/records.png)
 
 ### Daily run (new in 0.13; online, off until you turn it on)
 Codex (`K`) → **Daily**: every day one run for everyone, one try.
@@ -162,6 +167,8 @@ Codex (`K`) → **Daily**: every day one run for everyone, one try.
   achievements from the daily slot.
 - It talks to the daily run server (skul.umut-aslan.dev) only after you turn it on, and sends a random player id
   made by the mod, the name you enter and your daily run (numbers, build, damage, timeline). Nothing else.
+
+![Daily run: today's board, and a run on it with Overview, Damage, Timeline, Points and a thumbs up](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/daily-board.png)
 
 ## The Codex (K), new in 0.10
 

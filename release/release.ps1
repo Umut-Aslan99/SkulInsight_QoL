@@ -3,7 +3,9 @@
 #   4. GitHub release with the changelog and the zip, 5. upload to Thunderstore.
 # Needs: CHANGELOG.md section "## <version>", the public working copy next to this repo, a stored GitHub login,
 # and the Thunderstore service account token in %USERPROFILE%\.skulinsight\thunderstore.token (never in the repo).
-#   powershell -ExecutionPolicy Bypass -File release/release.ps1 [-SkipThunderstore]
+# Thunderstore reviews every update (since 0.13.0): tell a site reviewer in the Thunderstore Discord (Umut's thread)
+# right before the upload, so the package is hidden as briefly as possible.
+#   pwsh -ExecutionPolicy Bypass -File release/release.ps1 [-SkipThunderstore]
 param([switch]$SkipThunderstore)
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot

@@ -269,6 +269,26 @@ docs/V013_SPEC.md. Updated after every step (survives a context compaction).
   from the server's answer when the run was sent (kept in Daily/state.json). Now "Your try" reads the day's board:
   points with bonuses, the current place, or "No longer on the board (removed)". 463 tests.
 
+## Step 23: Thunderstore rejected 0.13.0 ("Invalid submission"); 0.13.1 packed right (2026-10-18)
+- The listing's review status became "rejected" (the whole package hidden, older versions too); reason shown to Umut:
+  "Invalid submission". Umut asked in the Thunderstore Discord (support + rejected-uploads).
+- Cause found: the 0.13.0 zip had `plugins\DamageInsight.dll` (a backslash: no plugins folder). Claude ran
+  release.ps1 with Windows PowerShell 5.1, whose Compress-Archive writes backslashes; earlier releases ran in
+  PowerShell 7. package.ps1 now writes the zip itself with "/" and checks the layout (any shell). Also: the shown
+  description came from package.ps1 (old 0.12 text); it now mentions the opt-in online daily run.
+- 0.13.1 = the same mod, packed right. Waiting for Umut's go to publish it (and the moderators' answer).
+- Moderator Robyn (Discord) relisted the package (review status approved, 0.13.0 visible again) after asking about the
+  Wine check in CrashReporter.Header (crash reports of Linux players). From now on every update is reviewed: tell a
+  reviewer in the thread right before uploading. Skul has no AI tag, so none needed.
+- Lesson for releases: run `release.ps1` with **pwsh** (the script itself said so for github-release.ps1).
+
+## Step 22: 0.13.0 released (2026-10-18)
+- [Umut] "Go" (no time for a daily run first). `release/release.ps1`: tests, zip, public repo (4fc7f2b, tag v0.13.0,
+  no `server/`), GitHub release https://github.com/Umut-Aslan99/SkulInsight_QoL/releases/tag/v0.13.0, Thunderstore
+  DocRun-SkulInsight_QoL 0.13.0. The server's automatic deploy took step 21 by itself (/admin/ and /api/me "today" live).
+- Open for Umut: paste `docs/wiki/thunderstore-wiki.md` into the Thunderstore wiki; play a daily run with 0.13 when
+  there is time (the board's run page, 15,000 dark quartz); look at /admin/. Next: 0.14 achievements.
+
 ## Step 21: the server decides "played"; the admin page (2026-10-18)
 - [Umut] "make this caching dependant on the servers answer: if no run from me has been recorded, I can do the run":
   `/api/me` says today's try (none / running / finished); the mod asks with the day (every 10 min) and the boards

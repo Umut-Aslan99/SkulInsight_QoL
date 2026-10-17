@@ -36,7 +36,7 @@ $manifest = [ordered]@{
     name           = $name
     version_number = $version
     website_url    = $RepoUrl
-    description    = "Codex with boss moves, fight films, full gear pages and your build; real damage in descriptions, damage source tags, boss HP numbers, a combat log that explains every hit, pickup preview. In-game settings, 11 languages."
+    description    = "Codex with boss moves, gear pages and your build; run history and records; optional online daily runs (opt-in leaderboard); real damage in descriptions, boss HP numbers, a combat log that explains every hit, save slots. 11 languages."
     dependencies   = @("BepInEx-BepInExPack_Skul-5.4.2100")
 }
 if ($manifest.description.Length -gt 250) { throw "Description longer than 250 characters" }
@@ -44,5 +44,27 @@ if ($manifest.description.Length -gt 250) { throw "Description longer than 250 c
 
 $zip = Join-Path $PSScriptRoot "out/$namespace-$name-$version.zip"
 if (Test-Path $zip) { Remove-Item -Force $zip }
-Compress-Archive -Path (Join-Path $stage "*") -DestinationPath $zip
-Write-Host "Package: $zip"
+# The zip is written by hand with "/" in every entry name: Windows PowerShell 5.1's Compress-Archive stores
+# "plugins\DamageInsight.dll", which isn't a folder for Thunderstore or the mod managers (0.13.0 was rejected as an
+# "invalid submission" for it). Works the same in PowerShell 5.1 and 7.
+Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
+$stageFull = (Resolve-Path $stage).Path.TrimEnd('\', '/')
+$archive = [IO.Compression.ZipFile]::Open($zip, [IO.Compression.ZipArchiveMode]::Create)
+try {
+    foreach ($file in Get-ChildItem $stageFull -Recurse -File) {
+        $entry = $file.FullName.Substring($stageFull.Length).TrimStart('\', '/').Replace('\', '/')
+        [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $file.FullName, $entry, [IO.Compression.CompressionLevel]::Optimal) | Out-Null
+    }
+}
+finally { $archive.Dispose() }
+
+# Check the package before anything is uploaded: Thunderstore's layout, "/" only.
+$check = [IO.Compression.ZipFile]::OpenRead($zip)
+try { $entries = @($check.Entries | ForEach-Object { $_.FullName }) }
+finally { $check.Dispose() }
+$bad = @($entries | Where-Object { $_.Contains('\') })
+if ($bad.Count -gt 0) { throw "Zip entries with a backslash: $($bad -join ', ')" }
+foreach ($required in @("manifest.json", "icon.png", "README.md", "CHANGELOG.md", "plugins/DamageInsight.dll")) {
+    if ($entries -notcontains $required) { throw "The package misses $required (entries: $($entries -join ', '))" }
+}
+Write-Host "Package: $zip ($($entries -join ', '))"

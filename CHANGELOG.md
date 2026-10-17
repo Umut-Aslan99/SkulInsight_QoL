@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.1 (package fix)
+
+- The 0.13.0 package on Thunderstore was built wrongly (its DLL wasn't inside the `plugins` folder) and was taken
+  down. Same mod as 0.13.0, packed correctly; the package description now mentions the optional online daily run.
+- README: pictures of the run history, the records and the daily run.
+
 ## 0.13.0 (run history, records, daily run)
 
 - **Run history** (Codex → You → **Runs**): every run is kept, like a match history. A row shows how the run ended
