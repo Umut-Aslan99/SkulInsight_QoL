@@ -269,6 +269,23 @@ docs/V013_SPEC.md. Updated after every step (survives a context compaction).
   from the server's answer when the run was sent (kept in Daily/state.json). Now "Your try" reads the day's board:
   points with bonuses, the current place, or "No longer on the board (removed)". 463 tests.
 
+## Step 25: the README's top for the next version (2026-10-18)
+- [Umut] on Thunderstore the README's top still announced 0.12.2 / 0.12.0 (only the sections below were updated).
+  Fixed in the repo (the top box "Version 0.13", the intro, the settings table with Run history / Runs kept whole /
+  Daily, compatibility, the wiki intro). [DECISION Umut] no extra 0.13.2 upload ("I don't want to bother the
+  reviewer"): it goes out with 0.14, whose top box then names 0.14. release.ps1 now refuses a README whose top box
+  doesn't name the version being released.
+
+## Step 24: 0.13.1 released (2026-10-18)
+- [Umut] "go" after his heads-up in the Discord thread; README/wiki got three pictures (run-history.png,
+  records.png, daily-board.png: cropped, 256 colours, 40-80 KB). `pwsh release/release.ps1`: 464 tests, the zip with
+  `plugins/DamageInsight.dll` (checked), public repo 95afb15 + tag v0.13.1, GitHub release, Thunderstore 0.13.1
+  (review status approved). Open: Umut pastes the wiki (now with pictures).
+- Seen in Umut's screenshots, for 0.14: (1) his 20 s daily death got 10,048 points, 10,000 of them the day's
+  record bonuses (alone on the board, most damage / gold / kills also go to deaths): bonuses for non-wins or with few
+  players need a rule. (2) The damage taken list of the first run (2026-10-16) shows code names (DarkSkeleton_Phase1,
+  Emperor_Renewal, Scarecraw): check whether new runs still keep them.
+
 ## Step 23: Thunderstore rejected 0.13.0 ("Invalid submission"); 0.13.1 packed right (2026-10-18)
 - The listing's review status became "rejected" (the whole package hidden, older versions too); reason shown to Umut:
   "Invalid submission". Umut asked in the Thunderstore Discord (support + rejected-uploads).

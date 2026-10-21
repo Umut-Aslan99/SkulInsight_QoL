@@ -1,127 +1,157 @@
-# Night log 2026-10-11 (unattended work session: the QA night capture)
+# Night log 2026-10-21 (unattended work session: modding Skul on macOS)
 Running log, updated after every step, so an auto-compaction or a new session loses nothing.
 Decisions Claude made for Umut are marked **[DECISION]**: Umut may change any of them.
-The previous night's log (2026-10-05, 0.11) is in git history (`git show 662e045:docs/NIGHT_LOG.md`).
+The previous night's log (2026-10-11, QA capture) is in git history (`git show 6e7e9cd:docs/NIGHT_LOG.md`).
 
 ## Setup (read first when resuming)
-- Plan (Umut's words, 21:52): "Take the left one and make sure that bepinex command or steam dont take focus either.
-  You can actually start the FULL night shift now." Goal given to the skill: QA capture all 11 languages via
-  tools/qa/night-capture.ps1 (game on the left monitor, no focus stealing), analyse with tools/qa/captures.py +
-  contact sheets, findings into docs/QA_FINDINGS.md, fix clear findings in batches (tests pass, no deploy while the
-  game runs); max Session 90 %; no release/push; no PC shutdown (Umut didn't ask for one).
-- Context: Umut is awake and playing League of Legends on the main screen (the usage screenshot shows it), so the
-  usage panel can't be read; the capture runs on the left monitor without taking the focus. QA background:
-  docs/QA_LOG.md (steps 1-8), docs/QA_CAPTURE_PLAN.md, docs/QA_FINDINGS.md.
-- Watcher: night-check.ps1 (skill night-shift); state in C:\Users\Umut\ClaudeNight.
-  **[DECISION]** watcher restarted with -WatchdogMinutes 720 (effectively no watchdog shutdown): Umut is at the PC
-  and asked for no shutdown; a stuck Claude must not switch his PC off mid-game.
-- Stop rule [DECISION]: Session ~90 % (max 90) or Weekly >= 85 %. The panel isn't visible while Umut plays, so pace
-  by cost: few, long waits (one background wait per check), analysis in big steps.
-- Usage readings: 21:53 panel not visible (League of Legends on the main screen); 21:56 S 61 % / W 69 %
-  (watcher on the left monitor from then on); 22:11 S 65 % / W 70 %.
-- Capture run: `night_2026-10-11_2154` (started 21:54, background task, log SkulModding/QA/night-full.log; game window
-  at -1920,0 1920x1080 = the left monitor). Order en, de, ru, ko, zh-Hans, ja, zh-Hant, fr, es, pt-BR, pl; ~40 min
-  per language. A stopped run continues with `night-capture.ps1 -Languages all -Run night_2026-10-11_2154`.
-- Branches: code and docs on main, merged into save-states (Umut's game branch). No deploy while Skul runs.
+- Plan (Umut's words, 00:40): "Someone in the skul official community asked, how to mod on mac. Can we do the
+  research for him? make this research a night shift task /night-shift which means, turn off my PC when its done and
+  check the session usage etc."
+- Goal: find out whether and how Skul + BepInEx + SkulInsight QoL run on a Mac (native Mac version? Mono or IL2CPP?
+  Apple Silicon? mod managers? Windows version through CrossOver / Wine / Whisky / Parallels?), write a public guide
+  like docs/LINUX.md, and a short reply Umut can paste in the Skul Discord. PC shuts down at the end.
+- Not tonight: posting the reply, pushing the guide to GitHub, a release (all outward-facing: morning todos).
+- Watcher: night-check.ps1 (skill night-shift); state in C:\Users\Umut\ClaudeNight
+  - [DECISION] screen.txt set from `left` to `main`: the usage panel (VS Code, Claude Code sidebar) is in the top-left
+    corner of the main screen tonight; the left monitor shows Discord. Set it back to `left` when needed.
+- Stop rule [DECISION]: Session ≈ 90 % or Weekly ≥ 85 % (Weekly starts at 73 %, so Weekly is the real limit), or
+  the queue is done.
+- Umut's addition (00:45): "If you find a way that we can make our mod compatible with mac, create mac
+  compatibility tonight until the night shift is over"
+- Usage readings: 00:41 S 1 % / W 73 %; 00:49 S 4 % / W 73 %; 01:00 S 14 % / W 74 %; 01:05 S 18 % / W 75 %
 
 ## Queue
-1. Watch the capture; analyse each language when it is done (captures.py report + contact sheets; Read the sheets).
-2. While it runs (no deploy, tests only): QA findings N3 (Balrog / Thunderlord / Warrior: the same hit in every step:
-   real or a link?), N4 (Abyss Meteor 4000 %), T3 (part numbers that skip: number only parts with damage).
-3. Findings from the capture: write them into QA_FINDINGS.md, fix the clear ones (build after the capture ends).
-4. If budget is left: swap-menu samples for the capture tool; spec for phase 2 (Codex pages capture).
+1. Research: Skul's Mac version on Steam (depots, Unity version, Mono or IL2CPP, Intel or Apple Silicon).
+2. Research: BepInEx 5 on macOS (run_bepinex.sh, doorstop dylib, Apple Silicon / Rosetta, Gatekeeper / quarantine,
+   unstripped corlib that Skul needs), and what BepInExPack Skul contains.
+3. Research: mod managers on macOS (r2modman, Gale, Thunderstore App), and the Windows-version route (CrossOver,
+   Whisky, Wine, Parallels, Game Porting Toolkit) with the winhttp override.
+4. Check the mod's own code for Windows-only calls (opening folders, paths) that would break on a Mac.
+5. Write docs/MACOS.md (public guide), a Discord reply draft, README/wiki lines (drafts, not pushed).
+6. Wrap-up: status doc, memory, shutdown.
 
 ## Steps (newest last)
-1. 21:54 Night started: watcher (12 h watchdog), full capture started (run night_2026-10-11_2154, left monitor
-   confirmed by the window position), this log. Before it (21:50, f271b21 and earlier): night-capture.ps1 switches
-   BepInEx's console window off for the run (it took the focus), logs the window position.
-2. 22:00 Umut: the usage panel is on the left monitor (VS Code over the background game). Watcher: screen.txt =
-   "left" makes usage-watch.ps1 photograph the left monitor's top-left (skill updated). Reading 21:56: Session 61 %
-   (reset ~22:19), Weekly 69 % (resets in 5 days): Weekly is the limit tonight (stop at 85 %).
-   QA N3 checked: real data, not link bugs (QA_FINDINGS). QA T3 fixed: part numbers without gaps (GearAnalyzer;
-   corpus 42 -> 0); not deployed yet (the capture runs), tests pass (349). Dev dump prints each hit's owner path.
-   Watcher: night-check restarted a default watcher (45 min watchdog) next to the manual one -> watchdog.txt (720)
-   is read by every watcher start (skill updated); one watcher since 22:00.
-3. 22:24 English of the first pass analysed (run night_2026-10-11_2154, ~2050 pictures): no text outside its panel,
-   no real overlap, no missing glyphs. The only flags were the ground popup's covered one-skill box behind the
-   two-skill boxes (checked by eye on the flagged sheet: clean) -> captures.py ignores that pair.
-   But the sample sheet showed two items left in the inventory for the rest of the run (Lake in a Bottle and Undine
-   Water Spirit turn into another item when picked up; the new item was never discarded): their inscriptions and
-   stats changed every later number (skull skills ~2.2x). And the inventory crops were full-screen (a full-screen
-   overlay image counted as the panel: ~7.6 GB per night, "outside" blind in the inventory).
-   -> First pass stopped at 22:27 (English + a little German; kept on disk, 695 MB, for comparison **[DECISION]**:
-   deleted only after Umut's look). Tool fixes (round 6, deployed): transformed items found and discarded,
-   inventory emptied after every gear, lasting stat changes logged ("[QA] ... stats changed for good"), overlays
-   ignored, skulls first and items/quintessences holding Little Bone. Check run 22:29 (6 gear): crops 40-280 KB,
-   both transforming items captured, nothing left behind.
-4. 22:31 Second (full) pass started: run name in SkulModding/QA/night-full2.log, all 11 languages, ~37 min each.
-   Known: Icarus's Dagger's ground popup fails inside the game's popup code ("key not present"), its inventory
-   pictures work (finding, not ours to fix unless it is our description code).
-   Send-to-back (22:35): the started game covered VS Code on the left monitor (usage panel hidden): the Skul window is
-   sent behind every other window without activating it; pictures keep coming and are fresh (checked); built into
-   night-capture.ps1 for later runs (1bbcf11). Reading 22:33: S 5 % (new window) / W 71 %.
-   Icarus's Dagger checked: a cut item (not obtainable, no name, inscriptions "None"): the game's popup fails on it.
-5. 23:05 English of pass 2 analysed: 2092 pictures, 0 outside, 0 overlap, 0 missing glyphs (422 MB, ~4.6 GB for
-   all languages). Failures: Dracula, Skul_Tutorial, Icarus's Dagger (G1). The stat log caught the Olive Tree Cudgel
-   (physical 1 -> 2 for good, G2): items after it in every language show doubled physical numbers (layout unaffected)
-   **[DECISION]** keep the run going (layout is what the capture checks; neutral numbers come from the corpus); the
-   tool takes the cudgel last from the next run on (not deployed while the game runs). Brawl's "2" checked: real.
-   Umut (23:00) asked for a changelog of the upcoming version when all work is done -> wrap-up: the 0.12.0 section of
-   CHANGELOG.md rewritten as player release notes, text in the morning summary.
-6. 23:15 Changelog 0.12.0 rewritten as player release notes (3ef468e). Umut (23:12): "What about save games" ->
-   asked: save slots ship in **0.12.0** (his answer). save-states merged into main (1b0fb09, clean, 355 tests pass);
-   changelog (highlight + Save slots section), README (intro, version line, hold Shift / compact / Codex in the
-   description section, new Save slots section, compatibility line about saves, roadmap), wiki (intro, Save slots
-   section, FAQ about the save, roadmap) and the store description (228 chars, "hold Shift", "save slots") updated.
-   Work continues on main only. Morning: README screenshots still show the old long descriptions (new ones with the
-   compact lines and a Save slots picture would help; Umut's call).
-7. 23:59 German and Russian analysed (6218 pictures in the run): 3 flags. L7 fixed (German Arson step text ran into
-   step 2: compact boxes drop status calculations, inscription parts one line each; StatusDescriptions.Details,
-   DescriptionLayout.InscriptionParts, ForInscription sets compact for game boxes); corpus de checked; 355 tests
-   pass; changelog line. G3 (Russian squad labels, the game's own text) noted. Not deployed (capture running).
-   Paths for Umut (asked): changelog, README, wiki, findings, screenshots folder, save slots folder.
-8. 00:50 Korean and Chinese (Simplified) analysed (10298 pictures in the run): no flag, no missing glyph; a ko/zh
-   sample sheet checked by eye (glyphs render, mod lines inside the panels; Korean breaks words at line ends like the
-   game's own Korean texts). Reading 23:59: S 14 % / W 72 %. Remaining: ja, zh-Hant, fr, es, pt-BR, pl (~2.5 h),
-   analysed together at the end; then deploy (L7, T3, tool fixes) and a short German/Russian check run.
-9. 01:50 Umut asked: were all 14,800 pictures analysed? Answer: every picture by its JSON facts (outside, overlap,
-   glyphs), ~80 by eye (flagged + samples); not every picture by eye (millions of tokens). Added a readability check
-   to captures.py (text shrunk below 90 % of the box's normal size, over all JSONs): finding R1 (Umut decides).
-   Umut asked for: (a) PC shutdown when all is done -> last wrap-up step runs shutdown-pc.ps1 **[DECISION]**: plus
-   the watchdog back on at 75 min (watchdog.txt) as the stuck-Claude safety; (b) keep the 60 min prompt cache warm
-   -> a background timer (sleep 44 min) wakes this session; every tick: check-in, progress, next timer.
-10. 03:35 Full capture finished at 03:23: 22,517 pictures, 11 languages (3.4 GB), 44 failures = the 3 special/cut gear
-    x languages (G1), focus never taken after the start. Last six languages: the Arson step (L7) again in es, fr, pl,
-    pt-BR; the game's squad labels (G3) in es, pt-BR, pl; French flavor texts over the rarity label (G4, game). Deployed
-    tonight's fixes (L7, T3, tool) and ran a check (de, es, fr, ru: Burning Scripture, Manatech Cogwheel, Guan Yu 3,
-    Davy Jones): the Arson step fits in all four (checked by eye in German). Spanish "3ª" is the game's text (G5).
-    Readings: 02:31 tick; 03:15 S 29 % / W 74 %.
+1. 00:53 **Research done: the native Mac version can run the mod.** Facts (all checked on the real files: the Mac
+   depot 1147568 was downloaded with the Steam console `download_depot 1147560 1147568` to
+   `C:\Program Files (x86)\Steam\steamapps\content\app_1147560\depot_1147568`, 1.7 GB):
+   - Steam: Skul has Windows, macOS and Linux depots; Mac launch = `Skul.app/Contents/MacOS/Skul`, version
+     v1.09.02.3a3, Unity 2020.3.34f1, bundle id com.SouthpawGames.Skul, macOS 10.13+.
+   - **Mono, not IL2CPP** (Frameworks/libmonobdwgc-2.0.dylib, Resources/Data/Managed) → BepInEx 5 works.
+   - **x86_64 only** (no arm64 slice): on Apple Silicon the game always runs through Rosetta 2, so the well-tested
+     x64 BepInEx/HarmonyX path applies, no arm64 JIT problems.
+   - **Ad-hoc signed, no hardened runtime, no library validation** → `DYLD_INSERT_LIBRARIES` (Doorstop) is allowed.
+     Only Valve's steam_api is hardened (irrelevant, it is a plugin dylib).
+   - **Assembly-CSharp.dll is byte-identical to Windows** (md5 15e2eb16), so all patches hit the same code. Platforms*,
+     Unity.TextMeshPro, UnityEngine.UI identical too; CoreModule/System/mscorlib differ only by stripping.
+   - Managed is **stripped like on Windows** → the unstripped libs are needed (the mod also references
+     UnityEngine.ImageConversionModule + UnityWebRequestTextureModule, which only the unstripped set has). Member diff:
+     every Mac UnityEngine module is a subset of BepInExPack Skul's unstripped one, **except GameCenterModule** (Mac has
+     GameCenterPlatform, the Windows-made unstripped one doesn't) → leave that file out on Mac. mscorlib/System gaps
+     (90/11 linker stubs) are the same on Windows, where it works.
+   - BepInEx 5.4.23.5 has `BepInEx_macos_universal_5.4.23.5.zip` (Doorstop 4.5.0, universal dylib). Its
+     run_bepinex.sh on Apple Silicon runs `arch -e DYLD_INSERT_LIBRARIES=libdoorstop.dylib` and loses
+     DYLD_LIBRARY_PATH (arch is a platform binary) → the relative dylib name may not be found; Doorstop 4.6.0 (2 days
+     old) fixes it. Our installer makes the dylib path absolute instead.
+   - Mod managers: r2modman / Gale / Thunderstore App have no macOS version; r2modmac (community, unsigned) exists,
+     untested with Skul; Thunderstore's Skul mods depend on the Windows-only BepInExPack Skul. → manual install script.
+   - Windows-version route (CrossOver / Whisky (discontinued) / Parallels) is possible like Proton
+     (`WINEDLLOVERRIDES="winhttp=n,b"`), but the native route is simpler and free.
+   - The mod's code: paths all use Path.Combine + BepInEx.Paths (BepInEx root = folder next to Skul.app), saves go
+     through the game, Unity log via Application.consoleLogPath. Windows-only bits: `OpenFolder` builds
+     `file:///` + path (wrong on a Mac, spaces in "Application Support" unescaped), CJK font fallback only knows
+     Windows/Noto fonts, the Wine check P/Invokes kernel32 (caught, but pointless off Windows).
+   - **[DECISION]** Route = native Mac version + BepInEx 5.4.23.5 macOS + BepInExPack Skul's unstripped libs (the same
+     files Windows players use) minus GameCenterModule + a Steam launch option, set up by one Terminal script.
+     Reason: free, no Wine, the game code is identical, everything Windows players run is reused.
+   Untested: everything on a real Mac (we have none). Morning: Umut sends the guide to the Mac player.
+2. 00:56 **The mod's Mac fixes** (new `Tools/PlatformPaths.cs`, plain logic + 4 tests, 468 tests pass, Debug deployed,
+   Release builds): crash reports' "Open folder" builds an escaped `file:///Users/...` URL on a Mac (Windows keeps its
+   old form byte for byte); the CJK font fallback also knows Apple's fonts (Korean AppleSDGothicNeo, Japanese
+   Hiragino W6/W3, Chinese PingFang / Hiragino Sans GB / STHeiti, Arial Unicode last) and looks in /System/Library/Fonts,
+   …/Supplemental, /Library/Fonts, ~/Library/Fonts, comparing names NFC-normalized (macOS may store the Japanese
+   names decomposed); the Wine check returns at once off Windows. Proton players keep the Windows paths (the game is
+   the Windows version there; IsWindows = `Path.DirectorySeparatorChar == '\\'`).
+   **[DECISION]** No setting for this: it only changes what happens on a Mac, where the old code could not work.
+   Untested: on a Mac (fonts, Open folder). Windows: nothing visible changes (Umut may click "Crash reports folder"
+   [Open] once).
+3. 01:00 **Mac installer `tools/mac/install-mac.sh`** (POSIX sh: macOS's /bin/sh is bash 3.2) + its test
+   `tools/mac/test-install-mac.sh` (34 checks, ALL PASSED in Git Bash). `sh install-mac.sh` finds Skul.app in every
+   Steam library (default + libraryfolders.vdf) or takes `--game`, refuses a Windows copy and a running Skul, downloads
+   BepInEx 5.4.23.5 macOS + BepInExPack Skul (both SHA-256 pinned) + the newest SkulInsight release from the GitHub
+   API, copies the 78 unstripped libraries to `BepInEx/unstripped_corlib` (GameCenterModule left out), edits
+   run_bepinex.sh (each edit must match exactly once, else it stops: executable_name="Skul.app",
+   dll_search_path_override relative + resolved with the script's abs_path, Doorstop by full path for Apple Silicon),
+   chmod +x, removes quarantine flags, prints the Steam launch option `"<game>/run_bepinex.sh" %command%` and puts it
+   in the clipboard (pbcopy). `--check` writes ~/skul-mac-report.txt (macOS, CPU, Rosetta, libraries, Skul version
+   and arch, BepInEx files and edits, quarantine, launch option from localconfig.vdf, LogOutput.log errors);
+   `--uninstall` removes loader + mod, keeps BepInEx/config, the mod's records and the saves; `--no-mod`, `--mod-zip`.
+   The test fakes an Apple Silicon Mac (uname/sysctl/file/arch that drops DYLD_* like the real one) and starts the
+   edited run_bepinex.sh like Steam does: the fake game receives Doorstop by full path, the preloader, the
+   unstripped folder and the Steam arguments. sync-public publishes install-mac.sh (the test stays private).
+   **[DECISION]** Steam overlay: not kept in modded starts (/bin/sh drops Steam's DYLD_INSERT_LIBRARIES; Doorstop 4.6
+   re-adds it via STEAM_DYLD_INSERT_LIBRARIES, untested there, and an overlay dylib that fails to load would stop
+   the game). Reason: the safer start; Skul doesn't need the overlay.
+   **[DECISION]** The launch option is pasted by the player (the script prints it and copies it): editing Steam's
+   localconfig.vdf while Steam runs gets overwritten, and it is the player's Steam account.
+   Untested: on a real Mac (needs the Mac player).
+4. 01:03 **Docs: `docs/MACOS.md`** (public guide like LINUX.md: quick setup with the one Terminal line, what the
+   script does, manual installation, why it works this way, troubleshooting, where things are, the check script,
+   other ways: CrossOver/Parallels with `WINEDLLOVERRIDES="winhttp=n,b"`, r2modmac untested). README: section
+   *macOS* under Installation, Compatibility line, Feedback asks for the Mac report. Wiki draft
+   (docs/wiki/thunderstore-wiki.md): *macOS* block under Installation + a macOS FAQ entry (Umut pastes). Bug report
+   template: macOS in the System line + the Mac report.
+   **[DECISION]** The guide says openly that nobody has run it on a real Mac yet and asks for feedback.
+   **[DECISION]** The font fix is announced for 0.14 (next release), no 0.13.x hotfix: on a Mac 0.13.1 already works
+   apart from CJK boxes and the Open-folder button.
+   Note: the one-line install command and the guide links only work after `sync-public.ps1` pushed main to the
+   public repo (morning todo).
+5. 01:05 Checked the official BepInEx docs (bepinex-docs, steam_interop.md, macOS tab): the launch option there is
+   `"<full path>/run_bepinex.sh" %command%`, the same as ours. Wrap-up: this log, PROJECT_STATUS, memory.
 
-## End of the night (03:40, Session ~30 % of a fresh window, Weekly ~74 %)
-Last code commit before this log: see git log (QA findings and wrap-up commit). Deployed: main (Debug, 03:29). Tests:
-355 pass. The PC shuts down at the end (Umut asked at 01:45; 5 minute warning, `shutdown /a` cancels).
+## End of the night (01:05, Session 18 %, Weekly 75 %)
+The queue is done: research, the mod's Mac fixes, the installer + its test, the guide and the doc lines. Last commit:
+the wrap-up commit after c8cd0b5. 468 tests + the installer test (34 checks) pass, the Debug build is deployed, and
+the working tree is clean. Nothing was pushed or released. The Mac depot download (1.7 GB) stays in
+`C:\Program Files (x86)\Steam\steamapps\content\app_1147560\depot_1147568` for later checks; it can be deleted.
 
 ## Decisions made tonight (Umut: change any of them)
-1. Watchdog: 720 min while Umut was at the PC (no surprise shutdown), back to 75 min when he asked for the shutdown;
-   watchdog.txt and screen.txt (usage panel on the left monitor) are read by every watcher start.
-2. The first capture pass was stopped after English (items left in the inventory, full-screen crops) and redone;
-   its folder (night_2026-10-11_2154, 695 MB) is kept until Umut has looked.
-3. The second pass kept running although the Olive Tree Cudgel doubles physical attack for good (G2): the capture
-   checks layout; neutral numbers come from the offline corpus. The tool takes the cudgel last from now on.
-4. Captures show the numbers (as if Shift were held) and the detail views; skulls first, items and quintessences
-   holding Little Bone; a full-screen picture per gear only in English.
-5. Compact boxes also drop the calculation from status lines and write inscription parts one per line (L7): the
-   same rule as Umut's decision for the skull texts; the Codex keeps everything.
-6. captures.py ignores the ground popup's covered one-skill box (it measured as overlapping, checked by eye).
-(Save slots in 0.12.0 was Umut's decision.)
+1. screen.txt `left` → `main`: the usage panel was on the main screen tonight.
+2. Stop rule: Weekly ≥ 85 % or Session ≈ 90 % (Weekly was the real limit); the night ended early because the queue
+   was done.
+3. Route = native Mac version + BepInEx 5.4.23.5 macOS + BepInExPack Skul's unstripped libraries (without
+   GameCenterModule), set up by one Terminal script. Not CrossOver/Wine: costs money, slower, and the game code is
+   identical anyway.
+4. The mod's Mac fixes have no setting: they only change what happens on a Mac.
+5. No Steam overlay in modded Mac starts (the safer start).
+6. The player pastes the launch option (the script prints it and copies it); we don't edit Steam's files.
+7. The guide says openly that nobody has run it on a real Mac yet.
+8. The font / Open-folder fixes ship with 0.14, no 0.13.x hotfix (0.13.1 already runs on a Mac).
 
 ## Morning todos for Umut
-1. Play a run and **hold Shift** on skulls, skills, items and inscriptions: are the compact lines easy to read? Decide
-   R1: some boxes shrink their font while Shift is held (German swap texts down to 57 %): accept, or shorter lines?
-2. **Olive Tree Cudgel (G2):** pick it up in a normal run and drop/destroy it: does physical attack stay doubled? Then
-   it is the game's own behaviour (or a game bug worth knowing).
-3. Read the **0.12.0 changelog** (CHANGELOG.md, top): good as the release notes? Then the 0.12 test (docs/V012_LOG.md
-   test todos, now also hold Shift and save slots) and your go for the release (`release/release.ps1` from main).
-4. Optional: new README screenshots (compact lines, the Save slots section).
-5. Optional: the night's pictures are in `<Skul>/BepInEx/DamageInsight/QA/night_2026-10-11_2231` (3.4 GB, report.md
-   and sheets/); say when the first pass (695 MB) and the test runs can go.
+1. **Publish the Mac guide and installer** (docs only, no release): `release/sync-public.ps1 -NoTag -Message "macOS
+   guide and installer"`. That makes the one-line command and the docs/MACOS.md links work. I can run it as soon as
+   you say "push it". Afterwards check that this opens:
+   https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/tools/mac/install-mac.sh
+2. **Answer the Mac player in the Skul Discord** (#general-chat) with the reply below, after step 1.
+3. **When the Mac player answers:** send me their `~/skul-mac-report.txt` (`sh ~/Downloads/install-mac.sh --check`)
+   and `Skul/BepInEx/LogOutput.log`. I'll read the BepInEx lines first: Chainloader start, "SkulInsight QoL" loaded,
+   the [SelfTest] patch results.
+4. **Optional, Windows:** Esc → SkulInsight QoL → *Crash reports folder* → Open should still open Explorer as before.
+   In the Debug build, which is deployed, check that Korean/Japanese/Chinese still show the Windows font (LogOutput.log
+   line "Fonts: malgunbd.ttf draws ..." or similar).
+5. **Wiki:** paste the new *macOS* blocks (Installation + FAQ) from docs/wiki/thunderstore-wiki.md with the next
+   wiki update. I'll put it on the clipboard when you want.
+
+### Discord reply (draft, for #general-chat)
+> Hey! I looked into it: Skul's Mac version can be modded. It has the same game code as Windows, so BepInEx works on
+> it. The mod managers (r2modman etc.) have no Mac version, so I wrote an installer for my mod SkulInsight QoL. It
+> also sets up BepInEx for other mods.
+> 1. Start Skul once without mods, then quit.
+> 2. Open Terminal and paste:
+> `curl -fsSL -o ~/Downloads/install-mac.sh https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/tools/mac/install-mac.sh && sh ~/Downloads/install-mac.sh`
+> 3. It copies a launch option to your clipboard. In Steam: right-click Skul → Properties → Launch options → Cmd+V.
+>    Then start Skul.
+>
+> Guide and manual steps: https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md
+> It's brand new and I have no Mac to test it on, so please tell me if it works! If it doesn't, run
+> `sh ~/Downloads/install-mac.sh --check` and send me the file `skul-mac-report.txt` from your home folder.

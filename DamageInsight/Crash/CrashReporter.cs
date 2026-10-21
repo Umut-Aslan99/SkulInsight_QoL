@@ -590,7 +590,7 @@ public sealed class CrashReporter : MonoBehaviour
     public static void OpenFolder()
     {
         Directory.CreateDirectory(Folder);
-        Application.OpenURL("file:///" + Folder.Replace('\\', '/'));
+        Application.OpenURL(DamageInsight.Tools.PlatformPaths.FolderUrl(Folder, DamageInsight.Tools.PlatformPaths.IsWindows));
     }
 
     // ------------------------------------------------------------------ header and the previous session
@@ -643,6 +643,8 @@ public sealed class CrashReporter : MonoBehaviour
     /// <summary>Wine's version when the game runs under Wine or Proton (Linux, Steam Deck), else null.</summary>
     private static string WineVersion()
     {
+        if (!DamageInsight.Tools.PlatformPaths.IsWindows)
+            return null; // the Mac version: no kernel32 to ask
         try
         {
             var ntdll = GetModuleHandle("ntdll.dll");

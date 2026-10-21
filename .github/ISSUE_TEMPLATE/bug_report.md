@@ -16,7 +16,7 @@ labels: bug
 - SkulInsight QoL version:
 - Skul version (top right in the main menu):
 - Other mods:
-- System: Windows / Linux (which distribution) / Steam Deck
+- System: Windows / Linux (which distribution) / Steam Deck / macOS (Intel or Apple Silicon)
 
 **Crash report:** please attach the newest file from `BepInEx/DamageInsight/CrashReports` (in the game: Esc >
 SkulInsight QoL > Crash reports folder > Open). After a crash, start the game once more first: the report of the
@@ -24,3 +24,4 @@ crashed session is completed at the next start. It says whose code the errors we
 
 **Log:** please attach `BepInEx/LogOutput.log` too (in r2modman/Gale: Settings > Browse profile folder).
 On Linux, please also attach `skul-linux-report.txt` from the check script (see docs/LINUX.md, "The check script").
+On a Mac, please also attach `skul-mac-report.txt` from `sh install-mac.sh --check` (see docs/MACOS.md).

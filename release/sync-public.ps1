@@ -13,8 +13,9 @@ if (-not (Test-Path (Join-Path $Target ".git"))) { throw "$Target is not a git r
 $version = ($project.Project.PropertyGroup | Where-Object { $_.Version } | Select-Object -First 1).Version
 
 $exclude = @("docs/PROJECT_STATUS.md", "docs/RELEASE_PLAN.md", "docs/CODEX_PLAN.md", "docs/CODEX_FINAL.md", "docs/ATTACK_ANALYSIS.md", "docs/GAME_KNOWLEDGE.md", "tools/*", "docs/design/*", "DamageInsight.Tests/Fixtures/*", "server/*")
-# Published although under an excluded folder: the Linux check script (docs/LINUX.md links to it).
-$include = @("tools/linux/*")
+# Published although under an excluded folder: the Linux check script (docs/LINUX.md links to it) and the Mac
+# installer (docs/MACOS.md). Its test (tools/mac/test-install-mac.sh) stays private.
+$include = @("tools/linux/*", "tools/mac/install-mac.sh")
 $keep = @(".git", "DamageInsight.Tests/Fixtures/README.md")
 
 # Remove files that no longer exist here (everything tracked in the public copy except the kept ones).

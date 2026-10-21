@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using DamageInsight.Tools;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.LowLevel;
@@ -51,17 +53,23 @@ public static class LanguageWatcher
 
 /// <summary>
 /// The game's fonts are fixed atlases holding only the characters the game's own texts use (Korean: 1225
-/// syllables). For Korean, Japanese and Chinese we add a font from Windows that draws any missing character, as a
-/// last fallback behind the game's fonts, so the game's own look stays wherever it has the character.
+/// syllables). For Korean, Japanese and Chinese we add a system font (Windows, or macOS in the Mac version) that
+/// draws any missing character, as a last fallback behind the game's fonts, so the game's own look stays wherever it
+/// has the character.
 /// </summary>
 public static class FontFallback
 {
-    private static readonly Dictionary<string, string[]> Candidates = new()
+    // Windows fonts first, then Noto (Linux), then macOS (the Mac version: Apple's fonts, Arial Unicode last).
+    internal static readonly Dictionary<string, string[]> Candidates = new()
     {
-        ["ko"] = new[] { "malgunbd.ttf", "malgun.ttf", "gulim.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansKR" },
-        ["ja"] = new[] { "YuGothB.ttc", "meiryob.ttc", "meiryo.ttc", "YuGothM.ttc", "msgothic.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansJP" },
-        ["zh-Hans"] = new[] { "msyhbd.ttc", "msyh.ttc", "simhei.ttf", "simsun.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansSC" },
-        ["zh-Hant"] = new[] { "msjhbd.ttc", "msjh.ttc", "mingliu.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansTC" },
+        ["ko"] = new[] { "malgunbd.ttf", "malgun.ttf", "gulim.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansKR",
+                    "AppleSDGothicNeo.ttc", "AppleGothic.ttf", "Arial Unicode.ttf" },
+        ["ja"] = new[] { "YuGothB.ttc", "meiryob.ttc", "meiryo.ttc", "YuGothM.ttc", "msgothic.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansJP",
+                    "ヒラギノ角ゴシック W6.ttc", "ヒラギノ角ゴシック W3.ttc", "Arial Unicode.ttf" },
+        ["zh-Hans"] = new[] { "msyhbd.ttc", "msyh.ttc", "simhei.ttf", "simsun.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansSC",
+                         "PingFang.ttc", "Hiragino Sans GB.ttc", "STHeiti Medium.ttc", "STHeiti Light.ttc", "Arial Unicode.ttf" },
+        ["zh-Hant"] = new[] { "msjhbd.ttc", "msjh.ttc", "mingliu.ttc", "NotoSansCJK-Bold.ttc", "NotoSansCJK-Regular.ttc", "NotoSansTC",
+                         "PingFang.ttc", "STHeiti Medium.ttc", "STHeiti Light.ttc", "Arial Unicode.ttf" },
     };
 
     private static readonly Dictionary<string, TMP_FontAsset> Made = new();
@@ -111,15 +119,17 @@ public static class FontFallback
         {
             installed = new string[0];
         }
-        string windows = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Fonts");
-        foreach (var name in names)
+        // macOS may store the Japanese font names decomposed (NFD): compare them composed.
+        var files = installed.Select(p => (path: p, name: Path.GetFileName(p).Normalize(NormalizationForm.FormC))).ToArray();
+        string[] folders = PlatformPaths.FontFolders(PlatformPaths.IsWindows);
+        foreach (var name in names.Select(n => n.Normalize(NormalizationForm.FormC)))
         {
-            var hit = installed.FirstOrDefault(p => Path.GetFileName(p).Equals(name, StringComparison.OrdinalIgnoreCase))
-                      ?? installed.FirstOrDefault(p => Path.GetFileName(p).StartsWith(name, StringComparison.OrdinalIgnoreCase));
+            var hit = files.FirstOrDefault(f => f.name.Equals(name, StringComparison.OrdinalIgnoreCase)).path
+                      ?? files.FirstOrDefault(f => f.name.StartsWith(name, StringComparison.OrdinalIgnoreCase)).path;
             if (hit != null)
                 return hit;
-            string direct = Path.Combine(windows, name);
-            if (File.Exists(direct))
+            string direct = folders.Select(folder => Path.Combine(folder, name)).FirstOrDefault(File.Exists);
+            if (direct != null)
                 return direct;
         }
         return null;

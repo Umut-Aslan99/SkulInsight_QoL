@@ -1,15 +1,17 @@
 # SkulInsight QoL
 
 **See the real numbers behind Skul: The Hero Slayer.** Damage numbers that tell you where damage came from,
-item and skull descriptions with your actual damage, a combat log that explains every hit, and a preview of what
-picking up an item would do to your build.
+item and skull descriptions with your actual damage, a combat log that explains every hit, a Codex with every
+enemy, boss and piece of gear, a history of all your runs, and an optional daily run with online leaderboards.
 
-A quality-of-life mod: it changes nothing about the game's balance. It only shows information the game already uses
-internally (and, if you use them, keeps several save slots side by side). Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
+A quality-of-life mod: it changes nothing about the game's balance. It shows information the game already uses
+internally, keeps several save slots side by side if you use them, and only goes online if you turn on the daily
+run. Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.12.2:** crash reports (whose code an error was in, a stuck black screen, an unexpected end); the game's skill details open beside an item's box instead of covering its numbers.
->
-> **Version 0.12.0: the Codex becomes a full reference (boxed pages, skill boxes, every number with its formula), short descriptions with every number on Shift, a damage table per item in the combat log, and save slots.** The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
+> **Version 0.13: run history, records and a daily run.** Every run is kept like a match history (the build,
+> each item's damage, a timeline, the game's end screen), **Records** show your bests, and the optional **daily
+> run** gives everyone the same run each day, with daily and monthly leaderboards where you can open anyone's run.
+> The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
 ![A boss fight with the mod: damage numbers with their source, boss HP and the mini log](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
@@ -241,6 +243,16 @@ The mod runs through **Proton**. Skul's native Linux version can't load it.
 Errors, Steam Deck, manual installation and a check script:
 [Linux and Steam Deck guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md).
 
+### macOS
+The mod runs on Skul's **Mac version** (Intel and Apple Silicon); one Terminal script sets it up.
+1. Start Skul once from Steam without mods, then quit.
+2. Open Terminal, paste this line and press Enter:
+   `curl -fsSL -o ~/Downloads/install-mac.sh https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/tools/mac/install-mac.sh && sh ~/Downloads/install-mac.sh`
+3. The script prints a launch option and puts it in your clipboard: Steam → right-click Skul → *Properties* →
+   *General* → *Launch options*, press Cmd+V. Then start Skul from Steam.
+
+Manual installation, errors and how it works: [macOS guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md).
+
 ## Configuration
 
 **In the game:** pause (Esc) → **SkulInsight QoL** (right under the game's Settings). Every setting below is there,
@@ -264,6 +276,8 @@ The same settings are in the settings file (created on the first start):
 | General | WhatsNew | on | Show what's new once after an update |
 | General | MenuSounds | on | The mod's buttons play the game's menu sounds (hover, click) |
 | General | CrashReports | on | A report per game session in `BepInEx/DamageInsight/CrashReports` (newest 20 kept) |
+| General | RunHistory / RunHistoryKeep | on / 100 | Keep every run in the Codex; how many of the newest keep all their details |
+| Daily | Enabled | off | The daily run (online): only after you turn it on (Codex → Daily) |
 | Combat Log | ToggleKey | L | Opens the combat log |
 | Combat Log | RecordCalculations | on | Per-hit calculation (hover a line) |
 | Combat Log | SaveToFile | on | Log files in `BepInEx/DamageInsight/CombatLogs` (newest 30 kept) |
@@ -280,12 +294,13 @@ The same settings are in the settings file (created on the first start):
 | Codex balance | (unlock numbers) | | Runs / wins / pickups it takes to unlock ★★ and ★★★ in the Codex |
 
 ## Compatibility
-- Made for Skul: The Hero Slayer **1.9.x** (Steam: Windows, or Linux and Steam Deck through Proton) with
-  BepInExPack Skul (BepInEx 5.4.21+).
+- Made for Skul: The Hero Slayer **1.9.x** (Steam: Windows; Linux and Steam Deck through Proton) with
+  BepInExPack Skul (BepInEx 5.4.21+), or the native Mac version with BepInEx 5.4.23.5 for macOS (set up by
+  [the Mac installer](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
 - Doesn't change balance or content. Your save is only touched when you switch save slots (a backup of the game's
-  save is made before every switch). Safe to add or remove at any time.
+  save is made before every switch); a daily run is played in its own slot. Safe to add or remove at any time.
 - Should work next to content mods. Items the mod doesn't understand simply show no extra numbers.
-  Please report anything odd.
+  Please report anything odd. Daily runs only go on the board without other mods (with them they still work).
 - After a game update the mod checks all of its hooks at startup and switches off only what broke. The results
   are in `BepInEx/LogOutput.log` as `[SelfTest]` lines.
 
@@ -318,7 +333,8 @@ Please open an issue on GitHub: https://github.com/Umut-Aslan99/SkulInsight_QoL/
 from `BepInEx/DamageInsight/CrashReports` (settings page: **Crash reports folder** → Open) and `BepInEx/LogOutput.log`,
 and tell us the mod version and what you did. After a crash, start the game once more before you send it: the
 report of the crashed session is completed at the next start. Screenshots help a lot. On Linux, please
-also attach the report of the [check script](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md#the-check-script).
+also attach the report of the [check script](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md#the-check-script); on a Mac, the report of
+[`sh install-mac.sh --check`](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md#the-check-script).
 
 ## Credits
 - **DocRun**: idea, design and testing

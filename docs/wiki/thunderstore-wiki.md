@@ -3,10 +3,12 @@
 **See the real numbers behind Skul: The Hero Slayer.** SkulInsight QoL shows where every point of damage comes
 from, puts your real damage into every description, explains each hit in a combat log, previews pickups, and
 adds the **Codex**: a bestiary with every enemy, boss and item, complete boss move lists and fight films you
-record yourself.
+record yourself, a **history of all your runs** with records, and an optional **daily run** with online
+leaderboards (new in 0.13).
 
-It is a quality-of-life mod: it changes nothing about balance or drops (save slots, if you use them, keep several whole games side by side), and every feature can be switched
-off. It is safe to add or remove at any time.
+It is a quality-of-life mod: it changes nothing about balance or drops (save slots, if you use them, keep several
+whole games side by side), it only goes online if you turn on the daily run, and every feature can be switched off.
+It is safe to add or remove at any time.
 
 ![Overview](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/overview.jpg)
 
@@ -283,6 +285,19 @@ Errors, Steam Deck, manual installation and a check script: the
 </details>
 
 <details>
+<summary><b>macOS</b></summary>
+
+The mod runs on Skul's **Mac version** (Intel and Apple Silicon); one Terminal script sets it up.
+1. Start Skul once from Steam without mods, then quit.
+2. Open Terminal, paste this line and press Enter:
+   `curl -fsSL -o ~/Downloads/install-mac.sh https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/tools/mac/install-mac.sh && sh ~/Downloads/install-mac.sh`
+3. The script prints a launch option and puts it in your clipboard: Steam → right-click Skul → *Properties* →
+   *General* → *Launch options*, press Cmd+V. Then start Skul from Steam.
+
+Manual installation, errors and how it works: the [macOS guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md).
+</details>
+
+<details>
 <summary><b>All settings</b></summary>
 
 | Section | Setting | Default | What it does |
@@ -328,6 +343,19 @@ every switch.
 
 More fixes and a check script: the
 [Linux and Steam Deck guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/LINUX.md).
+</details>
+
+<details>
+<summary><b>macOS: the game starts without the mod, or doesn't start</b></summary>
+
+- **No damage numbers, no SkulInsight QoL in the pause menu:** the launch option is missing or mistyped. It needs
+  the quotes around the path and `%command%` at the end.
+- **Skul doesn't start any more:** run `sh ~/Downloads/install-mac.sh --check` and look at the report; usually
+  running the installer again fixes it. To play without mods, empty the launch option.
+- **r2modman / Gale / Thunderstore App:** they have no Mac version, and BepInExPack Skul is for Windows. Use the
+  installer script.
+
+More fixes: the [macOS guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md).
 </details>
 
 <details>

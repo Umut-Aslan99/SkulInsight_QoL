@@ -16,6 +16,10 @@ Write-Host "=== Releasing SkulInsight QoL $version ==="
 
 if (git -C $root status --porcelain) { throw "Uncommitted changes in the private repo: commit them first." }
 $changelog = Get-Content (Join-Path $root "CHANGELOG.md") -Raw -Encoding UTF8
+# The README's top box names the feature version (Thunderstore shows it first; 0.13.1 went out still saying 0.12).
+$feature = ($version -split '\.')[0..1] -join '.'
+$readmeTop = (Get-Content (Join-Path $root "README.md") -Raw -Encoding UTF8).Substring(0, 2500)
+if ($readmeTop -notmatch "\*\*Version $([regex]::Escape($feature))[\.:]") { throw "README.md's top box doesn't name version $feature yet ('> **Version $feature...')." }
 if ($changelog -notmatch "(?m)^## $([regex]::Escape($version))\b") { throw "CHANGELOG.md has no '## $version' section." }
 if (git -C $public tag --list "v$version") { throw "v$version is already released (tag exists in the public repo)." }
 
