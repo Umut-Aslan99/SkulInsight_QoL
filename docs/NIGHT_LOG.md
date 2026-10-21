@@ -176,3 +176,9 @@ the working tree is clean. Nothing was pushed or released. The Mac depot downloa
   (2 coop mods), mod packs (3, only dependencies), no backslash paths. Test +18 checks on real packages (QoL_ModPack
   → 3 mods, VoiceOfTheCommunity, Skul4PlayerCoop with patcher, update, own mod, bad link, list, remove): ALL PASSED.
   docs/MACOS.md section "Other mods from Thunderstore", README line.
+- 10:10 Bug from the Mac player: `--add .../DuelManTeam/OnlineCoopBeta/` → "could not unpack". That zip stores its
+  paths with Windows backslashes (the only Skul package that does; the survey missed it because Python on Windows
+  converts them in `filename` — check `orig_filename`). Info-ZIP unzip unpacks it correctly but warns and exits 1
+  ("finished with warnings"); the script took that as an error. Fix: exit code ≤ 1 is fine, unzip's messages only
+  shown on a real failure. Test +4 checks with that package: ALL PASSED. His other mods (LegendaryStart etc.)
+  installed fine.

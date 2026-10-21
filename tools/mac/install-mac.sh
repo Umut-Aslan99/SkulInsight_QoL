@@ -331,7 +331,10 @@ add_packages() {
         [ -n "$url" ] || fail "Thunderstore gave no download for $id."
         say "$id $version"
         download "$url" "$tmp/$id.zip" ""
-        unzip -q -o "$tmp/$id.zip" -d "$tmp/$id" || fail "could not unpack $id"
+        # unzip's exit code 1 = done with warnings (a zip made on Windows with backslashes in its paths: unzip
+        # turns them into folders, like DuelManTeam-OnlineCoopBeta); its messages only matter when it failed.
+        unzip_out="$(unzip -q -o "$tmp/$id.zip" -d "$tmp/$id" 2>&1)"
+        [ $? -le 1 ] || fail "could not unpack $id: $unzip_out"
         place_package "$tmp/$id" "$id"
         for dep in $deps; do queue="$queue $(package_id "$dep")"; done
     done
