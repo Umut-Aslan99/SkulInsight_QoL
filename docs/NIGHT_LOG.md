@@ -155,3 +155,24 @@ the working tree is clean. Nothing was pushed or released. The Mac depot downloa
 > Guide and manual steps: https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md
 > It's brand new and I have no Mac to test it on, so please tell me if it works! If it doesn't, run
 > `sh ~/Downloads/install-mac.sh --check` and send me the file `skul-mac-report.txt` from your home folder.
+
+## Morning after (Umut at the PC)
+- 09:25 Umut: "push everything on my github". sync-public `-NoTag` → public 4c18abd pushed; the raw installer URL
+  serves the same bytes (LF) and the guide opens.
+- 09:30 The Mac player pasted only `curl -fsSL -o ~/Downloads/install-mac.sh`: the long line broke in Discord.
+  Fix that worked: two commands in separate ``` code blocks, no `cd` (`curl -fsSLO <raw url>`, `sh install-mac.sh`).
+- 09:36 Installer output on his MacBook Air: Skul found in the default library, 4/4 steps, both checksums OK,
+  launch option printed. 09:40 he set it and **the mod works in game** (Umut: "It seems to have worked"). First
+  confirmation on a real Mac. docs/MACOS.md says so now.
+- 09:45 His LogOutput.log: BepInEx 5.4.23.5, **57/57 patches applied, run checks 0 failures**, language en, he
+  started a daily run (Dark Mirror 5, slot 9). System: MacBook Air **M1** 2020, 8 GB, **macOS 26.5.2 Tahoe** → the
+  Apple Silicon + Rosetta route works on the newest macOS. ("System platform: Bits64, iOS" is BepInEx's harmless
+  label on a Mac.)
+- 09:55 Umut: "give him an easy guide how he can add any other mod from the thunderstore easily with terminal".
+  Built `install-mac.sh --add <Thunderstore link or Namespace-Name>` (newest version from Thunderstore's
+  experimental API, dependencies too, BepInExPack_Skul skipped, our own mod points to the plain install), `--remove`,
+  `--list`. Placement like r2modman: plugins/<Namespace-Name>, patchers/<Namespace-Name>, config without
+  overwriting. Surveyed all 56 Skul packages first: root DLLs (most), `plugins/` (9), `BepInEx/plugins+patchers`
+  (2 coop mods), mod packs (3, only dependencies), no backslash paths. Test +18 checks on real packages (QoL_ModPack
+  → 3 mods, VoiceOfTheCommunity, Skul4PlayerCoop with patcher, update, own mod, bad link, list, remove): ALL PASSED.
+  docs/MACOS.md section "Other mods from Thunderstore", README line.

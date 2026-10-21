@@ -5,6 +5,9 @@
 #   sh install-mac.sh               install or update (BepInEx + the unstripped libraries + the mod)
 #   sh install-mac.sh --check       only look, change nothing; writes ~/skul-mac-report.txt for bug reports
 #   sh install-mac.sh --uninstall   remove BepInEx and the mod again (your saves and the mod's records stay)
+#   sh install-mac.sh --add <Thunderstore link>      add (or update) another mod, with the mods it needs
+#   sh install-mac.sh --remove <Thunderstore link>   remove a mod added with --add
+#   sh install-mac.sh --list                         show the installed mods
 #
 # Options: --game "<folder that holds Skul.app>"   when Skul is not in a Steam library this script finds
 #          --mod-zip <file.zip>                    install this SkulInsight QoL zip instead of downloading it
@@ -21,21 +24,27 @@ PACK_URL="https://thunderstore.io/package/download/BepInEx/BepInExPack_Skul/5.4.
 PACK_SHA256="e9303ab6a00590ef95309927b06def03b798184b9bd41cb9c8f1319119747391"
 MOD_RELEASES="https://api.github.com/repos/Umut-Aslan99/SkulInsight_QoL/releases/latest"
 MOD_FOLDER="SkulInsight_QoL"
+THUNDERSTORE_API="https://thunderstore.io/api/experimental/package"
 REPORT="$HOME/skul-mac-report.txt"
 
 mode="install"
 game=""
 mod_zip=""
 with_mod=1
+packages=""
 while [ $# -gt 0 ]; do
     case "$1" in
         --check) mode="check" ;;
         --uninstall) mode="uninstall" ;;
+        --add) mode="add" ;;
+        --remove) mode="remove" ;;
+        --list) mode="list" ;;
         --game) game="${2:-}"; shift ;;
         --mod-zip) mod_zip="${2:-}"; shift ;;
         --no-mod) with_mod=0 ;;
-        -h|--help) sed -n '2,14p' "$0"; exit 0 ;;
-        *) echo "Unknown option: $1 (see: sh install-mac.sh --help)" >&2; exit 2 ;;
+        -h|--help) sed -n '2,17p' "$0"; exit 0 ;;
+        -*) echo "Unknown option: $1 (see: sh install-mac.sh --help)" >&2; exit 2 ;;
+        *) packages="$packages $1" ;;
     esac
     shift
 done
@@ -162,7 +171,8 @@ uninstall() {
 }
 
 # -------------------------------------------------------------------------------------------------- install
-install() {
+# Sets g to the game folder; stops when it isn't the Mac version of Skul or when Skul is running.
+require_game() {
     have curl || fail "curl is missing"
     have unzip || fail "unzip is missing"
     g="$(find_game)"
@@ -178,6 +188,10 @@ install() {
     if have pgrep && pgrep -x Skul >/dev/null 2>&1; then
         fail "Skul is running. Quit the game first, then run this again."
     fi
+}
+
+install() {
+    require_game
     say "Skul found: $g"
 
     tmp="$(mktemp -d "${TMPDIR:-/tmp}/skulinsight.XXXXXX")" || fail "no temp folder"
@@ -242,8 +256,130 @@ install() {
     say "To play without mods, empty the launch option again."
 }
 
+# ------------------------------------------------------------------------------------ other Thunderstore mods
+# "Namespace-Name" from a Thunderstore link (.../p/Namespace/Name/..., .../package/Namespace/Name/...),
+# "Namespace/Name", "Namespace-Name" or a dependency "Namespace-Name-1.2.3"; nothing when it is none of these.
+package_id() {
+    id="${1%/}"
+    case "$id" in
+        *thunderstore.io/*/p/*) id="${id#*/p/}" ;;
+        *thunderstore.io/package/download/*) id="${id#*/package/download/}" ;;
+        *thunderstore.io/package/*) id="${id#*/package/}" ;;
+    esac
+    case "$id" in
+        */*) ns="${id%%/*}"; rest="${id#*/}" ;;
+        *-*) ns="${id%%-*}"; rest="${id#*-}" ;;
+        *) return 0 ;;
+    esac
+    rest="${rest%%/*}"
+    rest="${rest%%-*}"
+    [ -n "$ns" ] && [ -n "$rest" ] && printf '%s-%s\n' "$ns" "$rest"
+}
+
+# Puts an unpacked package where r2modman would: DLLs and other files into BepInEx/plugins/<Namespace-Name>,
+# patchers into BepInEx/patchers/<Namespace-Name>, config files into BepInEx/config (existing settings stay).
+place_package() { # unpacked folder, Namespace-Name
+    plugins="$g/BepInEx/plugins/$2"
+    patchers="$g/BepInEx/patchers/$2"
+    rm -rf "$plugins" "$patchers"
+    mkdir -p "$plugins"
+    for root in "$1"/[Bb]ep[Ii]n[Ee]x "$1"; do
+        [ -d "$root" ] || continue
+        for entry in "$root"/*; do
+            [ -e "$entry" ] || continue
+            case "$(basename "$entry")" in
+                manifest.json|icon.png|README.md|CHANGELOG.md|[Bb]ep[Ii]n[Ee]x) ;;
+                [Pp]lugins) cp -R "$entry/." "$plugins/" ;;
+                [Pp]atchers) mkdir -p "$patchers" && cp -R "$entry/." "$patchers/" ;;
+                [Cc]onfig) mkdir -p "$g/BepInEx/config" && cp -Rn "$entry/." "$g/BepInEx/config/" 2>/dev/null ;;
+                [Cc]ore) cp -R "$entry/." "$g/BepInEx/core/" ;;
+                *) cp -R "$entry" "$plugins/" ;;
+            esac
+        done
+    done
+    rmdir "$plugins" 2>/dev/null # a mod pack: only the mods it lists
+}
+
+add_packages() {
+    require_game
+    [ -f "$g/run_bepinex.sh" ] && [ -d "$g/BepInEx/core" ] || fail "BepInEx isn't set up yet. Run  sh install-mac.sh  first
+  (or  sh install-mac.sh --no-mod  for BepInEx without SkulInsight QoL)."
+    queue=""
+    for arg in $packages; do
+        id="$(package_id "$arg")"
+        [ -n "$id" ] || fail "'$arg' is not a Thunderstore mod link (copy the link of the mod's page)."
+        queue="$queue $id"
+    done
+    [ -n "$queue" ] || fail "Which mod? Example: sh install-mac.sh --add https://thunderstore.io/c/skul-the-hero-slayer/p/MrBacanudo/FixNPCs/"
+    tmp="$(mktemp -d "${TMPDIR:-/tmp}/skulinsight.XXXXXX")" || fail "no temp folder"
+    trap 'rm -rf "$tmp"' EXIT
+    seen=" "
+    while :; do
+        set -- $queue
+        [ $# -gt 0 ] || break
+        id="$1"; shift; queue="$*"
+        case "$seen" in *" $id "*) continue ;; esac
+        seen="$seen$id "
+        case "$id" in
+            BepInEx-BepInExPack*) continue ;; # the Windows loader: the Mac has its own BepInEx already
+            DocRun-SkulInsight_QoL) say "SkulInsight QoL: installed and updated by  sh install-mac.sh  (no options)."; continue ;;
+        esac
+        json="$(curl -fsSL "$THUNDERSTORE_API/${id%%-*}/${id#*-}/")" || fail "Thunderstore has no mod $id (check the link)."
+        url="$(printf '%s' "$json" | grep -o '"download_url": *"[^"]*"' | head -n 1 | sed 's/.*"\(https[^"]*\)"$/\1/')"
+        version="$(printf '%s' "$json" | grep -o '"version_number": *"[^"]*"' | head -n 1 | sed 's/.*"\([^"]*\)"$/\1/')"
+        deps="$(printf '%s' "$json" | grep -o '"dependencies": *\[[^]]*\]' | head -n 1 | sed 's/^[^[]*\[//; s/\]$//; s/"//g; s/,/ /g')"
+        [ -n "$url" ] || fail "Thunderstore gave no download for $id."
+        say "$id $version"
+        download "$url" "$tmp/$id.zip" ""
+        unzip -q -o "$tmp/$id.zip" -d "$tmp/$id" || fail "could not unpack $id"
+        place_package "$tmp/$id" "$id"
+        for dep in $deps; do queue="$queue $(package_id "$dep")"; done
+    done
+    have xattr && xattr -dr com.apple.quarantine "$g/BepInEx" 2>/dev/null
+    say ""
+    say "Done. Start Skul from Steam as usual (the launch option stays the same)."
+    say "Mods that bring Windows-only files of their own can't run on a Mac; most Skul mods are plain DLLs and do."
+}
+
+remove_packages() {
+    require_game
+    [ -n "$packages" ] || fail "Which mod? Example: sh install-mac.sh --remove MrBacanudo-FixNPCs  (sh install-mac.sh --list shows them)"
+    for arg in $packages; do
+        id="$(package_id "$arg")"
+        [ -n "$id" ] || fail "'$arg' is not a Thunderstore mod link or name."
+        if [ "$id" = "DocRun-SkulInsight_QoL" ]; then
+            say "SkulInsight QoL: remove it with  sh install-mac.sh --uninstall"
+        elif [ -d "$g/BepInEx/plugins/$id" ] || [ -d "$g/BepInEx/patchers/$id" ]; then
+            rm -rf "$g/BepInEx/plugins/$id" "$g/BepInEx/patchers/$id"
+            say "Removed $id (its settings in BepInEx/config stay; mods it needed stay too)."
+        else
+            say "$id is not installed (sh install-mac.sh --list shows the installed mods)."
+        fi
+    done
+}
+
+list_packages() {
+    g="$(find_game)"
+    [ -n "$g" ] || fail "Skul not found. Use: sh install-mac.sh --list --game \"<folder with Skul.app>\""
+    say "Mods in $g/BepInEx/plugins:"
+    for dir in "$g/BepInEx/plugins"/*/; do
+        [ -d "$dir" ] || continue
+        name="$(basename "$dir")"
+        [ "$name" = "$MOD_FOLDER" ] && name="SkulInsight QoL (installed by sh install-mac.sh)"
+        say "  $name"
+    done
+}
+
+if [ -n "$packages" ] && [ "$mode" != "add" ] && [ "$mode" != "remove" ]; then
+    echo "Unknown option:$packages (see: sh install-mac.sh --help)" >&2
+    exit 2
+fi
+
 case "$mode" in
     check) check 2>&1 | tee "$REPORT"; say ""; say "Saved as $REPORT" ;;
     uninstall) uninstall ;;
+    add) add_packages ;;
+    remove) remove_packages ;;
+    list) list_packages ;;
     *) install ;;
 esac

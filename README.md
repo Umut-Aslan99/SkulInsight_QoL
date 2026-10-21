@@ -251,6 +251,7 @@ The mod runs on Skul's **Mac version** (Intel and Apple Silicon); one Terminal s
 3. The script prints a launch option and puts it in your clipboard: Steam → right-click Skul → *Properties* →
    *General* → *Launch options*, press Cmd+V. Then start Skul from Steam.
 
+Other Thunderstore mods on a Mac: `sh install-mac.sh --add <the mod's Thunderstore link>`.
 Manual installation, errors and how it works: [macOS guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md).
 
 ## Configuration

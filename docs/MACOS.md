@@ -3,8 +3,9 @@
 SkulInsight QoL runs on the **Mac version of Skul** from Steam, on Intel Macs and on Apple Silicon Macs (M1 to M4).
 You don't need Wine, CrossOver or Windows. One Terminal script sets everything up, and you paste one line into Steam.
 
-> **New (October 2026):** the Mac setup is built and tested on our side, but nobody has run it on a real Mac yet. If
-> you try it, please tell us how it went (a GitHub issue, or in the Skul Discord), even if it just works.
+> **New (October 2026):** the first Mac player installed it with the script on a MacBook Air and played with the mod
+> on the day it came out. If you try it, please tell us how it went (a GitHub issue, or in the Skul Discord), even
+> if it just works: every Mac model and macOS version that is confirmed helps.
 
 ## Quick setup
 
@@ -34,6 +35,33 @@ It works when you see damage numbers on hits and the pause menu (Esc) has a **Sk
 - **Remove everything:** `sh ~/Downloads/install-mac.sh --uninstall`, then empty the launch option.
 - **Skul in another Steam library** (an external drive, for example): the script finds the libraries Steam knows
   about. If it still can't find Skul, add `--game "/path/to/the folder with Skul.app"` at the end of the line.
+
+## Other mods from Thunderstore
+
+The same script adds any other Skul mod from [Thunderstore](https://thunderstore.io/c/skul-the-hero-slayer/), with
+the mods it needs. In Terminal, in the folder where `install-mac.sh` is:
+
+1. Get the newest script once (older copies don't have `--add` yet):
+   ```sh
+   curl -fsSLO https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/tools/mac/install-mac.sh
+   ```
+2. Copy the mod's address from your browser (its Thunderstore page) and put it after `--add`:
+   ```sh
+   sh install-mac.sh --add https://thunderstore.io/c/skul-the-hero-slayer/p/MrBacanudo/FixNPCs/
+   ```
+3. Start Skul from Steam as usual. The launch option stays the same.
+
+- **Update a mod:** run the same `--add` line again.
+- **See your mods:** `sh install-mac.sh --list`.
+- **Remove a mod:** `sh install-mac.sh --remove` plus its address, or its name from the list (for example
+  `MrBacanudo-FixNPCs`). Its settings and the mods it needed stay.
+- **Modpacks** (for example *HardMode Sandbox ModPack*) install every mod they list.
+- **Where the files go:** the same places r2modman uses. Each mod gets its own folder in `BepInEx/plugins` (and in
+  `BepInEx/patchers` if it has patchers). Its config files go into `BepInEx/config`, and settings you already have
+  stay.
+- BepInExPack Skul, which every mod lists, is skipped: it is the Windows loader, and your Mac already has its own.
+- **Mods that can't run on a Mac:** mods that ship Windows-only files of their own. Most Skul mods are plain `.dll`
+  files and work.
 
 ## What the script does
 
@@ -96,8 +124,9 @@ It never touches your saves, Steam's settings or anything outside the Skul folde
   - Doorstop 4.6 fixes it the same way. BepInEx 5.4.23.5 still ships Doorstop 4.5.
 - **No mod manager.** BepInExPack Skul and the Thunderstore mod managers (r2modman, Gale, the Thunderstore App) only
   exist for Windows and Linux. That's why the Mac setup is a script.
-- **Other BepInEx mods.** Most other BepInEx 5 mods for Skul only contain `.dll` files. Put them into
-  `BepInEx/plugins` the same way. Mods that ship their own Windows libraries won't work on a Mac.
+- **Other BepInEx mods.** Most other BepInEx 5 mods for Skul only contain `.dll` files, so they run on the Mac the
+  same way. `--add` puts them in place (see [Other mods from Thunderstore](#other-mods-from-thunderstore)). Mods that
+  ship their own Windows libraries won't work on a Mac.
 
 ## Troubleshooting
 
