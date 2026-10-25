@@ -6,7 +6,7 @@
     <Product>SkulInsight QoL</Product>
     <Description>Real damage numbers, a combat log with per-hit calculations and build planning for Skul: The Hero Slayer.</Description>
     <Authors>DocRun</Authors>
-    <Version>0.13.1</Version>
+    <Version>0.14.0</Version>
     <BepInExPluginGuid>docrun.skulinsight_qol</BepInExPluginGuid>
   </PropertyGroup>
 
@@ -24,6 +24,8 @@
     <EmbeddedResource Include="Codex\codex_content.json" LogicalName="DamageInsight.Codex.codex_content.json" />
     <!-- WithCulture=false: "codex_content.ko.json" would otherwise go into a Korean satellite assembly. -->
     <EmbeddedResource Include="Codex\codex_content.*.json" LogicalName="DamageInsight.Codex.%(Filename).json" WithCulture="false" />
+    <!-- Skul's Steam achievements in the game's 11 languages (tools/achievements/steam_table.py). -->
+    <EmbeddedResource Include="Achievements\achievements.json" LogicalName="DamageInsight.Achievements.achievements.json" />
     <!-- Translations of the mod's texts, one file per language (English is the key). -->
     <EmbeddedResource Include="Lang\*.json" Exclude="Lang\template.json" LogicalName="DamageInsight.Lang.%(Filename).json" WithCulture="false" />
   </ItemGroup>

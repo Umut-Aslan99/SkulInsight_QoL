@@ -207,6 +207,14 @@ public static class UiKit
             Label.color = on ? (bright ? new Color32(0x1A, 0x14, 0x20, 0xFF) : TextColor) : DimTextColor;
         }
 
+        /// <summary>A colour of its own (the mod manager's Install / Update / Remove), kept when the mouse passes.</summary>
+        public void SetColor(Color color, Color label)
+        {
+            _color = color;
+            Label.color = label;
+            Paint();
+        }
+
         private void Paint()
         {
             if (Background != null)

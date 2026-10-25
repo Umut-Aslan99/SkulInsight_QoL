@@ -26,6 +26,9 @@ public static class PixelIcons
         ['b'] = new Color32(0x6B, 0x4A, 0x2E, 0xFF), // brown
         ['B'] = new Color32(0x9C, 0x6B, 0x3C, 0xFF), // wood
         ['c'] = new Color32(0x7F, 0xC8, 0xE0, 0xFF), // sand-glass blue
+        ['e'] = new Color32(0x14, 0x5C, 0x2C, 0xFF), // dark green (the heal plus's outline)
+        ['E'] = new Color32(0x3D, 0xDC, 0x6E, 0xFF), // green
+        ['l'] = new Color32(0xB8, 0xFF, 0xC8, 0xFF), // light green
     };
 
     private static readonly Dictionary<string, string[]> Patterns = new()
@@ -85,6 +88,76 @@ public static class PixelIcons
             ".b..ccc..b.",
             ".bcccccccb.",
             "bbbbbbbbbbb",
+        },
+        ["heal"] = new[]
+        {
+            "....eee....",
+            "...elEEe...",
+            "...elEEe...",
+            ".eeelEEeee.",
+            "ellllllEEEe",
+            "eEEElEEEEEe",
+            "eEEElEEEEEe",
+            ".eeeEEEeee.",
+            "...eEEEe...",
+            "...eEEEe...",
+            "....eee....",
+        },
+        ["bottle"] = new[]
+        {
+            "....bbb....",
+            "....BBB....",
+            "....www....",
+            "...wrrrw...",
+            "..wrrrrrw..",
+            ".wrrYrrrrw.",
+            ".wrYrrrrrw.",
+            ".wrrrrrrrw.",
+            ".wRrrrrrRw.",
+            "..wRRRRRw..",
+            "...wwwww...",
+        },
+        ["download"] = new[]
+        {
+            "....www....",
+            "....www....",
+            "....www....",
+            "....www....",
+            ".wwwwwwwww.",
+            "..wwwwwww..",
+            "...wwwww...",
+            "....www....",
+            ".....w.....",
+            "w.........w",
+            "wwwwwwwwwww",
+        },
+        ["chest"] = new[]
+        {
+            "...........",
+            ".BBBBBBBBB.",
+            "BbbbbbbbbbB",
+            "BbbbbbbbbbB",
+            "BBBBByBBBBB",
+            "BbbbyYybbbB",
+            "BbbbbybbbbB",
+            "BbbbbbbbbbB",
+            "BbbbbbbbbbB",
+            "BBBBBBBBBBB",
+            "...........",
+        },
+        ["trophy"] = new[]
+        {
+            "..yyyyyyy..",
+            "yyyYyyyyoyy",
+            "y.yYyyyyo.y",
+            "y.yYyyyyo.y",
+            ".yyYyyyyoy.",
+            "...yYyyo...",
+            "....yyo....",
+            "....yyo....",
+            "...yyyyo...",
+            "..bbbbbbb..",
+            "..BBBBBBB..",
         },
         ["star"] = new[]
         {

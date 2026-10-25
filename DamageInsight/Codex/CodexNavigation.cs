@@ -46,8 +46,8 @@ public sealed class CodexNavigation
     /// <summary>The Records tab's first page: the totals.</summary>
     public const string RecordsDefault = "records:totals";
 
-    /// <summary>The You section's tabs (0.13): the build now, the records and the run history; achievements follow.</summary>
-    public static readonly CodexCategory[] YouTabs = { CodexCategory.YouBuild, CodexCategory.Records, CodexCategory.Runs };
+    /// <summary>The You section's tabs: the build now, the records and the run history (0.13), the achievements (0.14).</summary>
+    public static readonly CodexCategory[] YouTabs = { CodexCategory.YouBuild, CodexCategory.Records, CodexCategory.Runs, CodexCategory.Achievements };
 
     /// <summary>The Daily section's tabs (0.13): today's board and the month's.</summary>
     public static readonly CodexCategory[] DailyTabs = { CodexCategory.DailyToday, CodexCategory.DailyMonth };
@@ -73,7 +73,7 @@ public sealed class CodexNavigation
 
     public static CodexSection SectionOf(CodexCategory category) => category switch
     {
-        CodexCategory.YouBuild or CodexCategory.Runs or CodexCategory.Records => CodexSection.You,
+        CodexCategory.YouBuild or CodexCategory.Runs or CodexCategory.Records or CodexCategory.Achievements => CodexSection.You,
         CodexCategory.DailyToday or CodexCategory.DailyMonth => CodexSection.Daily,
         CodexCategory.Enemies or CodexCategory.Bosses or CodexCategory.Elites => CodexSection.Bestiary,
         _ => CodexSection.Arsenal,

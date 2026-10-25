@@ -49,6 +49,32 @@ public sealed class DailyState
     public int Origin = 1;
     public readonly Dictionary<string, DailyTry> Tries = new();
 
+    /// <summary>The server's counters of this player (GET /api/me), kept for the Achievements page when offline.</summary>
+    public int LikesReceived, Streak, BestStreak, DaysPlayed;
+
+    /// <summary>SkulInsight's own daily achievements earned (id → when, UTC): the daily player's, the same in every slot.</summary>
+    public readonly Dictionary<string, DateTime> Achievements = new();
+
+    /// <summary>Takes the server's counters; the daily achievements they reach that weren't earned yet (now earned).</summary>
+    public List<string> UpdateCounters(int likes, int streak, int bestStreak, int daysPlayed, DateTime nowUtc)
+    {
+        LikesReceived = Math.Max(0, likes);
+        Streak = Math.Max(0, streak);
+        BestStreak = Math.Max(BestStreak, Math.Max(streak, bestStreak)); // a removed run doesn't take a streak back
+        DaysPlayed = Math.Max(0, daysPlayed);
+        var earned = new List<string>();
+        foreach (var info in DamageInsight.Achievements.AchievementCatalog.Daily)
+            if (!Achievements.ContainsKey(info.Id) && Counter(info.Counts) >= info.Target)
+            {
+                Achievements[info.Id] = nowUtc;
+                earned.Add(info.Id);
+            }
+        return earned;
+    }
+
+    /// <summary>The counter a daily achievement counts ("likes", "streak").</summary>
+    public int Counter(string counts) => counts == "likes" ? LikesReceived : BestStreak;
+
     public DailyTry TryOf(string date) => Tries.TryGetValue(date ?? "", out var t) ? t : null;
 
     public DailyTry Ensure(string date)
@@ -93,7 +119,12 @@ public sealed class DailyState
     {
         var sb = new StringBuilder("{\n");
         sb.Append("\"player\":").Append(LogJson.Quote(PlayerId)).Append(",\n\"name\":").Append(LogJson.Quote(Name))
-          .Append(",\n\"origin\":").Append(Origin).Append(",\n\"tries\":[");
+          .Append(",\n\"origin\":").Append(Origin)
+          .Append(",\n\"me\":{\"likes\":").Append(LikesReceived).Append(",\"streak\":").Append(Streak).Append(",\"best\":").Append(BestStreak)
+          .Append(",\"days\":").Append(DaysPlayed).Append("},\n\"achievements\":{")
+          .Append(string.Join(",", Achievements.OrderBy(a => a.Key, StringComparer.Ordinal).Select(a =>
+              LogJson.Quote(a.Key) + ":" + LogJson.Quote(a.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture)))))
+          .Append("},\n\"tries\":[");
         sb.Append(string.Join(",", Tries.Values.OrderBy(t => t.Date, StringComparer.Ordinal).Select(t =>
             "\n {\"date\":" + LogJson.Quote(t.Date) + ",\"state\":" + LogJson.Quote(t.State) + ",\"run\":" + LogJson.Quote(t.RunId) +
             ",\"result\":" + LogJson.Quote(t.Result) + ",\"points\":" + t.Points + ",\"rank\":" + t.Rank + ",\"of\":" + t.Of +
@@ -112,6 +143,19 @@ public sealed class DailyState
         state.PlayerId = n.Str("player") ?? "";
         state.Name = n.Str("name") ?? "";
         state.Origin = Math.Max(1, (int)n.Num("origin", 1));
+        var me = n.Child("me");
+        if (!me.IsNull)
+        {
+            state.LikesReceived = (int)me.Num("likes");
+            state.Streak = (int)me.Num("streak");
+            state.BestStreak = (int)me.Num("best");
+            state.DaysPlayed = (int)me.Num("days");
+        }
+        if (n.Raw("achievements") is Dictionary<string, object> achievements)
+            foreach (var pair in achievements)
+                if (pair.Value is string text && DateTime.TryParse(text, CultureInfo.InvariantCulture,
+                        DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out var at))
+                    state.Achievements[pair.Key] = at;
         foreach (var t in n.List("tries"))
         {
             var date = t.Str("date") ?? "";

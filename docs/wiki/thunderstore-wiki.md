@@ -3,8 +3,8 @@
 **See the real numbers behind Skul: The Hero Slayer.** SkulInsight QoL shows where every point of damage comes
 from, puts your real damage into every description, explains each hit in a combat log, previews pickups, and
 adds the **Codex**: a bestiary with every enemy, boss and item, complete boss move lists and fight films you
-record yourself, a **history of all your runs** with records, and an optional **daily run** with online
-leaderboards (new in 0.13).
+record yourself, a **history of all your runs** with records, Skul's **achievements for every save slot** (new in
+0.14), and an optional **daily run** with online leaderboards.
 
 It is a quality-of-life mod: it changes nothing about balance or drops (save slots, if you use them, keep several
 whole games side by side), it only goes online if you turn on the daily run, and every feature can be switched off.
@@ -154,6 +154,41 @@ Codex (`K`) → **You** → **Runs**: every run you play, like a match history.
 - **Records** (You → Records): totals, best runs, per skull, against bosses, deaths and the game's own counters.
 
 ![Records: totals, bests, skulls, bosses, deaths and the game's own counters](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/records.png)
+
+### Achievements (new in 0.14)
+Codex (`K`) → **You** → **Achievements**: all 101 of Skul's Steam achievements, as **this save slot** has them.
+- Steam gives an achievement only once; here every save slot earns its own. A slot from before 0.14 gets what its
+  save proves (bosses beaten, Dark Mirror levels, the endings, legendary skulls, ...); slot 1 (the game you had
+  before save slots) can take over your Steam account's achievements once.
+- Earned ones in colour with the date and the run they came in, the rest in grey. Each page: how to earn it, your
+  progress, a **tip** for the hard ones (what counts as getting hit in a no-hit clear, ...), your Steam account's
+  state and the share of all players.
+- Story spoilers are **veiled** until you earn them or meet what they are about; hold the mouse button on one for 4
+  seconds to look anyway.
+- When your slot earns one, a **small notice slides down from the top of the screen** with a short chime.
+- Daily runs have SkulInsight's own achievements: thumbs up received (5 to 100) and days in a row (3 to 30).
+
+![Achievements: every achievement as this save slot has it, with how to earn it, this slot and Steam](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/achievements.png)
+
+### Healing orbs (new in 0.14)
+The purple healing orbs enemies drop can look like the game's Portable Potion or a big green plus, a short text says
+when some are left on a cleared map while you are hurt, and your runs count the heals you missed (run page, Records).
+
+![Healing orbs: the game's look, the Portable Potion and the green plus](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/heal-orbs.png)
+
+### Clear view (new in 0.14)
+With a strong build, your own effects can cover the screen. Clear view makes the effects of your skills, items and
+summons (and your projectiles) fainter over the run and whenever many of them are on screen at once. Enemy attacks
+and their warnings are never faded. Settings section *Clear view*.
+
+### Mods (new in 0.14)
+Pause (Esc) → **Mods**: Thunderstore's Skul mods on the left (search, categories, sorting), your mods on the right
+(Enabled / Disabled / Restart needed). Install (with the mods it needs), update, turn on or off, remove, and restart
+the game through Steam. Works on Windows, Linux / Steam Deck and Mac. In an r2modman profile the changes go into
+r2modman's mod list too. SkulInsight also updates itself at every start (setting *Update automatically*), also in
+r2modman and Gale profiles.
+
+![Mods: Thunderstore's Skul mods on the left, your mods on the right](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/mods.png)
 
 ### Daily run (new in 0.13; online, off until you turn it on)
 Codex (`K`) → **Daily**: every day one run for everyone, one try.
@@ -389,7 +424,7 @@ the errors were in (the game's, SkulInsight's or another mod's).
 
 ## Coming next
 
-- **0.13 (this version):** run history, records, daily run with online boards.
-- **0.14:** Skul's achievements per save slot, and the mod's own achievements for daily runs.
+- **0.14 (this version):** Skul's achievements per save slot, the achievement notice, the mod's own daily
+  achievements, macOS.
 - **0.15:** Dark Mirror page. **0.16:** optional Codex rewards.
 - **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics.

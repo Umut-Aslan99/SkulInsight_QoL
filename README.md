@@ -2,15 +2,18 @@
 
 **See the real numbers behind Skul: The Hero Slayer.** Damage numbers that tell you where damage came from,
 item and skull descriptions with your actual damage, a combat log that explains every hit, a Codex with every
-enemy, boss and piece of gear, a history of all your runs, and an optional daily run with online leaderboards.
+enemy, boss and piece of gear, a history of all your runs, Skul's achievements for every save slot, and an optional
+daily run with online leaderboards.
 
 A quality-of-life mod: it changes nothing about the game's balance. It shows information the game already uses
 internally, keeps several save slots side by side if you use them, and only goes online if you turn on the daily
 run. Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.13: run history, records and a daily run.** Every run is kept like a match history (the build,
-> each item's damage, a timeline, the game's end screen), **Records** show your bests, and the optional **daily
-> run** gives everyone the same run each day, with daily and monthly leaderboards where you can open anyone's run.
+> **Version 0.14: achievements.** Codex → You → **Achievements** shows all of Skul's achievements as your save slot
+> has them (each slot earns its own, also the ones Steam already has), with tips, progress and veils over the story's
+> secrets. A small notice slides down from the top when you earn one. Daily runs get their own achievements (thumbs
+> up received, days in a row). **Clear view** fades your own effects so enemy attacks stay visible in strong builds,
+> and **Mods** in the pause menu installs and manages Thunderstore's Skul mods right in the game. **The mod now also runs on Skul's Mac version** ([guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
 > The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
@@ -174,6 +177,53 @@ Codex (`K`) → **You** → **Runs**: every run you play, like a match history.
 
 ![Records: totals, bests, skulls, bosses, deaths and the game's own counters](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/records.png)
 
+### Achievements (new in 0.14)
+Codex (`K`) → **You** → **Achievements**: all 101 of Skul's Steam achievements, as **this save slot** has them.
+- Steam gives an achievement only once; here every save slot earns its own. A slot from before 0.14 gets what its
+  save proves (bosses beaten, Dark Mirror levels, the endings, legendary skulls, ...); slot 1 (the game you had
+  before save slots) can take over your Steam account's achievements once.
+- Earned ones in colour with the date and the run they came in (a link), the rest in grey. Each page: how to earn it,
+  the progress in your save (adventurers, dark quartz hearts, fragments, ...), a **tip** for the hard ones read from
+  the game's code (what counts as getting hit in a no-hit clear, Little Bone for The Skeleton King, ...), your Steam
+  account's state and the share of all players.
+- Achievements that give the story away are **veiled** until you earn them or meet what they are about; hold the
+  mouse button on one for 4 seconds to look anyway (setting).
+- Two that the game counts but Steam doesn't have: Alexander and the Dark Skeleton without getting hit.
+- When your slot earns one, a **small notice slides down from the top of the screen** with a short chime and back up
+  (settings: notice, sound volume).
+- **Daily runs** have SkulInsight's own achievements: thumbs up received (5 to 100) and days in a row (3 to 30).
+
+![Achievements: every achievement as this save slot has it, with how to earn it, this slot and Steam](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/achievements.png)
+
+### Healing orbs (new in 0.14)
+The purple healing orbs enemies drop are easy to miss. They can look like the game's **Portable Potion** (a bit bigger,
+with a green glow) or a big **green plus**; when a map is cleared while you are hurt and orbs are left, a short text
+above you says so. Your runs count the **heals missed** (orbs left behind while hurt, and the health they would have
+restored): on each run's page and on the Records page.
+
+![Healing orbs: the game's look, the Portable Potion and the green plus](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/heal-orbs.png)
+
+### Clear view (new in 0.14)
+With a strong build, your own effects can cover the screen until you can't see what hits you. Clear view makes the
+effects of your skills, items and summons (and your projectiles) fainter: over the run (full in chapter 1, the
+lowest opacity from chapter 5 on) and whenever many of them are on screen at once. **Enemy attacks and their warnings
+are never faded.** Settings section *Clear view*: on/off, the lowest opacity (40 %), both ways of fading, projectiles.
+
+### Mods (new in 0.14)
+Pause (Esc) → **Mods**: a mod manager in the game, on Windows, Linux / Steam Deck and Mac.
+- Left: **Thunderstore's Skul mods** with search, categories and sorting (last updated, downloads, likes, A–Z), each
+  with its icon, author, downloads, likes and age. Click one for its details and the mods it needs.
+- Right: **your mods** with Enabled / Disabled / Restart needed. **Install** (with what it needs), **Update**, **Turn on
+  / off**, **Remove** (into a backup folder; its settings stay), turn all on or off, open the mods folder.
+- **Restart game**: mods load when the game starts, so after a change the game closes and Steam starts it again.
+- Mods go where r2modman and Gale put them (`BepInEx/plugins/Owner-Name`). It only goes online (Thunderstore) when
+  you open it. In an r2modman profile, changes made here go into r2modman's mod list too; Restart game comes back
+  with the same profile.
+- **SkulInsight updates itself**: at every start it looks for its newest version on Thunderstore and installs it for
+  the next start, also in r2modman and Gale profiles (setting *Update automatically*).
+
+![Mods: Thunderstore's Skul mods on the left, your mods on the right](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/mods.png)
+
 ### Daily run (new in 0.13; online, off until you turn it on)
 Codex (`K`) → **Daily**: every day one run for everyone, one try.
 - The same seed and the same difficulty for everyone (a weekday schedule from Normal to Dark Mirror 10).
@@ -275,6 +325,7 @@ The same settings are in the settings file (created on the first start):
 | Descriptions | HoldToShow / HoldKey | on / Shift | Numbers in the game's boxes only while the key is held |
 | Descriptions | Compact | on | One line per attack in the game's boxes (off: every hit with its formula) |
 | General | WhatsNew | on | Show what's new once after an update |
+| General | AutoUpdate | on | At every start, install a newer SkulInsight from Thunderstore (runs from the next start; r2modman's list follows) |
 | General | MenuSounds | on | The mod's buttons play the game's menu sounds (hover, click) |
 | General | CrashReports | on | A report per game session in `BepInEx/DamageInsight/CrashReports` (newest 20 kept) |
 | General | RunHistory / RunHistoryKeep | on / 100 | Keep every run in the Codex; how many of the newest keep all their details |
@@ -285,6 +336,10 @@ The same settings are in the settings file (created on the first start):
 | Combat Log | UseDialogueBackground / BackgroundOpacity | on / 0.85 | Look of the log window |
 | Mini Log | Enabled, Lines, HideAfterSeconds, ShowPie, GapAboveMinimap | off, 4, 5, on, 40 | Small log above the minimap |
 | Cooldown Ticker | Enabled / Opacity | on / 0.55 | Seconds on HUD icons |
+| Clear View | Enabled / LowestOpacity | on / 0.4 | Your own effects get fainter so enemy attacks stay visible |
+| Heal Orbs | Look / Reminder | Potion / on | How healing orbs look (Game, Potion, Plus); a text when some are left on a cleared map |
+| Mods | Enabled | on | The Mods button in the pause menu (the mod manager) |
+| Clear View | OverTheRun / WhenBusy / Projectiles | on / on / on | Fade by chapter, when many effects are on screen, and your projectiles too |
 | Codex | Enabled / ToggleKey | on / K | The Codex book |
 | Codex | ShowMoveHints | on | Under a beaten boss's moves: when it uses them |
 | Codex | FilmBossAttacks | on | Film each boss move once for the Codex |
@@ -292,6 +347,8 @@ The same settings are in the settings file (created on the first start):
 | Codex | CompactFilms | on | Save films as compact pictures (about a quarter of the size) |
 | Codex | ProjectilePictures | on | Add an enemy's projectile to its pictures the first time it fires one |
 | Codex | OpenOnYou | on | During a run the book opens on the You page |
+| Codex | AchievementNotice / AchievementSound | on / 50 % | A small notice (with a chime) slides down from the top when your save slot earns an achievement |
+| Codex | VeilSecretAchievements | on | Story spoilers stay veiled on the Achievements page until earned, met or held |
 | Codex balance | (unlock numbers) | | Runs / wins / pickups it takes to unlock ★★ and ★★★ in the Codex |
 
 ## Compatibility
@@ -316,15 +373,16 @@ The same settings are in the settings file (created on the first start):
     films show two attacks.
   - Films made before 0.11 may still show your own effects or end early; "Refilm" or "Reset Codex" takes them again.
   - Arsenal pages show what you have met; a skill's numbers appear after you used it once.
+- Achievements: their icons come from Steam (the first look may take a moment). No-hit clears and a few others
+  (the black market, the castle) can't be proven from an old save and are earned again.
 - Daily run: a crash during a daily run ends that day's try (a daily run can't be continued). Only today's board
   opens runs; past days and the monthly board don't yet.
 - Translations were made with the help of the game's own terms but not checked by native speakers yet; corrections
   are very welcome (see *All game languages*). The config file and the developer tools stay English.
 
 ## Roadmap
-- **0.13 (this version):** run history, records, daily run with online boards
-- **0.14:** Skul's achievements per save slot (a trophy page; hidden ones revealed by holding the mouse button) and the
-  mod's own achievements for daily runs (streaks, thumbs up received)
+- **0.14 (this version):** Skul's achievements per save slot, the achievement notice, the mod's own daily
+  achievements, clear view, the mod manager, macOS
 - **0.15:** Dark Mirror page (levels 0–10 with the game's values, Darktech machines, fragments, the hidden boss)
 - **0.16:** optional Codex rewards (tokens for skipped gear, adventurer coins, Omen coins)
 - **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics

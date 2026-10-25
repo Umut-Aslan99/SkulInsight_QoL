@@ -30,10 +30,13 @@ public sealed class WhatsNew : MonoBehaviour
     /// <summary>The highlights of this version (English keys, translated when shown).</summary>
     private static string[] Highlights() => new[]
     {
-        Loc.T("Run history (Codex, You, Runs): every run kept like a match history: how it ended, the build, each piece of gear's damage and a timeline, all linked to the Codex. Star a run to keep it whole; End screen shows the game's result panel again."),
-        Loc.T("Records (Codex, You, Records): your bests over all runs, per skull, against bosses, and the game's own counters."),
-        Loc.T("Daily run (Codex, Daily; online, off until you turn it on): the same run for everyone each day, one try, in its own save slot with everything unlocked. Your own game isn't touched."),
-        Loc.T("Daily and monthly boards: open anyone's run like your run history, see how its points came about (with bonuses for the day's records and your streak) and give it a thumbs up."),
+        Loc.T("Achievements (Codex, You, Achievements): all of Skul's achievements as this save slot has them, with tips, your progress and veils over the story's secrets. Each slot earns its own, also the ones Steam already has."),
+        Loc.T("A small notice slides down from the top of the screen when your slot earns an achievement."),
+        Loc.T("Clear view: your own effects get fainter over the run and when the screen gets busy, so enemy attacks stay easy to see (settings: Clear view)."),
+        Loc.T("Mods (pause menu): your mods and Thunderstore's Skul mods side by side: install, update, turn on or off, remove, and restart the game from there."),
+        Loc.T("Healing orbs are easier to see (as a Portable Potion or a green plus), a short text says when some are left, and your runs count the ones you missed."),
+        Loc.T("Daily runs: SkulInsight's own achievements for thumbs up received and days in a row. Record bonuses for most damage, gold and kills now need a boss defeated."),
+        Loc.T("macOS: the mod now runs on Skul's Mac version, set up by one Terminal script."),
     };
 
     private void Update()

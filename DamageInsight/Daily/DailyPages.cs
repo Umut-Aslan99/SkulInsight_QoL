@@ -121,6 +121,7 @@ public static class DailyPages
         sb.Append($"<color={RunPages.DimColor}>");
         sb.Append(Loc.T("A win 10,000 · a fast win 3 for every second under an hour · 500 per stage reached · 1,000 per boss · 5 per kill · 1 per 2,000 damage dealt · -2 per damage taken · 1 per 10 gold left. The sum is multiplied by the day's difficulty (Normal x1, Dark Mirror +0.15 per level).")).Append('\n');
         sb.Append(Loc.T("The day's records go to whoever holds them when the board is read: first win 3,000 · fastest win 3,000 · most damage 2,000 · least damage taken in a win 2,000 · most gold left 1,000 · most kills 1,000. A daily streak gives 250 for every day in a row before today (up to 2,500). Both are multiplied by the difficulty too.")).Append('\n');
+        sb.Append(Loc.T("Most damage, most gold and most kills only count for runs that defeated at least one boss.")).Append('\n');
         sb.Append("</color>");
         return sb.ToString();
     }

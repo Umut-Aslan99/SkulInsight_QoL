@@ -183,7 +183,7 @@ public sealed partial class CodexWindow : MonoBehaviour
         }
 
         if ((_listDirty || CodexTracker.Version != _drawnVersion || DamageInsight.History.RunJournal.Version != _runsDrawnVersion ||
-             DamageInsight.Daily.DailyService.Version != _dailyDrawnVersion) &&
+             DamageInsight.Daily.DailyService.Version != _dailyDrawnVersion || AchievementsDirty()) &&
             Time.unscaledTime >= _nextRefresh)
         {
             _nextRefresh = Time.unscaledTime + 0.25f;
@@ -451,6 +451,8 @@ public sealed partial class CodexWindow : MonoBehaviour
         BuildDaily(_dailyPanel);
         _recordsPanel = UiKit.Rect("Records panel", page).Fill();
         BuildRecords(_recordsPanel);
+        _achievementsPanel = UiKit.Rect("Achievements panel", page).Fill();
+        BuildAchievements(_achievementsPanel);
         BuildYouTabs(page);
         RefreshSections();
     }
@@ -464,7 +466,7 @@ public sealed partial class CodexWindow : MonoBehaviour
     {
         float width = PageWidth - 64;
         _title = Label(page, "", 34, Ink, TextAlignmentOptions.Center);
-        _title.rectTransform.Place(32, 22, width, 46);
+        _title.rectTransform.Place(32, 16, width, 54); // taller than the font's line, or "…" hides the whole title
         _title.enableWordWrapping = false;
         _title.overflowMode = TextOverflowModes.Ellipsis;
         _subtitle = Label(page, "", 18, InkDim, TextAlignmentOptions.Center);
@@ -1050,6 +1052,8 @@ public sealed partial class CodexWindow : MonoBehaviour
                 DrawRunsList();
             else if (_category == CodexCategory.Records)
                 DrawRecordsList();
+            else if (_category == CodexCategory.Achievements)
+                DrawAchievementsList();
             else
                 DrawYouList();
             return;
@@ -1167,6 +1171,8 @@ public sealed partial class CodexWindow : MonoBehaviour
                 DrawRunDetail();
             else if (_category == CodexCategory.Records)
                 DrawRecordDetail();
+            else if (_category == CodexCategory.Achievements)
+                DrawAchievementDetail();
             else
             {
                 ShowRunChips(false);
@@ -1408,6 +1414,7 @@ public sealed partial class CodexWindow : MonoBehaviour
         CodexCategory.YouBuild => Loc.T("Build"),
         CodexCategory.Runs => Loc.T("Runs"),
         CodexCategory.Records => Loc.T("Records"),
+        CodexCategory.Achievements => Loc.T("Achievements"),
         CodexCategory.DailyToday => Loc.T("Today"),
         CodexCategory.DailyMonth => Loc.T("This month"),
         _ => Loc.T("Inscriptions"),

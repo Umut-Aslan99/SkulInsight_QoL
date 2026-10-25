@@ -163,6 +163,18 @@ public static class RecordPages
             (Loc.T("Swaps"), RunPages.N(r.Swaps)),
             (Loc.T("Revives"), RunPages.N(r.Revives)),
         });
+        if (r.RunsWithHeals > 0)
+        {
+            sb.Append(PageBlocks.Section(Loc.T("Healing orbs"), "pix:heal"));
+            Pairs(sb, new List<(string, string)>
+            {
+                (Loc.T("Heals missed"), RunPages.N(r.HealsMissed)),
+                (Loc.T("Health missed"), RunPages.N(r.HealthMissed)),
+                (Loc.T("Per run"), (r.HealsMissed / r.RunsWithHeals).ToString("0.0", System.Globalization.CultureInfo.InvariantCulture)),
+                (Loc.T("Health per run"), RunPages.N(r.HealthMissed / r.RunsWithHeals)),
+            });
+            sb.Append($"<color={Dim}>{Loc.F("Small Healing Orbs left on a map while you weren't at full health (counted since 0.14, {0} runs).", r.RunsWithHeals)}</color>\n");
+        }
         if (r.Filter != RecordFilter.Normal && r.Levels.Count > 0)
         {
             // Per Dark Mirror level instead of a filter chip for each of the 11 levels.

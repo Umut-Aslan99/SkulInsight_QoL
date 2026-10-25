@@ -42,6 +42,12 @@ public static class FilmClutter
             FromPlayer.Remove(effect);
     }
 
+    /// <summary>The effects started for the player or its minions (UI/ClearView fades them; some may have ended or be reused).</summary>
+    public static IEnumerable<EffectPoolInstance> PlayerEffects => FromPlayer;
+
+    /// <summary>Forgets effects destroyed with their scene.</summary>
+    public static void PruneDestroyed() => FromPlayer.RemoveWhere(effect => effect == null);
+
     /// <summary>The player or one of its minions (summons fighting for the player).</summary>
     public static bool IsPlayerSide(Character character)
     {

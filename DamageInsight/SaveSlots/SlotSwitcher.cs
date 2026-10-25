@@ -239,6 +239,7 @@ internal static class SlotSwitcher
         Patches.Guard.Run("Save slots (Codex)", () =>
         {
             CodexTracker.ForgetSlot();
+            DamageInsight.Achievements.AchievementStore.ForgetSlot();
             CodexAnimations.ForgetSlot();
             CodexPortraits.ForgetSlot();
             MoveHints.ForgetSlot();

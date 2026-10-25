@@ -59,6 +59,9 @@ public sealed class RunRecords
     public int Runs, Wins, Deaths, Abandoned;
     public long PlaySeconds;
     public double Kills, EliteKills, BossKills, AdventurerKills, Damage, Taken, Healed, Gold, DarkQuartz, Bones, Swaps, Revives;
+    /// <summary>Heal orbs left behind (0.14) and the runs that counted them (older runs don't know).</summary>
+    public double HealsMissed, HealthMissed;
+    public int RunsWithHeals;
 
     /// <summary>The start of the slot's run history (its oldest run, whatever the filter), or default without runs.</summary>
     public DateTime Since;
@@ -134,6 +137,12 @@ public sealed class RunRecords
             records.Bones += r.Number(RunNumbers.Bones);
             records.Swaps += r.Number(RunNumbers.Swaps);
             records.Revives += r.Number(RunNumbers.Revives);
+            if (r.Numbers.ContainsKey(RunNumbers.HealsMissed))
+            {
+                records.RunsWithHeals++;
+                records.HealsMissed += r.Number(RunNumbers.HealsMissed);
+                records.HealthMissed += r.Number(RunNumbers.HealthMissed);
+            }
 
             if (won && wholeTime)
                 Better(ref records.FastestWin, r.PlaySeconds, r, lower: true);

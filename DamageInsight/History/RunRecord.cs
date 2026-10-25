@@ -402,6 +402,8 @@ public static class RunNumbers
     public const string Deaths = "deaths";                 // the save's total deaths at the end (end screen)
     // Ours.
     public const string Swaps = "swaps";
+    public const string HealsMissed = "healsMissed";       // 0.14: small heal orbs left behind while hurt (History/HealOrbs)
+    public const string HealthMissed = "healthMissed";     // the health they would have restored
     public const string Maps = "maps";
     public const string JoinedLate = "joinedLate";
     /// <summary>The player's stats at the end: "stat:" + the game's Stat.Kind name (its final value).</summary>

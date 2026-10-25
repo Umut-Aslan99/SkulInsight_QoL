@@ -67,6 +67,7 @@ Umut's admin removal. Good enough for a fan leaderboard.
   timeline) and a Points tab (part by part, the day's records, the streak, how points are counted).
 - Bonus points for the day's records (first win, fastest win, most damage, least damage taken in a win, most gold
   left, most kills) and for a daily streak (250 per day in a row before today, up to 2,500), all x the difficulty.
+  Since 2026-10-25 (Umut) most damage, most gold and most kills go only to runs that defeated at least one boss.
 - Likes: a thumbs up once per run, not on one's own. Later: own achievements for likes received (5/10/25/50/100) and
   for streaks (data: `GET /api/me`).
 

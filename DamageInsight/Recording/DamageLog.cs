@@ -175,7 +175,8 @@ public static class DamageLog
         if (character.type == Character.Type.Player)
             return Loc.T("You");
 
-        string key = character.key.ToString();
+        // Characters without a key of their own (traps, kegs, Dark Mirror bosses) are told apart by their object name.
+        string key = character.key == Characters.Key.Unspecified ? "Unspecified/" + character.name : character.key.ToString();
         if (!NameCache.TryGetValue(key, out var name))
         {
             if (!Localization.TryGetLocalizedString($"enemy/name/{key}", out name) || string.IsNullOrEmpty(name))

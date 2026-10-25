@@ -100,14 +100,14 @@ public sealed partial class CodexWindow
         row.Icon.rectTransform.Fill(5);
 
         row.Title = Label(t, "", 24, Ink, TextAlignmentOptions.TopLeft);
-        row.Title.rectTransform.Place(94, 8, 340, 32);
+        row.Title.rectTransform.Place(94, 4, 340, 38);
         row.Title.enableWordWrapping = false;
         row.Title.overflowMode = TextOverflowModes.Ellipsis;
         row.Detail = Label(t, "", 15, InkDim, TextAlignmentOptions.TopLeft);
         row.Detail.rectTransform.Place(94, 42, 350, 44);
         row.Detail.overflowMode = TextOverflowModes.Ellipsis;
         row.Headline = Label(t, "", 30, Ink, TextAlignmentOptions.TopRight);
-        row.Headline.rectTransform.Place(450, 6, 210, 40);
+        row.Headline.rectTransform.Place(450, 2, 210, 46);
         row.Headline.enableWordWrapping = false;
         row.Headline.overflowMode = TextOverflowModes.Ellipsis;
         row.Caption = Label(t, "", 14, InkDim, TextAlignmentOptions.TopRight);

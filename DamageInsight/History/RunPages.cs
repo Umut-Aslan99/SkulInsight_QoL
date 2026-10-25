@@ -273,6 +273,8 @@ public static class RunPages
             sb.Append($"<color={DimColor}>{Loc.T("Recorded from the middle of the run on (it started before the run history knew it).")}</color>\n");
         if (r.Shrunk)
             sb.Append($"<color={DimColor}>{Loc.T("An old run: only its summary is kept (star a run to keep it whole).")}</color>\n");
+        if (r.Number(RunNumbers.HealsMissed) > 0)
+            sb.Append($"<color={DimColor}>{Loc.F("Healing orbs left behind while you were hurt: {0} ({1} health).", N(r.Number(RunNumbers.HealsMissed)), N(r.Number(RunNumbers.HealthMissed)))}</color>\n");
         var bosses = Bosses(r, look);
         if (bosses.Count > 0)
         {
@@ -280,6 +282,12 @@ public static class RunPages
             sb.Append(Loc.F("Bosses defeated: {0}", string.Join(" · ", bosses.Select(b =>
                 Ref(b.id, b.name, look) + (look.Title(b.id) is { Length: > 0 } title ? $" <color={DimColor}>({title})</color>" : ""))))).Append('\n');
         }
+        // The slot's achievements that came in this run (0.14; not on the daily board's runs of other players).
+        var achievements = r.Daily.Length > 0 ? new List<string>()
+            : DamageInsight.Achievements.AchievementStore.OfRun(r.Id).Select(e => DamageInsight.Achievements.AchievementCatalog.Get(e.Id))
+                .Where(a => a != null).Select(a => CodexPages.LinkTo(DamageInsight.Achievements.AchievementPages.IdOf(a), a.Name)).ToList();
+        if (achievements.Count > 0)
+            sb.Append(Loc.F("Achievements: {0}", string.Join(" · ", achievements))).Append('\n');
 
         var (top, items) = Gear(r);
         if (top.Count + items.Count > 0)
@@ -325,6 +333,12 @@ public static class RunPages
             (Loc.T("Swaps"), N(r.Number(RunNumbers.Swaps))),
             (Loc.T("Revives"), N(r.Number(RunNumbers.Revives))),
         };
+        // 0.14: heal orbs left behind (runs from before don't know).
+        if (r.Numbers.ContainsKey(RunNumbers.HealsMissed))
+        {
+            pairs.Add((Loc.T("Heals missed"), N(r.Number(RunNumbers.HealsMissed))));
+            pairs.Add((Loc.T("Health missed"), N(r.Number(RunNumbers.HealthMissed))));
+        }
         for (int i = 0; i < pairs.Count; i += 2)
         {
             sb.Append(pairs[i].label).Append("<pos=31%>").Append(pairs[i].value);
@@ -437,9 +451,13 @@ public static class RunPages
             double taken = r.DamageTaken.Sum(p => p.Value.amount);
             double worst = r.DamageTaken.Max(p => p.Value.amount);
             sb.Append(PageBlocks.Section(Loc.F("Damage taken: {0}", N(taken)), "pix:heart"));
-            foreach (var pair in r.DamageTaken.OrderByDescending(p => p.Value.amount).Take(15))
-                sb.Append(PageBlocks.Bar($"{pair.Key}<size=80%><color={DimColor}>  {Loc.P("{0} hit", "{0} hits", pair.Value.hits)}</color></size>",
-                    N(pair.Value.amount), worst > 0 ? pair.Value.amount / worst : 0));
+            // Parts of one boss (old runs kept their code names) are added up under its name.
+            var byName = r.DamageTaken.GroupBy(p => AttackerName(p.Key, look.Name))
+                .Select(g => (name: g.Key, amount: g.Sum(p => p.Value.amount), hits: g.Sum(p => p.Value.hits))).ToList();
+            worst = byName.Count > 0 ? byName.Max(p => p.amount) : 0;
+            foreach (var pair in byName.OrderByDescending(p => p.amount).Take(15))
+                sb.Append(PageBlocks.Bar($"{pair.name}<size=80%><color={DimColor}>  {Loc.P("{0} hit", "{0} hits", pair.hits)}</color></size>",
+                    N(pair.amount), worst > 0 ? pair.amount / worst : 0));
         }
         return sb.ToString();
     }
@@ -540,6 +558,28 @@ public static class RunPages
     }
 
     /// <summary>An object name made readable: "ThornTrap" becomes "Thorn Trap" (traps have no name in the game's texts).</summary>
+    /// <summary>Bosses whose parts have no name of their own: the game's object names and the Codex page they belong to.</summary>
+    private static readonly (string part, string page)[] BossParts =
+    {
+        ("ShortHair", "enemy:LeianaShortHair"), ("LongHair", "enemy:LeianaShortHair"), ("DarkSkeleton", "enemy:DarkSkul1"),
+        ("Emperor", "enemy:Alexander1"),
+    };
+
+    /// <summary>
+    /// An attacker's name as a run keeps it, made readable (0.14: runs kept code names like "DarkSkeleton_Phase1",
+    /// "Emperor_Renewal", "ShortHair", "PowderKeg"): a boss part by its boss's Codex name, another code name split into
+    /// words. Names with spaces or in other scripts stay as they are.
+    /// </summary>
+    public static string AttackerName(string stored, Func<string, string> pageName)
+    {
+        if (string.IsNullOrEmpty(stored) || stored.Contains(' ') || stored.Any(c => c > 127))
+            return stored ?? "";
+        foreach (var (part, page) in BossParts)
+            if (stored.IndexOf(part, StringComparison.OrdinalIgnoreCase) >= 0 && pageName(page) is { Length: > 0 } name)
+                return name;
+        return stored.Contains('_') || stored.Skip(1).Any(char.IsUpper) ? Readable(stored) : stored;
+    }
+
     public static string Readable(string name)
     {
         if (string.IsNullOrEmpty(name))

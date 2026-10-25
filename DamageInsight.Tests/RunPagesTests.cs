@@ -432,4 +432,21 @@ public class RunPagesTests
         Assert.True(nav.Back());
         Assert.Equal(CodexCategory.Runs, nav.Category);
     }
+
+    [Fact]
+    public void Attackers_CodeNamesOfOldRuns_AreShownReadable()
+    {
+        string Page(string id) => id switch
+        {
+            "enemy:DarkSkul1" => "Dark Skeleton", "enemy:Alexander1" => "Alexander", "enemy:LeianaShortHair" => "Leiana sisters", _ => null,
+        };
+        Assert.Equal("Dark Skeleton", RunPages.AttackerName("DarkSkeleton_Phase1", Page));
+        Assert.Equal("Alexander", RunPages.AttackerName("Emperor_Renewal", Page));
+        Assert.Equal("Leiana sisters", RunPages.AttackerName("LongHair", Page));
+        Assert.Equal("Powder Keg", RunPages.AttackerName("PowderKeg", Page));
+        Assert.Equal("Thorn Trap", RunPages.AttackerName("ThornTrap", Page));
+        Assert.Equal("Carleon Recruit", RunPages.AttackerName("Carleon Recruit", Page));  // already a name
+        Assert.Equal("Scarecraw", RunPages.AttackerName("Scarecraw", Page));
+        Assert.Equal("칼레온 신병", RunPages.AttackerName("칼레온 신병", Page));
+    }
 }

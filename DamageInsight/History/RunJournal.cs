@@ -368,6 +368,9 @@ public static class RunJournal
             StartPlay = play, // the game's play time also counts the castle before the run; the run starts here
             EndPlay = play,
         };
+        // Counted from 0.14 on: a run that has the keys counted them (older runs show nothing).
+        _run.Numbers[RunNumbers.HealsMissed] = 0;
+        _run.Numbers[RunNumbers.HealthMissed] = 0;
         if (joinedLate)
             _run.Numbers[RunNumbers.JoinedLate] = 1;
         else
@@ -475,7 +478,7 @@ public static class RunJournal
     /// <summary>A character's name as the Codex shows it (the game's own object names say "Scarecraw", "Dark", ...).</summary>
     private static string NameOf(Character character, string codexId) =>
         (codexId.Length > 0 ? Safe(() => CodexPages.Entry(codexId)?.Name) : null) ??
-        (character.type == Character.Type.Trap ? RunPages.Readable(DamageLog.NameOf(character)) : DamageLog.NameOf(character));
+        RunPages.AttackerName(DamageLog.NameOf(character), id => Safe(() => CodexPages.Entry(id)?.Name));
 
     private static string Loc_Trap() => DamageInsight.Lang.Loc.T("Trap");
 
@@ -512,7 +515,32 @@ public static class RunJournal
         {
             Plugin.Log.LogWarning($"Run history: end screen kind not read: {e.Message}");
         }
+        // The heal orbs on the last map: a death left them behind; after a win they don't matter.
+        if (ending)
+            HealOrbs.Forget();
+        else
+        {
+            try
+            {
+                HealOrbs.Close(died: true);
+            }
+            catch (Exception e)
+            {
+                Plugin.Log.LogWarning($"Run history: heal orbs not counted: {e.Message}");
+            }
+        }
         Finish(ending ? RunResult.Ending : RunResult.Death, kind);
+    }
+
+    /// <summary>Heal orbs left behind (History/HealOrbs): added to the run in progress.</summary>
+    public static void AddHealsMissed(int orbs, double health)
+    {
+        if (!On || _run == null || _run.Result != RunResult.InProgress || orbs <= 0)
+            return;
+        _run.Numbers[RunNumbers.HealsMissed] = _run.Number(RunNumbers.HealsMissed) + orbs;
+        _run.Numbers[RunNumbers.HealthMissed] = _run.Number(RunNumbers.HealthMissed) + Math.Round(health);
+        _dirty = true;
+        Plugin.Log.LogInfo($"Run history: {orbs} heal orb(s) left behind ({Math.Round(health)} health)");
     }
 
     private static void Finish(RunResult result, string ending)

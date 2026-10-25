@@ -25,6 +25,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DamageInsight\DamageInsight.csproj" />
+    <!-- Only the tests make zips (the mod manager's tests): the game has no System.IO.Compression.dll. -->
+    <Reference Include="System.IO.Compression" />
   </ItemGroup>
 
   <!--

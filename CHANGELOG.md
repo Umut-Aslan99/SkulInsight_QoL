@@ -1,5 +1,62 @@
 # Changelog
 
+## 0.14.0 (achievements; macOS)
+
+- **Achievements** (Codex → You → **Achievements**): all 101 of Skul's Steam achievements as **this save slot** has
+  them. Steam gives each achievement only once; here every save slot earns its own, also the ones your Steam account
+  already has.
+  - Earned ones in colour with the date and the run they came in, the others in grey. Each page shows how to earn it,
+    your progress in this save (100 adventurers, 100 dark quartz hearts, 3 fragments, 5 inscriptions modified), a
+    **tip** for the hard ones read from the game's code (what counts as getting hit in a no-hit clear, holding Little
+    Bone for The Skeleton King, freeing no caged NPC for Cold-Blooded, each Dark Mirror level on its own, ...), links
+    to the boss or the skull, your Steam account's state and the share of all players.
+  - Slots from before 0.14 get what their save proves: bosses beaten (by the stages reached), the endings, Dark
+    Mirror levels, Alexander and the Dark Skeleton, legendary skulls taken, the counters. Slot 1 (the game you had
+    before save slots) can **take over your Steam account's achievements** once.
+  - Achievements that give the story away are **veiled** until you earn them or meet what they are about; hold the
+    mouse button on one for 4 seconds to look anyway. New setting **Veil secret achievements** (on).
+  - Two achievements the game counts but Steam doesn't have: Alexander and the Dark Skeleton without getting hit.
+  - A run's page lists the achievements earned in it.
+- **Achievement notice:** when your slot earns an achievement, a small box with its icon and name slides down from
+  the top of the screen with a short chime and goes back up after a few seconds. New settings **Achievement notice**
+  (on) and **Achievement sound** (50 %; the game's volume applies too).
+- **Clear view** (players' request): with a strong build your own effects cover everything. Now the effects of your
+  skills, items and summons (and your projectiles) get fainter over the run (full in chapter 1, the lowest opacity
+  from chapter 5 on) and whenever many of them are on screen at once. Enemy attacks and their warnings are never
+  faded. New settings section **Clear view**: Fade your effects (on), Lowest opacity (40 %), Fade over the run (on),
+  Fade when busy (on), Your projectiles too (on).
+- **Mods** (pause menu → **Mods**), a mod manager in the game, styled after tModLoader and Minecraft's pack
+  screen: Thunderstore's Skul mods on the left (search, categories, sorting by update, downloads, likes or name; each
+  with its icon, author, downloads, likes and age; a click shows its details), your mods on the right (Enabled /
+  Disabled / Restart needed). **Install** (with the mods it needs), **Update**, **Turn on / off**, **Remove** (into a
+  backup folder), turn all on or off, open the mods folder, and **Restart game** (the game closes and Steam starts it
+  again; on Windows, Linux / Steam Deck and Mac). Mods go where r2modman and Gale put them (BepInEx/plugins/Owner-Name).
+  It goes online (Thunderstore) only when you open it. In an r2modman profile every change goes into r2modman's mod
+  list too, so r2modman shows what is really installed. New setting **Mod manager** (on).
+- **Updates itself:** at every start SkulInsight looks on Thunderstore for a newer version of itself and installs it
+  in the background; it runs from the next start (or right away with Mods → Restart game), and a short message says
+  so. Only from its own Thunderstore package, and the downloaded file is checked first; the old version is kept in
+  `BepInEx/DamageInsight/Mods/Backup`. Also in r2modman and Gale profiles: r2modman's mod list gets the new version,
+  and **Restart game** starts the game with the same profile again. New setting **Update automatically** (on). The
+  Mods window's Update on SkulInsight's own row does the same.
+- **Healing orbs** (beginners often miss the purple orbs enemies drop): they can look like the game's **Portable
+  Potion** (a bit bigger, with a green glow) or a big **green plus** (setting **Healing orb look**: the game's orb /
+  Portable Potion / green plus). When a map is cleared while you are hurt and orbs are left, a short text above you
+  says so (setting **Healing orb reminder**). The run history counts **Heals missed**: Small Healing Orbs left on a
+  map (or on the map you died on) while you weren't at full health, and the health they would have restored, on each
+  run's page and added up on the Records page.
+- **Daily runs:** SkulInsight's own achievements for thumbs up received (5, 10, 25, 50, 100) and days in a row (3,
+  7, 14, 30; your longest streak counts, also one from before 0.14). The day's record bonuses for most damage, most
+  gold and most kills now only go to runs that defeated at least one boss (a quick death alone on the board got
+  them before).
+- **macOS:** the mod runs on Skul's native Mac version (Intel and Apple Silicon), set up by one Terminal script
+  ([guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)), which can also add other mods from Thunderstore. On a Mac the Korean, Japanese and Chinese
+  texts use Apple's fonts for missing characters, and *Crash reports folder* → Open works.
+- **Run history:** the damage taken list shows readable names (bosses' parts under their boss, no more code names
+  like DarkSkeleton_Phase1), also in older runs. The combat log no longer gives every unnamed object (traps, kegs)
+  the name of the first one it met.
+- All new texts in every game language.
+
 ## 0.13.1 (package fix)
 
 - The 0.13.0 package on Thunderstore was built wrongly (its DLL wasn't inside the `plugins` folder) and was taken

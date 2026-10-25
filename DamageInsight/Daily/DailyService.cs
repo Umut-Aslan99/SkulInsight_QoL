@@ -114,13 +114,29 @@ public sealed class DailyService : MonoBehaviour
     {
         yield return Get("/api/me?player=" + Uri.EscapeDataString(State.PlayerId), json =>
         {
-            var today = DailyInfo.Parse(json).Child("today");
+            var me = DailyInfo.Parse(json);
+            var today = me.Child("today");
             string date = today.Str("date") ?? "", state = today.Str("state") ?? "";
             if (date.Length > 0 && State.FollowServer(date, state))
             {
                 Plugin.Log.LogInfo($"Daily run: the server has no run of yours for {date} (removed): it can be played again");
                 SaveState();
                 Changed();
+            }
+            // SkulInsight's own daily achievements (0.14): thumbs up received and the best streak.
+            var before = (State.LikesReceived, State.Streak, State.BestStreak, State.DaysPlayed);
+            var earned = State.UpdateCounters((int)me.Num("likesReceived"), (int)me.Num("streak"), (int)me.Num("bestStreak"),
+                (int)me.Num("daysPlayed"), DateTime.UtcNow);
+            if (earned.Count > 0 || before != (State.LikesReceived, State.Streak, State.BestStreak, State.DaysPlayed))
+            {
+                SaveState();
+                Changed();
+            }
+            foreach (var id in earned)
+            {
+                Plugin.Log.LogInfo($"Daily run: SkulInsight achievement {id} ({State.LikesReceived} thumbs up, best streak {State.BestStreak})");
+                if (Plugin.AchievementNotice?.Value != false)
+                    DamageInsight.UI.AchievementToast.Show(DamageInsight.Achievements.AchievementCatalog.Get(id));
             }
         });
     }

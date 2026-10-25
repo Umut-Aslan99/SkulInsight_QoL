@@ -24,6 +24,7 @@ public enum CodexCategory
     Records,        // the run history added up, and the game's own records
     DailyToday,     // the Daily section's boards (0.13): today's and the month's
     DailyMonth,
+    Achievements,   // the You section's achievements (0.14)
 }
 
 /// <summary>One page of the Codex: an enemy, boss, skull, item, essence or inscription.</summary>

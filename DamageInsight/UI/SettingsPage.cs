@@ -26,6 +26,7 @@ namespace DamageInsight.UI;
 public sealed class SettingsPage : global::UI.Dialogue
 {
     public const string ButtonText = "SkulInsight QoL";
+    private const string ModsButtonName = "SkulInsight Mods";
     private const string PageName = "SkulInsight QoL Settings";
 
     // Layout in the pause canvas (1920x1080, y from the top), matching the game's Settings page.
@@ -115,20 +116,39 @@ public sealed class SettingsPage : global::UI.Dialogue
         link.Button = button;
         button.onClick.AddListener(() => Guard.Run("Settings page", () => link.Open(-1)));
 
-        FitGrid(grid);
+        // The mod manager (0.14) right below: a window of its own over the menu.
+        if (Plugin.ModManagerEnabled?.Value != false)
+        {
+            var mods = Object.Instantiate(original.gameObject, grid, false);
+            mods.name = ModsButtonName;
+            mods.transform.SetSiblingIndex(go.transform.GetSiblingIndex() + 1);
+            StripGameScripts(mods);
+            var modsLabel = mods.GetComponent<TMP_Text>();
+            if (modsLabel != null)
+            {
+                modsLabel.text = Loc.T("Mods");
+                modsLabel.enableWordWrapping = false;
+            }
+            var modsButton = mods.GetComponent<Button>();
+            modsButton.onClick = new Button.ButtonClickedEvent();
+            modsButton.onClick.AddListener(() => Guard.Run("Mod manager", ModManagerWindow.Open));
+        }
+
+        FitGrid(grid, Plugin.ModManagerEnabled?.Value != false ? 2 : 1);
         LinkButtons(grid);
         Plugin.Log.LogInfo("Settings: button added to the pause menu.");
     }
 
-    /// <summary>Keeps the button column as tall as before: the gaps get smaller so one more button fits the frame.</summary>
-    private static void FitGrid(Transform grid)
+    /// <summary>Keeps the button column as tall as before: the gaps get smaller so our buttons fit the frame.</summary>
+    private static void FitGrid(Transform grid, int added)
     {
         var layout = grid.GetComponent<GridLayoutGroup>();
         int count = grid.Cast<Transform>().Count(t => t.gameObject.activeSelf);
-        if (layout == null || count < 3)
+        int before = count - added;
+        if (layout == null || before < 2)
             return;
         float cell = layout.cellSize.y, gap = layout.spacing.y;
-        float span = (count - 1) * cell + (count - 2) * gap;
+        float span = before * cell + (before - 1) * gap;
         layout.spacing = new Vector2(layout.spacing.x, Mathf.Max(0f, (span - count * cell) / (count - 1)));
     }
 

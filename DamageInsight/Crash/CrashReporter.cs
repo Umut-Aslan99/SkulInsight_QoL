@@ -641,7 +641,7 @@ public sealed class CrashReporter : MonoBehaviour
     private static extern IntPtr WineGetVersion();
 
     /// <summary>Wine's version when the game runs under Wine or Proton (Linux, Steam Deck), else null.</summary>
-    private static string WineVersion()
+    internal static string WineVersion()
     {
         if (!DamageInsight.Tools.PlatformPaths.IsWindows)
             return null; // the Mac version: no kernel32 to ask

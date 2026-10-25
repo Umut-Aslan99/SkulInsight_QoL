@@ -141,6 +141,9 @@ public static class SettingsCatalog
         ("Combat Log", Loc.N("Combat log")),
         ("Mini Log", Loc.N("Mini log")),
         ("Cooldown Ticker", Loc.N("Cooldown seconds")),
+        ("Clear View", Loc.N("Clear view")),
+        ("Heal Orbs", Loc.N("Healing orbs")),
+        ("Mods", Loc.N("Mods")),
         ("Codex", Loc.N("Codex")),
         ("Codex balance", Loc.N("Codex unlocks")),
         ("Developer", Loc.N("Developer")),
@@ -205,6 +208,8 @@ public static class SettingsCatalog
             Loc.N("Keep every run in the Codex: how it ended, the end screen's numbers, your build, the damage of each piece of gear, the maps and a timeline of skulls, items and inscriptions. Each save slot keeps its own.")),
         ["General/RunHistoryKeep"] = Number(Loc.N("Runs kept whole"), 20, 1000, 10, Unit.Plain,
             Loc.N("How many of your newest runs keep all their details (timeline, damage, picture). Older runs keep only their summary, unless you starred them.")),
+        ["General/AutoUpdate"] = On(Loc.N("Update automatically"),
+            Loc.N("At every start, look on Thunderstore for a newer SkulInsight QoL and install it; it runs from the next start. In an r2modman profile its mod list gets the new version too. The old version is kept in BepInEx/DamageInsight/Mods/Backup.")),
         ["General/MenuSounds"] = On(Loc.N("Menu sounds"),
             Loc.N("The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.")),
         ["Combat Log/RecordCalculations"] = On(Loc.N("Calculations"),
@@ -222,6 +227,22 @@ public static class SettingsCatalog
         ["Cooldown Ticker/Enabled"] = On(Loc.N("Show seconds"),
             Loc.N("Show the remaining seconds on the skill, swap, quintessence, item and ability icons (83s, 2m+, 10m). Cooldown speed bonuses are included.")),
         ["Cooldown Ticker/Opacity"] = Number(Loc.N("Opacity"), 0, 1, 0.05, Unit.Percent, Loc.N("How strongly the seconds are drawn.")),
+        ["Mods/Enabled"] = On(Loc.N("Mod manager"),
+            Loc.N("A Mods button in the pause menu: your BepInEx mods (turn on / off, remove) and Thunderstore's Skul mods to install or update. It only goes online (Thunderstore) when you open it; changes need a restart of the game.")),
+        ["Heal Orbs/Look"] = On(Loc.N("Healing orb look"),
+            Loc.N("How the healing orbs enemies drop look: the game's purple orb, the game's Portable Potion (a bit bigger, with a green glow) or a big green plus. The run history counts the ones you leave behind while hurt.")),
+        ["Heal Orbs/Reminder"] = On(Loc.N("Healing orb reminder"),
+            Loc.N("When a map is cleared while you are hurt and healing orbs are left on it, a short text above you says so (once per map).")),
+        ["Clear View/Enabled"] = On(Loc.N("Fade your effects"),
+            Loc.N("Make the effects of your skills, items and summons fainter, so enemy attacks stay easy to see with a strong build. Enemy attacks and their warnings are never faded.")),
+        ["Clear View/LowestOpacity"] = Number(Loc.N("Lowest opacity"), 0.1, 1, 0.05, Unit.Percent,
+            Loc.N("How faint your effects get at most.")),
+        ["Clear View/OverTheRun"] = On(Loc.N("Fade over the run"),
+            Loc.N("Full in chapter 1, getting fainter chapter by chapter, the lowest opacity from chapter 5 on (the Dark Mirror's chapters the same).")),
+        ["Clear View/WhenBusy"] = On(Loc.N("Fade when busy"),
+            Loc.N("When many of your effects are on screen at once, they fade in any chapter (from 8 at once; the lowest opacity at 40). With both off, your effects always have the lowest opacity.")),
+        ["Clear View/Projectiles"] = On(Loc.N("Your projectiles too"),
+            Loc.N("Your projectiles and your summons' fade with your effects.")),
         ["Codex/Enabled"] = On(Loc.N("Record progress"),
             Loc.N("Record your progress for the Codex (enemies met and killed, gear found) and capture enemy pictures.")),
         ["Codex/ToggleKey"] = On(Loc.N("Open / close key"), Loc.N("The key that opens and closes the Codex book.")),
@@ -235,6 +256,12 @@ public static class SettingsCatalog
             Loc.N("Save boss films as compact pictures (about a quarter of the size, nearly the same look). Off: lossless pictures, about 1 GB more once every boss is filmed.")),
         ["Codex/OpenOnYou"] = On(Loc.N("Open on You"),
             Loc.N("During a run, the Codex opens on the You page (your skulls, items, inscriptions and stats). Off: it opens on the page you read last.")),
+        ["Codex/AchievementSound"] = Number(Loc.N("Achievement sound"), 0, 1, 0.05, Unit.Percent,
+            Loc.N("How loud the little chime of the achievement notice is (0%: no sound). The game's master and effects volume apply too.")),
+        ["Codex/AchievementNotice"] = On(Loc.N("Achievement notice"),
+            Loc.N("When this save slot earns an achievement, a small box with it slides down from the top of the screen for a few seconds. Each slot earns its achievements on its own, also the ones your Steam account has.")),
+        ["Codex/VeilSecretAchievements"] = On(Loc.N("Veil secret achievements"),
+            Loc.N("Achievements that give the story away stay veiled in the Codex (You, Achievements) until you earn them, meet what they are about, or hold the mouse button on them for 4 seconds.")),
         ["Save Slots/Slot"] = Number(Loc.N("Slot"), 1, 5, 1, Unit.Plain,
             Loc.N("Left / right: choose a slot. Each slot is a whole game of its own: story, rescued NPCs, the Witch, Dark Mirror, your run and its own Codex.")),
         ["Save Slots/Slots"] = Number(Loc.N("Number of slots"), 3, 5, 1, Unit.Plain, Loc.N("How many save slots there are (3 to 5).")),
@@ -400,6 +427,17 @@ public static class SettingsCatalog
             foreach (var name in icons)
                 item.Steps.Add("inscription:" + name);
             item.Formatter = v => IconText((string)v, inscriptionName);
+        }
+        else if (type == typeof(string) && def.Section == "Heal Orbs" && def.Key == "Look")
+        {
+            foreach (var v in new[] { "Game", "Potion", "Plus" })
+                item.Steps.Add(v);
+            item.Formatter = v => (string)v switch
+            {
+                "Game" => Loc.T("The game's orb"),
+                "Plus" => Loc.T("Green plus"),
+                _ => Loc.T("Portable Potion"),
+            };
         }
         else if (type == typeof(string) && entry.Description?.AcceptableValues is AcceptableValueList<string> list)
         {

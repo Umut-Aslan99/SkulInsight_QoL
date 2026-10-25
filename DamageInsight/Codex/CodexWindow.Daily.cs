@@ -118,7 +118,7 @@ public sealed partial class CodexWindow
         row.Icon.preserveAspect = true;
         row.Icon.rectTransform.Place(60, 12, 28, 28);
         row.Name = Label(bg.transform, "", 19, Ink, TextAlignmentOptions.TopLeft);
-        row.Name.rectTransform.Place(98, 4, 400, 26);
+        row.Name.rectTransform.Place(98, 2, 400, 30);
         row.Name.enableWordWrapping = false;
         row.Name.overflowMode = TextOverflowModes.Ellipsis;
         row.Detail = Label(bg.transform, "", 13, InkDim, TextAlignmentOptions.TopLeft);

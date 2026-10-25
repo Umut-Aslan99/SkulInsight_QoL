@@ -63,6 +63,11 @@
       <HintPath>$(SkulManaged)\Platforms.Dlc.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <!-- Steamworks.NET (namespace Steamworks): the achievements page reads Steam's state, percentages and icons. -->
+    <Reference Include="Platforms.Steam">
+      <HintPath>$(SkulManaged)\Platforms.Steam.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Platforms.Common" Publicize="true">
       <HintPath>$(SkulManaged)\Platforms.Common.dll</HintPath>
       <Private>false</Private>

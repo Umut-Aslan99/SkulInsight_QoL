@@ -34,6 +34,7 @@ public sealed partial class CodexWindow
         ForgetRunWidgets();
         ForgetDailyWidgets();
         ForgetRecordWidgets();
+        ForgetAchievementWidgets();
     }
 
     private void BuildSectionRow(RectTransform page)
@@ -74,7 +75,7 @@ public sealed partial class CodexWindow
         foreach (var pair in _sectionChips)
             pair.Value.SetOn(pair.Key == _nav.Section);
         bool you = _nav.Section == CodexSection.You, runs = you && _nav.Category == CodexCategory.Runs,
-            records = you && _nav.Category == CodexCategory.Records;
+            records = you && _nav.Category == CodexCategory.Records, achievements = you && _nav.Category == CodexCategory.Achievements;
         bool daily = _nav.Section == CodexSection.Daily;
         _listPanel?.gameObject.SetActive(!you && !daily);
         _dailyPanel?.gameObject.SetActive(daily);
@@ -83,9 +84,10 @@ public sealed partial class CodexWindow
             pair.Value.Background.gameObject.SetActive(daily);
             pair.Value.SetOn(pair.Key == _nav.Category);
         }
-        _youPanel?.gameObject.SetActive(you && !runs && !records);
+        _youPanel?.gameObject.SetActive(you && !runs && !records && !achievements);
         _runsPanel?.gameObject.SetActive(runs);
         _recordsPanel?.gameObject.SetActive(records);
+        _achievementsPanel?.gameObject.SetActive(achievements);
         foreach (var pair in _youTabs)
         {
             pair.Value.Background.gameObject.SetActive(you);
@@ -122,6 +124,14 @@ public sealed partial class CodexWindow
         if (id.StartsWith("you:"))
         {
             _nav.Go(new CodexNavigation.Place(CodexSection.You, CodexCategory.YouBuild, id));
+            OnNavigated();
+            return;
+        }
+        if (id.StartsWith(DamageInsight.Achievements.AchievementPages.Prefix, StringComparison.Ordinal))
+        {
+            // An achievement earned in a run (the run's page): its page in the Achievements tab.
+            _nav.Go(new CodexNavigation.Place(CodexSection.You, CodexCategory.Achievements, id));
+            _scrollToSelected = true;
             OnNavigated();
             return;
         }

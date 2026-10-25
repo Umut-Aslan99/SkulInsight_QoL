@@ -61,6 +61,15 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> CodexCleanFilms;
     internal static ConfigEntry<bool> CodexCompactFilms;
     internal static ConfigEntry<bool> CodexOpenOnYou;
+    internal static ConfigEntry<bool> AchievementNotice;
+    internal static ConfigEntry<bool> AchievementVeil;
+    internal static ConfigEntry<float> AchievementSound;
+    internal static ConfigEntry<bool> ClearViewEnabled, ClearViewOverRun, ClearViewWhenBusy, ClearViewProjectiles;
+    internal static ConfigEntry<float> ClearViewLowest;
+    internal static ConfigEntry<bool> ModManagerEnabled;
+    internal static ConfigEntry<bool> AutoUpdate;
+    internal static ConfigEntry<string> HealOrbLookSetting;
+    internal static ConfigEntry<bool> HealOrbReminder;
     internal static ConfigEntry<int> SaveSlotSelected;
     internal static ConfigEntry<int> SaveSlotCount;
     internal static ConfigEntry<bool> CodexMoveCounter;   // bound in developer builds only (null otherwise)
@@ -162,6 +171,28 @@ public class Plugin : BaseUnityPlugin
             "Show the remaining seconds on the skill, swap, quintessence, item and ability icons (83s, 2m+, 10m). Cooldown speed bonuses are included.");
         CooldownTickerOpacity = Config.Bind("Cooldown Ticker", "Opacity", 0.55f,
             "Opacity of the numbers (0-1).");
+        AutoUpdate = Config.Bind("General", "AutoUpdate", true,
+            "At every start, look on Thunderstore for a newer SkulInsight QoL and install it; it runs from the next start. In an " +
+            "r2modman profile its mod list gets the new version too. The old version is kept in BepInEx/DamageInsight/Mods/Backup.");
+        ModManagerEnabled = Config.Bind("Mods", "Enabled", true,
+            "A Mods button in the pause menu: your BepInEx mods (turn on / off, remove) and Thunderstore's Skul mods to install " +
+            "or update. It only goes online (Thunderstore) when you open it; changes need a restart of the game.");
+        HealOrbLookSetting = Config.Bind("Heal Orbs", "Look", "Potion", new ConfigDescription(
+            "How the healing orbs enemies drop look: Game (the game's purple orb), Potion (the game's Portable Potion, a bit " +
+            "bigger, with a green glow) or Plus (a big green +).", new AcceptableValueList<string>("Game", "Potion", "Plus")));
+        HealOrbReminder = Config.Bind("Heal Orbs", "Reminder", true,
+            "When a map is cleared while you are hurt and healing orbs are left on it, a short text above you says so (once per map).");
+        ClearViewEnabled = Config.Bind("Clear View", "Enabled", true,
+            "Make the effects of your skills, items and summons fainter, so enemy attacks stay easy to see with a strong build. " +
+            "Enemy attacks and their warnings are never faded.");
+        ClearViewLowest = Config.Bind("Clear View", "LowestOpacity", 0.4f, new ConfigDescription(
+            "How faint your effects get at most (0.1-1).", new AcceptableValueRange<float>(0.1f, 1f)));
+        ClearViewOverRun = Config.Bind("Clear View", "OverTheRun", true,
+            "Fade over the run: full in chapter 1, the lowest opacity from chapter 5 on (Dark Mirror chapters the same).");
+        ClearViewWhenBusy = Config.Bind("Clear View", "WhenBusy", true,
+            "Fade when many of your effects are on screen at once (from 8; the lowest opacity at 40), in any chapter.");
+        ClearViewProjectiles = Config.Bind("Clear View", "Projectiles", true,
+            "Your projectiles and your summons' fade too.");
         CodexEnabled = Config.Bind("Codex", "Enabled", true,
             "Record your progress for the Codex (enemies met and killed, gear found) and capture enemy portraits.");
         CodexKey = Config.Bind("Codex", "ToggleKey", new KeyboardShortcut(UnityEngine.KeyCode.K),
@@ -179,6 +210,17 @@ public class Plugin : BaseUnityPlugin
             "Boss films show only the boss: damage numbers, the effects of your skills and items, your summons and status effects on the boss (poison, burn, freeze, ...) are left out.");
         CodexOpenOnYou = Config.Bind("Codex", "OpenOnYou", true,
             "During a run, the Codex opens on the You page (your skulls, items, inscriptions and stats). Off: it opens on the page you read last.");
+        AchievementNotice = Config.Bind("Codex", "AchievementNotice", true,
+            "When this save slot earns an achievement, a small box with it slides down from the top of the screen for a few seconds " +
+            "(also for achievements your Steam account already has: each slot earns them on its own).");
+        AchievementSound = Config.Bind("Codex", "AchievementSound", 0.5f, new ConfigDescription(
+            "How loud the little chime of the achievement notice is (0 = no sound). The game's master and effects volume apply too.",
+            new AcceptableValueRange<float>(0f, 1f)));
+        AchievementVeil = Config.Bind("Codex", "VeilSecretAchievements", true,
+            "Achievements that give the story away stay veiled in the Codex until you earn them, meet what they are about, or hold " +
+            "the mouse button on them for 4 seconds.");
+        AchievementVeil.SettingChanged += (_, _) => DamageInsight.Codex.CodexWindow.Instance?.Invalidate();
+        DamageInsight.Achievements.AchievementStore.Folder = DamageInsight.Codex.CodexTracker.Folder;
         DamageInsight.Codex.CodexBalance.Bind(Config);
         SaveSlotSelected = Config.Bind("Save Slots", "Slot", 1,
             "The save slot that Play, Copy and Clear use. The panel on the right shows what it holds.");
@@ -249,6 +291,8 @@ public class Plugin : BaseUnityPlugin
 
         gameObject.AddComponent<DamageInsight.UI.CombatLogWindow>();
         gameObject.AddComponent<DamageInsight.UI.MiniLog>();
+        gameObject.AddComponent<DamageInsight.UI.ClearView>();
+        gameObject.AddComponent<DamageInsight.Mods.ModService>();
         gameObject.AddComponent<DamageInsight.UI.WhatsNew>();
         DamageInsight.Codex.CodexReset.RunIfRequested(); // a requested reset happens before anything reads the Codex
         DamageInsight.Codex.CodexMigrations.Run(); // before anything reads the saved moves and films
@@ -271,6 +315,7 @@ public class Plugin : BaseUnityPlugin
         bool inRun = player != null;
         DamageInsight.Codex.CodexTracker.Tick(player);
         Guard.Run("Run history", () => DamageInsight.History.RunJournal.Tick(player));
+        Guard.Run("Heal orbs", () => DamageInsight.History.HealOrbs.Tick(player));
         Guard.Run("Daily run", DamageInsight.Daily.DailyRun.Tick);
         if (inRun)
             SelfTest.CheckRun();
@@ -279,6 +324,10 @@ public class Plugin : BaseUnityPlugin
             DevTools.EnterTestMap();
         if (inRun && UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F8))
             StartCoroutine(ProbeAtEndOfFrame());
+        // F9: a small healing orb at your feet (to look at the healing orb look and the reminder without farming).
+        if (inRun && DevToolsEnabled.Value && UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F9))
+            Guard.Run("Dev: healing orb", () => Singleton<Service>.Instance.levelManager.DropPotion(
+                GameResources.CommonResource.instance.smallPotion, player.transform.position + UnityEngine.Vector3.up));
 
         if (DumpIcons.Value && !_iconDumpRunning && inRun)
         {

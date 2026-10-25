@@ -21,7 +21,7 @@ public static class PauseReturnPatch
     private static bool Prefix()
     {
         bool handled = false;
-        Guard.Run("Settings page (back)", () => handled = SettingsPage.HandleBack());
+        Guard.Run("Settings page (back)", () => handled = ModManagerWindow.HandleBack() || SettingsPage.HandleBack());
         return !handled;
     }
 }
