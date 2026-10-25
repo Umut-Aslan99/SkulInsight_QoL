@@ -182,11 +182,9 @@ summons (and your projectiles) fainter over the run and whenever many of them ar
 and their warnings are never faded. Settings section *Clear view*.
 
 ### Mods (new in 0.14)
-Pause (Esc) → **Mods**: Thunderstore's Skul mods on the left (search, categories, sorting), your mods on the right
-(Enabled / Disabled / Restart needed). Install (with the mods it needs), update, turn on or off, remove, and restart
-the game through Steam. Works on Windows, Linux / Steam Deck and Mac. In an r2modman profile the changes go into
-r2modman's mod list too. SkulInsight also updates itself at every start (setting *Update automatically*), also in
-r2modman and Gale profiles.
+Pause (Esc) → **Mods**: Thunderstore's Skul mods on the left (search, categories, sorting, details, their
+Thunderstore pages), your mods on the right (Enabled / Disabled). Install, update and turn mods on or off with your
+mod manager (r2modman, Gale): Thunderstore's rules don't allow a mod to update itself or other mods.
 
 ![Mods: Thunderstore's Skul mods on the left, your mods on the right](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/mods.png)
 

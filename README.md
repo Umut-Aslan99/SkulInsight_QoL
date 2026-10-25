@@ -13,7 +13,7 @@ run. Every feature can be switched off in the game: pause (Esc) → **SkulInsigh
 > has them (each slot earns its own, also the ones Steam already has), with tips, progress and veils over the story's
 > secrets. A small notice slides down from the top when you earn one. Daily runs get their own achievements (thumbs
 > up received, days in a row). **Clear view** fades your own effects so enemy attacks stay visible in strong builds,
-> and **Mods** in the pause menu installs and manages Thunderstore's Skul mods right in the game. **The mod now also runs on Skul's Mac version** ([guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
+> and **Mods** in the pause menu shows Thunderstore's Skul mods and yours right in the game. **The mod now also runs on Skul's Mac version** ([guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
 > The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
@@ -210,17 +210,12 @@ lowest opacity from chapter 5 on) and whenever many of them are on screen at onc
 are never faded.** Settings section *Clear view*: on/off, the lowest opacity (40 %), both ways of fading, projectiles.
 
 ### Mods (new in 0.14)
-Pause (Esc) → **Mods**: a mod manager in the game, on Windows, Linux / Steam Deck and Mac.
+Pause (Esc) → **Mods**: a mod browser in the game, on Windows, Linux / Steam Deck and Mac.
 - Left: **Thunderstore's Skul mods** with search, categories and sorting (last updated, downloads, likes, A–Z), each
-  with its icon, author, downloads, likes and age. Click one for its details and the mods it needs.
-- Right: **your mods** with Enabled / Disabled / Restart needed. **Install** (with what it needs), **Update**, **Turn on
-  / off**, **Remove** (into a backup folder; its settings stay), turn all on or off, open the mods folder.
-- **Restart game**: mods load when the game starts, so after a change the game closes and Steam starts it again.
-- Mods go where r2modman and Gale put them (`BepInEx/plugins/Owner-Name`). It only goes online (Thunderstore) when
-  you open it. In an r2modman profile, changes made here go into r2modman's mod list too; Restart game comes back
-  with the same profile.
-- **SkulInsight updates itself**: at every start it looks for its newest version on Thunderstore and installs it for
-  the next start, also in r2modman and Gale profiles (setting *Update automatically*).
+  with its icon, author, downloads, likes and age. Click one for its details, the mods it needs and its Thunderstore page.
+- Right: **your mods** with Enabled / Disabled, and the mods folder one click away.
+- Installing, updating and turning mods on or off is your mod manager's job (r2modman, Gale): Thunderstore's rules
+  don't allow a mod to update itself or other mods. It only goes online (Thunderstore) when you open it.
 
 ![Mods: Thunderstore's Skul mods on the left, your mods on the right](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/mods.png)
 
@@ -325,7 +320,6 @@ The same settings are in the settings file (created on the first start):
 | Descriptions | HoldToShow / HoldKey | on / Shift | Numbers in the game's boxes only while the key is held |
 | Descriptions | Compact | on | One line per attack in the game's boxes (off: every hit with its formula) |
 | General | WhatsNew | on | Show what's new once after an update |
-| General | AutoUpdate | on | At every start, install a newer SkulInsight from Thunderstore (runs from the next start; r2modman's list follows) |
 | General | MenuSounds | on | The mod's buttons play the game's menu sounds (hover, click) |
 | General | CrashReports | on | A report per game session in `BepInEx/DamageInsight/CrashReports` (newest 20 kept) |
 | General | RunHistory / RunHistoryKeep | on / 100 | Keep every run in the Codex; how many of the newest keep all their details |
@@ -338,7 +332,7 @@ The same settings are in the settings file (created on the first start):
 | Cooldown Ticker | Enabled / Opacity | on / 0.55 | Seconds on HUD icons |
 | Clear View | Enabled / LowestOpacity | on / 0.4 | Your own effects get fainter so enemy attacks stay visible |
 | Heal Orbs | Look / Reminder | Potion / on | How healing orbs look (Game, Potion, Plus); a text when some are left on a cleared map |
-| Mods | Enabled | on | The Mods button in the pause menu (the mod manager) |
+| Mods | Enabled | on | The Mods button in the pause menu (the mod browser) |
 | Clear View | OverTheRun / WhenBusy / Projectiles | on / on / on | Fade by chapter, when many effects are on screen, and your projectiles too |
 | Codex | Enabled / ToggleKey | on / K | The Codex book |
 | Codex | ShowMoveHints | on | Under a beaten boss's moves: when it uses them |

@@ -64,3 +64,10 @@ agrees; the Dark Mirror page moves to 0.16 and Rewards to 0.17.
 > nothing is downloaded without a click, and when the game runs from r2modman/Gale it would only show the list (or
 > warn). Would a package with this feature be allowed on Thunderstore? Anything you'd want it to do or avoid (for
 > example only showing mods, or a separate package)?
+
+## 0.14.1: Thunderstore's rules (2026-10-25)
+Thunderstore's moderator Robyn: "We rely on mod managers to do updating, plugins updating themselves or other packages
+is not permitted" (0.14.0 was deactivated). Since 0.14.1 the Thunderstore build (`-p:IsThunderstoreBuild=true`,
+define THUNDERSTORE, release/package.ps1) leaves out the self-update, installing / updating / removing / switching
+mods and the restart: the window lists Thunderstore's Skul mods and yours, with details and a button to each mod's
+Thunderstore page. package.ps1 refuses a DLL that still holds the updater or installer. Debug builds keep everything.

@@ -6,13 +6,22 @@
     <Product>SkulInsight QoL</Product>
     <Description>Real damage numbers, a combat log with per-hit calculations and build planning for Skul: The Hero Slayer.</Description>
     <Authors>DocRun</Authors>
-    <Version>0.14.0</Version>
+    <Version>0.14.1</Version>
     <BepInExPluginGuid>docrun.skulinsight_qol</BepInExPluginGuid>
   </PropertyGroup>
 
   <!-- Developer tools (dev menu, test room, gear scan, diagnostics) only exist in Debug builds. -->
   <PropertyGroup Condition="'$(Configuration)' != 'Release'">
     <DefineConstants>$(DefineConstants);DEV</DefineConstants>
+  </PropertyGroup>
+  <!--
+    Thunderstore's build (release/package.ps1 passes -p:IsThunderstoreBuild=true). Thunderstore's rules (moderator
+    Robyn, 2026-10-25): "We rely on mod managers to do updating, plugins updating themselves or other packages is not
+    permitted". THUNDERSTORE leaves out every piece of code that changes files: the self-update, installing, updating,
+    removing and switching other mods, and the restart. The Mods window then only shows mods and links their pages.
+  -->
+  <PropertyGroup Condition="'$(IsThunderstoreBuild)' == 'true'">
+    <DefineConstants>$(DefineConstants);THUNDERSTORE</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <Compile Remove="Tools\Dev\**" />

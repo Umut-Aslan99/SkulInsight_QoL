@@ -171,12 +171,19 @@ public class Plugin : BaseUnityPlugin
             "Show the remaining seconds on the skill, swap, quintessence, item and ability icons (83s, 2m+, 10m). Cooldown speed bonuses are included.");
         CooldownTickerOpacity = Config.Bind("Cooldown Ticker", "Opacity", 0.55f,
             "Opacity of the numbers (0-1).");
+#if !THUNDERSTORE
         AutoUpdate = Config.Bind("General", "AutoUpdate", true,
             "At every start, look on Thunderstore for a newer SkulInsight QoL and install it; it runs from the next start. In an " +
             "r2modman profile its mod list gets the new version too. The old version is kept in BepInEx/DamageInsight/Mods/Backup.");
+#endif
         ModManagerEnabled = Config.Bind("Mods", "Enabled", true,
+#if THUNDERSTORE
+            "A Mods button in the pause menu: Thunderstore's Skul mods and yours side by side, with search, details and their " +
+            "Thunderstore pages. It only goes online (Thunderstore) when you open it.");
+#else
             "A Mods button in the pause menu: your BepInEx mods (turn on / off, remove) and Thunderstore's Skul mods to install " +
             "or update. It only goes online (Thunderstore) when you open it; changes need a restart of the game.");
+#endif
         HealOrbLookSetting = Config.Bind("Heal Orbs", "Look", "Potion", new ConfigDescription(
             "How the healing orbs enemies drop look: Game (the game's purple orb), Potion (the game's Portable Potion, a bit " +
             "bigger, with a green glow) or Plus (a big green +).", new AcceptableValueList<string>("Game", "Potion", "Plus")));

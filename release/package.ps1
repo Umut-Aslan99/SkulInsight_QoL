@@ -15,9 +15,17 @@ $name = "SkulInsight_QoL"
 $version = ($project.Project.PropertyGroup | Where-Object { $_.Version } | Select-Object -First 1).Version
 if (-not $version) { throw "No <Version> in DamageInsight.csproj" }
 
-dotnet build (Join-Path $root "DamageInsight/DamageInsight.csproj") -c Release -p:DeployToSkul=false --nologo -v quiet
+# Thunderstore's build: no self-update, no installing / updating / removing other mods (Thunderstore's rules, 2026-10-25).
+dotnet build (Join-Path $root "DamageInsight/DamageInsight.csproj") -c Release -p:DeployToSkul=false -p:IsThunderstoreBuild=true --nologo -v quiet
 if ($LASTEXITCODE -ne 0) { throw "Release build failed" }
 $dll = Join-Path $root "DamageInsight/bin/Release/DamageInsight.dll"
+$bytes = [IO.File]::ReadAllBytes($dll)
+# The DLL's strings are UTF-16 at even or odd offsets, its names UTF-8: search all three readings.
+$text = [Text.Encoding]::Unicode.GetString($bytes) + [Text.Encoding]::Unicode.GetString($bytes, 1, $bytes.Length - 1) + [Text.Encoding]::UTF8.GetString($bytes)
+foreach ($banned in @("api/experimental/package", "UpdateSelfLater", "InstallAll", "restart.cmd", "-applaunch")) {
+    if ($text.Contains($banned)) { throw "The Thunderstore build still contains '$banned' (IsThunderstoreBuild not applied?)" }
+}
+Write-Host "Thunderstore build checked: no self-update, no installer"
 
 $stage = Join-Path $PSScriptRoot "out/stage"
 if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }

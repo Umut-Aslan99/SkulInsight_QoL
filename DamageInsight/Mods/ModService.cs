@@ -59,6 +59,7 @@ public sealed class ModService : MonoBehaviour
     {
         Instance = this;
         Manager = ModFolders.ManagerOf(Paths.BepInExRootPath);
+#if !THUNDERSTORE
         try
         {
             int cleaned = ModFolders.CleanUp(Paths.BepInExRootPath, Backup);
@@ -69,13 +70,27 @@ public sealed class ModService : MonoBehaviour
         {
             Plugin.Log.LogWarning($"Mods: clean-up of the last session failed: {e.Message}");
         }
+#endif
         Rescan();
         foreach (var mod in Installed)
             AtStart[mod.Id] = (mod.Enabled && !mod.Removed, mod.Version);
         LoadListCache();
+#if !THUNDERSTORE
         if (Plugin.AutoUpdate?.Value != false && WhyNoSelfUpdate() == null)
             StartCoroutine(UpdateSelfLater());
+#endif
     }
+
+#if THUNDERSTORE
+    /// <summary>
+    /// Thunderstore's build: the window only shows mods (Thunderstore's rules: "plugins updating themselves or other
+    /// packages is not permitted"); mod managers install and update.
+    /// </summary>
+    public static readonly bool CanChange = false;
+#else
+    /// <summary>The window can install, update, remove and switch mods (not in Thunderstore's build).</summary>
+    public static readonly bool CanChange = true;
+#endif
 
     // ------------------------------------------------------------------ SkulInsight updates itself
 
@@ -86,13 +101,16 @@ public sealed class ModService : MonoBehaviour
     /// <summary>Why SkulInsight can't update itself here, or null.</summary>
     public static string WhyNoSelfUpdate()
     {
-#if DEV
+#if THUNDERSTORE
+        return Loc.T("Thunderstore's Skul mods and yours. Install, update and turn mods on or off with your mod manager (r2modman, Gale).");
+#elif DEV
         return Loc.T("This is a developer build: it isn't replaced by Thunderstore's version.");
 #else
         return File.Exists(typeof(Plugin).Assembly.Location) ? null : Loc.T("SkulInsight's file wasn't found.");
 #endif
     }
 
+#if !THUNDERSTORE
     /// <summary>Every start (setting General/AutoUpdate): a little after the game is up, so the start isn't slower.</summary>
     private IEnumerator UpdateSelfLater()
     {
@@ -101,11 +119,16 @@ public sealed class ModService : MonoBehaviour
     }
 
     /// <summary>The Mods window's Update on SkulInsight's own row.</summary>
+#endif
     public void UpdateSelfNow()
     {
+#if !THUNDERSTORE
         if (!SelfUpdating && SelfUpdated == null)
             StartCoroutine(UpdateSelf(automatic: false));
+#endif
     }
+
+#if !THUNDERSTORE
 
     private IEnumerator UpdateSelf(bool automatic)
     {
@@ -186,6 +209,7 @@ public sealed class ModService : MonoBehaviour
                     try { File.WriteAllBytes(Path.Combine(folder, entry.Path), entry.Data); } catch (Exception) { /* only for show */ }
         Record(y => R2modmanProfile.SetVersion(y, ThunderstoreCatalog.OwnPackage, version), "SkulInsight " + version);
     }
+#endif
 
     /// <summary>The profile's mod list (r2modman, Thunderstore Mod Manager) is kept with the changes made here.</summary>
     public static bool ManagerListKept => Manager != null && R2modmanProfile.ListOf(Paths.BepInExRootPath) != null;
@@ -277,6 +301,9 @@ public sealed class ModService : MonoBehaviour
 
     public static void SetEnabled(InstalledMod mod, bool enabled)
     {
+#if THUNDERSTORE
+        return;
+#else
         if (IsThisMod(mod))
             return;
         try
@@ -293,10 +320,14 @@ public sealed class ModService : MonoBehaviour
             Plugin.Log.LogWarning($"Mods: {mod.Id} not changed: {e}");
         }
         Rescan();
+#endif
     }
 
     public static void Remove(InstalledMod mod)
     {
+#if THUNDERSTORE
+        return;
+#else
         if (IsThisMod(mod))
             return;
         try
@@ -313,6 +344,7 @@ public sealed class ModService : MonoBehaviour
             Plugin.Log.LogWarning($"Mods: {mod.Id} not removed: {e}");
         }
         Rescan();
+#endif
     }
 
     // ------------------------------------------------------------------ Thunderstore
@@ -464,11 +496,14 @@ public sealed class ModService : MonoBehaviour
 
     public void Install(Package package)
     {
+#if !THUNDERSTORE
         if (Busy || package == null)
             return;
         StartCoroutine(InstallAll(InstallOrder(package, new List<string>())));
+#endif
     }
 
+#if !THUNDERSTORE
     private IEnumerator InstallAll(List<Package> order)
     {
         Busy = true;
@@ -514,6 +549,7 @@ public sealed class ModService : MonoBehaviour
         Busy = false;
         Rescan();
     }
+#endif
 
     // ------------------------------------------------------------------ restart
 
@@ -527,6 +563,9 @@ public sealed class ModService : MonoBehaviour
     /// </summary>
     public static bool Restart()
     {
+#if THUNDERSTORE
+        return false;
+#else
         if (CannotRestart() != null)
             return false;
         try
@@ -565,7 +604,10 @@ public sealed class ModService : MonoBehaviour
             Changed();
             return false;
         }
+#endif
     }
+
+#if !THUNDERSTORE
 
     /// <summary>Steam's program on Windows (the registry's SteamExe), or null.</summary>
     private static string SteamExe()
@@ -622,6 +664,7 @@ public sealed class ModService : MonoBehaviour
         $"while kill -0 {pid} 2>/dev/null && [ $n -lt 120 ]; do sleep 0.5; n=$((n+1)); done\n" +
         "sleep 2\n" +
         $"open \"{SteamGameUrl}\" 2>/dev/null || xdg-open \"{SteamGameUrl}\"\n";
+#endif
 
     public static void OpenPluginsFolder()
     {

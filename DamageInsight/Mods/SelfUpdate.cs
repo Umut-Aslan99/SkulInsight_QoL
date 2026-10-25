@@ -1,3 +1,5 @@
+// Not in Thunderstore's build: plugins updating themselves is not permitted there (see DamageInsight.csproj).
+#if !THUNDERSTORE
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -102,3 +104,4 @@ public static class SelfUpdate
         return string.Join(".", parts.Take(3));
     }
 }
+#endif

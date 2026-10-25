@@ -281,7 +281,7 @@ public sealed class ModManagerWindow : MonoBehaviour
     {
         float y = Height - 76;
         float x = 20;
-        foreach (var (label, on) in new[] { (Loc.T("Turn all on"), true), (Loc.T("Turn all off"), false) })
+        foreach (var (label, on) in ModService.CanChange ? new[] { (Loc.T("Turn all on"), true), (Loc.T("Turn all off"), false) } : new (string, bool)[0])
         {
             float cw = UiKit.ChipWidth(label) + 24;
             var chip = new UiKit.Chip(_window, label, x, y + 8, cw, () => SetAll(on));
@@ -304,7 +304,9 @@ public sealed class ModManagerWindow : MonoBehaviour
         float restartWidth = UiKit.ChipWidth(restart) + 40;
         _restartChip = new UiKit.Chip(_window, restart, right - restartWidth, y + 8, restartWidth, AskRestart, Orange);
         _restartChip.Background.rectTransform.sizeDelta = new Vector2(restartWidth, 40);
-        right -= restartWidth + 8;
+        _restartChip.Background.gameObject.SetActive(ModService.CanChange);
+        if (ModService.CanChange)
+            right -= restartWidth + 8;
         string folder = Loc.T("Open mods folder");
         float folderWidth = UiKit.ChipWidth(folder) + 24;
         var open = new UiKit.Chip(_window, folder, right - folderWidth, y + 8, folderWidth, ModService.OpenPluginsFolder);
@@ -317,12 +319,14 @@ public sealed class ModManagerWindow : MonoBehaviour
     private void Draw()
     {
         string manager = ModService.Manager;
-        _subtitle.text = manager != null && ModService.ManagerListKept
+        _subtitle.text = !ModService.CanChange
+            ? Loc.T("Thunderstore's Skul mods and yours. Install, update and turn mods on or off with your mod manager (r2modman, Gale).")
+            : manager != null && ModService.ManagerListKept
             ? Loc.F("The game runs from your {0} profile: what you change here goes into {0}'s mod list too.", manager)
             : manager != null
             ? $"<color=#F2A93B>{Loc.F("The game runs from a {0} profile: installs from here go past {0}'s own list.", manager)}</color>"
             : Loc.T("Thunderstore's Skul mods, installed into BepInEx/plugins the way mod managers do. Changes need a restart of the game.");
-        bool restartNeeded = ModService.AnyRestartNeeded;
+        bool restartNeeded = ModService.CanChange && ModService.AnyRestartNeeded;
         _restartPill.gameObject.SetActive(restartNeeded);
         _restartChip.SetOn(restartNeeded);
         _status.text = ModService.Busy || ModService.Status.Length > 0 ? ModService.Status
@@ -412,6 +416,10 @@ public sealed class ModManagerWindow : MonoBehaviour
         string installed = ModService.InstalledVersion(p);
         if (ThunderstoreCatalog.IsLoader(p.FullName))
             Action(row.Action, Loc.T("Mod loader"), PanelEdge, false);
+        else if (!ModService.CanChange)
+            // Thunderstore's build: nothing is installed from here; the button opens the details and the mod's page.
+            Action(row.Action, own ? Loc.T("This mod") : installed != null ? Loc.T("Installed") : Loc.T("Thunderstore page"),
+                own ? Violet : installed != null ? (ModService.UpdateAvailable(p) ? Orange : PanelEdge) : Blue, true);
         else if (own && ModService.SelfUpdated != null)
             Action(row.Action, Loc.T("Restart needed"), Orange, false);
         else if (own)
@@ -486,12 +494,12 @@ public sealed class ModManagerWindow : MonoBehaviour
         float bw = row.BadgeText.GetPreferredValues(row.BadgeText.text).x + 24;
         row.Badge.rectTransform.sizeDelta = new Vector2(bw, 24);
 
-        bool canChange = !self && !mod.Removed && !ModService.Busy;
-        row.Toggle.Background.gameObject.SetActive(!self && !mod.Removed && mod.HasDlls);
-        row.Remove.Background.gameObject.SetActive(!self && !mod.Removed);
+        bool canChange = ModService.CanChange && !self && !mod.Removed && !ModService.Busy;
+        row.Toggle.Background.gameObject.SetActive(ModService.CanChange && !self && !mod.Removed && mod.HasDlls);
+        row.Remove.Background.gameObject.SetActive(ModService.CanChange && !self && !mod.Removed);
         Action(row.Toggle, mod.Enabled ? Loc.T("Turn off") : Loc.T("Turn on"), mod.Enabled ? PanelEdge : Green, canChange);
         Action(row.Remove, Loc.T("Remove"), Red, canChange);
-        bool update = package != null && !self && ModService.UpdateAvailable(package);
+        bool update = ModService.CanChange && package != null && !self && ModService.UpdateAvailable(package);
         row.Update.Background.gameObject.SetActive(update && !mod.Removed);
         Action(row.Update, Loc.T("Update"), Orange, update && !ModService.Busy);
     }
@@ -605,6 +613,11 @@ public sealed class ModManagerWindow : MonoBehaviour
     {
         if (package == null || ModService.Busy)
             return;
+        if (!ModService.CanChange)
+        {
+            ShowDetails(package); // Thunderstore's build: details and the mod's page only
+            return;
+        }
         if (package.FullName.Equals(ThunderstoreCatalog.OwnPackage, StringComparison.OrdinalIgnoreCase))
         {
             // SkulInsight updates itself (or, in a developer build / a mod manager's profile, says why not).
@@ -696,7 +709,7 @@ public sealed class ModManagerWindow : MonoBehaviour
         bool installed = ModService.InstalledVersion(package) != null;
         bool loader = ThunderstoreCatalog.IsLoader(package.FullName);
         var buttons = new List<(string, Color, Action)>();
-        if ((own ? ModService.UpdateAvailable(package) : !loader && (!installed || ModService.UpdateAvailable(package))) && !ModService.Busy)
+        if (ModService.CanChange && (own ? ModService.UpdateAvailable(package) : !loader && (!installed || ModService.UpdateAvailable(package))) && !ModService.Busy)
             buttons.Add((installed ? Loc.T("Update") : Loc.T("Install"), Green, () => { CloseCard(); StoreAction(package); }));
         buttons.Add((Loc.T("Thunderstore page"), Blue, () => Application.OpenURL(package.Url)));
         buttons.Add((Loc.T("Close"), PanelEdge, CloseCard));

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.14.1 (the Thunderstore version follows Thunderstore's rules)
+
+- 0.14.0 was taken off Thunderstore: "plugins updating themselves or other packages is not permitted" there; mod
+  managers (r2modman, Gale) install and update mods. So in this version:
+  - **SkulInsight doesn't update itself** any more (and the setting *Update automatically* is gone). r2modman and Gale
+    update it as before.
+  - **Mods** (pause menu) shows Thunderstore's Skul mods and yours side by side, with search, categories, sorting,
+    each mod's details and a button to its Thunderstore page; it doesn't download, install, update, remove or switch
+    mods (do that in your mod manager).
+- Everything else is 0.14.0 as below.
+
 ## 0.14.0 (achievements; macOS)
 
 - **Achievements** (Codex → You → **Achievements**): all 101 of Skul's Steam achievements as **this save slot** has

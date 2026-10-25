@@ -33,7 +33,11 @@ public sealed class WhatsNew : MonoBehaviour
         Loc.T("Achievements (Codex, You, Achievements): all of Skul's achievements as this save slot has them, with tips, your progress and veils over the story's secrets. Each slot earns its own, also the ones Steam already has."),
         Loc.T("A small notice slides down from the top of the screen when your slot earns an achievement."),
         Loc.T("Clear view: your own effects get fainter over the run and when the screen gets busy, so enemy attacks stay easy to see (settings: Clear view)."),
+#if THUNDERSTORE
+        Loc.T("Mods (pause menu): your mods and Thunderstore's Skul mods side by side, with search, details and their Thunderstore pages."),
+#else
         Loc.T("Mods (pause menu): your mods and Thunderstore's Skul mods side by side: install, update, turn on or off, remove, and restart the game from there."),
+#endif
         Loc.T("Healing orbs are easier to see (as a Portable Potion or a green plus), a short text says when some are left, and your runs count the ones you missed."),
         Loc.T("Daily runs: SkulInsight's own achievements for thumbs up received and days in a row. Record bonuses for most damage, gold and kills now need a boss defeated."),
         Loc.T("macOS: the mod now runs on Skul's Mac version, set up by one Terminal script."),

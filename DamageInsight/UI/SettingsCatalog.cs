@@ -227,8 +227,13 @@ public static class SettingsCatalog
         ["Cooldown Ticker/Enabled"] = On(Loc.N("Show seconds"),
             Loc.N("Show the remaining seconds on the skill, swap, quintessence, item and ability icons (83s, 2m+, 10m). Cooldown speed bonuses are included.")),
         ["Cooldown Ticker/Opacity"] = Number(Loc.N("Opacity"), 0, 1, 0.05, Unit.Percent, Loc.N("How strongly the seconds are drawn.")),
+#if THUNDERSTORE
+        ["Mods/Enabled"] = On(Loc.N("Mod manager"),
+            Loc.N("A Mods button in the pause menu: Thunderstore's Skul mods and yours side by side, with search, details and their Thunderstore pages. It only goes online (Thunderstore) when you open it.")),
+#else
         ["Mods/Enabled"] = On(Loc.N("Mod manager"),
             Loc.N("A Mods button in the pause menu: your BepInEx mods (turn on / off, remove) and Thunderstore's Skul mods to install or update. It only goes online (Thunderstore) when you open it; changes need a restart of the game.")),
+#endif
         ["Heal Orbs/Look"] = On(Loc.N("Healing orb look"),
             Loc.N("How the healing orbs enemies drop look: the game's purple orb, the game's Portable Potion (a bit bigger, with a green glow) or a big green plus. The run history counts the ones you leave behind while hurt.")),
         ["Heal Orbs/Reminder"] = On(Loc.N("Healing orb reminder"),
