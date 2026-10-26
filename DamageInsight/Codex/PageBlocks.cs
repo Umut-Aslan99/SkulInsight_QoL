@@ -41,6 +41,13 @@ public static class PageBlocks
     public static string Bar(string label, string value, double fraction) =>
         Row("bar", label, value, Clamp01(fraction).ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
 
+    /// <summary>
+    /// A meter (0.15 kill quests): a square that fills up from the bottom (0..1) with <paramref name="center"/> in its
+    /// middle and <paramref name="text"/> next to it.
+    /// </summary>
+    public static string Meter(string center, string text, double fraction) =>
+        Row("meter", center, text, Clamp01(fraction).ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
+
     /// <summary>A line with a small icon in front (the run timeline).</summary>
     public static string Line(string icon, string text) => Row("line", icon, text);
 
@@ -49,7 +56,7 @@ public static class PageBlocks
 
     private static double Clamp01(double v) => double.IsNaN(v) ? 0 : v < 0 ? 0 : v > 1 ? 1 : v;
 
-    public enum Kind { Text, Tile, Icons, Bar, Line }
+    public enum Kind { Text, Tile, Icons, Bar, Line, Meter }
 
     public sealed class Item
     {
@@ -58,7 +65,7 @@ public static class PageBlocks
         public string Icon = "";
         /// <summary>Icons: the (icon, link) pairs.</summary>
         public List<(string icon, string link)> Icons = new();
-        /// <summary>Bar: the value text and how full the bar is.</summary>
+        /// <summary>Bar: the value text and how full the bar is. Meter: the square's middle and how full it is.</summary>
         public string Value = "";
         public double Fill;
     }
@@ -144,6 +151,12 @@ public static class PageBlocks
                 {
                     Kind = Kind.Bar, Text = f[1], Value = f[2],
                     Fill = double.TryParse(f[3], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double v) ? Clamp01(v) : 0,
+                };
+            case "meter" when f.Length >= 4:
+                return new Item
+                {
+                    Kind = Kind.Meter, Value = f[1], Text = f[2],
+                    Fill = double.TryParse(f[3], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double m) ? Clamp01(m) : 0,
                 };
             case "line" when f.Length >= 3:
                 return new Item { Kind = Kind.Line, Icon = f[1], Text = f[2] };

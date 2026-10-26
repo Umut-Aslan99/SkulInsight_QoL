@@ -1,5 +1,60 @@
 # Changelog
 
+## 0.15.0 (rewards, six daily boards)
+
+- **Rewards** (Codex → You → **Rewards**), the first feature that changes the game's balance, a little. On by
+  default; the new settings section **Rewards** is the first on the settings page and turns it all off (everything
+  earned is kept). Everything belongs to the save slot and never counts in daily runs.
+  - **Achievement rewards:** a lasting bonus for each of the 103 achievements, by theme. Boss beaten: +3 % damage to
+    that boss (all its phases); without getting hit: +10 % more (multiplied: +13.3 %; The Strongest only in the Dark
+    Mirror). Dark Mirror levels 0-10: physical and magic attack +1 % each. Legendary skulls: +0.5 % each by type
+    (Power: physical attack, Speed: attack speed, Balance: magic attack). Danger (dying, traps): damage taken -1 %.
+    Shops: gold gained +1 %. The castle and the world: movement speed +1 %. Dark abilities and inscriptions: cooldown
+    speed +1 %. The hidden boss's trail: critical chance +1 %. Special: 100 adventurers +5 % damage to adventurers,
+    The Skeleton King +10 % while holding Little Bone, Cold-Blooded critical damage +3 %, Rookies Welcome healing
+    received +5 %. Added to your stats like the Witch's (the You page and the descriptions include them); the combat
+    log's calculation names them "Achievement rewards". Achievements taken over from Steam count too.
+  - Each achievement's page has a **Reward** section; the achievement notice shows the reward on a second line.
+  - **Coins:** a legendary item or skull broken or left behind on a map gives its coin (a skull raised with bones gives
+    its first form's; shop wares and summoned gear don't count). Every 5th win over one adventurer gives its coin,
+    for its rare legendary item (The Chosen Warrior's Armor, Cleric's Bible, Hero's Circlet, Mage's Badge, Hunter's
+    Arrow, Thief's Twin Swords). A run that ends with Omen items gives an Omen coin each, for an Omen item of your
+    choice (one you have met). **Summon** (Rewards tab, or the gear's page; Omen items' pages for Omen coins) drops the
+    gear at your feet, in a run, once the map is cleared: one summon per run for each kind of coin (legendary skull,
+    legendary item, adventurer, Omen). A summon takes 3 coins of that gear (or 3 Omen coins; setting Coins per
+    summon); an adventurer's coin is enough on its own. The adventurers' items are summoned in Dark Mirror runs
+    (where they belong).
+  - **Kill quests:** every normal enemy has an endless quest: about two runs' worth of kills of it (at least 10, at
+    most 150) pays 25 dark quartz and 50 gold where it fell; dark enemies count double; a full run finishes about 21
+    (about 535 dark quartz and 1,075 gold; the Kill quests page shows the estimate). Enemy pages show the quest as a
+    square that fills up, the reward in its middle
+    (adventurers: their coin's progress).
+  - **Inscription activations:** completing an inscription in a run (its last step) earns one, paid when the run
+    ends, won or lost; in a later run "+1 for this run" makes an inscription you have count one more until that run
+    ends, like the Dark Mirror's banners (not Sun and Moon, Masterpiece, Sin or Omen); two per run, each inscription
+    once.
+  - The run history marks runs played with rewards on, with that run's quests and coins.
+  - Settings: Rewards, Achievement rewards, Coins, Kill quests, Inscription activations, Summons per run (1 of each kind),
+    Coins per summon (3), Activations per run (2), Quest length (2 runs), Quest dark quartz (25), Quest gold (50), Adventurer wins per coin (5).
+- **Daily runs: six boards a day.** Normal, the Dark Mirror at a random level (0-10, the same for everyone that day)
+  and Dark Mirror 10, each with and without the DLC. Each has its own seed, its own daily and monthly boards and one
+  try; the Daily page picks the board with chips (and a DLC chip). The DLC boards bring the Mythology Pack's skulls
+  and items and are only playable for players who own it (anyone can watch them); the boards without DLC are the
+  same run for owners too (no DLC gear, no DLC map events). A streak counts any board. 0.14 keeps playing the
+  Normal board without DLC.
+- **Daily runs: the same start for everyone.** The castle's Fox and Ogre give everyone the same gifts and the Holy
+  Grail the same blessing (they were rolled before the day's seed was set). A Dark Mirror daily has the Darktech
+  machines up to the day's level only (a Dark Mirror 5 day has no Darktech of levels 6-10), and the daily slot's
+  Codex is fully open. The Dark Mirror's first-time scenes count as seen in the daily slot, like in a save that
+  cleared it: no Dwarf Engineer talks or machine intros, and the skull machine of Dark Mirror 7 and up works at once
+  (it stayed off until its intro ran when your own slot had never been that far).
+- The Daily page has a **Shoutout** to Tythos and his community, who use and promote the mod, with a link to his
+  Bilibili page.
+- Fixes: the Daily page said "No connection to the daily run server" after every finished run (the server's answer
+  to a start sent again was taken for a lost connection); a second board played on the same day now reloads the
+  castle for its own seed too; characters the game's fonts don't have (×, →, •) are replaced by ones they have.
+- **What's new** lists 0.15, and one line about 0.14 for players who come straight from 0.13.
+
 ## 0.14.1 (the Thunderstore version follows Thunderstore's rules)
 
 - 0.14.0 was taken off Thunderstore: "plugins updating themselves or other packages is not permitted" there; mod

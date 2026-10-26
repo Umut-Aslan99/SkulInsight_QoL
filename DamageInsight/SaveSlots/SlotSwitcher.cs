@@ -240,6 +240,7 @@ internal static class SlotSwitcher
         {
             CodexTracker.ForgetSlot();
             DamageInsight.Achievements.AchievementStore.ForgetSlot();
+            DamageInsight.Rewards.RewardStore.ForgetSlot();
             CodexAnimations.ForgetSlot();
             CodexPortraits.ForgetSlot();
             MoveHints.ForgetSlot();

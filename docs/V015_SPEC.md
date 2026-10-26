@@ -176,7 +176,8 @@ movement +8 %, cooldowns +9 %, critical chance +4 %, critical damage +3 %, heali
   player, the game's own coin sounds). The step is paced in runs like the Codex stars: **2 runs' worth** of that enemy
   (`KillsPerRun` from the level analysis), at least 10, at most 150 kills, so a footman and a rare enemy pay about
   equally often.
-- Reward: **10 dark quartz + 30 gold** (gold only counts inside a run). Dark enemies count ×2 toward the step.
+- Reward: **25 dark quartz + 50 gold** [Umut 2026-10-26, was 10 + 30: "I want the rewards to be felt"; a full run
+  ≈ 21 quests ≈ 535 dark quartz and 1,075 gold] (gold only counts inside a run). Dark enemies count ×2 toward the step.
   A casual run finishes 5-10 quests: 50-100 dark quartz and 150-300 gold, about one extra shop item [Umut: yes].
 - The enemy's page shows "Quest 37/50: 10 dark quartz, 30 gold · done 4 times".
 
@@ -193,7 +194,7 @@ movement +8 %, cooldowns +9 %, critical chance +4 %, critical damage +3 %, heali
 - **Rewards / Enabled** (on): everything below; the help text says it changes the game's balance and is off in
   daily runs.
 - Achievement rewards (on) · Legendary and adventurer coins (on) · Kill quests (on) · Summons per run (1, 0-3) ·
-  Quest step in runs (2, 0.5-10) · Quest dark quartz (10) · Quest gold (30).
+  Quest step in runs (2, 0.5-10) · Quest dark quartz (25) · Quest gold (50).
 - Everything earned is kept when switched off and comes back when switched on.
 
 ## D. Where the player sees it

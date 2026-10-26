@@ -5,15 +5,20 @@ item and skull descriptions with your actual damage, a combat log that explains 
 enemy, boss and piece of gear, a history of all your runs, Skul's achievements for every save slot, and an optional
 daily run with online leaderboards.
 
-A quality-of-life mod: it changes nothing about the game's balance. It shows information the game already uses
-internally, keeps several save slots side by side if you use them, and only goes online if you turn on the daily
-run. Every feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
+A quality-of-life mod: it shows information the game already uses internally, keeps several save slots side by
+side if you use them, and only goes online if you turn on the daily run. Its only change to the game's balance is
+the **rewards** (0.15): optional, on by default, and one switch at the top of the settings turns them off. Every
+feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.14: achievements.** Codex → You → **Achievements** shows all of Skul's achievements as your save slot
-> has them (each slot earns its own, also the ones Steam already has), with tips, progress and veils over the story's
-> secrets. A small notice slides down from the top when you earn one. Daily runs get their own achievements (thumbs
-> up received, days in a row). **Clear view** fades your own effects so enemy attacks stay visible in strong builds,
-> and **Mods** in the pause menu shows Thunderstore's Skul mods and yours right in the game. **The mod now also runs on Skul's Mac version** ([guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
+> **Version 0.15: rewards.** Every achievement of your save slot now gives a small lasting bonus that fits it (more
+> damage to a boss you beat, more still without getting hit; attack, speed, gold, ...), legendary gear you break gives
+> coins that summon it in a later run, adventurers and Omen items give coins too, every normal enemy has an endless
+> kill quest paying dark quartz and gold, and completed inscriptions earn activations. All of it is optional
+> (Codex → You → **Rewards**): one switch at the top of the settings turns it off, and daily runs never use it.
+> **Daily runs** now have six boards a day: Normal, the Dark Mirror at a random level and Dark Mirror 10, each with
+> and without the DLC, and everyone gets the same castle gifts and blessing.
+> New in 0.14: Skul's **achievements** for every save slot with a small notice, **Clear view**, **Mods** in the pause
+> menu (Thunderstore's Skul mods and yours), easier-to-see healing orbs, and the **Mac version** ([guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
 > The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
 > Please report bugs and ideas (see [Feedback](#feedback--bug-reports)).
 
@@ -195,6 +200,36 @@ Codex (`K`) → **You** → **Achievements**: all 101 of Skul's Steam achievemen
 
 ![Achievements: every achievement as this save slot has it, with how to earn it, this slot and Steam](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/achievements.png)
 
+### Rewards (new in 0.15; on by default, one switch turns them off)
+Codex (`K`) → **You** → **Rewards**. The first feature that changes the game's balance, a little: everything belongs to
+the save slot, never counts in daily runs, and *Rewards* at the very top of the settings page turns it all off
+(everything earned is kept and comes back).
+- **Achievement rewards:** each of Skul's 103 achievements gives a small lasting bonus that fits it. A boss beaten:
+  +3 % damage to that boss; beaten without getting hit: +10 % more (they multiply: +13.3 %). Each Dark Mirror level:
+  physical and magic attack +1 %. Each legendary skull: +0.5 % by its type (Power: physical attack, Speed: attack speed,
+  Balance: magic attack). Dying and traps: damage taken -1 %; shops: gold +1 %; the castle and the world: movement
+  speed +1 %; dark abilities and inscriptions: cooldown speed +1 %; the hidden boss's trail: critical chance +1 %; and a
+  few special ones (100 adventurers: +5 % damage to adventurers; The Skeleton King: +10 % while holding Little Bone).
+  With every achievement: physical and magic attack +18.5 %, still less than one good item. Each achievement's page and
+  the notice say what it gives; the Rewards tab adds it all up.
+- **Coins:** break a legendary item or skull, or leave it behind on a map, and you get its coin (a skull raised with
+  bones gives its first form's coin). Every 5th win over one adventurer gives that adventurer's coin, for its rare
+  legendary item (The Chosen ...). A run that ends with Omen items gives an Omen coin for each, for an Omen item of your
+  choice (its own page has a Summon too). In a later run, after the map is cleared, **Summon** drops the gear at your
+  feet: one summon per run for each kind of coin (a skull, an item, an adventurer's item, an Omen item). A summon
+  takes 3 coins of that gear (or 3 Omen coins; setting *Coins per summon*), an adventurer's coin is enough on its own;
+  the adventurers' items in Dark Mirror runs.
+- **Kill quests:** every normal enemy has an endless quest. About two runs' worth of kills of it (10 to 150) pays
+  25 dark quartz and 50 gold where it fell; dark enemies count double. A full run finishes about 21 quests (about
+  535 dark quartz and 1,075 gold). Each enemy's page shows its quest as a square that fills up.
+- **Inscription activations:** complete an inscription in a run (bring it to its last step) and it earns one when
+  the run ends, won or lost. In a later run an activation makes an inscription you have count one more until that run
+  ends, like the Dark Mirror's banners (two per run, each inscription once).
+- The run history marks runs played with rewards on, with the quests and coins of that run. All the numbers are
+  settings (section *Rewards*).
+
+![Rewards: achievement rewards, coins, kill quests and inscription activations of this save slot](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/rewards.png)
+
 ### Healing orbs (new in 0.14)
 The purple healing orbs enemies drop are easy to miss. They can look like the game's **Portable Potion** (a bit bigger,
 with a green glow) or a big **green plus**; when a map is cleared while you are hurt and orbs are left, a short text
@@ -217,13 +252,16 @@ Pause (Esc) → **Mods**: a mod browser in the game, on Windows, Linux / Steam D
 - Installing, updating and turning mods on or off is your mod manager's job (r2modman, Gale): Thunderstore's rules
   don't allow a mod to update itself or other mods. It only goes online (Thunderstore) when you open it.
 
-![Mods: Thunderstore's Skul mods on the left, your mods on the right](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/mods.png)
-
-### Daily run (new in 0.13; online, off until you turn it on)
-Codex (`K`) → **Daily**: every day one run for everyone, one try.
-- The same seed and the same difficulty for everyone (a weekday schedule from Normal to Dark Mirror 10).
-- Played in a separate daily save slot made from your game: every gear unlocked, the Witch at her top, every Dark
-  Mirror level open, 15,000 dark quartz, no DLC gear. Your own game waits as it is; **Back to my game** returns.
+### Daily runs (new in 0.13, six boards since 0.15; online, off until you turn it on)
+Codex (`K`) → **Daily**: every day three runs for everyone, each with and without the DLC, and one try on each.
+- **Normal**, the **Dark Mirror at a random level** (0-10, the same for everyone that day) and **Dark Mirror 10**.
+  Each has its own seed and its own boards; your streak counts any of them.
+- **With DLC** boards bring the Mythology Pack's skulls and items and are only playable if you own it (anyone can
+  watch them). **Without DLC** boards are the same run for everyone, DLC or not.
+- The same start for everyone: the same gifts from the castle's Fox and Ogre and the same blessing.
+- Played in a separate daily save slot made from your game: every gear unlocked, the Witch at her top, the Dark
+  Mirror (and its machines) up to the day's level, the whole Codex open, 15,000 dark quartz, no rewards. Your own
+  game waits as it is; **Back to my game** returns.
 - After the run: a name (12 characters) for the **daily** and **monthly** boards. Points for the result, stages,
   bosses, kills, damage, little damage taken, gold left and a fast win, times the difficulty, plus bonuses for the
   day's records (first win, fastest win, most damage, ...) and a daily streak.
@@ -233,6 +271,10 @@ Codex (`K`) → **Daily**: every day one run for everyone, one try.
   achievements from the daily slot.
 - It talks to the daily run server (skul.umut-aslan.dev) only after you turn it on, and sends a random player id
   made by the mod, the name you enter and your daily run (numbers, build, damage, timeline). Nothing else.
+- Shoutout to Tythos and his community for using and promoting this passion project: leave him some support on
+  [Bilibili](https://space.bilibili.com/17576167).
+
+![Daily runs: the day's boards (Normal, Dark Mirror at the day's level, Dark Mirror 10, DLC) and a board](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/daily-boards.png)
 
 ![Daily run: today's board, and a run on it with Overview, Damage, Timeline, Points and a thumbs up](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/daily-board.png)
 
@@ -310,6 +352,12 @@ The same settings are in the settings file (created on the first start):
 - in r2modman / Gale: *Config editor*
 
 | Section | Setting | Default | What it does |
+| Rewards | Enabled | on | Achievement rewards, coins, kill quests and activations (never in daily runs; off: the game as it is) |
+| Rewards | AchievementRewards / Coins / Quests / InscriptionActivations | on | Each kind of reward on its own |
+| Rewards | SummonsPerRun / ActivationsPerRun | 1 / 2 | Summons of each kind, and activations, usable per run (0-3) |
+| Rewards | CoinsPerSummon | 3 | Coins a summon takes (1-10; an adventurer's coin is enough on its own) |
+| Rewards | QuestRuns / QuestDarkQuartz / QuestGold | 2 / 25 / 50 | A quest step in runs' worth of kills, and what it pays |
+| Rewards | AdventurerKills | 5 | Wins over one adventurer for its coin |
 |---|---|---|---|
 | Damage Numbers | ShowSourceTag / UseIcons | on / on | Source icon or tag on damage numbers |
 | Damage Numbers | HoldSeconds / FadeSeconds | 0.8 / 0.7 | How long numbers stay and fade |
@@ -375,10 +423,12 @@ The same settings are in the settings file (created on the first start):
   are very welcome (see *All game languages*). The config file and the developer tools stay English.
 
 ## Roadmap
-- **0.14 (this version):** Skul's achievements per save slot, the achievement notice, the mod's own daily
-  achievements, clear view, the mod manager, macOS
-- **0.15:** Dark Mirror page (levels 0–10 with the game's values, Darktech machines, fragments, the hidden boss)
-- **0.16:** optional Codex rewards (tokens for skipped gear, adventurer coins, Omen coins)
+- **0.14:** Skul's achievements per save slot, the achievement notice, the mod's own daily achievements, clear view,
+  the Mods window, macOS
+- **0.15 (this version):** rewards: a bonus for every achievement, coins that summon gear, kill quests, inscription
+  activations
+- **0.16:** Dark Mirror page (levels 0–10 with the game's values, Darktech machines, fragments, the hidden boss)
+- **Later:** skins for skulls from the daily achievements
 - **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics
 
 ## Feedback / bug reports

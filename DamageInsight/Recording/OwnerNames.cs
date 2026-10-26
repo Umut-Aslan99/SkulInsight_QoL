@@ -119,6 +119,8 @@ public static class OwnerNames
         {
             case Characters.Stat:
                 return new Owner(Loc.N("Damage taken"), null);
+            case DamageInsight.Rewards.RewardApplier.DamageBonus:
+                return new Owner(Loc.N("Achievement rewards"), null);
             case Component component when OfComponent(component) is { } gear:
                 return gear;
             case AbilityInstance instance:

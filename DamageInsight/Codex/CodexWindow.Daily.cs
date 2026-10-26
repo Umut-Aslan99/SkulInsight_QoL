@@ -42,6 +42,8 @@ public sealed partial class CodexWindow
     private TextMeshProUGUI _dailyCount, _dailyEmpty;
     private UiKit.Chip _dailyEnableChip, _dailyPlayChip, _dailyLeaveChip, _dailySendChip, _dailySkipChip;
     private TMP_InputField _dailyName;
+    private readonly Dictionary<string, UiKit.Chip> _boardChips = new();
+    private UiKit.Chip _dlcChip;
     private int _dailyDrawnVersion = -1;
     private string _dailyOpenedFor = "";
 
@@ -49,6 +51,8 @@ public sealed partial class CodexWindow
     {
         _dailyTabs.Clear();
         _dailyRows.Clear();
+        _boardChips.Clear();
+        _dlcChip = null;
         _dailyTodayRow = null;
         _boardEntry = null;
         _dailyPanel = _dailyContent = null;
@@ -79,7 +83,28 @@ public sealed partial class CodexWindow
         _dailyCount.rectTransform.Place(x + 10, 84, PageWidth - 32 - x - 10, 28);
         _dailyCount.enableWordWrapping = false;
 
-        var frame = UiKit.Image("Board", panel, PageShade).rectTransform.Place(32, 124, PageWidth - 64, BookHeight - 24 - 124 - 32);
+        // The day's boards (0.15): Normal, the Dark Mirror at the day's level, Dark Mirror 10, and DLC on or off.
+        float bx = 32;
+        foreach (string baseName in DailyBoards.Bases)
+        {
+            string widest = baseName == "normal" ? Loc.T("Normal") : Loc.F("Dark Mirror {0}", 10);
+            float width = UiKit.ChipWidth(widest) + 8;
+            string name = baseName;
+            _boardChips[baseName] = new UiKit.Chip(panel, BoardChipLabel(baseName), bx, 124, width, () =>
+            {
+                DailyService.SelectBoard(DailyBoards.Of(name, DailyBoards.HasDlc(DailyService.State.Board)));
+                AfterBoardChange();
+            });
+            bx += width + 6;
+        }
+        _dlcChip = new UiKit.Chip(panel, "DLC", bx + 10, 124, UiKit.ChipWidth("DLC") + 8, () =>
+        {
+            string board = DailyService.State.Board;
+            DailyService.SelectBoard(DailyBoards.Of(DailyBoards.BaseOf(board), !DailyBoards.HasDlc(board)));
+            AfterBoardChange();
+        });
+
+        var frame = UiKit.Image("Board", panel, PageShade).rectTransform.Place(32, 160, PageWidth - 64, BookHeight - 24 - 160 - 32);
         var viewport = UiKit.Rect("Viewport", frame).Fill(4);
         viewport.gameObject.AddComponent<RectMask2D>();
         viewport.gameObject.AddComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -104,6 +129,22 @@ public sealed partial class CodexWindow
         // Today's run on top of both boards: the right page goes back to it (the try, the buttons).
         _dailyTodayRow = NewDailyRow();
         _dailyTodayRow.Id = TodayId;
+    }
+
+    /// <summary>A board chip's words: the Dark Mirror chip names the day's level once it is known.</summary>
+    private static string BoardChipLabel(string baseName) => baseName switch
+    {
+        "normal" => Loc.T("Normal"),
+        "dm10" => Loc.F("Dark Mirror {0}", 10),
+        _ => DailyService.InfoOf("dm") is { } dm ? Loc.F("Dark Mirror {0}", dm.Level) : Loc.F("Dark Mirror {0}", "?"),
+    };
+
+    private void AfterBoardChange()
+    {
+        _nav.SelectQuietly(TodayId);
+        _listDirty = true;
+        _nextRefresh = 0f;
+        EventSystem.current?.SetSelectedGameObject(null);
     }
 
     private DailyRow NewDailyRow()
@@ -168,6 +209,13 @@ public sealed partial class CodexWindow
     {
         bool month = _category == CodexCategory.DailyMonth;
         DailyService.RequestBoards();
+        string selected = DailyService.State.Board;
+        foreach (var pair in _boardChips)
+        {
+            pair.Value.Label.text = BoardChipLabel(pair.Key);
+            pair.Value.SetOn(DailyBoards.BaseOf(selected) == pair.Key);
+        }
+        _dlcChip?.SetOn(DailyBoards.HasDlc(selected));
         var board = month ? DailyService.MonthBoard : DailyService.DayBoard;
         var entries = board?.Entries ?? new List<BoardEntry>();
         _dailyCount.text = board == null ? "" : month ? Loc.P("{0} player this month", "{0} players this month", board.Count)
@@ -187,7 +235,7 @@ public sealed partial class CodexWindow
         top.Rank.text = "";
         top.Icon.sprite = PixelIcons.Get("hourglass");
         top.Icon.color = Color.white;
-        top.Name.text = $"<b>{Loc.T("Today's run")}</b>" + (day == null ? "" : $"  <color={RunPages.DimColor}>{DailyPages.Mode(day.Mode, day.Level)}</color>");
+        top.Name.text = $"<b>{Loc.T("Today's run")}</b>" + (day == null ? "" : $"  <color={RunPages.DimColor}>{DailyPages.BoardName(day)}</color>");
         top.Detail.text = DailyPages.Status(DailyRun.TodaysTry, DailyRun.InDailySlot, DailyService.DayBoard);
         top.Points.text = "";
         top.Likes.text = "";
@@ -259,7 +307,7 @@ public sealed partial class CodexWindow
         _portrait.color = Color.white;
         _title.text = Loc.T("Daily run");
         _title.color = Ink;
-        _subtitle.text = day == null ? "" : $"{day.Date}  ·  {DailyPages.Mode(day.Mode, day.Level)}  ·  {Loc.F("new run in {0}", DailyPages.Left(day.SecondsLeft))}";
+        _subtitle.text = day == null ? "" : $"{day.Date}  ·  {DailyPages.BoardName(day)}  ·  {Loc.F("new run in {0}", DailyPages.Left(day.SecondsLeft))}";
         string others = string.Join(", ", DailyMods.Others().Select(m => DailyText(m.name)));
         SetPage(DailyPages.TodayPage(day, t, DailyService.Enabled, DailyService.Problem, DailyRun.InDailySlot, others, DailyService.DayBoard));
         ShowDailyControls(true);
@@ -289,7 +337,8 @@ public sealed partial class CodexWindow
         _portraitMark.text = "";
 
         string date = DailyService.DayBoard?.Date ?? DailyService.Today?.Date ?? "";
-        var detail = DailyService.Detail(date, id);
+        string boardName = DailyService.DayBoard?.Name ?? DailyService.State.Board;
+        var detail = DailyService.Detail(date, id, boardName);
         var entry = DailyService.DayBoard?.Entries.FirstOrDefault(e => e.Id == id) ?? detail?.Entry;
         _boardEntry = entry;
         _boardDate = detail?.Date ?? date;
@@ -322,8 +371,8 @@ public sealed partial class CodexWindow
         _title.color = ColorUtility.TryParseHtmlString(entry.Won ? RunPages.WinColor : entry.Result == "death" ? RunPages.DeathColor : RunPages.DimColor,
             out var color) ? color : Ink;
         string word = entry.Won ? Loc.T("Victory") : entry.Result == "death" ? Loc.T("Defeat") : Loc.T("Abandoned");
-        string mode = detail != null ? DailyPages.Mode(detail.Mode, detail.Level)
-            : DailyService.Today is { } day ? DailyPages.Mode(day.Mode, day.Level) : "";
+        string mode = (detail != null ? DailyPages.Mode(detail.Mode, detail.Level)
+            : DailyService.Today is { } day ? DailyPages.Mode(day.Mode, day.Level) : "") + (DailyBoards.HasDlc(boardName) ? " · DLC" : "");
         _subtitle.text = $"{Loc.F("place {0}", entry.Rank)}  ·  {Loc.F("{0} points", DailyPages.N(entry.Points))}  ·  {word}  ·  {mode}  ·  {RunPages.Time(entry.PlaySeconds)}";
 
         if (_runTab == RunPages.Tab.Points)
@@ -343,7 +392,7 @@ public sealed partial class CodexWindow
     {
         if (_boardEntry == null || _boardEntry.You || _boardEntry.Liked)
             return;
-        DailyService.Like(_boardDate, _boardEntry);
+        DailyService.Like(_boardDate, _boardEntry, DailyService.DayBoard?.Name ?? DailyService.State.Board);
         _listDirty = true;
         _nextRefresh = 0f;
     }
@@ -447,9 +496,10 @@ public sealed partial class CodexWindow
     /// <summary>After a daily run, back in the castle: the book opens on the Daily section for the name (once per run).</summary>
     private void OpenForDailyResult()
     {
-        if (IsOpen || !DailyRun.InDailySlot || DailyRun.Ended is not { } t || _dailyOpenedFor == t.Date || !DailyRun.InCastle())
+        if (IsOpen || !DailyRun.InDailySlot || DailyRun.Ended is not { } t || _dailyOpenedFor == t.Key || !DailyRun.InCastle())
             return;
-        _dailyOpenedFor = t.Date;
+        _dailyOpenedFor = t.Key;
+        DailyService.SelectBoard(t.Board); // the board the ended run is sent to
         SetOpen(true);
         _nav.SwitchSection(CodexSection.Daily);
         OnNavigated();

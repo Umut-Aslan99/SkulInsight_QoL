@@ -275,6 +275,8 @@ public static class RunPages
             sb.Append($"<color={DimColor}>{Loc.T("An old run: only its summary is kept (star a run to keep it whole).")}</color>\n");
         if (r.Number(RunNumbers.HealsMissed) > 0)
             sb.Append($"<color={DimColor}>{Loc.F("Healing orbs left behind while you were hurt: {0} ({1} health).", N(r.Number(RunNumbers.HealsMissed)), N(r.Number(RunNumbers.HealthMissed)))}</color>\n");
+        if (r.Number(RunNumbers.Rewards) > 0)
+            sb.Append($"<color={DimColor}>{Loc.F("Played with rewards on ({0} quests done, {1} coins earned).", N(r.Number(RunNumbers.QuestsDone)), N(r.Number(RunNumbers.CoinsEarned)))}</color>\n");
         var bosses = Bosses(r, look);
         if (bosses.Count > 0)
         {

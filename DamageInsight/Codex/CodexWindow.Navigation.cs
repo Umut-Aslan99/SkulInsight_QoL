@@ -35,6 +35,7 @@ public sealed partial class CodexWindow
         ForgetDailyWidgets();
         ForgetRecordWidgets();
         ForgetAchievementWidgets();
+        ForgetRewardWidgets();
     }
 
     private void BuildSectionRow(RectTransform page)
@@ -75,7 +76,8 @@ public sealed partial class CodexWindow
         foreach (var pair in _sectionChips)
             pair.Value.SetOn(pair.Key == _nav.Section);
         bool you = _nav.Section == CodexSection.You, runs = you && _nav.Category == CodexCategory.Runs,
-            records = you && _nav.Category == CodexCategory.Records, achievements = you && _nav.Category == CodexCategory.Achievements;
+            records = you && _nav.Category == CodexCategory.Records, achievements = you && _nav.Category == CodexCategory.Achievements,
+            rewards = you && _nav.Category == CodexCategory.Rewards;
         bool daily = _nav.Section == CodexSection.Daily;
         _listPanel?.gameObject.SetActive(!you && !daily);
         _dailyPanel?.gameObject.SetActive(daily);
@@ -84,10 +86,11 @@ public sealed partial class CodexWindow
             pair.Value.Background.gameObject.SetActive(daily);
             pair.Value.SetOn(pair.Key == _nav.Category);
         }
-        _youPanel?.gameObject.SetActive(you && !runs && !records && !achievements);
+        _youPanel?.gameObject.SetActive(you && !runs && !records && !achievements && !rewards);
         _runsPanel?.gameObject.SetActive(runs);
         _recordsPanel?.gameObject.SetActive(records);
         _achievementsPanel?.gameObject.SetActive(achievements);
+        _rewardsPanel?.gameObject.SetActive(rewards);
         foreach (var pair in _youTabs)
         {
             pair.Value.Background.gameObject.SetActive(you);
@@ -121,6 +124,16 @@ public sealed partial class CodexWindow
     {
         if (string.IsNullOrEmpty(id))
             return;
+        if (id.StartsWith("url:https://", StringComparison.Ordinal))
+        {
+            Application.OpenURL(id.Substring(4)); // the daily page's shoutout
+            return;
+        }
+        if (DamageInsight.Rewards.RewardPages.IsAction(id))
+        {
+            UseReward(id); // a Summon / +1 link on the Rewards page
+            return;
+        }
         if (id.StartsWith("you:"))
         {
             _nav.Go(new CodexNavigation.Place(CodexSection.You, CodexCategory.YouBuild, id));

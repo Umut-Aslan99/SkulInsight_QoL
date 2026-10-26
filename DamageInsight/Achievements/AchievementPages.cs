@@ -26,6 +26,8 @@ public sealed class AchievementView
     public string RunDate = "";
     /// <summary>Daily runs are turned on (SkulInsight's daily achievements need them).</summary>
     public bool DailyEnabled = true;
+    /// <summary>Its reward in words (0.15), "" for none; and why rewards don't apply now ("" when they do).</summary>
+    public string Reward = "", RewardOff = "";
 }
 
 /// <summary>The Achievements tab's texts (0.14): the tiles and the page of the selected one. Plain logic, no Unity.</summary>
@@ -82,6 +84,14 @@ public static class AchievementPages
         {
             sb.Append(PageBlocks.Section(Loc.T("Tip"), "pix:star"));
             sb.Append(tip).Append('\n');
+        }
+
+        if (v.Reward.Length > 0)
+        {
+            sb.Append(PageBlocks.Section(Loc.T("Reward"), "pix:chest"));
+            sb.Append(v.Reward).Append('\n');
+            sb.Append(Dim(v.RewardOff.Length > 0 ? v.RewardOff
+                : v.Earned != null ? Loc.T("Earned: it counts in every run of this slot.") : Loc.T("Earn it in this slot and it counts in every run."))).Append('\n');
         }
 
         if (info.Kind == AchievementKind.Daily)

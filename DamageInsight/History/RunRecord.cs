@@ -404,6 +404,9 @@ public static class RunNumbers
     public const string Swaps = "swaps";
     public const string HealsMissed = "healsMissed";       // 0.14: small heal orbs left behind while hurt (History/HealOrbs)
     public const string HealthMissed = "healthMissed";     // the health they would have restored
+    public const string Rewards = "rewards";               // 0.15: 1 when the slot's rewards were on at the run's start
+    public const string QuestsDone = "questsDone";         // kill quest steps finished in the run
+    public const string CoinsEarned = "coinsEarned";       // coins earned in the run (legendary gear, adventurers, Omen)
     public const string Maps = "maps";
     public const string JoinedLate = "joinedLate";
     /// <summary>The player's stats at the end: "stat:" + the game's Stat.Kind name (its final value).</summary>

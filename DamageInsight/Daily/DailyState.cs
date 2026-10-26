@@ -16,6 +16,8 @@ namespace DamageInsight.Daily;
 public sealed class DailyTry
 {
     public string Date = "";
+    /// <summary>The day's board it is played on (0.15; "normal" before the boards).</summary>
+    public string Board = "normal";
     public string State = "";
     /// <summary>The day's run as the server gave it when the try was armed.</summary>
     public int Seed, Level;
@@ -32,6 +34,9 @@ public sealed class DailyTry
     public string Pending = "";
 
     public bool Played => State is "started" or "ended" or "finished";
+
+    /// <summary>The key it is kept under (DailyBoards.Key).</summary>
+    public string Key => DailyBoards.Key(Date, Board);
 }
 
 /// <summary>
@@ -47,6 +52,8 @@ public sealed class DailyState
     public string Name = "";
     /// <summary>The save slot the daily slot was entered from (it goes back there).</summary>
     public int Origin = 1;
+    /// <summary>The board the Daily section shows and plays (0.15).</summary>
+    public string Board = "normal";
     public readonly Dictionary<string, DailyTry> Tries = new();
 
     /// <summary>The server's counters of this player (GET /api/me), kept for the Achievements page when offline.</summary>
@@ -75,12 +82,16 @@ public sealed class DailyState
     /// <summary>The counter a daily achievement counts ("likes", "streak").</summary>
     public int Counter(string counts) => counts == "likes" ? LikesReceived : BestStreak;
 
-    public DailyTry TryOf(string date) => Tries.TryGetValue(date ?? "", out var t) ? t : null;
+    /// <summary>A try by its key (DailyBoards.Key: the day alone for "normal").</summary>
+    public DailyTry TryOf(string key) => Tries.TryGetValue(key ?? "", out var t) ? t : null;
 
-    public DailyTry Ensure(string date)
+    public DailyTry TryOf(string date, string board) => TryOf(DailyBoards.Key(date, board));
+
+    public DailyTry Ensure(string date, string board = "normal")
     {
-        if (!Tries.TryGetValue(date, out var t))
-            Tries[date] = t = new DailyTry { Date = date };
+        string key = DailyBoards.Key(date, board);
+        if (!Tries.TryGetValue(key, out var t))
+            Tries[key] = t = new DailyTry { Date = date, Board = string.IsNullOrEmpty(board) ? "normal" : board };
         return t;
     }
 
@@ -89,12 +100,12 @@ public sealed class DailyState
     /// then I can do the run"): a try this PC played and handed over that the server doesn't have (the admin removed
     /// it) is dropped, so the day can be played again. A try not handed over yet (no connection) stays. True when dropped.
     /// </summary>
-    public bool FollowServer(string date, string serverState)
+    public bool FollowServer(string date, string serverState, string board = "normal")
     {
-        var t = TryOf(date);
+        var t = TryOf(date, board);
         if (t == null || serverState != "none" || t.State != "finished" || t.Pending.Length > 0)
             return false;
-        Tries.Remove(date);
+        Tries.Remove(t.Key);
         return true;
     }
 
@@ -111,8 +122,8 @@ public sealed class DailyState
         if (!DateTime.TryParseExact(today, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var day))
             return;
         string oldest = day.AddDays(-KeepDays).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-        foreach (var date in Tries.Keys.Where(d => string.CompareOrdinal(d, oldest) < 0).ToList())
-            Tries.Remove(date);
+        foreach (var key in Tries.Keys.Where(k => string.CompareOrdinal(DailyBoards.DateOf(k), oldest) < 0).ToList())
+            Tries.Remove(key);
     }
 
     public string ToJson()
@@ -120,13 +131,14 @@ public sealed class DailyState
         var sb = new StringBuilder("{\n");
         sb.Append("\"player\":").Append(LogJson.Quote(PlayerId)).Append(",\n\"name\":").Append(LogJson.Quote(Name))
           .Append(",\n\"origin\":").Append(Origin)
+          .Append(",\n\"board\":").Append(LogJson.Quote(Board))
           .Append(",\n\"me\":{\"likes\":").Append(LikesReceived).Append(",\"streak\":").Append(Streak).Append(",\"best\":").Append(BestStreak)
           .Append(",\"days\":").Append(DaysPlayed).Append("},\n\"achievements\":{")
           .Append(string.Join(",", Achievements.OrderBy(a => a.Key, StringComparer.Ordinal).Select(a =>
               LogJson.Quote(a.Key) + ":" + LogJson.Quote(a.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture)))))
           .Append("},\n\"tries\":[");
-        sb.Append(string.Join(",", Tries.Values.OrderBy(t => t.Date, StringComparer.Ordinal).Select(t =>
-            "\n {\"date\":" + LogJson.Quote(t.Date) + ",\"state\":" + LogJson.Quote(t.State) + ",\"run\":" + LogJson.Quote(t.RunId) +
+        sb.Append(string.Join(",", Tries.Values.OrderBy(t => t.Key, StringComparer.Ordinal).Select(t =>
+            "\n {\"date\":" + LogJson.Quote(t.Date) + ",\"board\":" + LogJson.Quote(t.Board) + ",\"state\":" + LogJson.Quote(t.State) + ",\"run\":" + LogJson.Quote(t.RunId) +
             ",\"result\":" + LogJson.Quote(t.Result) + ",\"points\":" + t.Points + ",\"rank\":" + t.Rank + ",\"of\":" + t.Of +
             ",\"seed\":" + t.Seed + ",\"mode\":" + LogJson.Quote(t.Mode) + ",\"level\":" + t.Level +
             ",\"numbers\":" + LogJson.Quote(t.Numbers) + ",\"record\":" + LogJson.Quote(t.Run) + ",\"pending\":" + LogJson.Quote(t.Pending) + "}")));
@@ -143,6 +155,7 @@ public sealed class DailyState
         state.PlayerId = n.Str("player") ?? "";
         state.Name = n.Str("name") ?? "";
         state.Origin = Math.Max(1, (int)n.Num("origin", 1));
+        state.Board = DailyBoards.IsBoard(n.Str("board")) ? n.Str("board") : "normal";
         var me = n.Child("me");
         if (!me.IsNull)
         {
@@ -161,9 +174,10 @@ public sealed class DailyState
             var date = t.Str("date") ?? "";
             if (date.Length == 0)
                 continue;
-            state.Tries[date] = new DailyTry
+            string board = DailyBoards.IsBoard(t.Str("board")) ? t.Str("board") : "normal";
+            state.Tries[DailyBoards.Key(date, board)] = new DailyTry
             {
-                Date = date, State = t.Str("state") ?? "", RunId = t.Str("run") ?? "", Result = t.Str("result") ?? "",
+                Date = date, Board = board, State = t.Str("state") ?? "", RunId = t.Str("run") ?? "", Result = t.Str("result") ?? "",
                 Points = (int)t.Num("points"), Rank = (int)t.Num("rank"), Of = (int)t.Num("of"), Pending = t.Str("pending") ?? "",
                 Seed = (int)t.Num("seed"), Mode = t.Str("mode") ?? "normal", Level = (int)t.Num("level"), Numbers = t.Str("numbers") ?? "",
                 Run = t.Str("record") ?? "",

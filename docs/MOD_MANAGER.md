@@ -6,6 +6,18 @@ DamageInsight/Mods/ (ZipReader, ThunderstoreCatalog, ModFolders, ModService), UI
 button in UI/SettingsPage.AttachTo; tests DamageInsight.Tests/ModManagerTests.cs. Decisions are marked
 **[DECISION]**, open points **[OPEN]**.
 
+## Where it stands (2026-10-26, decided)
+- **Thunderstore (and the GitHub release, the same zip):** since 0.14.1 the Mods window only browses. It lists
+  Thunderstore's Skul mods and the mods you have, shows details and opens a mod's Thunderstore page; installing,
+  updating, turning mods on/off, removing and the restart are left to the mod manager (r2modman, Gale). Built by
+  `release/package.ps1` with `-p:IsThunderstoreBuild=true` (THUNDERSTORE: the installer code is not compiled in);
+  package.ps1 refuses a DLL that still holds it. Checked on the published 0.14.1 (downloaded from Thunderstore):
+  no installer code in it.
+- **Developer (Debug) builds:** the full manager (install, update, on/off, remove, restart). That is the build on
+  Umut's PC, so he sees Install buttons; players never get it.
+- **[Umut 2026-10-26] later, not yet:** a separate GitHub download with the full manager, next to the Thunderstore
+  build. The code stays in the source behind `#if !THUNDERSTORE` for it.
+
 ## Umut's request (2026-10-25)
 "Another feature should be sort of a 'modloader' in my QoL mod. Like a menu that shows installed mods and displays
 mods on Thunderstore, with an easy download / install button (accessible on all platforms Windows, Linux, Mac) and

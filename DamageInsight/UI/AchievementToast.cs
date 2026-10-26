@@ -15,7 +15,7 @@ namespace DamageInsight.UI;
 /// </summary>
 public sealed class AchievementToast : MonoBehaviour
 {
-    private const float Height = 92f, MinWidth = 440f, MaxWidth = 760f, Top = 18f;
+    private const float Height = 92f, RewardLine = 22f, MinWidth = 440f, MaxWidth = 760f, Top = 18f;
     private const float InSeconds = 0.4f, StaySeconds = 4.5f, OutSeconds = 0.45f;
 
     private static AchievementToast _instance;
@@ -27,7 +27,8 @@ public sealed class AchievementToast : MonoBehaviour
     private CanvasGroup _group;
     private RectTransform _box;
     private Image _icon;
-    private TextMeshProUGUI _caption, _name, _description;
+    private TextMeshProUGUI _caption, _name, _description, _reward;
+    private float _height = Height;
 
     public static void Show(AchievementInfo info)
     {
@@ -67,8 +68,13 @@ public sealed class AchievementToast : MonoBehaviour
         _caption.text = Loc.T("Achievement unlocked");
         _name.text = $"<b>{_shown.Name}</b>";
         _description.text = _shown.Description;
-        float text = Mathf.Max(_name.GetPreferredValues(_name.text).x, _description.GetPreferredValues(_description.text).x);
-        _box.sizeDelta = new Vector2(Mathf.Clamp(text + 128f, MinWidth, MaxWidth), Height);
+        // 0.15: the achievement's reward on a line of its own (when rewards are on).
+        string reward = RewardLineOf(_shown);
+        _reward.text = reward;
+        _height = reward.Length > 0 ? Height + RewardLine : Height;
+        float text = Mathf.Max(Mathf.Max(_name.GetPreferredValues(_name.text).x, _description.GetPreferredValues(_description.text).x),
+            reward.Length > 0 ? _reward.GetPreferredValues(reward).x : 0f);
+        _box.sizeDelta = new Vector2(Mathf.Clamp(text + 128f, MinWidth, MaxWidth), _height);
         SetIcon();
         AchievementSound.Play();
     }
@@ -86,7 +92,7 @@ public sealed class AchievementToast : MonoBehaviour
     {
         if (_icon.sprite == null)
             SetIcon(); // Steam may hand the icon over a moment later
-        float hidden = Height + 12f, shown = -Top;
+        float hidden = _height + 12f, shown = -Top;
         float y, alpha;
         if (_time < InSeconds)
         {
@@ -142,16 +148,38 @@ public sealed class AchievementToast : MonoBehaviour
         _icon.rectTransform.Fill(3);
 
         _caption = UiKit.Text("Caption", _box, "", 14, TextAlignmentOptions.TopLeft, new Color32(0xE8, 0xB8, 0x4A, 0xFF));
-        _caption.rectTransform.Stretch(100, 10, 16, Height - 30);
+        TopRow(_caption.rectTransform, 10, 20);
         _caption.enableWordWrapping = false;
         _caption.characterSpacing = 4;
         _name = UiKit.Text("Name", _box, "", 22, TextAlignmentOptions.TopLeft);
-        _name.rectTransform.Stretch(100, 28, 16, Height - 58);
+        TopRow(_name.rectTransform, 28, 32);
         _name.enableWordWrapping = false;
         _name.overflowMode = TextOverflowModes.Ellipsis;
         _description = UiKit.Text("Description", _box, "", 15, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
-        _description.rectTransform.Stretch(100, 60, 16, 8);
+        TopRow(_description.rectTransform, 60, 24);
         _description.enableWordWrapping = false;
         _description.overflowMode = TextOverflowModes.Ellipsis;
+        _reward = UiKit.Text("Reward", _box, "", 15, TextAlignmentOptions.TopLeft, new Color32(0x9B, 0xE0, 0x7A, 0xFF));
+        TopRow(_reward.rectTransform, 82, 24);
+        _reward.enableWordWrapping = false;
+        _reward.overflowMode = TextOverflowModes.Ellipsis;
+    }
+
+    /// <summary>A line at a fixed distance from the box's top, over its width right of the icon.</summary>
+    private static void TopRow(RectTransform rect, float top, float height)
+    {
+        rect.anchorMin = new Vector2(0f, 1f);
+        rect.anchorMax = new Vector2(1f, 1f);
+        rect.pivot = new Vector2(0.5f, 1f);
+        rect.offsetMin = new Vector2(100f, -top - height);
+        rect.offsetMax = new Vector2(-16f, -top);
+    }
+
+    private static string RewardLineOf(AchievementInfo info)
+    {
+        if (!DamageInsight.Rewards.RewardApplier.AchievementsOn || DamageInsight.Rewards.RewardCatalog.For(info.Id) is not { } reward)
+            return "";
+        string text = DamageInsight.Rewards.RewardCatalog.Text(reward, id => DamageInsight.Codex.CodexPages.Entry(id)?.Name ?? id);
+        return Loc.F("Reward: {0}", text);
     }
 }

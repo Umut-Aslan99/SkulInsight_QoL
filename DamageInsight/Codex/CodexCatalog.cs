@@ -117,6 +117,17 @@ public static class CodexCatalog
         ["enemy:Alexander4"] = ("enemy:Alexander1", n => Loc.F("{0} · phase {1}", n, 4)),
     };
 
+    /// <summary>The boss page an entry belongs to ("enemy:FirstHero2" → "enemy:FirstHero1", the sisters → one page), "" if no boss.</summary>
+    public static string BossPageOf(string id)
+    {
+        id ??= "";
+        if (BossPhases.TryGetValue(id, out var phase))
+            return phase.boss;
+        if (TwinOf.TryGetValue(id, out var twin))
+            id = twin;
+        return BossNames.ContainsKey(id) ? id : "";
+    }
+
     /// <summary>A boss's title in the current language ("Emperor of Carleon"), or "".</summary>
     public static string BossTitle(string id) => BossNames.TryGetValue(id ?? "", out var keys) ? Localize(keys.title) : "";
 

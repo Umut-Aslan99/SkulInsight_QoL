@@ -19,6 +19,8 @@ namespace DamageInsight;
 public class Plugin : BaseUnityPlugin
 {
     internal static ManualLogSource Log;
+    /// <summary>The plugin's object, for coroutines of static code (the rewards' summons).</summary>
+    internal static Plugin Instance;
 
     internal static ConfigEntry<string> Language;
     internal static ConfigEntry<bool> WhatsNewEnabled;
@@ -70,6 +72,9 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> AutoUpdate;
     internal static ConfigEntry<string> HealOrbLookSetting;
     internal static ConfigEntry<bool> HealOrbReminder;
+    internal static ConfigEntry<bool> RewardsEnabled, RewardsAchievements, RewardsCoins, RewardsQuests, RewardsActivations;
+    internal static ConfigEntry<int> RewardsSummonsPerRun, RewardsCoinsPerSummon, RewardsActivationsPerRun, RewardsQuestDarkQuartz, RewardsQuestGold, RewardsAdventurerKills;
+    internal static ConfigEntry<float> RewardsQuestRuns;
     internal static ConfigEntry<int> SaveSlotSelected;
     internal static ConfigEntry<int> SaveSlotCount;
     internal static ConfigEntry<bool> CodexMoveCounter;   // bound in developer builds only (null otherwise)
@@ -95,6 +100,7 @@ public class Plugin : BaseUnityPlugin
     private void Awake()
     {
         Log = Logger;
+        Instance = this;
 
         // Written to BepInEx\config\<plugin GUID>.cfg on first launch.
         Language = Config.Bind("General", "Language", DamageInsight.Lang.LanguageWatcher.Auto, new ConfigDescription(
@@ -189,6 +195,36 @@ public class Plugin : BaseUnityPlugin
             "bigger, with a green glow) or Plus (a big green +).", new AcceptableValueList<string>("Game", "Potion", "Plus")));
         HealOrbReminder = Config.Bind("Heal Orbs", "Reminder", true,
             "When a map is cleared while you are hurt and healing orbs are left on it, a short text above you says so (once per map).");
+        RewardsEnabled = Config.Bind("Rewards", "Enabled", true,
+            "Rewards for your achievements and the bestiary (small lasting bonuses, coins, quests). They change the game's balance " +
+            "a little; never in daily runs. Off: the game as it is; everything earned is kept and comes back when turned on.");
+        RewardsAchievements = Config.Bind("Rewards", "AchievementRewards", true,
+            "Each achievement of this save slot gives a small lasting bonus (more damage to a boss you beat, attack, speed, gold, ...).");
+        RewardsCoins = Config.Bind("Rewards", "Coins", true,
+            "Breaking a legendary item or skull gives its coin, every 5th win over an adventurer that adventurer's coin, a run " +
+            "ended with Omen items an Omen coin: in a later run coins summon that gear (Codex, You, Rewards; Coins per summon).");
+        RewardsQuests = Config.Bind("Rewards", "Quests", true,
+            "Every normal enemy has an endless quest: every few runs' worth of kills pays some dark quartz and gold at once.");
+        RewardsActivations = Config.Bind("Rewards", "InscriptionActivations", true,
+            "Completing an inscription in a run (its last step) earns an activation when the run ends: in a later run it makes " +
+            "an inscription you have count one more until that run ends (each one once per run), like the Dark Mirror's banners.");
+        RewardsSummonsPerRun = Config.Bind("Rewards", "SummonsPerRun", 1, new ConfigDescription(
+            "How many summons of each kind (legendary skull, legendary item, adventurer, Omen) you can make per run (0-3).",
+            new AcceptableValueRange<int>(0, 3)));
+        // Umut 2026-10-26 after one Hope Slasher coin: "How many are needed to summon? Hopefully not just one."
+        RewardsCoinsPerSummon = Config.Bind("Rewards", "CoinsPerSummon", 3, new ConfigDescription(
+            "Coins a summon takes: of that legendary skull or item, or Omen coins for an Omen item (1-10). An adventurer's " +
+            "coin is enough on its own (it already takes several wins).", new AcceptableValueRange<int>(1, 10)));
+        RewardsActivationsPerRun = Config.Bind("Rewards", "ActivationsPerRun", 2, new ConfigDescription(
+            "How many inscription activations you can use per run (0-3).", new AcceptableValueRange<int>(0, 3)));
+        RewardsQuestRuns = Config.Bind("Rewards", "QuestRuns", 2f, new ConfigDescription(
+            "How many runs' worth of an enemy one quest step takes (0.5-10).", new AcceptableValueRange<float>(0.5f, 10f)));
+        RewardsQuestDarkQuartz = Config.Bind("Rewards", "QuestDarkQuartz", 25, new ConfigDescription(
+            "Dark quartz per quest step (0-100).", new AcceptableValueRange<int>(0, 100)));
+        RewardsQuestGold = Config.Bind("Rewards", "QuestGold", 50, new ConfigDescription(
+            "Gold per quest step, only inside a run (0-300).", new AcceptableValueRange<int>(0, 300)));
+        RewardsAdventurerKills = Config.Bind("Rewards", "AdventurerKills", 5, new ConfigDescription(
+            "Wins over one adventurer for its coin (1-50).", new AcceptableValueRange<int>(1, 50)));
         ClearViewEnabled = Config.Bind("Clear View", "Enabled", true,
             "Make the effects of your skills, items and summons fainter, so enemy attacks stay easy to see with a strong build. " +
             "Enemy attacks and their warnings are never faded.");
@@ -228,6 +264,7 @@ public class Plugin : BaseUnityPlugin
             "the mouse button on them for 4 seconds.");
         AchievementVeil.SettingChanged += (_, _) => DamageInsight.Codex.CodexWindow.Instance?.Invalidate();
         DamageInsight.Achievements.AchievementStore.Folder = DamageInsight.Codex.CodexTracker.Folder;
+        DamageInsight.Rewards.RewardStore.Folder = DamageInsight.Codex.CodexTracker.Folder;
         DamageInsight.Codex.CodexBalance.Bind(Config);
         SaveSlotSelected = Config.Bind("Save Slots", "Slot", 1,
             "The save slot that Play, Copy and Clear use. The panel on the right shows what it holds.");
@@ -323,6 +360,8 @@ public class Plugin : BaseUnityPlugin
         DamageInsight.Codex.CodexTracker.Tick(player);
         Guard.Run("Run history", () => DamageInsight.History.RunJournal.Tick(player));
         Guard.Run("Heal orbs", () => DamageInsight.History.HealOrbs.Tick(player));
+        Guard.Run("Rewards", () => DamageInsight.Rewards.RewardApplier.Tick(player));
+        Guard.Run("Rewards (bestiary)", () => DamageInsight.Rewards.RewardService.Tick(player));
         Guard.Run("Daily run", DamageInsight.Daily.DailyRun.Tick);
         if (inRun)
             SelfTest.CheckRun();
@@ -331,6 +370,9 @@ public class Plugin : BaseUnityPlugin
             DevTools.EnterTestMap();
         if (inRun && UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F8))
             StartCoroutine(ProbeAtEndOfFrame());
+        // F11: test rewards (coins, an Omen coin, an inscription activation) to try Summon and +1 without farming.
+        if (inRun && DevToolsEnabled.Value && UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F11))
+            Guard.Run("Dev: rewards", DamageInsight.Rewards.RewardService.DevGrant);
         // F9: a small healing orb at your feet (to look at the healing orb look and the reminder without farming).
         if (inRun && DevToolsEnabled.Value && UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F9))
             Guard.Run("Dev: healing orb", () => Singleton<Service>.Instance.levelManager.DropPotion(

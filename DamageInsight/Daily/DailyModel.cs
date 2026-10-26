@@ -9,10 +9,36 @@ using DamageInsight.Recording;
 
 namespace DamageInsight.Daily;
 
-/// <summary>The day's run as the server gives it (GET /api/daily).</summary>
+/// <summary>
+/// The day's boards (0.15, Umut 2026-10-26: "Normal ... DM random level ... DM 10", each "with dlc and without"):
+/// "normal", "dm", "dm10", and the same with "+dlc". A try is kept under its day and board (the "normal" board under
+/// the day alone, as before the boards).
+/// </summary>
+public static class DailyBoards
+{
+    public static readonly string[] Bases = { "normal", "dm", "dm10" };
+
+    public static string Of(string baseName, bool dlc) => dlc ? baseName + "+dlc" : baseName;
+
+    public static string BaseOf(string board) => (board ?? "normal").Split('+')[0];
+
+    public static bool HasDlc(string board) => board != null && board.EndsWith("+dlc", StringComparison.Ordinal);
+
+    public static bool IsBoard(string board) => Bases.Any(b => board == b || board == b + "+dlc");
+
+    /// <summary>The key a try is kept under: the day for "normal", "day|board" for the others.</summary>
+    public static string Key(string date, string board) =>
+        string.IsNullOrEmpty(board) || board == "normal" ? date ?? "" : $"{date}|{board}";
+
+    public static string DateOf(string key) => (key ?? "").Split('|')[0];
+}
+
+/// <summary>A board's run of the day as the server gives it (GET /api/dailies, or /api/daily from an older server).</summary>
 public sealed class DailyInfo
 {
     public string Date = "";
+    public string Board = "normal";
+    public bool Dlc;
     public int Seed;
     /// <summary>"normal" or "darkmirror".</summary>
     public string Mode = "normal";
@@ -31,7 +57,29 @@ public sealed class DailyInfo
         {
             Date = date, Seed = (int)n.Num("seed"), Mode = n.Str("mode") ?? "normal", Level = (int)n.Num("level"),
             Formula = (int)n.Num("formula"), SecondsLeft = (int)n.Num("secondsLeft"),
+            Board = n.Str("board") is { Length: > 0 } board ? board : "normal", Dlc = n.Bool("dlc"),
         };
+    }
+
+    /// <summary>Every board of the day (GET /api/dailies); null when the answer has none (an older server).</summary>
+    public static List<DailyInfo> ListFromJson(string json)
+    {
+        var n = Parse(json);
+        if (n.IsNull || n.Str("date") is not { Length: > 0 } date || !n.Has("boards"))
+            return null;
+        var list = new List<DailyInfo>();
+        foreach (var b in n.List("boards"))
+        {
+            string board = b.Str("board") ?? "";
+            if (!DailyBoards.IsBoard(board))
+                continue;
+            list.Add(new DailyInfo
+            {
+                Date = date, Board = board, Dlc = b.Bool("dlc"), Seed = (int)b.Num("seed"), Mode = b.Str("mode") ?? "normal",
+                Level = (int)b.Num("level"), Formula = (int)n.Num("formula"), SecondsLeft = (int)n.Num("secondsLeft"),
+            });
+        }
+        return list.Count > 0 ? list : null;
     }
 
     internal static Node Parse(string json)
@@ -82,6 +130,8 @@ public sealed class BoardEntry
 public sealed class Board
 {
     public string Date = "", Month = "", Mode = "", Level = "";
+    /// <summary>Which of the day's boards (an older server: "normal").</summary>
+    public string Name = "normal";
     public int Count;
     /// <summary>The day's difficulty factor (the points and the bonuses are multiplied by it).</summary>
     public double Factor = 1;
@@ -97,7 +147,7 @@ public sealed class Board
         {
             Date = n.Str("date") ?? "", Month = n.Str("month") ?? "", Mode = n.Str("mode") ?? "",
             Level = ((int)n.Num("level")).ToString(CultureInfo.InvariantCulture), Count = (int)n.Num("count"),
-            Factor = n.Num("factor", 1),
+            Factor = n.Num("factor", 1), Name = n.Str("board") is { Length: > 0 } name ? name : "normal",
         };
         foreach (var e in n.List("entries"))
             board.Entries.Add(BoardEntry.FromNode(e));

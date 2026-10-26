@@ -78,11 +78,11 @@ public class DailyTests
     public void The_daily_profile_evens_out_a_save()
     {
         var save = new SaveFileModel();
-        save.SetInt("HardmodeProgress/clearedLevel", 2);
+        save.SetInt("HardmodeProgress/clearedLevel", 10); // the player's own: more than the day's
         save.SetInt("Currency/darkQuartz/balance", 9000);
         save.SetBool("Save/hasSave", true);
         save.SetInt("Progress/WitchMastery/skull/0", 1);
-        var facts = new DailyProfileFacts { TopDarkMirrorLevel = 10 };
+        var facts = new DailyProfileFacts { TopDarkMirrorLevel = 5 }; // a Dark Mirror 5 day
         facts.GearUnlockKeys.Add("gear/unlocked/Weapon/Skeleton_Spear_4");
         facts.WitchTop["Progress/WitchMastery/skull/0"] = 5;
         facts.Darktech.Add("LuckyMeasuringInstrument");
@@ -93,12 +93,14 @@ public class DailyTests
         Assert.Equal(5, save.GetInt("Progress/WitchMastery/skull/0"));
         Assert.True(save.GetBool("HardmodeProgress/_unlocked/LuckyMeasuringInstrument"));
         Assert.True(save.GetBool("HardmodeProgress/_activated/LuckyMeasuringInstrument"));
-        Assert.Equal(10, save.GetInt("HardmodeProgress/clearedLevel"));
+        Assert.Equal(5, save.GetInt("HardmodeProgress/clearedLevel")); // exactly the day's: Darktech up to it
         Assert.Equal(DailyProfile.StartDarkQuartz, save.GetInt("Currency/darkQuartz/balance"));
         Assert.Equal(15_000, DailyProfile.StartDarkQuartz);
         Assert.Equal(0, save.GetInt("Currency/gold/balance"));
         Assert.False(save.GetBool("Save/hasSave"));
         Assert.True(save.GetBool("Progress/foxRescued"));
+        Assert.True(save.GetBool("BoolDataEnumArray/강화두개골제조기_Intro")); // the skull machine of Dark Mirror 7+ works at once
+        Assert.True(save.GetBool("BoolDataEnumArray/dwarfEngineer_First"));
     }
 
     [Fact]
@@ -215,5 +217,55 @@ public class DailyTests
         nav.SwitchCategory(CodexCategory.DailyMonth);
         Assert.Equal(CodexNavigation.DailyPage, nav.SelectedId);
         Assert.All(CodexNavigation.TabsOf(CodexSection.Daily), c => Assert.Equal(CodexSection.Daily, CodexNavigation.SectionOf(c)));
+    }
+
+    [Fact]
+    public void Every_board_of_the_day_from_the_server()
+    {
+        const string json = "{\"date\":\"2026-10-27\",\"formula\":2,\"secondsLeft\":3600,\"boards\":[" +
+                            "{\"board\":\"normal\",\"dlc\":false,\"seed\":11,\"mode\":\"normal\",\"level\":0}," +
+                            "{\"board\":\"dm\",\"dlc\":false,\"seed\":22,\"mode\":\"darkmirror\",\"level\":4}," +
+                            "{\"board\":\"dm10+dlc\",\"dlc\":true,\"seed\":33,\"mode\":\"darkmirror\",\"level\":10}," +
+                            "{\"board\":\"nonsense\",\"seed\":44}]}";
+        var days = DailyInfo.ListFromJson(json);
+        Assert.Equal(new[] { "normal", "dm", "dm10+dlc" }, days.Select(d => d.Board));   // an unknown board is left out
+        Assert.True(days.All(d => d.Date == "2026-10-27" && d.SecondsLeft == 3600));
+        Assert.Equal((22, 4, false), (days[1].Seed, days[1].Level, days[1].Dlc));
+        Assert.True(days[2].Dlc && days[2].DarkMirror);
+        Assert.Null(DailyInfo.ListFromJson("{\"date\":\"2026-10-27\",\"seed\":1}"));       // an older server: /api/daily
+    }
+
+    [Fact]
+    public void A_try_is_kept_per_day_and_board()
+    {
+        Assert.Equal("2026-10-27", DailyBoards.Key("2026-10-27", "normal"));               // as before the boards
+        Assert.Equal("2026-10-27|dm+dlc", DailyBoards.Key("2026-10-27", "dm+dlc"));
+        Assert.Equal("2026-10-27", DailyBoards.DateOf("2026-10-27|dm+dlc"));
+        Assert.Equal(("dm10", true), (DailyBoards.BaseOf("dm10+dlc"), DailyBoards.HasDlc("dm10+dlc")));
+        Assert.False(DailyBoards.IsBoard("dm11"));
+
+        var state = new DailyState { Board = "dm+dlc" };
+        state.Ensure("2026-10-27").State = "finished";
+        var dark = state.Ensure("2026-10-27", "dm");
+        dark.State = "armed";
+        dark.Level = 4;
+        var back = DailyState.FromJson(state.ToJson());
+        Assert.Equal("dm+dlc", back.Board);
+        Assert.Equal("finished", back.TryOf("2026-10-27", "normal").State);
+        Assert.Equal(("armed", 4, "dm"), (back.TryOf("2026-10-27", "dm").State, back.TryOf("2026-10-27|dm").Level, back.TryOf("2026-10-27|dm").Board));
+        Assert.Null(back.TryOf("2026-10-27", "dm10"));
+        back.Trim("2026-12-30");                                                           // 60 days later: both go
+        Assert.Empty(back.Tries);
+    }
+
+    [Fact]
+    public void The_server_forgets_a_boards_run_and_it_may_be_played_again()
+    {
+        var state = new DailyState();
+        state.Ensure("2026-10-27", "dm10").State = "finished";
+        state.Ensure("2026-10-27").State = "finished";
+        Assert.True(state.FollowServer("2026-10-27", "none", "dm10"));
+        Assert.Null(state.TryOf("2026-10-27", "dm10"));
+        Assert.NotNull(state.TryOf("2026-10-27"));                                         // the other board stays
     }
 }

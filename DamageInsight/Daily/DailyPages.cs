@@ -11,6 +11,12 @@ public static class DailyPages
 {
     public static string Mode(string mode, int level) => mode == "darkmirror" ? Loc.F("Dark Mirror {0}", level) : Loc.T("Normal");
 
+    /// <summary>A board's name: "Dark Mirror 4 · DLC".</summary>
+    public static string BoardName(DailyInfo day) => day == null ? "" : Mode(day.Mode, day.Level) + (day.Dlc ? " · DLC" : "");
+
+    /// <summary>A Bilibili creator who plays the daily runs with his community and promotes the mod (Umut 2026-10-26).</summary>
+    public const string ShoutoutUrl = "https://space.bilibili.com/17576167";
+
     /// <summary>"13:21:05" until the next day's run.</summary>
     public static string Left(int seconds) => RunPages.Time(seconds);
 
@@ -64,19 +70,26 @@ public static class DailyPages
             return sb.ToString();
         }
         sb.Append(PageBlocks.Section(Loc.T("Today's run"), "pix:hourglass"));
-        sb.Append($"<b>{day.Date}</b>  ·  {Mode(day.Mode, day.Level)}\n");
+        sb.Append($"<b>{day.Date}</b>  ·  {BoardName(day)}\n");
         sb.Append(Loc.F("A new run in {0} (midnight UTC).", Left(day.SecondsLeft))).Append('\n');
+        sb.Append($"<color={RunPages.DimColor}>{(day.Dlc ? Loc.T("With the game's DLC (the Mythology Pack): its skulls and items can come. Only for players who own it.") : Loc.T("Without DLC: the same run for everyone, whether they own the DLC or not."))}</color>\n");
         sb.Append(PageBlocks.Section(Loc.T("Your try"), "pix:star"));
         sb.Append(Status(t, inDailySlot, board)).Append('\n');
         if (otherMods.Length > 0)
             sb.Append($"<color={RunPages.DeathColor}>{Loc.F("Other mods are loaded ({0}): today's run won't count on the board. Only runs with SkulInsight alone count.", otherMods)}</color>\n");
+        // Above "How it works", so it shows without scrolling (Umut 2026-10-26: at the bottom it was hardly ever seen).
+        sb.Append(PageBlocks.Section(Loc.T("Shoutout"), "pix:heart"));
+        sb.Append(Loc.F("Shoutout to Tythos and his community for using and promoting this passion project. Leave him some support on {0}.",
+            CodexPages.LinkTo("url:" + ShoutoutUrl, "Bilibili"))).Append('\n');
         sb.Append(PageBlocks.Section(Loc.T("How it works"), "pix:door"));
-        sb.Append(Loc.T("Everyone gets the same seed and one try. You play in a daily save slot made from your game: every gear unlocked, the Witch at her top, every Dark Mirror level open, no DLC gear, no Steam achievements. Your own game waits as it is; \"Back to my game\" returns to it.")).Append('\n');
+        sb.Append(Loc.T("Every day has three runs, each with and without DLC: Normal, the Dark Mirror at a random level, and Dark Mirror 10. Each has its own seed, its own boards and one try.")).Append('\n');
+        sb.Append(Loc.T("You play in a daily save slot made from your game: every gear unlocked, the Witch at her top, the Dark Mirror (and its machines) up to the day's level, the whole Codex open, no rewards, no Steam achievements. Your own game waits as it is; \"Back to my game\" returns to it.")).Append('\n');
         sb.Append(Loc.T("One try means one go: closing the game or going back to the title screen during the run ends it (a daily run can't be continued), and it goes on the board as it was.")).Append('\n');
         sb.Append(Loc.T("Wins rank first, then how far a run got. Points: a win, stages, bosses, kills, damage, little damage taken, gold left and a fast win; harder days count more. The month adds up your days.")).Append('\n');
         sb.Append(Loc.T("The day's records (first win, fastest win, most damage, ...) and a daily streak give bonus points. Click a run on the board to look at it, see its points part by part and give it a thumbs up.")).Append('\n');
         if (problem.Length > 0)
             sb.Append($"<color={RunPages.DeathColor}>{Loc.T("No connection to the daily run server.")}</color>\n");
+        sb.Append(PageBlocks.Close());
         return sb.ToString();
     }
 

@@ -19,14 +19,27 @@ public sealed class DailyProfileFacts
 /// <summary>
 /// The daily run's profile (Umut 2026-10-16: the daily is played in its own slot so everyone plays the same run): a copy
 /// of the player's own save, evened out so the gear pool and the stats are the same for everybody. Every gear that
-/// needs unlocking is unlocked (the pool depends on it: GearManager), the Witch's masteries are at their top, every
-/// Darktech machine is unlocked and on, every Dark Mirror level is open, the castle NPCs are rescued, the currencies
-/// are at 0 and no run is in progress. Plain logic on the game's save model.
+/// needs unlocking is unlocked (the pool depends on it: GearManager), the Witch's masteries are at their top, the
+/// Dark Mirror is cleared up to the day's level (so its Darktech machines, and no later ones, are unlocked and on; a
+/// normal day: all), the castle NPCs are rescued, the currencies are at 0 and no run is in progress. Plain logic on
+/// the game's save model.
 /// </summary>
 public static class DailyProfile
 {
     public static readonly string[] Rescued =
         { "Progress/foxRescued", "Progress/ogreRescued", "Progress/druidRescued", "Progress/deathknightRescued" };
+
+    /// <summary>
+    /// The Dark Mirror's first-time scenes (CutScenes.Key, saved as "BoolDataEnumArray/&lt;key&gt;"), seen as in a save
+    /// that cleared it: a slot that never entered the Dark Mirror got the Dwarf Engineer's talks and the machines'
+    /// intros, and the skull machine of Dark Mirror 7+ stayed off until its intro ran (Umut 2026-10-26).
+    /// </summary>
+    public static readonly string[] SeenCutscenes =
+    {
+        "dwarfEngineer_First", "anotherWitch_Save", "darkMirror_FirstClear", "darkMirror_LevelTutorial",
+        "supportingAdventurer_First", "DarkMirrorArachne_First", "DarkMirrorArachne_건강보조장치", "darkMirrorBlackMarket",
+        "darkMirrorCollector_품목순환장치", "각인합성장치_Intro", "행운계측기_Intro", "강화두개골제조기_Intro",
+    };
 
     public static readonly string[] Currencies = { "gold", "darkQuartz", "bone", "heartQuartz" };
 
@@ -44,10 +57,13 @@ public static class DailyProfile
             save.SetBool($"HardmodeProgress/_unlocked/{machine}", true);
             save.SetBool($"HardmodeProgress/_activated/{machine}", true);
         }
-        save.SetInt("HardmodeProgress/clearedLevel", Math.Max(save.GetInt("HardmodeProgress/clearedLevel", -1), facts.TopDarkMirrorLevel));
+        // Exactly the day's level, not the player's own: the game unlocks the Darktech machines by it (Umut 2026-10-26).
+        save.SetInt("HardmodeProgress/clearedLevel", facts.TopDarkMirrorLevel);
         save.SetInt("HardmodeProgress/clearedCount", Math.Max(1, save.GetInt("HardmodeProgress/clearedCount")));
         foreach (var key in Rescued)
             save.SetBool(key, true);
+        foreach (var scene in SeenCutscenes)
+            save.SetBool("BoolDataEnumArray/" + scene, true);
         foreach (var currency in Currencies)
             save.SetInt($"Currency/{currency}/balance", currency == "darkQuartz" ? StartDarkQuartz : 0);
         save.SetBool("Save/hasSave", false);

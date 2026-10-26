@@ -131,6 +131,8 @@ public static class SettingsCatalog
     // Config sections in page order, with the heading shown for them. Unknown sections follow in config order.
     private static readonly (string section, string heading)[] Sections =
     {
+        // First on the page (Umut 2026-10-25: rewards on by default, "very far at the top ... to be able to be turned off").
+        ("Rewards", Loc.N("Rewards")),
         ("General", Loc.N("General")),
         (SaveSlotsSection, Loc.N("Save slots")),
         ("Daily", Loc.N("Daily run")),
@@ -168,6 +170,30 @@ public static class SettingsCatalog
     /// </summary>
     private static readonly Dictionary<string, Spec> Specs = new()
     {
+        ["Rewards/Enabled"] = On(Loc.N("Rewards"),
+            Loc.N("Rewards for your achievements and the bestiary: small lasting bonuses, coins that summon gear, quests that pay dark quartz and gold. They change the game's balance a little and are never used in daily runs. Off: the game as it is; everything earned is kept and comes back when you turn them on.")),
+        ["Rewards/AchievementRewards"] = On(Loc.N("Achievement rewards"),
+            Loc.N("Each achievement of this save slot gives a small lasting bonus that fits it: more damage to a boss you beat (more if without getting hit), attack, speed, cooldowns, gold, less damage taken. Codex, You, Rewards shows them all.")),
+        ["Rewards/Coins"] = On(Loc.N("Coins"),
+            Loc.N("Breaking a legendary item or skull (or leaving it behind) gives its coin; every few wins over one adventurer give that adventurer's coin (its rare legendary item); a run ended with Omen items gives an Omen coin each. In a later run coins summon that gear at your feet (see Coins per summon).")),
+        ["Rewards/Quests"] = On(Loc.N("Kill quests"),
+            Loc.N("Every normal enemy has an endless quest: every few runs' worth of kills of it pays some dark quartz and gold at once. Dark enemies count double.")),
+        ["Rewards/InscriptionActivations"] = On(Loc.N("Inscription activations"),
+            Loc.N("Completing an inscription in a run (its last step) earns an activation when the run ends, won or lost. In a later run an activation makes an inscription you have count one more until that run ends (each one once per run), like the Dark Mirror's banners.")),
+        ["Rewards/SummonsPerRun"] = Number(Loc.N("Summons per run"), 0, 3, 1, Unit.Plain,
+            Loc.N("How many summons of each kind (legendary skull, legendary item, adventurer, Omen) you can make in one run.")),
+        ["Rewards/CoinsPerSummon"] = Number(Loc.N("Coins per summon"), 1, 10, 1, Unit.Plain,
+            Loc.N("How many coins a summon takes: of that legendary skull or item, or Omen coins for an Omen item. An adventurer's coin is enough on its own (it already takes several wins).")),
+        ["Rewards/ActivationsPerRun"] = Number(Loc.N("Activations per run"), 0, 3, 1, Unit.Plain,
+            Loc.N("How many inscription activations you can use in one run.")),
+        ["Rewards/QuestRuns"] = Number(Loc.N("Quest length (runs)"), 0.5, 10, 0.5, Unit.Plain,
+            Loc.N("How many runs' worth of an enemy one quest step takes (at least 10 kills, at most 150).")),
+        ["Rewards/QuestDarkQuartz"] = Number(Loc.N("Quest dark quartz"), 0, 100, 5, Unit.Plain,
+            Loc.N("Dark quartz each quest step pays.")),
+        ["Rewards/QuestGold"] = Number(Loc.N("Quest gold"), 0, 300, 10, Unit.Plain,
+            Loc.N("Gold each quest step pays (only inside a run).")),
+        ["Rewards/AdventurerKills"] = Number(Loc.N("Adventurer wins per coin"), 1, 50, 1, Unit.Plain,
+            Loc.N("How many wins over one adventurer give its coin.")),
         ["General/Language"] = On(Loc.N("Language"),
             Loc.N("The language of the mod's texts. \"Game language\" follows the game's own setting.")),
         ["Damage Numbers/ShowSourceTag"] = On(Loc.N("Show source"),

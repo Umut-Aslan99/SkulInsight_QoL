@@ -134,6 +134,8 @@ public static class CodexTracker
             if (target.type == Character.Type.Boss && LateChapter())
                 OnRunWon();
             RunRecorder.OnKilled(EntryOf(target).Value.id);
+            var killed = EntryOf(target).Value;
+            Patches.Guard.Run("Rewards: kill", () => DamageInsight.Rewards.RewardService.OnKilled(target, killed.id, killed.category));
             // Kills are when the enemy is out of the fight: capturing its animations can't disturb anything.
             CodexAnimations.RequestCapture(target, EntryOf(target).Value.key, CodexWindow.Instance);
         }

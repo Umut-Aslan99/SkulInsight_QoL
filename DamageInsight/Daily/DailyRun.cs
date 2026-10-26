@@ -24,14 +24,65 @@ public static class DailyRun
     public static bool InDailySlot => SlotStore.Active == SlotStore.DailySlot;
     public static int Origin => DailyService.State.Origin;
 
-    /// <summary>Today's try on this PC, or null.</summary>
-    public static DailyTry TodaysTry => DailyService.Today == null ? null : DailyService.State.TryOf(DailyService.Today.Date);
+    /// <summary>Today's try on the board the Daily section shows, or null.</summary>
+    public static DailyTry TodaysTry => DailyService.Today is { } day ? DailyService.State.TryOf(day.Date, day.Board) : null;
+
+    /// <summary>The player owns the game's DLC (the Mythology Pack): needed for the "+dlc" boards.</summary>
+    public static bool OwnsDlc
+    {
+        get
+        {
+            try { return PersistentSingleton<PlatformManager>.Instance.platform.dlcManager.mythologyPack.owned; }
+            catch (Exception) { return false; }
+        }
+    }
+
+    /// <summary>The daily run being set up or played is on a DLC board (its DLC gear and events are in).</summary>
+    public static bool DlcBoard => Current is { } t && DailyBoards.HasDlc(t.Board);
 
     /// <summary>A try whose run ended and waits for its name (any day: a run can end after midnight).</summary>
     public static DailyTry Ended => DailyService.State.Tries.Values.FirstOrDefault(t => t.State == "ended");
 
     private static bool _castleSwitching;
     private static string _seedNoticeFor = "";
+    private static string _castleReloadedFor = "";
+
+    /// <summary>The try being set up or played in the daily slot (armed in the castle, started in the run), or null.</summary>
+    private static DailyTry Current => !InDailySlot ? null
+        : DailyService.State.Tries.Values.Where(x => x.State is "armed" or "started").OrderByDescending(x => x.Date, StringComparer.Ordinal).FirstOrDefault();
+
+    /// <summary>
+    /// The game drew a new run seed (GameData.Save.ResetAll, when a castle loads): in the daily slot the day's seed
+    /// goes back at once, before the castle's Fox and Ogre roll the skull and the item they give from it (Umut
+    /// 2026-10-26: "the npcs that drop the items, the skulls and give the blessing ... seem to not give the same items").
+    /// </summary>
+    public static void KeepSeed(GameData.Save save)
+    {
+        var t = Current;
+        if (t == null || t.State != "armed" || save.randomSeed == t.Seed)
+            return;
+        save._randomSeed.value = t.Seed;
+    }
+
+    /// <summary>
+    /// The Holy Grail's blessing before the run (CutScenes ApplyBlessing): the game picks it with Unity's shared random,
+    /// different for everyone; in a daily run it is picked from the day's seed. False: not a daily run (the game picks).
+    /// </summary>
+    public static bool SeededBlessing(CutScenes.Shots.Events.Customs.ApplyBlessing shot)
+    {
+        var t = Current;
+        if (t == null || shot._blessings == null || shot._blessings.Length == 0)
+            return false;
+        var character = shot._target.character;
+        int index = new Random(t.Seed ^ 0x6B1E55).Next(shot._blessings.Length);
+        var blessing = UnityEngine.Object.Instantiate(shot._blessings[index]);
+        blessing.Apply(character);
+        shot._holyGrailAnimator.Play(blessing.clip.name);
+        shot._nameKeyCache.key = blessing.activatedNameKey;
+        shot._chatKeyCache.key = blessing.activatedChatKey;
+        Plugin.Log.LogInfo($"Daily run: the blessing from the day's seed ({blessing.name.Replace("(Clone)", "").Trim()})");
+        return true;
+    }
 
     // ------------------------------------------------------------------ playing
 
@@ -43,9 +94,12 @@ public static class DailyRun
         var day = DailyService.Today;
         if (day == null)
             return Loc.T("Today's run isn't loaded yet. Is the game online?");
-        var t = DailyService.State.TryOf(day.Date);
+        var t = DailyService.State.TryOf(day.Date, day.Board);
         if (t != null && t.Played)
             return Loc.T("You played today's run. The next one comes at midnight (UTC).");
+        // DLC content only for its owners (Umut 2026-10-26: "I dont want to give DLC content for free to players").
+        if (day.Dlc && !OwnsDlc)
+            return Loc.T("This board is played with the game's DLC (the Mythology Pack). You can watch it; playing needs the DLC.");
         if (!InCastle())
             return Loc.T("Go to the castle first.");
         if (SlotSwitcher.Busy)
@@ -66,11 +120,14 @@ public static class DailyRun
             {
                 var live = PersistentSingleton<PlatformManager>.Instance.platform.data;
                 var copy = SaveFileModel.FromJson(live.ToJson());
-                DailyProfile.Even(copy, Facts());
+                DailyProfile.Even(copy, Facts(day));
                 SlotStore.WriteSave(SlotStore.DailySlot, copy.ToJson());
                 DailyService.State.Origin = SlotStore.Active;
             }
-            var t = DailyService.State.Ensure(day.Date);
+            // One board at a time: a try armed on another board (never left the castle) is let go.
+            foreach (var other in DailyService.State.Tries.Values.Where(x => x.State == "armed" && x.Key != DailyBoards.Key(day.Date, day.Board)).ToList())
+                DailyService.State.Tries.Remove(other.Key);
+            var t = DailyService.State.Ensure(day.Date, day.Board);
             t.State = "armed";
             t.Seed = day.Seed;
             t.Mode = day.Mode;
@@ -82,7 +139,7 @@ public static class DailyRun
             Plugin.Log.LogError($"Daily run: the daily slot could not be made: {e}");
             return Loc.T("Today's run could not be prepared. See BepInEx/LogOutput.log.");
         }
-        Plugin.Log.LogInfo($"Daily run: {day.Date} ({day.Mode} {day.Level}) armed; slot {SlotStore.DailySlot} from slot {Origin}");
+        Plugin.Log.LogInfo($"Daily run: {day.Date} {day.Board} ({day.Mode} {day.Level}) armed; slot {SlotStore.DailySlot} from slot {Origin}");
         return InDailySlot ? null : SlotSwitcher.Switch(SlotStore.DailySlot, closeMenus, keepCodex: true);
     }
 
@@ -99,7 +156,7 @@ public static class DailyRun
     }
 
     /// <summary>What an evened-out profile sets, read from the game (gear references, the Witch, Darktech).</summary>
-    private static DailyProfileFacts Facts()
+    private static DailyProfileFacts Facts(DailyInfo day)
     {
         var facts = new DailyProfileFacts();
         var gear = GameResources.GearResource.instance;
@@ -120,7 +177,8 @@ public static class DailyRun
                     facts.WitchTop[$"Progress/WitchMastery/{name}/{i}"] = tree.list[i].maxLevel;
         foreach (Hardmode.Darktech.DarktechData.Type machine in Enum.GetValues(typeof(Hardmode.Darktech.DarktechData.Type)))
             facts.Darktech.Add(machine.ToString());
-        facts.TopDarkMirrorLevel = GameData.HardmodeProgress.maxLevel;
+        // A Dark Mirror day: cleared up to the day's level (its Darktech, no more); a normal day: everything.
+        facts.TopDarkMirrorLevel = day.Mode == "darkmirror" ? day.Level : GameData.HardmodeProgress.maxLevel;
         return facts;
     }
 
@@ -154,15 +212,37 @@ public static class DailyRun
         _castleSwitching = false;
         if (wantDark && GameData.HardmodeProgress.hardmodeLevel != t.Level)
             GameData.HardmodeProgress.hardmodeLevel = t.Level;
+        // Darktech only up to the day's level (Umut 2026-10-26: "I dont want a DM 5 daily run to have DM 6-10 dark techs
+        // unlocked"): the game locks the machines above the cleared level when the Dark Mirror castle loads.
+        if (wantDark && GameData.HardmodeProgress.clearedLevel != t.Level)
+        {
+            GameData.HardmodeProgress.clearedLevel = t.Level;
+            if (_castleReloadedFor != t.Key + "#level")
+            {
+                _castleReloadedFor = t.Key + "#level";
+                Plugin.Log.LogInfo($"Daily run: Darktech up to Dark Mirror {t.Level}, the castle loads again");
+                levels.ResetGame(chapter.type);
+                return;
+            }
+        }
         var save = GameData.Save.instance;
         if (save.randomSeed != t.Seed)
         {
             save._randomSeed.value = t.Seed;
             save._randomSeed.Save();
+            // The castle was loaded with another seed: its Fox and Ogre rolled their gifts from it. Once more with the
+            // day's seed (ResetGame draws a new one, KeepSeed puts the day's back before the castle's people roll).
+            if (_castleReloadedFor != t.Key + "#seed")
+            {
+                _castleReloadedFor = t.Key + "#seed";
+                Plugin.Log.LogInfo("Daily run: the castle loads again with the day's seed");
+                levels.ResetGame(chapter.type);
+                return;
+            }
         }
-        if (_seedNoticeFor != t.Date)
+        if (_seedNoticeFor != t.Key)
         {
-            _seedNoticeFor = t.Date;
+            _seedNoticeFor = t.Key; // per board: two boards of a day are two runs
             DamageInsight.UI.Notice.Show("daily", Loc.F("Today's run is ready ({0}): leave the castle to begin. One try!", DailyPages.Mode(t.Mode, t.Level)), 8f);
         }
     }
@@ -216,9 +296,9 @@ public static class DailyRun
             return null;
         t.State = "started";
         DailyService.SaveState();
-        DailyService.SendStart(t.Date);
-        Plugin.Log.LogInfo($"Daily run: {t.Date} started");
-        return t.Date;
+        DailyService.SendStart(t);
+        Plugin.Log.LogInfo($"Daily run: {t.Date} {t.Board} started");
+        return t.Key;
     }
 
     /// <summary>A run ended (RunJournal): a daily run's numbers wait for the name.</summary>

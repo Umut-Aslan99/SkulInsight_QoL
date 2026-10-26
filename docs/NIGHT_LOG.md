@@ -1,184 +1,99 @@
-# Night log 2026-10-21 (unattended work session: modding Skul on macOS)
+# Night log 2026-10-25/26 (unattended work session)
 Running log, updated after every step, so an auto-compaction or a new session loses nothing.
 Decisions Claude made for Umut are marked **[DECISION]**: Umut may change any of them.
-The previous night's log (2026-10-11, QA capture) is in git history (`git show 6e7e9cd:docs/NIGHT_LOG.md`).
 
 ## Setup (read first when resuming)
-- Plan (Umut's words, 00:40): "Someone in the skul official community asked, how to mod on mac. Can we do the
-  research for him? make this research a night shift task /night-shift which means, turn off my PC when its done and
-  check the session usage etc."
-- Goal: find out whether and how Skul + BepInEx + SkulInsight QoL run on a Mac (native Mac version? Mono or IL2CPP?
-  Apple Silicon? mod managers? Windows version through CrossOver / Wine / Whisky / Parallels?), write a public guide
-  like docs/LINUX.md, and a short reply Umut can paste in the Skul Discord. PC shuts down at the end.
-- Not tonight: posting the reply, pushing the guide to GitHub, a release (all outward-facing: morning todos).
-- Watcher: night-check.ps1 (skill night-shift); state in C:\Users\Umut\ClaudeNight
-  - [DECISION] screen.txt set from `left` to `main`: the usage panel (VS Code, Claude Code sidebar) is in the top-left
-    corner of the main screen tonight; the left monitor shows Discord. Set it back to `left` when needed.
-- Stop rule [DECISION]: Session ≈ 90 % or Weekly ≥ 85 % (Weekly starts at 73 %, so Weekly is the real limit), or
-  the queue is done.
-- Umut's addition (00:45): "If you find a way that we can make our mod compatible with mac, create mac
-  compatibility tonight until the night shift is over"
-- Usage readings: 00:41 S 1 % / W 73 %; 00:49 S 4 % / W 73 %; 01:00 S 14 % / W 74 %; 01:05 S 18 % / W 75 %
+- Plan (Umut's words, 23:50): "Please continue with the /night-shift skill. Turn my PC off, once the version with the
+  mod manager is fixed + pushed on github / thunderstore. And in case you are continuing the next version with the
+  rewards already, continue that as well until its finished and then turn my PC off, prepare a morning report as well"
+- Why 0.14.1: Thunderstore's moderator Robyn (Discord, 21:07-21:58): "We rely on mod managers to do updating, plugins
+  updating themselves or other packages is not permitted" ... "I'm going to need you to not include that feature in
+  the Thunderstore build" (suggested an `IsThunderstoreBuild` msbuild value with `#if` around the updating code). 0.14.0
+  was deactivated; "0.14.0 is not available anymore as a version number ... make sure you use 0.14.1 or higher".
+  Robyn: "get my attention when you upload a new version".
+- Release tonight is explicitly asked for by Umut (an exception to "nothing outward-facing at night").
+- 0.14.1 is built in the worktree C:\Users\Umut\SkulModding\SkulMods-0.14.1 (branch release-0.14.1 from d78d017,
+  the 0.14.0 release state), so the unfinished 0.15 work on main stays out of it.
+- Watcher: night-check.ps1 (skill night-shift); state in C:\Users\Umut\ClaudeNight; watchdog 75 min.
+- Stop rule [DECISION]: Session ≈ 90 % or Weekly ≥ 85 %; the PC shuts down at the end (Umut asked).
+- Usage readings: 23:53 S 8 % / W 69 % (session resets ~04:00).
 
 ## Queue
-1. Research: Skul's Mac version on Steam (depots, Unity version, Mono or IL2CPP, Intel or Apple Silicon).
-2. Research: BepInEx 5 on macOS (run_bepinex.sh, doorstop dylib, Apple Silicon / Rosetta, Gatekeeper / quarantine,
-   unstripped corlib that Skul needs), and what BepInExPack Skul contains.
-3. Research: mod managers on macOS (r2modman, Gale, Thunderstore App), and the Windows-version route (CrossOver,
-   Whisky, Wine, Parallels, Game Porting Toolkit) with the winhttp override.
-4. Check the mod's own code for Windows-only calls (opening folders, paths) that would break on a Mac.
-5. Write docs/MACOS.md (public guide), a Discord reply draft, README/wiki lines (drafts, not pushed).
-6. Wrap-up: status doc, memory, shutdown.
+1. 0.14.1 (worktree): IsThunderstoreBuild → THUNDERSTORE: no self-update, and the Mods window only lists mods and
+   links to their Thunderstore pages (no download / install / update / remove / on-off: "updating ... other packages
+   is not permitted"); the AutoUpdate setting hidden; README / wiki / changelog / What's new say so; package.ps1
+   builds with the flag and checks the DLL has no updater; tests; release (GitHub + Thunderstore).
+2. Merge the flag into main (0.15 keeps it).
+3. 0.15 rewards (main, docs/V015_LOG.md): translations of the ~118 new texts in 10 languages, font glyph test,
+   What's new / changelog / README / wiki for 0.15, version 0.15.0, Debug build deployed for Umut's test, test todos.
+4. Wrap-up: morning report, status doc, memory, shutdown.
 
 ## Steps (newest last)
-1. 00:53 **Research done: the native Mac version can run the mod.** Facts (all checked on the real files: the Mac
-   depot 1147568 was downloaded with the Steam console `download_depot 1147560 1147568` to
-   `C:\Program Files (x86)\Steam\steamapps\content\app_1147560\depot_1147568`, 1.7 GB):
-   - Steam: Skul has Windows, macOS and Linux depots; Mac launch = `Skul.app/Contents/MacOS/Skul`, version
-     v1.09.02.3a3, Unity 2020.3.34f1, bundle id com.SouthpawGames.Skul, macOS 10.13+.
-   - **Mono, not IL2CPP** (Frameworks/libmonobdwgc-2.0.dylib, Resources/Data/Managed) → BepInEx 5 works.
-   - **x86_64 only** (no arm64 slice): on Apple Silicon the game always runs through Rosetta 2, so the well-tested
-     x64 BepInEx/HarmonyX path applies, no arm64 JIT problems.
-   - **Ad-hoc signed, no hardened runtime, no library validation** → `DYLD_INSERT_LIBRARIES` (Doorstop) is allowed.
-     Only Valve's steam_api is hardened (irrelevant, it is a plugin dylib).
-   - **Assembly-CSharp.dll is byte-identical to Windows** (md5 15e2eb16), so all patches hit the same code. Platforms*,
-     Unity.TextMeshPro, UnityEngine.UI identical too; CoreModule/System/mscorlib differ only by stripping.
-   - Managed is **stripped like on Windows** → the unstripped libs are needed (the mod also references
-     UnityEngine.ImageConversionModule + UnityWebRequestTextureModule, which only the unstripped set has). Member diff:
-     every Mac UnityEngine module is a subset of BepInExPack Skul's unstripped one, **except GameCenterModule** (Mac has
-     GameCenterPlatform, the Windows-made unstripped one doesn't) → leave that file out on Mac. mscorlib/System gaps
-     (90/11 linker stubs) are the same on Windows, where it works.
-   - BepInEx 5.4.23.5 has `BepInEx_macos_universal_5.4.23.5.zip` (Doorstop 4.5.0, universal dylib). Its
-     run_bepinex.sh on Apple Silicon runs `arch -e DYLD_INSERT_LIBRARIES=libdoorstop.dylib` and loses
-     DYLD_LIBRARY_PATH (arch is a platform binary) → the relative dylib name may not be found; Doorstop 4.6.0 (2 days
-     old) fixes it. Our installer makes the dylib path absolute instead.
-   - Mod managers: r2modman / Gale / Thunderstore App have no macOS version; r2modmac (community, unsigned) exists,
-     untested with Skul; Thunderstore's Skul mods depend on the Windows-only BepInExPack Skul. → manual install script.
-   - Windows-version route (CrossOver / Whisky (discontinued) / Parallels) is possible like Proton
-     (`WINEDLLOVERRIDES="winhttp=n,b"`), but the native route is simpler and free.
-   - The mod's code: paths all use Path.Combine + BepInEx.Paths (BepInEx root = folder next to Skul.app), saves go
-     through the game, Unity log via Application.consoleLogPath. Windows-only bits: `OpenFolder` builds
-     `file:///` + path (wrong on a Mac, spaces in "Application Support" unescaped), CJK font fallback only knows
-     Windows/Noto fonts, the Wine check P/Invokes kernel32 (caught, but pointless off Windows).
-   - **[DECISION]** Route = native Mac version + BepInEx 5.4.23.5 macOS + BepInExPack Skul's unstripped libs (the same
-     files Windows players use) minus GameCenterModule + a Steam launch option, set up by one Terminal script.
-     Reason: free, no Wine, the game code is identical, everything Windows players run is reused.
-   Untested: everything on a real Mac (we have none). Morning: Umut sends the guide to the Mac player.
-2. 00:56 **The mod's Mac fixes** (new `Tools/PlatformPaths.cs`, plain logic + 4 tests, 468 tests pass, Debug deployed,
-   Release builds): crash reports' "Open folder" builds an escaped `file:///Users/...` URL on a Mac (Windows keeps its
-   old form byte for byte); the CJK font fallback also knows Apple's fonts (Korean AppleSDGothicNeo, Japanese
-   Hiragino W6/W3, Chinese PingFang / Hiragino Sans GB / STHeiti, Arial Unicode last) and looks in /System/Library/Fonts,
-   …/Supplemental, /Library/Fonts, ~/Library/Fonts, comparing names NFC-normalized (macOS may store the Japanese
-   names decomposed); the Wine check returns at once off Windows. Proton players keep the Windows paths (the game is
-   the Windows version there; IsWindows = `Path.DirectorySeparatorChar == '\\'`).
-   **[DECISION]** No setting for this: it only changes what happens on a Mac, where the old code could not work.
-   Untested: on a Mac (fonts, Open folder). Windows: nothing visible changes (Umut may click "Crash reports folder"
-   [Open] once).
-3. 01:00 **Mac installer `tools/mac/install-mac.sh`** (POSIX sh: macOS's /bin/sh is bash 3.2) + its test
-   `tools/mac/test-install-mac.sh` (34 checks, ALL PASSED in Git Bash). `sh install-mac.sh` finds Skul.app in every
-   Steam library (default + libraryfolders.vdf) or takes `--game`, refuses a Windows copy and a running Skul, downloads
-   BepInEx 5.4.23.5 macOS + BepInExPack Skul (both SHA-256 pinned) + the newest SkulInsight release from the GitHub
-   API, copies the 78 unstripped libraries to `BepInEx/unstripped_corlib` (GameCenterModule left out), edits
-   run_bepinex.sh (each edit must match exactly once, else it stops: executable_name="Skul.app",
-   dll_search_path_override relative + resolved with the script's abs_path, Doorstop by full path for Apple Silicon),
-   chmod +x, removes quarantine flags, prints the Steam launch option `"<game>/run_bepinex.sh" %command%` and puts it
-   in the clipboard (pbcopy). `--check` writes ~/skul-mac-report.txt (macOS, CPU, Rosetta, libraries, Skul version
-   and arch, BepInEx files and edits, quarantine, launch option from localconfig.vdf, LogOutput.log errors);
-   `--uninstall` removes loader + mod, keeps BepInEx/config, the mod's records and the saves; `--no-mod`, `--mod-zip`.
-   The test fakes an Apple Silicon Mac (uname/sysctl/file/arch that drops DYLD_* like the real one) and starts the
-   edited run_bepinex.sh like Steam does: the fake game receives Doorstop by full path, the preloader, the
-   unstripped folder and the Steam arguments. sync-public publishes install-mac.sh (the test stays private).
-   **[DECISION]** Steam overlay: not kept in modded starts (/bin/sh drops Steam's DYLD_INSERT_LIBRARIES; Doorstop 4.6
-   re-adds it via STEAM_DYLD_INSERT_LIBRARIES, untested there, and an overlay dylib that fails to load would stop
-   the game). Reason: the safer start; Skul doesn't need the overlay.
-   **[DECISION]** The launch option is pasted by the player (the script prints it and copies it): editing Steam's
-   localconfig.vdf while Steam runs gets overwritten, and it is the player's Steam account.
-   Untested: on a real Mac (needs the Mac player).
-4. 01:03 **Docs: `docs/MACOS.md`** (public guide like LINUX.md: quick setup with the one Terminal line, what the
-   script does, manual installation, why it works this way, troubleshooting, where things are, the check script,
-   other ways: CrossOver/Parallels with `WINEDLLOVERRIDES="winhttp=n,b"`, r2modmac untested). README: section
-   *macOS* under Installation, Compatibility line, Feedback asks for the Mac report. Wiki draft
-   (docs/wiki/thunderstore-wiki.md): *macOS* block under Installation + a macOS FAQ entry (Umut pastes). Bug report
-   template: macOS in the System line + the Mac report.
-   **[DECISION]** The guide says openly that nobody has run it on a real Mac yet and asks for feedback.
-   **[DECISION]** The font fix is announced for 0.14 (next release), no 0.13.x hotfix: on a Mac 0.13.1 already works
-   apart from CJK boxes and the Open-folder button.
-   Note: the one-line install command and the guide links only work after `sync-public.ps1` pushed main to the
-   public repo (morning todo).
-5. 01:05 Checked the official BepInEx docs (bepinex-docs, steam_interop.md, macOS tab): the launch option there is
-   `"<full path>/run_bepinex.sh" %command%`, the same as ours. Wrap-up: this log, PROJECT_STATUS, memory.
+1. 00:00 **0.14.1 released** (GitHub v0.14.1 + Thunderstore DocRun/SkulInsight_QoL 0.14.1; commit 8838e3d on branch
+   release-0.14.1 from the 0.14.0 state, merged into main as a851e3d). `-p:IsThunderstoreBuild=true` defines
+   THUNDERSTORE (DamageInsight.csproj; release/package.ps1 passes it): SelfUpdate.cs, the update-at-start, Install,
+   Remove, SetEnabled, Restart and the restart scripts and the last session's clean-up are compiled out; the
+   setting *Update automatically* isn't bound. ModService.CanChange (false there) hides Install / Update / Turn on-off
+   / Remove / Turn all / Restart game; store rows show "Thunderstore page" / "Installed" / "This mod" and open the
+   details card (with the Thunderstore page button). package.ps1 refuses a DLL that still contains the updater or
+   installer (searches "api/experimental/package", "UpdateSelfLater", "InstallAll", "restart.cmd", "-applaunch"; an
+   unflagged build has all five, the released one none). 3 new texts in 10 languages; CHANGELOG 0.14.1, README, wiki,
+   MOD_MANAGER.md. 527 tests. The GitHub release carries the same (Thunderstore) zip.
+   [DECISION] The Mods window's install / update / remove / on-off are left out of the Thunderstore build too, not
+   only the self-update: Robyn's rule names "updating themselves or other packages". Debug builds keep everything.
+   [DECISION] Released tonight without the reviewer ping (Umut asked for the push tonight; Robyn: "If I'm not around
+   I'll get u when I can"). Morning: ping Robyn that 0.14.1 is up (message in the morning todos).
+   Untested in game: the browse-only Mods window (the Thunderstore build); the worktree folder SkulMods-0.14.1 couldn't
+   be deleted (in use), it is unregistered: delete the folder in the morning.
+   Usage 00:00: S 14 % / W 69 %.
+2. 00:13 **0.15 finished on Claude's side** (commits f33ee0b + this one): all ~124 new texts in 10 languages (the
+   game's own names for the adventurers from its string table: Warrior / Cleric / Hero / Mage / Hunter / Thief, the
+   game's word for Omen, the existing Little Bone names; words the CJK fonts can't draw replaced: zh 浏览/瀏覽, 檔,
+   ja 鑑, ko 퀘스트 → 임무, 셉니다); What's new for 0.15 (5 lines, plus one about 0.14 for players coming from 0.13:
+   0.14.0 was withdrawn); version 0.15.0; CHANGELOG 0.15.0, README (top box, the intro no longer says "changes
+   nothing about the balance", a Rewards section, the settings table, roadmap), wiki, the Thunderstore description
+   (243 chars, "achievements and rewards per save slot"). Review fix: inscription activations are now tracked per
+   inventory (the game never resets bonusCount; the Dark Mirror banners add theirs to a fresh inventory): a new
+   inventory gets this run's activations again, the same inventory in a new run gives the last run's back.
+   548 tests. Debug build of 0.15.0 deployed 00:12 (Skul closed).
+   [DECISION] The 0.15 README intro says the rewards are the mod's only balance change (on by default).
+   Untested: everything in game (see morning todos).
+3. 00:15 **Test helpers** for the morning: DEV builds, **F11** in a run grants a coin for the held skull's first form,
+   a coin for The Chosen Warrior's Armor, an Omen coin and an inscription activation (F10 is the crash-test key).
+   [DECISION] DEV builds: a quest step is 3 kills (was 1: every kill would drop gold and quartz). The You tabs fit in
+   every language (German widest, 610 of 708 px). The 0.15 Thunderstore package builds and passes the no-updater
+   check (release/out, not uploaded). Debug build deployed 00:14.
 
-## End of the night (01:05, Session 18 %, Weekly 75 %)
-The queue is done: research, the mod's Mac fixes, the installer + its test, the guide and the doc lines. Last commit:
-the wrap-up commit after c8cd0b5. 468 tests + the installer test (34 checks) pass, the Debug build is deployed, and
-the working tree is clean. Nothing was pushed or released. The Mac depot download (1.7 GB) stays in
-`C:\Program Files (x86)\Steam\steamapps\content\app_1147560\depot_1147568` for later checks; it can be deleted.
+## End of the night (00:17, Session ≈ 30 %, Weekly ≈ 71 %)
+Last commit: see `git log -1` (wrap-up). Ended early because the queue is done: 0.15 is code-complete and everything
+left needs Umut (the in-game test, the reviewer ping, the 0.15 release).
 
 ## Decisions made tonight (Umut: change any of them)
-1. screen.txt `left` → `main`: the usage panel was on the main screen tonight.
-2. Stop rule: Weekly ≥ 85 % or Session ≈ 90 % (Weekly was the real limit); the night ended early because the queue
-   was done.
-3. Route = native Mac version + BepInEx 5.4.23.5 macOS + BepInExPack Skul's unstripped libraries (without
-   GameCenterModule), set up by one Terminal script. Not CrossOver/Wine: costs money, slower, and the game code is
-   identical anyway.
-4. The mod's Mac fixes have no setting: they only change what happens on a Mac.
-5. No Steam overlay in modded Mac starts (the safer start).
-6. The player pastes the launch option (the script prints it and copies it); we don't edit Steam's files.
-7. The guide says openly that nobody has run it on a real Mac yet.
-8. The font / Open-folder fixes ship with 0.14, no 0.13.x hotfix (0.13.1 already runs on a Mac).
+1. The Thunderstore build leaves out the Mods window's install / update / remove / on-off / restart too, not only the
+   self-update (Robyn's rule names "updating themselves or other packages"). Debug builds keep everything.
+2. 0.14.1 was uploaded tonight without the reviewer ping (Umut asked for the push tonight); ping in the morning.
+3. The GitHub release carries the same Thunderstore zip (no updater in any public build).
+4. Inscription activations are tracked per inventory (the game never resets bonusCount).
+5. DEV builds: quest step 3 kills; F11 grants test coins, an Omen coin and an activation.
+6. The README intro now says the rewards are the mod's only balance change (on by default, one switch).
+7. What's new 0.15: five lines, plus one about 0.14 for players who come straight from 0.13.
+8. Korean "퀘스트" became "임무" (the game's Korean font has no 퀘), zh 浏览器/瀏覽器 → 列表, ja 図鑑 → 図録, zh-Hant 存檔 → 儲存.
+9. (From the evening, V015_LOG step 1/3) adventurer coins summon The Chosen item in any run; Omen coins one per Omen
+   item held at a run's end; summoned gear earns no coin back; summons wait until the map is cleared.
 
 ## Morning todos for Umut
-1. **Publish the Mac guide and installer** (docs only, no release): `release/sync-public.ps1 -NoTag -Message "macOS
-   guide and installer"`. That makes the one-line command and the docs/MACOS.md links work. I can run it as soon as
-   you say "push it". Afterwards check that this opens:
-   https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/tools/mac/install-mac.sh
-2. **Answer the Mac player in the Skul Discord** (#general-chat) with the reply below, after step 1.
-3. **When the Mac player answers:** send me their `~/skul-mac-report.txt` (`sh ~/Downloads/install-mac.sh --check`)
-   and `Skul/BepInEx/LogOutput.log`. I'll read the BepInEx lines first: Chainloader start, "SkulInsight QoL" loaded,
-   the [SelfTest] patch results.
-4. **Optional, Windows:** Esc → SkulInsight QoL → *Crash reports folder* → Open should still open Explorer as before.
-   In the Debug build, which is deployed, check that Korean/Japanese/Chinese still show the Windows font (LogOutput.log
-   line "Fonts: malgunbd.ttf draws ..." or similar).
-5. **Wiki:** paste the new *macOS* blocks (Installation + FAQ) from docs/wiki/thunderstore-wiki.md with the next
-   wiki update. I'll put it on the clipboard when you want.
-
-### Discord reply (draft, for #general-chat)
-> Hey! I looked into it: Skul's Mac version can be modded. It has the same game code as Windows, so BepInEx works on
-> it. The mod managers (r2modman etc.) have no Mac version, so I wrote an installer for my mod SkulInsight QoL. It
-> also sets up BepInEx for other mods.
-> 1. Start Skul once without mods, then quit.
-> 2. Open Terminal and paste:
-> `curl -fsSL -o ~/Downloads/install-mac.sh https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/tools/mac/install-mac.sh && sh ~/Downloads/install-mac.sh`
-> 3. It copies a launch option to your clipboard. In Steam: right-click Skul → Properties → Launch options → Cmd+V.
->    Then start Skul.
->
-> Guide and manual steps: https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md
-> It's brand new and I have no Mac to test it on, so please tell me if it works! If it doesn't, run
-> `sh ~/Downloads/install-mac.sh --check` and send me the file `skul-mac-report.txt` from your home folder.
-
-## Morning after (Umut at the PC)
-- 09:25 Umut: "push everything on my github". sync-public `-NoTag` → public 4c18abd pushed; the raw installer URL
-  serves the same bytes (LF) and the guide opens.
-- 09:30 The Mac player pasted only `curl -fsSL -o ~/Downloads/install-mac.sh`: the long line broke in Discord.
-  Fix that worked: two commands in separate ``` code blocks, no `cd` (`curl -fsSLO <raw url>`, `sh install-mac.sh`).
-- 09:36 Installer output on his MacBook Air: Skul found in the default library, 4/4 steps, both checksums OK,
-  launch option printed. 09:40 he set it and **the mod works in game** (Umut: "It seems to have worked"). First
-  confirmation on a real Mac. docs/MACOS.md says so now.
-- 09:45 His LogOutput.log: BepInEx 5.4.23.5, **57/57 patches applied, run checks 0 failures**, language en, he
-  started a daily run (Dark Mirror 5, slot 9). System: MacBook Air **M1** 2020, 8 GB, **macOS 26.5.2 Tahoe** → the
-  Apple Silicon + Rosetta route works on the newest macOS. ("System platform: Bits64, iOS" is BepInEx's harmless
-  label on a Mac.)
-- 09:55 Umut: "give him an easy guide how he can add any other mod from the thunderstore easily with terminal".
-  Built `install-mac.sh --add <Thunderstore link or Namespace-Name>` (newest version from Thunderstore's
-  experimental API, dependencies too, BepInExPack_Skul skipped, our own mod points to the plain install), `--remove`,
-  `--list`. Placement like r2modman: plugins/<Namespace-Name>, patchers/<Namespace-Name>, config without
-  overwriting. Surveyed all 56 Skul packages first: root DLLs (most), `plugins/` (9), `BepInEx/plugins+patchers`
-  (2 coop mods), mod packs (3, only dependencies), no backslash paths. Test +18 checks on real packages (QoL_ModPack
-  → 3 mods, VoiceOfTheCommunity, Skul4PlayerCoop with patcher, update, own mod, bad link, list, remove): ALL PASSED.
-  docs/MACOS.md section "Other mods from Thunderstore", README line.
-- 10:10 Bug from the Mac player: `--add .../DuelManTeam/OnlineCoopBeta/` → "could not unpack". That zip stores its
-  paths with Windows backslashes (the only Skul package that does; the survey missed it because Python on Windows
-  converts them in `filename` — check `orig_filename`). Info-ZIP unzip unpacks it correctly but warns and exits 1
-  ("finished with warnings"); the script took that as an error. Fix: exit code ≤ 1 is fine, unzip's messages only
-  shown on a real failure. Test +4 checks with that package: ALL PASSED. His other mods (LegendaryStart etc.)
-  installed fine.
+1. **Ping Robyn** in the Thunderstore thread (ready to paste):
+   "Hi Robyn! 0.14.1 is up (uploaded last night). The Thunderstore build no longer has the self-update, and the in-game
+   Mods window only lists mods and links to their Thunderstore pages: it doesn't download, install, update, remove or
+   toggle anything. Both are compiled out with an IsThunderstoreBuild flag like you suggested, and the packaging script
+   refuses a DLL that still contains the updater code. Thanks a lot for your help!"
+2. Delete the folder `C:\Users\Umut\SkulModding\SkulMods-0.14.1` (the 0.14.1 worktree; git already let it go, the
+   folder was in use).
+3. The r2modman profile "Release test" still holds my 0.13.99 test build (the self-update test is cancelled): update
+   it to 0.14.1 in r2modman, start it, Esc → Mods: no Install / Update / Remove buttons, rows say "Thunderstore page" /
+   "Installed" and open the details. Close the game and tell me.
+4. Test 0.15 (Steam start, the Debug build is installed): the 10 test todos at the end of docs/V015_LOG.md (settings,
+   Rewards tab, achievement page and notice, stats and the combat log, quests every 3rd kill, F11 coins and Summon,
+   activations incl. a continued run, a dismantled legendary, Rewards off, a run page). I read
+   BepInEx/LogOutput.log afterwards.
+5. Then: fixes, the reviewer ping, and the 0.15 release (`release/release.ps1`).

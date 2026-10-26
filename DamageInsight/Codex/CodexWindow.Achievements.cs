@@ -439,6 +439,13 @@ public sealed partial class CodexWindow
             Info = info, Earned = AchievementTracker.EarnedOf(info), Unveiled = AchievementTracker.Unveiled(info),
             DailyEnabled = DamageInsight.Daily.DailyService.Enabled,
         };
+        if (DamageInsight.Rewards.RewardCatalog.For(info.Id) is { } reward)
+        {
+            view.Reward = DamageInsight.Rewards.RewardCatalog.Text(reward, id => CodexPages.Entry(id)?.Name ?? id);
+            view.RewardOff = Plugin.RewardsEnabled?.Value != true || Plugin.RewardsAchievements?.Value != true
+                ? Loc.T("Achievement rewards are off (settings, Rewards).")
+                : DamageInsight.Daily.DailyRun.InDailySlot ? Loc.T("Rewards are never used in daily runs.") : "";
+        }
         if (info.OnSteam && AchievementSteam.TryState(info.Id, out bool has, out var at))
         {
             view.OnSteamAccount = has;

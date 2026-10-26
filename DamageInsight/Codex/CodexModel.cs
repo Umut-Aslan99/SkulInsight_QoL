@@ -25,6 +25,7 @@ public enum CodexCategory
     DailyToday,     // the Daily section's boards (0.13): today's and the month's
     DailyMonth,
     Achievements,   // the You section's achievements (0.14)
+    Rewards,        // the You section's rewards (0.15)
 }
 
 /// <summary>One page of the Codex: an enemy, boss, skull, item, essence or inscription.</summary>
@@ -249,7 +250,9 @@ public static class CodexTiers
     /// <summary>0 = unknown ("???"), 1 = seen, 2 = known, 3 = mastered. Thresholds: <see cref="CodexBalance"/>.</summary>
     public static int Tier(CodexCategory category, EntryProgress p, string id = null)
     {
-        if (UnlockAll)
+        // The daily slot (Umut 2026-10-26: "its codex entries should all be fully unlocked immediately"): every page
+        // open, the same knowledge for every player of the day.
+        if (UnlockAll || DamageInsight.SaveSlots.SlotStore.Active == DamageInsight.SaveSlots.SlotStore.DailySlot)
             return Max;
         if (p == null)
             return 0;

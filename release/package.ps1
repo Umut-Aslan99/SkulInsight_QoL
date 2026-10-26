@@ -44,7 +44,7 @@ $manifest = [ordered]@{
     name           = $name
     version_number = $version
     website_url    = $RepoUrl
-    description    = "Codex with boss moves, gear pages and your build; run history, records and achievements per save slot; an in-game mod browser; optional online daily runs; real damage in descriptions, boss HP, a combat log explaining every hit. 11 languages."
+    description    = "Codex with boss moves, gear pages and your build; run history, records, achievements and rewards per save slot; an in-game mod browser; optional online daily runs; real damage in descriptions, boss HP, a combat log for every hit. 11 languages."
     dependencies   = @("BepInEx-BepInExPack_Skul-5.4.2100")
 }
 if ($manifest.description.Length -gt 250) { throw "Description longer than 250 characters" }

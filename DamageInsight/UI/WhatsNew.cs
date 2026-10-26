@@ -27,21 +27,33 @@ public sealed class WhatsNew : MonoBehaviour
         return parts.Length >= 2 ? parts[0] + "." + parts[1] : version ?? "";
     }
 
-    /// <summary>The highlights of this version (English keys, translated when shown).</summary>
-    private static string[] Highlights() => new[]
+    /// <summary>
+    /// The highlights of this version (English keys, translated when shown); after a version skipped (0.13 straight to
+    /// 0.15: 0.14.0 was withdrawn from Thunderstore), one line names what 0.14 brought.
+    /// </summary>
+    private static string[] Highlights(string lastSeen)
     {
-        Loc.T("Achievements (Codex, You, Achievements): all of Skul's achievements as this save slot has them, with tips, your progress and veils over the story's secrets. Each slot earns its own, also the ones Steam already has."),
-        Loc.T("A small notice slides down from the top of the screen when your slot earns an achievement."),
-        Loc.T("Clear view: your own effects get fainter over the run and when the screen gets busy, so enemy attacks stay easy to see (settings: Clear view)."),
-#if THUNDERSTORE
-        Loc.T("Mods (pause menu): your mods and Thunderstore's Skul mods side by side, with search, details and their Thunderstore pages."),
-#else
-        Loc.T("Mods (pause menu): your mods and Thunderstore's Skul mods side by side: install, update, turn on or off, remove, and restart the game from there."),
-#endif
-        Loc.T("Healing orbs are easier to see (as a Portable Potion or a green plus), a short text says when some are left, and your runs count the ones you missed."),
-        Loc.T("Daily runs: SkulInsight's own achievements for thumbs up received and days in a row. Record bonuses for most damage, gold and kills now need a boss defeated."),
-        Loc.T("macOS: the mod now runs on Skul's Mac version, set up by one Terminal script."),
-    };
+        var list = new System.Collections.Generic.List<string>
+        {
+            Loc.T("Rewards: every achievement of your save slot gives a small lasting bonus that fits it, like more damage to a boss you beat (more without getting hit), attack, speed or gold (Codex, You, Rewards)."),
+            Loc.T("Coins: break a legendary item or skull, or beat an adventurer a few times, and its coin summons that gear in a later run. A run ended with Omen items gives Omen coins."),
+            Loc.T("Kill quests: every normal enemy has an endless quest that pays dark quartz and gold."),
+            Loc.T("Inscription activations: complete an inscription in a run, and in a later run one you have counts one more, like the Dark Mirror's banners."),
+            Loc.T("Rewards can be turned off at the top of the settings page; daily runs never use them."),
+            Loc.T("Daily runs: every day Normal, the Dark Mirror at a random level and Dark Mirror 10, each with and without the DLC and each with its own board. Everyone gets the same gifts in the castle and the same blessing."),
+        };
+        if (OlderThan(lastSeen, 0, 14))
+            list.Add(Loc.T("Also new since 0.14: achievements per save slot with a small notice, Clear view, the Mods browser, healing orbs that are easier to see, macOS."));
+        return list.ToArray();
+    }
+
+    private static bool OlderThan(string version, int major, int minor)
+    {
+        var parts = (version ?? "").Split('.');
+        if (parts.Length < 2 || !int.TryParse(parts[0], out int a) || !int.TryParse(parts[1], out int b))
+            return false; // never shown before: a new player needs no history
+        return a < major || a == major && b < minor;
+    }
 
     private void Update()
     {
@@ -91,8 +103,8 @@ public sealed class WhatsNew : MonoBehaviour
         title.rectTransform.Place(30, 24, 800, 44);
 
         var sb = new System.Text.StringBuilder();
-        foreach (string line in Highlights())
-            sb.Append("•  ").Append(line).Append("\n<size=45%>\n</size>");
+        foreach (string line in Highlights(Plugin.LastVersionSeen?.Value))
+            sb.Append("»  ").Append(line).Append("\n<size=45%>\n</size>");
         sb.Append($"<color=#A89F94>{Loc.T("Everything else: the Changelog button in your mod manager.")}</color>");
         var body = UiKit.Text("Body", rect, sb.ToString(), 18);
         body.rectTransform.Place(40, 84, 780, 450);

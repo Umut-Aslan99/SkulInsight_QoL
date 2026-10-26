@@ -645,7 +645,7 @@ public sealed class ModManagerWindow : MonoBehaviour
             text.Append($"<color=#F2A93B>{Loc.F("The game runs from a {0} profile: installs from here go past {0}'s own list.", ModService.Manager)}</color>\n\n");
         if (order.Count > 1)
             text.Append(Loc.T("It needs these mods too, they come along:")).Append('\n')
-                .Append(string.Join("\n", order.Take(order.Count - 1).Select(p => $"• {p.Title} {p.Latest.Version} <color={DimHex}>{Loc.F("by {0}", p.Owner)}</color>"))).Append("\n\n");
+                .Append(string.Join("\n", order.Take(order.Count - 1).Select(p => $"» {p.Title} {p.Latest.Version} <color={DimHex}>{Loc.F("by {0}", p.Owner)}</color>"))).Append("\n\n");
         if (missing.Count > 0)
             text.Append($"<color=#E5626A>{Loc.F("Not on Thunderstore's Skul list (left out): {0}", string.Join(", ", missing))}</color>\n\n");
         long size = order.Sum(p => p.Latest.FileSize);

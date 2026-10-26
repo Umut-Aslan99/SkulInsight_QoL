@@ -453,6 +453,8 @@ public sealed partial class CodexWindow : MonoBehaviour
         BuildRecords(_recordsPanel);
         _achievementsPanel = UiKit.Rect("Achievements panel", page).Fill();
         BuildAchievements(_achievementsPanel);
+        _rewardsPanel = UiKit.Rect("Rewards panel", page).Fill();
+        BuildRewards(_rewardsPanel);
         BuildYouTabs(page);
         RefreshSections();
     }
@@ -980,6 +982,11 @@ public sealed partial class CodexWindow : MonoBehaviour
                     AddLine(parent, item);
                     continue;
                 }
+                if (item.Kind == PageBlocks.Kind.Meter)
+                {
+                    AddMeterRow(parent, item);
+                    continue;
+                }
                 // A skill tile: the icon in a square (or a big "?"), the text next to it.
                 var tile = UiKit.Rect("Tile", parent);
                 var tileRow = tile.gameObject.AddComponent<HorizontalLayoutGroup>();
@@ -1052,6 +1059,8 @@ public sealed partial class CodexWindow : MonoBehaviour
                 DrawRunsList();
             else if (_category == CodexCategory.Records)
                 DrawRecordsList();
+            else if (_category == CodexCategory.Rewards)
+                DrawRewardsList();
             else if (_category == CodexCategory.Achievements)
                 DrawAchievementsList();
             else
@@ -1171,6 +1180,8 @@ public sealed partial class CodexWindow : MonoBehaviour
                 DrawRunDetail();
             else if (_category == CodexCategory.Records)
                 DrawRecordDetail();
+            else if (_category == CodexCategory.Rewards)
+                DrawRewardDetail();
             else if (_category == CodexCategory.Achievements)
                 DrawAchievementDetail();
             else
@@ -1286,6 +1297,8 @@ public sealed partial class CodexWindow : MonoBehaviour
             var summons = SummonsOf(entry).Where(e => CodexTiers.Tier(e.Category, CodexTracker.Page(e.Id), e.Id) > 0).ToList();
             if (summons.Count > 0)
                 sb.Append($"\n<color=#9C3B2A><b>{Loc.T("Summons")}</b></color>\n").Append(string.Join(", ", summons.Select(e => e.Name))).Append('\n');
+            // 0.15: its kill quest (or an adventurer's coin) as a square that fills up.
+            sb.Append(DamageInsight.Rewards.RewardPages.QuestMeter(entry.Id, entry.Category, entry.Key, CurrencySprites() != null));
         }
         else if (entry.Category == CodexCategory.Inscriptions)
         {
@@ -1415,6 +1428,7 @@ public sealed partial class CodexWindow : MonoBehaviour
         CodexCategory.Runs => Loc.T("Runs"),
         CodexCategory.Records => Loc.T("Records"),
         CodexCategory.Achievements => Loc.T("Achievements"),
+        CodexCategory.Rewards => Loc.T("Rewards"),
         CodexCategory.DailyToday => Loc.T("Today"),
         CodexCategory.DailyMonth => Loc.T("This month"),
         _ => Loc.T("Inscriptions"),

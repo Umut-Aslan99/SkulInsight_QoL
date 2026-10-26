@@ -371,6 +371,8 @@ public static class RunJournal
         // Counted from 0.14 on: a run that has the keys counted them (older runs show nothing).
         _run.Numbers[RunNumbers.HealsMissed] = 0;
         _run.Numbers[RunNumbers.HealthMissed] = 0;
+        if (DamageInsight.Rewards.RewardApplier.On)
+            _run.Numbers[RunNumbers.Rewards] = 1; // the run page says so: its numbers had the slot's bonuses
         if (joinedLate)
             _run.Numbers[RunNumbers.JoinedLate] = 1;
         else
@@ -530,6 +532,15 @@ public static class RunJournal
             }
         }
         Finish(ending ? RunResult.Ending : RunResult.Death, kind);
+    }
+
+    /// <summary>Adds to one of the run's own numbers (the rewards' quests and coins, 0.15).</summary>
+    public static void AddNumber(string key, double amount)
+    {
+        if (!On || _run == null || _run.Result != RunResult.InProgress || amount == 0)
+            return;
+        _run.Numbers[key] = _run.Number(key) + amount;
+        _dirty = true;
     }
 
     /// <summary>Heal orbs left behind (History/HealOrbs): added to the run in progress.</summary>

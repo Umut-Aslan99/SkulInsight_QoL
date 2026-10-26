@@ -50,7 +50,7 @@ public sealed class TraceTooltip
         string crit = record.Critical ? $" <color=#FFE14D>{Loc.T("CRIT")}</color>" : "";
         string origin = string.IsNullOrEmpty(trace?.Origin) ? "" : "  " + Loc.F("<color=#A89F94>by</color> {0}", Loc.Name(trace.Origin));
         _header.text = $"<b>{record.Amount:N0}</b> <color={DamageSources.AttributeColorHex(record.Attribute)}>{DamageInsight.Describe.DescriptionFormatter.AttributeName(record.Attribute.ToString())}</color>{crit}{origin}" +
-                       $"\n<size=80%><color=#A89F94>{record.Attacker} → {record.Target}</color></size>";
+                       $"\n<size=80%><color=#A89F94>{record.Attacker} » {record.Target}</color></size>";
 
         var rows = trace?.Explain() ?? new List<TraceRow> { new(Loc.T("No calculation recorded for this hit"), "", record.Amount) };
         while (_rows.Count < rows.Count)

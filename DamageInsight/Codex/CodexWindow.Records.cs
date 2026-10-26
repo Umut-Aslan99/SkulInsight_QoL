@@ -76,18 +76,19 @@ public sealed partial class CodexWindow
         float y = 6;
         foreach (RecordPages.Page page in Enum.GetValues(typeof(RecordPages.Page)))
         {
-            _recordRows.Add(NewRecordRow(frame, page, y));
+            _recordRows.Add(NewRecordRow(frame, RecordPages.IdOf(page), y));
             y += RecordRowHeight + 4;
         }
         _recordsNote = Label(frame, "", 14, InkDim, TextAlignmentOptions.TopLeft);
         _recordsNote.rectTransform.Place(12, y + 4, PageWidth - 64 - 24, BookHeight - 24 - 160 - 32 - y - 8);
     }
 
-    private RecordRow NewRecordRow(RectTransform frame, RecordPages.Page page, float y)
+    /// <summary>A row of the left page that opens a page on the right (the Records and the Rewards tabs).</summary>
+    private RecordRow NewRecordRow(RectTransform frame, string id, float y)
     {
         var bg = UiKit.Image("Record", frame, new Color(0, 0, 0, 0));
         bg.rectTransform.Place(4, y, PageWidth - 64 - 8, RecordRowHeight);
-        var row = new RecordRow { Background = bg, Id = RecordPages.IdOf(page) };
+        var row = new RecordRow { Background = bg, Id = id };
         var t = bg.transform;
 
         var iconFrame = UiKit.Image("Icon frame", t, TileShade);

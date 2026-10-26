@@ -16,13 +16,21 @@ public static class RunHistoryPatches
     [HarmonyPatch(typeof(GameResult), nameof(GameResult.Show))]
     public static class DeathResultPatch
     {
-        private static void Postfix() => Guard.Run("Run history: end screen", () => RunJournal.OnGameResult(ending: false));
+        private static void Postfix()
+        {
+            Guard.Run("Rewards: run end", DamageInsight.Rewards.RewardService.OnRunEnded); // before the run is closed
+            Guard.Run("Run history: end screen", () => RunJournal.OnGameResult(ending: false));
+        }
     }
 
     [HarmonyPatch(typeof(GameResult), nameof(GameResult.ShowEndingResult))]
     public static class EndingResultPatch
     {
-        private static void Postfix() => Guard.Run("Run history: ending screen", () => RunJournal.OnGameResult(ending: true));
+        private static void Postfix()
+        {
+            Guard.Run("Rewards: run end", DamageInsight.Rewards.RewardService.OnRunEnded); // before the run is closed
+            Guard.Run("Run history: ending screen", () => RunJournal.OnGameResult(ending: true));
+        }
     }
 
     /// <summary>The end screen's picture was just rendered (1.6 s after a death; the ending's last scene).</summary>

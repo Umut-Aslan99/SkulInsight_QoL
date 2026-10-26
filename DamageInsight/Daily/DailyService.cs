@@ -22,7 +22,12 @@ public sealed class DailyService : MonoBehaviour
 
     public static DailyService Instance { get; private set; }
     public static DailyState State { get; private set; } = new();
-    public static DailyInfo Today { get; private set; }
+    /// <summary>Every board of today (an older server: "normal" only).</summary>
+    public static List<DailyInfo> Days { get; private set; } = new();
+    /// <summary>The board shown and played: today's run on it, or null (not loaded, or the server hasn't it).</summary>
+    public static DailyInfo Today => Days.FirstOrDefault(d => d.Board == State.Board);
+    /// <summary>A board of today, or null.</summary>
+    public static DailyInfo InfoOf(string board) => Days.FirstOrDefault(d => d.Board == board);
     public static Board DayBoard { get; private set; }
     public static Board MonthBoard { get; private set; }
 
@@ -59,11 +64,12 @@ public sealed class DailyService : MonoBehaviour
         if (!Enabled)
             return;
         float now = Time.unscaledTime;
-        // The day's run: on start, every 10 minutes, and right after the UTC day changed.
-        bool newDay = Today != null && Today.Date != DateTime.UtcNow.ToString("yyyy-MM-dd");
-        if (!_busyInfo && (Today == null || newDay || now >= _nextInfo))
+        // The day's runs: on start, every 10 minutes, and right after the UTC day changed.
+        var first = Days.FirstOrDefault();
+        bool newDay = first != null && first.Date != DateTime.UtcNow.ToString("yyyy-MM-dd");
+        if (!_busyInfo && (first == null || newDay || now >= _nextInfo))
         {
-            _nextInfo = now + (Today == null ? 30f : 600f);
+            _nextInfo = now + (first == null ? 30f : 600f);
             StartCoroutine(LoadToday());
         }
         if (!_busyPending && now >= _nextPending)
@@ -82,6 +88,18 @@ public sealed class DailyService : MonoBehaviour
         Instance.StartCoroutine(Instance.LoadBoards());
     }
 
+    /// <summary>The Daily section shows (and plays) another board: its boards are asked for at once.</summary>
+    public static void SelectBoard(string board)
+    {
+        if (!DailyBoards.IsBoard(board) || board == State.Board)
+            return;
+        State.Board = board;
+        SaveState();
+        DayBoard = MonthBoard = null;
+        Changed();
+        RequestBoards(force: true);
+    }
+
     /// <summary>Asks for the day's run now (after the player turned the setting on).</summary>
     public static void RefreshNow()
     {
@@ -94,17 +112,31 @@ public sealed class DailyService : MonoBehaviour
     private IEnumerator LoadToday()
     {
         _busyInfo = true;
-        yield return Get("/api/daily", json =>
+        bool boards = false;
+        yield return Get("/api/dailies", json =>
         {
-            var info = DailyInfo.FromJson(json);
-            if (info != null)
+            if (DailyInfo.ListFromJson(json) is { } list)
             {
-                Today = info;
-                State.Trim(info.Date);
+                boards = true;
+                Days = list;
+                State.Trim(list[0].Date);
                 Problem = "";
                 Changed();
             }
         });
+        // A server from before the boards: one run a day, on "normal".
+        if (!boards)
+            yield return Get("/api/daily", json =>
+            {
+                var info = DailyInfo.FromJson(json);
+                if (info != null)
+                {
+                    Days = new List<DailyInfo> { info };
+                    State.Trim(info.Date);
+                    Problem = "";
+                    Changed();
+                }
+            });
         yield return LoadMe();
         _busyInfo = false;
     }
@@ -117,12 +149,16 @@ public sealed class DailyService : MonoBehaviour
             var me = DailyInfo.Parse(json);
             var today = me.Child("today");
             string date = today.Str("date") ?? "", state = today.Str("state") ?? "";
-            if (date.Length > 0 && State.FollowServer(date, state))
-            {
-                Plugin.Log.LogInfo($"Daily run: the server has no run of yours for {date} (removed): it can be played again");
-                SaveState();
-                Changed();
-            }
+            var states = new List<(string board, string state)> { ("normal", state) };
+            if (today.Raw("boards") is Dictionary<string, object> perBoard)
+                states = perBoard.Where(p => DailyBoards.IsBoard(p.Key)).Select(p => (p.Key, p.Value as string ?? "")).ToList();
+            foreach (var (board, boardState) in states)
+                if (date.Length > 0 && State.FollowServer(date, boardState, board))
+                {
+                    Plugin.Log.LogInfo($"Daily run: the server has no run of yours for {date} ({board}, removed): it can be played again");
+                    SaveState();
+                    Changed();
+                }
             // SkulInsight's own daily achievements (0.14): thumbs up received and the best streak.
             var before = (State.LikesReceived, State.Streak, State.BestStreak, State.DaysPlayed);
             var earned = State.UpdateCounters((int)me.Num("likesReceived"), (int)me.Num("streak"), (int)me.Num("bestStreak"),
@@ -145,14 +181,18 @@ public sealed class DailyService : MonoBehaviour
     {
         _busyBoards = true;
         string player = Uri.EscapeDataString(State.PlayerId);
-        yield return Get("/api/board?limit=100&player=" + player, json =>
+        string wanted = State.Board;
+        string board = wanted == "normal" ? "" : "&board=" + Uri.EscapeDataString(wanted); // an older server knows only "normal"
+        yield return Get("/api/board?limit=100&player=" + player + board, json =>
         {
-            DayBoard = Board.FromJson(json) ?? DayBoard;
+            if (Board.FromJson(json) is { } day && wanted == State.Board)
+                DayBoard = day;
             Changed();
         });
-        yield return Get("/api/board/month?limit=100&player=" + player, json =>
+        yield return Get("/api/board/month?limit=100&player=" + player + board, json =>
         {
-            MonthBoard = Board.FromJson(json) ?? MonthBoard;
+            if (Board.FromJson(json) is { } month && wanted == State.Board)
+                MonthBoard = month;
             Changed();
         });
         yield return LoadMe();
@@ -160,11 +200,11 @@ public sealed class DailyService : MonoBehaviour
     }
 
     /// <summary>The day's try begins (the daily run left the castle): the server counts it.</summary>
-    public static void SendStart(string date)
+    public static void SendStart(DailyTry t)
     {
         if (Instance == null || !Enabled)
             return;
-        string body = "{\"date\":" + LogJson.Quote(date) + ",\"player\":" + LogJson.Quote(State.PlayerId) +
+        string body = "{\"date\":" + LogJson.Quote(t.Date) + ",\"board\":" + LogJson.Quote(t.Board) + ",\"player\":" + LogJson.Quote(State.PlayerId) +
                       ",\"mod\":" + LogJson.Quote(MyPluginInfo.PLUGIN_VERSION) +
                       ",\"mods\":[" + string.Join(",", DailyMods.Others().Select(m => LogJson.Quote(m.guid))) + "]}";
         Instance.StartCoroutine(Instance.Post("/api/runs/start", body, _ => Changed(), (code, text) =>
@@ -174,7 +214,7 @@ public sealed class DailyService : MonoBehaviour
     /// <summary>A finished daily run's result (its numbers wait in the try): kept until the server took it.</summary>
     public static void QueueFinish(DailyTry t, string name)
     {
-        string body = "{\"date\":" + LogJson.Quote(t.Date) + ",\"player\":" + LogJson.Quote(State.PlayerId) +
+        string body = "{\"date\":" + LogJson.Quote(t.Date) + ",\"board\":" + LogJson.Quote(t.Board) + ",\"player\":" + LogJson.Quote(State.PlayerId) +
                       ",\"name\":" + LogJson.Quote(name) + ",\"seed\":" + t.Seed + ",\"mode\":" + LogJson.Quote(t.Mode) +
                       ",\"level\":" + t.Level + ",\"numbers\":" + (t.Numbers.Length > 0 ? t.Numbers : "{}") +
                       (t.Run.Length > 0 ? ",\"run\":" + t.Run : "") +
@@ -199,7 +239,7 @@ public sealed class DailyService : MonoBehaviour
             var current = t;
             // The start again first (it may not have reached the server: no connection when the run began). The server
             // takes a start once per player and day; a second one changes nothing.
-            string start = "{\"date\":" + LogJson.Quote(current.Date) + ",\"player\":" + LogJson.Quote(State.PlayerId) +
+            string start = "{\"date\":" + LogJson.Quote(current.Date) + ",\"board\":" + LogJson.Quote(current.Board) + ",\"player\":" + LogJson.Quote(State.PlayerId) +
                            ",\"mod\":" + LogJson.Quote(MyPluginInfo.PLUGIN_VERSION) + "}";
             yield return Post("/api/runs/start", start, _ => { }, (_, _) => { });
             yield return Post("/api/runs/finish", current.Pending, json =>
@@ -239,7 +279,7 @@ public sealed class DailyService : MonoBehaviour
     private static readonly Dictionary<string, float> Asked = new();
 
     /// <summary>A board line's run, once loaded (asked for when first wanted; again after 30 s if no answer came).</summary>
-    public static RunDetail Detail(string date, string id)
+    public static RunDetail Detail(string date, string id, string board = "normal")
     {
         if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(date))
             return null;
@@ -248,8 +288,9 @@ public sealed class DailyService : MonoBehaviour
         if (Instance == null || !Enabled || (Asked.TryGetValue(id, out var at) && Time.unscaledTime < at + 30f))
             return null;
         Asked[id] = Time.unscaledTime;
+        string onBoard = board == "normal" ? "" : "&board=" + Uri.EscapeDataString(board);
         Instance.StartCoroutine(Instance.Get($"/api/runs/detail?date={Uri.EscapeDataString(date)}&id={Uri.EscapeDataString(id)}" +
-                                             $"&player={Uri.EscapeDataString(State.PlayerId)}", json =>
+                                             $"&player={Uri.EscapeDataString(State.PlayerId)}{onBoard}", json =>
             {
                 if (RunDetail.FromJson(json) is { } d)
                 {
@@ -261,14 +302,15 @@ public sealed class DailyService : MonoBehaviour
     }
 
     /// <summary>A thumbs up for a board line's run (once; not one's own).</summary>
-    public static void Like(string date, BoardEntry entry)
+    public static void Like(string date, BoardEntry entry, string board = "normal")
     {
         if (Instance == null || !Enabled || entry == null || entry.You || entry.Liked)
             return;
         entry.Liked = true;
         entry.Likes++;
         Changed();
-        string body = "{\"date\":" + LogJson.Quote(date) + ",\"id\":" + LogJson.Quote(entry.Id) + ",\"player\":" + LogJson.Quote(State.PlayerId) + "}";
+        string body = "{\"date\":" + LogJson.Quote(date) + ",\"board\":" + LogJson.Quote(board) + ",\"id\":" + LogJson.Quote(entry.Id) +
+                      ",\"player\":" + LogJson.Quote(State.PlayerId) + "}";
         Instance.StartCoroutine(Instance.Post("/api/runs/like", body, json =>
         {
             int likes = (int)DailyInfo.Parse(json).Num("likes", entry.Likes);
@@ -309,12 +351,16 @@ public sealed class DailyService : MonoBehaviour
         string text = request.downloadHandler?.text ?? "";
         if (request.result == UnityWebRequest.Result.Success)
         {
+            Problem = "";
             DamageInsight.Patches.Guard.Run("Daily run (answer)", () => done(text));
             yield break;
         }
         if (request.result == UnityWebRequest.Result.ProtocolError)
         {
-            Problem = "server " + request.responseCode;
+            // A refusal (409: a start sent again after the run, as it always is) is an answer, not a lost connection:
+            // the page said "No connection" after every finished run (Umut 2026-10-26).
+            if (request.responseCode >= 500)
+                Problem = "server " + request.responseCode;
             refused?.Invoke(request.responseCode, text);
         }
         else

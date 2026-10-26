@@ -87,7 +87,8 @@ public class CodexNavigationTests
     [Fact]
     public void Sections_have_their_tabs()
     {
-        Assert.Equal(new[] { CodexCategory.YouBuild, CodexCategory.Records, CodexCategory.Runs, CodexCategory.Achievements }, CodexNavigation.TabsOf(CodexSection.You));
+        Assert.Equal(new[] { CodexCategory.YouBuild, CodexCategory.Records, CodexCategory.Runs, CodexCategory.Achievements, CodexCategory.Rewards },
+            CodexNavigation.TabsOf(CodexSection.You));
         foreach (var category in CodexNavigation.TabsOf(CodexSection.You))
             Assert.Equal(CodexSection.You, CodexNavigation.SectionOf(category));
         Assert.Contains(CodexCategory.Elites, CodexNavigation.TabsOf(CodexSection.Bestiary));

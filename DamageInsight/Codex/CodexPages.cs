@@ -133,6 +133,20 @@ public static class CodexPages
             : "\n\n" + Dim($"{Loc.T("Seen")}: {N(p.Seen)}  ·  {Loc.T("Taken")}: {N(p.PickedUp)}"));
     }
 
+    /// <summary>0.15: the coins of a skull or item (Rewards), with Summon.</summary>
+    private static string CoinText(CodexEntry entry)
+    {
+        try
+        {
+            bool omen = CodexCatalog.GearOf(entry) is GameResources.GearReference reference && (reference.gearTag & Characters.Gear.Gear.Tag.Omen) != 0;
+            return DamageInsight.Rewards.RewardPages.GearCoinText(entry.Id, entry.Group == "Legendary", omen, DamageInsight.Rewards.RewardService.WhyNoSummon);
+        }
+        catch (Exception)
+        {
+            return "";
+        }
+    }
+
     private static string Flavor(string flavor, int tier) =>
         PageBlocks.Close() + (flavor.Length == 0 ? "" : tier >= 3 ? $"\n\n<i>{flavor}</i>" : "\n\n" + Dim(Loc.T("Master it to read its story.")));
 
@@ -183,6 +197,7 @@ public static class CodexPages
             foreach (var from in ItemsBecoming(entry.Key))
                 sb.Append(Heading(Loc.T("Comes from"), "inscription:Mutation")).Append(Link(CodexCatalog.GearId(Characters.Gear.Gear.Type.Item, from)));
         }
+        sb.Append(CoinText(entry));
         sb.Append(Flavor(flavor, tier));
         sb.Append(Counters(p, entry.Category));
         return sb.ToString();
@@ -414,6 +429,7 @@ public static class CodexPages
             if (summons.Length > 0)
                 sb.Append('\n').Append(summons);
         }
+        sb.Append(CoinText(entry));
         sb.Append(Flavor(flavor, tier));
         sb.Append(Counters(p, entry.Category));
         return sb.ToString();

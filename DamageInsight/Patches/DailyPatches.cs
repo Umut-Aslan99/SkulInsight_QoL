@@ -37,6 +37,55 @@ public static class DailyPatches
         }
     }
 
+    /// <summary>
+    /// The game's map events that check for the DLC (Runnables.Triggers.CheckDLC): on a board without DLC they see it as
+    /// not owned, so an owner plays the same run as everyone else.
+    /// </summary>
+    [HarmonyPatch(typeof(Runnables.Triggers.CheckDLC), "Check")]
+    public static class NoDlcEventsInTheDailySlot
+    {
+        private static bool Prefix(Runnables.Triggers.CheckDLC __instance, ref bool __result)
+        {
+            try
+            {
+                if (!DailyRun.InDailySlot || DailyRun.DlcBoard)
+                    return true;
+                __result = __instance._condition == false; // as if the DLC weren't owned
+                return false;
+            }
+            catch (System.Exception e)
+            {
+                Guard.Report("Daily run (DLC events)", e);
+                return true;
+            }
+        }
+    }
+
+    /// <summary>The game drew a new run seed (a castle loads): in the daily slot the day's seed goes back at once.</summary>
+    [HarmonyPatch(typeof(Data.GameData.Save), nameof(Data.GameData.Save.ResetAll))]
+    public static class DaySeedAtTheCastle
+    {
+        private static void Postfix(Data.GameData.Save __instance) => Guard.Run("Daily run (seed)", () => DailyRun.KeepSeed(__instance));
+    }
+
+    /// <summary>The Holy Grail's blessing: from the day's seed in a daily run (the game uses its shared random).</summary>
+    [HarmonyPatch(typeof(CutScenes.Shots.Events.Customs.ApplyBlessing), nameof(CutScenes.Shots.Events.Customs.ApplyBlessing.Run))]
+    public static class DayBlessing
+    {
+        private static bool Prefix(CutScenes.Shots.Events.Customs.ApplyBlessing __instance)
+        {
+            try
+            {
+                return !DailyRun.SeededBlessing(__instance);
+            }
+            catch (System.Exception e)
+            {
+                Guard.Report("Daily run (blessing)", e);
+                return true;
+            }
+        }
+    }
+
     /// <summary>Before the game loads a saved run (the title screen's play, a slot switch): a daily run in progress ends
     /// instead (closing the game mid-map would otherwise heal the player and replay the map).</summary>
     [HarmonyPatch(typeof(Level.LevelManager), nameof(Level.LevelManager.LoadGame))]
@@ -52,7 +101,8 @@ public static class DailyPatches
         {
             try
             {
-                if (__result && DailyRun.InDailySlot && __instance.dlcTitle != Platforms.Dlc.DlcTitle.None)
+                // Only the "+dlc" boards have DLC gear (and only their owners play them).
+                if (__result && DailyRun.InDailySlot && !DailyRun.DlcBoard && __instance.dlcTitle != Platforms.Dlc.DlcTitle.None)
                     __result = false;
             }
             catch (System.Exception e)

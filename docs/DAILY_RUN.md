@@ -137,3 +137,19 @@ Umut's admin removal. Good enough for a fan leaderboard.
 4. The name: 3 letters like an arcade machine, or a free name (12 characters)?
 5. The monthly board: the sum of a month's daily scores, or the best day?
 6. Only wins on the board (as said), or deaths too with fewer points (more people on the board)?
+
+## Six boards a day (0.15, Umut 2026-10-26)
+- [Umut] "Normal (own category with dlc and without), DM random level (today random seed with random selected DM
+  0-10, also DLC and non DLC version), DM 10 (also DLC and non DLC)". "Any daily counts for sure" (streaks, likes).
+- [Umut] "I dont want to give DLC content for free to players, but players with DLC should be able to play dailies
+  with them": the `+dlc` boards are only playable when the game says the Mythology Pack is owned (anyone can watch
+  them); on the boards without DLC owners get no DLC gear and no DLC map events either (the same run for everyone).
+- Server: boards `normal`, `dm`, `dm10`, `normal+dlc`, `dm+dlc`, `dm10+dlc` (`days.BOARDS`); from
+  `days.CUTOVER` (2026-10-26) each has its own seed (HMAC of date and board; `normal` keeps the old seed) and the
+  `dm` level is HMAC "dm-level|date" mod 11. `/api/dailies` lists them; `/api/daily` (0.14) is the `normal`
+  board. Every call takes `board` (default `normal`). The first start with boards keeps the old tables as
+  `runs_v1` / `likes_v1` and copies the rows (days before the cutover: `normal` or `dm` by the old schedule).
+- Mod: a try per day and board (key `date|board`, `normal` = the date as before), board chips + a DLC chip on the
+  Daily page, the day's Darktech up to its level, the same castle gifts and blessing from the seed (V015_LOG 10-11).
+- Shoutout: [Umut] Tythos (Bilibili creator, https://space.bilibili.com/17576167) runs daily run tournaments; one
+  dim line with the link at the bottom of the Daily page.
