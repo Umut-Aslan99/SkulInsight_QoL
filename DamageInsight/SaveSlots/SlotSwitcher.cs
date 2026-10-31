@@ -34,7 +34,7 @@ internal static class SlotSwitcher
     /// <summary>The slot the settings page's buttons use (1-based).</summary>
     public static int Selected => Mathf.Clamp(Plugin.SaveSlotSelected.Value, 1, SlotCount);
 
-    private static SaveFileModel Model => PersistentSingleton<PlatformManager>.Instance.platform.data;
+    internal static SaveFileModel Model => PersistentSingleton<PlatformManager>.Instance.platform.data;
 
     private static string CodexFolder => CodexTracker.Folder;
 
@@ -151,6 +151,7 @@ internal static class SlotSwitcher
         {
             closeMenus?.Invoke();
             CodexTracker.SaveIfNeeded(force: true);
+            DamageInsight.Rewards.RewardStore.Flush();
             FightRecorder.ForgetSlot();
             DamageInsight.History.RunJournal.ForgetSlot();
             BackupGameSave();
@@ -246,6 +247,7 @@ internal static class SlotSwitcher
             MoveHints.ForgetSlot();
             RunRecorder.ForgetSlot();
             CodexWindow.ForgetSlot();
+            RoomRestart.ForgetSlot();
             CodexMigrations.Run(); // a slot's Codex may come from an older version of the mod
         });
     }
@@ -253,8 +255,11 @@ internal static class SlotSwitcher
     /// <summary>
     /// The game's own "return to title" (Service.ResetGameScene) without ending the run, so the next slot's run
     /// continues after "press any key". The chapter is loaded afresh then (its stages come from that run's seed).
+    /// <paramref name="roomSave"/> (Restart room, 0.16): the game's data as it was saved when the room was entered goes
+    /// back in place first (the game's settings stay), so the run continues from the room's start, as after closing
+    /// the game and continuing.
     /// </summary>
-    private static void ReturnToTitle()
+    internal static void ReturnToTitle(SaveFileModel roomSave = null)
     {
         var service = Singleton<Service>.Instance;
         var levels = service.levelManager;
@@ -267,6 +272,15 @@ internal static class SlotSwitcher
         levels._currentChapterIndex = -1;
         SceneManager.LoadScene("Main");
         levels.ClearEvents();
+        if (roomSave != null)
+        {
+            var live = Model;
+            ReplaceKeepingSettings(live.StringData, roomSave.StringData, i => i.Key);
+            ReplaceKeepingSettings(live.IntData, roomSave.IntData, i => i.Key);
+            ReplaceKeepingSettings(live.FloatData, roomSave.FloatData, i => i.Key);
+            ReplaceKeepingSettings(live.BoolData, roomSave.BoolData, i => i.Key);
+            ReplaceKeepingSettings(live.UlongData, roomSave.UlongData, i => i.Key);
+        }
         GameData.Initialize();
         PoolObject.DespawnAll();
         PoolObject.Clear();
@@ -321,6 +335,7 @@ internal static class SlotSwitcher
         }
         Busy = true;
         CodexTracker.SaveIfNeeded(force: true);
+        DamageInsight.Rewards.RewardStore.Flush();
         string json = Model.ToJson();
         string codex = CodexFolder;
         var task = Task.Run(() =>

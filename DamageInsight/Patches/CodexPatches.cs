@@ -70,6 +70,7 @@ public static class CodexPatches
     {
         private static void Prefix(Characters.Operations.OperationInfos __instance, Characters.Character owner)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Codex (attacks)");
             try
             {
                 FightRecorder.Spawned(owner, __instance);
@@ -87,6 +88,7 @@ public static class CodexPatches
     {
         private static void Postfix(Characters.Projectiles.Projectile __instance)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Codex (projectiles)");
             try
             {
                 FightRecorder.Spawned(__instance.owner, __instance);

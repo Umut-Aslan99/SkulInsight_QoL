@@ -22,6 +22,8 @@ public static class DailyPatches
             {
                 if (!DailyRun.InDailySlot)
                     return true;
+                string id = System.Enum.GetName(typeof(Achievement.Type), achievementType) ?? "";
+                Guard.Run("Daily run (achievement)", () => DailyRun.OnAchievement(id));
                 if (!_said)
                 {
                     _said = true;

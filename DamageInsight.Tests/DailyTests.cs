@@ -188,6 +188,95 @@ public class DailyTests
     }
 
     [Fact]
+    public void Formula_3_numbers_flawless_rooms_and_the_boss_rooms()
+    {
+        var run = new DamageInsight.History.RunRecord { Id = "2026-11-02_10-00-00" };
+        run.Maps.Add(new DamageInsight.History.RunMap { T = 0, Tracked = false, Kills = 0 });                // before 0.16: never flawless
+        run.Maps.Add(new DamageInsight.History.RunMap { T = 0, Tracked = true, Kills = 0 });                 // the entry: no fight
+        run.Maps.Add(new DamageInsight.History.RunMap { T = 10, Tracked = true, Kills = 12, Lost = 0 });     // flawless
+        run.Maps.Add(new DamageInsight.History.RunMap { T = 60, Tracked = true, Kills = 9, Lost = 14, Hits = 2 });
+        run.Maps.Add(new DamageInsight.History.RunMap { T = 120, Tracked = true, Kills = 1, Lost = 0, Seconds = 75 }); // the boss room
+        run.Events.Add(new DamageInsight.History.RunEvent { T = 150, Kind = DamageInsight.History.RunEvents.Boss, Id = "enemy:Yggdrasil" });
+        run.Numbers[DamageInsight.History.RunNumbers.BonesLeft] = 85;
+        var result = new DailyResult();
+        DailyRun.FillRooms(result, run);
+        Assert.Equal((3, 2, 85L), (result.FightRooms, result.FlawlessRooms, result.BonesLeft));
+        Assert.Equal(("enemy:Yggdrasil", 0L, 75, true), result.BossRooms.Single());
+
+        var n = DailyInfo.Parse(result.NumbersJson());
+        Assert.Equal((3, 2, 85), ((int)n.Num("fightRooms"), (int)n.Num("flawlessRooms"), (int)n.Num("bonesLeft")));
+        var room = (Dictionary<string, object>)((List<object>)n.Raw("bossRooms")).Single();
+        Assert.Equal(("enemy:Yggdrasil", true), ((string)room["id"], (bool)room["tracked"]));
+
+        // The run file keeps the rooms' numbers; a run from before 0.16 reads back untracked.
+        var back = DamageInsight.History.RunRecord.FromJson(run.ToJson());
+        Assert.Equal(new[] { false, true, true, true, true }, back.Maps.Select(m => m.Tracked));
+        Assert.Equal(14, back.Maps[3].Lost);
+        Assert.True(back.Maps[2].Flawless);
+    }
+
+    [Fact]
+    public void The_days_achievements_the_champions_and_flawless_chapters()
+    {
+        const string json = "{\"date\":\"2026-11-02\",\"formula\":3,\"secondsLeft\":60,\"boards\":[{\"board\":\"dm10\",\"mode\":\"darkmirror\"," +
+            "\"level\":10,\"seed\":5,\"achievements\":[{\"id\":\"WorldsBest\",\"points\":1500},{\"id\":\"skull:WereWolf\",\"points\":1500}," +
+            "{\"id\":\"chapter:2\",\"points\":1500}]}],\"champions\":[{\"board\":\"dm10\",\"name\":\"Tythos<b>\"}]}";
+        var day = DailyInfo.ListFromJson(json).Single();
+        Assert.Equal(new[] { "WorldsBest", "skull:WereWolf", "chapter:2" }, day.Achievements.Select(a => a.id));
+        Assert.Equal(("dm10", "Tythosb"), DailyInfo.ChampionsFromJson(json).Single()); // no markup from a name
+        Assert.Empty(DailyInfo.ChampionsFromJson("{\"date\":\"x\"}"));
+
+        var skullName = DailyPages.SkullName;
+        DailyPages.SkullName = id => id == "skull:WereWolf" ? "Werewolf" : null;
+        try
+        {
+            Assert.Contains("Werewolf", DailyPages.AchievementText("skull:WereWolf"));
+            Assert.Contains("chapter 2", DailyPages.AchievementText("chapter:2"));
+            var t = new DailyTry { Date = "2026-11-02", Board = "dm10", State = "started" };
+            t.Achievements.Add("WorldsBest");
+            string page = PageBlocks.Flatten(DailyPages.TodayPage(day, t, enabled: true, "", true));
+            Assert.Contains("Today's achievements", page);
+            Assert.Contains("done", page);
+        }
+        finally
+        {
+            DailyPages.SkullName = skullName;
+        }
+
+        // The try keeps the game's achievements of its run.
+        var state = new DailyState();
+        state.Ensure("2026-11-02", "dm10").Achievements.Add("SkeletonKing");
+        Assert.Equal(new[] { "SkeletonKing" }, DailyState.FromJson(state.ToJson()).TryOf("2026-11-02", "dm10").Achievements);
+
+        // Chapters cleared without health lost: chapter 1 clean, chapter 2 hurt, chapter 3 not cleared (the run died there).
+        var run = new DamageInsight.History.RunRecord { Id = "r", Result = DamageInsight.History.RunResult.Death };
+        foreach (var (chapter, lost) in new[] { ("HardmodeChapter1", 0), ("HardmodeChapter1", 0), ("HardmodeChapter2", 5), ("HardmodeChapter3", 0) })
+            run.Maps.Add(new DamageInsight.History.RunMap { Chapter = chapter, Tracked = true, Kills = 3, Lost = lost });
+        Assert.Equal(new[] { 1 }, DailyRun.FlawlessChapters(run));
+        Assert.Equal("zh-Hans", DamageInsight.Patches.WinnerNamesPatch.ScriptOf("李逍遥"));
+        Assert.Equal("", DamageInsight.Patches.WinnerNamesPatch.ScriptOf("Tythos"));
+    }
+
+    [Fact]
+    public void Formula_3_points_page()
+    {
+        var detail = RunDetail.FromJson("{\"date\":\"2026-11-02\",\"mode\":\"darkmirror\",\"level\":10,\"factor\":2.5,\"formula\":3," +
+            "\"entry\":{\"rank\":1,\"name\":\"Winner\",\"points\":90000,\"base\":90000,\"result\":\"win\",\"streak\":5,\"monthBonus\":1250,\"bonuses\":[]}," +
+            "\"breakdown\":[{\"key\":\"win\",\"value\":1,\"points\":20000},{\"key\":\"flawlessRooms\",\"value\":31,\"points\":4650}," +
+            "{\"key\":\"extraBosses\",\"value\":2,\"points\":6000},{\"key\":\"bones\",\"value\":120,\"points\":240}]}");
+        Assert.Equal(3, detail.Formula);
+        Assert.Equal(1250, detail.Entry.MonthBonus);
+        string page = PageBlocks.Flatten(DailyPages.PointsPage(detail, null));
+        Assert.Contains("Flawless rooms", page);
+        Assert.Contains("Optional bosses", page);
+        Assert.Contains("Bones left", page);
+        Assert.Contains("month board only", page);
+        Assert.DoesNotContain("The day's records", page);
+        Assert.DoesNotContain("1 per 2,000 damage", page); // formula 2's explanation
+        Assert.Equal(2, RunDetail.FromJson("{\"date\":\"2026-10-18\",\"entry\":{\"rank\":1}}").Formula); // an older server
+    }
+
+    [Fact]
     public void Your_try_in_words()
     {
         Assert.Equal("Not played yet.", DailyPages.Status(null, false));

@@ -276,6 +276,7 @@ public static class RunJournal
                 StageName = Safe(() => chapter.stageName),
                 Map = map.name.Replace("(Clone)", "").Trim(),
                 Type = map.type.ToString(),
+                Tracked = true,
             };
             _run.Maps.Add(_map);
             _run.Numbers[RunNumbers.Maps] = _run.Maps.Count;
@@ -445,13 +446,26 @@ public static class RunJournal
             string by = _lastAttacker.Length > 0 ? _lastAttacker : "?";
             var old = _run.DamageTaken.TryGetValue(by, out var v) ? v : (0d, 0);
             _run.DamageTaken[by] = (old.Item1 + dealt, old.Item2 + 1);
+            // Per map (0.16): a fight without health lost is a flawless room (the daily run's points).
+            if (_map != null)
+            {
+                _map.Lost += dealt;
+                _map.Hits++;
+            }
             _dirty = true;
             return;
         }
-        if (!target.health.dead || attacker == null || attacker.type is not (Character.Type.Player or Character.Type.PlayerMinion))
+        if (!target.health.dead)
+            return;
+        // A boss counts whatever dealt the last damage (0.16: a 0.15 daily run missed three bosses finished by damage
+        // without an attacker; the daily points count boss fights from these events). Others need the player's side.
+        bool byPlayer = attacker != null && attacker.type is (Character.Type.Player or Character.Type.PlayerMinion);
+        if (!byPlayer && target.type != Character.Type.Boss)
             return;
         if (!KilledThisRun.Add(target.GetInstanceID()))
             return;
+        if (_map != null)
+            _map.Kills++;
         bool boss = target.type == Character.Type.Boss;
         bool adventurer = target.type == Character.Type.Adventurer;
         if (!boss && !adventurer)
@@ -541,6 +555,20 @@ public static class RunJournal
             return;
         _run.Numbers[key] = _run.Number(key) + amount;
         _dirty = true;
+    }
+
+    /// <summary>
+    /// Restart room (0.16): the run goes back to the room's start. The run history keeps what happened in the try (the
+    /// damage, the kills) and notes the restart: a line in the timeline and the count on the run's page.
+    /// </summary>
+    public static void NoteRoomRestart()
+    {
+        if (!On || _run == null || _run.Result != RunResult.InProgress)
+            return;
+        _run.Numbers[RunNumbers.RoomRestarts] = _run.Number(RunNumbers.RoomRestarts) + 1;
+        _run.Events.Add(new RunEvent { T = GameData.Progress.playTime, Kind = RunEvents.RoomRestart, Name = _map?.StageName ?? "" });
+        _dirty = true;
+        Save(force: true);
     }
 
     /// <summary>Heal orbs left behind (History/HealOrbs): added to the run in progress.</summary>
@@ -669,6 +697,7 @@ public static class RunJournal
         Set(RunNumbers.LostHealth, () => GameData.Progress.lostHealth);
         Set(RunNumbers.Gold, () => GameData.Currency.gold.income);
         Set(RunNumbers.GoldLeft, () => GameData.Currency.gold.balance);
+        Set(RunNumbers.BonesLeft, () => GameData.Currency.bone.balance);
         Set(RunNumbers.DarkQuartz, () => GameData.Currency.darkQuartz.income);
         Set(RunNumbers.Bones, () => GameData.Currency.bone.income);
         Set(RunNumbers.HeartQuartz, () => GameData.Currency.heartQuartz.income);

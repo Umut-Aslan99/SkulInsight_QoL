@@ -212,3 +212,10 @@ Afterwards Claude reads BepInEx/LogOutput.log ("Rewards:" lines).
     Mods window: [Umut] "the mod manager still shows install buttons": his game runs the Debug build (full manager);
     the Thunderstore package is the browse-only one (checked on the published 0.14.1 download). docs/MOD_MANAGER.md
     "Where it stands". 16 texts in 10 languages (ko: 프로젝트 → 모드, the font has no 젝). 556 tests.
+14. **0.15.0 released (2026-10-26 ~13:50 UTC, [Umut] "Go push it now")**: release.ps1: 556 tests, the Thunderstore zip
+    (no-installer check passed), public repo ef62d58 + tag v0.15.0, GitHub release with the zip, Thunderstore upload
+    (API: latest 0.15.0). README / wiki pictures: new docs/images/rewards.png and daily-boards.png (the left book page
+    of Umut's screenshots; their right pages still had texts changed since), the Mods picture taken out (it showed
+    the full manager: Install / Remove buttons the Thunderstore build doesn't have). Open for Umut: the reviewer ping
+    (if not sent yet), paste docs/wiki/thunderstore-wiki.md into the Thunderstore wiki, a screenshot of the Mods window
+    from the Thunderstore version (r2modman) for a docs-only `sync-public.ps1 -NoTag`.

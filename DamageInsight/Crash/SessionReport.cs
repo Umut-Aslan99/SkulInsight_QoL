@@ -57,9 +57,14 @@ public sealed class SessionReport
     {
         public DateTime Time, From;
         public string Title, Resolved;
+        /// <summary>A verdict known without the errors (the freeze watch saw where the game stood still).</summary>
+        public Verdict? Given;
     }
 
     private readonly List<IncidentEntry> _incidents = new();
+
+    /// <summary>The performance section of the summary (Crash.PerfMonitor; null: none).</summary>
+    public Func<string> PerformanceSummary;
     private StreamWriter _writer;
     private long _written;
     private DateTime _lastSnapshot = DateTime.MinValue, _lastFlush = DateTime.MinValue;
@@ -179,17 +184,17 @@ public sealed class SessionReport
     }
 
     /// <summary>Something went visibly wrong (the screen stayed black). Written at once, with the verdict for it.</summary>
-    public string Incident(string title, string details, DateTime? since = null)
+    public string Incident(string title, string details, DateTime? since = null, Verdict? given = null)
     {
         lock (_lock)
         {
             DateTime now = _clock();
             // Errors from a little before the trouble began (the screen went black) count, else the last minute.
             DateTime from = since.HasValue ? since.Value - TimeSpan.FromSeconds(10) : now - IncidentWindow;
-            _incidents.Add(new IncidentEntry { Time = now, Title = title, From = from });
+            _incidents.Add(new IncidentEntry { Time = now, Title = title, From = from, Given = given });
             if (_writer == null || Ended)
                 return "";
-            var verdict = VerdictFor(from, now);
+            var verdict = given ?? VerdictFor(from, now);
             Write("");
             Write($"{Stamp(now)}  {IncidentMark}{title}");
             foreach (string line in (details ?? "").TrimEnd().Split('\n'))
@@ -334,9 +339,13 @@ public sealed class SessionReport
                 sb.AppendLine("No freeze was noticed in this session.");
             foreach (var incident in _incidents)
                 sb.AppendLine(incident.Resolved == null
-                    ? $"VERDICT ({incident.Title}, {Stamp(incident.Time)}): {VerdictFor(incident.From, incident.Time).Text}"
+                    ? $"VERDICT ({incident.Title}, {Stamp(incident.Time)}): {(incident.Given ?? VerdictFor(incident.From, incident.Time)).Text}"
                     : $"Resolved by itself ({incident.Title}, {Stamp(incident.Time)}): {incident.Resolved}");
-            if (!ended)
+            // A freeze that is still going on when the game ends is what the next start reports (the last verdict).
+            var frozen = _incidents.LastOrDefault(i => i.Resolved == null && i.Given != null);
+            if (!ended && frozen != null)
+                sb.AppendLine($"VERDICT (if the game ends here without its normal end: {frozen.Title} at {Stamp(frozen.Time)}): {frozen.Given.Value.Text}");
+            else if (!ended)
                 sb.AppendLine($"VERDICT (the last minute, if the game ends here without its normal end): {VerdictFor(now - IncidentWindow, now).Text}");
 
             var all = _errors.Values.ToList();
@@ -363,6 +372,17 @@ public sealed class SessionReport
                         sb.AppendLine("    " + Explain(e));
                 }
             }
+            string performance = null;
+            try
+            {
+                performance = PerformanceSummary?.Invoke();
+            }
+            catch (Exception)
+            {
+                // the summary is written without it
+            }
+            if (!string.IsNullOrEmpty(performance))
+                sb.AppendLine().Append(performance.TrimEnd()).AppendLine();
             if (!ended)
                 sb.AppendLine().AppendLine($"(snapshot {Stamp(now)})");
             return sb.ToString();

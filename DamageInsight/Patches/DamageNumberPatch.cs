@@ -26,6 +26,7 @@ public static class DamageNumberPatch
     [HarmonyPatch(nameof(FloatingTextSpawner.SpawnTakingDamage))]
     private static bool ReplaceSpawnTakingDamage(FloatingTextSpawner __instance, in Damage damage)
     {
+        using var _perf = DamageInsight.Crash.Perf.Measure("Damage numbers");
         try
         {
             SpawnTakingDamage(__instance, damage);
@@ -119,10 +120,12 @@ public static class DamageNumberPatch
         Vector3 start = transform.position;
         Color baseColor = floatingText.color;
         float elapsed = 0f;
+        Started++;
 
         while (elapsed < riseTime + holdTime + fadeTime)
         {
             yield return null;
+            using var _perf = DamageInsight.Crash.Perf.Measure("Damage numbers (animation)");
             elapsed += Chronometer.global.deltaTime;
 
             // Ease-out rise: fast at first, slowing to a stop.
@@ -140,4 +143,7 @@ public static class DamageNumberPatch
 
         floatingText.Despawn();
     }
+
+    /// <summary>Damage numbers shown since the game started (the performance lines name the most in one second).</summary>
+    public static long Started;
 }

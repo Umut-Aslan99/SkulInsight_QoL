@@ -153,3 +153,23 @@ Umut's admin removal. Good enough for a fan leaderboard.
   Daily page, the day's Darktech up to its level, the same castle gifts and blessing from the seed (V015_LOG 10-11).
 - Shoutout: [Umut] Tythos (Bilibili creator, https://space.bilibili.com/17576167) runs daily run tournaments; one
   dim line with the link at the bottom of the Daily page.
+
+## Points formula 3, the day's achievements, winners as adventurers (0.16, 2026-10-28/30)
+- [Tythos] boss and kill counts differ for the same content (the game counts a kill once per damage source that
+  lands the last hit at the same time); Victory, Stage, Boss, Kills are the same for everyone who finishes. [Umut]
+  drop kills and stages, keep bosses (the optional Dark Mirror two give extra), run time stronger, flawless rooms /
+  boss fights (define flawless vs. a shield), bones left, a streak up to 30 days (Tythos: not in their tournaments).
+- Formula 3 from 2026-11-01 (server `points.py`, `formula_of`): see CHANGELOG 0.16.0. Flawless = no health lost (the
+  game's own no-hit rule: a hit counts when it costs 1+ health); a win counts all five main boss fights; the day's
+  records no longer add points; the streak (100 a day, up to 30) counts on the month board only (`monthBonus`).
+- The day's achievements (Umut 2026-10-30: a daily random subset, all achievable in one run, only the logical ones;
+  custom ones like "play as <random skull>"): 2 of the game's (`ACHIEVEMENT_POOL`: no-hit bosses, Skeleton King, a
+  minute in the black market, 4 dark abilities in the Dark Mirror; no dying, castle, gear or shop luck) + "skull of
+  the day" (win holding a common/rare skull family; Mythology Pack skulls only on DLC boards) + "flawless chapter"
+  (1-3). 300-1,500 each, about a tenth of a win in all. The mod records the game's achievements given during a daily
+  run (the daily slot's achievement hook) and sends them; a no-hit one also counts from the run's boss rooms.
+- [Umut] yesterday's winners as adventurer names: `/api/dailies` has `champions` (each board's first place, a win);
+  the mod puts them on the adventurers' name tags (AdventurerNamePool.OnEnable).
+- Ideas for later (Umut, Discord 2026-10-30): challenge-themed days (only physical items / skulls, only items with
+  certain inscriptions, "how far in 20 minutes"), "pass on runs" (each player plays one chapter), randomizers, a
+  tournament-only build for Tythos's live tournaments, a monthly video submission contest (Tythos).

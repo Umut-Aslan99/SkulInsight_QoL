@@ -143,6 +143,7 @@ public static class AttackTracker
 
     private static void Prefix(object __instance)
     {
+        using var _perf = DamageInsight.Crash.Perf.Measure("Codex attack tracking");
         if (Executing.Count > 64)
             Executing.Clear(); // never popped (should not happen): start afresh
         Executing.Push(__instance);

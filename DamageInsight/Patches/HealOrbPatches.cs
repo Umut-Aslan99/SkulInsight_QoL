@@ -12,6 +12,7 @@ public static class HealOrbPatches
     {
         private static void Postfix(Potion __result)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Heal orbs");
             try
             {
                 DamageInsight.History.HealOrbs.Dropped(__result);
@@ -28,6 +29,7 @@ public static class HealOrbPatches
     {
         private static void Prefix(Potion __instance, Characters.Character character)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Heal orbs");
             try
             {
                 DamageInsight.History.HealOrbs.Touched(__instance, character);

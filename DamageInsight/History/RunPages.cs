@@ -277,6 +277,11 @@ public static class RunPages
             sb.Append($"<color={DimColor}>{Loc.F("Healing orbs left behind while you were hurt: {0} ({1} health).", N(r.Number(RunNumbers.HealsMissed)), N(r.Number(RunNumbers.HealthMissed)))}</color>\n");
         if (r.Number(RunNumbers.Rewards) > 0)
             sb.Append($"<color={DimColor}>{Loc.F("Played with rewards on ({0} quests done, {1} coins earned).", N(r.Number(RunNumbers.QuestsDone)), N(r.Number(RunNumbers.CoinsEarned)))}</color>\n");
+        int fights = r.Maps.Count(m => m.Tracked && m.Kills > 0);
+        if (fights > 0)
+            sb.Append($"<color={DimColor}>{Loc.F("Flawless rooms: {0} of {1} fights without losing health.", N(r.Maps.Count(m => m.Flawless)), N(fights))}</color>\n");
+        if (r.Number(RunNumbers.RoomRestarts) > 0)
+            sb.Append($"<color={DimColor}>{Loc.P("Restart room used {0} time in this run.", "Restart room used {0} times in this run.", (int)r.Number(RunNumbers.RoomRestarts))}</color>\n");
         var bosses = Bosses(r, look);
         if (bosses.Count > 0)
         {
@@ -545,6 +550,7 @@ public static class RunPages
             RunEvents.InscriptionTuned => Loc.F("{0} took its tuned form", Ref("inscription:" + e.Id, e.Name, look)),
             RunEvents.Revive => Loc.T("Revived"),
             RunEvents.Boss or RunEvents.Adventurer => Loc.F("Defeated {0}", a),
+            RunEvents.RoomRestart => Loc.T("Restarted the room"),
             _ => null,
         };
         if (text == null)
@@ -553,6 +559,7 @@ public static class RunPages
         {
             RunEvents.Inscription or RunEvents.InscriptionTuned => "inscription:" + e.Id,
             RunEvents.Revive => "pix:heart",
+            RunEvents.RoomRestart => "pix:hourglass",
             RunEvents.Start => "pix:flag",
             _ => e.Id.Length > 0 ? "codex:" + e.Id : "",
         };

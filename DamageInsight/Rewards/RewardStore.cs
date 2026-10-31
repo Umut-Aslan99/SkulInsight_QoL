@@ -165,7 +165,10 @@ public static class RewardStore
         int kills = (AdventurerKills.TryGetValue(adventurer, out int n) ? n : 0) + 1;
         bool coin = kills >= Math.Max(1, needed);
         AdventurerKills[adventurer] = coin ? 0 : kills;
-        Changed();
+        if (coin)
+            Changed();
+        else
+            ChangedSoon();
         return coin;
     }
 
@@ -280,7 +283,10 @@ public static class RewardStore
             q.Done++;
             done++;
         }
-        Changed();
+        if (done > 0)
+            Changed();
+        else
+            ChangedSoon();
         return done;
     }
 
@@ -345,16 +351,49 @@ public static class RewardStore
         }
     }
 
-    /// <summary>Save slot switch: the next slot's Codex folder is in place; its file is read afresh.</summary>
+    /// <summary>Save slot switch: the next slot's Codex folder is in place; its file is read afresh. (The switch calls
+    /// <see cref="Flush"/> before it moves the folders: a kill counted since then belongs to the slot that was left.)</summary>
     public static void ForgetSlot()
     {
         _loaded = false;
+        _dirtySince = -1;
         Version++;
     }
 
     private static void Changed()
     {
         Version++;
+        Save();
+    }
+
+    // Kills come many a second with some builds: each one wrote the whole file (0.15.0, a stutter in big fights; Umut
+    // 2026-10-28 "the games performance somehow is suffering quite a lot especially with some builds"). They are saved
+    // a few seconds later instead, and at the latest when the game closes or the save slot changes.
+    private const double SaveDelaySeconds = 3;
+    private static double _dirtySince = -1;
+
+    /// <summary>The clock for the delayed save (seconds; tests set their own).</summary>
+    public static Func<double> Clock = () => Environment.TickCount / 1000.0;
+
+    private static void ChangedSoon()
+    {
+        Version++;
+        if (_dirtySince < 0)
+            _dirtySince = Clock();
+    }
+
+    /// <summary>Every frame: a delayed save once its time has come.</summary>
+    public static void Tick()
+    {
+        if (_dirtySince >= 0 && Clock() - _dirtySince >= SaveDelaySeconds)
+            Flush();
+    }
+
+    /// <summary>Writes changes that wait for their delayed save now (before a slot switch, at quit).</summary>
+    public static void Flush()
+    {
+        if (_dirtySince < 0)
+            return;
         Save();
     }
 
@@ -383,32 +422,7 @@ public static class RewardStore
         {
             if (!File.Exists(FilePath))
                 return;
-            var root = GearDoc.ParseNode(File.ReadAllText(FilePath, Encoding.UTF8));
-            ReadCounts(root.Raw("coins"), CoinCounts);
-            ReadCounts(root.Raw("adventurerKills"), AdventurerKills);
-            if (root.Raw("quests") is Dictionary<string, object> quests)
-                foreach (var pair in quests)
-                    if (pair.Value is List<object> pairOfNumbers && pairOfNumbers.Count == 2)
-                        Quests[pair.Key] = new QuestProgress { Kills = Int(pairOfNumbers[0]), Done = Int(pairOfNumbers[1]) };
-            _omenCoins = (int)root.Num("omenCoins");
-            _activations = (int)root.Num("activations");
-            _coinsEarned = (int)root.Num("coinsEarned");
-            _summons = (int)root.Num("summons");
-            _questQuartz = (long)root.Num("questDarkQuartz");
-            _questGold = (long)root.Num("questGold");
-            _run = root.Str("run") ?? "";
-            if (root.Raw("summonsThisRun") is Dictionary<string, object> summons)
-                foreach (var pair in summons)
-                    if (Enum.TryParse(pair.Key, out CoinKind kind) && Int(pair.Value) > 0)
-                        SummonsByKind[kind] = Int(pair.Value);
-            if (root.Raw("activatedThisRun") is List<object> activated)
-                Activated.AddRange(activated.OfType<string>());
-            _maxedPaid = root.Bool("maxedPaid");
-            if (root.Raw("maxedThisRun") is List<object> maxed)
-                foreach (var key in maxed.OfType<string>())
-                    Maxed.Add(key);
-            if (root.Raw("summonedThisRun") is List<object> summoned)
-                Summoned.AddRange(summoned.OfType<string>());
+            Read(File.ReadAllText(FilePath, Encoding.UTF8));
         }
         catch (Exception)
         {
@@ -416,6 +430,66 @@ public static class RewardStore
             try { File.Copy(FilePath, FilePath + ".bak", overwrite: true); } catch (Exception) { /* nothing to keep */ }
             Clear();
         }
+    }
+
+    /// <summary>The store as it is now (taken when a room is entered: a room restart puts it back).</summary>
+    public static string RoomSnapshot()
+    {
+        Ensure();
+        return ToJson();
+    }
+
+    /// <summary>
+    /// Restart room (0.16): coins, quests and activations go back to what they were when the room was entered, like the
+    /// game's own room save (no quest farming by restarting a room; a summon made in the room is given back with its coins).
+    /// </summary>
+    public static void RestoreRoom(string snapshot)
+    {
+        if (string.IsNullOrEmpty(snapshot))
+            return;
+        Ensure();
+        string before = ToJson();
+        try
+        {
+            Clear();
+            Read(snapshot);
+        }
+        catch (Exception)
+        {
+            Clear();
+            Read(before);
+        }
+        Changed();
+    }
+
+    private static void Read(string text)
+    {
+        var root = GearDoc.ParseNode(text);
+        ReadCounts(root.Raw("coins"), CoinCounts);
+        ReadCounts(root.Raw("adventurerKills"), AdventurerKills);
+        if (root.Raw("quests") is Dictionary<string, object> quests)
+            foreach (var pair in quests)
+                if (pair.Value is List<object> pairOfNumbers && pairOfNumbers.Count == 2)
+                    Quests[pair.Key] = new QuestProgress { Kills = Int(pairOfNumbers[0]), Done = Int(pairOfNumbers[1]) };
+        _omenCoins = (int)root.Num("omenCoins");
+        _activations = (int)root.Num("activations");
+        _coinsEarned = (int)root.Num("coinsEarned");
+        _summons = (int)root.Num("summons");
+        _questQuartz = (long)root.Num("questDarkQuartz");
+        _questGold = (long)root.Num("questGold");
+        _run = root.Str("run") ?? "";
+        if (root.Raw("summonsThisRun") is Dictionary<string, object> summons)
+            foreach (var pair in summons)
+                if (Enum.TryParse(pair.Key, out CoinKind kind) && Int(pair.Value) > 0)
+                    SummonsByKind[kind] = Int(pair.Value);
+        if (root.Raw("activatedThisRun") is List<object> activated)
+            Activated.AddRange(activated.OfType<string>());
+        _maxedPaid = root.Bool("maxedPaid");
+        if (root.Raw("maxedThisRun") is List<object> maxed)
+            foreach (var key in maxed.OfType<string>())
+                Maxed.Add(key);
+        if (root.Raw("summonedThisRun") is List<object> summoned)
+            Summoned.AddRange(summoned.OfType<string>());
     }
 
     private static int Int(object value) => value is double d ? (int)d : value is long l ? (int)l : value is int i ? i : 0;
@@ -469,6 +543,7 @@ public static class RewardStore
 
     private static void Save()
     {
+        _dirtySince = -1;
         if (string.IsNullOrEmpty(Folder))
             return;
         try

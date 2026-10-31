@@ -21,6 +21,7 @@ public static class CooldownTickerPatch
 
     private static void Postfix(AbilityIcon[] ____icons, Character ____character)
     {
+        using var _perf = DamageInsight.Crash.Perf.Measure("Cooldown numbers");
         if (_failed || ____icons == null || ____character == null)
             return;
         try
@@ -75,6 +76,7 @@ public static class SkillCooldownTickerPatch
 
     private static void Postfix(global::UI.IconWithCooldown __instance)
     {
+        using var _perf = DamageInsight.Crash.Perf.Measure("Cooldown numbers");
         if (_failed || __instance == null || __instance._cooldownMask == null)
             return;
         try
@@ -107,6 +109,7 @@ public static class SwapCooldownTickerPatch
     private static void Postfix(Image ____changeWeaponCooldown, WeaponInventory ____weaponInventory, Character ____character,
         global::UI.ActionIcon[] ____skills)
     {
+        using var _perf = DamageInsight.Crash.Perf.Measure("Cooldown numbers");
         if (_failed || ____changeWeaponCooldown == null)
             return;
         try

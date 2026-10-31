@@ -45,6 +45,8 @@ public sealed class DailyInfo
     public int Level;
     public int Formula;
     public int SecondsLeft;
+    /// <summary>The day's achievements on this board (formula 3): the game's ids, "skull:&lt;family&gt;", "chapter:&lt;n&gt;".</summary>
+    public readonly List<(string id, int points)> Achievements = new();
 
     public bool DarkMirror => Mode == "darkmirror";
 
@@ -73,13 +75,30 @@ public sealed class DailyInfo
             string board = b.Str("board") ?? "";
             if (!DailyBoards.IsBoard(board))
                 continue;
-            list.Add(new DailyInfo
+            var info = new DailyInfo
             {
                 Date = date, Board = board, Dlc = b.Bool("dlc"), Seed = (int)b.Num("seed"), Mode = b.Str("mode") ?? "normal",
                 Level = (int)b.Num("level"), Formula = (int)n.Num("formula"), SecondsLeft = (int)n.Num("secondsLeft"),
-            });
+            };
+            foreach (var a in b.List("achievements"))
+                if (a.Str("id") is { Length: > 0 } id)
+                    info.Achievements.Add((id, (int)a.Num("points")));
+            list.Add(info);
         }
         return list.Count > 0 ? list : null;
+    }
+
+    /// <summary>Yesterday's winners of the boards (GET /api/dailies, 0.16): (board, name); the adventurers take their names.</summary>
+    public static List<(string board, string name)> ChampionsFromJson(string json)
+    {
+        var list = new List<(string board, string name)>();
+        var n = Parse(json);
+        if (n.IsNull)
+            return list;
+        foreach (var c in n.List("champions"))
+            if (c.Str("name") is { Length: > 0 } name)
+                list.Add((c.Str("board") ?? "", name.Replace("<", "").Replace(">", "")));
+        return list;
     }
 
     internal static Node Parse(string json)
@@ -105,6 +124,8 @@ public sealed class BoardEntry
     public bool Liked;
     /// <summary>The day's records this run holds: (key, points, value).</summary>
     public readonly List<(string key, int points, int value)> Bonuses = new();
+    /// <summary>Points formula 3: the daily streak's points, counted on the month board only (not in <see cref="Points"/>).</summary>
+    public int MonthBonus;
 
     public bool Won => Result == "win";
 
@@ -117,6 +138,7 @@ public sealed class BoardEntry
             Days = (int)n.Num("days"), Wins = (int)n.Num("wins"), Name = n.Str("name") ?? "", Result = n.Str("result") ?? "",
             Skull = n.Str("skull") ?? "", You = n.Bool("you"), Id = n.Str("id") ?? "", HasRun = n.Bool("hasRun"),
             Base = (int)n.Num("base"), Likes = (int)n.Num("likes"), Streak = (int)n.Num("streak"), Liked = n.Bool("liked"),
+            MonthBonus = (int)n.Num("monthBonus"),
         };
         if (n.Raw("endBosses") is List<object> bosses)
             e.EndBosses.AddRange(bosses.OfType<string>());
@@ -164,6 +186,8 @@ public sealed class RunDetail
     public string Date = "", Mode = "normal";
     public int Level;
     public double Factor = 1;
+    /// <summary>The points formula the day was counted with (2 before 2026-11-01; an older server says nothing: 2).</summary>
+    public int Formula = 2;
     public BoardEntry Entry;
     /// <summary>The points before the difficulty factor: (key, the run's number, points).</summary>
     public readonly List<(string key, long value, int points)> Breakdown = new();
@@ -178,6 +202,7 @@ public sealed class RunDetail
         var d = new RunDetail
         {
             Date = n.Str("date") ?? "", Mode = n.Str("mode") ?? "normal", Level = (int)n.Num("level"), Factor = n.Num("factor", 1),
+            Formula = (int)n.Num("formula", 2),
             Entry = BoardEntry.FromNode(n.Child("entry")),
         };
         foreach (var p in n.List("breakdown"))
@@ -226,6 +251,18 @@ public sealed class DailyResult
     public readonly List<string> Mods = new();
     public bool UnknownGear;
 
+    // 0.16 (points formula 3, Umut + Tythos 2026-10-28): rooms with a fight and those without health lost, the bones
+    // left, and the bosses as the run history saw them (the game's own boss count counts some bosses twice).
+    public int FightRooms, FlawlessRooms, RoomRestarts;
+    public long BonesLeft;
+    /// <summary>The skull held at the end (a Codex id), the chapters cleared without losing health, the game's
+    /// achievements given during the run: the day's achievements (custom: a skull of the day, a flawless chapter).</summary>
+    public string HeldSkull = "";
+    public readonly List<int> FlawlessChapters = new();
+    public readonly List<string> Achievements = new();
+    /// <summary>Each boss defeated (its Codex id) with the health lost and the seconds in the room it fell in.</summary>
+    public readonly List<(string id, long lost, int seconds, bool tracked)> BossRooms = new();
+
     public string NumbersJson()
     {
         var sb = new StringBuilder("{");
@@ -242,6 +279,15 @@ public sealed class DailyResult
           .Append(",\"skull\":").Append(LogJson.Quote(Skull))
           .Append(",\"mods\":[").Append(string.Join(",", Mods.Select(LogJson.Quote))).Append(']')
           .Append(",\"unknownGear\":").Append(UnknownGear ? "true" : "false")
+          .Append(",\"fightRooms\":").Append(FightRooms)
+          .Append(",\"flawlessRooms\":").Append(FlawlessRooms)
+          .Append(",\"roomRestarts\":").Append(RoomRestarts)
+          .Append(",\"bonesLeft\":").Append(BonesLeft)
+          .Append(",\"heldSkull\":").Append(LogJson.Quote(HeldSkull))
+          .Append(",\"flawlessChapters\":[").Append(string.Join(",", FlawlessChapters)).Append(']')
+          .Append(",\"achievements\":[").Append(string.Join(",", Achievements.Select(LogJson.Quote))).Append(']')
+          .Append(",\"bossRooms\":[").Append(string.Join(",", BossRooms.Select(b =>
+              "{\"id\":" + LogJson.Quote(b.id) + ",\"lost\":" + b.lost + ",\"seconds\":" + b.seconds + ",\"tracked\":" + (b.tracked ? "true" : "false") + "}"))).Append(']')
           .Append('}');
         return sb.ToString();
     }

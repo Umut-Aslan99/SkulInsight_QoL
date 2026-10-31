@@ -10,13 +10,16 @@ side if you use them, and only goes online if you turn on the daily run. Its onl
 the **rewards** (0.15): optional, on by default, and one switch at the top of the settings turns them off. Every
 feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.15: rewards.** Every achievement of your save slot now gives a small lasting bonus that fits it (more
-> damage to a boss you beat, more still without getting hit; attack, speed, gold, ...), legendary gear you break gives
-> coins that summon it in a later run, adventurers and Omen items give coins too, every normal enemy has an endless
-> kill quest paying dark quartz and gold, and completed inscriptions earn activations. All of it is optional
-> (Codex → You → **Rewards**): one switch at the top of the settings turns it off, and daily runs never use it.
-> **Daily runs** now have six boards a day: Normal, the Dark Mirror at a random level and Dark Mirror 10, each with
-> and without the DLC, and everyone gets the same castle gifts and blessing.
+> **Version 0.16: restart room, new daily points.** **Restart room** (press F5 twice) takes you back to the
+> moment you entered the room, as when you close the game and continue (in a daily run it ends the run). **Daily
+> points** from November 1: the boss fights instead of the game's double-counted kills, speed counts more, flawless
+> rooms and boss fights count, four **achievements of the day** (two of the game's, a skull of the day, a flawless
+> chapter) give bonus points, and the day's board is the run alone. Yesterday's daily winners name the **adventurers**
+> you meet. Fixed: mouse hover selects items, skulls and dark abilities again; no more stutters when a strong build
+> kills a lot. The crash reports now note frames per second and what slows the game down (**Show FPS** for a line on
+> screen).
+> New in 0.15: **rewards** for every achievement, coins, kill quests and inscription activations (optional: one
+> switch at the top of the settings turns them off), six daily boards a day.
 > New in 0.14: Skul's **achievements** for every save slot with a small notice, **Clear view**, **Mods** in the pause
 > menu (Thunderstore's Skul mods and yours), easier-to-see healing orbs, and the **Mac version** ([guide](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
 > The game shows what's new once after the update; every detail is in the [changelog](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
@@ -262,9 +265,18 @@ Codex (`K`) → **Daily**: every day three runs for everyone, each with and with
 - Played in a separate daily save slot made from your game: every gear unlocked, the Witch at her top, the Dark
   Mirror (and its machines) up to the day's level, the whole Codex open, 15,000 dark quartz, no rewards. Your own
   game waits as it is; **Back to my game** returns.
-- After the run: a name (12 characters) for the **daily** and **monthly** boards. Points for the result, stages,
-  bosses, kills, damage, little damage taken, gold left and a fast win, times the difficulty, plus bonuses for the
-  day's records (first win, fastest win, most damage, ...) and a daily streak.
+- After the run: a name (12 characters) for the **daily** and **monthly** boards. If typing freezes your game (some
+  input methods such as Pinyin do in full screen), put the name into the mod manager's config (SkulInsight QoL →
+  Daily → Name) and just press Send.
+- **Points** (from 2026-11-01): a win 20,000 and 5 for every second under an hour (a run that didn't win: 1,000 per
+  stage), 1,000 per boss fight won and 3,000 per optional Dark Mirror boss (counted from the run, not the game's
+  double-counted kills), 150 per **flawless room** and 1,000 per **flawless boss fight** (no health lost; a shield or
+  a dodge keeps it flawless), -2 per damage taken, 1 per 10 gold and 2 per bone left, times the difficulty.
+- **Achievements of the day:** four per board, 300 to 1,500 points each: two of the game's (only ones every run can
+  get: no-hit bosses, the First Hero as Little Bone, a minute in the black market, 4 dark abilities), a **skull of the
+  day** (win holding it) and a **flawless chapter**. The day's board is the run alone; the daily streak (up to 30
+  days) counts on the month board.
+- **Yesterday's winners** give their names to the adventurers you meet (setting Winners as adventurers).
 - **Click a run on the board**: its build, damage and timeline like your own run history, its points part by part,
   and a thumbs up.
 - Fair play: one try (a daily run can't be continued), runs with other mods loaded don't count, no Steam
@@ -279,9 +291,12 @@ Codex (`K`) → **Daily**: every day three runs for everyone, each with and with
 ![Daily run: today's board, and a run on it with Overview, Damage, Timeline, Points and a thumbs up](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/daily-board.png)
 
 ### Settings in the game
-Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings: every setting of the mod in one list, styled
-like the game's options, with keyboard, mouse and controller. The right side explains the selected setting and its
-default. Changes apply at once and are saved right away.
+Pause (Esc) → **SkulInsight QoL**, right under the game's own Settings, styled like the game's options, with keyboard,
+mouse and controller. Since 0.16 the left side lists the features in groups: **Gameplay (changes the game)**, **Insight**
+(what only shows), **Helpers**, **Online** and **General**, each with its switch; hovering or choosing one shows on the
+right what it does and its settings (Enter goes into them, Esc back). It shows the settings most players change; **All
+settings** at the end of the list shows every one, the fine-tuning too. New players choose at the first start between
+"Only information" and "Information and gameplay". Changes apply at once and are saved right away.
 
 ![The SkulInsight QoL button in the pause menu](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-menu.png)
 
@@ -289,12 +304,18 @@ default. Changes apply at once and are saved right away.
 
 ![Choosing the icon for each damage source](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-icons.png)
 
+### Restart room (new in 0.16)
+Press **F5** twice within 3 seconds (Restart Room → Key in the settings): back to the moment you entered the
+room (health, gear, gold, everything), exactly as when you close the game and continue, but without closing it. Your
+rewards go back too, and the run history notes each restart. In a daily run it ends the run (only full runs count).
+
 ### Crash reports
 Every game session leaves a report in `BepInEx/DamageInsight/CrashReports` (the newest 20): what happened (chapters,
 maps, your build), every error with **whose code it was in** (the game's, SkulInsight's, a game method SkulInsight
 hooks into, or another mod) and a verdict. A screen that stays black for 20 seconds and a game that closed
-unexpectedly are noticed and said on screen. Settings page: **Crash reports folder** → Open. Please attach the newest
-report to bug reports.
+unexpectedly are noticed and said on screen. Since 0.16 it also notes how smooth the game runs (frames per second,
+stutters, how much of each frame SkulInsight takes) and what was going on if the game stands still; **Show FPS** puts
+a line on screen. Settings page: **Crash reports folder** → Open. Please attach the newest report to bug reports.
 
 ### All game languages
 The mod's texts follow the game's language (English, 한국어, 日本語, 简体中文, 繁體中文, Deutsch, Español, Português (Brasil), Русский, Polski, Français) and switch live when you change it.

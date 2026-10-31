@@ -15,6 +15,7 @@ public static class ClearViewPatches
     {
         private static void Postfix(Projectile __instance, Characters.Character owner)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Clear view (projectiles)");
             try
             {
                 DamageInsight.UI.ClearView.Fired(__instance, owner);
@@ -31,6 +32,7 @@ public static class ClearViewPatches
     {
         private static void Prefix(Projectile __instance)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Clear view (projectiles)");
             try
             {
                 DamageInsight.UI.ClearView.Despawned(__instance);

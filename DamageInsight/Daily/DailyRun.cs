@@ -295,6 +295,7 @@ public static class DailyRun
         if (t == null)
             return null;
         t.State = "started";
+        t.Achievements.Clear();
         DailyService.SaveState();
         DailyService.SendStart(t);
         Plugin.Log.LogInfo($"Daily run: {t.Date} {t.Board} started");
@@ -311,7 +312,9 @@ public static class DailyRun
             return;
         t.RunId = run.Id;
         t.Result = run.Result == RunResult.Ending ? "win" : run.Result == RunResult.Death ? "death" : "abandoned";
-        t.Numbers = ResultOf(run).NumbersJson();
+        var result = ResultOf(run);
+        result.Achievements.AddRange(t.Achievements);
+        t.Numbers = result.NumbersJson();
         t.Run = run.ToJson();
         t.State = "ended";
         DailyService.SaveState();
@@ -322,6 +325,8 @@ public static class DailyRun
     public static void Send(DailyTry t, string name)
     {
         DailyService.State.Name = name;
+        if (Plugin.DailyName != null && Plugin.DailyName.Value != name)
+            Plugin.DailyName.Value = name; // kept in the config too (the mod manager shows it)
         DailyService.QueueFinish(t, name);
     }
 
@@ -349,12 +354,73 @@ public static class DailyRun
         };
         var look = new RunLookup { Name = id => CodexPages.Entry(id)?.Name };
         result.EndBosses.AddRange(RunPages.Bosses(run, look).Select(b => b.name));
+        FillRooms(result, run);
         var held = run.Build.FirstOrDefault(g => g.Kind == "skull" && g.Extra.StartsWith("held"));
         result.Skull = held == null ? "" : CodexPages.Entry(held.Id)?.Name ?? held.Name;
         // Only vanilla gear counts (Umut): other mods and gear the game's own catalog doesn't know go with the result.
         result.Mods.AddRange(DailyMods.Others().Select(m => m.guid));
         result.UnknownGear = run.Build.Any(g => g.Kind is "skull" or "item" or "essence" && CodexPages.Entry(g.Id) == null);
         return result;
+    }
+
+    /// <summary>
+    /// The rooms of a run for points formula 3 (0.16): rooms with a fight, the flawless ones (no health lost), the bones
+    /// left, and each boss defeated with the room it fell in (the health lost and the seconds there). Plain logic, tested.
+    /// </summary>
+    internal static void FillRooms(DailyResult result, RunRecord run)
+    {
+        result.FightRooms = run.Maps.Count(m => m.Tracked && m.Kills > 0);
+        result.FlawlessRooms = run.Maps.Count(m => m.Flawless);
+        result.BonesLeft = (long)run.Number(RunNumbers.BonesLeft);
+        result.RoomRestarts = (int)run.Number(RunNumbers.RoomRestarts);
+        result.HeldSkull = run.Build.FirstOrDefault(g => g.Kind == "skull" && g.Extra.StartsWith("held", StringComparison.Ordinal))?.Id ?? "";
+        result.FlawlessChapters.AddRange(FlawlessChapters(run));
+        foreach (var e in run.Events.Where(e => e.Kind == RunEvents.Boss && e.Id.Length > 0))
+        {
+            // The room it fell in: the last one entered at or before its time.
+            RunMap room = null;
+            foreach (var m in run.Maps)
+                if (m.T <= e.T)
+                    room = m;
+            result.BossRooms.Add((e.Id, room == null ? 0 : (long)Math.Round(room.Lost), room?.Seconds ?? 0, room?.Tracked == true));
+        }
+    }
+
+    /// <summary>The chapters a run cleared (it went on to a later one, or won) without losing health in any room.</summary>
+    internal static System.Collections.Generic.IEnumerable<int> FlawlessChapters(RunRecord run)
+    {
+        static int ChapterOf(string chapter)
+        {
+            string digits = new string(chapter.Reverse().TakeWhile(char.IsDigit).Reverse().ToArray());
+            return int.TryParse(digits, out int n) ? n : 0;
+        }
+        var byChapter = run.Maps.GroupBy(m => ChapterOf(m.Chapter)).Where(g => g.Key > 0).ToList();
+        int last = byChapter.Count == 0 ? 0 : byChapter.Max(g => g.Key);
+        foreach (var chapter in byChapter.OrderBy(g => g.Key))
+        {
+            bool cleared = chapter.Key < last || run.Result == RunResult.Ending;
+            if (cleared && chapter.All(m => m.Tracked && m.Lost <= 0))
+                yield return chapter.Key;
+        }
+    }
+
+    /// <summary>
+    /// The game gives an achievement during a daily run (the daily slot sends none to Steam): kept with the try, it
+    /// counts if it is one of the day's (0.16, Umut 2026-10-30: daily achievements as bonus points); the notice shows.
+    /// </summary>
+    public static void OnAchievement(string id)
+    {
+        var t = DailyService.State.Tries.Values.FirstOrDefault(x => x.State == "started");
+        if (t == null || t.Achievements.Contains(id))
+            return;
+        t.Achievements.Add(id);
+        DailyService.SaveState();
+        var day = DailyService.InfoOf(t.Board);
+        if (day == null || !day.Achievements.Any(a => a.id == id))
+            return;
+        Plugin.Log.LogInfo($"Daily run: one of the day's achievements: {id}");
+        if (DamageInsight.Achievements.AchievementCatalog.Get(id) is { } info)
+            DamageInsight.UI.AchievementToast.Show(info);
     }
 
     internal static bool InCastle()

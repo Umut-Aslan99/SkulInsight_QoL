@@ -416,7 +416,7 @@ public sealed partial class CodexWindow
         _dailySendChip.Background.gameObject.SetActive(naming);
         _dailySkipChip.Background.gameObject.SetActive(naming);
         if (naming && string.IsNullOrEmpty(_dailyName.text))
-            _dailyName.text = DailyService.State.Name;
+            _dailyName.text = Plugin.DailyName?.Value is { Length: > 0 } configured ? configured : DailyService.State.Name;
     }
 
     private void BuildDailyControls()

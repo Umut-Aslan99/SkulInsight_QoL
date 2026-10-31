@@ -25,6 +25,7 @@ public static class FilmClutterPatches
 
         private static void Prefix(object __instance)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Clear view (effects)");
             Characters.Character owner = null;
             try
             {
@@ -57,6 +58,7 @@ public static class FilmClutterPatches
 
         private static void Prefix(object __0)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Clear view (effects)");
             Characters.Character owner = null;
             try
             {
@@ -78,6 +80,7 @@ public static class FilmClutterPatches
     {
         private static void Postfix(EffectPoolInstance __result)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Clear view (effects)");
             try
             {
                 FilmClutter.Played(__result);

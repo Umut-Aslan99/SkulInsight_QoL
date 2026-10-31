@@ -161,13 +161,7 @@ public sealed class ModManagerWindow : MonoBehaviour
         _mineChips.Clear();
         _canvas = UiKit.OverlayCanvas("DamageInsight_ModManager", 2150);
         _canvas.gameObject.AddComponent<GraphicRaycaster>();
-        if (EventSystem.current == null)
-        {
-            var events = new GameObject("DamageInsight_EventSystem");
-            DontDestroyOnLoad(events);
-            events.AddComponent<EventSystem>();
-            events.AddComponent<StandaloneInputModule>();
-        }
+        ModEventSystem.Ensure();
 
         var shade = UiKit.Image("Shade", _canvas.transform, new Color(0, 0, 0, 0.72f));
         shade.rectTransform.Fill();

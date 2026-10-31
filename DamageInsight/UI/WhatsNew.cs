@@ -35,13 +35,15 @@ public sealed class WhatsNew : MonoBehaviour
     {
         var list = new System.Collections.Generic.List<string>
         {
-            Loc.T("Rewards: every achievement of your save slot gives a small lasting bonus that fits it, like more damage to a boss you beat (more without getting hit), attack, speed or gold (Codex, You, Rewards)."),
-            Loc.T("Coins: break a legendary item or skull, or beat an adventurer a few times, and its coin summons that gear in a later run. A run ended with Omen items gives Omen coins."),
-            Loc.T("Kill quests: every normal enemy has an endless quest that pays dark quartz and gold."),
-            Loc.T("Inscription activations: complete an inscription in a run, and in a later run one you have counts one more, like the Dark Mirror's banners."),
-            Loc.T("Rewards can be turned off at the top of the settings page; daily runs never use them."),
-            Loc.T("Daily runs: every day Normal, the Dark Mirror at a random level and Dark Mirror 10, each with and without the DLC and each with its own board. Everyone gets the same gifts in the castle and the same blessing."),
+            Loc.T("Restart room: press F5 twice to go back to the moment you entered the room, as when you close the game and continue. In a daily run it ends the run."),
+            Loc.T("Daily points, new from November 1: the boss fights instead of the game's double-counted kills, speed counts more, flawless rooms and boss fights (no health lost) count, and four achievements of the day give bonus points. The day's board is the run alone; the streak counts on the month board."),
+            Loc.T("Yesterday's daily winners give their names to the adventurers you meet."),
+            Loc.T("The settings page is new: the features on the left in groups (what changes the game, what only shows, helpers, online, general), each with its switch; hover one to see its settings on the right."),
+            Loc.T("Fixed: hovering with the mouse selects items, skulls and dark abilities again; the game no longer stutters when a strong build kills a lot."),
+            Loc.T("The crash reports now also note frames per second and what slows the game down (setting Show FPS for a line on screen)."),
         };
+        if (OlderThan(lastSeen, 0, 15))
+            list.Add(Loc.T("Also new since 0.15: rewards for achievements, coins, kill quests and inscription activations (they can be turned off at the top of the settings page), six daily boards."));
         if (OlderThan(lastSeen, 0, 14))
             list.Add(Loc.T("Also new since 0.14: achievements per save slot with a small notice, Clear view, the Mods browser, healing orbs that are easier to see, macOS."));
         return list.ToArray();
@@ -82,13 +84,7 @@ public sealed class WhatsNew : MonoBehaviour
         _canvas = UiKit.OverlayCanvas("SkulInsight What's new", 2100);
         // Clicks need a raycaster on the canvas and an event system (the button did nothing without them: 0.12.0).
         _canvas.gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
-        if (UnityEngine.EventSystems.EventSystem.current == null)
-        {
-            var events = new GameObject("DamageInsight_EventSystem");
-            DontDestroyOnLoad(events);
-            events.AddComponent<UnityEngine.EventSystems.EventSystem>();
-            events.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
-        }
+        ModEventSystem.Ensure();
         IsOpen = true;
         var panel = UiKit.Image("Panel", _canvas.transform, new Color32(0x1B, 0x12, 0x24, 0xF2));
         var rect = panel.rectTransform;
@@ -98,9 +94,18 @@ public sealed class WhatsNew : MonoBehaviour
         outline.effectColor = UiKit.ChipOn;
         outline.effectDistance = new Vector2(2, -2);
 
-        var title = UiKit.Text("Title", rect, Loc.F("SkulInsight QoL {0}: what's new", MyPluginInfo.PLUGIN_VERSION), 30,
+        // A new player (nothing seen before) gets the welcome with the choice instead (0.16, Umut 2026-10-30: the split,
+        // option 1: what only shows information apart from what changes the game; gameplay off unless chosen).
+        _welcome = string.IsNullOrEmpty(Plugin.LastVersionSeen?.Value);
+        var title = UiKit.Text("Title", rect, _welcome ? Loc.F("Welcome to SkulInsight QoL {0}", MyPluginInfo.PLUGIN_VERSION)
+            : Loc.F("SkulInsight QoL {0}: what's new", MyPluginInfo.PLUGIN_VERSION), 30,
             TextAlignmentOptions.Center, new Color32(0xF2, 0xD7, 0x8B, 0xFF));
         title.rectTransform.Place(30, 24, 800, 44);
+        if (_welcome)
+        {
+            ShowWelcome(rect);
+            return;
+        }
 
         var sb = new System.Text.StringBuilder();
         foreach (string line in Highlights(Plugin.LastVersionSeen?.Value))
@@ -126,9 +131,57 @@ public sealed class WhatsNew : MonoBehaviour
         hint.rectTransform.Stretch(20, 570, 20, 10);
     }
 
+    private bool _welcome;
+
+    /// <summary>The first start: what the mod shows, what it can change, and the choice (Esc: information only).</summary>
+    private void ShowWelcome(RectTransform rect)
+    {
+        string text = Loc.T("This mod shows what the game keeps hidden: damage numbers with their source, real numbers in the descriptions, a combat log, the Codex, your runs and achievements, and daily runs online (off until you turn them on).") +
+                      "\n\n" + Loc.T("It can also change the game a little: rewards for your achievements (small bonuses, coins, kill quests) and Restart room (press F5 twice to go back to the start of the room). Do you want those too?") +
+                      $"\n\n<color=#A89F94>{Loc.T("You can change this at any time: Esc, SkulInsight QoL, the group Gameplay at the top.")}</color>";
+        var body = UiKit.Text("Body", rect, text, 20);
+        body.rectTransform.Place(40, 90, 780, 400);
+        body.enableAutoSizing = true;
+        body.fontSizeMin = 14;
+        body.fontSizeMax = 20;
+
+        Choice(Loc.T("Only information"), false, -190f);
+        Choice(Loc.T("Information and gameplay"), true, 190f);
+
+        void Choice(string label, bool gameplay, float x)
+        {
+            var chip = new UiKit.Chip(rect, label, 0, 0, 340, () => Choose(gameplay), UiKit.ChipOn);
+            chip.SetOn(!gameplay); // information only is the default (Esc)
+            chip.ClickSound = false;
+            var r = chip.Background.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(0.5f, 0f);
+            r.pivot = new Vector2(0.5f, 0f);
+            r.anchoredPosition = new Vector2(x, 26);
+            r.sizeDelta = new Vector2(340, 40);
+        }
+    }
+
+    /// <summary>The welcome's choice: the gameplay features (rewards, restart room) on or off.</summary>
+    private void Choose(bool gameplay)
+    {
+        Patches.Guard.Run("Welcome (choice)", () =>
+        {
+            if (Plugin.RewardsEnabled != null)
+                Plugin.RewardsEnabled.Value = gameplay;
+            if (Plugin.RoomRestartEnabled != null)
+                Plugin.RoomRestartEnabled.Value = gameplay;
+            Plugin.Log.LogInfo($"Welcome: {(gameplay ? "information and gameplay" : "information only")}");
+        });
+        Close();
+    }
+
     private void LateUpdate()
     {
-        if (_canvas != null && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)))
+        if (_canvas == null)
+            return;
+        if (_welcome && Input.GetKeyDown(KeyCode.Escape))
+            Choose(false);
+        else if (!_welcome && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)))
             Close();
     }
 

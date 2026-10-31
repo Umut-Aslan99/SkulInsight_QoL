@@ -1442,13 +1442,5 @@ public sealed partial class CodexWindow : MonoBehaviour
         _ => Loc.T("Book"),
     };
 
-    private static void EnsureEventSystem()
-    {
-        if (EventSystem.current != null)
-            return;
-        var go = new GameObject("DamageInsight_EventSystem");
-        DontDestroyOnLoad(go);
-        go.AddComponent<EventSystem>();
-        go.AddComponent<StandaloneInputModule>();
-    }
+    private static void EnsureEventSystem() => ModEventSystem.Ensure();
 }

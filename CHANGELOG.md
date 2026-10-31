@@ -1,5 +1,49 @@
 # Changelog
 
+## 0.16.0 (restart room, daily points 3, fixes from the first players)
+
+- **Restart room** (press **F5** twice within 3 seconds): back to the moment you entered the
+  room (health, gear, gold, everything), exactly as when you close the game and continue, without closing it. Your
+  rewards (coins, quests, activations) go back too, so restarting can't farm quests. The run history notes each
+  restart. In a **daily run** it ends the run, like leaving the game: only full runs without save-scumming count.
+  Settings section **Restart Room** (on, key F5).
+- **Daily points, formula 3** (from **2026-11-01**, so November's month board uses one formula; feedback from Tythos
+  and his community): the parts that were the same for everyone who finished are gone (stages, kills, damage dealt;
+  the game counts some kills twice when several hits land at once). Now: a win 20,000, speed 5 per second under an
+  hour, a run that didn't win 1,000 per stage, 1,000 per boss fight won (from the run history, not the game's
+  double-counted kills), 3,000 per optional Dark Mirror boss (Dark Skul, King Alexander), 150 per **flawless room**
+  and 1,000 per **flawless boss fight** (no health lost; a shield or a dodge keeps it flawless), -2 per damage
+  taken, 1 per 10 gold and 2 per bone left. **The day's achievements:** each day and board has four, worth 300 to
+  1,500 each: two of the game's (only the logical ones: no-hit bosses, the First Hero as Little Bone, a minute in the
+  black market, 4 dark abilities), a **skull of the day** (win holding it, any of its forms) and a **flawless
+  chapter**. The Daily page lists them and ticks them off; the achievement notice shows. The day's records no longer
+  add points and the daily streak (100 a day, up to 30 days) counts on the month board only, so the day's board is
+  the run alone (what tournaments compare). Runs sent by 0.15 still count (their bosses from the run they sent).
+- **Settings page, new layout:** the features on the left in groups: **Gameplay (changes the game)** (rewards, restart
+  room), **Insight** (what only shows), **Helpers** (Clear view, healing orbs), **Online** (daily runs), **General**.
+  Each feature has its switch right there; hovering or choosing one shows on the right what it does and its settings.
+  Enter goes into them, Esc back. It shows the settings most players change (about a third); **All settings** at the
+  end of the list switches on every setting, the fine-tuning too (timings, opacities, each damage source's icon, the
+  Codex's films and unlock counts, the rewards' numbers).
+- **A choice at the first start:** new players are asked "Only information" or "Information and gameplay"; with the
+  first (and Esc) the rewards and Restart room start off. Players who update keep their settings.
+- **Yesterday's winners as adventurers:** the adventurers you meet carry the names of yesterday's daily winners
+  (each board's first place; in a daily run, that board's). Setting Daily → Winners as adventurers (needs daily runs).
+- **Name for the board without typing in the game:** setting Daily → Name in the mod manager's config editor. Some
+  input methods (Pinyin, IME) freeze full-screen games while typing; the name box starts with this name, so Send
+  works without typing. The Daily page says so after a run.
+- **Fixed: hovering selects again.** The mod's windows could leave their own UI event system running in place of the
+  game's, so the mouse no longer selected items, skulls and dark abilities by hovering (a click bought a dark ability
+  at once). The mod's stand-in now only exists while the game has none.
+- **Fixed: stutters with strong builds.** Since 0.15 every kill rewrote the whole rewards file on disk; kills are
+  now saved a few seconds later.
+- **Performance in the crash reports:** once a minute frames per second, stutters and how much of each frame
+  SkulInsight takes (its most expensive parts); a line per stutter; a performance summary. A **freeze watch** notes
+  what was going on when the game stands still for 6 seconds (SkulInsight's code or not, a text box, an input
+  method). Settings General → Performance in the reports (on) and **Show FPS** (a line in the top left corner).
+- Run history: flawless rooms per run ("31 of 52 fights without losing health"); a boss counts whatever dealt the
+  last hit (a daily run of 0.15 missed three bosses finished by damage over time).
+
 ## 0.15.0 (rewards, six daily boards)
 
 - **Rewards** (Codex → You → **Rewards**), the first feature that changes the game's balance, a little. On by

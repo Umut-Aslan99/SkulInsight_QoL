@@ -445,16 +445,7 @@ public sealed class CombatLogWindow : MonoBehaviour
         }
     }
 
-    private static void EnsureEventSystem()
-    {
-        if (EventSystem.current != null)
-            return;
-        var go = new GameObject("DamageInsight_EventSystem");
-        DontDestroyOnLoad(go);
-        go.AddComponent<EventSystem>();
-        go.AddComponent<StandaloneInputModule>();
-        Plugin.Log.LogInfo("Combat log: created an EventSystem for mouse input.");
-    }
+    private static void EnsureEventSystem() => ModEventSystem.Ensure();
 
     // ---------------------------------------------------------------- filter widgets
 

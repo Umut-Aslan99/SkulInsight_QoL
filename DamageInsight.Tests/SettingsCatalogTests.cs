@@ -41,6 +41,63 @@ public class SettingsCatalogTests : IDisposable
         SettingsCatalog.Build(_config, new[] { "Arson", "Arms", "ExcessiveBleeding" }).Single(i => i.Label == label);
 
     [Fact]
+    public void Features_GroupTheSettings_WithTheirMainSwitchOnTheLeft()
+    {
+        _config.Bind("Rewards", "Enabled", true, "Rewards.");
+        _config.Bind("Rewards", "Coins", true, "Coins.");
+        _config.Bind("Restart Room", "Enabled", true, "Restart.");
+        var features = SettingsCatalog.Features(SettingsCatalog.Build(_config, new[] { "Arson" }));
+        // Gameplay first (what changes the game), then what only shows, General last (Reset everything in it).
+        Assert.Equal(new[] { "Gameplay", "Gameplay" }, features.Take(2).Select(f => f.Group));
+        Assert.Equal("General", features.Last().Group);
+        Assert.Equal(SettingsCatalog.AllSettings, features.Last().Key);
+
+        var rewards = features.Single(f => f.Key == "Rewards");
+        Assert.Equal("Enabled", rewards.Toggle.Entry.Definition.Key);   // the switch on the left
+        Assert.Equal(new[] { "Coins" }, rewards.Items.Select(i => i.Entry.Definition.Key)); // the rest on the right
+        Assert.Equal(rewards.Toggle.Help, rewards.Description);
+
+        var numbers = features.Single(f => f.Key == "Damage Numbers");
+        Assert.Equal("ShowSourceTag", numbers.Toggle.Entry.Definition.Key);
+        Assert.Contains(numbers.Items, i => i.ConfigSection == "Damage Icons"); // the icons belong to the damage numbers
+        Assert.DoesNotContain(features, f => f.Key == "Damage Icons");
+
+        var log = features.Single(f => f.Key == "Combat Log");
+        Assert.Null(log.Toggle);                                          // no main switch: a plain row
+        Assert.NotEmpty(log.Description);
+        Assert.Contains(log.Items, i => i.Action == SettingsCatalog.ResetWindow);
+        Assert.Equal("Insight", log.Group);
+        Assert.Single(features, f => f.Key == "Codex balance");           // the unlock groups are one feature
+    }
+
+    [Fact]
+    public void Without_all_settings_only_what_most_players_change_shows()
+    {
+        _config.Bind("Rewards", "Enabled", true, "Rewards.");
+        _config.Bind("Rewards", "Coins", true, "Coins.");
+        _config.Bind("Rewards", "QuestGold", 50, "Gold.");
+        _config.Bind(SettingsCatalog.AllSettings, "Show", false, "All.");
+        var items = SettingsCatalog.Build(_config, new[] { "Arson" });
+        Assert.True(items.Single(i => i.Label == "Mini Log Lines" || i.Entry?.Definition.Key == "Lines").Advanced);
+        Assert.False(items.Single(i => i.Entry?.Definition.Key == "Coins").Advanced);
+
+        var shortPage = SettingsCatalog.Features(items, all: false);
+        var rewards = shortPage.Single(f => f.Key == "Rewards");
+        Assert.Equal(new[] { "Coins" }, rewards.Items.Select(i => i.Entry.Definition.Key)); // not the quest gold
+        var numbers = shortPage.Single(f => f.Key == "Damage Numbers");
+        Assert.DoesNotContain(numbers.Items, i => i.ConfigSection == "Damage Icons" || i.Entry?.Definition.Key == "HoldSeconds");
+        Assert.DoesNotContain(shortPage, f => f.Key == "Codex balance");   // nothing left to show: the feature goes
+        Assert.DoesNotContain(shortPage, f => f.Key == "Mini Log");        // only its lines here, no switch bound
+        var all = shortPage.Single(f => f.Key == SettingsCatalog.AllSettings);
+        Assert.Equal("Show", all.Toggle.Entry.Definition.Key);              // the switch for the full page, always there
+        Assert.Contains(all.Items, i => i.Action == SettingsCatalog.ResetAll);
+
+        var fullPage = SettingsCatalog.Features(items, all: true);
+        Assert.Contains(fullPage, f => f.Key == "Codex balance");
+        Assert.Contains(fullPage.Single(f => f.Key == "Rewards").Items, i => i.Entry.Definition.Key == "QuestGold");
+    }
+
+    [Fact]
     public void Sections_FollowThePageOrder_AndEndWithResetEverything()
     {
         var items = SettingsCatalog.Build(_config, new string[0]);

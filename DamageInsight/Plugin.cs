@@ -26,10 +26,14 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> WhatsNewEnabled;
     internal static ConfigEntry<bool> MenuSoundsEnabled;
     internal static ConfigEntry<bool> CrashReports;
+    internal static ConfigEntry<bool> PerformanceLog, PerformanceOverlay;
+    internal static ConfigEntry<bool> RoomRestartEnabled, ShowAllSettings;
+    internal static ConfigEntry<KeyboardShortcut> RoomRestartKey;
     internal static ConfigEntry<bool> RunHistory;
     internal static ConfigEntry<int> RunHistoryKeep;
     internal static ConfigEntry<bool> DailyEnabled;
-    internal static ConfigEntry<string> DailyServer;
+    internal static ConfigEntry<string> DailyServer, DailyName;
+    internal static ConfigEntry<bool> DailyWinnerNames;
     internal static ConfigEntry<string> LastVersionSeen;
 
     internal static ConfigEntry<bool> DamageSourceTags;
@@ -124,12 +128,31 @@ public class Plugin : BaseUnityPlugin
             "daily run server and sends a random player id made by the mod, the name you enter and your daily run (its numbers, " +
             "build, damage and timeline). Off " +
             "until you turn it on (Codex, Daily).");
+        DailyName = Config.Bind("Daily", "Name", "",
+            "Your name for the daily boards (up to 12 characters). The name box after a daily run starts with it. Type it here " +
+            "(e.g. in the mod manager's config editor) if typing in the game freezes it: some input methods (Pinyin, IME) " +
+            "freeze full-screen games.");
+        DailyWinnerNames = Config.Bind("Daily", "WinnerNames", true,
+            "The adventurers (the hero parties in runs) are named after yesterday's daily run winners. Needs daily runs on.");
         DailyServer = Config.Bind("Daily", "Server", "https://skul.umut-aslan.dev",
             "The daily run server's address.");
         CrashReports = Config.Bind("General", "CrashReports", true,
             "Keep a report of every game session in BepInEx\\DamageInsight\\CrashReports (the newest 20): errors with what happened " +
             "before them and whose code they were in (the game's, SkulInsight's or another mod's), a stuck black screen, a session " +
             "that ended unexpectedly. Says so on screen. Send the report with a bug report.");
+        ShowAllSettings = Config.Bind(DamageInsight.UI.SettingsCatalog.AllSettings, "Show", false,
+            "The settings page shows every setting (on) or only the ones most players change (off).");
+        RoomRestartEnabled = Config.Bind("Restart Room", "Enabled", true,
+            "Restart room: press the key below (F5) twice within 3 seconds to go back to the moment you entered the room, as " +
+            "when you close the game and continue. In a daily run it ends the run (like leaving the game).");
+        RoomRestartKey = Config.Bind("Restart Room", "Key", new KeyboardShortcut(UnityEngine.KeyCode.F5),
+            "Press twice within 3 seconds to restart the room you are in.");
+        PerformanceLog = Config.Bind("General", "PerformanceLog", true,
+            "Write into the session report how smooth the game runs: frames per second and stutters each minute, how much of " +
+            "each frame SkulInsight's own code takes (part by part), and what was going on if the game stands still for a few " +
+            "seconds. Costs next to nothing.");
+        PerformanceOverlay = Config.Bind("General", "PerformanceOverlay", false,
+            "A small line in the top left corner: frames per second and how many milliseconds of each frame SkulInsight takes.");
         LastVersionSeen = Config.Bind("General", "LastVersionSeen", "",
             "The version whose 'What's new' was last shown (kept by the mod).");
         DamageSourceTags = Config.Bind("Damage Numbers", "ShowSourceTag", true,
@@ -321,6 +344,8 @@ public class Plugin : BaseUnityPlugin
 
         // Crash reports start before the patches, so a patch that fails is in the report too.
         DamageInsight.Crash.CrashReporter.Begin(gameObject, Config);
+        // Frame times, SkulInsight's share and the freeze watch (0.16): from the start, so a slow load is in the report too.
+        gameObject.AddComponent<DamageInsight.Crash.PerfMonitor>();
 
         // Apply every [HarmonyPatch] class one by one, so a patch broken by a game update only
         // disables its own feature. Results go to the log as [SelfTest] lines.
@@ -343,6 +368,7 @@ public class Plugin : BaseUnityPlugin
         gameObject.AddComponent<DamageInsight.Codex.CodexWindow>();
         gameObject.AddComponent<DamageInsight.Codex.FightRecorder>();
         UnityEngine.Application.quitting += () => DamageInsight.Codex.CodexTracker.SaveIfNeeded(force: true);
+        UnityEngine.Application.quitting += () => Guard.Run("Rewards: save at quit", DamageInsight.Rewards.RewardStore.Flush);
 #if DEV
         gameObject.AddComponent<DevTranslator>();
         gameObject.AddComponent<QaCapture>();
@@ -355,6 +381,7 @@ public class Plugin : BaseUnityPlugin
     {
         DamageInsight.Lang.LanguageWatcher.Tick();
         DamageInsight.Describe.ExtraInfo.Tick();
+        Guard.Run("UI (event system)", DamageInsight.UI.ModEventSystem.Tick);
         var player = Singleton<Service>.Instance?.levelManager?.player;
         bool inRun = player != null;
         DamageInsight.Codex.CodexTracker.Tick(player);
@@ -362,7 +389,9 @@ public class Plugin : BaseUnityPlugin
         Guard.Run("Heal orbs", () => DamageInsight.History.HealOrbs.Tick(player));
         Guard.Run("Rewards", () => DamageInsight.Rewards.RewardApplier.Tick(player));
         Guard.Run("Rewards (bestiary)", () => DamageInsight.Rewards.RewardService.Tick(player));
+        Guard.Run("Rewards (save)", DamageInsight.Rewards.RewardStore.Tick);
         Guard.Run("Daily run", DamageInsight.Daily.DailyRun.Tick);
+        Guard.Run("Restart room (key)", DamageInsight.SaveSlots.RoomRestart.Tick);
         if (inRun)
             SelfTest.CheckRun();
 #if DEV

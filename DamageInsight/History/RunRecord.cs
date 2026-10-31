@@ -52,6 +52,7 @@ public static class RunEvents
     public const string Revive = "revive";
     public const string Boss = "boss";               // Id = Codex id, Name = boss name
     public const string Adventurer = "adventurer";
+    public const string RoomRestart = "restart";     // 0.16: the room was started again (Restart room)
 }
 
 /// <summary>A map of the run: where, what kind, when it was entered and how long it took.</summary>
@@ -64,6 +65,13 @@ public sealed class RunMap
     public string Map = "";
     public string Type = "";
     public int Seconds;
+    /// <summary>0.16: health lost, hits taken and enemies killed in this map (false: a map recorded before 0.16).</summary>
+    public bool Tracked;
+    public double Lost;
+    public int Hits, Kills;
+
+    /// <summary>A fight happened here (an enemy died), and you lost no health in it (shields and dodges are fine).</summary>
+    public bool Flawless => Tracked && Kills > 0 && Lost <= 0;
 }
 
 /// <summary>One piece of the final build.</summary>
@@ -230,7 +238,8 @@ public sealed class RunRecord
         sb.Append(",\n\"maps\":[");
         sb.Append(string.Join(",", Maps.Select(m =>
             "\n {\"t\":" + m.T + ",\"chapter\":" + Q(m.Chapter) + ",\"stage\":" + m.Stage + ",\"stageName\":" + Q(m.StageName) +
-            ",\"map\":" + Q(m.Map) + ",\"type\":" + Q(m.Type) + ",\"seconds\":" + m.Seconds + "}")));
+            ",\"map\":" + Q(m.Map) + ",\"type\":" + Q(m.Type) + ",\"seconds\":" + m.Seconds +
+            (m.Tracked ? ",\"lost\":" + N(m.Lost) + ",\"hits\":" + m.Hits + ",\"kills\":" + m.Kills : "") + "}")));
         sb.Append("]");
 
         sb.Append(",\n\"events\":[");
@@ -320,6 +329,7 @@ public sealed class RunRecord
             {
                 T = (int)m.Num("t"), Chapter = m.Str("chapter") ?? "", Stage = (int)m.Num("stage"), StageName = m.Str("stageName") ?? "",
                 Map = m.Str("map") ?? "", Type = m.Str("type") ?? "", Seconds = (int)m.Num("seconds"),
+                Tracked = m.Raw("kills") != null, Lost = m.Num("lost"), Hits = (int)m.Num("hits"), Kills = (int)m.Num("kills"),
             });
         foreach (var e in n.List("events"))
             r.Events.Add(new RunEvent
@@ -392,6 +402,7 @@ public static class RunNumbers
     public const string LostHealth = "lostHealth";
     public const string Gold = "gold";
     public const string GoldLeft = "goldLeft";              // the gold balance at the end (the daily run's points)
+    public const string BonesLeft = "bonesLeft";            // 0.16: the bone balance at the end (the daily run's points)
     public const string DarkQuartz = "darkQuartz";
     public const string Bones = "bones";
     public const string HeartQuartz = "heartQuartz";
@@ -407,6 +418,7 @@ public static class RunNumbers
     public const string Rewards = "rewards";               // 0.15: 1 when the slot's rewards were on at the run's start
     public const string QuestsDone = "questsDone";         // kill quest steps finished in the run
     public const string CoinsEarned = "coinsEarned";       // coins earned in the run (legendary gear, adventurers, Omen)
+    public const string RoomRestarts = "roomRestarts";     // 0.16: rooms started again with Restart room
     public const string Maps = "maps";
     public const string JoinedLate = "joinedLate";
     /// <summary>The player's stats at the end: "stat:" + the game's Stat.Kind name (its final value).</summary>

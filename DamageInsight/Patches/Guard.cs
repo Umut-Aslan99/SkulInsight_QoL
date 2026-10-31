@@ -13,8 +13,10 @@ public static class Guard
 {
     private static readonly HashSet<string> Reported = new();
 
+    /// <summary>Runs <paramref name="action"/>; its time counts for the part <paramref name="where"/> (Crash.Perf, 0.16).</summary>
     public static void Run(string where, Action action)
     {
+        using var _ = Crash.Perf.Measure(where);
         try
         {
             action();
@@ -28,6 +30,7 @@ public static class Guard
     /// <summary>For description hooks: the text to append, or "" if our code failed.</summary>
     public static string Text(string where, Func<string> text)
     {
+        using var _ = Crash.Perf.Measure(where);
         try
         {
             return text() ?? "";

@@ -21,10 +21,13 @@ It is safe to add or remove at any time.
 |---|---|
 | **K** | Codex (bestiary) |
 | **L** | Combat log |
+| **F5** (twice) | Restart room (back to the start of the room) |
 
 Everything else works on its own while you play. **Settings:** pause the game (Esc) → **SkulInsight QoL**, right
-under the game's own Settings. Every option is there with an explanation; changes apply at once. (They are also in
-r2modman / Gale → *Config editor* → `docrun.skulinsight_qol`.)
+under the game's own Settings. The left side lists the features in groups (**Gameplay (changes the game)**,
+**Insight**, **Helpers**, **Online**, **General**), each with its switch; hover one to see on the right what it does and
+its settings. It shows the settings most players change; *All settings* at the end shows every one. Changes apply at once. (They are also in r2modman / Gale → *Config editor* → `docrun.skulinsight_qol`.)
+New players choose at the first start between "Only information" and "Information and gameplay".
 
 ![Pause menu](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-menu.png)
 
@@ -217,6 +220,11 @@ Pause (Esc) → **Mods**: Thunderstore's Skul mods on the left (search, categori
 Thunderstore pages), your mods on the right (Enabled / Disabled). Install, update and turn mods on or off with your
 mod manager (r2modman, Gale): Thunderstore's rules don't allow a mod to update itself or other mods.
 
+### Restart room (new in 0.16)
+Press **F5** twice within 3 seconds (Restart Room → Key in the settings): back to the moment you entered the
+room (health, gear, gold, everything), exactly as when you close the game and continue, but without closing it. Your
+rewards go back too, and the run history notes each restart. In a daily run it ends the run (only full runs count).
+
 ### Daily runs (new in 0.13, six boards since 0.15; online, off until you turn it on)
 Codex (`K`) → **Daily**: every day three runs for everyone, each with and without the DLC, and one try on each.
 - **Normal**, the **Dark Mirror at a random level** (0-10, the same for everyone that day) and **Dark Mirror 10**.
@@ -227,9 +235,18 @@ Codex (`K`) → **Daily**: every day three runs for everyone, each with and with
 - Played in a separate daily save slot made from your game: every gear unlocked, the Witch at her top, the Dark
   Mirror (and its machines) up to the day's level, the whole Codex open, 15,000 dark quartz, no rewards. Your own
   game waits as it is; **Back to my game** returns.
-- After the run: a name (12 characters) for the **daily** and **monthly** boards. Points for the result, stages,
-  bosses, kills, damage, little damage taken, gold left and a fast win, times the difficulty, plus bonuses for the
-  day's records (first win, fastest win, most damage, ...) and a daily streak.
+- After the run: a name (12 characters) for the **daily** and **monthly** boards. If typing freezes your game (some
+  input methods such as Pinyin do in full screen), put the name into the mod manager's config (SkulInsight QoL →
+  Daily → Name) and just press Send.
+- **Points** (from 2026-11-01): a win 20,000 and 5 for every second under an hour (a run that didn't win: 1,000 per
+  stage), 1,000 per boss fight won and 3,000 per optional Dark Mirror boss (counted from the run, not the game's
+  double-counted kills), 150 per **flawless room** and 1,000 per **flawless boss fight** (no health lost; a shield or
+  a dodge keeps it flawless), -2 per damage taken, 1 per 10 gold and 2 per bone left, times the difficulty.
+- **Achievements of the day:** four per board, 300 to 1,500 points each: two of the game's (only ones every run can
+  get: no-hit bosses, the First Hero as Little Bone, a minute in the black market, 4 dark abilities), a **skull of the
+  day** (win holding it) and a **flawless chapter**. The day's board is the run alone; the daily streak (up to 30
+  days) counts on the month board.
+- **Yesterday's winners** give their names to the adventurers you meet (setting Winners as adventurers).
 - **Click a run on the board**: its build, damage and timeline like your own run history, its points part by part,
   and a thumbs up.
 - Fair play: one try (a daily run can't be continued), runs with other mods loaded don't count, no Steam

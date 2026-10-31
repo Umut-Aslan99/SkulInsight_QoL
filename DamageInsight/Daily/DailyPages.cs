@@ -75,6 +75,19 @@ public static class DailyPages
         sb.Append($"<color={RunPages.DimColor}>{(day.Dlc ? Loc.T("With the game's DLC (the Mythology Pack): its skulls and items can come. Only for players who own it.") : Loc.T("Without DLC: the same run for everyone, whether they own the DLC or not."))}</color>\n");
         sb.Append(PageBlocks.Section(Loc.T("Your try"), "pix:star"));
         sb.Append(Status(t, inDailySlot, board)).Append('\n');
+        if (t?.State == "ended")
+            sb.Append($"<color={RunPages.DimColor}>{Loc.T("Does the game freeze while you type your name? Windows' input methods (Pinyin, IME) can freeze full-screen games. Put your name into the mod manager's config instead (SkulInsight QoL, Daily, Name), start the game again and press Send, or play in windowed mode.")}</color>\n");
+        if (day.Achievements.Count > 0)
+        {
+            sb.Append(PageBlocks.Section(Loc.T("Today's achievements"), "pix:crown"));
+            foreach (var (id, points) in day.Achievements)
+            {
+                bool done = t != null && t.Achievements.Contains(id);
+                string mark = done ? $"<color={RunPages.WinColor}>{Loc.T("done")}</color>  " : "";
+                sb.Append(PageBlocks.Line("", $"{mark}{AchievementText(id)}  <color={RunPages.DimColor}>+{N(points)}</color>"));
+            }
+            sb.Append($"<color={RunPages.DimColor}>{Loc.T("Bonus points (times the difficulty) for each of the day's achievements your run gets; a no-hit one also counts when the run history saw that fight without health lost.")}</color>\n");
+        }
         if (otherMods.Length > 0)
             sb.Append($"<color={RunPages.DeathColor}>{Loc.F("Other mods are loaded ({0}): today's run won't count on the board. Only runs with SkulInsight alone count.", otherMods)}</color>\n");
         // Above "How it works", so it shows without scrolling (Umut 2026-10-26: at the bottom it was hardly ever seen).
@@ -85,8 +98,16 @@ public static class DailyPages
         sb.Append(Loc.T("Every day has three runs, each with and without DLC: Normal, the Dark Mirror at a random level, and Dark Mirror 10. Each has its own seed, its own boards and one try.")).Append('\n');
         sb.Append(Loc.T("You play in a daily save slot made from your game: every gear unlocked, the Witch at her top, the Dark Mirror (and its machines) up to the day's level, the whole Codex open, no rewards, no Steam achievements. Your own game waits as it is; \"Back to my game\" returns to it.")).Append('\n');
         sb.Append(Loc.T("One try means one go: closing the game or going back to the title screen during the run ends it (a daily run can't be continued), and it goes on the board as it was.")).Append('\n');
-        sb.Append(Loc.T("Wins rank first, then how far a run got. Points: a win, stages, bosses, kills, damage, little damage taken, gold left and a fast win; harder days count more. The month adds up your days.")).Append('\n');
-        sb.Append(Loc.T("The day's records (first win, fastest win, most damage, ...) and a daily streak give bonus points. Click a run on the board to look at it, see its points part by part and give it a thumbs up.")).Append('\n');
+        if (day.Formula >= 3)
+        {
+            sb.Append(Loc.T("Wins rank first, then how far a run got. Points: a win and how fast, the boss fights (Dark Mirror: the two optional ones count extra), flawless rooms and boss fights (no health lost), little damage taken, gold and bones left; harder days count more.")).Append('\n');
+            sb.Append(Loc.T("The month adds up your days, plus your daily streak (up to 30 days). Click a run on the board to look at it, see its points part by part and give it a thumbs up.")).Append('\n');
+        }
+        else
+        {
+            sb.Append(Loc.T("Wins rank first, then how far a run got. Points: a win, stages, bosses, kills, damage, little damage taken, gold left and a fast win; harder days count more. The month adds up your days.")).Append('\n');
+            sb.Append(Loc.T("The day's records (first win, fastest win, most damage, ...) and a daily streak give bonus points. Click a run on the board to look at it, see its points part by part and give it a thumbs up.")).Append('\n');
+        }
         if (problem.Length > 0)
             sb.Append($"<color={RunPages.DeathColor}>{Loc.T("No connection to the daily run server.")}</color>\n");
         sb.Append(PageBlocks.Close());
@@ -114,6 +135,27 @@ public static class DailyPages
         if (d.Breakdown.Count > 0)
             sb.Append($"{Loc.T("Sum")}: <b>{N(sum)}</b>  x{d.Factor.ToString("0.##", CultureInfo.InvariantCulture)} ({Mode(d.Mode, d.Level)})  =  <b>{N(e.Base)}</b>\n");
 
+        if (d.Formula >= 3)
+        {
+            // Formula 3 (2026-11-01): the day's board is the run alone; the streak counts on the month board.
+            if (e.Streak >= 2)
+            {
+                sb.Append(PageBlocks.Section(Loc.T("Daily streak"), "pix:hourglass"));
+                sb.Append(PageBlocks.Bar(Loc.P("{0} day in a row", "{0} days in a row", e.Streak), Signed(e.MonthBonus), 1));
+                sb.Append($"<color={RunPages.DimColor}>{Loc.T("Counts on the month board only: the day's board compares the runs alone.")}</color>\n");
+            }
+            sb.Append(PageBlocks.Section(Loc.T("Total"), "pix:star"));
+            sb.Append($"<size=130%><b>{N(e.Points)}</b></size>  ·  {Loc.F("place {0}", e.Rank)}\n");
+            sb.Append(PageBlocks.Section(Loc.T("How points are counted"), "pix:door"));
+            sb.Append($"<color={RunPages.DimColor}>");
+            sb.Append(Loc.T("A win 20,000 · a fast win 5 for every second under an hour · a run that didn't win 1,000 per stage it reached · 1,000 per boss fight won (a win counts all five) · 3,000 per optional boss (the Dark Mirror's two after the First Hero) · 150 per flawless room · 1,000 per flawless boss fight · -2 per damage taken · 1 per 10 gold left · 2 per bone left. Harder days count more (Dark Mirror n: x(1 + 0.15 n)).")).Append('\n');
+            sb.Append(Loc.T("Flawless: a room with a fight (an enemy died) or a boss fight in which you lost no health. A shield taking a hit, a dodge or a hit that does nothing keeps it flawless.")).Append('\n');
+            sb.Append(Loc.T("The daily streak (100 per day in a row, up to 30 days, times the difficulty) counts on the month board only.")).Append('\n');
+            sb.Append(Loc.T("The day's achievements: each day and board has four (two of the game's, a skull of the day, a flawless chapter), worth 300 to 1,500 each.")).Append('\n');
+            sb.Append("</color>");
+            return sb.ToString();
+        }
+
         var bonuses = e.Bonuses.Where(b => b.key != "streak").ToList();
         var streak = e.Bonuses.FirstOrDefault(b => b.key == "streak");
         sb.Append(PageBlocks.Section(Loc.T("The day's records"), "pix:crown"));
@@ -139,6 +181,20 @@ public static class DailyPages
         return sb.ToString();
     }
 
+    /// <summary>The skull of the day's name (the Codex's name in the player's language; tests set their own).</summary>
+    public static System.Func<string, string> SkullName = id => CodexPages.Entry(id)?.Name;
+
+    /// <summary>One of the day's achievements in words: the game's (name: what to do), a skull of the day, a chapter.</summary>
+    public static string AchievementText(string id)
+    {
+        if (id.StartsWith("skull:", System.StringComparison.Ordinal))
+            return Loc.F("Skull of the day: win holding {0} (any of its forms)", SkullName(id) ?? id.Substring(6));
+        if (id.StartsWith("chapter:", System.StringComparison.Ordinal))
+            return Loc.F("Flawless chapter: clear chapter {0} without losing health", id.Substring(8));
+        var info = DamageInsight.Achievements.AchievementCatalog.Get(id);
+        return info == null ? id : $"{info.Name}: {info.Description}";
+    }
+
     /// <summary>A part of a run's points: what it counts and the run's number.</summary>
     public static string PartName(string key, long value) => key switch
     {
@@ -150,6 +206,13 @@ public static class DailyPages
         "damage" => $"{Loc.T("Damage dealt")}  <color={RunPages.DimColor}>{N(value)}</color>",
         "taken" => $"{Loc.T("Damage taken")}  <color={RunPages.DimColor}>{N(value)}</color>",
         "gold" => $"{Loc.T("Gold left")}  <color={RunPages.DimColor}>{N(value)}</color>",
+        // Formula 3 (2026-11-01).
+        "progress" => $"{Loc.T("Stages reached")}  <color={RunPages.DimColor}>{N(value)}</color>",
+        "extraBosses" => $"{Loc.T("Optional bosses")}  <color={RunPages.DimColor}>{N(value)}</color>",
+        "flawlessRooms" => $"{Loc.T("Flawless rooms")}  <color={RunPages.DimColor}>{N(value)}</color>",
+        "flawlessBosses" => $"{Loc.T("Flawless boss fights")}  <color={RunPages.DimColor}>{N(value)}</color>",
+        "bones" => $"{Loc.T("Bones left")}  <color={RunPages.DimColor}>{N(value)}</color>",
+        "achievements" => $"{Loc.T("The day's achievements")}  <color={RunPages.DimColor}>{N(value)}</color>",
         _ => key,
     };
 

@@ -162,6 +162,36 @@ public class RewardTests : IDisposable
     }
 
     [Fact]
+    public void Store_KillsAreSavedAFewSecondsLater_NotEachOne()
+    {
+        double now = 100;
+        var clock = RewardStore.Clock;
+        RewardStore.Clock = () => now;
+        try
+        {
+            string file = Path.Combine(_folder, "rewards.json");
+            RewardStore.CountKill("enemy:CarleonRecruit", 50, 1);
+            Assert.False(File.Exists(file)); // not each kill (0.15.0 wrote the whole file every kill: a stutter)
+            now += 1;
+            RewardStore.Tick();
+            Assert.False(File.Exists(file));
+            now += 3;
+            RewardStore.Tick();
+            Assert.True(File.Exists(file));
+            RewardStore.CountKill("enemy:CarleonRecruit", 50, 1);
+            RewardStore.Flush(); // a slot switch or quitting writes it at once
+            RewardStore.ForgetSlot();
+            Assert.Equal(2, RewardStore.Quest("enemy:CarleonRecruit").Kills);
+            RewardStore.AddOmenCoins(1); // a coin is saved at once
+            Assert.Contains("\"omenCoins\": 1", File.ReadAllText(file));
+        }
+        finally
+        {
+            RewardStore.Clock = clock;
+        }
+    }
+
+    [Fact]
     public void Store_AdventurerCoins_EveryFifthKill()
     {
         for (int i = 1; i <= 4; i++)

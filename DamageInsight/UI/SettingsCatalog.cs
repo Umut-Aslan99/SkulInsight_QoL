@@ -23,6 +23,10 @@ public enum SettingKind
 public sealed class SettingItem
 {
     public string Section = "", Label = "", Help = "";
+    /// <summary>The config section it belongs to ("Combat Log"; "All settings" for Reset everything): its feature.</summary>
+    public string ConfigSection = "";
+    /// <summary>Fine-tuning: shown only with "All settings" on (0.16, Umut 2026-10-30: "thin it out by a lot").</summary>
+    public bool Advanced;
     public SettingKind Kind;
     public ConfigEntryBase Entry;
     /// <summary>Action rows: what the page does when the button is pressed (see <see cref="SettingsCatalog"/>).</summary>
@@ -105,10 +109,128 @@ public static class SettingsCatalog
     public const string ResetCodex = "ResetCodex";
     /// <summary>Action rows: open the crash reports folder (Crash/CrashReporter).</summary>
     public const string OpenCrashReports = "OpenCrashReports";
+    public const string OpenFeature = "OpenFeature"; // a feature without a main switch on the left: into its settings
     /// <summary>Action rows: save the run into the selected save state slot / load it / delete it.</summary>
     public const string SlotPlay = "SlotPlay", SlotCopy = "SlotCopy", SlotClear = "SlotClear";
     /// <summary>The config section of the save slots.</summary>
     public const string SaveSlotsSection = "Save Slots";
+    public const string AllSettings = "All settings";
+
+    // ---------------------------------------------------------------- features (the page's left side, 0.16)
+
+    /// <summary>A feature of the page's left side: its main switch (null: none) and its settings for the right side.</summary>
+    public sealed class Feature
+    {
+        public string Key = "", Title = "", Group = "", Description = "";
+        public SettingItem Toggle;
+        public readonly List<SettingItem> Items = new();
+    }
+
+    /// <summary>The left side's groups (Umut 2026-10-30: what only shows apart from what changes the game) and their
+    /// features (config sections), in page order. Sections not named here join General.</summary>
+    internal static readonly (string group, string heading, string[] sections)[] Groups =
+    {
+        ("Gameplay", Loc.N("Gameplay (changes the game)"), new[] { "Rewards", "Restart Room" }),
+        ("Insight", Loc.N("Insight"), new[] { "Damage Numbers", "Boss Health Bar", "Descriptions", "Combat Log", "Mini Log", "Cooldown Ticker", "Codex", "Codex balance" }),
+        ("Helpers", Loc.N("Helpers"), new[] { "Clear View", "Heal Orbs" }),
+        ("Online", Loc.N("Online"), new[] { "Daily" }),
+        ("General", Loc.N("General"), new[] { "General", SaveSlotsSection, "Save States", "Mods", "Developer", AllSettings }),
+    };
+
+    /// <summary>
+    /// What most players change (Umut 2026-10-30: "what is important for the normal user? I would like to thin it out by
+    /// a lot"): every feature's switch and the few settings people look for. Everything else (timings, opacities, the icon
+    /// of each damage source, the Codex's films and unlock counts, the rewards' numbers, ...) shows with "All settings";
+    /// a setting added later starts there too, so the short page stays short. "Section/Key", or "action:" + the action.
+    /// </summary>
+    internal static readonly HashSet<string> Basic = new()
+    {
+        "Rewards/Enabled", "Rewards/AchievementRewards", "Rewards/Coins", "Rewards/Quests", "Rewards/InscriptionActivations",
+        "Restart Room/Enabled", "Restart Room/Key",
+        "Damage Numbers/ShowSourceTag", "Damage Numbers/UseIcons", "Boss Health Bar/ShowNumbers",
+        "Descriptions/ShowDamageNumbers", "Descriptions/PreviewPickup", "Combat Log/ToggleKey", "Mini Log/Enabled",
+        "Cooldown Ticker/Enabled", "Codex/Enabled", "Codex/ToggleKey", "Codex/AchievementNotice", "Codex/AchievementSound",
+        "Clear View/Enabled", "Clear View/LowestOpacity", "Heal Orbs/Look", "Heal Orbs/Reminder",
+        "Daily/Enabled",
+        "General/Language", "General/PerformanceOverlay", "action:" + OpenCrashReports,
+        SaveSlotsSection + "/Slot", "action:" + SlotPlay, "action:" + SlotCopy, "action:" + SlotClear,
+        "Mods/Enabled", AllSettings + "/Show", "action:" + ResetAll,
+    };
+
+    internal static bool IsBasic(SettingItem item) =>
+        Basic.Contains(item.Entry != null ? item.Entry.Definition.Section + "/" + item.Entry.Definition.Key : "action:" + item.Action);
+
+    /// <summary>Sections shown inside another feature (the damage icons belong to the damage numbers).</summary>
+    private static readonly Dictionary<string, string> PartOf = new() { ["Damage Icons"] = "Damage Numbers" };
+
+    /// <summary>A feature's main switch: its on/off on the left side.</summary>
+    private static readonly Dictionary<string, string> Switches = new()
+    {
+        ["Rewards"] = "Enabled", ["Restart Room"] = "Enabled", ["Daily"] = "Enabled", ["Clear View"] = "Enabled",
+        ["Mini Log"] = "Enabled", ["Codex"] = "Enabled", ["Cooldown Ticker"] = "Enabled", ["Mods"] = "Enabled",
+        ["Boss Health Bar"] = "ShowNumbers", ["Damage Numbers"] = "ShowSourceTag", ["Descriptions"] = "ShowDamageNumbers",
+        [AllSettings] = "Show",
+    };
+
+    /// <summary>What a feature without a main switch is about (shown above its settings).</summary>
+    private static readonly Dictionary<string, string> FeatureHelp = new()
+    {
+        ["General"] = Loc.N("The mod as a whole: its language, What's new, the menu sounds, the run history, crash reports and performance."),
+        [SaveSlotsSection] = Loc.N("Several games side by side, each with its own Codex: choose a slot, then play it, copy your game into it or clear it."),
+        ["Combat Log"] = Loc.N("A window with every hit: who, what, how much and why (the calculation). Its key opens and closes it."),
+        ["Heal Orbs"] = Loc.N("Healing orbs that are easier to see, and a reminder when a cleared room still has some while you are hurt."),
+        ["Codex balance"] = Loc.N("How much the Codex needs to see before an entry shows more (kills, wins, picks)."),
+        [AllSettings] = Loc.N("Puts every setting of this page back to its default."),
+    };
+
+    /// <summary>
+    /// The settings grouped into the left side's features, in page order (plain logic, tested). <paramref name="all"/>
+    /// false: only what most players change (<see cref="Basic"/>); a feature left with nothing to show goes.
+    /// </summary>
+    public static List<Feature> Features(IEnumerable<SettingItem> items, bool all = true)
+    {
+        var byKey = new Dictionary<string, Feature>();
+        var order = new List<string>();
+        foreach (var item in items)
+        {
+            if (!all && item.Advanced)
+                continue;
+            string section = item.ConfigSection.Length > 0 ? item.ConfigSection : item.Section;
+            string key = PartOf.TryGetValue(section, out var owner) ? owner : section;
+            if (!byKey.TryGetValue(key, out var feature))
+            {
+                var group = Groups.FirstOrDefault(g => g.sections.Contains(key));
+                feature = byKey[key] = new Feature
+                {
+                    Key = key,
+                    Title = key == AllSettings ? Loc.T("All settings") : key == "Codex balance" ? Loc.T("Codex unlocks") : Heading(key),
+                    Group = group.group ?? "General",
+                    Description = FeatureHelp.TryGetValue(key, out var help) ? Loc.T(help) : "",
+                };
+                order.Add(key);
+            }
+            if (feature.Toggle == null && Switches.TryGetValue(key, out var switchKey) && item.Entry?.Definition.Key == switchKey
+                && item.Entry.Definition.Section == key)
+            {
+                feature.Toggle = item;
+                feature.Description = item.Help;
+                continue;
+            }
+            feature.Items.Add(item);
+        }
+        int GroupRank(Feature f) => Array.FindIndex(Groups, g => g.group == f.Group);
+        int SectionRank(Feature f)
+        {
+            int rank = Array.IndexOf(Groups[Math.Max(0, GroupRank(f))].sections, f.Key);
+            return rank < 0 ? int.MaxValue : rank;
+        }
+        return order.Select(k => byKey[k]).Where(f => f.Toggle != null || f.Items.Count > 0)
+            .OrderBy(GroupRank).ThenBy(SectionRank).ToList();
+    }
+
+    /// <summary>A group's heading on the left side.</summary>
+    public static string GroupHeading(string group) =>
+        Loc.T(Groups.FirstOrDefault(g => g.group == group).heading ?? Loc.N("General"));
 
     /// <summary>
     /// What the save slot rows show, set by the game side (SaveSlots.SlotSwitcher); plain values in tests:
@@ -136,6 +258,7 @@ public static class SettingsCatalog
         ("General", Loc.N("General")),
         (SaveSlotsSection, Loc.N("Save slots")),
         ("Daily", Loc.N("Daily run")),
+        ("Restart Room", Loc.N("Restart room")),
         ("Damage Numbers", Loc.N("Damage numbers")),
         ("Damage Icons", Loc.N("Damage icons")),
         ("Boss Health Bar", Loc.N("Boss health bars")),
@@ -226,10 +349,23 @@ public static class SettingsCatalog
         ["Daily/Enabled"] = On(Loc.N("Daily runs (online)"),
             Loc.N("Everyone plays the same run each day, one try, with daily and monthly boards (Codex, Daily). Sends a random player id made by the mod, the name you enter and your daily run (its numbers, build, damage and timeline) to the daily run server; nothing else.")),
         ["Daily/Server"] = new Spec { Hidden = true },
+        ["Daily/Name"] = new Spec { Hidden = true }, // typed in the mod manager's config editor (the name box has the game's input)
+        ["Daily/WinnerNames"] = On(Loc.N("Winners as adventurers"),
+            Loc.N("The adventurers you meet in runs carry the names of yesterday's daily run winners (each board's first place). Needs daily runs on.")),
         ["General/WhatsNew"] = On(Loc.N("What's new"),
             Loc.N("After an update, show once (in the castle) what's new in this version.")), // the "Window position" reset row stands in for it
         ["General/CrashReports"] = On(Loc.N("Crash reports"),
             Loc.N("Keep a report of every game session in BepInEx/DamageInsight/CrashReports (the newest 20): errors, what happened before them, and whose code they were in (the game's, SkulInsight's or another mod's). Says so on screen when the game seems stuck or the last session ended unexpectedly. Send the report with a bug report.")),
+        ["All settings/Show"] = On(Loc.N("All settings"),
+            Loc.N("Off: only the settings most players change. On: every setting of the mod, also the fine-tuning (timings, opacities, the icon of each damage source, the Codex's films and unlock counts, the rewards' numbers, ...).")),
+        ["Restart Room/Enabled"] = On(Loc.N("Restart room"),
+            Loc.N("Press the restart key (F5) twice within 3 seconds: back to the moment you entered the room (health, gear, gold and everything else), as when you close the game and continue. Your rewards go back too. In a daily run it ends the run, like leaving the game.")),
+        ["Restart Room/Key"] = On(Loc.N("Restart key"),
+            Loc.N("Press it twice within 3 seconds to restart the room you are in.")),
+        ["General/PerformanceLog"] = On(Loc.N("Performance in the reports"),
+            Loc.N("The crash reports also note how smooth the game runs: frames per second and stutters each minute, how much of each frame SkulInsight takes (part by part), and what was going on if the game stands still for a few seconds. Send the report if the game lags.")),
+        ["General/PerformanceOverlay"] = On(Loc.N("Show FPS"),
+            Loc.N("A small line in the top left corner: frames per second and how many milliseconds of each frame SkulInsight takes.")),
         ["General/RunHistory"] = On(Loc.N("Run history"),
             Loc.N("Keep every run in the Codex: how it ended, the end screen's numbers, your build, the damage of each piece of gear, the maps and a timeline of skulls, items and inscriptions. Each save slot keeps its own.")),
         ["General/RunHistoryKeep"] = Number(Loc.N("Runs kept whole"), 20, 1000, 10, Unit.Plain,
@@ -333,7 +469,7 @@ public static class SettingsCatalog
                 // Stands in for the hidden WindowRect entry.
                 items.Add((rank, order++, new SettingItem
                 {
-                    Section = Heading(section), Label = Loc.T("Window position"), Kind = SettingKind.Action, Action = ResetWindow,
+                    Section = Heading(section), ConfigSection = section, Label = Loc.T("Window position"), Kind = SettingKind.Action, Action = ResetWindow,
                     Help = Loc.T("Puts the combat log window back to its default place and size (you can drag it and pull its corners; it remembers where you left it)."),
                 }));
                 continue;
@@ -347,7 +483,7 @@ public static class SettingsCatalog
             {
                 items.Add((rank, order++, new SettingItem
                 {
-                    Section = Heading(section), Label = Loc.T("Crash reports folder"), Kind = SettingKind.Action, Action = OpenCrashReports,
+                    Section = Heading(section), ConfigSection = section, Label = Loc.T("Crash reports folder"), Kind = SettingKind.Action, Action = OpenCrashReports,
                     ButtonLabel = Loc.T("Open"),
                     Help = Loc.T("Opens the folder with the crash reports (one file per game session, named by its start time). Add the newest one to your bug report."),
                 }));
@@ -375,7 +511,7 @@ public static class SettingsCatalog
                 {
                     items.Add((rank, order++, new SettingItem
                     {
-                        Section = Heading(section), Label = Loc.T(label), Kind = SettingKind.Action, Action = action,
+                        Section = Heading(section), ConfigSection = section, Label = Loc.T(label), Kind = SettingKind.Action, Action = action,
                         ButtonLabel = Loc.T(button),
                         HelpProvider = () => Loc.T(help) + "\n\n" + SlotDetails(Convert.ToInt32(slotEntry.BoxedValue, CultureInfo.InvariantCulture)),
                     }));
@@ -385,15 +521,18 @@ public static class SettingsCatalog
         int codexRank = Array.FindIndex(Sections, s => s.section == "Codex");
         items.Add((codexRank < 0 ? int.MaxValue - 1 : codexRank, int.MaxValue, new SettingItem
         {
-            Section = Heading("Codex"), Label = Loc.T("Reset Codex"), Kind = SettingKind.Action, Action = ResetCodex,
+            Section = Heading("Codex"), ConfigSection = "Codex", Label = Loc.T("Reset Codex"), Kind = SettingKind.Action, Action = ResetCodex,
             Help = Loc.T("Deletes everything the Codex has gathered (progress, films, pictures) the next time the game starts, so you can fill it again from the start. The move notes stay. Select it again before restarting to keep everything."),
         }));
         items.Add((int.MaxValue, order, new SettingItem
         {
-            Section = Loc.T("All settings"), Label = Loc.T("Reset everything"), Kind = SettingKind.Action, Action = ResetAll,
+            Section = Loc.T("All settings"), ConfigSection = AllSettings, Label = Loc.T("Reset everything"), Kind = SettingKind.Action, Action = ResetAll,
             Help = Loc.T("Puts every setting on this page back to its default. Your Codex progress stays as it is."),
         }));
-        return items.OrderBy(i => i.rank).ThenBy(i => i.order).Select(i => i.item).ToList();
+        var list = items.OrderBy(i => i.rank).ThenBy(i => i.order).Select(i => i.item).ToList();
+        foreach (var item in list)
+            item.Advanced = !IsBasic(item);
+        return list;
     }
 
     private static SettingItem Item(ConfigEntryBase entry, List<string> icons, Func<string, string> inscriptionName)
@@ -407,6 +546,7 @@ public static class SettingsCatalog
         {
             Entry = entry,
             Section = Heading(def.Section),
+            ConfigSection = def.Section,
             Label = spec?.Label != null ? Loc.T(spec.Label) : Words(def.Key),
             Help = spec?.Help != null ? Loc.T(spec.Help) : entry.Description?.Description ?? "",
         };

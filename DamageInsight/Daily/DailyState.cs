@@ -32,6 +32,8 @@ public sealed class DailyTry
     public int Points, Rank, Of;
     /// <summary>A finished run's body not sent yet (no connection): sent again later.</summary>
     public string Pending = "";
+    /// <summary>The game's achievements given during this try's run (0.16: the day's achievements for points).</summary>
+    public readonly List<string> Achievements = new();
 
     public bool Played => State is "started" or "ended" or "finished";
 
@@ -141,7 +143,8 @@ public sealed class DailyState
             "\n {\"date\":" + LogJson.Quote(t.Date) + ",\"board\":" + LogJson.Quote(t.Board) + ",\"state\":" + LogJson.Quote(t.State) + ",\"run\":" + LogJson.Quote(t.RunId) +
             ",\"result\":" + LogJson.Quote(t.Result) + ",\"points\":" + t.Points + ",\"rank\":" + t.Rank + ",\"of\":" + t.Of +
             ",\"seed\":" + t.Seed + ",\"mode\":" + LogJson.Quote(t.Mode) + ",\"level\":" + t.Level +
-            ",\"numbers\":" + LogJson.Quote(t.Numbers) + ",\"record\":" + LogJson.Quote(t.Run) + ",\"pending\":" + LogJson.Quote(t.Pending) + "}")));
+            ",\"numbers\":" + LogJson.Quote(t.Numbers) + ",\"record\":" + LogJson.Quote(t.Run) + ",\"pending\":" + LogJson.Quote(t.Pending) +
+            ",\"achievements\":[" + string.Join(",", t.Achievements.Select(LogJson.Quote)) + "]}")));
         sb.Append("\n]\n}\n");
         return sb.ToString();
     }
@@ -182,6 +185,8 @@ public sealed class DailyState
                 Seed = (int)t.Num("seed"), Mode = t.Str("mode") ?? "normal", Level = (int)t.Num("level"), Numbers = t.Str("numbers") ?? "",
                 Run = t.Str("record") ?? "",
             };
+            if (t.Raw("achievements") is List<object> done)
+                state.Tries[DailyBoards.Key(date, board)].Achievements.AddRange(done.OfType<string>());
         }
         return state;
     }

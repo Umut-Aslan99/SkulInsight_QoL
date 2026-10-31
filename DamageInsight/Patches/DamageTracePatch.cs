@@ -84,6 +84,7 @@ public static class DamageTracePatch
     {
         private static void Prefix(OperationInfos __instance)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Damage trace (attacks)");
             if (!Enabled)
                 return;
             try
@@ -102,6 +103,7 @@ public static class DamageTracePatch
     {
         private static void Postfix(HitInfo hitInfo)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Damage trace (hits)");
             if (!Enabled)
                 return;
             try
@@ -121,6 +123,7 @@ public static class DamageTracePatch
     {
         private static void Prefix(Character __instance, ITarget target, ref Damage damage, out bool __state)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Damage trace (hits)");
             __state = false;
             if (!Enabled)
                 return;

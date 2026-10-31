@@ -20,8 +20,10 @@ namespace DamageInsight.UI;
 /// The mod's settings page, opened with the "SkulInsight QoL" button under the game's own "Settings" in the pause
 /// menu. It is built from copies of the game's option widgets (the Controls page frame, headings, arrow rows,
 /// buttons), so it looks, sounds and navigates like the game's pages with keyboard, mouse and controller.
-/// Left: one scrolling list with every setting (<see cref="SettingsCatalog"/>). Right: the selected setting's
-/// explanation and default. Changes apply at once and are saved to the config file at once.
+/// Left (0.16, Umut 2026-10-30): the features in groups (what changes the game, what only shows, helpers, online,
+/// general), each with its main switch (<see cref="SettingsCatalog.Features"/>). Hovering or choosing one shows it on
+/// the right: what it does and its settings in their own list, the selected setting's help below. Enter goes into the
+/// feature's settings, Esc back. Changes apply at once and are saved to the config file at once.
 /// </summary>
 public sealed class SettingsPage : global::UI.Dialogue
 {
@@ -34,6 +36,9 @@ public sealed class SettingsPage : global::UI.Dialogue
     private const float RowX = 243f, RowPitch = 53f, RowHalf = 26.5f;
     private const float HeaderHeight = 60f, LineBlock = 9f, FirstRowGap = 35f, SectionGap = 24f;
     private const float HelpLeft = 55f, HelpWidth = 680f;
+    // The right side: the feature's description, its settings list, the selected setting's help (y from the top).
+    private const float FeatureTop = 308f, FeatureHeight = 92f, RightTop = 405f, RightHeight = 6 * RowPitch, HelpTop = 745f, HelpHeight = 150f;
+    private const float SubHeadingHeight = 40f;
 
     // The game's pixel colours: heading lines (three 1-pixel rows at 3x) and the dim heading text.
     private static readonly Color[] LineColors =
@@ -62,6 +67,26 @@ public sealed class SettingsPage : global::UI.Dialogue
     private readonly List<(TMP_Text text, float top, float bottom)> _headings = new();
     private readonly Dictionary<GameObject, Row> _rowsByObject = new();
 
+    // The right side (0.16): the shown feature's settings in their own list.
+    private RectTransform _rightViewport, _rightContent;
+    private ScrollRect _rightScroll;
+    private TMP_Text _featureBody;
+    private readonly List<FeaturePanel> _features = new();
+    private FeaturePanel _shown;
+
+    /// <summary>A feature: its row on the left and its settings on the right (shown while it is selected).</summary>
+    private sealed class FeaturePanel
+    {
+        public SettingsCatalog.Feature Feature;
+        public Row Left;
+        public RectTransform Panel;
+        public readonly List<Row> Rows = new();
+        public float Height;
+        /// <summary>A feature without a switch: its name (lit while chosen) and its normal colour.</summary>
+        public TMP_Text PlainLabel;
+        public Color PlainColor;
+    }
+
     private GameObject _lastSelected;
     private float _scrollTarget = -1f;
     private Vector3 _lastMouse;
@@ -82,6 +107,9 @@ public sealed class SettingsPage : global::UI.Dialogue
         public List<object> Values = new();
         public int Index;
         public float ViewTop, ViewBottom; // content y range to show when selected (the heading, for a section's first row)
+        /// <summary>The feature it belongs to; Left: the feature's own row on the left side.</summary>
+        public FeaturePanel Owner;
+        public bool Left;
     }
 
     public override bool closeWithPauseKey => false;
@@ -134,6 +162,7 @@ public sealed class SettingsPage : global::UI.Dialogue
             modsButton.onClick.AddListener(() => Guard.Run("Mod manager", ModManagerWindow.Open));
         }
 
+        // Restart room (0.16) has no menu button (Umut 2026-10-30: "It kind of just works with F5"): the key only.
         FitGrid(grid, Plugin.ModManagerEnabled?.Value != false ? 2 : 1);
         LinkButtons(grid);
         Plugin.Log.LogInfo("Settings: button added to the pause menu.");
@@ -194,9 +223,9 @@ public sealed class SettingsPage : global::UI.Dialogue
         private SettingsPage _page;
 
         /// <param name="row">The row to select (-1: the first).</param>
-        public void Open(int row)
+        public void Open(int row, string feature = null)
         {
-            if (_page != null && _page._language != Loc.Version)
+            if (_page != null && (_page._language != Loc.Version || _page._builtAll != (Plugin.ShowAllSettings?.Value == true)))
             {
                 Destroy(_page.gameObject);
                 _page = null;
@@ -207,13 +236,17 @@ public sealed class SettingsPage : global::UI.Dialogue
                 _page._link = this;
             }
             _page.Show();
-            if (row > 0 && row < _page._rows.Count)
-                _page.Focus(_page._rows[row].Root.GetComponent<Selectable>());
+            var again = feature == null ? null : _page._features.FirstOrDefault(f => f.Feature.Key == feature);
+            if (again != null)
+                _page.Select(again.Left);
+            else if (row > 0 && row < _page._rows.Count)
+                _page.Select(_page._rows[row]);
         }
     }
 
     private Link _link;
     private int _language; // Loc.Version the texts were made in
+    private bool _builtAll; // built with "All settings" on
 
     /// <summary>The language changed while the page is open (e.g. on its own Language row): build it again, same row.</summary>
     private void Relanguage()
@@ -238,6 +271,13 @@ public sealed class SettingsPage : global::UI.Dialogue
     {
         if (!gameObject.activeSelf)
             return;
+        // In a feature's settings: back to the feature on the left first.
+        var selected = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
+        if (selected != null && _rowsByObject.TryGetValue(selected, out var at) && !at.Left && at.Owner?.Left != null)
+        {
+            Focus(at.Owner.Left.Root.GetComponent<Selectable>());
+            return;
+        }
         Close();
         if (_menu == null)
             return;
@@ -259,6 +299,8 @@ public sealed class SettingsPage : global::UI.Dialogue
                 ShowValue(row);
             _content.anchoredPosition = Vector2.zero;
             ShowIntro();
+            if (_features.Count > 0)
+                ShowFeature(_features[0]); // the first feature is selected when the page opens
         });
         base.OnEnable();
     }
@@ -289,6 +331,14 @@ public sealed class SettingsPage : global::UI.Dialogue
             Relanguage();
             return;
         }
+        if (_builtAll != (Plugin.ShowAllSettings?.Value == true) && _capturing == null && _link != null)
+        {
+            // "All settings" switched: the page again with or without the fine-tuning, on the same switch.
+            var link = _link;
+            Close();
+            link.Open(-1, SettingsCatalog.AllSettings);
+            return;
+        }
         if (focused)
         {
             if (_topSinceFrame < 0)
@@ -316,9 +366,19 @@ public sealed class SettingsPage : global::UI.Dialogue
         if (selected != _lastSelected)
         {
             _lastSelected = selected;
+            foreach (var feature in _features)
+                if (feature.PlainLabel != null)
+                {
+                    bool lit = selected == feature.Left.Root;
+                    feature.PlainLabel.color = lit ? Bright : feature.PlainColor;
+                    feature.Left.ValueText.color = lit ? Bright : feature.PlainColor;
+                }
             if (selected != null && _rowsByObject.TryGetValue(selected, out var row))
             {
-                ShowHelp(row.Item);
+                if (row.Left)
+                    ShowFeature(row.Owner); // hovering or choosing a feature shows it on the right
+                else
+                    ShowHelp(row.Item);
                 if (Time.unscaledTime >= _mouseActiveUntil)
                     ScrollTo(row); // keyboard/controller: keep the selected row in view (never chase the mouse)
             }
@@ -359,6 +419,14 @@ public sealed class SettingsPage : global::UI.Dialogue
 
     private void ScrollTo(Row row)
     {
+        if (!row.Left)
+        {
+            // The right list: straight to the row.
+            float rightView = _rightViewport.rect.height, at = _rightContent.anchoredPosition.y;
+            float to = row.ViewTop - 8f < at ? row.ViewTop - 8f : row.ViewBottom + 8f > at + rightView ? row.ViewBottom + 8f - rightView : at;
+            _rightContent.anchoredPosition = new Vector2(0f, Mathf.Clamp(to, 0f, Mathf.Max(0f, (_shown?.Height ?? 0f) - rightView)));
+            return;
+        }
         float view = _viewport.rect.height;
         float offset = _scrollTarget >= 0f ? _scrollTarget : _content.anchoredPosition.y;
         float top = row.ViewTop - 8f, bottom = row.ViewBottom + 8f;
@@ -429,14 +497,16 @@ public sealed class SettingsPage : global::UI.Dialogue
 
         var items = SettingsCatalog.Build(Plugin.CodexKey.ConfigFile, InscriptionIconNames(), InscriptionName);
         _slotsHeading = items.FirstOrDefault(i => i.Entry?.Definition.Section == SettingsCatalog.SaveSlotsSection)?.Section;
+        BuildRightList();
         float y = 0f;
-        foreach (var section in items.GroupBy(i => i.Section))
+        _builtAll = Plugin.ShowAllSettings?.Value == true;
+        foreach (var group in SettingsCatalog.Features(items, _builtAll).GroupBy(f => f.Group))
         {
             if (y > 0f)
                 y += SectionGap;
             float sectionTop = y;
             var head = Clone(heading, _content).GetComponent<TMP_Text>();
-            head.text = section.Key;
+            head.text = SettingsCatalog.GroupHeading(group.Key);
             head.enableWordWrapping = false;
             head.maskable = true; // the game's heading is static text; in our list it must be cut at the edges
             _headings.Add((head, y, y + HeaderHeight));
@@ -449,13 +519,37 @@ public sealed class SettingsPage : global::UI.Dialogue
 
             float center = y + HeaderHeight + LineBlock + FirstRowGap;
             bool first = true;
-            foreach (var item in section)
+            foreach (var feature in group)
             {
-                var row = AddRow(item, item.Kind == SettingKind.Choice ? choiceRow : buttonRow, center);
+                var panel = new FeaturePanel { Feature = feature };
+                // A feature without a main switch is a plain row: choosing it opens its settings.
+                var item = feature.Toggle ?? new SettingItem
+                {
+                    Section = feature.Title, ConfigSection = feature.Key, Label = feature.Title, Kind = SettingKind.Action,
+                    Action = SettingsCatalog.OpenFeature, Help = feature.Description,
+                    ButtonLabel = Loc.P("{0} setting", "{0} settings", feature.Items.Count),
+                };
+                var row = AddRow(item, item.Kind == SettingKind.Choice ? choiceRow : buttonRow, center, _content, _scroll, left: true);
+                var label = Find(row.Root.transform, "Label").GetComponent<TMP_Text>();
+                label.text = Stars(feature.Title);
+                row.Owner = panel;
+                panel.Left = row;
+                if (feature.Toggle == null)
+                {
+                    // The game's button frame stood there empty (Umut 2026-10-30: "It looks weird"): see-through, still
+                    // hit by the mouse; the name lights up like the switch rows' when chosen (Tick).
+                    foreach (var image in row.Root.GetComponentsInChildren<Image>(true))
+                        image.color = Color.clear;
+                    panel.PlainLabel = label;
+                    panel.PlainColor = label.color;
+                    row.ValueText.color = label.color;
+                }
                 row.ViewTop = first ? sectionTop : center - RowHalf;
                 row.ViewBottom = center + RowHalf;
                 first = false;
                 center += RowPitch;
+                BuildPanel(panel, choiceRow, buttonRow, rowLabel);
+                _features.Add(panel);
             }
             y = center - RowPitch + RowHalf;
         }
@@ -464,8 +558,121 @@ public sealed class SettingsPage : global::UI.Dialogue
 
         BuildHelp(heading, rowLabel);
         LinkRows();
-        _defaultFocus = _rows.Count > 0 ? (Selectable)_rows[0].Root.GetComponent<Selectable>() : _return;
-        Plugin.Log.LogInfo($"Settings: page built with {_rows.Count} rows.");
+        _defaultFocus = _features.Count > 0 ? (Selectable)_features[0].Left.Root.GetComponent<Selectable>() : _return;
+        Plugin.Log.LogInfo($"Settings: page built with {_features.Count} features and {_rows.Count} rows.");
+    }
+
+    /// <summary>The right side's list: the shown feature's settings (each feature's own panel, one shown at a time).</summary>
+    private void BuildRightList()
+    {
+        _rightViewport = UiKit.Rect("Feature settings", transform);
+        Place(_rightViewport, new Vector2(0f, 1f), HelpLeft, RightTop, HelpWidth, RightHeight);
+        _rightViewport.gameObject.AddComponent<Image>().color = Color.clear; // catches the mouse wheel between rows
+        _rightViewport.gameObject.AddComponent<RectMask2D>();
+        _rightContent = UiKit.Rect("Settings", _rightViewport);
+        _rightContent.anchorMin = new Vector2(0f, 1f);
+        _rightContent.anchorMax = new Vector2(1f, 1f);
+        _rightContent.pivot = new Vector2(0.5f, 1f);
+        _rightContent.anchoredPosition = Vector2.zero;
+        _rightScroll = _rightViewport.gameObject.AddComponent<ScrollRect>();
+        _rightScroll.content = _rightContent;
+        _rightScroll.viewport = _rightViewport;
+        _rightScroll.horizontal = false;
+        _rightScroll.vertical = true;
+        _rightScroll.movementType = ScrollRect.MovementType.Clamped;
+        _rightScroll.inertia = false;
+        _rightScroll.scrollSensitivity = 40f;
+
+        var bar = UiKit.Image("Scroll bar", transform, LineColors[2]);
+        Place(bar.rectTransform, new Vector2(0f, 1f), HelpLeft + HelpWidth + 6f, RightTop, 6f, RightHeight);
+        var handle = UiKit.Image("Handle", bar.rectTransform, Dim);
+        handle.rectTransform.Fill();
+        var scrollbar = bar.gameObject.AddComponent<Scrollbar>();
+        scrollbar.handleRect = handle.rectTransform;
+        scrollbar.targetGraphic = handle;
+        scrollbar.direction = Scrollbar.Direction.BottomToTop;
+        scrollbar.transition = Selectable.Transition.None;
+        scrollbar.navigation = new Navigation { mode = Navigation.Mode.None };
+        _rightScroll.verticalScrollbar = scrollbar;
+        _rightScroll.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+    }
+
+    /// <summary>A feature's settings on the right, with a small heading where a group of them starts (damage icons).</summary>
+    private void BuildPanel(FeaturePanel panel, Transform choiceRow, Transform buttonRow, Transform rowLabel)
+    {
+        var rect = UiKit.Rect(panel.Feature.Key, _rightContent);
+        rect.anchorMin = new Vector2(0f, 1f);
+        rect.anchorMax = new Vector2(1f, 1f);
+        rect.pivot = new Vector2(0.5f, 1f);
+        rect.anchoredPosition = Vector2.zero;
+        panel.Panel = rect;
+        float y = 4f;
+        string group = panel.Feature.Title;
+        foreach (var item in panel.Feature.Items)
+        {
+            if (item.Section != group && item.Section != panel.Feature.Title)
+            {
+                group = item.Section;
+                var sub = Clone(rowLabel, rect).GetComponent<TMP_Text>();
+                sub.text = Stars(group);
+                sub.enableAutoSizing = false;
+                sub.fontSize = 24f;
+                sub.color = Dim;
+                sub.enableWordWrapping = false;
+                sub.alignment = TextAlignmentOptions.BottomLeft;
+                var sr = sub.rectTransform;
+                sr.anchorMin = sr.anchorMax = new Vector2(0f, 1f);
+                sr.pivot = new Vector2(0f, 1f);
+                sr.sizeDelta = new Vector2(HelpWidth - 20f, SubHeadingHeight);
+                sr.anchoredPosition = new Vector2(10f, -y);
+                y += SubHeadingHeight;
+            }
+            float center = y + RowHalf;
+            var row = AddRow(item, item.Kind == SettingKind.Choice ? choiceRow : buttonRow, center, rect, _rightScroll);
+            row.Owner = panel;
+            row.ViewTop = center - RowHalf;
+            row.ViewBottom = center + RowHalf;
+            panel.Rows.Add(row);
+            y += RowPitch;
+        }
+        panel.Height = y + 8f;
+        rect.sizeDelta = new Vector2(0f, panel.Height);
+        rect.gameObject.SetActive(false);
+    }
+
+    /// <summary>Shows a feature on the right: its title, what it does, its settings.</summary>
+    private void ShowFeature(FeaturePanel panel)
+    {
+        if (panel == null || panel == _shown)
+            return;
+        if (_shown != null)
+            _shown.Panel.gameObject.SetActive(false);
+        _shown = panel;
+        panel.Panel.gameObject.SetActive(true);
+        _rightContent.sizeDelta = new Vector2(0f, panel.Height);
+        _rightContent.anchoredPosition = Vector2.zero;
+        _helpTitle.text = Stars(panel.Feature.Title);
+        _featureBody.text = Stars(panel.Feature.Description ?? "").Replace('\\', '/');
+        _helpBody.text = $"<color={DimHex}>" + (panel.Rows.Count == 0
+            ? Loc.T("Nothing more to set: the switch on the left turns it on or off.")
+            : Loc.T("Choose one of its settings (move the mouse there, or press Enter) to see what it does. Esc goes back.")) + "</color>";
+        _helpDefault.text = "";
+    }
+
+    /// <summary>Into the shown feature's settings (Enter on a feature, or a click on a feature without a switch).</summary>
+    private void EnterFeature(FeaturePanel panel)
+    {
+        ShowFeature(panel);
+        if (panel?.Rows.Count > 0)
+            Focus(panel.Rows[0].Root.GetComponent<Selectable>());
+    }
+
+    /// <summary>Selects a row (its feature shown first when it is on the right side).</summary>
+    private void Select(Row row)
+    {
+        if (!row.Left)
+            ShowFeature(row.Owner);
+        Focus(row.Root.GetComponent<Selectable>());
     }
 
     private void BuildList()
@@ -519,11 +726,24 @@ public sealed class SettingsPage : global::UI.Dialogue
         Place(_helpTitle.rectTransform, new Vector2(0f, 0f), HelpLeft, 279.5f, HelpWidth, HeaderHeight);
         Lines(transform, new Vector2(0.5f, 1f), HelpLeft, 279.5f, HelpWidth);
 
-        _helpBody = Text(rowLabel, 28f, Bright);
-        Place(_helpBody.rectTransform, new Vector2(0f, 1f), HelpLeft, 310f, HelpWidth, 440f);
-        _helpDefault = Text(rowLabel, 26f, Dim);
-        Place(_helpDefault.rectTransform, new Vector2(0f, 1f), HelpLeft, 770f, HelpWidth, 90f);
+        _featureBody = Text(rowLabel, 24f, Bright);
+        Place(_featureBody.rectTransform, new Vector2(0f, 1f), HelpLeft, FeatureTop, HelpWidth, FeatureHeight);
+        _featureBody.enableAutoSizing = true; // a long description shrinks instead of running into the settings
+        _featureBody.fontSizeMin = 16f;
+        _featureBody.fontSizeMax = 24f;
+        _featureBody.overflowMode = TextOverflowModes.Truncate;
+        Lines(transform, new Vector2(0.5f, 1f), HelpLeft, HelpTop - 8f, HelpWidth);
+        _helpBody = Text(rowLabel, 22f, Bright);
+        Place(_helpBody.rectTransform, new Vector2(0f, 1f), HelpLeft, HelpTop, HelpWidth, HelpHeight);
+        _helpBody.enableAutoSizing = true;
+        _helpBody.fontSizeMin = 15f;
+        _helpBody.fontSizeMax = 22f;
+        _helpBody.overflowMode = TextOverflowModes.Truncate;
+        _helpDefault = Text(rowLabel, 20f, Dim); // the default is part of the help now; kept empty
+        Place(_helpDefault.rectTransform, new Vector2(0f, 1f), HelpLeft, HelpTop + HelpHeight, HelpWidth, 1f);
     }
+
+    private static readonly string DimHex = "#" + ColorUtility.ToHtmlStringRGB(new Color32(0xAE, 0x97, 0x85, 0xFF));
 
     private TMP_Text Text(Transform template, float size, Color color)
     {
@@ -534,6 +754,7 @@ public sealed class SettingsPage : global::UI.Dialogue
         text.overflowMode = TextOverflowModes.Overflow;
         text.alignment = TextAlignmentOptions.TopLeft;
         text.color = color;
+        text.richText = true; // the game's row label has it off (the help's colour tags showed as text)
         text.text = "";
         return text;
     }
@@ -562,15 +783,15 @@ public sealed class SettingsPage : global::UI.Dialogue
         }
     }
 
-    private Row AddRow(SettingItem item, Transform template, float center)
+    private Row AddRow(SettingItem item, Transform template, float center, RectTransform parent, ScrollRect list, bool left = false)
     {
-        var go = Clone(template, _content);
+        var go = Clone(template, parent);
         go.name = item.Label;
         var rect = (RectTransform)go.transform;
         rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
         rect.anchoredPosition = new Vector2(RowX, -center);
 
-        var row = new Row { Item = item, Root = go };
+        var row = new Row { Item = item, Root = go, Left = left };
         var label = Find(go.transform, "Label").GetComponent<TMP_Text>();
         label.text = Stars(item.Label);
         row.ValueText = Find(go.transform, "Content/Text").GetComponent<TMP_Text>();
@@ -579,7 +800,13 @@ public sealed class SettingsPage : global::UI.Dialogue
         {
             row.Selection = go.GetComponent<PauseSelection>();
             row.Selection.onValueChanged += i => Guard.Run("Settings page (change)", () => Picked(row, i));
-            if (item.Wraps && item.Steps.Count == 2)
+            if (left)
+            {
+                var into = go.AddComponent<SubmitIntoFeature>(); // Enter / A on a feature: into its settings
+                into.Page = this;
+                into.Row = row;
+            }
+            else if (item.Wraps && item.Steps.Count == 2)
                 go.AddComponent<SubmitStepper>().Selection = row.Selection; // Enter / A flips on/off too
             if (item.ShowsIcon)
             {
@@ -603,7 +830,7 @@ public sealed class SettingsPage : global::UI.Dialogue
 
         // The game's PlaySoundOnSelected on every row is an EventTrigger: it takes the mouse wheel and drops it,
         // so scrolling stuck whenever the pointer was over a row. Hand the wheel on to the list.
-        go.AddComponent<WheelToList>().List = _scroll;
+        go.AddComponent<WheelToList>().List = list;
 
         ShowValue(row);
         _rows.Add(row);
@@ -611,19 +838,26 @@ public sealed class SettingsPage : global::UI.Dialogue
         return row;
     }
 
-    /// <summary>Up/down through the rows; the first and last row go on to the Return button and round.</summary>
+    /// <summary>Up/down through the features (the first and last go on to Return and round), and through each feature's settings.</summary>
     private void LinkRows()
     {
-        var all = _rows.Select(r => r.Root.GetComponent<Selectable>()).Where(s => s != null).ToList();
-        all.Add(_return);
-        for (int i = 0; i < all.Count; i++)
+        var features = _features.Select(f => f.Left.Root.GetComponent<Selectable>()).Where(s => s != null).ToList();
+        features.Add(_return);
+        Link(features);
+        foreach (var panel in _features)
+            Link(panel.Rows.Select(r => r.Root.GetComponent<Selectable>()).Where(s => s != null).ToList());
+
+        static void Link(List<Selectable> all)
         {
-            var nav = all[i].navigation;
-            nav.mode = Navigation.Mode.Explicit;
-            nav.selectOnUp = all[(i - 1 + all.Count) % all.Count];
-            nav.selectOnDown = all[(i + 1) % all.Count];
-            nav.selectOnLeft = nav.selectOnRight = null;
-            all[i].navigation = nav;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var nav = all[i].navigation;
+                nav.mode = Navigation.Mode.Explicit;
+                nav.selectOnUp = all[(i - 1 + all.Count) % all.Count];
+                nav.selectOnDown = all[(i + 1) % all.Count];
+                nav.selectOnLeft = nav.selectOnRight = null;
+                all[i].navigation = nav;
+            }
         }
     }
 
@@ -707,6 +941,9 @@ public sealed class SettingsPage : global::UI.Dialogue
                 break;
             case SettingKind.Action when row.Item.Action is SettingsCatalog.SlotPlay or SettingsCatalog.SlotCopy or SettingsCatalog.SlotClear:
                 SlotAction(row);
+                break;
+            case SettingKind.Action when row.Item.Action == SettingsCatalog.OpenFeature:
+                EnterFeature(row.Owner);
                 break;
         }
     }
@@ -934,19 +1171,24 @@ public sealed class SettingsPage : global::UI.Dialogue
 
     private void ShowIntro()
     {
+        if (_shown != null)
+            _shown.Panel.gameObject.SetActive(false);
+        _shown = null;
         _helpTitle.text = ButtonText;
-        _helpBody.text = Loc.F("Version {0}.", MyPluginInfo.PLUGIN_VERSION) + "\n\n" +
-                         Loc.T("Every setting of the mod in one place. Changes apply at once and are saved right away (BepInEx/config/docrun.skulinsight_qol.cfg).") +
-                         "\n\n" + Loc.T("Up / down: choose a setting.\nLeft / right: change it.");
+        _featureBody.text = Loc.F("Version {0}.", MyPluginInfo.PLUGIN_VERSION) + " " +
+                            Loc.T("Every setting of the mod in one place. Changes apply at once and are saved right away (BepInEx/config/docrun.skulinsight_qol.cfg).");
+        _helpBody.text = Loc.T("Left: the features, each with its switch. Right: the chosen feature's settings.\nUp / down: choose. Left / right: switch on or off. Enter: its settings. Esc: back.");
         _helpDefault.text = "";
     }
 
+    /// <summary>A setting on the right: its name, what it does and its default, under the feature's settings.</summary>
     private void ShowHelp(SettingItem item)
     {
-        _helpTitle.text = Stars(item.Label);
-        _helpBody.text = Stars(item.CurrentHelp).Replace('\\', '/'); // TMP would read the "\r" in "Debug\runs" as a line break
+        string help = Stars(item.CurrentHelp).Replace('\\', '/'); // TMP would read the "\r" in "Debug\runs" as a line break
         // No default for the save state slot: it picks a slot, it isn't a setting to put back.
-        _helpDefault.text = item.Entry != null && item.HelpProvider == null ? Loc.F("Default: {0}", item.DefaultText) : "";
+        string fallback = item.Entry != null && item.HelpProvider == null ? $"\n<color={DimHex}>{Loc.F("Default: {0}", item.DefaultText)}</color>" : "";
+        _helpBody.text = $"{Stars(item.Label)}: {help}{fallback}";
+        _helpDefault.text = "";
     }
 
     // ---------------------------------------------------------------- helpers
@@ -1022,6 +1264,15 @@ public sealed class SettingsPage : global::UI.Dialogue
                 Object.DestroyImmediate(localizer);
         foreach (var jump in go.GetComponentsInChildren<global::UI.Pause.ControllerLeftRightNavigation>(true))
             Object.DestroyImmediate(jump);
+    }
+
+    /// <summary>Enter / controller A on a feature on the left: into its settings (left / right switch it on or off).</summary>
+    private sealed class SubmitIntoFeature : MonoBehaviour, ISubmitHandler
+    {
+        public SettingsPage Page;
+        public Row Row;
+
+        public void OnSubmit(BaseEventData eventData) => Guard.Run("Settings page (feature)", () => Page.EnterFeature(Row.Owner));
     }
 
     /// <summary>Enter / controller A on an on/off row flips it (the game's own rows only use left/right).</summary>

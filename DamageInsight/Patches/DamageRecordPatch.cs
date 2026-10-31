@@ -16,6 +16,7 @@ public static class DamageRecordPatch
     {
         private static void Postfix(Health __instance, bool __result, ref Damage damage, ref double dealtDamage)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Combat log (hits)");
             // __result == true means the hit was cancelled (evaded, invulnerable, ...).
             if (__result || dealtDamage <= 0.0 || __instance.owner == null)
                 return;

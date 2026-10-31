@@ -18,6 +18,7 @@ public static class RewardPatches
     {
         private static void Postfix(Gear __instance)
         {
+            using var _perf = DamageInsight.Crash.Perf.Measure("Rewards (gear)");
             try
             {
                 __instance.onDiscard -= DamageInsight.Rewards.RewardService.OnGearDiscarded; // never twice

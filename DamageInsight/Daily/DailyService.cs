@@ -28,6 +28,8 @@ public sealed class DailyService : MonoBehaviour
     public static DailyInfo Today => Days.FirstOrDefault(d => d.Board == State.Board);
     /// <summary>A board of today, or null.</summary>
     public static DailyInfo InfoOf(string board) => Days.FirstOrDefault(d => d.Board == board);
+    /// <summary>Yesterday's winners of the boards (0.16): the adventurers are named after them.</summary>
+    public static List<(string board, string name)> Champions { get; private set; } = new();
     public static Board DayBoard { get; private set; }
     public static Board MonthBoard { get; private set; }
 
@@ -119,6 +121,7 @@ public sealed class DailyService : MonoBehaviour
             {
                 boards = true;
                 Days = list;
+                Champions = DailyInfo.ChampionsFromJson(json);
                 State.Trim(list[0].Date);
                 Problem = "";
                 Changed();

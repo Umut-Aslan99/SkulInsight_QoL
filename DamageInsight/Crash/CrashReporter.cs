@@ -55,6 +55,9 @@ public sealed class CrashReporter : MonoBehaviour
     private Level.Map _map;
 
     private static string _build;
+
+    /// <summary>The screen is faded to black (a map change): a long frame then is loading, not a stutter.</summary>
+    public static bool ScreenBlack { get; private set; }
     private string _scene, _place;
     private bool _languageNoted;
     private bool _hadPlayer, _playerDead, _black, _stuckReported, _cameraReported, _modsListed, _previousShown;
@@ -424,6 +427,7 @@ public sealed class CrashReporter : MonoBehaviour
         if (black && (Scene<GameBase>.instance == null || StoryOnScreen()))
             black = false; // only in the game (not the title), and story scenes talk on a black screen
 
+        ScreenBlack = black;
         if (black != _black)
         {
             _black = black;
