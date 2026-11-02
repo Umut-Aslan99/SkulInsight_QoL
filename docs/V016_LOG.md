@@ -187,3 +187,12 @@ build). Running log: every step with what, how, commit, open bits (see the proje
     the board lines. Old runs too, no recording change. 2 changelog lines in 10 languages (font: ja 欄, ko 칸
     replaced). 577 tests. Formula 4 has been live since 2026-11-01 13:58 UTC; the second set of challenges is live
     today (dm10+dlc: SkeletonKing, skull Wizard, essence Cyclops).
+18. [Umut] "All work perfectly, do the push" + "i posted the review ping". **0.16.1 released 2026-11-02**: GitHub
+    v0.16.1 (release.ps1 -SkipThunderstore, then tcli publish once the ping was confirmed), Thunderstore 0.16.1.
+19. [Umut 2026-11-02] three "Skul" on today's DM10+DLC board: one player submitting several times, or the default?
+    → three players: three player ids (entry ids are per player), two of the runs overlapped in time (15:23-16:15 and
+    15:27-16:18 on their clocks), mods 0.16.0 / 0.16.0 / 0.15.0, streaks 2 / 1 / 1, all three games in Chinese. "Skul"
+    is the mod's name for an empty box (and the server's for an unusable name). [Umut] "fill in the name the game
+    recognizes at the bottom right" → 0.16.2: DailyRun.StartingName(config Daily/Name, last name, platform name
+    = PlatformManager.platform.userName, Steam's persona name); "Skul" counts as none; 12 characters. Changelog entry
+    0.16.2 (10 languages). 578 tests.

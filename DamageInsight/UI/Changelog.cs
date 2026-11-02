@@ -17,6 +17,10 @@ public static class Changelog
     /// <summary>The versions and their highlights (English keys, translated here), newest first.</summary>
     public static List<(string version, string[] lines)> Versions() => new()
     {
+        ("0.16.2", new[]
+        {
+            Loc.T("The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending."),
+        }),
         ("0.16.1", new[]
         {
             Loc.T("Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again)."),

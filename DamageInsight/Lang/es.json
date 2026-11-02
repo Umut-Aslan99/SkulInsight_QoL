@@ -1048,6 +1048,7 @@
     "Slot {0} is empty now.": "La ranura {0} está vacía ahora.",
     "Achievement unlocked": "Logro desbloqueado",
     "Reward: {0}": "Recompensa: {0}",
+    "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.": "El nombre para la clasificación diaria empieza con tu nombre de Steam si no has puesto uno, así que las partidas ya no aparecen por error como \"Skul\". Puedes cambiarlo antes de enviar.",
     "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).": "Corregido: Reiniciar sala (F5) devuelve la partida con todo su equipo (0.16.0 lo perdía hasta reiniciar el juego).",
     "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).": "Corregido: se puede escribir un nombre nuevo para la clasificación diaria (el cuadro volvía a poner el anterior).",
     "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.": "Las partidas de otros jugadores se muestran en tu idioma: sus habilidades, la tabla de daño, los enemigos y las etapas, también las enviadas antes.",

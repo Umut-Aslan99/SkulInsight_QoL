@@ -1048,6 +1048,7 @@
     "Slot {0} is empty now.": "Slot {0} ist jetzt leer.",
     "Achievement unlocked": "Errungenschaft freigeschaltet",
     "Reward: {0}": "Belohnung: {0}",
+    "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.": "Der Name für die Tagesliste beginnt mit deinem Steam-Namen, wenn du keinen festgelegt hast, sodass Läufe nicht mehr versehentlich als \"Skul\" auf der Liste landen. Vor dem Senden kannst du ihn ändern.",
     "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).": "Behoben: Raum neu starten (F5) bringt den Lauf mit seiner ganzen Ausrüstung zurück (0.16.0 verlor sie, bis das Spiel neu gestartet wurde).",
     "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).": "Behoben: Ein neuer Name für die Tagesliste lässt sich eintippen (das Feld setzte immer wieder den alten ein).",
     "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.": "Läufe anderer Spieler erscheinen in deiner Sprache: ihre Fähigkeiten, die Schadenstabelle, Gegner und Abschnitte, auch früher gesendete Läufe.",

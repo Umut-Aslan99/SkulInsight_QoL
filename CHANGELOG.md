@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.2 (your Steam name for the board)
+
+- **The name for the daily board starts with your Steam name** (the one the title screen shows) when you haven't
+  set one, so runs no longer go on the board as "Skul" by accident (one day's board had three players called
+  "Skul": all three had sent an empty name). You see it in the box before sending and can change it; an empty box
+  still sends "Skul". A name set in the config (Daily, Name) or used before comes first.
+
 ## 0.16.1 (restart room fix, daily points 4, the day's challenges)
 
 - **Fixed: Restart room (F5)** brought the run back as Little Bone with no gear (closing and reopening the game

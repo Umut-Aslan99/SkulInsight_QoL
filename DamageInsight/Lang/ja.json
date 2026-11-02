@@ -1015,6 +1015,7 @@
     "Slot {0} is empty now.": "スロット{0}を空にしました。",
     "Achievement unlocked": "実績解除",
     "Reward: {0}": "報酬：{0}",
+    "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.": "デイリーのランキング用の名前を決めていなければSteamの名前が入るので、ランがうっかり「Skul」として載ることはなくなりました。送る前に変えられます。",
     "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).": "修正：部屋をやり直す（F5）で、装備もすべてそろったままランが戻ります（0.16.0ではゲームを再起動するまで装備が消えていました）。",
     "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).": "修正：デイリーのランキング用に新しい名前を入力できます（前の名前が何度も戻っていました）。",
     "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.": "ほかのプレイヤーのランがあなたの言語で表示されます：スキル、ダメージ表、敵、ステージ。以前に送られたランも同じです。",

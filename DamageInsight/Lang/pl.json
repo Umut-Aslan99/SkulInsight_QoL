@@ -1081,6 +1081,7 @@
     "Slot {0} is empty now.": "Slot {0} jest teraz pusty.",
     "Achievement unlocked": "Osiągnięcie odblokowane",
     "Reward: {0}": "Nagroda: {0}",
+    "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.": "Imię do rankingu dnia zaczyna się od twojej nazwy ze Steam, jeśli nie ustawiłeś własnego, więc podejścia nie trafiają już przez pomyłkę do rankingu jako \"Skul\". Możesz je zmienić przed wysłaniem.",
     "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).": "Naprawiono: Restart sali (F5) przywraca podejście z całym ekwipunkiem (w 0.16.0 znikał on aż do ponownego uruchomienia gry).",
     "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).": "Naprawiono: można wpisać nowe imię do rankingu dnia (pole ciągle przywracało stare).",
     "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.": "Podejścia innych graczy pokazują się w twoim języku: umiejętności, tabela obrażeń, wrogowie i etapy, także wysłane wcześniej.",

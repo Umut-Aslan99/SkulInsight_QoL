@@ -948,6 +948,7 @@
     "Slot {0} is empty now.": "Slot {0} is empty now.",
     "Achievement unlocked": "Achievement unlocked",
     "Reward: {0}": "Reward: {0}",
+    "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.": "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.",
     "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).": "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).",
     "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).": "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).",
     "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.": "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.",

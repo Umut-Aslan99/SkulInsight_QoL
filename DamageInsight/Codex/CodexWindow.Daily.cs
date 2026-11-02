@@ -424,7 +424,7 @@ public sealed partial class CodexWindow
         {
             _dailyNamePrefilled = true;
             if (string.IsNullOrEmpty(_dailyName.text))
-                _dailyName.text = Plugin.DailyName?.Value is { Length: > 0 } configured ? configured : DailyService.State.Name;
+                _dailyName.text = DailyRun.StartingName(Plugin.DailyName?.Value, DailyService.State.Name, DailyRun.PlatformName());
         }
         else if (!naming)
             _dailyNamePrefilled = false;
@@ -489,7 +489,7 @@ public sealed partial class CodexWindow
             if (DailyRun.Ended is not { } t)
                 return;
             string name = (_dailyName.text ?? "").Trim();
-            DailyRun.Send(t, name.Length > 0 ? name : "Skul");
+            DailyRun.Send(t, name.Length > 0 ? name : DailyRun.NoName);
             EventSystem.current?.SetSelectedGameObject(null);
             _listDirty = true;
             _nextRefresh = 0f;

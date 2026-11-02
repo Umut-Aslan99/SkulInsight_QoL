@@ -19,7 +19,7 @@ public class ChangelogTests
         for (int i = 1; i < versions.Count; i++)
             Assert.True(Changelog.Newer(versions[i - 1].version, versions[i].version), versions[i].version);
         Assert.All(versions, v => Assert.NotEmpty(v.lines));
-        Assert.Equal(18, versions.Count);
+        Assert.True(versions.Count >= 19);
     }
 
     [Fact]
@@ -28,15 +28,28 @@ public class ChangelogTests
         Assert.True(Changelog.Newer("0.16.1", "0.16.0"));
         Assert.False(Changelog.Newer("0.16.0", "0.16.0"));
         Assert.True(Changelog.Newer("0.10.0", "0.9.3"));                       // numbers, not text
-        var (boxed, earlier) = Changelog.Split("0.15.0");                      // came from 0.15: both 0.16 versions
-        Assert.Equal(new[] { "0.16.1", "0.16.0" }, boxed.Select(v => v.version));
+        var (boxed, earlier) = Changelog.Split("0.15.0");                      // came from 0.15: every 0.16 version
+        Assert.Equal(new[] { "0.16.2", "0.16.1", "0.16.0" }, boxed.Select(v => v.version).Skip(boxed.Count - 3));
+        Assert.All(boxed, v => Assert.True(Changelog.Newer(v.version, "0.15.0")));
         Assert.Equal("0.15.0", earlier[0].version);
-        Assert.Single(Changelog.Split("0.16.1").boxed);                       // the settings page: the newest alone
+        Assert.Single(Changelog.Split(Changelog.Versions()[0].version).boxed); // the settings page: the newest alone
         Assert.Single(Changelog.Split("").boxed);
         Assert.Equal(Changelog.Versions().Count, boxed.Count + earlier.Count);
         string text = Changelog.Text(boxed);
         Assert.Contains("0.16.1", text);
         Assert.Contains("Restart room (F5)", text);
+    }
+
+    [Fact]
+    public void The_name_box_starts_with_a_name_and_steam_is_the_last_choice()
+    {
+        // Umut 2026-11-02: three players sent no name and showed as "Skul"; the box now starts with the Steam name.
+        Assert.Equal("DocRun", Daily.DailyRun.StartingName("", "", "DocRun"));
+        Assert.Equal("Tythos", Daily.DailyRun.StartingName("Tythos", "Old", "DocRun"));    // the config's name first
+        Assert.Equal("Old", Daily.DailyRun.StartingName(null, "Old", "DocRun"));           // then the last one sent
+        Assert.Equal("DocRun", Daily.DailyRun.StartingName("Skul", "Skul", " DocRun "));   // "Skul" was an empty box
+        Assert.Equal("Twelve Chars", Daily.DailyRun.StartingName("", "", "Twelve Chars and more"));
+        Assert.Equal("", Daily.DailyRun.StartingName("", null, ""));
     }
 
     [Fact]

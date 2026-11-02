@@ -1015,6 +1015,7 @@
     "Slot {0} is empty now.": "儲存位 {0} 現在是空的。",
     "Achievement unlocked": "成就解鎖",
     "Reward: {0}": "獎勵：{0}",
+    "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.": "如果還沒設定每日榜單的名字，會先填入你的 Steam 名字，冒險就不會再意外以「Skul」上榜。發送前可以修改。",
     "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).": "修復：重開房間（F5）會帶著全部裝備回到房間開頭（0.16.0 中裝備會消失，直到重新啟動遊戲）。",
     "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).": "修復：可以為每日榜單輸入新名字了（輸入框之前總是把舊名字填回來）。",
     "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.": "其他玩家的冒險會以你的語言顯示：技能、傷害表、敵人和關卡，之前發送的冒險也一樣。",

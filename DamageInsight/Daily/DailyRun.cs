@@ -321,6 +321,40 @@ public static class DailyRun
         Plugin.Log.LogInfo($"Daily run: {t.Date} ended ({t.Result})");
     }
 
+    /// <summary>The board's name when the box is left empty (and the server's for a name it can't use).</summary>
+    public const string NoName = "Skul";
+
+    /// <summary>
+    /// The name the box starts with (0.16.2; Umut 2026-11-02, three "Skul" on one board were three players who sent
+    /// no name: "Can we by default fill in the name the game recognizes ... the players steam profile?"): the one set
+    /// in the config (Daily/Name), the last one sent, else the platform's (Steam) name the title screen shows. "Skul"
+    /// counts as none (an empty box sent before). At most 12 characters, as the board keeps. The player sees it in the
+    /// box and may change it or empty it (then the run goes as "Skul"). Plain logic, tested.
+    /// </summary>
+    public static string StartingName(string configured, string last, string platform)
+    {
+        foreach (string candidate in new[] { configured, last, platform })
+        {
+            string name = (candidate ?? "").Trim();
+            if (name.Length > 0 && name != NoName)
+                return name.Length > 12 ? name.Substring(0, 12).TrimEnd() : name;
+        }
+        return "";
+    }
+
+    /// <summary>The platform's name for the player (Steam: the persona name), or "".</summary>
+    public static string PlatformName()
+    {
+        try
+        {
+            return Singletons.PersistentSingleton<Platforms.PlatformManager>.Instance?.platform?.userName ?? "";
+        }
+        catch (Exception)
+        {
+            return "";
+        }
+    }
+
     /// <summary>The name is given (or the run is not sent): the result goes to the board.</summary>
     public static void Send(DailyTry t, string name)
     {

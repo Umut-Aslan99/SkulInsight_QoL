@@ -1081,6 +1081,7 @@
     "Slot {0} is empty now.": "Слот {0} теперь пуст.",
     "Achievement unlocked": "Достижение получено",
     "Reward: {0}": "Награда: {0}",
+    "The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending.": "Имя для таблицы дня теперь начинается с вашего имени в Steam, если вы его не задали, так что забеги больше не попадают в таблицу как «Skul» по ошибке. Его можно изменить перед отправкой.",
     "Fixed: Restart room (F5) brings the run back with all its gear (0.16.0 lost it until the game was started again).": "Исправлено: «Начать комнату заново» (F5) возвращает забег со всем снаряжением (в 0.16.0 оно пропадало до перезапуска игры).",
     "Fixed: a new name for the daily board can be typed (the box kept bringing the old one back).": "Исправлено: новое имя для таблицы дня можно ввести (поле всё время возвращало старое).",
     "Other players' runs show in your language: their skills, damage table, enemies and stages, also runs sent before.": "Забеги других игроков показываются на вашем языке: навыки, таблица урона, враги и этапы, в том числе отправленные раньше.",
