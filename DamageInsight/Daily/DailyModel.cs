@@ -193,6 +193,14 @@ public sealed class RunDetail
     public readonly List<(string key, long value, int points)> Breakdown = new();
     /// <summary>The run as its player's run history kept it (null when it wasn't sent: an older version).</summary>
     public RunRecord Run;
+    /// <summary>
+    /// What each part of the points is worth (server 2026-11-01, formula 3 and later: win, speed, stage, boss, extraBoss,
+    /// flawlessRoom, flawlessBoss, taken, goldPerPoint, bone): "How points are counted" says the numbers that count, so
+    /// tuning them needs no mod update. Empty from an older server.
+    /// </summary>
+    public readonly Dictionary<string, long> Rules = new();
+    public static readonly string[] RuleKeys =
+        { "win", "speed", "stage", "boss", "extraBoss", "flawlessRoom", "flawlessBoss", "taken", "goldPerPoint", "bone" };
 
     public static RunDetail FromJson(string json)
     {
@@ -207,6 +215,10 @@ public sealed class RunDetail
         };
         foreach (var p in n.List("breakdown"))
             d.Breakdown.Add((p.Str("key") ?? "", (long)p.Num("value"), (int)p.Num("points")));
+        var rules = n.Child("rules");
+        if (!rules.IsNull && RuleKeys.All(k => rules.Raw(k) != null))
+            foreach (var key in RuleKeys)
+                d.Rules[key] = (long)rules.Num(key);
         var run = n.Child("run");
         if (!run.IsNull && RunRecord.FromNode(run) is { } record)
         {

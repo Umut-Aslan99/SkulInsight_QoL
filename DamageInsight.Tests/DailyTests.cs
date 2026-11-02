@@ -274,6 +274,36 @@ public class DailyTests
         Assert.DoesNotContain("The day's records", page);
         Assert.DoesNotContain("1 per 2,000 damage", page); // formula 2's explanation
         Assert.Equal(2, RunDetail.FromJson("{\"date\":\"2026-10-18\",\"entry\":{\"rank\":1}}").Formula); // an older server
+        Assert.Contains("1 per 10 gold left · 2 per bone left", page); // no numbers from the server: the 0.16.0 text
+    }
+
+    [Fact]
+    public void How_points_are_counted_says_the_servers_numbers()
+    {
+        // Formula 4 (2026-11-01, Tythos): gold and bones left worth more; the server says what each part is worth.
+        var detail = RunDetail.FromJson("{\"date\":\"2026-11-02\",\"mode\":\"darkmirror\",\"level\":10,\"factor\":2.5,\"formula\":4," +
+            "\"rules\":{\"win\":20000,\"speed\":5,\"stage\":1000,\"boss\":1000,\"extraBoss\":3000,\"flawlessRoom\":150," +
+            "\"flawlessBoss\":1000,\"taken\":2,\"goldPerPoint\":5,\"bone\":25}," +
+            "\"entry\":{\"rank\":1,\"name\":\"Saver\",\"points\":90000,\"base\":90000,\"result\":\"win\",\"bonuses\":[]}," +
+            "\"breakdown\":[{\"key\":\"win\",\"value\":1,\"points\":20000},{\"key\":\"bones\",\"value\":14,\"points\":350}]}");
+        Assert.Equal(25, detail.Rules["bone"]);
+        string page = PageBlocks.Flatten(DailyPages.PointsPage(detail, null));
+        Assert.Contains("A win 20,000 · a fast win 5 for every second", page);
+        Assert.Contains("-2 per damage taken · 1 per 5 gold left · 25 per bone left", page);
+        Assert.Contains("each day and board has its own", page);
+        // Part of the rules missing: the text the mod knows.
+        var partial = RunDetail.FromJson("{\"formula\":4,\"rules\":{\"win\":1},\"entry\":{\"rank\":1}}");
+        Assert.Empty(partial.Rules);
+        // The quintessence of the day (2026-11-02: challenges apart from what the points count).
+        DailyPages.SkullName = id => id == "essence:Slime" ? "Slime" : null;
+        try
+        {
+            Assert.Equal("Quintessence of the day: win holding Slime", DailyPages.AchievementText("essence:Slime"));
+        }
+        finally
+        {
+            DailyPages.SkullName = id => DamageInsight.Codex.CodexPages.Entry(id)?.Name;
+        }
     }
 
     [Fact]

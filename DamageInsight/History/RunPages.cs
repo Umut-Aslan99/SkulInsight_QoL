@@ -143,7 +143,7 @@ public static class RunPages
     public static string Where(RunRecord r)
     {
         if (r.EndStageName.Length > 0)
-            return r.EndStageName;
+            return AnyLanguage.Here(r.EndStageName); // kept in its player's language
         return r.EndChapter.Length == 0 ? "" : Loc.F("{0} · stage {1}", ChapterName(r.EndChapter), r.EndStage + 1);
     }
 
@@ -262,7 +262,7 @@ public static class RunPages
         {
             RunResult.Ending when Decider(r).id.Length > 0 => Loc.F("Won: {0} defeated.", Ref(Decider(r).id, Decider(r).name, look)),
             RunResult.Ending => Loc.T("Won."),
-            RunResult.Death when r.Killer.Length > 0 => Loc.F("Killed by {0} in {1}.", Ref(r.KillerId, r.KillerId.Length > 0 ? r.Killer : Readable(r.Killer), look), where),
+            RunResult.Death when r.Killer.Length > 0 => Loc.F("Killed by {0} in {1}.", Ref(r.KillerId, r.KillerId.Length > 0 ? r.Killer : AnyLanguage.Here(Readable(r.Killer)), look), where),
             RunResult.Death => Loc.F("Died in {0}.", where),
             RunResult.Abandoned => Loc.F("Left in {0} (a new run started without an end).", where),
             _ => Loc.F("Still running: {0}.", where),
@@ -307,7 +307,7 @@ public static class RunPages
             foreach (var skull in top.Where(g => g.Kind == "skull"))
             {
                 int bar = skull.Extra.IndexOf('|');
-                string skills = bar >= 0 ? skull.Extra.Substring(bar + 1) : "";
+                string skills = AnyLanguage.Here(bar >= 0 ? skull.Extra.Substring(bar + 1) : ""); // the player's language
                 string held = skull.Extra.StartsWith("held") ? $" <color={DimColor}>({Loc.T("held")})</color>" : "";
                 sb.Append($"<b>{Ref(skull.Id, skull.Name, look)}</b>{held}{(skills.Length > 0 ? ": " + skills : "")}\n");
             }
@@ -450,7 +450,7 @@ public static class RunPages
             {
                 string share = total > 0 ? (row.Amount / total * 100).ToString("0.#", CultureInfo.InvariantCulture) + "%" : "";
                 string detail = $"<size=80%><color={DimColor}>  {Loc.P("{0} hit", "{0} hits", row.Hits)} · {Loc.F("best {0}", N(row.Biggest))}</color></size>";
-                sb.Append(PageBlocks.Bar(row.Name + detail, $"{N(row.Amount)}  ({share})", max > 0 ? row.Amount / max : 0));
+                sb.Append(PageBlocks.Bar(AnyLanguage.Here(row.Name) + detail, $"{N(row.Amount)}  ({share})", max > 0 ? row.Amount / max : 0));
             }
         }
         if (r.DamageTaken.Count > 0)
@@ -459,7 +459,7 @@ public static class RunPages
             double worst = r.DamageTaken.Max(p => p.Value.amount);
             sb.Append(PageBlocks.Section(Loc.F("Damage taken: {0}", N(taken)), "pix:heart"));
             // Parts of one boss (old runs kept their code names) are added up under its name.
-            var byName = r.DamageTaken.GroupBy(p => AttackerName(p.Key, look.Name))
+            var byName = r.DamageTaken.GroupBy(p => AnyLanguage.Here(AttackerName(p.Key, look.Name)))
                 .Select(g => (name: g.Key, amount: g.Sum(p => p.Value.amount), hits: g.Sum(p => p.Value.hits))).ToList();
             worst = byName.Count > 0 ? byName.Max(p => p.amount) : 0;
             foreach (var pair in byName.OrderByDescending(p => p.amount).Take(15))
@@ -501,7 +501,7 @@ public static class RunPages
             if (key != stage)
             {
                 stage = key;
-                string title = map.StageName.Length > 0 ? map.StageName : Loc.F("{0} · stage {1}", ChapterName(map.Chapter), map.Stage + 1);
+                string title = map.StageName.Length > 0 ? AnyLanguage.Here(map.StageName) : Loc.F("{0} · stage {1}", ChapterName(map.Chapter), map.Stage + 1);
                 sb.Append(PageBlocks.Section(title, "pix:door"));
             }
             int until = m + 1 < r.Maps.Count ? r.Maps[m + 1].T : int.MaxValue;
@@ -610,7 +610,7 @@ public static class RunPages
     {
         if (string.IsNullOrEmpty(id))
             return fallback ?? "";
-        string name = look.Name(id) ?? fallback ?? id;
+        string name = look.Name(id) ?? (string.IsNullOrEmpty(fallback) ? id : AnyLanguage.Here(fallback));
         return look.HasPage(id) ? CodexPages.LinkTo(id, name) : name;
     }
 }

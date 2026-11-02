@@ -159,7 +159,7 @@ Umut's admin removal. Good enough for a fan leaderboard.
   lands the last hit at the same time); Victory, Stage, Boss, Kills are the same for everyone who finishes. [Umut]
   drop kills and stages, keep bosses (the optional Dark Mirror two give extra), run time stronger, flawless rooms /
   boss fights (define flawless vs. a shield), bones left, a streak up to 30 days (Tythos: not in their tournaments).
-- Formula 3 from 2026-11-01 (server `points.py`, `formula_of`): see CHANGELOG 0.16.0. Flawless = no health lost (the
+- Formula 3 from 2026-10-31 (planned for 11-01, a day earlier so Tythos's community could try it before their tournament; runs finished that day before the switch were counted again from their run history, `main.rescore_formula_3_days`; server `points.py`, `formula_of`): see CHANGELOG 0.16.0. Flawless = no health lost (the
   game's own no-hit rule: a hit counts when it costs 1+ health); a win counts all five main boss fights; the day's
   records no longer add points; the streak (100 a day, up to 30) counts on the month board only (`monthBonus`).
 - The day's achievements (Umut 2026-10-30: a daily random subset, all achievable in one run, only the logical ones;
@@ -173,3 +173,30 @@ Umut's admin removal. Good enough for a fan leaderboard.
 - Ideas for later (Umut, Discord 2026-10-30): challenge-themed days (only physical items / skulls, only items with
   certain inscriptions, "how far in 20 minutes"), "pass on runs" (each player plays one chapter), randomizers, a
   tournament-only build for Tythos's live tournaments, a monthly video submission contest (Tythos).
+
+## Formula 4 and the second set of challenges (Tythos's feedback, 2026-11-01)
+
+What was said in Umut's Discord thread with Tythos (worth keeping, not all of it built):
+- **Yardstick: 1 second = 5 points** (the speed part). A flawless room (150) = 30 s, a flawless boss fight (1,000) =
+  200 s, a hit by a minion about 2 s, a heavy boss hit 8-12 s. Next to that, gold and bones left were worth nothing.
+- **Gold and bones left (built, formula 4 from 11-01):** Tythos: "1 point = 5-6 gold, and 1 bone dust = 25-30
+  points"; a late shop refresh + buy costs 3,000-4,000 gold, a bone room gives about 20 bones, speedruns end with
+  1,000-3,000 gold and under 15 bones; bones give more direct power than gold, so keeping them should pay. Umut first
+  worried about luck (a bone room early or late, a legendary drop); Tythos: holding bones at the end is a pure
+  disadvantage today, more points shift choices away from "only item rooms", some luck is normal in a roguelike. Built
+  1 per 5 gold, 25 per bone. Claude proposed a cap (10,000 gold / 100 bones: today's runs gathered 43-58k gold and
+  370-630 bones, so a run that never shops or upgrades could keep ~21,500 points' worth, more than a win); **Umut
+  chose no cap**. Watch the boards for hoarding runs. November 1's runs were counted again (only those two parts).
+- **Unique builds (rejected):** Umut's idea, points for a skull pair nobody else posted that day. Tythos: players who
+  join early get the most options; unfair for a community contest. Umut agreed.
+- **The day's challenges (built from 11-02):** Tythos: "daily challenges overlap a lot with the base scoring rules
+  ... beating a boss without taking damage will reward both"; and since they are shown before the run, they should be
+  "completing some in-run conditions, rather than just being a raw skill check" (Umut: beating DM 10 DLC is already the
+  skill check). Now: one of the game's achievements that is a choice (SkeletonKing, WhattoBuy, BestCondition in the
+  Dark Mirror), a skull of the day and a quintessence of the day (common or rare, win holding it; points.ESSENCES). No
+  no-hit bosses, no flawless chapter. Ideas for more in-run conditions: N items of one inscription, an Omen item, a
+  given dark ability (Dark Mirror), finishing with N bones or gold (but those count already).
+- Tythos's aim for the event: "I don't want this contest to only reward the fastest speedrunner ... a space for
+  everyone to share ideas and learn from each other". Keep in mind when the speed part is next tuned.
+- The mod's "How points are counted" takes the numbers from the server (rules in /api/board and /api/runs/detail,
+  0.16.1), so changing a rate needs no mod update.

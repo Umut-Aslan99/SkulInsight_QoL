@@ -20,47 +20,37 @@ public sealed class WhatsNew : MonoBehaviour
     /// <summary>The window is open (the cursor stays visible: CursorPatch).</summary>
     public static bool IsOpen { get; private set; }
 
-    /// <summary>"0.12" of "0.12.1": a hotfix of the same version doesn't show the same highlights again.</summary>
-    private static string Feature(string version)
+    private static WhatsNew _instance;
+    /// <summary>Opened from the settings page (General, Changelog): not the once-after-an-update window.</summary>
+    private bool _fromSettings;
+    private RectTransform _content, _viewport;
+    private bool _navigation = true; // the event system's navigation before the window took the arrow keys
+
+    private void Awake() => _instance = this;
+
+    /// <summary>The changelog from the settings page (General, Changelog): every version, the newest in the box.</summary>
+    public static void OpenChangelog()
     {
-        var parts = (version ?? "").Split('.');
-        return parts.Length >= 2 ? parts[0] + "." + parts[1] : version ?? "";
+        if (_instance == null || _instance._canvas != null)
+            return;
+        _instance._fromSettings = true;
+        Patches.Guard.Run("Changelog", _instance.Show);
     }
 
-    /// <summary>
-    /// The highlights of this version (English keys, translated when shown); after a version skipped (0.13 straight to
-    /// 0.15: 0.14.0 was withdrawn from Thunderstore), one line names what 0.14 brought.
-    /// </summary>
-    private static string[] Highlights(string lastSeen)
+    /// <summary>Esc on the settings page while the window is open: the window closes first.</summary>
+    public static bool CloseIfOpen()
     {
-        var list = new System.Collections.Generic.List<string>
-        {
-            Loc.T("Restart room: press F5 twice to go back to the moment you entered the room, as when you close the game and continue. In a daily run it ends the run."),
-            Loc.T("Daily points, new from November 1: the boss fights instead of the game's double-counted kills, speed counts more, flawless rooms and boss fights (no health lost) count, and four achievements of the day give bonus points. The day's board is the run alone; the streak counts on the month board."),
-            Loc.T("Yesterday's daily winners give their names to the adventurers you meet."),
-            Loc.T("The settings page is new: the features on the left in groups (what changes the game, what only shows, helpers, online, general), each with its switch; hover one to see its settings on the right."),
-            Loc.T("Fixed: hovering with the mouse selects items, skulls and dark abilities again; the game no longer stutters when a strong build kills a lot."),
-            Loc.T("The crash reports now also note frames per second and what slows the game down (setting Show FPS for a line on screen)."),
-        };
-        if (OlderThan(lastSeen, 0, 15))
-            list.Add(Loc.T("Also new since 0.15: rewards for achievements, coins, kill quests and inscription activations (they can be turned off at the top of the settings page), six daily boards."));
-        if (OlderThan(lastSeen, 0, 14))
-            list.Add(Loc.T("Also new since 0.14: achievements per save slot with a small notice, Clear view, the Mods browser, healing orbs that are easier to see, macOS."));
-        return list.ToArray();
-    }
-
-    private static bool OlderThan(string version, int major, int minor)
-    {
-        var parts = (version ?? "").Split('.');
-        if (parts.Length < 2 || !int.TryParse(parts[0], out int a) || !int.TryParse(parts[1], out int b))
-            return false; // never shown before: a new player needs no history
-        return a < major || a == major && b < minor;
+        if (_instance == null || _instance._canvas == null)
+            return false;
+        _instance.Close();
+        return true;
     }
 
     private void Update()
     {
-        if (_shown || Plugin.WhatsNewEnabled == null || !Plugin.WhatsNewEnabled.Value
-            || Feature(Plugin.LastVersionSeen.Value) == Feature(MyPluginInfo.PLUGIN_VERSION))
+        // After every update, a hotfix too (Umut 2026-11-01: "Our whats new should open up once the mod updated").
+        if (_shown || _canvas != null || Plugin.WhatsNewEnabled == null || !Plugin.WhatsNewEnabled.Value
+            || Plugin.LastVersionSeen.Value == MyPluginInfo.PLUGIN_VERSION)
             return;
         // Only in the castle, a moment after arriving (never in the middle of a fight).
         var chapter = Singleton<Service>.Instance?.levelManager?.currentChapter;
@@ -96,8 +86,9 @@ public sealed class WhatsNew : MonoBehaviour
 
         // A new player (nothing seen before) gets the welcome with the choice instead (0.16, Umut 2026-10-30: the split,
         // option 1: what only shows information apart from what changes the game; gameplay off unless chosen).
-        _welcome = string.IsNullOrEmpty(Plugin.LastVersionSeen?.Value);
+        _welcome = !_fromSettings && string.IsNullOrEmpty(Plugin.LastVersionSeen?.Value);
         var title = UiKit.Text("Title", rect, _welcome ? Loc.F("Welcome to SkulInsight QoL {0}", MyPluginInfo.PLUGIN_VERSION)
+            : _fromSettings ? $"SkulInsight QoL {MyPluginInfo.PLUGIN_VERSION}  ·  {Loc.T("Changelog")}"
             : Loc.F("SkulInsight QoL {0}: what's new", MyPluginInfo.PLUGIN_VERSION), 30,
             TextAlignmentOptions.Center, new Color32(0xF2, 0xD7, 0x8B, 0xFF));
         title.rectTransform.Place(30, 24, 800, 44);
@@ -107,16 +98,70 @@ public sealed class WhatsNew : MonoBehaviour
             return;
         }
 
-        var sb = new System.Text.StringBuilder();
-        foreach (string line in Highlights(Plugin.LastVersionSeen?.Value))
-            sb.Append("»  ").Append(line).Append("\n<size=45%>\n</size>");
-        sb.Append($"<color=#A89F94>{Loc.T("Everything else: the Changelog button in your mod manager.")}</color>");
-        var body = UiKit.Text("Body", rect, sb.ToString(), 18);
-        body.rectTransform.Place(40, 84, 780, 450);
-        // German and Russian are about a third longer: the text shrinks to fit rather than run into the button.
-        body.enableAutoSizing = true;
-        body.fontSizeMin = 13;
-        body.fontSizeMax = 18;
+        // Every version (Umut 2026-11-01: "should include ALL changelogs"), what is new for the player in a box at the
+        // top ("boxed in and highlighted, cause only that really matters"), the earlier ones below; it scrolls.
+        var (boxed, earlier) = Changelog.Split(_fromSettings ? MyPluginInfo.PLUGIN_VERSION : Plugin.LastVersionSeen?.Value);
+        _viewport = UiKit.Rect("Changelog", rect);
+        _viewport.Place(30, 80, 790, 462);
+        _viewport.gameObject.AddComponent<UnityEngine.UI.Image>().color = Color.clear; // catches the mouse wheel
+        _viewport.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+        _content = UiKit.Rect("Versions", _viewport);
+        _content.anchorMin = new Vector2(0f, 1f);
+        _content.anchorMax = new Vector2(1f, 1f);
+        _content.pivot = new Vector2(0.5f, 1f);
+        _content.anchoredPosition = Vector2.zero;
+
+        const float width = 770f, pad = 16f;
+        var box = UiKit.Image("New", _content, new Color32(0x33, 0x25, 0x40, 0xFF));
+        var boxLine = box.gameObject.AddComponent<UnityEngine.UI.Outline>();
+        boxLine.effectColor = UiKit.ChipOn;
+        boxLine.effectDistance = new Vector2(2, -2);
+        var boxText = UiKit.Text("New text", box.rectTransform, Changelog.Text(boxed), 18);
+        float boxHeight = boxText.GetPreferredValues(boxText.text, width - 2 * pad, 0f).y + 2 * pad;
+        box.rectTransform.Place(2, 2, width - 4, boxHeight);
+        boxText.rectTransform.Place(pad, pad, width - 2 * pad, boxHeight - 2 * pad);
+        float y = boxHeight + 22f;
+        if (earlier.Count > 0)
+        {
+            var heading = UiKit.Text("Earlier", _content, Loc.T("Earlier versions"), 16, TextAlignmentOptions.TopLeft,
+                new Color32(0xA8, 0x9F, 0x94, 0xFF));
+            heading.rectTransform.Place(pad, y, width - 2 * pad, 24);
+            y += 30f;
+            var rest = UiKit.Text("Earlier text", _content, Changelog.Text(earlier), 16, TextAlignmentOptions.TopLeft,
+                new Color32(0xC9, 0xC0, 0xB5, 0xFF));
+            float restHeight = rest.GetPreferredValues(rest.text, width - 2 * pad, 0f).y;
+            rest.rectTransform.Place(pad, y, width - 2 * pad, restHeight);
+            y += restHeight + 12f;
+        }
+        _content.sizeDelta = new Vector2(0f, y);
+
+        var scroll = _viewport.gameObject.AddComponent<UnityEngine.UI.ScrollRect>();
+        scroll.content = _content;
+        scroll.viewport = _viewport;
+        scroll.horizontal = false;
+        scroll.vertical = true;
+        scroll.movementType = UnityEngine.UI.ScrollRect.MovementType.Clamped;
+        scroll.inertia = false;
+        scroll.scrollSensitivity = 40f;
+        var bar = UiKit.Image("Scroll bar", rect, new Color32(0x3A, 0x2E, 0x46, 0xFF));
+        bar.rectTransform.Place(826, 80, 6, 462);
+        var handle = UiKit.Image("Handle", bar.rectTransform, UiKit.ChipOn);
+        handle.rectTransform.Fill();
+        var scrollbar = bar.gameObject.AddComponent<UnityEngine.UI.Scrollbar>();
+        scrollbar.handleRect = handle.rectTransform;
+        scrollbar.targetGraphic = handle;
+        scrollbar.direction = UnityEngine.UI.Scrollbar.Direction.BottomToTop;
+        scrollbar.transition = UnityEngine.UI.Selectable.Transition.None;
+        scrollbar.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.None };
+        scroll.verticalScrollbar = scrollbar;
+        scroll.verticalScrollbarVisibility = UnityEngine.UI.ScrollRect.ScrollbarVisibility.AutoHide;
+        // The arrow keys scroll this window (LateUpdate), not the menu behind it.
+        var events = UnityEngine.EventSystems.EventSystem.current;
+        if (events != null)
+        {
+            _navigation = events.sendNavigationEvents;
+            events.sendNavigationEvents = false;
+        }
 
         var close = new UiKit.Chip(rect, Loc.T("Got it"), 0, 0, 160, Close, UiKit.ChipOn);
         close.SetOn(true);
@@ -126,9 +171,34 @@ public sealed class WhatsNew : MonoBehaviour
         close.Background.rectTransform.anchoredPosition = new Vector2(0, 22);
         close.Background.rectTransform.sizeDelta = new Vector2(160, 36);
 
-        var hint = UiKit.Text("Hint", rect, Loc.T("Shown once after an update (setting: What's new)."), 14,
-            TextAlignmentOptions.BottomRight, new Color32(0x8A, 0x80, 0x76, 0xFF));
-        hint.rectTransform.Stretch(20, 570, 20, 10);
+        if (!_fromSettings)
+        {
+            var hint = UiKit.Text("Hint", rect, Loc.T("Shown once after an update (setting: What's new)."), 14,
+                TextAlignmentOptions.BottomRight, new Color32(0x8A, 0x80, 0x76, 0xFF));
+            hint.rectTransform.Stretch(20, 570, 20, 10);
+        }
+    }
+
+    /// <summary>The arrow keys, Page Up / Down, Home and End scroll the changelog.</summary>
+    private void ScrollKeys()
+    {
+        if (_content == null || _viewport == null)
+            return;
+        float view = _viewport.rect.height, most = Mathf.Max(0f, _content.rect.height - view), step = 0f;
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            step = 60f;
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            step = -60f;
+        else if (Input.GetKeyDown(KeyCode.PageDown))
+            step = view * 0.9f;
+        else if (Input.GetKeyDown(KeyCode.PageUp))
+            step = -view * 0.9f;
+        else if (Input.GetKeyDown(KeyCode.Home))
+            step = -most;
+        else if (Input.GetKeyDown(KeyCode.End))
+            step = most;
+        if (step != 0f)
+            _content.anchoredPosition = new Vector2(_content.anchoredPosition.x, Mathf.Clamp(_content.anchoredPosition.y + step, 0f, most));
     }
 
     private bool _welcome;
@@ -183,15 +253,24 @@ public sealed class WhatsNew : MonoBehaviour
             Choose(false);
         else if (!_welcome && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)))
             Close();
+        else
+            ScrollKeys();
     }
 
     private void Close()
     {
         MenuSounds.Play(MenuSounds.Kind.Close);
-        Plugin.LastVersionSeen.Value = MyPluginInfo.PLUGIN_VERSION;
+        // From the settings page it was looked at, not shown after an update (a new player's welcome still comes).
+        if (!_fromSettings)
+            Plugin.LastVersionSeen.Value = MyPluginInfo.PLUGIN_VERSION;
+        var events = UnityEngine.EventSystems.EventSystem.current;
+        if (events != null && _content != null)
+            events.sendNavigationEvents = _navigation;
         if (_canvas != null)
             Destroy(_canvas.gameObject);
         _canvas = null;
+        _content = _viewport = null;
+        _fromSettings = false;
         IsOpen = false;
     }
 }

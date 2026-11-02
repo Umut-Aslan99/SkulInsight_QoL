@@ -86,7 +86,10 @@ public static class DailyPages
                 string mark = done ? $"<color={RunPages.WinColor}>{Loc.T("done")}</color>  " : "";
                 sb.Append(PageBlocks.Line("", $"{mark}{AchievementText(id)}  <color={RunPages.DimColor}>+{N(points)}</color>"));
             }
-            sb.Append($"<color={RunPages.DimColor}>{Loc.T("Bonus points (times the difficulty) for each of the day's achievements your run gets; a no-hit one also counts when the run history saw that fight without health lost.")}</color>\n");
+            // From 2026-11-02 the day has no no-hit achievements (Tythos: the points count flawless boss fights already).
+            sb.Append($"<color={RunPages.DimColor}>{(day.Achievements.Any(a => NoHit.Contains(a.id))
+                ? Loc.T("Bonus points (times the difficulty) for each of the day's achievements your run gets; a no-hit one also counts when the run history saw that fight without health lost.")
+                : Loc.T("Bonus points (times the difficulty) for each of the day's achievements your run gets."))}</color>\n");
         }
         if (otherMods.Length > 0)
             sb.Append($"<color={RunPages.DeathColor}>{Loc.F("Other mods are loaded ({0}): today's run won't count on the board. Only runs with SkulInsight alone count.", otherMods)}</color>\n");
@@ -148,10 +151,21 @@ public static class DailyPages
             sb.Append($"<size=130%><b>{N(e.Points)}</b></size>  ·  {Loc.F("place {0}", e.Rank)}\n");
             sb.Append(PageBlocks.Section(Loc.T("How points are counted"), "pix:door"));
             sb.Append($"<color={RunPages.DimColor}>");
-            sb.Append(Loc.T("A win 20,000 · a fast win 5 for every second under an hour · a run that didn't win 1,000 per stage it reached · 1,000 per boss fight won (a win counts all five) · 3,000 per optional boss (the Dark Mirror's two after the First Hero) · 150 per flawless room · 1,000 per flawless boss fight · -2 per damage taken · 1 per 10 gold left · 2 per bone left. Harder days count more (Dark Mirror n: x(1 + 0.15 n)).")).Append('\n');
+            if (d.Rules.Count > 0)
+            {
+                // The numbers from the server (2026-11-01: formula 4 made gold and bones left worth more).
+                var r = d.Rules;
+                sb.Append(Loc.F("A win {0} · a fast win {1} for every second under an hour · a run that didn't win {2} per stage it reached · {3} per boss fight won (a win counts all five) · {4} per optional boss (the Dark Mirror's two after the First Hero) · {5} per flawless room · {6} per flawless boss fight · -{7} per damage taken · 1 per {8} gold left · {9} per bone left. Harder days count more (Dark Mirror n: x(1 + 0.15 n)).",
+                    N(r["win"]), N(r["speed"]), N(r["stage"]), N(r["boss"]), N(r["extraBoss"]), N(r["flawlessRoom"]), N(r["flawlessBoss"]),
+                    N(r["taken"]), N(r["goldPerPoint"]), N(r["bone"]))).Append('\n');
+            }
+            else
+                sb.Append(Loc.T("A win 20,000 · a fast win 5 for every second under an hour · a run that didn't win 1,000 per stage it reached · 1,000 per boss fight won (a win counts all five) · 3,000 per optional boss (the Dark Mirror's two after the First Hero) · 150 per flawless room · 1,000 per flawless boss fight · -2 per damage taken · 1 per 10 gold left · 2 per bone left. Harder days count more (Dark Mirror n: x(1 + 0.15 n)).")).Append('\n');
             sb.Append(Loc.T("Flawless: a room with a fight (an enemy died) or a boss fight in which you lost no health. A shield taking a hit, a dodge or a hit that does nothing keeps it flawless.")).Append('\n');
             sb.Append(Loc.T("The daily streak (100 per day in a row, up to 30 days, times the difficulty) counts on the month board only.")).Append('\n');
-            sb.Append(Loc.T("The day's achievements: each day and board has four (two of the game's, a skull of the day, a flawless chapter), worth 300 to 1,500 each.")).Append('\n');
+            sb.Append(d.Rules.Count > 0
+                ? Loc.T("The day's achievements: each day and board has its own (the Daily page lists them), worth 300 to 1,500 each.")
+                : Loc.T("The day's achievements: each day and board has four (two of the game's, a skull of the day, a flawless chapter), worth 300 to 1,500 each.")).Append('\n');
             sb.Append("</color>");
             return sb.ToString();
         }
@@ -184,11 +198,20 @@ public static class DailyPages
     /// <summary>The skull of the day's name (the Codex's name in the player's language; tests set their own).</summary>
     public static System.Func<string, string> SkullName = id => CodexPages.Entry(id)?.Name;
 
-    /// <summary>One of the day's achievements in words: the game's (name: what to do), a skull of the day, a chapter.</summary>
+    /// <summary>The game's no-hit boss achievements (the day's achievements had them until 2026-11-01).</summary>
+    private static readonly System.Collections.Generic.HashSet<string> NoHit = new()
+        { "SavedElderEnt_2", "TheendofGoldManeKnights_2", "FakeGoddessGone_2", "LeoniasFall_2", "FirstHeroLastBattle_2", "WorldsBest" };
+
+    /// <summary>
+    /// One of the day's achievements in words: the game's (name: what to do), a skull of the day, a quintessence of the
+    /// day (2026-11-02, Tythos: challenges apart from what the points count), a chapter.
+    /// </summary>
     public static string AchievementText(string id)
     {
         if (id.StartsWith("skull:", System.StringComparison.Ordinal))
             return Loc.F("Skull of the day: win holding {0} (any of its forms)", SkullName(id) ?? id.Substring(6));
+        if (id.StartsWith("essence:", System.StringComparison.Ordinal))
+            return Loc.F("Quintessence of the day: win holding {0}", SkullName(id) ?? id.Substring(8));
         if (id.StartsWith("chapter:", System.StringComparison.Ordinal))
             return Loc.F("Flawless chapter: clear chapter {0} without losing health", id.Substring(8));
         var info = DamageInsight.Achievements.AchievementCatalog.Get(id);

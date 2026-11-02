@@ -109,6 +109,8 @@ public static class SettingsCatalog
     public const string ResetCodex = "ResetCodex";
     /// <summary>Action rows: open the crash reports folder (Crash/CrashReporter).</summary>
     public const string OpenCrashReports = "OpenCrashReports";
+    /// <summary>Action rows: the changelog in the game (UI/Changelog, Tythos 2026-11-01).</summary>
+    public const string OpenChangelog = "OpenChangelog";
     public const string OpenFeature = "OpenFeature"; // a feature without a main switch on the left: into its settings
     /// <summary>Action rows: save the run into the selected save state slot / load it / delete it.</summary>
     public const string SlotPlay = "SlotPlay", SlotCopy = "SlotCopy", SlotClear = "SlotClear";
@@ -152,7 +154,7 @@ public static class SettingsCatalog
         "Cooldown Ticker/Enabled", "Codex/Enabled", "Codex/ToggleKey", "Codex/AchievementNotice", "Codex/AchievementSound",
         "Clear View/Enabled", "Clear View/LowestOpacity", "Heal Orbs/Look", "Heal Orbs/Reminder",
         "Daily/Enabled",
-        "General/Language", "General/PerformanceOverlay", "action:" + OpenCrashReports,
+        "General/Language", "action:" + OpenChangelog, "General/PerformanceOverlay", "action:" + OpenCrashReports,
         SaveSlotsSection + "/Slot", "action:" + SlotPlay, "action:" + SlotCopy, "action:" + SlotClear,
         "Mods/Enabled", AllSettings + "/Show", "action:" + ResetAll,
     };
@@ -354,6 +356,7 @@ public static class SettingsCatalog
             Loc.N("The adventurers you meet in runs carry the names of yesterday's daily run winners (each board's first place). Needs daily runs on.")),
         ["General/WhatsNew"] = On(Loc.N("What's new"),
             Loc.N("After an update, show once (in the castle) what's new in this version.")), // the "Window position" reset row stands in for it
+        // (The Changelog row follows it: Build adds it after General/WhatsNew.)
         ["General/CrashReports"] = On(Loc.N("Crash reports"),
             Loc.N("Keep a report of every game session in BepInEx/DamageInsight/CrashReports (the newest 20): errors, what happened before them, and whose code they were in (the game's, SkulInsight's or another mod's). Says so on screen when the game seems stuck or the last session ended unexpectedly. Send the report with a bug report.")),
         ["All settings/Show"] = On(Loc.N("All settings"),
@@ -478,6 +481,16 @@ public static class SettingsCatalog
             var item = Item(pair.Value, icons, inscriptionName);
             if (item != null)
                 items.Add((rank, order++, item));
+
+            if (section == "General" && pair.Key.Key == "WhatsNew")
+            {
+                items.Add((rank, order++, new SettingItem
+                {
+                    Section = Heading(section), ConfigSection = section, Label = Loc.T("Changelog"), Kind = SettingKind.Action, Action = OpenChangelog,
+                    ButtonLabel = Loc.T("Open"),
+                    Help = Loc.T("Every version's changes in your language, newest first; what is new in the box at the top."),
+                }));
+            }
 
             if (section == "General" && pair.Key.Key == "CrashReports")
             {

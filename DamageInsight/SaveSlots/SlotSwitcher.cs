@@ -258,6 +258,10 @@ internal static class SlotSwitcher
     /// <paramref name="roomSave"/> (Restart room, 0.16): the game's data as it was saved when the room was entered goes
     /// back in place first (the game's settings stay), so the run continues from the room's start, as after closing
     /// the game and continuing.
+    /// The steps follow the game's own reload for another platform user (PlatformUserChangedHandler.OnUserChanged),
+    /// including its last one: the saved run's gear is loaded in advance again. The game does that once when it starts
+    /// and hands it over when the run continues (Inventory.LoadFromSave); without it the run went on as Little Bone
+    /// with no gear (0.16.0, Tythos 2026-10-31: "reset to the starting character with all my gear gone").
     /// </summary>
     internal static void ReturnToTitle(SaveFileModel roomSave = null)
     {
@@ -269,6 +273,7 @@ internal static class SlotSwitcher
             PersistentSingleton<SoundManager>.Instance.StopBackGroundMusic();
             levels.Reset();
         });
+        levels.DestroyPlayer(); // done by Reset too, unless it stopped half way
         levels._currentChapterIndex = -1;
         SceneManager.LoadScene("Main");
         levels.ClearEvents();
@@ -284,6 +289,7 @@ internal static class SlotSwitcher
         GameData.Initialize();
         PoolObject.DespawnAll();
         PoolObject.Clear();
+        global::GameResourceLoader.instance?.PreloadSavedGear();
         PersistentSingleton<PlatformManager>.Instance.SaveDataToFile();
     }
 

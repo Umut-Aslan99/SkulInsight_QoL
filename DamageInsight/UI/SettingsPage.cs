@@ -202,6 +202,8 @@ public sealed class SettingsPage : global::UI.Dialogue
     /// </summary>
     internal static bool HandleBack()
     {
+        if (WhatsNew.CloseIfOpen())
+            return true; // the changelog (opened from here) closes first, the page stays
         var page = _current;
         if (page == null || !page.isActiveAndEnabled || !page.focused || page._topSinceFrame < 0 || page._topSinceFrame >= Time.frameCount)
             return false;
@@ -938,6 +940,9 @@ public sealed class SettingsPage : global::UI.Dialogue
                 break;
             case SettingKind.Action when row.Item.Action == SettingsCatalog.OpenCrashReports:
                 Crash.CrashReporter.OpenFolder();
+                break;
+            case SettingKind.Action when row.Item.Action == SettingsCatalog.OpenChangelog:
+                WhatsNew.OpenChangelog();
                 break;
             case SettingKind.Action when row.Item.Action is SettingsCatalog.SlotPlay or SettingsCatalog.SlotCopy or SettingsCatalog.SlotClear:
                 SlotAction(row);

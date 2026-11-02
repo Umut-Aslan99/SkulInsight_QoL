@@ -60,6 +60,7 @@ public sealed partial class CodexWindow
         _dailyCount = _dailyEmpty = null;
         _dailyEnableChip = _dailyPlayChip = _dailyLeaveChip = _dailySendChip = _dailySkipChip = null;
         _dailyName = null;
+        _dailyNamePrefilled = false;
     }
 
     // ---------------------------------------------------------------- left page: the boards
@@ -270,8 +271,9 @@ public sealed partial class CodexWindow
             {
                 row.Icon.sprite = PixelIcons.Get(e.Won ? "crown" : e.Result == "death" ? "bones" : "flag");
                 row.Icon.color = Color.white;
-                string bosses = e.EndBosses.Count > 0 ? "  ·  " + string.Join(" · ", e.EndBosses.Select(DailyText)) : "";
-                row.Detail.text = $"{RunPages.Time(e.PlaySeconds)}  ·  {DailyText(e.Skull)}{bosses}";
+                // Names as the player's game wrote them: shown in the viewer's language (Lang/AnyLanguage).
+                string bosses = e.EndBosses.Count > 0 ? "  ·  " + string.Join(" · ", e.EndBosses.Select(b => DailyText(AnyLanguage.Here(b)))) : "";
+                row.Detail.text = $"{RunPages.Time(e.PlaySeconds)}  ·  {DailyText(AnyLanguage.Here(e.Skull))}{bosses}";
             }
         }
 
@@ -415,9 +417,20 @@ public sealed partial class CodexWindow
         _dailyName.gameObject.SetActive(naming);
         _dailySendChip.Background.gameObject.SetActive(naming);
         _dailySkipChip.Background.gameObject.SetActive(naming);
-        if (naming && string.IsNullOrEmpty(_dailyName.text))
-            _dailyName.text = Plugin.DailyName?.Value is { Length: > 0 } configured ? configured : DailyService.State.Name;
+        // The last name once, when the box appears. Not every time it is empty: the page is drawn again every second,
+        // so a box emptied to type a new name got the old one back at once, and an input method (Pinyin) composing a
+        // name counts as empty too (0.16.0, Tythos 2026-11-02: "you can't change it again afterward").
+        if (naming && !_dailyNamePrefilled)
+        {
+            _dailyNamePrefilled = true;
+            if (string.IsNullOrEmpty(_dailyName.text))
+                _dailyName.text = Plugin.DailyName?.Value is { Length: > 0 } configured ? configured : DailyService.State.Name;
+        }
+        else if (!naming)
+            _dailyNamePrefilled = false;
     }
+
+    private bool _dailyNamePrefilled;
 
     private void BuildDailyControls()
     {

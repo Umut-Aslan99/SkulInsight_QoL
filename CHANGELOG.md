@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.16.1 (restart room fix, daily points 4, the day's challenges)
+
+- **Fixed: Restart room (F5)** brought the run back as Little Bone with no gear (closing and reopening the game
+  brought it back). The game loads a run's gear in advance when it starts; the restart now does that again, the way
+  the game itself does when the platform user changes. The same fix applies to switching to a save slot whose run is
+  in progress. If it happened to you with 0.16.0: close the game before entering another room, and the room's save
+  is still there.
+- **Daily points** (on the server, for every version of the mod; feedback from Tythos and his community):
+  - Formula 3 started a day early, on **October 31**; the day's runs finished before the switch were counted again.
+  - **Formula 4 from November 1:** gold and bones left are worth much more: **1 point per 5 gold** (was 10) and
+    **25 per bone** (was 2). Keeping them means giving up power, so it is now a real choice. November 1's runs were
+    counted again (only those two parts changed; no place changed).
+  - **The day's achievements from November 2:** none that the points count already (no more no-hit bosses or
+    flawless chapters: a flawless boss fight paid twice). Each day and board has one of the game's achievements that
+    is a choice in the run (the First Hero as Little Bone, a minute in the black market, 4 dark abilities), a **skull
+    of the day** and a **quintessence of the day** to win holding. All shown before the run, so you can plan for them.
+- **"How points are counted"** on a run's Points page now shows the numbers the server sends, so the next tuning
+  needs no update of the mod. The quintessence of the day has its own line on the Daily page.
+- **Runs in your language:** other players' runs (and your own after changing the language) show their skills,
+  damage table, enemies and stages in your language, also runs sent before this version. The mod finds each
+  name in the game's own texts of every language (Umut: a Chinese player's run was unreadable for him).
+- **Fixed: the name for the daily board** could not be changed once a name had been used: emptying the box brought
+  the old name back at once (also while an input method like Pinyin was composing a new one).
+- **The changelog in the game** (Tythos: many players never open GitHub or the mod manager's changelog): settings
+  → General → **Changelog** shows every version's highlights in your language, newest first, back to 0.9.0. The
+  **What's new** window now opens once after every update (small ones too) and is the same list: what is new for
+  you sits in a highlighted box at the top, the earlier versions below (scroll with the mouse wheel or the arrow
+  keys).
+
 ## 0.16.0 (restart room, daily points 3, fixes from the first players)
 
 - **Restart room** (press **F5** twice within 3 seconds): back to the moment you entered the
