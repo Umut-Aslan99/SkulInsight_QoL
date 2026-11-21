@@ -39,6 +39,38 @@ feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
 ## Features
 
+### Online co-op (open beta, 0.17)
+
+![Two players against the Archbishop's second phase](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-pope.jpg)
+
+Play a run **together**: invite a Steam friend from the **Co-op** window (F3, or the Co-op button in the pause menu),
+or find a partner through **matchmaking**. Off by default: pause (Esc) → SkulInsight QoL → **Online co-op (open
+beta)**, then restart the game. Two players for now.
+
+![The same moment on both games: the host's (left) and the joining player's (right)](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-both-games.jpg)
+
+- **One run, the host's world:** enemies and bosses are shared (the host's game runs them, everyone hits the same
+  ones), room clears and doors (a vote), and gold drops for everyone. Room rewards, shops and gear are your own, and
+  everybody keeps their own save.
+- **Revive:** a downed teammate shows a ring; hold the interact key at it.
+
+![Reviving a teammate during an adventurer fight](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-revive.jpg)
+
+- **Seeing each other:** name tags, a colour per player and an outline in it; your teammate's moves, projectiles,
+  quintessences and summons show on your game, drawn a little fainter so your own stay readable. Enemy projectiles
+  that can hit you get a thin red outline (also when you play alone).
+
+![Your teammate in their colour, mid-fight](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-teammate.jpg)
+
+- **Enemy health** scales with the players (the host sets 1.5x to 3x); boss HP numbers and the damage numbers work
+  as alone, and the combat log has a **Players** chart.
+- **Stuck?** F6 takes you to your teammate. **Found a bug?** The Co-op window's **Report a bug or idea** packs your
+  logs (Steam ids hidden) and opens the report page.
+
+| | | |
+|---|---|---|
+| ![An adventurer's beam in co-op](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-adventurer.jpg) | ![A quintessence in a co-op fight](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-quintessence.jpg) | ![Boss HP numbers and a stun in co-op](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-boss-hp.jpg) |
+
 ### Damage numbers with their source
 - Every damage number shows where it came from: an icon or a colour-coded tag.
   - Basic attack, skill, item, essence, dash, swap, dark ability
