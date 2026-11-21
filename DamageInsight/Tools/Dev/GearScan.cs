@@ -25,7 +25,7 @@ namespace DamageInsight.Tools;
 /// </summary>
 public static class GearScan
 {
-    public static string OutputFolder => Path.Combine(Paths.BepInExRootPath, "DamageInsight", "GearScan");
+    public static string OutputFolder => ModData.Folder("GearScan");
 
     private static readonly HashSet<string> WrittenCharacters = new();
     private static readonly HashSet<string> SeenAssets = new();

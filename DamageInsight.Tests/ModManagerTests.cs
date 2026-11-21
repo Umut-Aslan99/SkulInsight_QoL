@@ -84,6 +84,29 @@ public class ModManagerTests : IDisposable
     }
 
     [Fact]
+    public void Scan_FoldsOurPreloaderIntoThisMod_EvenUnderAnotherFolderName()
+    {
+        // a hand install / the friend package: plugins/DamageInsight + patchers/SkulInsight (COOP_LOG 59g)
+        string plugin = Path.Combine(BepInEx, "plugins", "DamageInsight"), patcher = Path.Combine(BepInEx, "patchers", "SkulInsight");
+        Directory.CreateDirectory(plugin);
+        Directory.CreateDirectory(patcher);
+        File.WriteAllText(Path.Combine(plugin, ModFolders.OwnDll), "mod");
+        File.WriteAllText(Path.Combine(patcher, ModFolders.OwnPreloaderDll), "preloader");
+        var mine = Assert.Single(ModFolders.Scan(BepInEx));
+        Assert.Equal("DamageInsight", mine.Id);
+        Assert.Equal(patcher, mine.PatcherFolder);
+        Assert.Equal(2, mine.Dlls.Count);
+
+        // another mod's patcher stays its own mod; our preloader without our plugin too (a leftover)
+        string other = Path.Combine(BepInEx, "patchers", "Owner-Early");
+        Directory.CreateDirectory(other);
+        File.WriteAllText(Path.Combine(other, "Early.dll"), "theirs");
+        Assert.Equal(2, ModFolders.Scan(BepInEx).Count);
+        File.Delete(Path.Combine(plugin, ModFolders.OwnDll));
+        Assert.Contains(ModFolders.Scan(BepInEx), m => m.Id == "SkulInsight");
+    }
+
+    [Fact]
     public void Update_MovesTheOldVersionToTheBackup()
     {
         ModFolders.Install(BepInEx, "Owner-Mod", ZipReader.Read(Zip(("Mod.dll", "v1"), ("old.txt", "x"))), Backup);

@@ -25,7 +25,7 @@ public sealed class ModService : MonoBehaviour
 
     public static ModService Instance { get; private set; }
 
-    public static string Folder => Path.Combine(Paths.BepInExRootPath, "DamageInsight", "Mods");
+    public static string Folder => ModData.Folder("Mods");
     public static string Backup => Path.Combine(Folder, "Backup");
     private static string ListCache => Path.Combine(Folder, "packages.json");
     private static string IconCache => Path.Combine(Folder, "Icons");

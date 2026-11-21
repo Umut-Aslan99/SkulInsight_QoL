@@ -215,6 +215,49 @@ public static class PixelIcons
             "bBBBBkBBBBb",
             "bbbbbbbbbbb",
         },
+        // The door vote's badges (what a door leads to) and its voter mark.
+        ["skull"] = new[]
+        {
+            "..kkkkkkk..",
+            ".kwwwwwwwk.",
+            "kwwwwwwwwwk",
+            "kwwkkwkkwwk",
+            "kwwkkwkkwwk",
+            "kwwwwwwwwwk",
+            "kwwwwkwwwwk",
+            ".kwwwwwwwk.",
+            "..kwkwkwk..",
+            "..kwkwkwk..",
+            "...kkkkk...",
+        },
+        ["sword"] = new[]
+        {
+            ".....k.....",
+            "....kwk....",
+            "....kwk....",
+            "....kwk....",
+            "....kwk....",
+            "....kwk....",
+            "....kwk....",
+            "..kkkwkkk..",
+            "..kyyyyyk..",
+            "...kkbkk...",
+            "....kbk....",
+        },
+        ["coins"] = new[]
+        {
+            "...........",
+            "....oooo...",
+            "...oYYYYo..",
+            "...oyyyyo..",
+            "....oooo...",
+            ".oooo.oooo.",
+            "oYYYYoYYYYo",
+            "oyyyyoyyyyo",
+            "oyyyyoyyyyo",
+            ".oooo.oooo.",
+            "...........",
+        },
     };
 
     private static readonly Dictionary<string, Sprite> Cache = new();

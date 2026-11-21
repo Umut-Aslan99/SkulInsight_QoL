@@ -431,6 +431,8 @@ public static class RunJournal
         var attacker = damage.attacker.character;
         if (target.type == Character.Type.Player)
         {
+            if (Coop.CoopCopies.IsCopy(target))
+                return; // co-op: the teammate's copy was hit, not this player (their own game records it)
             if (attacker != null)
             {
                 _lastAttackerId = CodexTracker.EntryOf(attacker)?.id ?? "";
@@ -457,9 +459,23 @@ public static class RunJournal
         }
         if (!target.health.dead)
             return;
+        CountKill(target, attacker != null && attacker.type is (Character.Type.Player or Character.Type.PlayerMinion));
+    }
+
+    /// <summary>Co-op, a client's game: an enemy the host runs died there (<paramref name="byPlayer"/>: by a
+    /// player's hit). Here it died by the host's word, with no killing hit of this game, so <see cref="OnHit"/>
+    /// never sees it: the kill is counted for this player's run like on the host, where every player's kills count.</summary>
+    public static void OnTeamKill(Character target, bool byPlayer)
+    {
+        if (!On || _run == null || _run.Result != RunResult.InProgress || target == null || target.type == Character.Type.Player)
+            return;
+        CountKill(target, byPlayer);
+    }
+
+    private static void CountKill(Character target, bool byPlayer)
+    {
         // A boss counts whatever dealt the last damage (0.16: a 0.15 daily run missed three bosses finished by damage
         // without an attacker; the daily points count boss fights from these events). Others need the player's side.
-        bool byPlayer = attacker != null && attacker.type is (Character.Type.Player or Character.Type.PlayerMinion);
         if (!byPlayer && target.type != Character.Type.Boss)
             return;
         if (!KilledThisRun.Add(target.GetInstanceID()))

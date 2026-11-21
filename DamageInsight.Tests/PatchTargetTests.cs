@@ -119,6 +119,9 @@ public class PatchTargetTests
     /// </summary>
     private static void CheckInjectedParameters(MethodInfo patchMethod, MethodBase target)
     {
+        // A transpiler gets the instructions (and an ILGenerator / the original) by type, not by name.
+        if (patchMethod.Name == "Transpiler" || patchMethod.GetCustomAttributes(true).Any(a => a is HarmonyTranspiler))
+            return;
         var originalParams = target.GetParameters().Select(p => p.Name).ToHashSet();
         foreach (var p in patchMethod.GetParameters())
         {

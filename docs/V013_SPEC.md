@@ -13,6 +13,8 @@ Written 2026-10-16 by Claude from Umut's request of the same day. Running step l
   **Remembrances** (CODEX_FINAL §9) move back. Release length doesn't matter.
 
 ## Version plan [DECISION, Umut may change it]
+> Outdated (2026-11-02): the versions moved several times since; the plan is docs/ROADMAP.md.
+
 | Version | Content |
 |---|---|
 | **0.13.0** | Run history + records + **daily run** (Umut 2026-10-17: the daily run joins 0.13; docs/DAILY_RUN.md) |

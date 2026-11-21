@@ -25,6 +25,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DamageInsight\DamageInsight.csproj" />
+    <!-- The co-op preloader: its rewrite of the player reads is run on the real game DLL, in memory. -->
+    <ProjectReference Include="..\DamageInsight.Preloader\DamageInsight.Preloader.csproj" />
     <!-- Only the tests make zips (the mod manager's tests): the game has no System.IO.Compression.dll. -->
     <Reference Include="System.IO.Compression" />
   </ItemGroup>
@@ -39,6 +41,14 @@
                     Exclude="$(SkulManaged)\mscorlib.dll;$(SkulManaged)\System*.dll;$(SkulManaged)\Mono.*.dll;$(SkulManaged)\Microsoft.*.dll;$(SkulManaged)\netstandard.dll" />
     <GameRuntimeDll Include="$(SkulRoot)\BepInEx\unstripped_corlib\UnityEngine*.dll" />
     <GameRuntimeDll Include="$(SkulRoot)\BepInEx\core\*.dll" />
+  </ItemGroup>
+
+  <!-- The game's Managed folder, for tests that read the original game DLLs (read-only) with Mono.Cecil. -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>SkulManaged</_Parameter1>
+      <_Parameter2>$(SkulManaged)</_Parameter2>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <Target Name="CopyGameRuntime" AfterTargets="Build">

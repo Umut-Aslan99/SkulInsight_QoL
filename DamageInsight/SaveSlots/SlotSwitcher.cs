@@ -293,8 +293,9 @@ internal static class SlotSwitcher
         PersistentSingleton<PlatformManager>.Instance.SaveDataToFile();
     }
 
-    /// <summary>A copy of the game's save files before every switch (SaveSlots/GameSaveBackup, the 5 newest are kept).</summary>
-    private static void BackupGameSave()
+    /// <summary>A copy of the game's save files before every switch and before a game's first co-op session
+    /// (SaveSlots/GameSaveBackup, the 5 newest are kept).</summary>
+    internal static void BackupGameSave()
     {
         try
         {

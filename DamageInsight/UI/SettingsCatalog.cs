@@ -157,6 +157,7 @@ public static class SettingsCatalog
         "General/Language", "action:" + OpenChangelog, "General/PerformanceOverlay", "action:" + OpenCrashReports,
         SaveSlotsSection + "/Slot", "action:" + SlotPlay, "action:" + SlotCopy, "action:" + SlotClear,
         "Mods/Enabled", AllSettings + "/Show", "action:" + ResetAll,
+        "Coop/Enabled", "Coop/EnemyHealth", "Coop/TeammateOpacity", "Coop/TeammateOutline", "Coop/TeammateScreenEffects", "Outlines/EnemyShots", "Outlines/OwnShots",
     };
 
     internal static bool IsBasic(SettingItem item) =>
@@ -242,7 +243,7 @@ public static class SettingsCatalog
     public static Func<int, string> SlotValue = slot => slot.ToString(CultureInfo.InvariantCulture);
     public static Func<int, string> SlotDetails = _ => "";
 
-    private enum Unit { Plain, Seconds, Percent }
+    private enum Unit { Plain, Seconds, Percent, Times }
 
     private sealed class Spec
     {
@@ -257,6 +258,7 @@ public static class SettingsCatalog
     {
         // First on the page (Umut 2026-10-25: rewards on by default, "very far at the top ... to be able to be turned off").
         ("Rewards", Loc.N("Rewards")),
+        ("Coop", Loc.N("Co-op")), // shown only where co-op is on (ShownWithCoop)
         ("General", Loc.N("General")),
         (SaveSlotsSection, Loc.N("Save slots")),
         ("Daily", Loc.N("Daily run")),
@@ -269,6 +271,7 @@ public static class SettingsCatalog
         ("Mini Log", Loc.N("Mini log")),
         ("Cooldown Ticker", Loc.N("Cooldown seconds")),
         ("Clear View", Loc.N("Clear view")),
+        ("Outlines", Loc.N("Outlines")),
         ("Heal Orbs", Loc.N("Healing orbs")),
         ("Mods", Loc.N("Mods")),
         ("Codex", Loc.N("Codex")),
@@ -351,6 +354,154 @@ public static class SettingsCatalog
         ["Daily/Enabled"] = On(Loc.N("Daily runs (online)"),
             Loc.N("Everyone plays the same run each day, one try, with daily and monthly boards (Codex, Daily). Sends a random player id made by the mod, the name you enter and your daily run (its numbers, build, damage and timeline) to the daily run server; nothing else.")),
         ["Daily/Server"] = new Spec { Hidden = true },
+        // Co-op isn't playable yet (phase 0): the switch shows once it is (0.17, with its label and help in every language).
+        // 0.17 open beta (Umut 2026-11-21: "UPLOAD it to thunderstore this weekend"): the switch shows for everyone; the
+        // other co-op settings show once it is on (ShownWithCoop).
+        ["Coop/Enabled"] = new Spec { Label = Loc.N("Online co-op (open beta)"), Help = Loc.N("Play a run together over the internet: with Steam friends (invites) or with other players through matchmaking. Needs a restart of the game. Off: the game runs as it does without co-op.") },
+        // Hidden with the switch; label and help are translated already, so 0.17 only takes Hidden away.
+        ["Coop/ReviveSound"] = new Spec
+        {
+            Label = Loc.N("Revive sound"), Min = 0, Max = 1, Step = 0.05, Unit = Unit.Percent, Hidden = true,
+            Help = Loc.N("Co-op: how loud the heartbeat while a teammate is revived and the sound of the revive are (0%: no sound). The game's master and effects volume apply too."),
+        },
+        ["Coop/TeammateOpacity"] = new Spec
+        {
+            Label = Loc.N("Teammates' opacity"), Min = 0.2, Max = 1, Step = 0.05, Unit = Unit.Percent, Hidden = true,
+            Help = Loc.N("Co-op: how solid your teammates look (100% = like you, lower = see-through), so you tell them from yourself at a glance."),
+        },
+        ["Coop/TeammateOutline"] = new Spec
+        {
+            Label = Loc.N("Teammates' outline"), Hidden = true,
+            Help = Loc.N("Co-op: your teammates have an outline in their colour (the colour of their name and damage numbers)."),
+        },
+        ["Outlines/EnemyShots"] = new Spec { Label = Loc.N("Enemy shot outline"), Help = Loc.N("Enemy projectiles that can hit you get a thin red outline that pulses gently, so you see them in a busy fight.") },
+        ["Outlines/OwnShots"] = new Spec { Label = Loc.N("Your shot outline"), Hidden = true, Help = Loc.N("Co-op: your own projectiles get a thin green outline, so you tell them from your teammates' and the enemies'.") },
+        ["Coop/TeammateScreenEffects"] = new Spec
+        {
+            Label = Loc.N("Teammates' screen effects"), Hidden = true,
+            Help = Loc.N("Co-op: your teammates' moves and quintessences may shake your camera, flash or darken your screen, zoom and make your controller rumble. Off: only your own do."),
+        },
+        ["Coop/EnemyHealth"] = new Spec
+        {
+            Label = Loc.N("Enemy health (co-op)"), Min = 1.5, Max = 3, Step = 0.1, Unit = Unit.Times, Hidden = true,
+            Help = Loc.N("Co-op, when you host: how much health enemies have with two players (2x = twice their own). Elites and bosses get a little more, three or four players more again. A change counts at once, for everyone and for enemies already there."),
+        },
+        ["Coop/DoorVoteSeconds"] = new Spec
+        {
+            Label = Loc.N("Door vote time"), Min = 3, Max = 60, Step = 1, Unit = Unit.Seconds, Hidden = true,
+            Help = Loc.N("Co-op, when you host: how long the others have to pick a door after the first player picked one. Then the picks made so far decide."),
+        },
+        ["Coop/Balance"] = new Spec { Hidden = true }, // a table as text; a page of its own comes with the Co-op settings page
+        ["Damage Numbers/TeammatesOnScreen"] = new Spec
+        {
+            Label = Loc.N("Teammates' numbers"), Hidden = true, // shows where co-op is on (ShownWithCoop)
+            Help = Loc.N("Co-op: your teammates' hits show damage numbers on your screen too, in their colour. Off: fewer numbers on screen."),
+        },
+        ["Coop/UnstuckKey"] = new Spec
+        {
+            Label = Loc.N("Go to teammate"), Hidden = true,
+            Help = Loc.N("Co-op: puts you where your teammate stands in this room (once every 10 seconds), when you are stuck or far away."),
+        },
+        ["Coop/ConnectionBox"] = new Spec
+        {
+            Label = Loc.N("Connection box"), Hidden = true,
+            Help = Loc.N("Co-op: a small box at the top left, below the clock, with each teammate's ping (green, amber, red) and a warning when nothing arrives from them."),
+        },
+        ["Coop/DetailedLog"] = new Spec
+        {
+            Label = Loc.N("Detailed co-op log"), Hidden = true,
+            Help = Loc.N("Co-op: writes everything that happens in a co-op game to a file (the newest 10 games). For bug reports: switch it on, play until the problem shows, send the files."),
+        },
+        ["Coop/MenuButton"] = new Spec
+        {
+            Label = Loc.N("Co-op button"), Hidden = true,
+            Help = Loc.N("Co-op: a Co-op button in the pause menu (below Mods) that opens the Co-op window: host, invite friends, leave, the players."),
+        },
+        ["Coop/WindowKey"] = new Spec
+        {
+            Label = Loc.N("Co-op window"), Hidden = true,
+            Help = Loc.N("Co-op: opens and closes the Co-op window."),
+        },
+        ["Coop/FriendsCanJoin"] = new Spec
+        {
+            Label = Loc.N("Friends can join"), Hidden = true,
+            Help = Loc.N("Co-op, when you host: your Steam friends can join from their friends list (Join game). Off: only friends you invite."),
+        },
+        ["Coop/MaxPlayers"] = new Spec
+        {
+            Label = Loc.N("Players"), Min = 2, Max = 4, Step = 1, Unit = Unit.Plain, Hidden = true,
+            Help = Loc.N("Co-op, when you host: how many players your game takes, you included."),
+        },
+        ["Coop/Matchmaking"] = new Spec
+        {
+            Label = Loc.N("Matchmaking"), Hidden = true,
+            Help = Loc.N("Co-op: find a partner through the daily run server. Sends your player id, Steam id, name, mod version, mod list, wanted mode and Steam ping location; kept in memory only while you search."),
+        },
+        ["Coop/MaxPing"] = new Spec
+        {
+            Label = Loc.N("Highest ping"), Min = 50, Max = 1000, Step = 25, Unit = Unit.Plain, Hidden = true,
+            Help = Loc.N("Co-op matchmaking: the highest ping (ms) a partner may have."),
+        },
+        ["Coop/MatchSameLanguage"] = new Spec
+        {
+            Label = Loc.N("Same language"), Hidden = true,
+            Help = Loc.N("Co-op matchmaking: for the first minute of a search, only partners who play SkulInsight in your language. Off: anyone (finds a partner sooner)."),
+        },
+        ["Coop/CanHost"] = new Spec
+        {
+            Label = Loc.N("Can host"), Hidden = true,
+            Help = Loc.N("Co-op matchmaking: your game may be the host (the world runs on the host's game)."),
+        },
+        ["Coop/MatchMode"] = new Spec
+        {
+            Label = Loc.N("Mode to play"), Hidden = true,
+            Help = Loc.N("Co-op matchmaking: what you want to play: normal, darkmirror or any."),
+        },
+        ["Coop/ReviveHoldSeconds"] = new Spec
+        {
+            Label = Loc.N("Revive hold time"), Min = 0.5, Max = 10, Step = 0.5, Unit = Unit.Seconds, Hidden = true,
+            Help = Loc.N("Co-op, when you host: how long a teammate holds the interact key to revive a downed player."),
+        },
+        ["Coop/RevivesPerRoom"] = new Spec
+        {
+            Label = Loc.N("Revives per room"), Min = 0, Max = 10, Step = 1, Unit = Unit.Plain, Hidden = true,
+            Help = Loc.N("Co-op, when you host: how often each player can be revived in one room. Who stays down comes back when the room is cleared."),
+        },
+        ["Coop/ReviveHealth"] = new Spec
+        {
+            Label = Loc.N("Health after a revive"), Min = 0.05, Max = 1, Step = 0.05, Unit = Unit.Percent, Hidden = true,
+            Help = Loc.N("Co-op, when you host: the health a revived player stands up with."),
+        },
+        ["Coop/RoomClearHealth"] = new Spec
+        {
+            Label = Loc.N("Health back at the room's end"), Min = 0.05, Max = 1, Step = 0.05, Unit = Unit.Percent, Hidden = true,
+            Help = Loc.N("Co-op, when you host: the health a player who stayed down comes back with when the room is cleared."),
+        },
+        ["Coop/RewardWaitSeconds"] = new Spec
+        {
+            Label = Loc.N("Reward wait"), Min = 0, Max = 180, Step = 5, Unit = Unit.Seconds, Hidden = true,
+            Help = Loc.N("Co-op, when you host: how long the door vote waits for everyone to take their room reward. Picks made meanwhile count when the wait ends."),
+        },
+        ["Coop/ProblemSeconds"] = new Spec
+        {
+            Label = Loc.N("Connection problem after"), Min = 1, Max = 30, Step = 1, Unit = Unit.Seconds, Hidden = true,
+            Help = Loc.N("Co-op: after this many seconds without data from a teammate, every game shows a connection problem."),
+        },
+        ["Coop/DropSeconds"] = new Spec
+        {
+            Label = Loc.N("Drop after"), Min = 5, Max = 120, Step = 1, Unit = Unit.Seconds, Hidden = true,
+            Help = Loc.N("Co-op: after this many seconds without data, a teammate drops out of the party (votes and rewards no longer wait for them). They may come back."),
+        },
+        ["Coop/RejoinSeconds"] = new Spec
+        {
+            Label = Loc.N("Time to come back"), Min = 0, Max = 600, Step = 10, Unit = Unit.Seconds, Hidden = true,
+            Help = Loc.N("Co-op: how long a player who lost the connection may come back to the run. Their game tries to join again meanwhile; after that each game plays on alone."),
+        },
+        ["Coop/RetrySeconds"] = new Spec
+        {
+            Label = Loc.N("Next try after"), Min = 1, Max = 30, Step = 1, Unit = Unit.Seconds, Hidden = true,
+            Help = Loc.N("Co-op: after the connection to the host is lost, the next try to join again starts this many seconds after the last one failed."),
+        },
         ["Daily/Name"] = new Spec { Hidden = true }, // typed in the mod manager's config editor (the name box has the game's input)
         ["Daily/WinnerNames"] = On(Loc.N("Winners as adventurers"),
             Loc.N("The adventurers you meet in runs carry the names of yesterday's daily run winners (each board's first place). Needs daily runs on.")),
@@ -548,11 +699,18 @@ public static class SettingsCatalog
         return list;
     }
 
+    /// <summary>The co-op settings stay hidden until co-op is public (0.17), but show where co-op is switched on (the
+    /// friend test builds: Umut 2026-11-21 wants players to set the enemy health themselves). Never: the switch itself,
+    /// the balance table as text (the slider sets it).</summary>
+    private static bool ShownWithCoop(string section, string key) =>
+        Plugin.CoopEnabled?.Value == true
+        && (section == "Coop" && key != "Enabled" && key != "Balance" || section == "Damage Numbers" && key == "TeammatesOnScreen" || section == "Outlines" && key == "OwnShots");
+
     private static SettingItem Item(ConfigEntryBase entry, List<string> icons, Func<string, string> inscriptionName)
     {
         var def = entry.Definition;
         Specs.TryGetValue(def.Section + "/" + def.Key, out var spec);
-        if (spec?.Hidden == true)
+        if (spec?.Hidden == true && !ShownWithCoop(def.Section, def.Key))
             return null;
 
         var item = new SettingItem
@@ -712,6 +870,7 @@ public static class SettingsCatalog
     {
         Unit.Seconds => v.ToString("0.##", CultureInfo.InvariantCulture) + " s",
         Unit.Percent => Math.Round(v * 100).ToString(CultureInfo.InvariantCulture) + "%",
+        Unit.Times => v.ToString("0.0", CultureInfo.InvariantCulture) + "x",
         _ => v.ToString("0.##", CultureInfo.InvariantCulture),
     };
 

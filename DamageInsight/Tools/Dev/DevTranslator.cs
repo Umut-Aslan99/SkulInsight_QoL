@@ -22,7 +22,7 @@ public sealed class DevTranslator : MonoBehaviour
     private float _next;
     private readonly HashSet<string> _reported = new();
 
-    public static string UntranslatedFile => Path.Combine(Paths.BepInExRootPath, "DamageInsight", "untranslated.txt");
+    public static string UntranslatedFile => Path.Combine(ModData.Root, "untranslated.txt");
 
     /// <summary>Whole labels. Checked first, exact match (after trimming).</summary>
     private static readonly Dictionary<string, string> Labels = new()

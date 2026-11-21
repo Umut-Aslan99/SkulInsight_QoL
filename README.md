@@ -6,18 +6,28 @@ enemy, boss and piece of gear, a history of all your runs, Skul's achievements f
 daily run with online leaderboards.
 
 A quality-of-life mod: it shows information the game already uses internally, keeps several save slots side by
-side if you use them, and only goes online if you turn on the daily run. Its only change to the game's balance is
+side if you use them, and only goes online if you turn on the daily run or the online co-op. Its only change to the game's balance is
 the **rewards** (0.15): optional, on by default, and one switch at the top of the settings turns them off. Every
 feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
-> **Version 0.16: restart room, new daily points.** **Restart room** (press F5 twice) takes you back to the
+> **Version 0.17: online co-op (open beta).** Play a run **together**: with a Steam friend (invite from the
+> **Co-op** window, F3) or with anyone through **matchmaking**. Off by default: pause (Esc) → SkulInsight QoL →
+> **Online co-op (open beta)**, then restart the game. One run in the host's world: enemies, bosses, room clears and
+> doors (a vote) are shared, gold drops for everyone, room rewards and shops are your own; **revive** a downed
+> teammate at their ring; the host sets how much more health enemies have (1.5x to 3x). It is a **beta**: the Co-op
+> window's **Report a bug or idea** packs your logs (Steam ids hidden) for a report. Also new: enemy projectiles that
+> can hit you get a thin **red outline**, also when you play alone. Known issues: [CHANGELOG](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
+>
+> **0.16: restart room, new daily points.** **Restart room** (press F5 twice) takes you back to the
 > moment you entered the room, as when you close the game and continue (in a daily run it ends the run). **Daily
-> points** from November 1: the boss fights instead of the game's double-counted kills, speed counts more, flawless
-> rooms and boss fights count, four **achievements of the day** (two of the game's, a skull of the day, a flawless
-> chapter) give bonus points, and the day's board is the run alone. Yesterday's daily winners name the **adventurers**
-> you meet. Fixed: mouse hover selects items, skulls and dark abilities again; no more stutters when a strong build
-> kills a lot. The crash reports now note frames per second and what slows the game down (**Show FPS** for a line on
+> points:** the boss fights instead of the game's double-counted kills, speed counts more, flawless rooms and boss
+> fights count, gold and bones left are worth keeping, and the **day's challenges** (one of the game's achievements,
+> a skull and a quintessence of the day) give bonus points. Yesterday's daily winners name the **adventurers** you
+> meet. Fixed: mouse hover selects items, skulls and dark abilities again; no more stutters when a strong build kills
+> a lot. The crash reports now note frames per second and what slows the game down (**Show FPS** for a line on
 > screen).
+> 0.16.1 and 0.16.2: the **changelog in the game** (settings → General → Changelog), other players' runs in **your
+> language**, Restart room keeps your gear, and the daily name box starts with your Steam name.
 > New in 0.15: **rewards** for every achievement, coins, kill quests and inscription activations (optional: one
 > switch at the top of the settings turns them off), six daily boards a day.
 > New in 0.14: Skul's **achievements** for every save slot with a small notice, **Clear view**, **Mods** in the pause
@@ -271,11 +281,12 @@ Codex (`K`) → **Daily**: every day three runs for everyone, each with and with
 - **Points** (from 2026-11-01): a win 20,000 and 5 for every second under an hour (a run that didn't win: 1,000 per
   stage), 1,000 per boss fight won and 3,000 per optional Dark Mirror boss (counted from the run, not the game's
   double-counted kills), 150 per **flawless room** and 1,000 per **flawless boss fight** (no health lost; a shield or
-  a dodge keeps it flawless), -2 per damage taken, 1 per 10 gold and 2 per bone left, times the difficulty.
-- **Achievements of the day:** four per board, 300 to 1,500 points each: two of the game's (only ones every run can
-  get: no-hit bosses, the First Hero as Little Bone, a minute in the black market, 4 dark abilities), a **skull of the
-  day** (win holding it) and a **flawless chapter**. The day's board is the run alone; the daily streak (up to 30
-  days) counts on the month board.
+  a dodge keeps it flawless), -2 per damage taken, 1 per 5 gold and 25 per bone left, times the difficulty. The
+  server sends the current numbers: a run's Points page → *How points are counted*.
+- **The day's challenges:** shown before the run, so you can plan for them: one of the game's achievements that is a
+  choice in the run (the First Hero as Little Bone 1,500, a minute in the black market 300, 4 dark abilities in the
+  Dark Mirror 500), a **skull of the day** and a **quintessence of the day** (win holding it, 1,500 each). The day's
+  board is the run alone; the daily streak (up to 30 days) counts on the month board.
 - **Yesterday's winners** give their names to the adventurers you meet (setting Winners as adventurers).
 - **Click a run on the board**: its build, damage and timeline like your own run history, its points part by part,
   and a thumbs up.
@@ -296,7 +307,8 @@ mouse and controller. Since 0.16 the left side lists the features in groups: **G
 (what only shows), **Helpers**, **Online** and **General**, each with its switch; hovering or choosing one shows on the
 right what it does and its settings (Enter goes into them, Esc back). It shows the settings most players change; **All
 settings** at the end of the list shows every one, the fine-tuning too. New players choose at the first start between
-"Only information" and "Information and gameplay". Changes apply at once and are saved right away.
+"Only information" and "Information and gameplay". Changes apply at once and are saved right away. **What's new**
+opens once after every update; **General → Changelog** shows every version's highlights in your language.
 
 ![The SkulInsight QoL button in the pause menu](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-menu.png)
 
@@ -418,8 +430,10 @@ The same settings are in the settings file (created on the first start):
 - Made for Skul: The Hero Slayer **1.9.x** (Steam: Windows; Linux and Steam Deck through Proton) with
   BepInExPack Skul (BepInEx 5.4.21+), or the native Mac version with BepInEx 5.4.23.5 for macOS (set up by
   [the Mac installer](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/docs/MACOS.md)).
-- Doesn't change balance or content. Your save is only touched when you switch save slots (a backup of the game's
-  save is made before every switch); a daily run is played in its own slot. Safe to add or remove at any time.
+- Changes no content. The only balance change is the optional **rewards** (one switch turns them off), and
+  **Restart room** makes going back to a room's start easy. Your save is only touched when you switch save slots (a
+  backup of the game's save is made before every switch); a daily run is played in its own slot. Safe to add or
+  remove at any time.
 - Should work next to content mods. Items the mod doesn't understand simply show no extra numbers.
   Please report anything odd. Daily runs only go on the board without other mods (with them they still work).
 - After a game update the mod checks all of its hooks at startup and switches off only what broke. The results
@@ -444,15 +458,21 @@ The same settings are in the settings file (created on the first start):
   are very welcome (see *All game languages*). The config file and the developer tools stay English.
 
 ## Roadmap
-- **0.14:** Skul's achievements per save slot, the achievement notice, the mod's own daily achievements, clear view,
-  the Mods window, macOS
-- **0.15 (this version):** rewards: a bonus for every achievement, coins that summon gear, kill quests, inscription
-  activations
-- **0.16:** Dark Mirror page (levels 0–10 with the game's values, Darktech machines, fragments, the hidden boss)
+- **0.17 (this version):** online co-op as an open beta (Steam friends and matchmaking, two players)
+- **0.17.x:** co-op fixes from the beta's reports (enemies only one player sees, NPC rewards per player, effects
+  drawn too strong), then 3-4 players
+- **0.16:** restart room, new daily points and the day's challenges, the settings page in groups, the changelog in
+  the game, runs in your language
+- **Next:** the Dark Mirror page (levels 0–10 with the game's values, Darktech machines, fragments, the hidden boss)
 - **Later:** skins for skulls from the daily achievements
 - **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics
+- **Later:** the story in the Codex (story books, dialogue, replayable story scenes)
 
 ## Feedback / bug reports
+**Co-op:** the Co-op window's **Report a bug or idea** does the work: it packs your logs into one zip (Steam ids
+hidden), opens its folder and this repository's issue page with the versions filled in; drag the zip into it.
+**Save logs** makes only the zip (for the Skul Discord).
+
 Please open an issue on GitHub: https://github.com/Umut-Aslan99/SkulInsight_QoL/issues. Attach the newest file
 from `BepInEx/DamageInsight/CrashReports` (settings page: **Crash reports folder** → Open) and `BepInEx/LogOutput.log`,
 and tell us the mod version and what you did. After a crash, start the game once more before you send it: the

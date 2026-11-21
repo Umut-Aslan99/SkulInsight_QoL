@@ -17,6 +17,14 @@ public static class Changelog
     /// <summary>The versions and their highlights (English keys, translated here), newest first.</summary>
     public static List<(string version, string[] lines)> Versions() => new()
     {
+        ("0.17.0", new[]
+        {
+            Loc.T("Online co-op (open beta): play a run together with a Steam friend, or find a partner through matchmaking. Off by default: Esc, SkulInsight QoL, Online co-op (open beta), then restart the game. Two players for now."),
+            Loc.T("One run in the host's world: enemies, bosses, room clears and doors (by vote) are shared, gold drops for everyone; room rewards, shops and gear are your own. Revive a downed teammate at their ring; enemies have more health in co-op (the host sets 1.5x to 3x)."),
+            Loc.T("Your teammate is slightly see-through with an outline in their colour, their effects are drawn fainter, and their screen shakes and damage numbers stay on their screen. Stuck? F6 takes you to your teammate."),
+            Loc.T("Enemy projectiles that can hit you get a thin red outline, also when you play alone."),
+            Loc.T("This is a beta: the Co-op window's \"Report a bug or idea\" packs your logs (Steam ids hidden) and opens the report page."),
+        }),
         ("0.16.2", new[]
         {
             Loc.T("The name for the daily board starts with your Steam name when you haven't set one, so runs no longer go on the board as \"Skul\" by accident. You can change it before sending."),

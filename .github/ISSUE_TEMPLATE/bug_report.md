@@ -18,6 +18,9 @@ labels: bug
 - Other mods:
 - System: Windows / Linux (which distribution) / Steam Deck / macOS (Intel or Apple Silicon)
 
+**Co-op (0.17+):** the Co-op window's **Report a bug or idea** packs all logs into one zip (Steam ids hidden) and
+opens this page; drag the zip here.
+
 **Crash report:** please attach the newest file from `BepInEx/DamageInsight/CrashReports` (in the game: Esc >
 SkulInsight QoL > Crash reports folder > Open). After a crash, start the game once more first: the report of the
 crashed session is completed at the next start. It says whose code the errors were in.

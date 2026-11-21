@@ -17,7 +17,7 @@ namespace DamageInsight.Daily;
 /// </summary>
 public sealed class DailyService : MonoBehaviour
 {
-    public static string Folder => Path.Combine(BepInEx.Paths.BepInExRootPath, "DamageInsight", "Daily");
+    public static string Folder => ModData.Folder("Daily");
     private static string StatePath => Path.Combine(Folder, "state.json");
 
     public static DailyService Instance { get; private set; }
@@ -39,7 +39,8 @@ public sealed class DailyService : MonoBehaviour
     /// <summary>Increases whenever something above changed (the book redraws).</summary>
     public static int Version { get; private set; }
 
-    public static bool Enabled => Plugin.DailyEnabled?.Value == true;
+    /// <summary>On in the settings, and never in a co-op test copy (it would talk to the server with a second player id).</summary>
+    public static bool Enabled => Plugin.DailyEnabled?.Value == true && !ModData.IsSeparateCopy;
     private static string Server => (Plugin.DailyServer?.Value ?? "").TrimEnd('/');
 
     private float _nextInfo, _nextBoards, _nextPending;

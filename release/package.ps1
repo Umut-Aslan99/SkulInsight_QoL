@@ -1,6 +1,7 @@
 # Builds the Release DLL and packs the Thunderstore zip:
 #   release/out/DocRun-SkulInsight_QoL-<version>.zip
-#     manifest.json, icon.png, README.md, CHANGELOG.md, plugins/DamageInsight.dll
+#     manifest.json, icon.png, README.md, CHANGELOG.md, plugins/DamageInsight.dll,
+#     patchers/SkulInsight/DamageInsight.Preloader.dll (the co-op preloader; does nothing unless co-op is switched on)
 # Usage: powershell -ExecutionPolicy Bypass -File release/package.ps1 [-RepoUrl https://github.com/<user>/SkulInsight_QoL]
 param(
     [string]$RepoUrl = "https://github.com/Umut-Aslan99/SkulInsight_QoL"
@@ -27,11 +28,18 @@ foreach ($banned in @("api/experimental/package", "UpdateSelfLater", "InstallAll
 }
 Write-Host "Thunderstore build checked: no self-update, no installer"
 
+# The co-op preloader (BepInEx patcher): mod managers put the zip's patchers/ folder into BepInEx/patchers.
+dotnet build (Join-Path $root "DamageInsight.Preloader/DamageInsight.Preloader.csproj") -c Release -p:DeployToSkul=false --nologo -v quiet
+if ($LASTEXITCODE -ne 0) { throw "Preloader build failed" }
+$preloader = Join-Path $root "DamageInsight.Preloader/bin/Release/DamageInsight.Preloader.dll"
+
 $stage = Join-Path $PSScriptRoot "out/stage"
 if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }
 New-Item -ItemType Directory -Force (Join-Path $stage "plugins") | Out-Null
+New-Item -ItemType Directory -Force (Join-Path $stage "patchers/SkulInsight") | Out-Null
 
 Copy-Item $dll (Join-Path $stage "plugins")
+Copy-Item $preloader (Join-Path $stage "patchers/SkulInsight")
 Copy-Item (Join-Path $PSScriptRoot "icon.png") $stage
 Copy-Item (Join-Path $root "CHANGELOG.md") $stage
 
@@ -44,7 +52,7 @@ $manifest = [ordered]@{
     name           = $name
     version_number = $version
     website_url    = $RepoUrl
-    description    = "Codex with boss moves, gear pages and your build; run history, records, achievements and rewards per save slot; an in-game mod browser; optional online daily runs; real damage in descriptions, boss HP, a combat log for every hit. 11 languages."
+    description    = "Online co-op (open beta) with Steam friends or matchmaking; Codex with boss moves and your build; run history, records, achievements; optional daily runs; real damage in descriptions, a combat log for every hit. 11 languages."
     dependencies   = @("BepInEx-BepInExPack_Skul-5.4.2100")
 }
 if ($manifest.description.Length -gt 250) { throw "Description longer than 250 characters" }
@@ -72,7 +80,10 @@ try { $entries = @($check.Entries | ForEach-Object { $_.FullName }) }
 finally { $check.Dispose() }
 $bad = @($entries | Where-Object { $_.Contains('\') })
 if ($bad.Count -gt 0) { throw "Zip entries with a backslash: $($bad -join ', ')" }
-foreach ($required in @("manifest.json", "icon.png", "README.md", "CHANGELOG.md", "plugins/DamageInsight.dll")) {
+foreach ($required in @("manifest.json", "icon.png", "README.md", "CHANGELOG.md", "plugins/DamageInsight.dll", "patchers/SkulInsight/DamageInsight.Preloader.dll")) {
     if ($entries -notcontains $required) { throw "The package misses $required (entries: $($entries -join ', '))" }
 }
+# Only the mod and the preloader: a stray DLL (Mono.Cecil, BepInEx, the game's) next to them would clash in the game.
+$dlls = @($entries | Where-Object { $_.EndsWith(".dll") })
+if ($dlls.Count -ne 2) { throw "The package should hold exactly two DLLs: $($dlls -join ', ')" }
 Write-Host "Package: $zip ($($entries -join ', '))"

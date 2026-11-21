@@ -19,7 +19,7 @@ namespace DamageInsight.Tools;
 /// </remarks>
 public static class IconDump
 {
-    public static string OutputFolder => Path.Combine(Paths.BepInExRootPath, "DamageInsight", "IconDump");
+    public static string OutputFolder => ModData.Folder("IconDump");
 
     public static IEnumerator Run(Action<int> onDone)
     {

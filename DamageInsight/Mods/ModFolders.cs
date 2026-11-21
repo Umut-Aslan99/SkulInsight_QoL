@@ -80,7 +80,32 @@ public static class ModFolders
                 if (mod.Name.Length == 0)
                     ReadManifest(mod, Path.Combine(folder, "manifest.json"));
             }
+        FoldOwnPreloader(mods);
         return mods.Values.OrderBy(m => m.Title, StringComparer.OrdinalIgnoreCase).ToList();
+    }
+
+    /// <summary>This mod's plugin DLL and its co-op preloader (BepInEx/patchers/SkulInsight).</summary>
+    public const string OwnDll = "DamageInsight.dll", OwnPreloaderDll = "DamageInsight.Preloader.dll";
+
+    /// <summary>
+    /// The co-op preloader belongs to this mod even where its folder's name differs from the plugin's (a hand install
+    /// or the friend package: plugins/DamageInsight + patchers/SkulInsight). Shown as a mod of its own, it offered
+    /// "Turn off" and "Remove", which would break co-op (Umut's screenshot 2026-11-16, COOP_LOG 59g). A preloader
+    /// without this mod's plugin stays a mod of its own: a leftover the player may remove.
+    /// </summary>
+    private static void FoldOwnPreloader(Dictionary<string, InstalledMod> mods)
+    {
+        var own = mods.Values.FirstOrDefault(m => m.Dlls.Any(d => Path.GetFileName(d).StartsWith(OwnDll, StringComparison.OrdinalIgnoreCase)));
+        if (own == null)
+            return;
+        foreach (var stray in mods.Values.Where(m => m != own && m.Folder.Length == 0 && m.PatcherFolder.Length > 0 && m.HasDlls
+                     && m.Dlls.All(d => Path.GetFileName(d).StartsWith(OwnPreloaderDll, StringComparison.OrdinalIgnoreCase))).ToList())
+        {
+            if (own.PatcherFolder.Length == 0)
+                own.PatcherFolder = stray.PatcherFolder;
+            own.Dlls.AddRange(stray.Dlls);
+            mods.Remove(stray.Id);
+        }
     }
 
     private static IEnumerable<string> DllsIn(string folder) =>

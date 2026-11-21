@@ -19,10 +19,14 @@ public static class FilmClutter
 {
     private static readonly List<Character> Acting = new();
     private static readonly HashSet<EffectPoolInstance> FromPlayer = new();
+    private static readonly HashSet<EffectPoolInstance> FromTeammate = new();
     private static HashSet<RuntimeAnimatorController> _statusLooks;
 
     /// <summary>The game starts acting for a character (null when unknown): effects started now are its.</summary>
     public static void Enter(Character owner) => Acting.Add(owner);
+
+    /// <summary>The character the game acts for right now (an operation list running), or null.</summary>
+    public static Character Actor => Acting.Count > 0 ? Acting[Acting.Count - 1] : null;
 
     public static void Leave()
     {
@@ -40,13 +44,24 @@ public static class FilmClutter
             FromPlayer.Add(effect);
         else
             FromPlayer.Remove(effect);
+        if (owner != null && Coop.CoopCopies.BelongsToCopy(owner))
+            FromTeammate.Add(effect);
+        else
+            FromTeammate.Remove(effect);
     }
+
+    /// <summary>An effect started for a teammate's copy or its summons (co-op: faded to the teammate opacity).</summary>
+    public static bool IsTeammates(EffectPoolInstance effect) => FromTeammate.Count > 0 && FromTeammate.Contains(effect);
 
     /// <summary>The effects started for the player or its minions (UI/ClearView fades them; some may have ended or be reused).</summary>
     public static IEnumerable<EffectPoolInstance> PlayerEffects => FromPlayer;
 
     /// <summary>Forgets effects destroyed with their scene.</summary>
-    public static void PruneDestroyed() => FromPlayer.RemoveWhere(effect => effect == null);
+    public static void PruneDestroyed()
+    {
+        FromPlayer.RemoveWhere(effect => effect == null);
+        FromTeammate.RemoveWhere(effect => effect == null);
+    }
 
     /// <summary>The player or one of its minions (summons fighting for the player).</summary>
     public static bool IsPlayerSide(Character character)
@@ -57,6 +72,10 @@ public static class FilmClutter
         if (player == null)
             return false;
         if (character == player)
+            return true;
+        // Co-op: a teammate's copy and its summons are the players' side too (Clear view fades their effects like
+        // yours, Umut's sweep notes 2026-11-13 point 9; a clean boss film leaves them out).
+        if (Coop.CoopCopies.BelongsToCopy(character))
             return true;
         var minion = character.GetComponent<Minion>() ?? character.GetComponentInParent<Minion>();
         return minion != null && minion.leader != null && minion.leader.player == player;

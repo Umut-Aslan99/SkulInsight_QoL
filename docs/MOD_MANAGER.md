@@ -65,6 +65,9 @@ A new book section or a window from the settings page (**Mods**):
 - Settings and all texts in the 11 languages, like everything else.
 
 ## Version plan [DECISION, Umut may change it]
+> Outdated (2026-11-02): the manager shipped in 0.14.0, Thunderstore's rule cut it to a list in 0.14.1 (below); a
+> GitHub build with the full manager is on docs/ROADMAP.md.
+
 0.14 ships first (achievements, the chime, Clear view, macOS). The mod manager would be **0.15** if the reviewer
 agrees; the Dark Mirror page moves to 0.16 and Rewards to 0.17.
 

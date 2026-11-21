@@ -6,7 +6,7 @@ schemaVersion = "0.0.1"
 namespace = "DocRun"
 name = "SkulInsight_QoL"
 versionNumber = "0.0.0"   # overridden with --package-version
-description = "Codex with boss moves, gear pages and your build; run history and records; optional online daily runs (opt-in leaderboard); real damage in descriptions, boss HP numbers, a combat log that explains every hit, save slots. 11 languages."
+description = "Online co-op (open beta) with Steam friends or matchmaking; Codex with boss moves and your build; run history, records, achievements; optional daily runs; real damage in descriptions, a combat log for every hit. 11 languages."
 websiteUrl = "https://github.com/Umut-Aslan99/SkulInsight_QoL"
 containsNsfwContent = false
 

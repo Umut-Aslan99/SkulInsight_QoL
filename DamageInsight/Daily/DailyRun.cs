@@ -104,6 +104,9 @@ public static class DailyRun
             return Loc.T("Go to the castle first.");
         if (SlotSwitcher.Busy)
             return Loc.T("Please wait: the save slots are busy.");
+        // COOP_PLAN 4.10: co-op runs never count for the daily boards.
+        if (DamageInsight.Coop.CoopWorld.Current?.Active == true)
+            return Loc.T("Daily runs are played alone: leave the co-op session first.");
         return null;
     }
 
@@ -289,8 +292,8 @@ public static class DailyRun
     /// <summary>A new run begins (RunJournal): the day's date when it is today's daily run, else null.</summary>
     public static string OnRunBegins(int seed)
     {
-        if (!InDailySlot)
-            return null;
+        if (!InDailySlot || DamageInsight.Coop.CoopWorld.Current?.Active == true)
+            return null; // a co-op run is never a daily try
         var t = DailyService.State.Tries.Values.FirstOrDefault(x => x.State == "armed" && x.Seed == seed);
         if (t == null)
             return null;

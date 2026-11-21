@@ -28,6 +28,7 @@ under the game's own Settings. The left side lists the features in groups (**Gam
 **Insight**, **Helpers**, **Online**, **General**), each with its switch; hover one to see on the right what it does and
 its settings. It shows the settings most players change; *All settings* at the end shows every one. Changes apply at once. (They are also in r2modman / Gale → *Config editor* → `docrun.skulinsight_qol`.)
 New players choose at the first start between "Only information" and "Information and gameplay".
+**What's new** opens once after every update; *General → Changelog* shows every version's highlights in your language.
 
 ![Pause menu](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/settings-menu.png)
 
@@ -241,11 +242,12 @@ Codex (`K`) → **Daily**: every day three runs for everyone, each with and with
 - **Points** (from 2026-11-01): a win 20,000 and 5 for every second under an hour (a run that didn't win: 1,000 per
   stage), 1,000 per boss fight won and 3,000 per optional Dark Mirror boss (counted from the run, not the game's
   double-counted kills), 150 per **flawless room** and 1,000 per **flawless boss fight** (no health lost; a shield or
-  a dodge keeps it flawless), -2 per damage taken, 1 per 10 gold and 2 per bone left, times the difficulty.
-- **Achievements of the day:** four per board, 300 to 1,500 points each: two of the game's (only ones every run can
-  get: no-hit bosses, the First Hero as Little Bone, a minute in the black market, 4 dark abilities), a **skull of the
-  day** (win holding it) and a **flawless chapter**. The day's board is the run alone; the daily streak (up to 30
-  days) counts on the month board.
+  a dodge keeps it flawless), -2 per damage taken, 1 per 5 gold and 25 per bone left, times the difficulty. The
+  server sends the current numbers: a run's Points page → *How points are counted*.
+- **The day's challenges:** shown before the run, so you can plan for them: one of the game's achievements that is a
+  choice in the run (the First Hero as Little Bone 1,500, a minute in the black market 300, 4 dark abilities in the
+  Dark Mirror 500), a **skull of the day** and a **quintessence of the day** (win holding it, 1,500 each). The day's
+  board is the run alone; the daily streak (up to 30 days) counts on the month board.
 - **Yesterday's winners** give their names to the adventurers you meet (setting Winners as adventurers).
 - **Click a run on the board**: its build, damage and timeline like your own run history, its points part by part,
   and a thumbs up.
@@ -477,6 +479,8 @@ the errors were in (the game's, SkulInsight's or another mod's).
 
 ## Coming next
 
-- **0.15 (this version):** rewards for achievements, coins that summon gear, kill quests, inscription activations.
-- **0.16:** Dark Mirror page. **Later:** skins for skulls from the daily achievements.
-- **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics.
+- **0.16 (this version):** restart room, new daily points and the day's challenges, the settings page in groups, the
+  changelog in the game, runs in your language.
+- **In planning:** online co-op, with matchmaking on the daily run server.
+- **Next:** the Dark Mirror page. **Later:** skins for skulls from the daily achievements.
+- **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics; the story in the Codex.

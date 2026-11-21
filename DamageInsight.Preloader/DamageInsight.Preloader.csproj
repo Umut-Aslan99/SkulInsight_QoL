@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    SkulInsight's BepInEx 5 preloader patcher for online co-op (docs/COOP_PLAN.md §6, §8).
+    It runs before the game's code is loaded and rewrites Assembly-CSharp in memory (never the files): every read of
+    LevelManager.player that isn't "always the local player" goes through SkulInsightCoop.PlayerReads, which the
+    plugin fills at runtime. It does nothing unless [Coop] Enabled = true in docrun.skulinsight_qol.cfg.
+    Installed to BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll (release/package.ps1: patchers/SkulInsight/).
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>DamageInsight.Preloader</AssemblyName>
+    <RootNamespace>DamageInsight.Preloader</RootNamespace>
+    <Product>SkulInsight QoL (co-op preloader)</Product>
+    <Description>Lets Skul have more than one player when SkulInsight's co-op is switched on.</Description>
+    <Authors>DocRun</Authors>
+    <Version>0.17.0</Version>
+  </PropertyGroup>
+
+  <!--
+    Directory.Build.props gives every project the game's DLLs, Unity, HarmonyX and the plugin build helpers. A
+    preloader must not use any of them (the game isn't loaded yet), so they are taken out again here.
+  -->
+  <ItemGroup>
+    <PackageReference Remove="BepInEx.Analyzers" />
+    <PackageReference Remove="BepInEx.Core" />
+    <PackageReference Remove="BepInEx.PluginInfoProps" />
+    <PackageReference Remove="UnityEngine.Modules" />
+    <PackageReference Remove="BepInEx.AssemblyPublicizer.MSBuild" />
+    <Reference Remove="@(Reference)" />
+  </ItemGroup>
+
+  <!--
+    Compile-only: BepInEx itself (Paths, logging) without HarmonyX, and the Mono.Cecil that BepInEx 5.4.21 ships and
+    loads in the game (0.10.4; the BepInEx.Core package would bring 0.11.4 through HarmonyX). Both come from the
+    game's BepInEx/core folder at runtime, so nothing is copied next to the preloader.
+  -->
+  <ItemGroup>
+    <PackageReference Include="BepInEx.BaseLib" Version="5.4.20" IncludeAssets="compile" PrivateAssets="all" />
+    <PackageReference Include="Mono.Cecil" Version="0.10.4" IncludeAssets="compile" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DamageInsight.Tests" />
+  </ItemGroup>
+
+  <!--
+    Replaces Directory.Build.props' DeployToSkul (a later target of the same name wins): a patcher belongs in
+    BepInEx\patchers, not BepInEx\plugins. Off with -p:DeployToSkul=false, like the mod.
+  -->
+  <Target Name="DeployToSkul" AfterTargets="Build" Condition="'$(SkulRoot)' != '' And '$(DeployToSkul)' != 'false'">
+    <!-- A running Skul locks the DLL; warn instead of failing so tests can still run. -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SkulRoot)\BepInEx\patchers\SkulInsight" Retries="0" ContinueOnError="WarnAndContinue">
+      <Output TaskParameter="CopiedFiles" ItemName="_DeployedPatcher" />
+    </Copy>
+    <Message Importance="high" Condition="'@(_DeployedPatcher)' != ''" Text="Deployed $(AssemblyName) to $(SkulRoot)\BepInEx\patchers\SkulInsight" />
+  </Target>
+
+</Project>

@@ -29,6 +29,7 @@ public sealed class SettingsPage : global::UI.Dialogue
 {
     public const string ButtonText = "SkulInsight QoL";
     private const string ModsButtonName = "SkulInsight Mods";
+    private const string CoopButtonName = "SkulInsight Coop";
     private const string PageName = "SkulInsight QoL Settings";
 
     // Layout in the pause canvas (1920x1080, y from the top), matching the game's Settings page.
@@ -145,6 +146,8 @@ public sealed class SettingsPage : global::UI.Dialogue
         button.onClick.AddListener(() => Guard.Run("Settings page", () => link.Open(-1)));
 
         // The mod manager (0.14) right below: a window of its own over the menu.
+        int added = 1;
+        GameObject last = go;
         if (Plugin.ModManagerEnabled?.Value != false)
         {
             var mods = Object.Instantiate(original.gameObject, grid, false);
@@ -160,15 +163,43 @@ public sealed class SettingsPage : global::UI.Dialogue
             var modsButton = mods.GetComponent<Button>();
             modsButton.onClick = new Button.ButtonClickedEvent();
             modsButton.onClick.AddListener(() => Guard.Run("Mod manager", ModManagerWindow.Open));
+            added++;
+            last = mods;
+        }
+
+        // The Co-op window (0.17) below that: only with the co-op switch on (a restart after switching it on) and
+        // its own setting (Coop/MenuButton).
+        if (CoopWindow.Available)
+        {
+            var coop = Object.Instantiate(original.gameObject, grid, false);
+            coop.name = CoopButtonName;
+            coop.transform.SetSiblingIndex(last.transform.GetSiblingIndex() + 1);
+            StripGameScripts(coop);
+            var coopLabel = coop.GetComponent<TMP_Text>();
+            if (coopLabel != null)
+            {
+                coopLabel.text = Loc.T("Co-op");
+                coopLabel.enableWordWrapping = false;
+            }
+            var coopButton = coop.GetComponent<Button>();
+            coopButton.onClick = new Button.ButtonClickedEvent();
+            coopButton.onClick.AddListener(() => Guard.Run("Co-op window", CoopWindow.Open));
+            added++;
         }
 
         // Restart room (0.16) has no menu button (Umut 2026-10-30: "It kind of just works with F5"): the key only.
-        FitGrid(grid, Plugin.ModManagerEnabled?.Value != false ? 2 : 1);
+        FitGrid(grid, added);
         LinkButtons(grid);
         Plugin.Log.LogInfo("Settings: button added to the pause menu.");
     }
 
-    /// <summary>Keeps the button column as tall as before: the gaps get smaller so our buttons fit the frame.</summary>
+    /// <summary>A gap between two rows, as a share of a row, that the menu keeps at least.</summary>
+    private const float MinGapShare = 0.15f;
+
+    /// <summary>Keeps the button column as tall as before, so every button stays between the frame's two side
+    /// brackets: first the gaps get smaller; when that is not enough, the rows get shorter too (the text keeps its
+    /// size: a row has room around it). Umut 2026-11-16, with the Co-op button the 8th: "Exit" hung below the
+    /// brackets, because the gaps were already 0 and the rows alone were taller than the frame.</summary>
     private static void FitGrid(Transform grid, int added)
     {
         var layout = grid.GetComponent<GridLayoutGroup>();
@@ -178,7 +209,15 @@ public sealed class SettingsPage : global::UI.Dialogue
             return;
         float cell = layout.cellSize.y, gap = layout.spacing.y;
         float span = before * cell + (before - 1) * gap;
-        layout.spacing = new Vector2(layout.spacing.x, Mathf.Max(0f, (span - count * cell) / (count - 1)));
+        float fitGap = (span - count * cell) / (count - 1);
+        if (fitGap >= MinGapShare * cell)
+        {
+            layout.spacing = new Vector2(layout.spacing.x, fitGap);
+            return;
+        }
+        float row = span / (count + (count - 1) * MinGapShare);
+        layout.cellSize = new Vector2(layout.cellSize.x, row);
+        layout.spacing = new Vector2(layout.spacing.x, row * MinGapShare);
     }
 
     /// <summary>Up/down between the menu buttons in their order, going round at the ends (as the game does).</summary>

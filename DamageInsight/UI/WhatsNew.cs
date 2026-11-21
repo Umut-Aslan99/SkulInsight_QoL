@@ -52,6 +52,10 @@ public sealed class WhatsNew : MonoBehaviour
         if (_shown || _canvas != null || Plugin.WhatsNewEnabled == null || !Plugin.WhatsNewEnabled.Value
             || Plugin.LastVersionSeen.Value == MyPluginInfo.PLUGIN_VERSION)
             return;
+        // Co-op test copies (tools/coop/start-instances.ps1) run unattended and never save the setting: it would show
+        // at every start and cover the middle of the screen.
+        if (DamageInsight.Coop.Testing.CoopLaunch.Current.FromLauncher)
+            return;
         // Only in the castle, a moment after arriving (never in the middle of a fight).
         var chapter = Singleton<Service>.Instance?.levelManager?.currentChapter;
         bool castle = Singleton<Service>.Instance?.levelManager?.player != null && chapter != null

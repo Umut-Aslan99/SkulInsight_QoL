@@ -1,5 +1,49 @@
 # Changelog
 
+## 0.17.0 (online co-op, open beta)
+
+- **Online co-op (open beta): play a run together.** Off by default: pause (Esc) → SkulInsight QoL → **Online
+  co-op (open beta)**, then restart the game. Two players for now.
+  - **With a Steam friend:** open the Co-op window (F3, or the Co-op button in the pause menu), host a game and
+    invite a friend; they join from your invite or from their Steam friends list ("Join game").
+  - **With anyone:** matchmaking on the SkulInsight server pairs the nearest players first, for a normal run or the
+    Dark Mirror (you choose), and you can say whether you may host.
+  - **One run, the host's world:** the host's castle, Dark Mirror level and unlocks decide what the run looks like;
+    everybody keeps their own save, gear, gold, quests and run history.
+  - **Shared:** the enemies and bosses (the host's game runs them, everyone hits the same ones), room clears, doors
+    (a vote; a coin flip when you disagree), gold drops (everyone gets them), dialogues (anyone moves a line on).
+    **Your own:** room rewards, shops, gear and the Black Market.
+  - **Revive:** a downed teammate shows a ring; hold the interact key at it. Once per room or boss fight; everyone
+    who is down gets some health back when the room is cleared.
+  - **Enemy health:** enemies have more health in co-op. The host sets how much (Co-op → Enemy health, 1.5x to 3x
+    for two players, default 2x; elites and bosses a little more). A change counts at once for everyone.
+  - **Seeing each other:** name tags and a colour per player; your teammate is slightly see-through with an outline
+    in their colour; their moves, projectiles, quintessences and summons (Gravedigger, Oberon, ...) show on your
+    game, drawn fainter so your own stay readable. Their camera shakes, screen flashes and damage numbers stay on
+    their screen (settings bring them back). Your own projectiles get a thin green outline.
+  - **Connection problems:** a banner shows when the connection struggles; a dropped player can come back into the
+    same run, or everyone plays on alone. The connection box (ping, quality) sits below the run clock.
+  - **No pause in co-op** (the game keeps running for the others). **Stuck? F6** takes you to your teammate, makes
+    you visible again if a trap left you hidden, and frees the controls when something holds them (press it twice).
+  - **The combat log** has a Players view in co-op: each player's share of the damage, DPS and top sources.
+  - **This is a beta.** The Co-op window's **Report a bug or idea** packs your logs into one zip (Steam ids hidden)
+    and opens the report page on GitHub; **Save logs** makes only the zip (for Discord). A detailed co-op log is on
+    by default during the beta; it stays on your PC.
+- **Enemy projectiles that can hit you get a thin red outline** that pulses gently, also when you play alone
+  (Outlines → Enemy shot outline).
+- Fixed: the game could crash while closing (the Codex's picture work ran on after Unity shut down); with 8
+  buttons the pause menu's rows got too tall for its frame.
+
+Known issues of the beta (fixes come in 0.17.x, from your reports):
+- Some enemies exist only on the joining player's game (Chief Maid's servants, the sleeping subjects of the
+  Chimera's lab, the maze room's cats): they stand around and can't be killed there.
+- The twin sisters' (Leiana's) crossing attack shows its lines at the top of the screen for the joining player.
+- Some of your teammate's effects are drawn at full strength (Dark Paladin's swings, Rockstar's lightning dash),
+  and Dark Paladin's charged basic swings show no animation on the other game.
+- NPCs that give something (the old skeleton, the slime, Arachne's upgrade, ...) are each player's own, but don't yet
+  roll a different reward for each player; the Death Knight's shield (with the iced cola) works only for the host.
+- Up to 2 players; 3-4 players and host migration come later.
+
 ## 0.16.2 (your Steam name for the board)
 
 - **The name for the daily board starts with your Steam name** (the one the title screen shows) when you haven't

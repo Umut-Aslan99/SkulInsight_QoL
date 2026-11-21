@@ -14,7 +14,7 @@ namespace DamageInsight.Achievements;
 /// </summary>
 public static class AchievementSteam
 {
-    private static string IconFolder => Path.Combine(BepInEx.Paths.BepInExRootPath, "DamageInsight", "AchievementIcons");
+    private static string IconFolder => ModData.SharedFolder("AchievementIcons");
 
     private static bool _broken;
     private static bool _percentsRequested;

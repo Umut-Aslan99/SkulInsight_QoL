@@ -934,10 +934,15 @@ public sealed class FightRecorder : MonoBehaviour
             durations.Add(i + 1 < keep ? Mathf.Clamp(reel.Times[i + 1] - reel.Times[i], 0.05f, 0.5f) : Interval);
         string folder = CodexAnimations.ReplayFolderOf(film.Key), key = film.Key;
         int generation = _generation;
-        Task.Run(() => Save(folder, label, frames, durations, generation))
-            .ContinueWith(t => Plugin.Log.LogInfo(t.IsFaulted
-                ? $"Codex: saving the film of {key} {label} failed: {t.Exception?.GetBaseException().Message}"
-                : $"Codex: filmed {key}: {label} ({frames.Count} frames; ended by {why}{(aftermath > 0 ? $", {aftermath} effects still running" : "")})."));
+        // Tracked: closing the game waits for it (an encoder running while Unity shuts down crashes the game).
+        Crash.BackgroundWork.Track(Task.Run(() => Save(folder, label, frames, durations, generation))
+            .ContinueWith(t =>
+            {
+                if (!Crash.BackgroundWork.Quitting)
+                    Plugin.Log.LogInfo(t.IsFaulted
+                        ? $"Codex: saving the film of {key} {label} failed: {t.Exception?.GetBaseException().Message}"
+                        : $"Codex: filmed {key}: {label} ({frames.Count} frames; ended by {why}{(aftermath > 0 ? $", {aftermath} effects still running" : "")}).");
+            }));
         return true;
     }
 
@@ -969,6 +974,8 @@ public sealed class FightRecorder : MonoBehaviour
     /// <summary>Background thread: appends one move as a sheet to the boss's replay folder.</summary>
     private static void Save(string folder, string label, List<Color32[]> frames, List<float> durations, int generation)
     {
+        if (Crash.BackgroundWork.Quitting)
+            return; // the game closes: no Unity encoder now (the film is lost, the game is not)
         int columns = Math.Max(1, Math.Min(frames.Count, 4096 / Width));
         int count = Math.Min(frames.Count, columns * (4096 / Height));
         int rows = (count + columns - 1) / columns;

@@ -38,7 +38,7 @@ public sealed class CombatLogWindow : MonoBehaviour
         Feed.Update(DamageLog.Records, DamageLog.TotalAdded, DamageLog.ClearCount, DamageLog.CurrentRoom);
     }
 
-    private enum ChartMode { Source, Type }
+    private enum ChartMode { Source, Type, Players }
 
     /// <summary>The big area: every hit, or the damage table per piece of gear (GearTable).</summary>
     private enum ViewMode { Hits, Table }
@@ -51,6 +51,7 @@ public sealed class CombatLogWindow : MonoBehaviour
     private const int MaxLines = 250;
     private const float TextInterval = 0.1f;  // log text refresh (10x per second)
     private const float ChartInterval = 0.3f; // pie chart refresh
+    private const float PlayersInterval = 0.2f; // the players' chart redraws at least every 0.5 s
     private const float DefaultWidth = 920f, DefaultHeight = 720f;
 
     private Canvas _canvas;
@@ -139,7 +140,9 @@ public sealed class CombatLogWindow : MonoBehaviour
             _viewShown = _view;
             DrawLog();
         }
-        if ((Feed.Version != _chartVersion || _chartMode != _chartModeShown) && now >= _nextChart)
+        // the players' chart: the teammates' numbers come by message, not through the feed
+        if ((Feed.Version != _chartVersion || _chartMode != _chartModeShown || _chartMode == ChartMode.Players
+                && now >= _nextChart + PlayersInterval) && now >= _nextChart)
         {
             _nextChart = now + ChartInterval;
             _chartVersion = Feed.Version;
@@ -257,8 +260,11 @@ public sealed class CombatLogWindow : MonoBehaviour
             () => _view, v => _view = v, changesFilter: false);
 
         var chart = Group(p, Loc.T("Chart"));
-        Radio(chart, p, new[] { (Loc.T("By source"), ChartMode.Source), (Loc.T("By type"), ChartMode.Type) },
-            () => _chartMode, v => _chartMode = v, changesFilter: false);
+        // co-op (Umut 2026-11-21): every player's damage instead of their numbers on screen
+        var chartModes = Plugin.CoopEnabled?.Value == true
+            ? new[] { (Loc.T("By source"), ChartMode.Source), (Loc.T("By type"), ChartMode.Type), (Loc.T("Players"), ChartMode.Players) }
+            : new[] { (Loc.T("By source"), ChartMode.Source), (Loc.T("By type"), ChartMode.Type) };
+        Radio(chart, p, chartModes, () => _chartMode, v => _chartMode = v, changesFilter: false);
 
         var source = Group(p, Loc.T("Source"));
         foreach (DamageSource s in Enum.GetValues(typeof(DamageSource)))
@@ -572,6 +578,11 @@ public sealed class CombatLogWindow : MonoBehaviour
 
     private void DrawChart()
     {
+        if (_chartMode == ChartMode.Players)
+        {
+            DrawPlayers();
+            return;
+        }
         var slices = _chartMode == ChartMode.Source
             ? DamageStats.FromTotals(Feed.TotalBySource)
                 .Select(s => (label: DamageSources.Title(s.Key), s.Value, s.Percent, color: DamageSources.Color(s.Key))).ToList()
@@ -587,6 +598,38 @@ public sealed class CombatLogWindow : MonoBehaviour
         {
             string hex = ColorUtility.ToHtmlStringRGB(s.color);
             sb.Append($"<color=#{hex}>{s.label}</color><pos=48%>{s.Percent:0.0}%<pos=72%><color=#A89F94>{s.Value:N0}</color>\n");
+        }
+        _legendText.text = sb.ToString();
+    }
+
+    /// <summary>Co-op: each player's share of the run's damage (the ring, in their colour) and, per player, the run total,
+    /// the damage per second right now, this room's damage and their biggest sources (Coop/CoopDamageBoard).</summary>
+    private void DrawPlayers()
+    {
+        var board = Coop.CoopDamageBoard.Current;
+        var players = board != null ? board.Players().ToList() : new List<Coop.CoopDamageBoard.Player>();
+        double total = players.Sum(pl => pl.Share.RunTotal);
+        _pie.Draw(players.Select(pl => (pl.Share.RunTotal, Coop.TeammateTags.ColorOf(pl.Slot))).ToList());
+        _pieCenterText.text = total > 0 ? $"<size=70%><color=#A89F94>{Loc.T("Total")}</color></size>\n{total:N0}" : "";
+        var sb = new StringBuilder();
+        if (players.Count <= 1)
+            sb.Append($"<color=#A89F94>{Loc.T("No teammate yet")}</color>\n");
+        foreach (var pl in players)
+        {
+            string hex = ColorUtility.ToHtmlStringRGB(Coop.TeammateTags.ColorOf(pl.Slot));
+            double share = total > 0 ? pl.Share.RunTotal / total * 100 : 0;
+            sb.Append($"<color=#{hex}>{board.NameOf(pl.Slot)}</color><pos=48%>{share:0.0}%<pos=72%><color=#A89F94>{pl.Share.RunTotal:N0}</color>\n");
+            sb.Append($"<size=85%><color=#A89F94>  {Loc.T("DPS")} {pl.Share.Dps:N0} · {Loc.T("This room")} {pl.Share.RoomTotal:N0}</color></size>\n");
+            if (pl.Share.RunTotal > 0 && pl.Share.Sources.Count > 0)
+            {
+                sb.Append("<size=85%>  ");
+                foreach (var (source, amount) in pl.Share.Sources.Take(3))
+                {
+                    var s = (DamageSource)source;
+                    sb.Append($"<color=#{ColorUtility.ToHtmlStringRGB(DamageSources.Color(s))}>{DamageSources.Title(s)}</color> {amount / pl.Share.RunTotal * 100:0}%  ");
+                }
+                sb.Append("</size>\n");
+            }
         }
         _legendText.text = sb.ToString();
     }

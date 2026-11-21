@@ -133,6 +133,9 @@ Umut's admin removal. Good enough for a fan leaderboard.
 | D5 | 0.13.0 release: texts, README, changelog, wiki, What's new (with Records and run history) | final test, go |
 
 ## Open decisions (Umut, at the 0.14 planning)
+> All decided since (2026-11-02): points = formula 4 (sections below), a free 12-character name, the monthly board
+> sums the days, deaths count with fewer points.
+
 3. Points: which numbers count and how much (Claude proposes a formula with examples; tuned with real runs).
 4. The name: 3 letters like an arcade machine, or a free name (12 characters)?
 5. The monthly board: the sum of a month's daily scores, or the best day?

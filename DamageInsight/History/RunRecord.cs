@@ -169,13 +169,18 @@ public sealed class RunRecord
     /// <summary>The death cam picture was saved next to the file (<c>&lt;Id&gt;.jpg</c>).</summary>
     public bool Picture;
 
+    /// <summary>A co-op run (0.17): the party, the teammates' parts and the party events; null for a solo run (its file
+    /// has no "coop" field, so solo files stay as they were). This record is the local player's own part.</summary>
+    public CoopRunRecord Coop;
+
     public int PlaySeconds => Math.Max(0, EndPlay - StartPlay);
 
     public double Number(string key) => Numbers.TryGetValue(key, out double v) ? v : 0;
 
     // ------------------------------------------------------------------ JSON
 
-    public string ToJson()
+    /// <param name="withCoop">False: without the co-op data (a co-op part sent to the teammates).</param>
+    public string ToJson(bool withCoop = true)
     {
         var sb = new StringBuilder();
         sb.Append("{\n\"format\":").Append(FormatVersion)
@@ -247,7 +252,10 @@ public sealed class RunRecord
             "\n {\"t\":" + e.T + ",\"kind\":" + Q(e.Kind) + ",\"id\":" + Q(e.Id) + ",\"name\":" + Q(e.Name) +
             (e.Other.Length > 0 ? ",\"other\":" + Q(e.Other) + ",\"otherName\":" + Q(e.OtherName) : "") +
             (e.Value != 0 ? ",\"value\":" + e.Value : "") + "}")));
-        sb.Append("]\n}\n");
+        sb.Append(']');
+        if (withCoop && Coop != null)
+            sb.Append(",\n\"coop\":").Append(Coop.ToJson(this));
+        sb.Append("\n}\n");
         return sb.ToString();
     }
 
@@ -337,6 +345,8 @@ public sealed class RunRecord
                 T = (int)e.Num("t"), Kind = e.Str("kind") ?? "", Id = e.Str("id") ?? "", Name = e.Str("name") ?? "",
                 Other = e.Str("other") ?? "", OtherName = e.Str("otherName") ?? "", Value = (int)e.Num("value"),
             });
+        if (n.Has("coop"))
+            r.Coop = CoopRunRecord.FromNode(n.Child("coop"), r);
         return r;
     }
 
@@ -364,6 +374,8 @@ public sealed class RunRecord
         copy.DamageTaken.Clear();
         copy.Picture = false;
         copy.Shrunk = true;
+        if (copy.Coop != null)
+            copy.Coop = copy.Coop.Shrink(copy);
         return copy;
     }
 
@@ -373,6 +385,7 @@ public sealed class RunRecord
         var copy = Shrink();
         copy.Shrunk = Shrunk;
         copy.Picture = Picture;
+        copy.Coop = copy.Coop?.Summary();
         return copy;
     }
 

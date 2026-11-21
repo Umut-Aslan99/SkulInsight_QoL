@@ -16,7 +16,7 @@ namespace DamageInsight.Codex;
 /// </summary>
 public static class CodexTracker
 {
-    public static string Folder => Path.Combine(BepInEx.Paths.BepInExRootPath, "DamageInsight", "Codex");
+    public static string Folder => ModData.Folder("Codex");
     private static string ProgressPath => Path.Combine(Folder, "progress.json");
     public static string PortraitPath(string key) => Path.Combine(Folder, "Portraits", key + ".png");
 
@@ -102,9 +102,15 @@ public static class CodexTracker
             return;
         Character attacker = damage.attacker.character;
         bool playerSide = attacker != null && (attacker.type == Character.Type.Player || attacker.type == Character.Type.PlayerMinion);
+        // Co-op (COOP_PLAN 4.10, "your own kills and finds count"): on this game a teammate is a copy of type Player.
+        // Their hits are not this player's damage, and a hit on them is not this player taking damage. Their kills
+        // still count (the team's kills: OnTeamKill, COOP_LOG 54).
+        bool teammate = Coop.CoopCopies.BelongsToCopy(attacker);
 
         if (target.type == Character.Type.Player)
         {
+            if (Coop.CoopCopies.IsCopy(target))
+                return;
             // An enemy hit you.
             if (attacker == null || EntryOf(attacker) == null)
                 return;
@@ -125,21 +131,49 @@ public static class CodexTracker
         var enemy = See(target);
         if (BossAttacks.Covers(target) && !target.health.dead)
             FightRecorder.Watch(target, EntryOf(target).Value.key); // film its attacks from now on
-        enemy.DamageDealt += dealt;
-        enemy.BestHit = Math.Max(enemy.BestHit, dealt);
-        if (target.health.dead && CountedThisRun.Add(target.GetInstanceID()))
+        if (!teammate)
         {
-            enemy.Kills++;
-            OnEliteKilled(target);
-            if (target.type == Character.Type.Boss && LateChapter())
-                OnRunWon();
-            RunRecorder.OnKilled(EntryOf(target).Value.id);
-            var killed = EntryOf(target).Value;
-            Patches.Guard.Run("Rewards: kill", () => DamageInsight.Rewards.RewardService.OnKilled(target, killed.id, killed.category));
-            // Kills are when the enemy is out of the fight: capturing its animations can't disturb anything.
-            CodexAnimations.RequestCapture(target, EntryOf(target).Value.key, CodexWindow.Instance);
+            enemy.DamageDealt += dealt;
+            enemy.BestHit = Math.Max(enemy.BestHit, dealt);
         }
+        if (target.health.dead)
+            CountKill(target, enemy);
         Changed();
+    }
+
+    /// <summary>
+    /// Co-op, a client's game: a player's hit killed this enemy on the host. Here the enemy died by the host's word
+    /// with no killing hit of this game (<see cref="OnHit"/> never sees it dead), so without this a client's book
+    /// counted no kills at all and its kill quests never paid (COOP_LOG 54). The kill counts like one of this
+    /// player's own, whoever of the team struck: on the host a teammate's kills count the same way.
+    /// </summary>
+    public static void OnTeamKill(Character target)
+    {
+        if (!Enabled || target == null || target.type == Character.Type.Player || target.health == null || !target.health.dead
+            || EntryOf(target) == null)
+            return;
+        CountKill(target, See(target));
+        Changed();
+    }
+
+    /// <summary>For co-op's test trace: the book counted a kill of this enemy.</summary>
+    internal static Action<Character> KillCounted;
+
+    /// <summary>A kill, once per enemy: the book's count, the run's record, its quest, its animations.</summary>
+    private static void CountKill(Character target, EntryProgress enemy)
+    {
+        if (!CountedThisRun.Add(target.GetInstanceID()))
+            return;
+        enemy.Kills++;
+        OnEliteKilled(target);
+        if (target.type == Character.Type.Boss && LateChapter())
+            OnRunWon();
+        var killed = EntryOf(target).Value;
+        RunRecorder.OnKilled(killed.id);
+        Patches.Guard.Run("Rewards: kill", () => DamageInsight.Rewards.RewardService.OnKilled(target, killed.id, killed.category));
+        // Kills are when the enemy is out of the fight: capturing its animations can't disturb anything.
+        CodexAnimations.RequestCapture(target, killed.key, CodexWindow.Instance);
+        KillCounted?.Invoke(target);
     }
 
     /// <summary>Marks an enemy as seen (once per spawned enemy), records its HP and captures its portrait once.</summary>

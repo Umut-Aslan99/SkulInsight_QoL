@@ -196,3 +196,4 @@ build). Running log: every step with what, how, commit, open bits (see the proje
     recognizes at the bottom right" → 0.16.2: DailyRun.StartingName(config Daily/Name, last name, platform name
     = PlatformManager.platform.userName, Steam's persona name); "Skul" counts as none; 12 characters. Changelog entry
     0.16.2 (10 languages). 578 tests.
+20. [Umut] 0.16.1 not yet approved: "Push fast and i will do an update ping" → **0.16.2 released 2026-11-02** (GitHub v0.16.2 + Thunderstore 0.16.2).

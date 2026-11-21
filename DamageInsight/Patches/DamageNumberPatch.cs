@@ -39,10 +39,25 @@ public static class DamageNumberPatch
         }
     }
 
-    private static void SpawnTakingDamage(FloatingTextSpawner spawner, in Damage damage)
+    /// <summary>
+    /// Co-op (COOP_PLAN 4.10: "teammates' hits in their colour"): the host applies a teammate's hit straight to the
+    /// enemy's health, where the game shows no number (it shows them on the attacker's own attack path). The same
+    /// number as ours, in the teammate's colour (lighter when critical). Setting Damage Numbers/Teammates.
+    /// </summary>
+    internal static void SpawnTeammate(in Damage damage, Color color)
+    {
+        var spawner = Singletons.Singleton<Services.Service>.Instance?.floatingTextSpawner;
+        if (spawner == null)
+            return;
+        var text = SpawnTakingDamage(spawner, damage);
+        if (text != null)
+            text.color = damage.critical ? Color.Lerp(color, Color.white, 0.4f) : color;
+    }
+
+    private static FloatingText SpawnTakingDamage(FloatingTextSpawner spawner, in Damage damage)
     {
         if (Scene<GameBase>.instance.uiManager.hideOption == UIManager.HideOption.HideAll || damage.amount < 1.0)
-            return;
+            return null;
 
         string text = damage.ToString();
         DamageSource source = DamageSources.Classify(damage);
@@ -106,6 +121,7 @@ public static class DamageNumberPatch
         // so this animation never leaks onto the next number.
         float drift = MMMaths.RandomBool() ? 0.2f : -0.2f;
         floatingText.StartCoroutine(Animate(floatingText, icon, drift));
+        return floatingText;
     }
 
     /// <summary>Pop up quickly, hold still, fade out, despawn.</summary>

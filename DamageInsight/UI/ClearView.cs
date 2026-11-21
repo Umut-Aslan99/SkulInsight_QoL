@@ -34,6 +34,8 @@ public sealed class ClearView : MonoBehaviour
 
     private static readonly Dictionary<SpriteRenderer, Faded> Renderers = new();
     private static readonly Dictionary<Projectile, SpriteRenderer[]> Projectiles = new();
+    /// <summary>Co-op: the projectiles a teammate's copy fired here (faded to the teammate opacity too).</summary>
+    private static readonly HashSet<Projectile> TeammateShots = new();
     private static readonly List<SpriteRenderer> Stale = new();
     private static readonly List<Projectile> Gone = new();
 
@@ -46,10 +48,21 @@ public sealed class ClearView : MonoBehaviour
     /// <summary>A projectile was fired (Patches/ClearViewPatches): yours or your summons' fade too.</summary>
     public static void Fired(Projectile projectile, Characters.Character owner)
     {
-        if (!On || Plugin.ClearViewProjectiles?.Value != true || projectile == null || !FilmClutter.IsPlayerSide(owner))
+        if (projectile == null)
+            return;
+        // co-op (Umut 2026-11-21): all of a teammate's things are faded like the teammate, also with Clear view off
+        bool mate = Coop.CoopCopies.Count > 0 && Coop.CoopCopies.BelongsToCopy(owner);
+        if (mate)
+            TeammateShots.Add(projectile);
+        else
+            TeammateShots.Remove(projectile);
+        if (!mate && (!On || Plugin.ClearViewProjectiles?.Value != true || !FilmClutter.IsPlayerSide(owner)))
             return;
         Projectiles[projectile] = projectile.GetComponentsInChildren<SpriteRenderer>(true);
     }
+
+    /// <summary>How solid a teammate's things are drawn (1 without co-op).</summary>
+    private static float TeammateOpacity => Coop.CoopCopies.Count > 0 ? Coop.TeammateLook.Opacity : 1f;
 
     /// <summary>A projectile ends: its renderers get their alpha back (the pool reuses it as it is).</summary>
     public static void Despawned(Projectile projectile)
@@ -57,6 +70,7 @@ public sealed class ClearView : MonoBehaviour
         if (projectile == null || !Projectiles.TryGetValue(projectile, out var renderers))
             return;
         Projectiles.Remove(projectile);
+        TeammateShots.Remove(projectile);
         foreach (var renderer in renderers)
             Restore(renderer);
     }
@@ -69,7 +83,7 @@ public sealed class ClearView : MonoBehaviour
 
     private void Apply()
     {
-        if (Renderers.Count == 0 && Projectiles.Count == 0 && !On)
+        if (Renderers.Count == 0 && Projectiles.Count == 0 && !On && Coop.CoopCopies.Count == 0)
             return;
         int frame = Time.frameCount;
         int busy = 0;
@@ -81,21 +95,35 @@ public sealed class ClearView : MonoBehaviour
             if (pair.Key == null || !pair.Key.isActiveAndEnabled)
                 Gone.Add(pair.Key);
         foreach (var projectile in Gone)
+        {
             Projectiles.Remove(projectile);
+            TeammateShots.Remove(projectile);
+        }
         busy += Projectiles.Count;
 
         float target = On ? Target(busy) : 1f;
         // Eased: from full to 40% takes about half a second, so a burst of effects doesn't flicker.
         _opacity = Mathf.MoveTowards(_opacity, target, Time.unscaledDeltaTime * 1.2f);
-        if (_opacity < 0.999f)
+        float mate = _opacity * TeammateOpacity;
+        if (_opacity < 0.999f || mate < 0.999f)
         {
             foreach (var effect in FilmClutter.PlayerEffects)
-                if (effect != null && effect.state == EffectPoolInstance.State.Playing && effect.renderer != null)
-                    Dim(effect.renderer, frame);
-            foreach (var renderers in Projectiles.Values)
-                foreach (var renderer in renderers)
+            {
+                if (effect == null || effect.state != EffectPoolInstance.State.Playing || effect.renderer == null)
+                    continue;
+                float opacity = FilmClutter.IsTeammates(effect) ? mate : _opacity;
+                if (opacity < 0.999f)
+                    Dim(effect.renderer, frame, opacity);
+            }
+            foreach (var pair in Projectiles)
+            {
+                float opacity = TeammateShots.Contains(pair.Key) ? mate : _opacity;
+                if (opacity >= 0.999f)
+                    continue;
+                foreach (var renderer in pair.Value)
                     if (renderer != null)
-                        Dim(renderer, frame);
+                        Dim(renderer, frame, opacity);
+            }
         }
 
         // What wasn't faded this frame (an effect that ended or fades out on its own, full opacity again) is let go.
@@ -140,14 +168,14 @@ public sealed class ClearView : MonoBehaviour
     /// <summary>0 up to <see cref="BusyFrom"/> of your effects and projectiles at once, 1 from <see cref="BusyFull"/>.</summary>
     internal static float BusyFade(int busy) => Mathf.Clamp01((busy - BusyFrom) / (float)(BusyFull - BusyFrom));
 
-    private void Dim(SpriteRenderer renderer, int frame)
+    private static void Dim(SpriteRenderer renderer, int frame, float opacity)
     {
         var color = renderer.color;
         if (!Renderers.TryGetValue(renderer, out var faded))
             Renderers[renderer] = faded = new Faded { Base = color.a };
         else if (Mathf.Abs(color.a - faded.Written) > 0.002f)
             faded.Base = color.a; // the game set a new alpha (its animation or fade)
-        color.a = faded.Base * _opacity;
+        color.a = faded.Base * opacity;
         renderer.color = color;
         faded.Written = color.a;
         faded.Frame = frame;

@@ -29,6 +29,38 @@ public static class UiKit
     /// <summary>Screen size in our canvas units.</summary>
     public static Vector2 CanvasSize => new Vector2(Screen.width, Screen.height) / CanvasScale;
 
+    /// <summary>
+    /// A text's outline. TMP needs the text's material for it, which a text under a switched-off parent doesn't
+    /// have yet: setting it there throws (the door vote panel, built while a game menu had the co-op layer switched
+    /// off, 2026-11-15). Set now, or once the text first shows.
+    /// </summary>
+    public static void Outline(TMP_Text text, float width)
+    {
+        if (text == null)
+            return;
+        if (text.gameObject.activeInHierarchy)
+        {
+            text.outlineWidth = width;
+            return;
+        }
+        var later = text.gameObject.GetComponent<OutlineWhenShown>() ?? text.gameObject.AddComponent<OutlineWhenShown>();
+        later.Width = width;
+    }
+
+    /// <summary>Sets a text's outline on its first frame on screen (see <see cref="Outline"/>), then leaves.</summary>
+    internal sealed class OutlineWhenShown : MonoBehaviour
+    {
+        public float Width;
+
+        private void Start()
+        {
+            var text = GetComponent<TMP_Text>();
+            if (text != null)
+                text.outlineWidth = Width;
+            Destroy(this);
+        }
+    }
+
     /// <summary>Creates a screen overlay canvas that scales like our reference layout.</summary>
     public static Canvas OverlayCanvas(string name, int sortingOrder)
     {

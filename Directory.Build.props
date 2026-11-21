@@ -43,6 +43,11 @@
       <HintPath>$(SkulManaged)\Plugins.Common.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <!-- Co-op: enemies' player search (AIController's NonAllocOverlapper). -->
+    <Reference Include="Plugins.PhysicsUtils">
+      <HintPath>$(SkulManaged)\Plugins.PhysicsUtils.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <!-- Save slots: the game's save file model and the platform that writes it; the object pools a return to the
          title screen empties. -->
     <Reference Include="Plugins.ObjectPool">

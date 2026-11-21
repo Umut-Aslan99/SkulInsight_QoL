@@ -68,6 +68,9 @@ public static class RoomRestart
     {
         if (!Enabled)
             return Loc.T("Restart room is switched off (SkulInsight settings).");
+        // Co-op: the room is everyone's; going back on one game would split the games apart.
+        if (DamageInsight.Coop.CoopWorld.Current?.Active == true)
+            return Loc.T("Restart room doesn't work in co-op: the room is shared.");
         if (_restarting || SlotSwitcher.Busy)
             return Loc.T("Please wait: the game is loading.");
         var levels = Singleton<Service>.Instance?.levelManager;

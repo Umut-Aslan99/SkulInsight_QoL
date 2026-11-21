@@ -40,7 +40,7 @@ namespace DamageInsight.Tools;
 /// </summary>
 public sealed class QaCapture : MonoBehaviour
 {
-    public static string Root => Path.Combine(Paths.BepInExRootPath, "DamageInsight", "QA");
+    public static string Root => ModData.Folder("QA");
     private static string RequestFile => Path.Combine(Root, "request.json");
     private static string StopFile => Path.Combine(Root, "stop.txt");
 
@@ -913,13 +913,14 @@ public sealed class QaCapture : MonoBehaviour
 
     // ------------------------------------------------------------------ patches (only act while capturing)
 
-    /// <summary>Unattended start: the title screen goes on without waiting for a key.</summary>
+    /// <summary>Unattended start (a QA request or a co-op test copy from tools/coop/start-instances.ps1): the title
+    /// screen goes on without waiting for a key.</summary>
     [HarmonyPatch(typeof(Main), "CWaitForInput")]
     public static class SkipTitleKey
     {
         private static bool Prefix(ref IEnumerator __result)
         {
-            if (!AutoStart)
+            if (!AutoStart && !DamageInsight.Coop.Testing.CoopLaunch.Current.FromLauncher)
                 return true;
             __result = Skip();
             return false;

@@ -34,6 +34,30 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> DailyEnabled;
     internal static ConfigEntry<string> DailyServer, DailyName;
     internal static ConfigEntry<bool> DailyWinnerNames;
+    internal static ConfigEntry<bool> CoopEnabled;
+    internal static ConfigEntry<float> CoopReviveSound;
+    internal static ConfigEntry<float> CoopTeammateOpacity;
+    internal static ConfigEntry<bool> CoopMatchSameLanguage;
+    internal static ConfigEntry<bool> CoopTeammateOutline;
+    internal static ConfigEntry<bool> CoopTeammateScreenEffects;
+    internal static ConfigEntry<bool> CoopEnemyShotOutline, CoopOwnShotOutline;
+    internal static ConfigEntry<float> CoopEnemyHealth;
+    internal static ConfigEntry<float> CoopDoorVoteSeconds;
+    internal static ConfigEntry<float> CoopRewardWaitSeconds;
+    internal static ConfigEntry<string> CoopBalanceText;
+    internal static ConfigEntry<float> CoopReviveHoldSeconds, CoopReviveHealth, CoopRoomClearHealth;
+    internal static ConfigEntry<int> CoopRevivesPerRoom;
+    internal static ConfigEntry<float> CoopProblemSeconds, CoopDropSeconds, CoopRejoinSeconds, CoopRetrySeconds;
+    internal static ConfigEntry<bool> CoopConnectionBox;
+    internal static ConfigEntry<bool> CoopDetailedLog;
+    internal static ConfigEntry<bool> CoopMenuButton, CoopFriendsCanJoin;
+    internal static ConfigEntry<int> CoopMaxPlayers;
+    internal static ConfigEntry<KeyboardShortcut> CoopWindowKey;
+    internal static ConfigEntry<bool> CoopMatchmaking, CoopCanHost;
+    internal static ConfigEntry<int> CoopMaxPing;
+    internal static ConfigEntry<string> CoopMatchMode;
+    internal static ConfigEntry<bool> DamageNumbersTeammates;
+    internal static ConfigEntry<KeyboardShortcut> CoopUnstuckKey;
     internal static ConfigEntry<string> LastVersionSeen;
 
     internal static ConfigEntry<bool> DamageSourceTags;
@@ -105,6 +129,8 @@ public class Plugin : BaseUnityPlugin
     {
         Log = Logger;
         Instance = this;
+        // Co-op test copies (--skulinsight-instance 2-4): own data folder and save, before anything reads either.
+        DamageInsight.Coop.Testing.CoopTesting.Start(Config);
 
         // Written to BepInEx\config\<plugin GUID>.cfg on first launch.
         Language = Config.Bind("General", "Language", DamageInsight.Lang.LanguageWatcher.Auto, new ConfigDescription(
@@ -112,7 +138,7 @@ public class Plugin : BaseUnityPlugin
             string.Join(", ", System.Linq.Enumerable.Select(DamageInsight.Lang.Loc.Languages, l => l.code)) + ".",
             new AcceptableValueList<string>(System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(
                 new[] { DamageInsight.Lang.LanguageWatcher.Auto }, System.Linq.Enumerable.Select(DamageInsight.Lang.Loc.Languages, l => l.code))))));
-        DamageInsight.Lang.Loc.OverrideFolder = System.IO.Path.Combine(Paths.BepInExRootPath, "DamageInsight", "Lang");
+        DamageInsight.Lang.Loc.OverrideFolder = ModData.SharedFolder("Lang");
         WhatsNewEnabled = Config.Bind("General", "WhatsNew", true,
             "After an update, show once (in the castle) what's new in this version.");
         MenuSoundsEnabled = Config.Bind("General", "MenuSounds", true,
@@ -136,6 +162,99 @@ public class Plugin : BaseUnityPlugin
             "The adventurers (the hero parties in runs) are named after yesterday's daily run winners. Needs daily runs on.");
         DailyServer = Config.Bind("Daily", "Server", "https://skul.umut-aslan.dev",
             "The daily run server's address.");
+        // Read as plain text by the preloader (DamageInsight.Preloader, CoopGate) before the game loads: it only rewrites the
+        // game's player reads when this is true. Hidden on the settings page until co-op is playable (phase 1).
+        CoopEnabled = Config.Bind("Coop", "Enabled", false,
+            "Play a run together over the internet: with Steam friends (invites) or with other players through matchmaking. Needs a restart of the game. Off: the game runs as it does without co-op.");
+        // Umut 2026-11-21: the teammates' numbers cluttered the screen. A new key (off), so testers' configs with the old
+        // "Teammates = true" don't keep them on.
+        DamageNumbersTeammates = Config.Bind("Damage Numbers", "TeammatesOnScreen", false,
+            "Co-op: your teammates' hits show damage numbers on your screen too, in their colour. Off: fewer numbers on screen.");
+        CoopUnstuckKey = Config.Bind("Coop", "UnstuckKey", new KeyboardShortcut(UnityEngine.KeyCode.F6),
+            "Co-op: puts you where your teammate stands in this room (once every 10 seconds), when you are stuck or far away.");
+        CoopConnectionBox = Config.Bind("Coop", "ConnectionBox", true,
+            "Co-op: a small box at the top left, below the clock, with each teammate's ping (green, amber, red) and a warning when nothing arrives from them.");
+        // On by default during the co-op open beta (Umut 2026-11-21 13:10: the beta's logs must be able to reconstruct a run).
+        CoopDetailedLog = Config.Bind("Coop", "DetailedLog", true,
+            "Co-op: writes everything that happens in a co-op game to BepInEx\\DamageInsight\\CoopTrace (the newest 10 games, 50 MB each at most). On by default during the co-op beta; the Co-op window's \"Report a bug or idea\" packs these files with the other logs.");
+        CoopMenuButton = Config.Bind("Coop", "MenuButton", true,
+            "Co-op: a Co-op button in the pause menu (below Mods) that opens the Co-op window: host, invite friends, leave, the players.");
+        CoopWindowKey = Config.Bind("Coop", "WindowKey", new KeyboardShortcut(UnityEngine.KeyCode.F3),
+            "Co-op: opens and closes the Co-op window.");
+        CoopFriendsCanJoin = Config.Bind("Coop", "FriendsCanJoin", true,
+            "Co-op, when you host: your Steam friends can join from their friends list (Join game). Off: only friends you invite.");
+        CoopMaxPlayers = Config.Bind("Coop", "MaxPlayers", 4, new ConfigDescription(
+            "Co-op, when you host: how many players your game takes, you included.",
+            new AcceptableValueRange<int>(2, 4)));
+        CoopMatchmaking = Config.Bind("Coop", "Matchmaking", false,
+            "Co-op: find a partner through the daily run server (Find a partner in the Co-op window). Sends the daily run's random " +
+            "player id, your Steam id and name, your SkulInsight version and mod list, what you want to play and your Steam ping " +
+            "location; the server keeps them in memory only while you search. Off until you turn it on.");
+        CoopMaxPing = Config.Bind("Coop", "MaxPing", 200, new ConfigDescription(
+            "Co-op matchmaking: the highest ping (ms) a partner may have.",
+            new AcceptableValueRange<int>(50, 1000)));
+        CoopMatchSameLanguage = Config.Bind("Coop", "MatchSameLanguage", false,
+            "Co-op matchmaking: for the first minute of a search, only partners who play SkulInsight in your language. Off: anyone (finds a partner sooner).");
+        CoopCanHost = Config.Bind("Coop", "CanHost", true,
+            "Co-op matchmaking: your game may be the host (the world runs on the host's game).");
+        CoopMatchMode = Config.Bind("Coop", "MatchMode", "any", new ConfigDescription(
+            "Co-op matchmaking: what you want to play: normal, darkmirror or any.",
+            new AcceptableValueList<string>("normal", "darkmirror", "any")));
+        CoopReviveSound =Config.Bind("Coop", "ReviveSound", 0.6f, new ConfigDescription(
+            "Co-op: how loud the heartbeat while a teammate is revived and the sound of the revive are (0 = no sound). The game's master and effects volume apply too.",
+            new AcceptableValueRange<float>(0f, 1f)));
+        // Umut + UBDuck 2026-11-16 (COOP_LOG 61 (5)): with the same skull both players looked alike.
+        CoopTeammateOpacity = Config.Bind("Coop", "TeammateOpacity", 0.75f, new ConfigDescription(
+            "Co-op: how solid your teammates look (100% = like you, lower = see-through), so you tell them from yourself at a glance.",
+            new AcceptableValueRange<float>(0.2f, 1f)));
+        CoopTeammateOutline = Config.Bind("Coop", "TeammateOutline", true,
+            "Co-op: your teammates have an outline in their colour (the colour of their name and damage numbers).");
+        // Umut 2026-11-21: a teammate's camera shakes, flashes and zooms on your screen were clutter.
+        // Umut 2026-11-21: whose shot is it (Coop/ShotOutlines).
+        // Umut 2026-11-21: also for playing alone (a YouTuber, Haxa, asked for it).
+        CoopEnemyShotOutline = Config.Bind("Outlines", "EnemyShots", true, "Enemy projectiles that can hit you get a thin red outline that pulses gently, so you see them in a busy fight.");
+        CoopOwnShotOutline = Config.Bind("Outlines", "OwnShots", true, "Co-op: your own projectiles get a thin green outline, so you tell them from your teammates' and the enemies'.");
+        CoopTeammateScreenEffects = Config.Bind("Coop", "TeammateScreenEffects", false,
+            "Co-op: your teammates' moves and quintessences may shake your camera, flash or darken your screen, zoom and make your controller rumble. Off: only your own do.");
+        // Umut 2026-11-21: "1.6x for 2 players felt too weak"; a slider 1.5-3x, default 2x, live on both games.
+        CoopEnemyHealth = Config.Bind("Coop", "EnemyHealth", 2f, new ConfigDescription(
+            "Co-op, when you host: how much health enemies have with two players (2x = twice their own). Elites and bosses get a little more, three or four players more again. A change counts at once, for everyone and for enemies already there.",
+            new AcceptableValueRange<float>(1.5f, 3f)));
+        CoopDoorVoteSeconds = Config.Bind("Coop", "DoorVoteSeconds", 10f, new ConfigDescription(
+            "Co-op, when you host: how long the others have to pick a door after the first player picked one. Then the picks made so far decide.",
+            new AcceptableValueRange<float>(3f, 60f)));
+        CoopRewardWaitSeconds = Config.Bind("Coop", "RewardWaitSeconds", 60f, new ConfigDescription(
+            "Co-op, when you host: how long the door vote waits for everyone to take their room reward. Picks made meanwhile count when the wait ends.",
+            new AcceptableValueRange<float>(0f, 180f)));
+        CoopBalanceText = Config.Bind("Coop", "Balance", new DamageInsight.Coop.Rules.BalanceSettings().ToText(),
+            "Co-op, when you host: enemy health multipliers by party size (rows 2, 3, 4 players; normal / elite / boss). " +
+            "Enemy damage stays as it is.");
+        // Umut 2026-11-14: "hold time: 3s, revives per room 1" (the rules' defaults).
+        CoopReviveHoldSeconds = Config.Bind("Coop", "ReviveHoldSeconds", 3f, new ConfigDescription(
+            "Co-op, when you host: how long a teammate holds the interact key to revive a downed player.",
+            new AcceptableValueRange<float>(0.5f, 10f)));
+        CoopRevivesPerRoom = Config.Bind("Coop", "RevivesPerRoom", 1, new ConfigDescription(
+            "Co-op, when you host: how often each player can be revived in one room. Who stays down comes back when the room is cleared.",
+            new AcceptableValueRange<int>(0, 10)));
+        CoopReviveHealth = Config.Bind("Coop", "ReviveHealth", 0.3f, new ConfigDescription(
+            "Co-op, when you host: the health a revived player stands up with.",
+            new AcceptableValueRange<float>(0.05f, 1f)));
+        CoopRoomClearHealth = Config.Bind("Coop", "RoomClearHealth", 0.1f, new ConfigDescription(
+            "Co-op, when you host: the health a player who stayed down comes back with when the room is cleared.",
+            new AcceptableValueRange<float>(0.05f, 1f)));
+        // Package DC (COOP_PLAN §5.7: no data for 3 s = a banner, 20 s = the player drops and may rejoin; §4.8: 3 minutes).
+        CoopProblemSeconds = Config.Bind("Coop", "ProblemSeconds", 3f, new ConfigDescription(
+            "Co-op: after this many seconds without data from a teammate, every game shows a connection problem.",
+            new AcceptableValueRange<float>(1f, 30f)));
+        CoopDropSeconds = Config.Bind("Coop", "DropSeconds", 20f, new ConfigDescription(
+            "Co-op: after this many seconds without data, a teammate drops out of the party (votes and rewards no longer wait for them). They may come back.",
+            new AcceptableValueRange<float>(5f, 120f)));
+        CoopRejoinSeconds = Config.Bind("Coop", "RejoinSeconds", 120f, new ConfigDescription(
+            "Co-op: how long a player who lost the connection may come back to the run. Their game tries to join again meanwhile; after that each game plays on alone.",
+            new AcceptableValueRange<float>(0f, 600f)));
+        CoopRetrySeconds = Config.Bind("Coop", "RetrySeconds", 3f, new ConfigDescription(
+            "Co-op: after the connection to the host is lost, the next try to join again starts this many seconds after the last one failed.",
+            new AcceptableValueRange<float>(1f, 30f)));
         CrashReports = Config.Bind("General", "CrashReports", true,
             "Keep a report of every game session in BepInEx\\DamageInsight\\CrashReports (the newest 20): errors with what happened " +
             "before them and whose code they were in (the game's, SkulInsight's or another mod's), a stuck black screen, a session " +
@@ -292,7 +411,7 @@ public class Plugin : BaseUnityPlugin
         SaveSlotSelected = Config.Bind("Save Slots", "Slot", 1,
             "The save slot that Play, Copy and Clear use. The panel on the right shows what it holds.");
         SaveSlotCount = Config.Bind("Save Slots", "Slots", 3, "How many save slots there are (3 to 5).");
-        DamageInsight.SaveSlots.SlotStore.Folder = System.IO.Path.Combine(Paths.BepInExRootPath, "DamageInsight", "SaveSlots");
+        DamageInsight.SaveSlots.SlotStore.Folder = ModData.Folder("SaveSlots");
         DamageInsight.SaveSlots.SlotStore.Load();
         DamageInsight.SaveSlots.SlotSwitcher.ConnectSettingsPage();
 #if DEV
@@ -357,10 +476,13 @@ public class Plugin : BaseUnityPlugin
         DamageInsight.History.RunJournal.Attach();
         DamageInsight.Codex.CodexOrigins.Attach();
         gameObject.AddComponent<DamageInsight.Daily.DailyService>();
+        DamageInsight.Coop.PlayerReadsBridge.Check(CoopEnabled.Value);
+        DamageInsight.Coop.CoopRuntime.Begin(gameObject);
 
         gameObject.AddComponent<DamageInsight.UI.CombatLogWindow>();
         gameObject.AddComponent<DamageInsight.UI.MiniLog>();
         gameObject.AddComponent<DamageInsight.UI.ClearView>();
+        gameObject.AddComponent<DamageInsight.Coop.ShotOutlines>(); // red outlines on enemy shots, also alone
         gameObject.AddComponent<DamageInsight.Mods.ModService>();
         gameObject.AddComponent<DamageInsight.UI.WhatsNew>();
         DamageInsight.Codex.CodexReset.RunIfRequested(); // a requested reset happens before anything reads the Codex

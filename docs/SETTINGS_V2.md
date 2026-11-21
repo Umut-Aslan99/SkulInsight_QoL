@@ -1,6 +1,8 @@
 # Settings page 2.0 and the "insight vs. gameplay" split (brainstorm, 2026-10-30)
 
-Status: proposal for Umut. Nothing built yet. Planned for 0.17 once he picks an option.
+Status (2026-11-02): **built in 0.16.0.** Umut chose option 1 (first-start choice) and the layout below (features
+left, settings right), plus a short page by default with *All settings* (V016_LOG steps 9-10). Option 2 (two
+packages) is parked: docs/ROADMAP.md.
 
 ## The problem
 - The settings page is one long list: about 80 settings in 16 sections. Players scroll a lot to find one switch.

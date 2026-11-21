@@ -94,7 +94,7 @@ public static class CodexDeveloper
                     RenderTexture.ReleaseTemporary(rt);
                 job.Targets.Clear();
                 string folder = CodexAnimations.FolderOf(job.Request.Key);
-                job.Finishing = Task.Run(() => Finish(job, folder));
+                job.Finishing = Crash.BackgroundWork.Track(Task.Run(() => Finish(job, folder))); // closing waits for it
                 return;
             }
             if (!job.Finishing.IsCompleted)
@@ -258,6 +258,8 @@ public static class CodexDeveloper
 
     private static string Finish(Job job, string folder)
     {
+        if (Crash.BackgroundWork.Quitting)
+            return "skipped: the game closes"; // no Unity encoder while Unity shuts down (BackgroundWork)
         var sheets = new List<(CapClip clip, SheetData sheet)>();
         foreach (var clip in job.Clips)
         {

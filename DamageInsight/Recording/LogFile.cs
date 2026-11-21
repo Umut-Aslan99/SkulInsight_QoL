@@ -17,7 +17,7 @@ public static class LogFile
     private static DateTime _lastFlush;
     private static int _lastRoom = -1;
 
-    public static string Folder => Path.Combine(BepInEx.Paths.BepInExRootPath, "DamageInsight", "CombatLogs");
+    public static string Folder => ModData.Folder("CombatLogs");
 
     public static void Attach()
     {

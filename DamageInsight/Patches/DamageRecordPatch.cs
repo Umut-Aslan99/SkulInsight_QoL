@@ -22,7 +22,11 @@ public static class DamageRecordPatch
                 return;
             try
             {
-                DamageLog.Add(__instance.owner, damage, dealtDamage);
+                // Co-op (COOP_PLAN 4.10): the combat log is this player's fight. A teammate's hits (their copy on this
+                // game) and hits on their copy are theirs: their own game logs them.
+                if (!DamageInsight.Coop.CoopCopies.IsCopy(__instance.owner)
+                    && !DamageInsight.Coop.CoopCopies.BelongsToCopy(damage.attacker.character))
+                    DamageLog.Add(__instance.owner, damage, dealtDamage);
             }
             catch (Exception e)
             {

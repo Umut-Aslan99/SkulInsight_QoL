@@ -41,7 +41,7 @@ public sealed class CrashReporter : MonoBehaviour
     }
 
     private static SessionReport _report;
-    public static string Folder => Path.Combine(BepInEx.Paths.BepInExRootPath, "DamageInsight", "CrashReports");
+    public static string Folder => ModData.Folder("CrashReports");
 
     private static ErrorClassifier _classifier;
     private static SessionReport.Previous _previous;
@@ -599,7 +599,7 @@ public sealed class CrashReporter : MonoBehaviour
 
     // ------------------------------------------------------------------ header and the previous session
 
-    private static string Header()
+    internal static string Header()
     {
         var sb = new StringBuilder();
         string build =
