@@ -103,6 +103,11 @@ internal sealed class CoopMatchmaking
     /// <summary>The window's Start. Null = searching, else why not (shown to the player as is).</summary>
     public string Start()
     {
+        if (CoopConflicts.Blocker is { } blocked)
+        {
+            UI.CoopConflictNotice.ShowNow();
+            return blocked;
+        }
         if (!Enabled)
             return Lang.Loc.T("Turn matchmaking on first.");
         if (!CoopRuntime.InCastle)

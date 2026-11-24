@@ -63,7 +63,7 @@ public static class CoopTargeting
             return player;
         try
         {
-            var c = CharacterOf(self);
+            var c = CharacterOf(self) ?? RunningOwner;
             if (c == null)
                 return Traced("Owner", self, null, siteId, player, false);
             if (CoopCopies.BelongsToCopy(c))
@@ -88,7 +88,7 @@ public static class CoopTargeting
             return player;
         try
         {
-            var c = CharacterOf(self);
+            var c = CharacterOf(self) ?? RunningOwner;
             if (c == null)
                 return Traced("Target", self, null, siteId, player, false);
             if (!IsEnemy(c))
@@ -313,6 +313,8 @@ public static class CoopTargeting
             {
                 case Character c:
                     return c;
+                case Characters.Projectiles.IProjectile projectile:
+                    return projectile.owner; // a flying shot is under no character (TargetFinder, ops on shots)
                 case Component component:
                     return OwnerOf(component);
             }
@@ -356,16 +358,35 @@ public static class CoopTargeting
             foreach (var first in enemy.characters)
                 if (first != null)
                     return first;
-        return null;
+        // an operation on a shot (KnockbackPlayer, FlipByPlayerPosition, a skull's passive stack): the shot's owner
+        // (players' logs 2026-11-24: resolve-miss #130 / #136 / #123 answered this game's player, COOP_LOG 73)
+        return component.GetComponentInParent<Characters.Projectiles.IProjectile>()?.owner;
+    }
+
+    /// <summary>The character whose operation runs right now, for reads with no way back to it (ByPositionX's
+    /// TargetInfo, a plain class inside the operation; resolve-miss #132). Set around ByPositionX.Run only.</summary>
+    [ThreadStatic] internal static Character RunningOwner;
+
+    [HarmonyPatch(typeof(Characters.Operations.Decorator.ByPositionX), nameof(Characters.Operations.Decorator.ByPositionX.Run), new[] { typeof(Character) })]
+    internal static class ByPositionXOwner
+    {
+        private static void Prefix(Character owner, out Character __state)
+        {
+            __state = RunningOwner;
+            RunningOwner = owner;
+        }
+
+        private static void Finalizer(Character __state) => RunningOwner = __state;
     }
 
     private static Func<object, object> StepFor(Type type)
     {
         const BindingFlags all = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-        foreach (string name in new[] { "<>4__this", "owner", "_owner", "character", "_character" })
+        foreach (string name in new[] { "<>4__this", "owner", "_owner", "character", "_character", "_projectile", "projectile" })
         {
             var field = type.GetField(name, all);
-            if (field != null && (name == "<>4__this" || typeof(Character).IsAssignableFrom(field.FieldType)))
+            if (field != null && (name == "<>4__this" || typeof(Character).IsAssignableFrom(field.FieldType)
+                                  || typeof(Characters.Projectiles.IProjectile).IsAssignableFrom(field.FieldType)))
                 return field.GetValue;
             var property = type.GetProperty(name, all);
             if (property != null && property.GetIndexParameters().Length == 0 && typeof(Character).IsAssignableFrom(property.PropertyType))

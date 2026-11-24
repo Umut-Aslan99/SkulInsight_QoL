@@ -10,7 +10,7 @@ public static class CursorPatch
 {
     private static void Postfix()
     {
-        if (CombatLogWindow.IsOpen || DamageInsight.Codex.CodexWindow.IsOpen || WhatsNew.IsOpen || UpdateNotice.IsOpen || ReportWindow.IsOpen || DamageInsight.Crash.RunLogs.AskOpen)
+        if (CombatLogWindow.IsOpen || DamageInsight.Codex.CodexWindow.IsOpen || WhatsNew.IsOpen || UpdateNotice.IsOpen || CoopConflictNotice.IsOpen || ReportWindow.IsOpen || DamageInsight.Crash.RunLogs.AskOpen)
             Cursor.visible = true;
     }
 }

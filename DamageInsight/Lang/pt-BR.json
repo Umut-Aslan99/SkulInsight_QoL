@@ -2255,6 +2255,16 @@
     "back step": "Passo atrás",
     "down": "para baixo",
     "down, left": "para baixo, esquerda",
-    "more": "mais"
+    "more": "mais",
+    "Another co-op mod is installed: turn it off or uninstall it, then restart Skul.": "Outro mod de co-op está instalado: desative ou desinstale-o e depois reinicie o Skul.",
+    "Co-op is not installed completely: reinstall SkulInsight QoL, then restart Skul.": "O co-op não está instalado por completo: reinstale o SkulInsight QoL e depois reinicie o Skul.",
+    "Another co-op mod is installed": "Outro mod de co-op está instalado",
+    "Co-op is not installed completely": "O co-op não está instalado por completo",
+    "Found: {0}. It changes the same parts of the game as SkulInsight's co-op, so enemies would only go for one player. Turn it off or uninstall it (in your mod manager, or delete its files from BepInEx/plugins and BepInEx/patchers), then restart Skul.": "Encontrado: {0}. Ele altera as mesmas partes do jogo que o co-op do SkulInsight, então os inimigos atacariam só um jogador. Desative ou desinstale-o (no seu gerenciador de mods, ou apague os arquivos dele de BepInEx/plugins e BepInEx/patchers) e depois reinicie o Skul.",
+    "SkulInsight's co-op part (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) didn't load or doesn't fit this version. Reinstall or update SkulInsight QoL with your mod manager (or copy its patchers folder into BepInEx/patchers), then restart Skul.": "A parte de co-op do SkulInsight (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) não carregou ou não combina com esta versão. Reinstale ou atualize o SkulInsight QoL com seu gerenciador de mods (ou copie a pasta patchers dele para BepInEx/patchers) e depois reinicie o Skul.",
+    "Until then you can't host, join or search for a co-op game.": "Até lá você não pode hospedar, entrar nem procurar uma partida co-op.",
+    "Fixed: in co-op, your own inscriptions sometimes never took effect (the game refused to load them a second time), so their bonuses were missing for the whole run.": "Corrigido: no co-op, suas próprias inscrições às vezes nunca faziam efeito (o jogo se recusava a carregá-las uma segunda vez), então os bônus faltavam na run inteira.",
+    "Another co-op mod (like OnlineCoopBeta) or a co-op part that didn't load: a warning at the start and in the Co-op window, and hosting and joining stay off until it is removed. With it, enemies went only for one player.": "Outro mod de co-op (como o OnlineCoopBeta) ou uma parte de co-op que não carregou: um aviso no início e na janela Co-op, e hospedar e entrar ficam desligados até removê-lo. Com ele, os inimigos atacavam só um jogador.",
+    "Co-op: enemy attacks that come from shots now go for the right player.": "Co-op: ataques inimigos que saem de projéteis agora vão no jogador certo."
   }
 }

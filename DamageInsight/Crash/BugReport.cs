@@ -164,6 +164,7 @@ internal static class BugReport
         sb.AppendLine("Co-op: " + (coop.Length > 0 ? coop : "not in a session"));
         sb.AppendLine("Mods: " + string.Join(", ", BepInEx.Bootstrap.Chainloader.PluginInfos.Values
             .Select(p => p.Metadata.Name + " " + p.Metadata.Version)));
+        sb.AppendLine("Co-op setup: " + Coop.CoopConflicts.Summary);
         sb.AppendLine("Files: " + string.Join(", ", files));
         return sb.ToString();
     }

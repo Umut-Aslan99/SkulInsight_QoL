@@ -2255,6 +2255,16 @@
     "back step": "Rückschritt",
     "down": "nach unten",
     "down, left": "nach unten, links",
-    "more": "weitere"
+    "more": "weitere",
+    "Another co-op mod is installed: turn it off or uninstall it, then restart Skul.": "Ein anderer Koop-Mod ist installiert: Schalte ihn aus oder deinstalliere ihn und starte Skul dann neu.",
+    "Co-op is not installed completely: reinstall SkulInsight QoL, then restart Skul.": "Koop ist nicht vollständig installiert: Installiere SkulInsight QoL neu und starte Skul dann neu.",
+    "Another co-op mod is installed": "Ein anderer Koop-Mod ist installiert",
+    "Co-op is not installed completely": "Koop ist nicht vollständig installiert",
+    "Found: {0}. It changes the same parts of the game as SkulInsight's co-op, so enemies would only go for one player. Turn it off or uninstall it (in your mod manager, or delete its files from BepInEx/plugins and BepInEx/patchers), then restart Skul.": "Gefunden: {0}. Er ändert dieselben Teile des Spiels wie der Koop von SkulInsight, deshalb würden Gegner nur noch einen Spieler angreifen. Schalte ihn aus oder deinstalliere ihn (in deinem Mod-Manager, oder lösche seine Dateien aus BepInEx/plugins und BepInEx/patchers) und starte Skul dann neu.",
+    "SkulInsight's co-op part (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) didn't load or doesn't fit this version. Reinstall or update SkulInsight QoL with your mod manager (or copy its patchers folder into BepInEx/patchers), then restart Skul.": "Der Koop-Teil von SkulInsight (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) wurde nicht geladen oder passt nicht zu dieser Version. Installiere oder aktualisiere SkulInsight QoL mit deinem Mod-Manager (oder kopiere seinen patchers-Ordner nach BepInEx/patchers) und starte Skul dann neu.",
+    "Until then you can't host, join or search for a co-op game.": "Bis dahin kannst du kein Koop-Spiel hosten, keinem beitreten und keins suchen.",
+    "Fixed: in co-op, your own inscriptions sometimes never took effect (the game refused to load them a second time), so their bonuses were missing for the whole run.": "Behoben: Im Koop wirkten deine eigenen Inschriften manchmal nie (das Spiel weigerte sich, sie ein zweites Mal zu laden), ihre Boni fehlten also den ganzen Lauf.",
+    "Another co-op mod (like OnlineCoopBeta) or a co-op part that didn't load: a warning at the start and in the Co-op window, and hosting and joining stay off until it is removed. With it, enemies went only for one player.": "Ein anderer Koop-Mod (wie OnlineCoopBeta) oder ein Koop-Teil, der nicht geladen wurde: eine Warnung beim Start und im Koop-Fenster, und Hosten und Beitreten bleiben aus, bis er entfernt ist. Mit ihm griffen Gegner nur einen Spieler an.",
+    "Co-op: enemy attacks that come from shots now go for the right player.": "Koop: Gegnerangriffe, die von Geschossen ausgehen, gehen jetzt auf den richtigen Spieler."
   }
 }

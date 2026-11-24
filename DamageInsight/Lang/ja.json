@@ -2213,6 +2213,16 @@
     "back step": "バックステップ",
     "down": "下",
     "down, left": "下、左",
-    "more": "追加"
+    "more": "追加",
+    "Another co-op mod is installed: turn it off or uninstall it, then restart Skul.": "別の協力プレイModが入っています：オフにするかアンインストールしてから、Skulを再起動してください。",
+    "Co-op is not installed completely: reinstall SkulInsight QoL, then restart Skul.": "協力プレイが完全にインストールされていません：SkulInsight QoLを入れ直してから、Skulを再起動してください。",
+    "Another co-op mod is installed": "別の協力プレイModが入っています",
+    "Co-op is not installed completely": "協力プレイが完全にインストールされていません",
+    "Found: {0}. It changes the same parts of the game as SkulInsight's co-op, so enemies would only go for one player. Turn it off or uninstall it (in your mod manager, or delete its files from BepInEx/plugins and BepInEx/patchers), then restart Skul.": "見つかったもの：{0}。SkulInsightの協力プレイと同じゲームの部分を変更するため、敵が一人のプレイヤーだけを狙うようになります。オフにするかアンインストールしてから（Modマネージャーで、またはBepInEx/pluginsとBepInEx/patchersからそのファイルを削除）、Skulを再起動してください。",
+    "SkulInsight's co-op part (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) didn't load or doesn't fit this version. Reinstall or update SkulInsight QoL with your mod manager (or copy its patchers folder into BepInEx/patchers), then restart Skul.": "SkulInsightの協力プレイ部分（BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll）が読み込まれなかったか、このバージョンに合っていません。ModマネージャーでSkulInsight QoLを入れ直すか更新してから（またはpatchersフォルダーをBepInEx/patchersにコピー）、Skulを再起動してください。",
+    "Until then you can't host, join or search for a co-op game.": "それまでは協力プレイの主催、参加、検索ができません。",
+    "Fixed: in co-op, your own inscriptions sometimes never took effect (the game refused to load them a second time), so their bonuses were missing for the whole run.": "修正：協力プレイで自分の刻印が効果を発揮しないことがありました（ゲームが二度目の読み込みを拒否していました）。そのためボーナスがラン中ずっと失われていました。",
+    "Another co-op mod (like OnlineCoopBeta) or a co-op part that didn't load: a warning at the start and in the Co-op window, and hosting and joining stay off until it is removed. With it, enemies went only for one player.": "別の協力プレイMod（OnlineCoopBetaなど）や、読み込まれなかった協力プレイ部分：起動時と協力プレイ画面で警告が出て、取り除くまで主催と参加はできません。それがあると、敵が一人のプレイヤーだけを狙っていました。",
+    "Co-op: enemy attacks that come from shots now go for the right player.": "協力プレイ：弾から出る敵の攻撃が正しいプレイヤーを狙うようになりました。"
   }
 }

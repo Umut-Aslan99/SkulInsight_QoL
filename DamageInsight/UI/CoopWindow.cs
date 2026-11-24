@@ -112,6 +112,7 @@ public sealed class CoopWindow : MonoBehaviour
         _nextDraw = 0f;
         EventSystem.current?.SetSelectedGameObject(null);
         MenuSounds.Play(MenuSounds.Kind.Select);
+        CoopConflictNotice.ShowNow(); // another co-op mod / missing co-op part: every time the window opens (Umut 2026-11-24)
     }
 
     private void Close()
@@ -355,6 +356,11 @@ public sealed class CoopWindow : MonoBehaviour
             Say(NoSteamText());
         else if (!CoopRuntime.InCastle)
             Say(Loc.T("Hosting and joining work in the castle only."));
+        else if (CoopConflicts.Blocker is { } blocked)
+        {
+            Say(blocked);
+            CoopConflictNotice.ShowNow();
+        }
         else
             runtime.HostSteam();
         _nextDraw = 0f;

@@ -500,6 +500,7 @@ public class Plugin : BaseUnityPlugin
         gameObject.AddComponent<DamageInsight.Daily.DailyService>();
         DamageInsight.Coop.PlayerReadsBridge.Check(CoopEnabled.Value);
         DamageInsight.Coop.CoopRuntime.Begin(gameObject);
+        DamageInsight.Coop.Testing.ReproRun.Begin(gameObject);
 
         gameObject.AddComponent<DamageInsight.UI.CombatLogWindow>();
         gameObject.AddComponent<DamageInsight.UI.MiniLog>();
@@ -508,6 +509,7 @@ public class Plugin : BaseUnityPlugin
         gameObject.AddComponent<DamageInsight.Mods.ModService>();
         gameObject.AddComponent<DamageInsight.UI.WhatsNew>();
         gameObject.AddComponent<DamageInsight.UI.UpdateNotice>();
+        gameObject.AddComponent<DamageInsight.UI.CoopConflictNotice>(); // other co-op mods / missing co-op part (COOP_LOG 73)
         gameObject.AddComponent<DamageInsight.UI.ReportWindow>();
         gameObject.AddComponent<DamageInsight.Crash.RunLogs>();
         DamageInsight.Codex.CodexReset.RunIfRequested(); // a requested reset happens before anything reads the Codex

@@ -2297,6 +2297,16 @@
     "back step": "Шаг назад",
     "down": "вниз",
     "down, left": "вниз, влево",
-    "more": "ещё"
+    "more": "ещё",
+    "Another co-op mod is installed: turn it off or uninstall it, then restart Skul.": "Установлен другой мод кооператива: отключите или удалите его, затем перезапустите Skul.",
+    "Co-op is not installed completely: reinstall SkulInsight QoL, then restart Skul.": "Кооператив установлен не полностью: переустановите SkulInsight QoL, затем перезапустите Skul.",
+    "Another co-op mod is installed": "Установлен другой мод кооператива",
+    "Co-op is not installed completely": "Кооператив установлен не полностью",
+    "Found: {0}. It changes the same parts of the game as SkulInsight's co-op, so enemies would only go for one player. Turn it off or uninstall it (in your mod manager, or delete its files from BepInEx/plugins and BepInEx/patchers), then restart Skul.": "Найдено: {0}. Он меняет те же части игры, что и кооператив SkulInsight, поэтому враги нападали бы только на одного игрока. Отключите или удалите его (в менеджере модов или удалите его файлы из BepInEx/plugins и BepInEx/patchers), затем перезапустите Skul.",
+    "SkulInsight's co-op part (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) didn't load or doesn't fit this version. Reinstall or update SkulInsight QoL with your mod manager (or copy its patchers folder into BepInEx/patchers), then restart Skul.": "Часть кооператива SkulInsight (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) не загрузилась или не подходит к этой версии. Переустановите или обновите SkulInsight QoL в менеджере модов (или скопируйте его папку patchers в BepInEx/patchers), затем перезапустите Skul.",
+    "Until then you can't host, join or search for a co-op game.": "До тех пор вы не можете создать игру, присоединиться или искать кооператив.",
+    "Fixed: in co-op, your own inscriptions sometimes never took effect (the game refused to load them a second time), so their bonuses were missing for the whole run.": "Исправлено: в кооперативе ваши собственные надписи иногда вообще не работали (игра отказывалась загрузить их второй раз), поэтому их бонусы пропадали на весь забег.",
+    "Another co-op mod (like OnlineCoopBeta) or a co-op part that didn't load: a warning at the start and in the Co-op window, and hosting and joining stay off until it is removed. With it, enemies went only for one player.": "Другой мод кооператива (например, OnlineCoopBeta) или не загрузившаяся часть кооператива: предупреждение при запуске и в окне кооператива, а создать игру и присоединиться нельзя, пока он не удалён. С ним враги нападали только на одного игрока.",
+    "Co-op: enemy attacks that come from shots now go for the right player.": "Кооператив: атаки врагов, которые идут от снарядов, теперь направлены на нужного игрока."
   }
 }

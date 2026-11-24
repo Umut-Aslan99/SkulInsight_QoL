@@ -22,6 +22,8 @@ feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 > report form, and co-op run logs sent to the developer after a run if you agree (asked once).
 > **0.17.2:** **3-4 players** with Steam friends (experimental): the host sets settings → Co-op → Players.
 > Matchmaking still pairs two players.
+> **0.17.3:** hotfix: your own inscriptions take effect in co-op again; a warning (and no hosting / joining) while
+> another co-op mod is installed.
 >
 > **0.16: restart room, new daily points.** **Restart room** (press F5 twice) takes you back to the
 > moment you entered the room, as when you close the game and continue (in a daily run it ends the run). **Daily

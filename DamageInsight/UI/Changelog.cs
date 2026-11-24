@@ -17,6 +17,12 @@ public static class Changelog
     /// <summary>The versions and their highlights (English keys, translated here), newest first.</summary>
     public static List<(string version, string[] lines)> Versions() => new()
     {
+        ("0.17.3", new[]
+        {
+            Loc.T("Fixed: in co-op, your own inscriptions sometimes never took effect (the game refused to load them a second time), so their bonuses were missing for the whole run."),
+            Loc.T("Another co-op mod (like OnlineCoopBeta) or a co-op part that didn't load: a warning at the start and in the Co-op window, and hosting and joining stay off until it is removed. With it, enemies went only for one player."),
+            Loc.T("Co-op: enemy attacks that come from shots now go for the right player."),
+        }),
         ("0.17.2", new[]
         {
             Loc.T("3-4 players with Steam friends (experimental): the host sets how many in the settings (Co-op, Players). Matchmaking still pairs two players."),

@@ -345,9 +345,11 @@ internal sealed class CoopRuntime : MonoBehaviour
             : !InCastle && !rejoin ? "co-op starts in the castle only" // a rejoin after a broken line also mid-run (package DC)
             : transport is SteamTransport { Self.IsNone: true } ? "Steam is not running"
             : transport is SteamTransport { Failed: { } failed } ? failed
-            : null;
+            : CoopConflicts.Blocker; // another co-op mod / our preloader missing: no host, no join (Umut 2026-11-24, ticket #6)
         if (why != null)
         {
+            if (why == CoopConflicts.Blocker)
+                UI.CoopConflictNotice.ShowNow();
             try { transport?.Dispose(); }
             catch (Exception) { }
             Plugin.Log.LogWarning("[Coop] the session did not start: " + why);

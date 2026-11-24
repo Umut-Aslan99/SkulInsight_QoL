@@ -159,7 +159,7 @@ internal static class PlayerWatch
         return mask;
     }
 
-    private static string HiddenText(Character player)
+    internal static string HiddenText(Character player)
     {
         int mask = HiddenMask(player);
         if (mask == _hiddenMask)

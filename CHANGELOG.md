@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.17.3 (hotfix from the first players' logs)
+
+Fixes from your co-op runs and reports (thank you: the run logs and the report form found all of these):
+- **Your own inscriptions in co-op:** an inscription sometimes never took effect when you picked up its item (the game
+  refused to load it a second time while your teammate's game data held it), so its bonus was missing for the whole
+  run. Found in 12 of the first 20 co-op logs.
+- **Another co-op mod installed** (ticket #6: "the boss keeps attacking the downed player"): DuelManTeam's
+  OnlineCoopBeta, still in BepInEx/patchers, took over the game parts SkulInsight's co-op needs, so enemies only went
+  for that game's player. SkulInsight now warns at the start and whenever the Co-op window opens, names the mod and
+  how to remove it, and won't host, join or search until it is gone. The same when SkulInsight's own co-op part
+  (BepInEx/patchers/SkulInsight) didn't load.
+- **Enemy attacks fired from shots** (knockbacks and flips on projectiles, some passive stacks) go for the right
+  player instead of the host's.
+- A teammate leaving no longer clears your saved "super inscription" state.
+- Bug reports and co-op run logs name other co-op mods and the co-op part's state ("Co-op setup").
+
 ## 0.17.2 (3-4 players with Steam friends, experimental)
 
 New:

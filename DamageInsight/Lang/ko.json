@@ -2213,6 +2213,16 @@
     "back step": "백스텝",
     "down": "아래",
     "down, left": "아래, 왼쪽",
-    "more": "추가"
+    "more": "추가",
+    "Another co-op mod is installed: turn it off or uninstall it, then restart Skul.": "다른 협동 모드가 설치되어 있습니다: 끄거나 삭제한 뒤 Skul을 다시 시작하세요.",
+    "Co-op is not installed completely: reinstall SkulInsight QoL, then restart Skul.": "협동 플레이가 완전히 설치되지 않았습니다: SkulInsight QoL을 다시 설치한 뒤 Skul을 다시 시작하세요.",
+    "Another co-op mod is installed": "다른 협동 모드가 설치되어 있습니다",
+    "Co-op is not installed completely": "협동 플레이가 완전히 설치되지 않았습니다",
+    "Found: {0}. It changes the same parts of the game as SkulInsight's co-op, so enemies would only go for one player. Turn it off or uninstall it (in your mod manager, or delete its files from BepInEx/plugins and BepInEx/patchers), then restart Skul.": "찾은 모드: {0}. SkulInsight 협동 플레이와 같은 게임 부분을 바꾸기 때문에 적이 한 플레이어만 노리게 됩니다. 끄거나 삭제한 뒤(모드 매니저에서, 또는 BepInEx/plugins와 BepInEx/patchers에서 파일을 지우기) Skul을 다시 시작하세요.",
+    "SkulInsight's co-op part (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) didn't load or doesn't fit this version. Reinstall or update SkulInsight QoL with your mod manager (or copy its patchers folder into BepInEx/patchers), then restart Skul.": "SkulInsight의 협동 부분(BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll)이 불러와지지 않았거나 이 버전과 맞지 않습니다. 모드 매니저로 SkulInsight QoL을 다시 설치하거나 업데이트한 뒤(또는 patchers 폴더를 BepInEx/patchers에 복사) Skul을 다시 시작하세요.",
+    "Until then you can't host, join or search for a co-op game.": "그때까지는 협동 게임을 호스트하거나, 참가하거나, 찾을 수 없습니다.",
+    "Fixed: in co-op, your own inscriptions sometimes never took effect (the game refused to load them a second time), so their bonuses were missing for the whole run.": "수정: 협동 플레이에서 내 각인이 가끔 전혀 적용되지 않았습니다(게임이 두 번째 불러오기를 거부함). 그래서 보너스가 런 내내 빠져 있었습니다.",
+    "Another co-op mod (like OnlineCoopBeta) or a co-op part that didn't load: a warning at the start and in the Co-op window, and hosting and joining stay off until it is removed. With it, enemies went only for one player.": "다른 협동 모드(OnlineCoopBeta 등)나 불러와지지 않은 협동 부분: 시작할 때와 협동 창에서 경고가 나오고, 제거할 때까지 호스트와 참가가 꺼집니다. 그 모드가 있으면 적이 한 플레이어만 노렸습니다.",
+    "Co-op: enemy attacks that come from shots now go for the right player.": "협동: 투사체에서 나오는 적의 공격이 이제 올바른 플레이어를 노립니다."
   }
 }

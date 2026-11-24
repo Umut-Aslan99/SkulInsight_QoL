@@ -2213,6 +2213,16 @@
     "back step": "后撤步",
     "down": "向下",
     "down, left": "向下、向左",
-    "more": "更多"
+    "more": "更多",
+    "Another co-op mod is installed: turn it off or uninstall it, then restart Skul.": "安装了另一个合作模式 mod：请关闭或卸载它，然后重启 Skul。",
+    "Co-op is not installed completely: reinstall SkulInsight QoL, then restart Skul.": "合作模式没有完整安装：请重新安装 SkulInsight QoL，然后重启 Skul。",
+    "Another co-op mod is installed": "安装了另一个合作模式 mod",
+    "Co-op is not installed completely": "合作模式没有完整安装",
+    "Found: {0}. It changes the same parts of the game as SkulInsight's co-op, so enemies would only go for one player. Turn it off or uninstall it (in your mod manager, or delete its files from BepInEx/plugins and BepInEx/patchers), then restart Skul.": "找到：{0}。它修改了与 SkulInsight 合作模式相同的游戏部分，因此敌人只会攻击一名玩家。请关闭或卸载它（在模组管理器中，或从 BepInEx/plugins 和 BepInEx/patchers 移除它的文件），然后重启 Skul。",
+    "SkulInsight's co-op part (BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll) didn't load or doesn't fit this version. Reinstall or update SkulInsight QoL with your mod manager (or copy its patchers folder into BepInEx/patchers), then restart Skul.": "SkulInsight 的合作模式部分（BepInEx/patchers/SkulInsight/DamageInsight.Preloader.dll）没有加载，或与此版本不符。请用模组管理器重新安装或更新 SkulInsight QoL（或把它的 patchers 文件夹复制到 BepInEx/patchers），然后重启 Skul。",
+    "Until then you can't host, join or search for a co-op game.": "在此之前，你无法创建、加入或搜索合作游戏。",
+    "Fixed: in co-op, your own inscriptions sometimes never took effect (the game refused to load them a second time), so their bonuses were missing for the whole run.": "修复：合作模式中，你自己的刻印有时完全不生效（游戏拒绝第二次加载它们），因此整局都缺少它们的加成。",
+    "Another co-op mod (like OnlineCoopBeta) or a co-op part that didn't load: a warning at the start and in the Co-op window, and hosting and joining stay off until it is removed. With it, enemies went only for one player.": "另一个合作模式 mod（如 OnlineCoopBeta）或没有加载的合作模式部分：开始时和合作窗口中会显示警告，在移除之前无法创建或加入游戏。有它时，敌人只会攻击一名玩家。",
+    "Co-op: enemy attacks that come from shots now go for the right player.": "合作模式：由子弹发出的敌人攻击现在会攻击正确的玩家。"
   }
 }

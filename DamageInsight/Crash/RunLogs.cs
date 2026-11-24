@@ -175,6 +175,9 @@ public sealed class RunLogs : MonoBehaviour
         report.AppendLine("SkulInsight co-op run logs, " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture));
         report.Append(CrashReporter.Header());
         report.AppendLine($"Run: key {key}, {(run.Host ? "host" : "client " + run.Slot)}, {run.Rooms} rooms, end {end}, trace from byte {run.TraceFrom}");
+        report.AppendLine("Mods: " + string.Join(", ", System.Linq.Enumerable.Select(BepInEx.Bootstrap.Chainloader.PluginInfos.Values,
+            p => p.Metadata.Name + " " + p.Metadata.Version)));
+        report.AppendLine("Co-op setup: " + Coop.CoopConflicts.Summary);
         parts.Add(new ZipPart { Name = "report.txt", Data = Encoding.UTF8.GetBytes(report.ToString()) });
         string user = Environment.UserName;
         var now = DateTime.Now;
@@ -209,7 +212,7 @@ public sealed class RunLogs : MonoBehaviour
 
     private void MaybeAsk(bool inCastle)
     {
-        if (!inCastle || global::UI.Dialogue.anyDialogueOpened || WhatsNew.IsOpen || UpdateNotice.IsOpen || SettingsPage.IsOpen
+        if (!inCastle || global::UI.Dialogue.anyDialogueOpened || WhatsNew.IsOpen || UpdateNotice.IsOpen || CoopConflictNotice.IsOpen || SettingsPage.IsOpen
             || CoopWindow.IsOpen || ReportWindow.IsOpen || Codex.CodexWindow.IsOpen)
         {
             _castleSince = -1f;

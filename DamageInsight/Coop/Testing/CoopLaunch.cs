@@ -55,6 +55,8 @@ public sealed class CoopLaunch
 
     /// <summary>--skulinsight-bot-items=sweep:HALF:FIRST: the item sweep (Testing/BotItems). Null: none.</summary>
     public string BotItems { get; private set; }
+    /// <summary>--skulinsight-repro=NAME: a solo hand test that sets up a reported scenario (ReproRun), no co-op.</summary>
+    public string Repro { get; private set; }
     /// <summary>--skulinsight-autorun: unattended run test (CoopAutoRun): the host leaves the castle once everyone is
     /// there and takes a door every so often; this copy's player takes no damage.</summary>
     public bool AutoRun { get; private set; }
@@ -253,6 +255,9 @@ public sealed class CoopLaunch
                 break;
             case "name":
                 if (value.Length > 0) Name = value.Length > 24 ? value.Substring(0, 24) : value;
+                break;
+            case "repro":
+                if (value.Length > 0) Repro = value.Trim().ToLowerInvariant();
                 break;
             case "matchmaking":
                 if (value.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || value.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
