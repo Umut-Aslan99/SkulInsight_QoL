@@ -384,11 +384,24 @@ please send it in so everyone gets it.
    automatically.
 3. Start the game with **Start modded**.
 
+### From GitHub with a mod manager (when Thunderstore doesn't show the newest version yet)
+Thunderstore checks every update before it shows it; until then you can install it from GitHub:
+1. Download `DocRun-SkulInsight_QoL-<version>.zip` from the
+   [newest release](https://github.com/Umut-Aslan99/SkulInsight_QoL/releases/latest) (the zip under *Assets*, not
+   *Source code*). Don't unpack it.
+2. r2modman: select your Skul profile → **Settings** → **Profile** → **Import local mod** → pick the zip. (Gale can
+   import a local mod zip too.) Your profile needs **BepInExPack Skul**; it is there if you had SkulInsight before.
+   Uninstall the older SkulInsight in that profile first, so only one copy is installed.
+3. Start the game with **Start modded**. Once Thunderstore shows the version, updating there is fine again.
+
 ### Manual installation
 1. Install [BepInExPack Skul](https://thunderstore.io/c/skul-the-hero-slayer/p/BepInEx/BepInExPack_Skul/) into
    the Skul folder (the folder containing `Skul.exe`).
 2. Start the game once and close it (BepInEx creates its folders).
-3. Copy `DamageInsight.dll` into `Skul/BepInEx/plugins/SkulInsight_QoL/`.
+3. Unpack the release zip (`DocRun-SkulInsight_QoL-<version>.zip`, see above) and copy:
+   - `plugins/DamageInsight.dll` into `Skul/BepInEx/plugins/SkulInsight_QoL/`,
+   - `patchers/SkulInsight/DamageInsight.Preloader.dll` into `Skul/BepInEx/patchers/SkulInsight/` (online co-op
+     needs it; without it co-op stays off).
 4. Start the game.
 
 ### Linux and Steam Deck

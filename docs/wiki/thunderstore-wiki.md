@@ -356,7 +356,9 @@ Skul is installed automatically.
 1. Install [BepInExPack Skul](https://thunderstore.io/c/skul-the-hero-slayer/p/BepInEx/BepInExPack_Skul/) into the
    Skul folder (the folder containing `Skul.exe`).
 2. Start the game once and close it.
-3. Copy `DamageInsight.dll` into `Skul/BepInEx/plugins/SkulInsight_QoL/`.
+3. From the [newest release](https://github.com/Umut-Aslan99/SkulInsight_QoL/releases/latest) zip, copy
+   `plugins/DamageInsight.dll` into `Skul/BepInEx/plugins/SkulInsight_QoL/` and
+   `patchers/SkulInsight/DamageInsight.Preloader.dll` into `Skul/BepInEx/patchers/SkulInsight/` (online co-op needs it).
 4. Start the game.
 </details>
 

@@ -52,7 +52,9 @@ This is also the simplest way to play modded in the Steam Deck's Game Mode, beca
    game folder, the one with `Skul.exe` (Steam: *Properties* → *Installed Files* → *Browse*).
 3. Set Skul's launch options to `WINEDLLOVERRIDES="winhttp=n,b" %command%`
 4. Start the game once and quit (BepInEx creates its folders).
-5. Copy `DamageInsight.dll` into `Skul/BepInEx/plugins/SkulInsight_QoL/` and start the game.
+5. From the [newest release](https://github.com/Umut-Aslan99/SkulInsight_QoL/releases/latest) zip, copy
+   `plugins/DamageInsight.dll` into `Skul/BepInEx/plugins/SkulInsight_QoL/` and
+   `patchers/SkulInsight/DamageInsight.Preloader.dll` into `Skul/BepInEx/patchers/SkulInsight/` (online co-op needs it), then start the game.
 
 Every start from Steam is modded now. To play without mods, remove the launch option.
 

@@ -105,7 +105,8 @@ It never touches your saves, Steam's settings or anything outside the Skul folde
    xattr -dr com.apple.quarantine .
    ```
 6. From the [newest release](https://github.com/Umut-Aslan99/SkulInsight_QoL/releases/latest), copy
-   `plugins/DamageInsight.dll` out of the zip into `Skul/BepInEx/plugins/SkulInsight_QoL/`.
+   `plugins/DamageInsight.dll` out of the zip into `Skul/BepInEx/plugins/SkulInsight_QoL/`, and
+   `patchers/SkulInsight/DamageInsight.Preloader.dll` into `Skul/BepInEx/patchers/SkulInsight/` (online co-op needs it).
 7. Set the launch option as in step 3 of the quick setup: `"<your Skul folder>/run_bepinex.sh" %command%`.
 
 ## Why it works this way
