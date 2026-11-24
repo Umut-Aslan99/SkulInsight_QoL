@@ -206,6 +206,11 @@ internal static class CoopTrace
         _file = null;
     }
 
+    /// <summary>A spot from the map's origin for the trace: "x 12.3 y -4.5" (always with a dot; German Windows
+    /// writes commas).</summary>
+    public static string Spot(UnityEngine.Vector2 at) =>
+        "x " + at.x.ToString("0.#", CultureInfo.InvariantCulture) + " y " + at.y.ToString("0.#", CultureInfo.InvariantCulture);
+
     /// <summary>A character's name for the trace: the Codex/combat-log name and its object name.</summary>
     public static string NameOf(Characters.Character c) =>
         c == null ? "" : DamageInsight.Recording.DamageLog.NameOf(c) + " (" + Loadout.GearName(c.name) + ")";

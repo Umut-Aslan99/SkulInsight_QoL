@@ -75,8 +75,11 @@ public class CoopBalanceTests
         Assert.Equal(3f, settings.Get(2, EnemyCategory.Normal), 3);
         Assert.Equal(3.375f, settings.Get(2, EnemyCategory.Boss), 3);
 
-        settings.ScaleTo(9f); // out of the slider's range: clamped to 3x
-        Assert.Equal(3f, settings.Get(2, EnemyCategory.Normal), 3);
+        settings.ScaleTo(4.5f); // the slider's top (Umut 2026-11-23: 4.5x)
+        Assert.Equal(4.5f, settings.Get(2, EnemyCategory.Normal), 3);
+        Assert.Equal(9.5625f, settings.Get(4, EnemyCategory.Boss), 3); // the table's corner stays below MaxMultiplier
+        settings.ScaleTo(9f); // out of the slider's range: clamped to 4.5x
+        Assert.Equal(4.5f, settings.Get(2, EnemyCategory.Normal), 3);
         settings.ScaleTo(float.NaN); // nonsense: the default
         Assert.Equal(2f, settings.Get(2, EnemyCategory.Normal), 3);
 
@@ -85,6 +88,21 @@ public class CoopBalanceTests
         settings.ScaleTo(1.5f);
         Assert.Equal(3f, settings.Get(2, EnemyCategory.Elite), 3);
         Assert.Equal(4.5f, settings.Get(2, EnemyCategory.Boss), 3);
+    }
+
+    [Fact]
+    public void The_windows_arrows_step_by_quarters_inside_the_sliders_range()
+    {
+        Assert.Equal((1.5f, 4.5f, 2f), (BalanceSettings.MinTwoPlayers, BalanceSettings.MaxTwoPlayers, BalanceSettings.DefaultTwoPlayers));
+        Assert.Equal(2.25f, BalanceSettings.StepTwoPlayers(2f, +1));
+        Assert.Equal(1.75f, BalanceSettings.StepTwoPlayers(2f, -1));
+        Assert.Equal(2.5f, BalanceSettings.StepTwoPlayers(2.3f, +1)); // a slider value off the grid snaps to it
+        Assert.Equal(2.25f, BalanceSettings.StepTwoPlayers(2.3f, -1));
+        Assert.Equal(4.5f, BalanceSettings.StepTwoPlayers(4.5f, +1)); // kept in range
+        Assert.Equal(1.5f, BalanceSettings.StepTwoPlayers(1.5f, -1));
+        Assert.Equal(2.25f, BalanceSettings.StepTwoPlayers(float.NaN, +1)); // nonsense: from the default
+        Assert.Equal(200, BalanceSettings.Hundredths(2f));
+        Assert.Equal(213, BalanceSettings.Hundredths(2.125f));
     }
 
     [Fact]

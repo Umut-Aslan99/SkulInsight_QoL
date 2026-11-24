@@ -50,6 +50,7 @@ internal sealed class CoopRuntime : MonoBehaviour
     private CoopHealthScaling _health;
     private CoopTimeEffects _timeEffects;
     private CoopHostRules _hostRules;
+    private CoopPlayerNotes _playerNotes;
     private CoopDamageBoard _damageBoard;
     private HostWorld _hostWorld;
     private ConnectionBox _connection;
@@ -112,6 +113,11 @@ internal sealed class CoopRuntime : MonoBehaviour
         if (plan.Starts)
         {
             host.AddComponent<CoopRuntime>().Init(plan, launch);
+            if (launch.WindowTest)
+            {
+                host.AddComponent<UI.CoopWindow>();
+                host.AddComponent<Testing.CoopWindowTest>();
+            }
             if (launch.MatchServer != null)
                 host.AddComponent<UI.MatchFoundBox>(); // the matchmaking test: the box shows (the bot accepts)
             return;
@@ -539,6 +545,8 @@ internal sealed class CoopRuntime : MonoBehaviour
         _scenes = new SharedScenes(_session);
         _hostRules?.Dispose();
         _hostRules = new CoopHostRules(_session);
+        _playerNotes?.Dispose();
+        _playerNotes = new CoopPlayerNotes(_session, _hostRules);
         _damageBoard?.Dispose();
         _damageBoard = new CoopDamageBoard(_session);
         _hostWorld?.Dispose();
@@ -661,6 +669,8 @@ internal sealed class CoopRuntime : MonoBehaviour
         _health = null;
         _timeEffects?.Dispose();
         _timeEffects = null;
+        _playerNotes?.Dispose();
+        _playerNotes = null;
         _hostRules?.Dispose();
         _hostRules = null;
         _damageBoard?.Dispose();
@@ -873,6 +883,8 @@ internal sealed class CoopRuntime : MonoBehaviour
             catch (Exception e) { Fail("the player watch", e); }
             try { CoopUnstuck.Tick(); }
             catch (Exception e) { Fail("unstuck", e); }
+            try { OwnCameraTriggers.Tick(); }
+            catch (Exception e) { Fail("the arena camera", e); }
             try { _enemies?.Tick(now); }
             catch (Exception e) { Fail("the enemies", e); }
             try { _timeEffects?.Tick(now); }
@@ -881,6 +893,8 @@ internal sealed class CoopRuntime : MonoBehaviour
             catch (Exception e) { Fail("the host's world", e); }
             try { _damageBoard?.Tick(now); }
             catch (Exception e) { Fail("the damage board", e); }
+            try { _playerNotes?.Tick(now); }
+            catch (Exception e) { Fail("the players' notes", e); }
             try { _scenes?.Tick(); }
             catch (Exception e) { Fail("the scenes", e); }
             try { _revive?.Tick(now); }

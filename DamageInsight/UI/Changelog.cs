@@ -17,6 +17,14 @@ public static class Changelog
     /// <summary>The versions and their highlights (English keys, translated here), newest first.</summary>
     public static List<(string version, string[] lines)> Versions() => new()
     {
+        ("0.17.1", new[]
+        {
+            Loc.T("Co-op fixes from your runs: the adventurer arena camera locks on the arena again while you fight in it; a teammate no longer walls you in (both players need 0.17.1); enemies without a target go for the nearest player; the Pope's fanatics no longer stay after he dies."),
+            Loc.T("Report a bug or idea from the game: a form in the Co-op window, the settings and the Codex sends it to the developer (title and text become a public GitHub issue, logs stay private). After a co-op run you are asked once whether your run logs may be sent."),
+            Loc.T("Bosses stop attacking a downed player; the twin sisters' crossing attack and the dark First Hero's wall attack show their warning lines in the right place for the joining player; your teammate's summons' shots no longer get your green outline."),
+            Loc.T("Enemy health in the Co-op window: everyone sees the host's setting, the others can ask for more or less and say OK; the slider goes from 1.5x to 4.5x. A crown marks the host."),
+            Loc.T("Matchmaking tells you why nobody matches (other mods or another version) and shows who is searching now and the busiest hour. An \"Update available\" window shows when a newer version is out."),
+        }),
         ("0.17.0", new[]
         {
             Loc.T("Online co-op (open beta): play a run together with a Steam friend, or find a partner through matchmaking. Off by default: Esc, SkulInsight QoL, Online co-op (open beta), then restart the game. Two players for now."),

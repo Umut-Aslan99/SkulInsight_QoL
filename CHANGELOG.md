@@ -1,5 +1,45 @@
 # Changelog
 
+## 0.17.1 (co-op fixes from your runs, enemy health in the Co-op window)
+
+Fixes from the first players' co-op runs (thank you for the reports):
+- **Adventurer arenas:** your camera locks on the arena again while you fight in it, also when your teammate walked
+  in first, and it no longer stays on the arena when only your teammate is inside.
+- **A teammate no longer walls you in:** a room's own walls, gates and seals react only to your own character (in
+  the Dark Mirror's chapter 4 room before the boss, the other player was shut inside a wall and floated). Both
+  players need 0.17.1 for this. If you do stay stuck inside a wall, you are taken to your teammate by yourself.
+- **Enemies without a target go for the nearest player**, not always the host: a veteran adventurer chased the host
+  outside its arena and never came to the player inside it.
+- **The Pope's fanatics no longer stay after he dies** for the joining player (they kept attacking and couldn't be
+  killed).
+- **Bosses stop attacking a downed player** and go for one who still stands.
+- **Warning lines in the right place for the joining player:** the twin sisters' crossing attack and the dark First
+  Hero's wall attack.
+- **Your teammate's summons' shots no longer get your green outline.**
+
+New:
+- **Report a bug or idea from the game:** a form in the Co-op window, the settings (General) and the Codex sends
+  your report to the developer. Its title and text become a public GitHub issue; your logs (attached to bug
+  reports by default, Steam ids and your account name hidden) only reach the developer. Without a connection, the
+  logs are saved and GitHub's page opens as before.
+- **Co-op run logs, asked once:** after your first co-op run a window asks whether SkulInsight may send each co-op
+  run's logs to the developer (never public), so co-op bugs get found without a report. Change it any time:
+  settings → Co-op → Send co-op run logs.
+- **Enemy health in the Co-op window:** the host's setting (normal enemies, elites, bosses) is shown to everyone.
+  The host changes it with the arrows; the others can ask for more or less and say OK. The slider goes from 1.5x to
+  4.5x (default 2x). A crown marks the host, and the player with the least Dark Mirror progress is marked.
+- **Matchmaking tells you why nobody matches** (other mods, or another version of SkulInsight QoL), and the Find a
+  partner panel shows who is searching now and the busiest hour on your clock.
+- **An "Update available" window** in the castle when a newer SkulInsight QoL is out (General → Update notice).
+  Co-op and matchmaking only bring players with the same version together.
+- A more precise co-op log for bug reports (where everyone stands, the camera, the bosses' targets).
+
+Still known (fixes come in 0.17.x): some enemies exist only on the joining player's game (Chief Maid's servants, the
+Chimera lab's sleeping subjects, the maze room's cats); some of your teammate's effects are drawn at full strength
+(Dark Paladin's swings, Rockstar's lightning dash) and Dark Paladin's charged swings show no animation on the other
+game; NPCs that give something don't yet roll a different reward per player; the Death Knight's shield (iced cola)
+works only for the host; up to 2 players.
+
 ## 0.17.0 (online co-op, open beta)
 
 - **Online co-op (open beta): play a run together.** Off by default: pause (Esc) → SkulInsight QoL → **Online

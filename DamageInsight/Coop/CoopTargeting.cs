@@ -71,7 +71,7 @@ public static class CoopTargeting
             if (!IsEnemy(c))
                 return player;
             var target = TargetOf(c);
-            return Traced("Owner", self, c, siteId, target ?? player, target == null);
+            return Traced("Owner", self, c, siteId, target ?? Standing(c, player), target == null);
         }
         catch (Exception e)
         {
@@ -94,7 +94,7 @@ public static class CoopTargeting
             if (!IsEnemy(c))
                 return player;
             var target = TargetOf(c);
-            return Traced("Target", self, c, siteId, target ?? player, target == null);
+            return Traced("Target", self, c, siteId, target ?? Standing(c, player), target == null);
         }
         catch (Exception e)
         {
@@ -232,9 +232,63 @@ public static class CoopTargeting
     /// <summary>The enemy's current target (a player or a teammate copy), or null.</summary>
     public static Character TargetOf(Character enemy)
     {
+        var target = RawTargetOf(enemy);
+        return Up(target) ? target : null;
+    }
+
+    /// <summary>What the enemy keeps as its target, also when that one is down or dead (null: none).</summary>
+    public static Character RawTargetOf(Character enemy)
+    {
         var source = SourceOf(enemy);
-        var target = source.Ai != null ? source.Ai.target : source.TreeTarget?.Value;
-        return target != null && target.health != null && !target.health.dead && !IsDown(target) ? target : null;
+        return source.Ai != null ? source.Ai.target : source.TreeTarget?.Value;
+    }
+
+    /// <summary>A player (or copy) that can be fought: alive and not down.</summary>
+    public static bool Up(Character c) => c != null && c.health != null && !c.health.dead && !IsDown(c);
+
+    /// <summary>
+    /// Enemy code without a target of its own asks for "the player": the standing player nearest to the enemy, this
+    /// game's player or a teammate's copy, kept while it isn't much farther (<see cref="Rules.NoTargetPick"/>); nobody
+    /// standing: this game's player still. History: always this game's player at first; then (COOP_LOG 65, Dark Skul's
+    /// second form keeps no target and hit the downed host's body for 54 s) this game's player while it stood, else the
+    /// nearest copy; now the nearest (COOP_LOG 68: the DM chapter 4 Veteran Thief started with no target, took the host
+    /// outside the arena and never came to the client inside it). The game code usually stores the answer as the
+    /// enemy's target (an adventurer's start, `CPlayStartOption`), which the host then sends to the clients.
+    /// </summary>
+    // REVIEW(fable): host/client authority of who an enemy without a target goes for (trigger 2); from the traces, not yet run.
+    internal static Character Standing(Character enemy, Character player)
+    {
+        if (player == null || CoopCopies.Count == 0)
+            return player;
+        Vector2 at = enemy != null ? (Vector2)enemy.transform.position : (Vector2)player.transform.position;
+        StandingCandidates.Clear();
+        StandingDistances.Clear();
+        AddCandidate(player, at); // first: ties go to this game's player
+        foreach (var copy in CoopCopies.All)
+            if (copy != null && copy.gameObject.activeInHierarchy)
+                AddCandidate(copy, at);
+        int last = enemy != null && LastStanding.TryGetValue(enemy, out var before) ? StandingCandidates.IndexOf(before) : -1;
+        int pick = Rules.NoTargetPick.Pick(StandingDistances, last);
+        if (pick < 0)
+            return player;
+        var chosen = StandingCandidates[pick];
+        if (enemy != null)
+        {
+            if (LastStanding.Count > 500)
+                LastStanding.Clear();
+            LastStanding[enemy] = chosen;
+        }
+        return chosen;
+    }
+
+    private static readonly List<Character> StandingCandidates = new();
+    private static readonly List<float> StandingDistances = new();
+    private static readonly Dictionary<Character, Character> LastStanding = new();
+
+    private static void AddCandidate(Character c, Vector2 at)
+    {
+        StandingCandidates.Add(c);
+        StandingDistances.Add(Up(c) ? Vector2.Distance(at, c.transform.position) : -1f);
     }
 
     /// <summary>Sets an enemy's target (a client's puppet: the host's choice).</summary>

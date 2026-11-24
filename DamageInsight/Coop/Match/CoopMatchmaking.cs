@@ -20,7 +20,17 @@ internal sealed class CoopMatchmaking
     private readonly CoopRuntime _runtime;
     private readonly CoopLaunch _launch;
     private readonly List<(string kind, string detail, double at)> _early = new();
-    private bool _testQueued;
+    private readonly UnityMatchHttp _http;
+    private bool _testQueued, _statsBusy;
+    private double _statsAt = double.NegativeInfinity;
+
+    /// <summary>How often the open Co-op window asks for the queue's counts.</summary>
+    public const double StatsSeconds = 20;
+
+    /// <summary>The queue's counts as last heard (GET /api/coop/stats), or null (none yet, or the server is off).</summary>
+    public QueueStats Stats { get; private set; }
+    /// <summary>When <see cref="Stats"/> came (Time.realtimeSinceStartupAsDouble); a failed ask keeps the old ones.</summary>
+    public double StatsHeard { get; private set; } = double.NegativeInfinity;
 
     /// <summary>The launcher's matchmaking test (two copies on one PC, one Steam account).</summary>
     public bool Test { get; }
@@ -35,7 +45,8 @@ internal sealed class CoopMatchmaking
         _runtime = runtime;
         _launch = launch;
         Test = test;
-        Client = new MatchClient(new UnityMatchHttp(runtime, () => Server), () => Time.realtimeSinceStartupAsDouble,
+        _http = new UnityMatchHttp(runtime, () => Server);
+        Client = new MatchClient(_http, () => Time.realtimeSinceStartupAsDouble,
             test ? _ => -1 : SteamPing.Estimate) { AutoAccept = test };
         Client.Log += text => Plugin.Log.LogInfo("[Coop] " + text);
         Client.Trace += (kind, detail) =>
@@ -56,6 +67,30 @@ internal sealed class CoopMatchmaking
 
     /// <summary>The player turned matchmaking on (Coop/Matchmaking), or the test.</summary>
     public bool Enabled => Test || Plugin.CoopMatchmaking?.Value == true;
+
+    /// <summary>The open Co-op window: the queue's counts every <see cref="StatsSeconds"/> (Umut 2026-11-23: players see
+    /// who searches "even before queuing up"). [DECISION] Asked while the window is open, also with matchmaking off: the
+    /// call sends nothing about the player (no id, no name, no Steam data), only the request itself.</summary>
+    public void WantStats()
+    {
+        double now = Time.realtimeSinceStartupAsDouble;
+        if (_statsBusy || now - _statsAt < StatsSeconds || string.IsNullOrEmpty(Server))
+            return;
+        _statsBusy = true;
+        _statsAt = now;
+        _http.Send("GET", MatchClient.Api + "/stats", null, MatchClient.CallTimeout, (code, body) =>
+        {
+            _statsBusy = false;
+            var stats = code == 200 ? QueueStats.Parse(body) : null;
+            if (stats != null)
+            {
+                Stats = stats;
+                StatsHeard = Time.realtimeSinceStartupAsDouble;
+            }
+            else if (code == 404)
+                Stats = null; // the matchmaking server is off
+        });
+    }
 
     /// <summary>The trace started (the session is up): the match events from before it.</summary>
     public void FlushTrace()

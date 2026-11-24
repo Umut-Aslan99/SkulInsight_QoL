@@ -23,7 +23,11 @@ public class Plugin : BaseUnityPlugin
     internal static Plugin Instance;
 
     internal static ConfigEntry<string> Language;
-    internal static ConfigEntry<bool> WhatsNewEnabled;
+    internal static ConfigEntry<bool> WhatsNewEnabled, UpdateNoticeEnabled;
+    // The report form and the co-op run logs (docs/coop/REPORTS.md).
+    internal static ConfigEntry<bool> ReportsToServer, ReportLogs;
+    internal static ConfigEntry<string> ReportContact;
+    internal static ConfigEntry<DamageInsight.Crash.RunLogsChoice> CoopSendRunLogs;
     internal static ConfigEntry<bool> MenuSoundsEnabled;
     internal static ConfigEntry<bool> CrashReports;
     internal static ConfigEntry<bool> PerformanceLog, PerformanceOverlay;
@@ -58,6 +62,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<string> CoopMatchMode;
     internal static ConfigEntry<bool> DamageNumbersTeammates;
     internal static ConfigEntry<KeyboardShortcut> CoopUnstuckKey;
+    internal static ConfigEntry<bool> CoopAutoUnstuck;
     internal static ConfigEntry<string> LastVersionSeen;
 
     internal static ConfigEntry<bool> DamageSourceTags;
@@ -141,6 +146,17 @@ public class Plugin : BaseUnityPlugin
         DamageInsight.Lang.Loc.OverrideFolder = ModData.SharedFolder("Lang");
         WhatsNewEnabled = Config.Bind("General", "WhatsNew", true,
             "After an update, show once (in the castle) what's new in this version.");
+        // Umut 2026-11-23: "a notification at the beginning where the changelog shows ... in all languages", also after
+        // the What's new window was closed.
+        UpdateNoticeEnabled = Config.Bind("General", "UpdateNotice", true,
+            "At every start, a note in the castle when a newer SkulInsight QoL is out. Asks Thunderstore for the newest version number once per start.");
+        // Umut 2026-11-24 (REPORTS.md): a form for bugs and ideas that the server turns into tickets and GitHub issues.
+        ReportsToServer = Config.Bind("General", "ReportsToServer", true,
+            "The \"Report a bug or idea\" window sends your report to the mod's server (skul.umut-aslan.dev): its title and text become a public GitHub issue, attached logs only reach the developer. Off: the window saves the logs and opens GitHub's page instead (needs a GitHub account).");
+        ReportLogs = Config.Bind("General", "ReportLogs", true,
+            "A bug report starts with its logs attached (this game's logs, settings and co-op logs; Steam ids and your account name hidden). Ideas start without logs.");
+        ReportContact = Config.Bind("General", "ReportContact", "",
+            "Kept from the report window: how the developer may reach you about a report (e.g. a Discord name). Never public.");
         MenuSoundsEnabled = Config.Bind("General", "MenuSounds", true,
             "The mod's buttons play the game's menu sounds when the mouse moves onto them or clicks them.");
         RunHistory = Config.Bind("General", "RunHistory", true,
@@ -172,9 +188,14 @@ public class Plugin : BaseUnityPlugin
             "Co-op: your teammates' hits show damage numbers on your screen too, in their colour. Off: fewer numbers on screen.");
         CoopUnstuckKey = Config.Bind("Coop", "UnstuckKey", new KeyboardShortcut(UnityEngine.KeyCode.F6),
             "Co-op: puts you where your teammate stands in this room (once every 10 seconds), when you are stuck or far away.");
+        CoopAutoUnstuck = Config.Bind("Coop", "AutoUnstuck", true,
+            "Co-op: when you are stuck inside a wall and the game can't free you, you are put next to your teammate by yourself (like the Go to teammate key).");
         CoopConnectionBox = Config.Bind("Coop", "ConnectionBox", true,
             "Co-op: a small box at the top left, below the clock, with each teammate's ping (green, amber, red) and a warning when nothing arrives from them.");
         // On by default during the co-op open beta (Umut 2026-11-21 13:10: the beta's logs must be able to reconstruct a run).
+        // Umut 2026-11-24 (REPORTS.md): both players' logs after every co-op run, asked once.
+        CoopSendRunLogs = Config.Bind("Coop", "SendRunLogs", DamageInsight.Crash.RunLogsChoice.Ask,
+            "Co-op: after each co-op run, send that run's logs to the developer (skul.umut-aslan.dev; never public, Steam ids and your account name hidden), so co-op bugs get found without a report. Ask: a window asks after your next co-op run.");
         CoopDetailedLog = Config.Bind("Coop", "DetailedLog", true,
             "Co-op: writes everything that happens in a co-op game to BepInEx\\DamageInsight\\CoopTrace (the newest 10 games, 50 MB each at most). On by default during the co-op beta; the Co-op window's \"Report a bug or idea\" packs these files with the other logs.");
         CoopMenuButton = Config.Bind("Coop", "MenuButton", true,
@@ -217,9 +238,10 @@ public class Plugin : BaseUnityPlugin
         CoopTeammateScreenEffects = Config.Bind("Coop", "TeammateScreenEffects", false,
             "Co-op: your teammates' moves and quintessences may shake your camera, flash or darken your screen, zoom and make your controller rumble. Off: only your own do.");
         // Umut 2026-11-21: "1.6x for 2 players felt too weak"; a slider 1.5-3x, default 2x, live on both games.
+        // Umut 2026-11-23: up to 4.5x (the 0.17.0 range is kept in docs/coop/BALANCE_BACKUP.md).
         CoopEnemyHealth = Config.Bind("Coop", "EnemyHealth", 2f, new ConfigDescription(
             "Co-op, when you host: how much health enemies have with two players (2x = twice their own). Elites and bosses get a little more, three or four players more again. A change counts at once, for everyone and for enemies already there.",
-            new AcceptableValueRange<float>(1.5f, 3f)));
+            new AcceptableValueRange<float>(DamageInsight.Coop.Rules.BalanceSettings.MinTwoPlayers, DamageInsight.Coop.Rules.BalanceSettings.MaxTwoPlayers)));
         CoopDoorVoteSeconds = Config.Bind("Coop", "DoorVoteSeconds", 10f, new ConfigDescription(
             "Co-op, when you host: how long the others have to pick a door after the first player picked one. Then the picks made so far decide.",
             new AcceptableValueRange<float>(3f, 60f)));
@@ -485,6 +507,9 @@ public class Plugin : BaseUnityPlugin
         gameObject.AddComponent<DamageInsight.Coop.ShotOutlines>(); // red outlines on enemy shots, also alone
         gameObject.AddComponent<DamageInsight.Mods.ModService>();
         gameObject.AddComponent<DamageInsight.UI.WhatsNew>();
+        gameObject.AddComponent<DamageInsight.UI.UpdateNotice>();
+        gameObject.AddComponent<DamageInsight.UI.ReportWindow>();
+        gameObject.AddComponent<DamageInsight.Crash.RunLogs>();
         DamageInsight.Codex.CodexReset.RunIfRequested(); // a requested reset happens before anything reads the Codex
         DamageInsight.Codex.CodexMigrations.Run(); // before anything reads the saved moves and films
         gameObject.AddComponent<DamageInsight.Codex.CodexWindow>();

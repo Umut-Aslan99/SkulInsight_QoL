@@ -37,8 +37,28 @@ public sealed class BalanceSettings
     private readonly float[,] _table = (float[,])Defaults.Clone();
 
     /// <summary>The slider's range and default (Coop/EnemyHealth, Umut 2026-11-21: "1.6x for 2 players felt too weak
-    /// ... a slider that goes from 1.5x - 3x or so, put it at 2x as default").</summary>
-    public const float MinTwoPlayers = 1.5f, MaxTwoPlayers = 3f, DefaultTwoPlayers = 2f;
+    /// ... a slider that goes from 1.5x - 3x or so, put it at 2x as default"; 2026-11-23: "Slider min should be 1.5,
+    /// slider max 4.5. Default is x2": skilled players each deal a whole player's damage). The 0.17.0 numbers are kept
+    /// as a backup in docs/coop/BALANCE_BACKUP.md (max 3x, the same table).</summary>
+    public const float MinTwoPlayers = 1.5f, MaxTwoPlayers = 4.5f, DefaultTwoPlayers = 2f;
+
+    /// <summary>One click of the Co-op window's arrows (the host's: the setting itself).</summary>
+    public const float WindowStep = 0.25f;
+
+    /// <summary>The slider value one arrow click up or down: the next quarter step, kept in the slider's range
+    /// (2.3 goes up to 2.5 and down to 2.25).</summary>
+    public static float StepTwoPlayers(float value, int direction)
+    {
+        if (float.IsNaN(value) || float.IsInfinity(value))
+            value = DefaultTwoPlayers;
+        double steps = value / WindowStep;
+        double next = direction > 0 ? Math.Floor(steps + 1e-4) + 1 : direction < 0 ? Math.Ceiling(steps - 1e-4) - 1 : steps;
+        return Math.Max(MinTwoPlayers, Math.Min(MaxTwoPlayers, (float)(next * WindowStep)));
+    }
+
+    /// <summary>The slider's value as a whole number of hundredths (2.0 = 200): what a request or an OK is about.</summary>
+    public static int Hundredths(float value) =>
+        float.IsNaN(value) || float.IsInfinity(value) ? 0 : (int)Math.Round(value * 100.0, MidpointRounding.AwayFromZero);
 
     /// <summary>Sets the level of the whole table by its first value (two players, normal enemies): every other value
     /// keeps its ratio to it, so the table's shape (the plan's defaults, or a table the server recommends) stays.</summary>

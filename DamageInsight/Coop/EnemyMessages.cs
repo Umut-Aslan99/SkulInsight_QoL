@@ -53,6 +53,15 @@ public sealed class EnemyEvent
     /// <summary>Summon: where the new enemy appeared; Motion: where the enemy stood when the move started (from the
     /// room's origin).</summary>
     public float X, Y;
+    /// <summary>Motion: the points the enemy's AI placed that moved since its last move (BossMarkers), or null.</summary>
+    public List<EnemyMarker> Markers;
+}
+
+/// <summary>A point an enemy's AI placed for its move: the AI's n-th Transform field (BossMarkers), from the room's origin.</summary>
+public struct EnemyMarker
+{
+    public byte Index;
+    public float X, Y;
 }
 
 /// <summary>A player's hit on an enemy as their game saw it (COOP_PLAN §5.4): the damage before the enemy's own
@@ -72,7 +81,9 @@ public struct EnemyHit
 /// The messages of host-run enemies (COOP_PLAN §5.1, §5.3-5.5; plain logic, tested). Every message names the room
 /// (WorldMessages.RoomId) so nothing of an old room reaches a new one.
 /// - EnemySnapshot (unreliable, ~20/s): [room u32][time f64][count u16] + count x EnemyState (package C, whole).
-/// - EnemyEvent (reliable): [room u32][time f64][kind u8] + Motion [id u16][path str][index u8][speed f32][target u8][x f32][y f32] |
+/// - EnemyEvent (reliable): [room u32][time f64][kind u8] + Motion [id u16][path str][index u8][speed f32][target u8][x f32][y f32]
+///   (+ since 0.17.1, optional: [count u8] + count x [marker u8][x f32][y f32], the AI's points that moved, BossMarkers;
+///   one event per message and no reader checks the end, so 0.17.0 games ignore the tail and send none) |
 ///   Died [id u16][killer u8: the slot of the player whose hit killed it, 255 nobody's] | WaveSpawn [wave u8] | RoomCleared (nothing more) | Behaviour [id u16][path str][target u8][extra u8] |
 ///   Phase [id u16][phase u8] | Call [id u16][key str][target u8][arg u8][value f32][seq u16] |
 ///   Summon [id u16][summoner u16][prefab str][x f32][y f32][flags u8].
@@ -178,6 +189,17 @@ public static class EnemyMessages
                 w.WriteByte(e.TargetSlot);
                 w.WriteFloat(e.X);
                 w.WriteFloat(e.Y);
+                if (e.Markers is { Count: > 0 })
+                {
+                    int count = System.Math.Min(e.Markers.Count, 32);
+                    w.WriteByte((byte)count);
+                    for (int i = 0; i < count; i++)
+                    {
+                        w.WriteByte(e.Markers[i].Index);
+                        w.WriteFloat(e.Markers[i].X);
+                        w.WriteFloat(e.Markers[i].Y);
+                    }
+                }
                 break;
             case EnemyEventKind.Died:
                 w.WriteUInt16(e.NetId);
@@ -242,6 +264,13 @@ public static class EnemyMessages
                 e.TargetSlot = r.ReadByte();
                 e.X = r.ReadFloat();
                 e.Y = r.ReadFloat();
+                if (!r.IsAtEnd)
+                {
+                    int count = r.ReadByte();
+                    e.Markers = new List<EnemyMarker>(count);
+                    for (int i = 0; i < count; i++)
+                        e.Markers.Add(new EnemyMarker { Index = r.ReadByte(), X = r.ReadFloat(), Y = r.ReadFloat() });
+                }
                 return e;
             case EnemyEventKind.Died:
                 e.NetId = r.ReadUInt16();

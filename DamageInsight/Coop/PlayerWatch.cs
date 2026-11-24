@@ -33,6 +33,13 @@ internal static class PlayerWatch
         if (world?.Active != true)
             return;
         var player = Singleton<Service>.Instance?.levelManager?.player;
+        if (!_stuckListened)
+        {
+            _stuckListened = true;
+            Application.logMessageReceived += OnUnityLog;
+        }
+        if (player != null && world.RoomLoaded && !world.Busy)
+            SamplePositions(player, Time.unscaledTimeAsDouble);
         _logic ??= new PlayerWatchLogic(OnChange, OnAnomaly);
         bool normal = player == null || world.Busy || !world.RoomLoaded || player.health == null || player.health.dead ||
                       (CoopRevive.Current?.IsDown(player) ?? false);
@@ -55,6 +62,81 @@ internal static class PlayerWatch
     {
         CoopTrace.Write("anomaly", CoopWorld.CurrentRoom(), what: text);
         Plugin.Log.LogWarning("[Coop] anomaly: " + text); // CoopDiagnostics' listener puts it in the session report
+    }
+
+    // ------------------------------------------------------------------ where everyone stands (COOP_LOG 68)
+
+    // Ratvibing's run 2026-11-23: whether the host stood outside the Veteran Thief's arena, and where the client
+    // floated in the pre-boss wall, could only be guessed (COOP_LOG 65e named the gap: a 1 s position sample).
+    private static double _nextPositions;
+    private static readonly Dictionary<Character, (Vector2 at, bool grounded, double written)> LastWritten = new();
+
+    /// <summary>Every second, this player's and every copy's spot ("pos": slot, spot from the map's origin, ground /
+    /// air, "in the terrain" for this player); a row only when it moved half a unit or more or landed / took off, and
+    /// at least every 10 s.</summary>
+    private static void SamplePositions(Character player, double now)
+    {
+        if (now < _nextPositions)
+            return;
+        _nextPositions = now + 1.0;
+        var map = Level.Map.Instance;
+        if (map == null)
+            return;
+        if (LastWritten.Count > 16)
+            LastWritten.Clear();
+        Vector2 origin = map.transform.position;
+        WritePosition(player, origin, now, own: true);
+        foreach (var copy in CoopCopies.All)
+            if (copy != null && copy.gameObject.activeInHierarchy)
+                WritePosition(copy, origin, now, own: false);
+    }
+
+    private static void WritePosition(Character c, Vector2 origin, double now, bool own)
+    {
+        Vector2 at = (Vector2)c.transform.position - origin;
+        bool grounded = c.movement != null && c.movement.isGrounded;
+        if (LastWritten.TryGetValue(c, out var last) && now - last.written < 10 && (at - last.at).sqrMagnitude < 0.25f &&
+            last.grounded == grounded)
+            return;
+        LastWritten[c] = (at, grounded, now);
+        bool inTerrain = own && c.movement?.controller != null && c.movement.controller.IsInTerrain();
+        CoopTrace.Write("pos", CoopWorld.CurrentRoom(), name: own ? "this player" : "copy",
+            what: CoopTrace.Spot(at) + (grounded ? " ground" : " air") + (inTerrain ? " IN THE TERRAIN" : ""),
+            slot: EnemySync.TraceSlotOf(c));
+    }
+
+    // The game's StuckResolver (every 3 s: inside the terrain for 1 s -> back to its last spot outside) only writes a
+    // Unity log line; the trace gets it with the spot where the player was stuck.
+    private static bool _stuckListened;
+
+    private static void OnUnityLog(string message, string stackTrace, LogType type)
+    {
+        if (message == null || !message.EndsWith("is stucked in the terrain. It was moved to last valid position.", System.StringComparison.Ordinal))
+            return;
+        try
+        {
+            var world = CoopWorld.Current;
+            var player = Singleton<Service>.Instance?.levelManager?.player;
+            var map = Level.Map.Instance;
+            if (world?.Active != true || player == null || map == null)
+                return;
+            const string Start = "The character ";
+            int end = message.IndexOf(" is stucked", System.StringComparison.Ordinal);
+            string who = message.StartsWith(Start, System.StringComparison.Ordinal) && end > Start.Length
+                ? message.Substring(Start.Length, end - Start.Length) : "?";
+            if (who != player.name)
+            {
+                CoopTrace.Write("stuck-moved", CoopWorld.CurrentRoom(), name: who, what: "the game moved it out of the terrain");
+                return;
+            }
+            CoopTrace.Write("stuck-moved", CoopWorld.CurrentRoom(), name: "this player",
+                what: "the game moved it out of the terrain from " + CoopTrace.Spot((Vector2)player.transform.position - (Vector2)map.transform.position),
+                slot: EnemySync.TraceSlotOf(player));
+        }
+        catch (System.Exception)
+        {
+            // a log listener must never throw
+        }
     }
 
     // ------------------------------------------------------------------ hidden parts

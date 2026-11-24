@@ -47,6 +47,7 @@ internal sealed class ShotOutlines : MonoBehaviour
     private static readonly Dictionary<Projectile, Shot> Shots = new();
     private static readonly List<Projectile> Gone = new();
     private static readonly MaterialPropertyBlock Block = new();
+    private static readonly HashSet<string> NotOursTraced = new();
     private static Material _outlined;
 
     private static bool EnemyOn => Plugin.CoopEnemyShotOutline?.Value != false;
@@ -79,10 +80,22 @@ internal sealed class ShotOutlines : MonoBehaviour
         Side side;
         if (CoopCopies.BelongsToCopy(owner))
             return; // a teammate's: faded (ClearView), no outline
-        if (CoopCopies.IsPlayerSide(owner))
+        var behind = CoopCopies.PlayerBehind(owner);
+        if (behind != null)
         {
             if (!OwnOn || CoopCopies.Count == 0)
                 return;
+            // Green only for THIS player's shots and its minions'. Umut 2026-11-23: "the projectiles of a coop friend
+            // can get fully green": a minion whose leader isn't known here is its own answer in PlayerBehind (on the
+            // players' side, not the copy's), so a teammate's summon shot with this player's bright green outline,
+            // which on a small shot covers most of it.
+            if (behind != Singleton<Service>.Instance?.levelManager?.player)
+            {
+                if (NotOursTraced.Count < 64 && NotOursTraced.Add(owner.name))
+                    CoopTrace.Write("outline-skipped", CoopWorld.CurrentRoom(), name: CoopTrace.NameOf(owner),
+                        what: "a players' side shot that isn't this player's (" + owner.type + ", behind it: " + behind.name + ")");
+                return;
+            }
             side = Side.Own;
         }
         else

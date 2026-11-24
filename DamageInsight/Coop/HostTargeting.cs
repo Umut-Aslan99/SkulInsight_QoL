@@ -74,8 +74,46 @@ internal sealed class HostTargeting
             var rule = RuleOf(enemies[i]);
             if (rule != null)
                 Apply(enemies[i], rule, now);
+            else if (enemies[i] != null && enemies[i].type == Character.Type.Boss)
+                OffTheDowned(enemies[i]);
         }
         return true;
+    }
+
+    /// <summary>
+    /// Bosses keep their own targeting, but not a player who is down: a boss whose target is down or dead goes for
+    /// the nearest player who stands (within <see cref="ReachRange"/>). US tester's run 2026-11-22 (COOP_LOG 65): Dark
+    /// Skul kept on the host's body for 54 s after he was down for good. A boss without any target of its own is
+    /// left to <see cref="CoopTargeting.Standing"/>.
+    /// </summary>
+    // REVIEW(fable): host authority of a boss's target (trigger 2); not yet run.
+    private void OffTheDowned(Character boss)
+    {
+        if (boss.health == null || boss.health.dead || !boss.gameObject.activeInHierarchy)
+            return;
+        var current = CoopTargeting.RawTargetOf(boss);
+        if (current == null || CoopTargeting.Up(current))
+            return;
+        Vector2 at = boss.transform.position;
+        int bestSlot = -1;
+        float best = ReachRange;
+        for (int slot = 0; slot < 4; slot++)
+        {
+            var player = _playerOf(slot);
+            if (player == null || !CoopTargeting.Up(player))
+                continue;
+            float distance = Vector2.Distance(at, player.transform.position);
+            if (distance < best)
+            {
+                best = distance;
+                bestSlot = slot;
+            }
+        }
+        if (bestSlot < 0)
+            return;
+        CoopTargeting.SetTarget(boss, _playerOf(bestSlot));
+        CoopTrace.Write("retarget", EnemySync.TraceRoom, EnemySync.TraceIdOf(boss), CoopTrace.NameOf(boss),
+            "boss: slot " + _slotOf(current) + " is down", slot: bestSlot);
     }
 
     private EnemyTargeting RuleOf(Character enemy)

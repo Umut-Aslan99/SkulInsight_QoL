@@ -23,7 +23,9 @@ $dll = Join-Path $root "DamageInsight/bin/Release/DamageInsight.dll"
 $bytes = [IO.File]::ReadAllBytes($dll)
 # The DLL's strings are UTF-16 at even or odd offsets, its names UTF-8: search all three readings.
 $text = [Text.Encoding]::Unicode.GetString($bytes) + [Text.Encoding]::Unicode.GetString($bytes, 1, $bytes.Length - 1) + [Text.Encoding]::UTF8.GetString($bytes)
-foreach ($banned in @("api/experimental/package", "UpdateSelfLater", "InstallAll", "restart.cmd", "-applaunch")) {
+# Not the package API address itself: since 0.17.1 the update notice (UI/UpdateNotice.cs, COOP_LOG 67c) reads the
+# newest version number there (nothing downloaded); the self-updater's own messages mark it instead.
+foreach ($banned in @("the downloaded DLL is", "the package has no DamageInsight.dll", "UpdateSelfLater", "InstallAll", "restart.cmd", "-applaunch")) {
     if ($text.Contains($banned)) { throw "The Thunderstore build still contains '$banned' (IsThunderstoreBuild not applied?)" }
 }
 Write-Host "Thunderstore build checked: no self-update, no installer"

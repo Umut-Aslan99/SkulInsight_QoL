@@ -153,6 +153,10 @@ public enum MessageType : byte
     /// <summary>Anyone → everyone (relayed): this player's damage summary for the co-op combat log (DamageShare,
     /// CoopDamageBoard), every 2 s while it changes.</summary>
     DamageShare = 51,
+    /// <summary>Anyone → everyone (relayed): this player's note for the Co-op window (Rules.PlayerNote: Dark Mirror
+    /// progress, a request for more or less enemy health, OK), when it changes, when someone joins and every 15 s.
+    /// CoopPlayerNotes. A 0.17.0 game has no handler for it and drops it.</summary>
+    PlayerNote = 52,
 }
 
 /// <summary>Why the host refused a Hello (sent in Reject).</summary>

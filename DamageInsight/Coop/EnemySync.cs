@@ -56,6 +56,15 @@ internal sealed partial class EnemySync
     private readonly HashSet<Character> _puppets = new();
     private readonly Dictionary<Character, EnemyWave> _waveOf = new(); // a wave enemy's wave (activation rule)
     private readonly Dictionary<ushort, double> _shownSince = new();    // host shows it, off here, wave waits: since
+    // Client: ids the host said died in this room. Never switched on again, their late snapshots dropped. A pooled
+    // monster's death runs `health.Revive(); Despawn()` (the game's MonsterOnDied): after the host's word it is off and
+    // NOT dead, and a snapshot from before the death (drawn ~0.15 s late) switched it on again with its own AI. Pope
+    // fight 2026-11-23 (ratvibing's run, COOP_LOG 68): two "Fanatic Brothers Small" attacked the client for 2 minutes
+    // after the boss died, unkillable (the host had them as dead). Value: the host time of the death; a snapshot from
+    // after it that still has the id means the host revived it (its snapshots skip the dead and the switched off, see
+    // AddState; the twin sisters' awakening revives one): then the mark goes.
+    private readonly Dictionary<ushort, double> _hostDead = new();
+    private readonly HashSet<ushort> _deadRefusedTraced = new();
     // Map characters outside the waves (traps, dummies): only their life is the host's (health, hits, death); their
     // own trap code runs on every game, their moves aren't sent.
     private readonly HashSet<Character> _lifeOnly = new();
@@ -158,6 +167,7 @@ internal sealed partial class EnemySync
         if (IsHost)
         {
             SendSnapshot(now);
+            SampleBossPositions(now);
             if (_targeting.Tick(_byId, now))
             {
                 _targeting.Tick(_summons, now, again: true);
@@ -519,6 +529,11 @@ internal sealed partial class EnemySync
     {
         if (_map == null || EnemyOf(e.NetId) != null)
             return;
+        if (_hostDead.ContainsKey(e.NetId))
+        {
+            CoopTrace.Write("summon-skipped", _room, e.NetId, what: e.ActionPath + ": the host said it died");
+            return;
+        }
         var summoner = e.Wave != 0 ? EnemyOf((ushort)e.Wave) : null;
         string path = e.ActionPath ?? "";
         bool pooled = path.EndsWith(MonsterHint, StringComparison.Ordinal);
@@ -886,6 +901,8 @@ internal sealed partial class EnemySync
         _lifeById.Clear();
         _waveOf.Clear();
         _shownSince.Clear();
+        _hostDead.Clear();
+        _deadRefusedTraced.Clear();
         _ids.Clear();
         _buffers.Clear();
         _events.Clear();
@@ -916,6 +933,7 @@ internal sealed partial class EnemySync
         _lifeOnly.Clear();
         _puppetTrees.Clear();
         PuppetAim.Clear();
+        BossMarkers.Clear();
         _map = null;
         _room = 0;
     }
@@ -1034,11 +1052,15 @@ internal sealed partial class EnemySync
         CoopTrace.Write("motion", _room, id, CoopTrace.NameOf(enemy), MotionName(enemy, motion), slot: slot);
         NoteTarget(id, slot);
         Vector2 at = (Vector2)enemy.transform.position - (Vector2)_map.transform.position;
+        var markers = BossMarkers.Changed(enemy, _map.transform.position);
+        if (markers != null)
+            CoopTrace.Write("markers-sent", _room, id, CoopTrace.NameOf(enemy), MotionName(enemy, motion), amount: markers.Count);
         SendEvent(new EnemyEvent
         {
             Kind = EnemyEventKind.Motion, NetId = id, MotionIndex = index, Speed = speed, X = at.x, Y = at.y,
             ActionPath = RemoteAvatar.PathOf(motion.action.transform, enemy.transform),
             TargetSlot = slot is >= 0 and < 255 ? (byte)slot : (byte)255,
+            Markers = markers,
         });
     }
 
@@ -1287,12 +1309,18 @@ internal sealed partial class EnemySync
     /// "not active"). Switched on here too, with its switched-off parents below the map. A host move proves it (moves
     /// come after any wave event); a snapshot only after <see cref="ShownWait"/> while its wave still waits here (the
     /// unreliable snapshot may come before the wave's own spawn; the Dark sister's wave waits on the host too: the
-    /// script skips it). True when it is active now.
+    /// script skips it). True when it is active now. Never for an id the host said is dead (<see cref="_hostDead"/>).
     /// </summary>
     private bool ActivateLikeHost(ushort id, Character enemy, bool fromMove, double now = 0)
     {
         if (_map == null)
             return false;
+        if (_hostDead.ContainsKey(id))
+        {
+            if (_deadRefusedTraced.Add(id))
+                CoopTrace.Write("activate-refused", _room, id, CoopTrace.NameOf(enemy), "the host said it died");
+            return false;
+        }
         if (!fromMove && _waveOf.TryGetValue(enemy, out var wave) && wave != null && wave.state == Wave.State.Waiting)
         {
             if (!_shownSince.TryGetValue(id, out double since))
@@ -1417,6 +1445,35 @@ internal sealed partial class EnemySync
         EnemyMessages.WriteSnapshot(_writer, _room, now, _states);
         _session.Broadcast(MessageType.EnemySnapshot, _writer, Delivery.Unreliable);
         SnapshotsSent++;
+    }
+
+    private double _nextBossSample;
+
+    /// <summary>
+    /// Host, every 2 s: where the bosses and adventurers stand ("enemy-pos": spot from the map's origin, slot = its
+    /// target). Ratvibing's run 2026-11-23 (COOP_LOG 68): whether the Veteran Thief left its arena for the host could
+    /// only be guessed from its moves.
+    /// </summary>
+    private void SampleBossPositions(double now)
+    {
+        if (now < _nextBossSample)
+            return;
+        _nextBossSample = now + 2.0;
+        Vector2 origin = _map.transform.position;
+        for (int i = 0; i < _byId.Count; i++)
+            SampleBoss((ushort)(i + 1), _byId[i], origin);
+        for (int i = 0; i < _summons.Count; i++)
+            SampleBoss((ushort)(SummonFlag | (i + 1)), _summons[i], origin);
+    }
+
+    private void SampleBoss(ushort id, Character c, Vector2 origin)
+    {
+        if (c == null || c.type is not (Character.Type.Boss or Character.Type.Adventurer) || !c.gameObject.activeInHierarchy
+            || c.health == null || c.health.dead)
+            return;
+        var target = CoopTargeting.RawTargetOf(c);
+        CoopTrace.Write("enemy-pos", _room, id, CoopTrace.NameOf(c), CoopTrace.Spot((Vector2)c.transform.position - origin),
+            slot: target != null ? _slotOf(target) : -1);
     }
 
     private void AddState(ushort id, Character enemy, Vector2 origin)
@@ -1915,6 +1972,14 @@ internal sealed partial class EnemySync
         _delay.OnReceive(time, Now);
         foreach (var state in _states)
         {
+            if (_hostDead.TryGetValue(state.NetId, out double diedAt))
+            {
+                if (time <= diedAt + 0.05)
+                    continue; // an unreliable snapshot from before its death, come late
+                _hostDead.Remove(state.NetId);
+                _deadRefusedTraced.Remove(state.NetId);
+                CoopTrace.Write("alive-again", _room, state.NetId, CoopTrace.NameOf(EnemyOf(state.NetId)), "the host shows it after its death");
+            }
             if (!_buffers.TryGetValue(state.NetId, out var buffer))
                 _buffers[state.NetId] = buffer = new SnapshotBuffer<EnemyState>(16);
             buffer.Add(time, state);
@@ -2112,6 +2177,11 @@ internal sealed partial class EnemySync
                             var t = enemy.transform;
                             t.position = new Vector3(_map.transform.position.x + e.X, _map.transform.position.y + e.Y, t.position.z);
                         }
+                        if (_map != null && e.Markers != null)
+                        {
+                            int put = BossMarkers.Apply(enemy, e.Markers, _map.transform.position);
+                            CoopTrace.Write("markers-applied", _room, e.NetId, CoopTrace.NameOf(enemy), e.ActionPath + "#" + e.MotionIndex, amount: put);
+                        }
                         PuppetAim.Before(enemy, action, CoopTargeting.TargetOf(enemy));
                         _replaying = true;
                         bool found;
@@ -2154,6 +2224,9 @@ internal sealed partial class EnemySync
                     PlayDarkElite(e);
                     break;
                 case EnemyEventKind.Died:
+                    _hostDead[e.NetId] = _lastRender; // events are played at their host time (Draw)
+                    _buffers.Remove(e.NetId);
+                    _shownSince.Remove(e.NetId);
                     var dying = EnemyOf(e.NetId);
                     if (dying != null && !dying.health.dead)
                     {

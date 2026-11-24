@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Globalization;
 using DamageInsight.Coop;
 using DamageInsight.Coop.Net;
+using DamageInsight.Coop.Rules;
 using DamageInsight.Lang;
 using TMPro;
 using UnityEngine;
@@ -12,13 +14,15 @@ namespace DamageInsight.UI;
 /// <summary>
 /// The Co-op window (docs/coop/NEXT_SPECS.md B): what this game is doing in co-op (a state line, the reason when
 /// something failed), Host a game / Invite a friend (Steam's overlay) / Leave, and the players with their colour,
-/// role and ping, with Kick for the host. Opened from the pause menu (Co-op, below Mods; setting Coop/MenuButton) or
+/// role and ping, with Kick for the host. Below the players the host's enemy health (Umut 2026-11-23): everyone sees
+/// it; the host's arrows change it, the others' ask for more or less, and OK says it suits them; each row shows the
+/// player's Dark Mirror progress, a crown for the host and "least progress" for whoever got the least far. Opened from the pause menu (Co-op, below Mods; setting Coop/MenuButton) or
 /// the key Coop/WindowKey. Hosting and joining happen in the castle only [DECISION]. Lives on the plugin object only
 /// when the co-op switch is on (CoopRuntime.Begin); the look follows the Mods window.
 /// </summary>
 public sealed class CoopWindow : MonoBehaviour
 {
-    private const float Width = 980f, Height = 780f, RowHeight = 64f, MatchHeight = 116f;
+    private const float Width = 980f, Height = 880f, RowHeight = 64f, MatchHeight = 150f, HealthHeight = 76f;
     private static readonly int[] PingSteps = { 100, 150, 200, 300, 500 };
     private static readonly string[] ModeSteps = { "normal", "darkmirror", "any" };
     private const double GoodMs = 120, OkMs = 250;
@@ -35,12 +39,13 @@ public sealed class CoopWindow : MonoBehaviour
     private static readonly Color Orange = new Color32(0xF2, 0xA9, 0x3B, 0xFF);
     private static readonly Color Blue = new Color32(0x4A, 0x55, 0xC8, 0xFF);
     private static readonly Color Amber = new Color32(0xFF, 0xC8, 0x5A, 0xFF);
+    private static readonly Color SkyBlue = new Color32(0x8C, 0xB4, 0xFF, 0xFF);
 
     private sealed class PlayerRow
     {
         public GameObject Root;
-        public Image Dot;
-        public TextMeshProUGUI Name, Role, Ping;
+        public Image Dot, Crown;
+        public TextMeshProUGUI Name, Role, Ping, Vote;
         public UiKit.Chip Kick;
         public int Slot = -1;
     }
@@ -54,8 +59,12 @@ public sealed class CoopWindow : MonoBehaviour
     private Image _stateDot;
     private UiKit.Chip _host, _invite, _leave;
     // Find a partner (matchmaking, package MM).
-    private TextMeshProUGUI _matchStatus;
+    private TextMeshProUGUI _matchStatus, _matchLive, _matchInfo;
     private UiKit.Chip _matchMode, _matchPing, _matchGo;
+    // The host's enemy health (COOP_LOG 66).
+    private TextMeshProUGUI _healthTitle, _healthHint;
+    private UiKit.Chip _healthDown, _healthUp, _healthOk;
+    private readonly BalanceSettings _ownBalance = new();
     private readonly PlayerRow[] _rows = new PlayerRow[Protocol.MaxPlayers];
     private int _language = -1;
     private float _nextDraw, _messageUntil;
@@ -70,6 +79,20 @@ public sealed class CoopWindow : MonoBehaviour
     {
         if (_instance != null)
             _instance.Show(fromMenu: true);
+    }
+
+    /// <summary>The launcher's window test (CoopWindowTest): the window draws without a Steam lobby.</summary>
+    internal static bool LauncherTest;
+
+    /// <summary>The window test presses the enemy health strip's buttons as a player would.</summary>
+    internal static void TestPress(int arrow)
+    {
+        if (_instance == null)
+            return;
+        if (arrow == 0)
+            _instance.OnHealthOk();
+        else
+            _instance.OnHealthArrow(arrow);
     }
 
     /// <summary>The pause menu shows the Co-op button: the co-op switch is on (this window exists) and its setting.</summary>
@@ -111,6 +134,8 @@ public sealed class CoopWindow : MonoBehaviour
     {
         Patches.Guard.Run("Co-op window", () =>
         {
+            if (ReportWindow.Busy)
+                return; // the report form (opened from here) takes the keys; this window keeps drawing when it closes
             var key = Plugin.CoopWindowKey?.Value ?? default;
             if (key.MainKey != KeyCode.None && key.IsDown() && !SettingsPage.IsOpen && !TextInput.IsTyping() && CoopRuntime.Instance?.Lobby != null)
             {
@@ -169,14 +194,15 @@ public sealed class CoopWindow : MonoBehaviour
         _hint.rectTransform.Place(46, 52, Width - 40 - 66, 40);
 
         // The players.
-        float listTop = 88 + 96 + 16, listHeight = Height - listTop - 96 - MatchHeight - 16;
+        float listTop = 88 + 96 + 16, listHeight = Height - listTop - 96 - MatchHeight - 16 - (HealthHeight + 12);
         var players = PanelAt("Players", 20, listTop, Width - 40, listHeight);
         _playersTitle = Text(players, Loc.T("Players"), 22, Ink);
         _playersTitle.rectTransform.Place(16, 10, 600, 32);
-        // A bug report (COOP_LOG 64): the logs in one zip (Steam ids masked) and the GitHub issue page; or the zip alone.
+        // A bug report: the report form (REPORTS.md; it sends to the server or falls back to the zip and GitHub's page);
+        // "Save logs" packs the zip alone (COOP_LOG 64).
         float rx = Width - 40 - 12;
         foreach (var (label, onClick, color) in new (string, System.Action, Color)[]
-                     { (Loc.T("Report a bug or idea"), () => OnReport(true), Orange), (Loc.T("Save logs"), () => OnReport(false), Blue) })
+                     { (Loc.T("Report a bug or idea"), ReportWindow.Open, Orange), (Loc.T("Save logs"), () => OnReport(false), Blue) })
         {
             float w = UiKit.ChipWidth(label) + 26;
             rx -= w;
@@ -189,12 +215,39 @@ public sealed class CoopWindow : MonoBehaviour
         for (int i = 0; i < _rows.Length; i++)
             _rows[i] = MakeRow(players, 12, 50 + i * (RowHeight + 6), Width - 40 - 24);
 
+        // The host's enemy health: the numbers, a line on what the arrows do, and Down / Up / OK on the right.
+        float healthTop = listTop + listHeight + 12, panelWidth = Width - 40;
+        var health = PanelAt("Health", 20, healthTop, panelWidth, HealthHeight);
+        var heart = UiKit.Image("Icon", health, Color.white, PixelIcons.Get("heart"));
+        heart.preserveAspect = true;
+        heart.rectTransform.Place(16, (HealthHeight - 30) / 2, 30, 30);
+        string ok = Loc.T("OK");
+        float okWidth = UiKit.ChipWidth(ok) + 24, arrow = 52f, chipY = (HealthHeight - 38) / 2;
+        float okX = panelWidth - 16 - okWidth, upX = okX - 8 - arrow, downX = upX - 8 - arrow;
+        _healthDown = HealthChip(health, "↓", downX, chipY, arrow, () => OnHealthArrow(-1), Blue);
+        _healthUp = HealthChip(health, "↑", upX, chipY, arrow, () => OnHealthArrow(+1), Orange);
+        _healthOk = HealthChip(health, ok, okX, chipY, okWidth, OnHealthOk, Green);
+        _healthTitle = Text(health, "", 20, Ink);
+        // 34 high: the "·" comes from the CJK fallback font, whose taller line overflowed a 28 box at 20 px and the
+        // ellipsis cut the numbers after "normal x2.25" (window test, COOP_LOG 66).
+        _healthTitle.rectTransform.Place(56, 4, downX - 12 - 56, 34);
+        NoWrap(_healthTitle);
+        _healthHint = Text(health, "", 14, Dim);
+        _healthHint.rectTransform.Place(56, 38, downX - 12 - 56, 36);
+
         // Find a partner: the mode, the highest ping, Search / Stop (or Turn on matchmaking), the search's state.
-        var match = PanelAt("Match", 20, listTop + listHeight + 16, Width - 40, MatchHeight);
-        Text(match, Loc.T("Find a partner"), 22, Ink).rectTransform.Place(16, 8, 400, 32);
+        var match = PanelAt("Match", 20, healthTop + HealthHeight + 16, Width - 40, MatchHeight);
+        Text(match, Loc.T("Find a partner"), 22, Ink).rectTransform.Place(16, 8, 300, 32);
+        // Who searches now, by mode, also before this game queues (COOP_LOG 67): right of the title.
+        _matchLive = Text(match, "", 16, Dim, TextAlignmentOptions.TopRight);
+        _matchLive.rectTransform.Place(320, 12, Width - 40 - 320 - 16, 28);
+        NoWrap(_matchLive);
         _matchStatus = Text(match, "", 16, Dim);
         _matchStatus.rectTransform.Place(16, 40, Width - 40 - 32, 24);
         NoWrap(_matchStatus);
+        // Why nobody matches (other mods, another version) while searching; else the busiest time on this PC's clock.
+        _matchInfo = Text(match, "", 14, Dim);
+        _matchInfo.rectTransform.Place(16, 63, Width - 40 - 32, 39);
         float mx = 16, my = MatchHeight - 48;
         _matchMode = PanelChip(match, 250, ref mx, my, OnMatchMode, Blue);
         _matchPing = PanelChip(match, 230, ref mx, my, OnMatchPing, Blue);
@@ -225,6 +278,14 @@ public sealed class CoopWindow : MonoBehaviour
         return chip;
     }
 
+    private static UiKit.Chip HealthChip(RectTransform parent, string label, float x, float y, float w, System.Action onClick, Color color)
+    {
+        var chip = new UiKit.Chip(parent, label, x, y, w, onClick, color);
+        chip.Background.rectTransform.sizeDelta = new Vector2(w, 38);
+        chip.Label.fontSize = label.Length == 1 ? 24 : 18;
+        return chip;
+    }
+
     private static UiKit.Chip PanelChip(RectTransform parent, float w, ref float x, float y, System.Action onClick, Color color)
     {
         var chip = new UiKit.Chip(parent, "", x, y, w, onClick, color);
@@ -249,17 +310,28 @@ public sealed class CoopWindow : MonoBehaviour
         row.Root = back.gameObject;
         row.Dot = UiKit.Image("Dot", back.transform, Ink);
         row.Dot.rectTransform.Place(18, RowHeight / 2 - 8, 16, 16);
+        // The host's mark (Umut 2026-11-23: "Host should always be marked"): a crown where the others have the dot.
+        row.Crown = UiKit.Image("Crown", back.transform, Color.white, PixelIcons.Get("crown"));
+        row.Crown.preserveAspect = true;
+        row.Crown.rectTransform.Place(12, RowHeight / 2 - 14, 28, 28);
+        row.Crown.gameObject.SetActive(false);
         row.Name = Text(back.transform, "", 22, Ink);
         row.Name.richText = false; // a player's name is shown as typed
         // Heights with room for a descender: at 22 px the role's line ("host · you") grew taller than its box at the
         // "y", and the ellipsis cut it to "host..." (Umut's solo Steam check, COOP_LOG 59h).
-        row.Name.rectTransform.Place(46, 5, 420, 34);
+        row.Name.rectTransform.Place(46, 5, 354, 34);
         NoWrap(row.Name);
+        // What the player says about the host's enemy health: wants more / less, or OK.
+        row.Vote = Text(back.transform, "", 18, Ink);
+        row.Vote.rectTransform.Place(410, 8, 150, 30);
+        NoWrap(row.Vote);
         row.Role = Text(back.transform, "", 15, Dim);
-        row.Role.rectTransform.Place(46, 35, 420, 28);
+        // to 566: the longest line (your own row as host with the least progress: "Host · du · wenigster Fortschritt ·
+        // Dunkler Spiegel 10 geschafft") needs ~500; a row's ping on the right is short (own row: none)
+        row.Role.rectTransform.Place(46, 35, 520, 28);
         NoWrap(row.Role);
         row.Ping = Text(back.transform, "", 20, Ink, TextAlignmentOptions.Right);
-        row.Ping.rectTransform.Place(w - 140 - 24 - 220, 18, 220, 30);
+        row.Ping.rectTransform.Place(w - 140 - 24 - 192, 18, 192, 30);
         NoWrap(row.Ping);
         string kick = Loc.T("Kick");
         float kw = UiKit.ChipWidth(kick) + 24;
@@ -376,7 +448,45 @@ public sealed class CoopWindow : MonoBehaviour
         MatchStatusText(matchmaking, runtime, out string text, out Color color);
         _matchStatus.text = text;
         _matchStatus.color = color;
+
+        matchmaking.WantStats();
+        var stats = matchmaking.Stats;
+        _matchLive.text = stats == null ? ""
+            : $"<color=#ECEAF7>{Loc.F("Searching now: {0}", stats.Looking)}</color>  " +
+              Loc.F("normal {0} · Dark Mirror {1} · any mode {2}", stats.Normal, stats.DarkMirror, stats.Any);
+        var last = client.Last;
+        bool searching = client.State is Coop.Match.MatchState.Queueing or Coop.Match.MatchState.Queued;
+        if (searching && last != null && last.OtherMods > 0)
+        {
+            // Umut 2026-11-23: "couldnt match because the mod lists differ, please consider running only BepinEx and
+            // SkulInsight QoL"
+            _matchInfo.text = Loc.T("Couldn't match with the players searching now: your mod lists differ. Consider running only BepInEx and SkulInsight QoL.");
+            _matchInfo.color = Orange;
+        }
+        else if (searching && last != null && last.OtherVersion > 0)
+        {
+            _matchInfo.text = UpdateNotice.Outdated
+                ? Loc.T("Couldn't match with the players searching now: they play a newer SkulInsight QoL. Please update yours.")
+                : Loc.T("Couldn't match with the players searching now: they play another SkulInsight QoL version.");
+            _matchInfo.color = Orange;
+        }
+        else
+        {
+            int busiest = stats?.BusiestUtcHour ?? -1;
+            _matchInfo.text = busiest < 0 ? ""
+                : Loc.F("Busiest time on your clock: {0} (the last {1} days).",
+                    Coop.Match.QueueStats.LocalHourSpan(busiest, System.DateTime.UtcNow), stats.HoursDays);
+            _matchInfo.color = Dim;
+        }
+        if (LauncherTest && TestMatchInfo != null)
+        {
+            _matchInfo.text = TestMatchInfo; // the window test's picture of the longest notice
+            _matchInfo.color = Orange;
+        }
     }
+
+    /// <summary>The window test (CoopWindowTest) puts this text into the match panel's info line for a picture.</summary>
+    internal static string TestMatchInfo;
 
     /// <summary>The search's state in plain words.</summary>
     private static void MatchStatusText(Coop.Match.CoopMatchmaking matchmaking, CoopRuntime runtime, out string text, out Color color)
@@ -490,36 +600,58 @@ public sealed class CoopWindow : MonoBehaviour
     {
         var runtime = CoopRuntime.Instance;
         var lobby = runtime?.Lobby;
-        if (lobby == null)
+        if (lobby == null && !LauncherTest)
             return;
         var session = runtime.Session;
         bool live = session != null && session.State != SessionState.Ended;
         bool castle = CoopRuntime.InCastle;
 
-        StateText(lobby, session, castle, out string state, out string hint, out Color color);
-        if (lobby.State is LobbyState.Idle or LobbyState.Failed)
-            MatchSessionText(runtime, session, ref state, ref hint, ref color);
-        _state.text = state;
-        _state.color = color == Red ? Red : Ink;
-        _stateDot.color = color;
-        _hint.text = hint;
+        if (lobby != null)
+        {
+            StateText(lobby, session, castle, out string state, out string hint, out Color color);
+            if (lobby.State is LobbyState.Idle or LobbyState.Failed)
+                MatchSessionText(runtime, session, ref state, ref hint, ref color);
+            _state.text = state;
+            _state.color = color == Red ? Red : Ink;
+            _stateDot.color = color;
+            _hint.text = hint;
 
-        bool matchSession = runtime.InMatchSession;
-        bool searching = runtime.Matchmaking?.Client.Searching == true;
-        _host.SetOn(lobby.CanHost && lobby.SteamReady && castle && !matchSession && !searching);
-        _invite.SetOn(lobby.CanInvite);
-        _leave.SetOn(lobby.CanLeave || matchSession);
-        DrawMatch(runtime);
+            bool matchSession = runtime.InMatchSession;
+            bool searching = runtime.Matchmaking?.Client.Searching == true;
+            _host.SetOn(lobby.CanHost && lobby.SteamReady && castle && !matchSession && !searching);
+            _invite.SetOn(lobby.CanInvite);
+            _leave.SetOn(lobby.CanLeave || matchSession);
+            DrawMatch(runtime);
+        }
+        else
+        {
+            // the launcher's window test (CoopWindowTest): a UDP session without a Steam lobby; English test text
+            _state.text = live ? (session.IsHost ? "Window test: host" : "Window test: client") : "Window test: no session";
+            _stateDot.color = live ? Green : Dim;
+            _hint.text = "A launcher session (UDP), no Steam lobby.";
+            if (runtime.Matchmaking != null)
+                DrawMatch(runtime); // the launcher's matchmaking test: a local server
+        }
         if (_message.text.Length > 0 && Time.unscaledTime > _messageUntil)
             _message.text = "";
 
+        var notes = live ? LiveNotes() : null;
+        DrawHealth(session, notes);
+        var least = new HashSet<int>();
+        if (live && notes != null)
+        {
+            var slots = new List<int>();
+            foreach (var player in session.Roster)
+                slots.Add(player.Slot);
+            least.UnionWith(notes.Notes.LeastProgress(slots, session.LocalSlot));
+        }
         int shown = 0;
         if (live)
             foreach (var player in session.Roster)
             {
                 if (shown >= _rows.Length)
                     break;
-                FillRow(_rows[shown++], session, player);
+                FillRow(_rows[shown++], session, player, notes, least.Contains(player.Slot));
             }
         for (int i = shown; i < _rows.Length; i++)
         {
@@ -531,18 +663,42 @@ public sealed class CoopWindow : MonoBehaviour
         _empty.text = shown > 0 ? "" : Loc.T("Nobody here yet. Host a game and invite a friend, or accept a friend's Steam invite.");
     }
 
-    private void FillRow(PlayerRow row, CoopSession session, RosterEntry player)
+    private void FillRow(PlayerRow row, CoopSession session, RosterEntry player, CoopPlayerNotes notes, bool leastProgress)
     {
         row.Root.SetActive(true);
         row.Slot = player.Slot;
         var color = TeammateTags.ColorOf(player.Slot);
         row.Dot.color = color;
         row.Name.color = color;
+        row.Dot.gameObject.SetActive(!player.IsHost);
+        row.Crown.gameObject.SetActive(player.IsHost);
         if (row.Name.text != player.Name)
             row.Name.text = player.Name;
         bool me = player.Slot == session.LocalSlot;
-        string role = player.IsHost ? Loc.T("host") : Loc.T("player");
-        row.Role.text = me ? role + " · " + Loc.T("you") : role;
+
+        // The second line: host, you, least progress (Umut 2026-11-23: "the person with the least amount of progress
+        // (Dark mirror unlocked), cause he is most likely the one who needs help"), the Dark Mirror progress.
+        var parts = new List<string>(4);
+        if (player.IsHost)
+            parts.Add($"<color=#FFC85A>{Loc.T("host")}</color>");
+        if (me)
+            parts.Add(Loc.T("you"));
+        if (leastProgress)
+            parts.Add($"<color=#F2A93B>{Loc.T("least progress")}</color>");
+        var note = notes?.Notes.NoteOf(player.Slot, session.LocalSlot);
+        if (note is { } known && known.ClearedLevel != PlayerNote.UnknownProgress)
+            parts.Add(known.ClearedLevel < 0 ? Loc.T("no Dark Mirror level cleared") : Loc.F("Dark Mirror {0} cleared", known.ClearedLevel));
+        if (parts.Count == 0)
+            parts.Add(Loc.T("player"));
+        row.Role.text = string.Join(" · ", parts);
+
+        // What the player says about the host's enemy health (the host sets it: nothing to say).
+        var request = notes == null || player.IsHost ? HealthRequest.None : notes.Notes.RequestOf(player.Slot, session.LocalSlot);
+        bool ok = notes != null && !player.IsHost && notes.Notes.IsOk(player.Slot, session.LocalSlot);
+        row.Vote.text = ok ? Loc.T("OK with it")
+            : request == HealthRequest.More ? "↑ " + Loc.T("wants more")
+            : request == HealthRequest.Less ? "↓ " + Loc.T("wants less") : "";
+        row.Vote.color = ok ? Green : request == HealthRequest.More ? Amber : SkyBlue;
 
         // Ping: a client talks to the host only, the host to everyone.
         if (me)
@@ -577,6 +733,112 @@ public sealed class CoopWindow : MonoBehaviour
         row.Kick.Background.gameObject.SetActive(kick);
         if (kick)
             row.Kick.SetOn(true);
+    }
+
+    /// <summary>This game's notes while its session runs (null outside a co-op game).</summary>
+    private static CoopPlayerNotes LiveNotes()
+    {
+        var session = CoopRuntime.Instance?.Session;
+        var notes = CoopPlayerNotes.Current;
+        return session != null && session.State != SessionState.Ended && notes != null && notes.Session == session ? notes : null;
+    }
+
+    /// <summary>The enemy health strip: in a game the host's numbers for the party's size; outside one the numbers
+    /// this game would host with. The host (or a game outside a session) changes the setting with the arrows; a client
+    /// asks with them, and says OK.</summary>
+    private void DrawHealth(CoopSession session, CoopPlayerNotes notes)
+    {
+        bool asking = notes != null && !session.IsHost;
+        int players = notes != null ? Mathf.Clamp(session.Roster.Count, 2, Protocol.MaxPlayers) : 2;
+        BalanceSettings table = notes != null ? CoopHostRules.Current?.Balance : null;
+        if (table == null)
+        {
+            // what this game hosts with: its table (Coop/Balance) at its slider (Coop/EnemyHealth)
+            string text = Plugin.CoopBalanceText?.Value;
+            if (string.IsNullOrWhiteSpace(text) || !_ownBalance.TryParse(text))
+                _ownBalance.ResetToDefaults();
+            _ownBalance.ScaleTo(Plugin.CoopEnemyHealth?.Value ?? BalanceSettings.DefaultTwoPlayers);
+            table = _ownBalance;
+        }
+        _healthTitle.text = $"{Loc.T("Enemy health")}   <color=#FFC85A>" + Loc.F("normal {0} · elites {1} · bosses {2}",
+            Times(table.Get(players, EnemyCategory.Normal)), Times(table.Get(players, EnemyCategory.Elite)),
+            Times(table.Get(players, EnemyCategory.Boss))) + "</color>";
+
+        if (notes == null)
+            _healthHint.text = Loc.T("When you host: the arrows set it for everyone in your game.");
+        else if (session.IsHost)
+        {
+            int others = 0, ok = 0;
+            foreach (var player in session.Roster)
+                if (player.Slot != session.LocalSlot)
+                {
+                    others++;
+                    if (notes.Notes.IsOk(player.Slot, session.LocalSlot))
+                        ok++;
+                }
+            _healthHint.text = Loc.T("You host: the arrows change it for everyone, also during a run.") +
+                               (others > 0 ? "  " + Loc.F("OK: {0} of {1}", ok, others) : "");
+        }
+        else
+            _healthHint.text = Loc.T("Set by the host. The arrows ask for more or less; OK says it suits you.");
+
+        _healthOk.Background.gameObject.SetActive(asking);
+        if (asking)
+        {
+            var own = notes.Notes.Own;
+            Toggle(_healthUp, own.Request == HealthRequest.More);
+            Toggle(_healthDown, own.Request == HealthRequest.Less);
+            Toggle(_healthOk, own.Ok);
+        }
+        else
+        {
+            float value = Plugin.CoopEnemyHealth?.Value ?? BalanceSettings.DefaultTwoPlayers;
+            Toggle(_healthUp, value < BalanceSettings.MaxTwoPlayers - 0.001f, dimOff: true);
+            Toggle(_healthDown, value > BalanceSettings.MinTwoPlayers + 0.001f, dimOff: true);
+        }
+    }
+
+    /// <summary>A chip that is on (its colour) or off: off looks clickable (a request not made yet), or dim when the
+    /// arrow can't go further.</summary>
+    private static void Toggle(UiKit.Chip chip, bool on, bool dimOff = false)
+    {
+        if (on)
+            chip.SetOn(true);
+        else if (dimOff)
+            chip.SetOn(false);
+        else
+            chip.SetColor(PanelEdge, Ink);
+    }
+
+    private static string Times(float value) => "x" + value.ToString("0.0#", CultureInfo.InvariantCulture);
+
+    private void OnHealthArrow(int direction)
+    {
+        var notes = LiveNotes();
+        if (notes != null && !notes.Session.IsHost)
+        {
+            notes.Ask(direction > 0 ? HealthRequest.More : HealthRequest.Less);
+            _nextDraw = 0f;
+            return;
+        }
+        // The host, or a game outside a session: the setting itself (in a game it counts at once for everyone).
+        var entry = Plugin.CoopEnemyHealth;
+        if (entry == null)
+            return;
+        float next = BalanceSettings.StepTwoPlayers(entry.Value, direction);
+        if (System.Math.Abs(next - entry.Value) < 0.001f)
+            return;
+        entry.Value = next;
+        _nextDraw = 0f;
+    }
+
+    private void OnHealthOk()
+    {
+        var notes = LiveNotes();
+        if (notes == null || notes.Session.IsHost)
+            return;
+        notes.ToggleOk();
+        _nextDraw = 0f;
     }
 
     /// <summary>The state line, the hint under it and the dot's colour.</summary>

@@ -141,7 +141,11 @@ public sealed partial class CodexWindow : MonoBehaviour
             return; // a run's end screen lies over the book and takes the keys
         DamageInsight.Patches.Guard.Run("Codex (daily run)", OpenForDailyResult);
         // Typing in any text field (this search, the game's developer menu, ...) keeps K and Backspace for the text.
-        if (Plugin.CodexKey.Value.IsDown() && !DamageInsight.UI.SettingsPage.IsOpen && !DamageInsight.UI.TextInput.IsTyping())
+        if (DamageInsight.UI.ReportWindow.Busy)
+        {
+            // the report form (opened from here) takes the keys
+        }
+        else if (Plugin.CodexKey.Value.IsDown() && !DamageInsight.UI.SettingsPage.IsOpen && !DamageInsight.UI.TextInput.IsTyping())
             SetOpen(!IsOpen);
         else if (IsOpen && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -270,6 +274,14 @@ public sealed partial class CodexWindow : MonoBehaviour
 
         BuildLeft(left);
         BuildRight(right);
+
+        // The report form (REPORTS.md): above the book's top right corner, outside the pages.
+        string report = Loc.T("Report a bug or idea");
+        float reportWidth = UiKit.ChipWidth(report) + 26;
+        var reportChip = new UiKit.Chip(cover, report, BookWidth + 16 - reportWidth, -46, reportWidth, DamageInsight.UI.ReportWindow.Open,
+            new Color32(0xF2, 0xA9, 0x3B, 0xFF));
+        reportChip.Background.rectTransform.sizeDelta = new Vector2(reportWidth, 34);
+        reportChip.SetOn(true);
     }
 
     /// <summary>

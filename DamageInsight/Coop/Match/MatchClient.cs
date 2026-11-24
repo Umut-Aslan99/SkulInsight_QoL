@@ -134,6 +134,9 @@ public sealed class MatchStatus
 {
     public string State = "";
     public int Version = -1, WaitSeconds, MaxPing, Position, Looking;
+    /// <summary>Searching for the same game but kept apart: another mod list (same SkulInsight version), or another
+    /// SkulInsight version (COOP_LOG 67). 0 from an older server.</summary>
+    public int OtherMods, OtherVersion;
     /// <summary>Seconds; -1 = not known yet (no matches this hour).</summary>
     public int EstimatedWait = -1;
     /// <summary>"" | partner_declined | partner_timeout | ping_check_failed.</summary>
@@ -159,6 +162,8 @@ public sealed class MatchStatus
             MaxPing = (int)n.Num("maxPing"),
             Position = (int)n.Num("position"),
             Looking = (int)n.Num("looking"),
+            OtherMods = (int)n.Num("otherMods"),
+            OtherVersion = (int)n.Num("otherVersion"),
             EstimatedWait = n.Raw("estimatedWait") is double wait ? (int)wait : -1,
             Notice = n.Str("notice") ?? "",
             Ticket = n.Str("ticket") ?? "",

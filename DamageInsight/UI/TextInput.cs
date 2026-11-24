@@ -17,6 +17,8 @@ internal static class TextInput
 
     public static bool IsTyping()
     {
+        if (ReportWindow.Busy)
+            return true; // the report form takes every key while it is open
         if (Time.frameCount != _frame)
         {
             _frame = Time.frameCount;

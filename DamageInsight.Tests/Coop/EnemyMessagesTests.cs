@@ -98,6 +98,40 @@ public class EnemyMessagesTests
     }
 
     [Fact]
+    public void A_motion_carries_the_AI_markers_and_reads_without_them_too()
+    {
+        var e = new EnemyEvent
+        {
+            Kind = EnemyEventKind.Motion, NetId = 7, ActionPath = "Brain/Prepare", MotionIndex = 0, Speed = 1f,
+            TargetSlot = 1, X = 4f, Y = 2f,
+            Markers = new List<EnemyMarker> { new() { Index = 3, X = 18.5f, Y = 1.25f }, new() { Index = 9, X = -2f, Y = 0f } },
+        };
+        var w = new NetWriter();
+        EnemyMessages.WriteEvent(w, 5, 1.0, e);
+        var read = EnemyMessages.ReadEvent(Reader(w), out _, out _);
+        Assert.Equal(2, read.Markers.Count);
+        Assert.Equal(3, read.Markers[0].Index);
+        Assert.Equal(18.5f, read.Markers[0].X);
+        Assert.Equal(1.25f, read.Markers[0].Y);
+        Assert.Equal(9, read.Markers[1].Index);
+        Assert.Equal(-2f, read.Markers[1].X);
+
+        // without markers (and what a 0.17.0 host sends): no tail, nothing read
+        e.Markers = null;
+        w = new NetWriter();
+        EnemyMessages.WriteEvent(w, 5, 1.0, e);
+        int plain = w.ToSegment().Count;
+        read = EnemyMessages.ReadEvent(Reader(w), out _, out _);
+        Assert.Null(read.Markers);
+        Assert.Equal(4f, read.X);
+        Assert.Equal(2f, read.Y);
+        e.Markers = new List<EnemyMarker>();
+        w = new NetWriter();
+        EnemyMessages.WriteEvent(w, 5, 1.0, e);
+        Assert.Equal(plain, w.ToSegment().Count); // an empty list writes no tail either
+    }
+
+    [Fact]
     public void An_unknown_event_kind_is_skipped()
     {
         var w = new NetWriter();

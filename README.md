@@ -6,7 +6,7 @@ enemy, boss and piece of gear, a history of all your runs, Skul's achievements f
 daily run with online leaderboards.
 
 A quality-of-life mod: it shows information the game already uses internally, keeps several save slots side by
-side if you use them, and only goes online if you turn on the daily run or the online co-op. Its only change to the game's balance is
+side if you use them, and only goes online if you turn on the daily run or the online co-op, or send a report. Its only change to the game's balance is
 the **rewards** (0.15): optional, on by default, and one switch at the top of the settings turns them off. Every
 feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
@@ -14,9 +14,12 @@ feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 > **Co-op** window, F3) or with anyone through **matchmaking**. Off by default: pause (Esc) → SkulInsight QoL →
 > **Online co-op (open beta)**, then restart the game. One run in the host's world: enemies, bosses, room clears and
 > doors (a vote) are shared, gold drops for everyone, room rewards and shops are your own; **revive** a downed
-> teammate at their ring; the host sets how much more health enemies have (1.5x to 3x). It is a **beta**: the Co-op
-> window's **Report a bug or idea** packs your logs (Steam ids hidden) for a report. Also new: enemy projectiles that
-> can hit you get a thin **red outline**, also when you play alone. Known issues: [CHANGELOG](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
+> teammate at their ring; the host sets how much more health enemies have (1.5x to 4.5x). It is a **beta**: **Report
+> a bug or idea** (Co-op window, settings, Codex) sends your report straight to the developer. Also new: enemy
+> projectiles that can hit you get a thin **red outline**, also when you play alone. Known issues: [CHANGELOG](https://github.com/Umut-Aslan99/SkulInsight_QoL/blob/main/CHANGELOG.md).
+> **0.17.1:** co-op fixes from your runs (the adventurer arena camera, a teammate walling you in, enemies chasing the
+> wrong player, the Pope's leftover fanatics), the host's enemy health shown to everyone in the Co-op window, the
+> report form, and co-op run logs sent to the developer after a run if you agree (asked once).
 >
 > **0.16: restart room, new daily points.** **Restart room** (press F5 twice) takes you back to the
 > moment you entered the room, as when you close the game and continue (in a daily run it ends the run). **Daily

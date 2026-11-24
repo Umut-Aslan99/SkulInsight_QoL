@@ -93,6 +93,9 @@ public sealed class CoopLaunch
     public bool CameraOnHost { get; private set; }
     /// <summary>--skulinsight-mute: this copy makes no sound.</summary>
     public bool Mute { get; private set; }
+    /// <summary>--skulinsight-window-test: the Co-op window opens in this launcher session, the client asks for more
+    /// enemy health and says OK, the host raises it, and every game takes pictures of it (CoopWindowTest).</summary>
+    public bool WindowTest { get; private set; }
     /// <summary>--skulinsight-drop=AFTER:FOR (seconds, FOR may be "forever"): this copy's line breaks AFTER seconds
     /// after its first teammate came, for FOR seconds (package DC's drop tests). Null: never.</summary>
     public Net.Outage Drop { get; private set; }
@@ -179,6 +182,11 @@ public sealed class CoopLaunch
             if (name == "mute")
             {
                 launch.Mute = value == null || !IsOff(value);
+                continue;
+            }
+            if (name == "window-test")
+            {
+                launch.WindowTest = value == null || !IsOff(value);
                 continue;
             }
             if (name == "autorun-skip")

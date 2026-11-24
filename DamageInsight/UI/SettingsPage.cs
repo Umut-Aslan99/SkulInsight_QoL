@@ -980,6 +980,9 @@ public sealed class SettingsPage : global::UI.Dialogue
             case SettingKind.Action when row.Item.Action == SettingsCatalog.OpenCrashReports:
                 Crash.CrashReporter.OpenFolder();
                 break;
+            case SettingKind.Action when row.Item.Action == SettingsCatalog.OpenReport:
+                ReportWindow.Open();
+                break;
             case SettingKind.Action when row.Item.Action == SettingsCatalog.OpenChangelog:
                 WhatsNew.OpenChangelog();
                 break;

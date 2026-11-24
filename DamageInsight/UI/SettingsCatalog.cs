@@ -109,6 +109,7 @@ public static class SettingsCatalog
     public const string ResetCodex = "ResetCodex";
     /// <summary>Action rows: open the crash reports folder (Crash/CrashReporter).</summary>
     public const string OpenCrashReports = "OpenCrashReports";
+    public const string OpenReport = "OpenReport";
     /// <summary>Action rows: the changelog in the game (UI/Changelog, Tythos 2026-11-01).</summary>
     public const string OpenChangelog = "OpenChangelog";
     public const string OpenFeature = "OpenFeature"; // a feature without a main switch on the left: into its settings
@@ -154,7 +155,7 @@ public static class SettingsCatalog
         "Cooldown Ticker/Enabled", "Codex/Enabled", "Codex/ToggleKey", "Codex/AchievementNotice", "Codex/AchievementSound",
         "Clear View/Enabled", "Clear View/LowestOpacity", "Heal Orbs/Look", "Heal Orbs/Reminder",
         "Daily/Enabled",
-        "General/Language", "action:" + OpenChangelog, "General/PerformanceOverlay", "action:" + OpenCrashReports,
+        "General/Language", "action:" + OpenChangelog, "General/PerformanceOverlay", "action:" + OpenCrashReports, "action:" + OpenReport,
         SaveSlotsSection + "/Slot", "action:" + SlotPlay, "action:" + SlotCopy, "action:" + SlotClear,
         "Mods/Enabled", AllSettings + "/Show", "action:" + ResetAll,
         "Coop/Enabled", "Coop/EnemyHealth", "Coop/TeammateOpacity", "Coop/TeammateOutline", "Coop/TeammateScreenEffects", "Outlines/EnemyShots", "Outlines/OwnShots",
@@ -383,7 +384,8 @@ public static class SettingsCatalog
         },
         ["Coop/EnemyHealth"] = new Spec
         {
-            Label = Loc.N("Enemy health (co-op)"), Min = 1.5, Max = 3, Step = 0.1, Unit = Unit.Times, Hidden = true,
+            Label = Loc.N("Enemy health (co-op)"), Min = Coop.Rules.BalanceSettings.MinTwoPlayers,
+            Max = Coop.Rules.BalanceSettings.MaxTwoPlayers, Step = 0.1, Unit = Unit.Times, Hidden = true,
             Help = Loc.N("Co-op, when you host: how much health enemies have with two players (2x = twice their own). Elites and bosses get a little more, three or four players more again. A change counts at once, for everyone and for enemies already there."),
         },
         ["Coop/DoorVoteSeconds"] = new Spec
@@ -402,10 +404,20 @@ public static class SettingsCatalog
             Label = Loc.N("Go to teammate"), Hidden = true,
             Help = Loc.N("Co-op: puts you where your teammate stands in this room (once every 10 seconds), when you are stuck or far away."),
         },
+        ["Coop/AutoUnstuck"] = new Spec
+        {
+            Label = Loc.N("Free me from walls"), Hidden = true,
+            Help = Loc.N("Co-op: when you are stuck inside a wall and the game can't free you, you are put next to your teammate by yourself (like the Go to teammate key)."),
+        },
         ["Coop/ConnectionBox"] = new Spec
         {
             Label = Loc.N("Connection box"), Hidden = true,
             Help = Loc.N("Co-op: a small box at the top left, below the clock, with each teammate's ping (green, amber, red) and a warning when nothing arrives from them."),
+        },
+        ["Coop/SendRunLogs"] = new Spec
+        {
+            Label = Loc.N("Send co-op run logs"), Hidden = true,
+            Help = Loc.N("Co-op: after each co-op run, send that run's logs to the developer (skul.umut-aslan.dev; never public, Steam ids and your account name hidden), so co-op bugs get found without a report. Ask: a window asks after your next co-op run."),
         },
         ["Coop/DetailedLog"] = new Spec
         {
@@ -508,6 +520,13 @@ public static class SettingsCatalog
         ["General/WhatsNew"] = On(Loc.N("What's new"),
             Loc.N("After an update, show once (in the castle) what's new in this version.")), // the "Window position" reset row stands in for it
         // (The Changelog row follows it: Build adds it after General/WhatsNew.)
+        ["General/UpdateNotice"] = On(Loc.N("Update notice"),
+            Loc.N("At every start, a note in the castle when a newer SkulInsight QoL is out. Asks Thunderstore for the newest version number once per start.")),
+        ["General/ReportsToServer"] = On(Loc.N("Send reports to the developer"),
+            Loc.N("The \"Report a bug or idea\" window sends your report to the mod's server (skul.umut-aslan.dev): its title and text become a public GitHub issue, attached logs only reach the developer. Off: the window saves the logs and opens GitHub's page instead (needs a GitHub account).")),
+        ["General/ReportLogs"] = On(Loc.N("Logs with bug reports"),
+            Loc.N("A bug report starts with its logs attached (this game's logs, settings and co-op logs; Steam ids and your account name hidden). Ideas start without logs.")),
+        ["General/ReportContact"] = new Spec { Hidden = true }, // typed in the report window
         ["General/CrashReports"] = On(Loc.N("Crash reports"),
             Loc.N("Keep a report of every game session in BepInEx/DamageInsight/CrashReports (the newest 20): errors, what happened before them, and whose code they were in (the game's, SkulInsight's or another mod's). Says so on screen when the game seems stuck or the last session ended unexpectedly. Send the report with a bug report.")),
         ["All settings/Show"] = On(Loc.N("All settings"),
@@ -650,6 +669,13 @@ public static class SettingsCatalog
                     Section = Heading(section), ConfigSection = section, Label = Loc.T("Crash reports folder"), Kind = SettingKind.Action, Action = OpenCrashReports,
                     ButtonLabel = Loc.T("Open"),
                     Help = Loc.T("Opens the folder with the crash reports (one file per game session, named by its start time). Add the newest one to your bug report."),
+                }));
+                // The report form (REPORTS.md): also in the Co-op window and the Codex.
+                items.Add((rank, order++, new SettingItem
+                {
+                    Section = Heading(section), ConfigSection = section, Label = Loc.T("Report a bug or idea"), Kind = SettingKind.Action, Action = OpenReport,
+                    ButtonLabel = Loc.T("Open"),
+                    Help = Loc.T("A form for bugs, ideas and wishes. The developer gets it as a ticket; its title and text become a public GitHub issue."),
                 }));
             }
 
