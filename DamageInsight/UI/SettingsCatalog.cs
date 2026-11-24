@@ -402,12 +402,12 @@ public static class SettingsCatalog
         ["Coop/UnstuckKey"] = new Spec
         {
             Label = Loc.N("Go to teammate"), Hidden = true,
-            Help = Loc.N("Co-op: puts you where your teammate stands in this room (once every 10 seconds), when you are stuck or far away."),
+            Help = Loc.N("Co-op: puts you where the nearest teammate stands in this room (once every 10 seconds), when you are stuck or far away."),
         },
         ["Coop/AutoUnstuck"] = new Spec
         {
             Label = Loc.N("Free me from walls"), Hidden = true,
-            Help = Loc.N("Co-op: when you are stuck inside a wall and the game can't free you, you are put next to your teammate by yourself (like the Go to teammate key)."),
+            Help = Loc.N("Co-op: when you are stuck inside a wall and the game can't free you, you are put next to the nearest teammate by yourself (like the Go to teammate key)."),
         },
         ["Coop/ConnectionBox"] = new Spec
         {
@@ -442,7 +442,7 @@ public static class SettingsCatalog
         ["Coop/MaxPlayers"] = new Spec
         {
             Label = Loc.N("Players"), Min = 2, Max = 4, Step = 1, Unit = Unit.Plain, Hidden = true,
-            Help = Loc.N("Co-op, when you host: how many players your game takes, you included."),
+            Help = Loc.N("Co-op, when you host with Steam friends: how many players your game takes, you included. 3 and 4 are experimental. Matchmaking always pairs two players."),
         },
         ["Coop/Matchmaking"] = new Spec
         {

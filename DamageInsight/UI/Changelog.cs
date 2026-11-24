@@ -17,6 +17,11 @@ public static class Changelog
     /// <summary>The versions and their highlights (English keys, translated here), newest first.</summary>
     public static List<(string version, string[] lines)> Versions() => new()
     {
+        ("0.17.2", new[]
+        {
+            Loc.T("3-4 players with Steam friends (experimental): the host sets how many in the settings (Co-op, Players). Matchmaking still pairs two players."),
+            Loc.T("When a co-op connection breaks, the log now says whether Steam could reach its relay network: this helps with connections where Steam finds no route to the other game."),
+        }),
         ("0.17.1", new[]
         {
             Loc.T("Co-op fixes from your runs: the adventurer arena camera locks on the arena again while you fight in it; a teammate no longer walls you in (both players need 0.17.1); enemies without a target go for the nearest player; the Pope's fanatics no longer stay after he dies."),

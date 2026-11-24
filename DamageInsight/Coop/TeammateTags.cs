@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using DamageInsight.UI;
 using TMPro;
 using UnityEngine;
@@ -86,7 +87,6 @@ internal sealed class TeammateTags
         tag.Row.anchorMin = tag.Row.anchorMax = Vector2.zero;
         tag.Row.pivot = Vector2.zero;
         tag.Row.sizeDelta = new Vector2(260f, 24f);
-        tag.Row.anchoredPosition = new Vector2(0f, 28f * slot);
         tag.RowText = UiKit.Text("Text", tag.Row, "", 16f, TextAlignmentOptions.Left, color);
         tag.RowText.richText = false;
         tag.RowText.enableWordWrapping = false;
@@ -97,7 +97,18 @@ internal sealed class TeammateTags
         tag.RowBar = UiKit.Image("Fill", rowBack.transform, color);
         tag.RowBar.rectTransform.Place(0f, 0f, 80f, BarHeight);
         _tags[slot] = tag;
+        StackRows();
         return tag;
+    }
+
+    /// <summary>The health rows bottom left, one above the other by slot without gaps (3-4 players, COOP_LOG 70: a
+    /// row's height per slot left an empty line where this game's own slot is).</summary>
+    private void StackRows()
+    {
+        int index = 0;
+        foreach (int slot in _tags.Keys.OrderBy(s => s))
+            if (_tags[slot].Row != null)
+                _tags[slot].Row.anchoredPosition = new Vector2(0f, 28f * index++);
     }
 
     /// <summary>One teammate, every frame. <paramref name="avatar"/> null: not in this map (only the party row).</summary>
@@ -281,6 +292,7 @@ internal sealed class TeammateTags
         if (tag.Row != null)
             UnityEngine.Object.Destroy(tag.Row.gameObject);
         _tags.Remove(slot);
+        StackRows();
     }
 
     public void Destroy()

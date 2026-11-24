@@ -20,6 +20,8 @@ feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 > **0.17.1:** co-op fixes from your runs (the adventurer arena camera, a teammate walling you in, enemies chasing the
 > wrong player, the Pope's leftover fanatics), the host's enemy health shown to everyone in the Co-op window, the
 > report form, and co-op run logs sent to the developer after a run if you agree (asked once).
+> **0.17.2:** **3-4 players** with Steam friends (experimental): the host sets settings → Co-op → Players.
+> Matchmaking still pairs two players.
 >
 > **0.16: restart room, new daily points.** **Restart room** (press F5 twice) takes you back to the
 > moment you entered the room, as when you close the game and continue (in a daily run it ends the run). **Daily
@@ -48,7 +50,8 @@ feature can be switched off in the game: pause (Esc) → **SkulInsight QoL**.
 
 Play a run **together**: invite a Steam friend from the **Co-op** window (F3, or the Co-op button in the pause menu),
 or find a partner through **matchmaking**. Off by default: pause (Esc) → SkulInsight QoL → **Online co-op (open
-beta)**, then restart the game. Two players for now.
+beta)**, then restart the game. Two players, or **3-4 with Steam friends (experimental, 0.17.2)**: the host sets
+settings → Co-op → Players. Matchmaking pairs two players.
 
 ![The same moment on both games: the host's (left) and the joining player's (right)](https://raw.githubusercontent.com/Umut-Aslan99/SkulInsight_QoL/main/docs/images/coop-both-games.jpg)
 
@@ -493,9 +496,10 @@ The same settings are in the settings file (created on the first start):
   are very welcome (see *All game languages*). The config file and the developer tools stay English.
 
 ## Roadmap
-- **0.17 (this version):** online co-op as an open beta (Steam friends and matchmaking, two players)
+- **0.17 (this version):** online co-op as an open beta (Steam friends and matchmaking, two players; 3-4 players
+  with Steam friends as an experiment since 0.17.2)
 - **0.17.x:** co-op fixes from the beta's reports (enemies only one player sees, NPC rewards per player, effects
-  drawn too strong), then 3-4 players
+  drawn too strong), then 3-4 players through matchmaking too
 - **0.16:** restart room, new daily points and the day's challenges, the settings page in groups, the changelog in
   the game, runs in your language
 - **Next:** the Dark Mirror page (levels 0–10 with the game's values, Darktech machines, fragments, the hidden boss)

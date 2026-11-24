@@ -290,3 +290,45 @@ internal sealed class SteamworksSockets : ISteamSockets
         _callback = null;
     }
 }
+
+/// <summary>
+/// Steam's relay network (SDR) in one line, for the log and the trace (COOP_LOG 70): players in mainland China got
+/// "Steam found no route to the other game" (2026-11-24); this shows whether their Steam reached the relays at all.
+/// Null without Steam. Never throws.
+/// </summary>
+internal static class SteamRelay
+{
+    public static string Describe()
+    {
+        try
+        {
+            if (!SteamAPI.IsSteamRunning())
+                return null;
+            var overall = SteamNetworkingUtils.GetRelayNetworkStatus(out var details);
+            string debug = (details.m_debugMsg ?? "").Trim();
+            return "relay " + Name(overall)
+                + ", network config " + Name(details.m_eAvailNetworkConfig)
+                + ", any relay " + Name(details.m_eAvailAnyRelay)
+                + (details.m_bPingMeasurementInProgress != 0 ? ", measuring pings" : "")
+                + (debug.Length > 0 ? " (" + debug + ")" : "");
+        }
+        catch (Exception e)
+        {
+            return "relay status unknown (" + e.GetType().Name + ")";
+        }
+    }
+
+    private static string Name(ESteamNetworkingAvailability value) => value switch
+    {
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_Current => "ok",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_Attempting => "connecting",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_Waiting => "waiting",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_NeverTried => "not tried",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_Retrying => "retrying",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_Previously => "lost (worked before)",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_Failed => "failed",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_CannotTry => "cannot try",
+        ESteamNetworkingAvailability.k_ESteamNetworkingAvailability_Unknown => "unknown",
+        _ => ((int)value).ToString(System.Globalization.CultureInfo.InvariantCulture),
+    };
+}

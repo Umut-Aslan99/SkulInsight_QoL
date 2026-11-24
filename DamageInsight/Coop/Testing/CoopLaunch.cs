@@ -77,6 +77,9 @@ public sealed class CoopLaunch
     public float AutoRunDoorSeconds { get; private set; } = 25f;
     /// <summary>--skulinsight-autorun-rooms=N: the autorun is done after N rooms (0 = until the chapter's boss fell).</summary>
     public int AutoRunRooms { get; private set; }
+    /// <summary>--skulinsight-autorun-players=N (2-4): the autorun's host leaves the castle once N players are in the
+    /// session (at most 120 s), and the window test waits for N (start-instances.ps1 passes it for 3-4 copies, COOP_LOG 70).</summary>
+    public int AutoRunPlayers { get; private set; } = 2;
     /// <summary>--skulinsight-autorun-from=N: the boss route goes from the run's first room straight to room N of the
     /// first stage (a test of one boss without the rooms before it: King Alexander is dm6's room 2).</summary>
     public int AutoRunFrom { get; private set; }
@@ -265,6 +268,9 @@ public sealed class CoopLaunch
                 break;
             case "autorun-rooms":
                 if (TryInt(value, 0, 1000, out int rooms)) AutoRunRooms = rooms;
+                break;
+            case "autorun-players":
+                if (TryInt(value, 2, Net.Protocol.MaxPlayers, out int players)) AutoRunPlayers = players;
                 break;
             case "autorun-from":
                 if (TryInt(value, 0, 50, out int fromRoom)) AutoRunFrom = fromRoom;

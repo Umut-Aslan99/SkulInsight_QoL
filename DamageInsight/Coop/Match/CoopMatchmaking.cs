@@ -192,7 +192,7 @@ internal sealed class CoopMatchmaking
             DmUnlocked = unlocked,
             Dlc = Daily.DailyRun.OwnsDlc,
             DlcRun = "any",
-            Size = 2,
+            Size = Protocol.MatchmadePlayers,
             // Opt-in (COOP_LOG 62): the server insists on the same language for a ticket's first 60 s; Umut (en) and
             // Kerkopi (de) queued 4 times, each restarting those 60 s, and never matched (2026-11-20).
             Language = Plugin.CoopMatchSameLanguage?.Value == true ? Lang.Loc.Current : "",

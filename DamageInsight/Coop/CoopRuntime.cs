@@ -300,7 +300,8 @@ internal sealed class CoopRuntime : MonoBehaviour
         if (_lobby == null)
             return;
         _lobby.FriendsCanJoin = Plugin.CoopFriendsCanJoin?.Value ?? true;
-        _lobby.MaxPlayers = Math.Min(Protocol.PlayersForNow, Plugin.CoopMaxPlayers?.Value ?? Protocol.MaxPlayers);
+        // 3-4 players in a Steam lobby: experimental since 0.17.2 (COOP_LOG 70); matchmaking keeps 2 (Protocol.MatchmadePlayers).
+        _lobby.MaxPlayers = Math.Max(2, Math.Min(Protocol.MaxPlayers, Plugin.CoopMaxPlayers?.Value ?? Protocol.MaxPlayers));
         _lobby.PresenceStatus = Lang.Loc.T("In a co-op run");
     }
 
@@ -492,6 +493,8 @@ internal sealed class CoopRuntime : MonoBehaviour
             SaveSlots.SlotSwitcher.BackupGameSave();
         }
         _transport = transport;
+        if (!host.IsNone)
+            LogRelay("joining");
         // A broken line (package DC): the drop after DropSeconds is the session's timeout; a join try that gets no
         // answer ends sooner (the next try follows); the host keeps a dropped player's slot for the rejoin window.
         var drop = DropSettingsNow();
@@ -533,6 +536,8 @@ internal sealed class CoopRuntime : MonoBehaviour
         _session.PlayerLeft += (p, why) =>
         {
             Plugin.Log.LogInfo($"[Coop] {p.Name} left (slot {p.Slot}): {why}");
+            if (why is LeaveReason.Timeout or LeaveReason.ConnectionLost)
+                LogRelay("lost slot " + p.Slot);
             Forget(p.Slot);
             _drops.Left(p.Slot, p.Name, p.PlayerId, why, Now);
         };
@@ -584,6 +589,7 @@ internal sealed class CoopRuntime : MonoBehaviour
             string side = session.IsHost ? "host" : "client";
             CoopTrace.SwitchSide(side);
             CoopTrace.Write("session", what: side, slot: session.LocalSlot);
+            LogRelay("session start");
             return;
         }
         // The runtime's current session, not this one: after a rejoin the trace goes on in the new session's time
@@ -592,11 +598,27 @@ internal sealed class CoopRuntime : MonoBehaviour
         CoopTrace.Write("session", what: session.IsHost ? "host" : "client", slot: session.LocalSlot);
         _matchmaking?.FlushTrace(); // the match-* events from before the session
         CoopProbe.Start(local => _session != null ? _session.ToSessionTime(local) : local);
+        LogRelay("session start");
+    }
+
+    /// <summary>Steam's relay network status to the log and the trace (relay-status) in a Steam session: at its start,
+    /// when joining, and when a line breaks (COOP_LOG 70: "Steam found no route" from mainland China).</summary>
+    private void LogRelay(string when)
+    {
+        if (_transport is not SteamTransport)
+            return;
+        string text = SteamRelay.Describe();
+        if (text == null)
+            return;
+        Plugin.Log.LogInfo("[Coop] Steam " + text + " (" + when + ")");
+        CoopTrace.Write("relay-status", name: when, what: text);
     }
 
     private void OnSessionEnded(LeaveReason why)
     {
         Plugin.Log.LogInfo("[Coop] session ended: " + why);
+        if (why is LeaveReason.Timeout or LeaveReason.ConnectionLost)
+            LogRelay("session lost");
         var ended = _session;
         bool wasActive = _wasActive;
         _wasActive = false;

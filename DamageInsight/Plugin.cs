@@ -187,9 +187,9 @@ public class Plugin : BaseUnityPlugin
         DamageNumbersTeammates = Config.Bind("Damage Numbers", "TeammatesOnScreen", false,
             "Co-op: your teammates' hits show damage numbers on your screen too, in their colour. Off: fewer numbers on screen.");
         CoopUnstuckKey = Config.Bind("Coop", "UnstuckKey", new KeyboardShortcut(UnityEngine.KeyCode.F6),
-            "Co-op: puts you where your teammate stands in this room (once every 10 seconds), when you are stuck or far away.");
+            "Co-op: puts you where the nearest teammate stands in this room (once every 10 seconds), when you are stuck or far away.");
         CoopAutoUnstuck = Config.Bind("Coop", "AutoUnstuck", true,
-            "Co-op: when you are stuck inside a wall and the game can't free you, you are put next to your teammate by yourself (like the Go to teammate key).");
+            "Co-op: when you are stuck inside a wall and the game can't free you, you are put next to the nearest teammate by yourself (like the Go to teammate key).");
         CoopConnectionBox = Config.Bind("Coop", "ConnectionBox", true,
             "Co-op: a small box at the top left, below the clock, with each teammate's ping (green, amber, red) and a warning when nothing arrives from them.");
         // On by default during the co-op open beta (Umut 2026-11-21 13:10: the beta's logs must be able to reconstruct a run).
@@ -205,7 +205,7 @@ public class Plugin : BaseUnityPlugin
         CoopFriendsCanJoin = Config.Bind("Coop", "FriendsCanJoin", true,
             "Co-op, when you host: your Steam friends can join from their friends list (Join game). Off: only friends you invite.");
         CoopMaxPlayers = Config.Bind("Coop", "MaxPlayers", 4, new ConfigDescription(
-            "Co-op, when you host: how many players your game takes, you included.",
+            "Co-op, when you host with Steam friends: how many players your game takes, you included. 3 and 4 are experimental. Matchmaking always pairs two players.",
             new AcceptableValueRange<int>(2, 4)));
         CoopMatchmaking = Config.Bind("Coop", "Matchmaking", false,
             "Co-op: find a partner through the daily run server (Find a partner in the Co-op window). Sends the daily run's random " +

@@ -48,7 +48,8 @@ internal sealed class CoopWindowTest : MonoBehaviour
                 return;
             if (_start < 0f)
             {
-                if (session.Roster.Count < 2 || CoopWorld.Current?.RoomLoaded != true)
+                // 3-4 copies: everyone in (start-instances passes --skulinsight-autorun-players, COOP_LOG 70)
+                if (session.Roster.Count < CoopLaunch.Current.AutoRunPlayers || CoopWorld.Current?.RoomLoaded != true)
                     return;
                 _start = Time.unscaledTime;
                 CoopWindow.Open();

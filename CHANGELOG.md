@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.17.2 (3-4 players with Steam friends, experimental)
+
+New:
+- **3-4 players with Steam friends (experimental):** the host sets how many players the game takes in the settings
+  (Co-op → Players, 2-4). Before, a game was held at two players whatever that setting said. Each player has their
+  own colour (gold, blue, green, pink), the door vote is weighted by votes (a door with 2 of 3 votes wins 2 times in
+  3), any standing teammate can revive, and enemies get more health with each player: at the default 2x for two
+  players, about 2.75x with three and 3.5x with four (the host's Enemy health setting moves all of them). Matchmaking
+  still pairs two players. Asked for by a co-op group on the Skul Discord, thank you.
+- **Connection problems:** when a co-op connection breaks (and when a game starts or joins), the log now says
+  whether Steam could reach its relay network. This helps with "Steam found no route to the other game".
+- The teammates' health rows at the bottom left stack without a gap.
+
+Known issues with 3-4 players:
+- Checked with test copies on one PC (three players: joining, the run start, three rooms with door votes, the Co-op
+  window), not yet in a real Steam game with three or four people. Please report what you see (Co-op window →
+  Report a bug or idea).
+- Everyone needs 0.17.2. The host's connection carries every player's data: a slow host line shows first as
+  teammates that lag behind.
+- "Go to teammate" (F6) takes you to the nearest teammate in the room.
+
 ## 0.17.1 (co-op fixes from your runs, enemy health in the Co-op window)
 
 Fixes from the first players' co-op runs (thank you for the reports):

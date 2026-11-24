@@ -64,3 +64,32 @@ Decisions Claude made for Umut are marked **[DECISION]**: Umut may change any of
    [DECISION] The guard now looks for the self-updater's own messages ("the downloaded DLL is", "the package has no
    DamageInsight.dll") instead of the address; the other four markers stay. Checked: both are in the Debug DLL (with
    the updater) and absent from the Thunderstore build. Morning: nothing (it only keeps the guard meaningful).
+7. 01:38 **0.17.1 released.** release.ps1 -SkipThunderstore: tests, package (Thunderstore build checked), public repo
+   pushed (baac35d, tag v0.17.1), GitHub release https://github.com/Umut-Aslan99/SkulInsight_QoL/releases/tag/v0.17.1
+   (zip 1.98 MB). Then monitor 1 re-shot (thread "SkulInsight - QoL v0.17.1 got rejected and vanished", his text in
+   the box), click into the box, Enter: posted 01:38 as DocRun (checked on a new shot). Then tcli publish: "Successfully
+   published DocRun-SkulInsight_QoL", https://thunderstore.io/package/download/DocRun/SkulInsight_QoL/0.17.1/. The
+   Thunderstore wiki text (docs/wiki) has not changed since early November: nothing to paste.
+
+## End of the night (01:39, Session 68 %, Weekly 82 % at 01:39)
+Last commit: see git log (night log + START HERE). Debug 0.17.1 is deployed (69b9ef2 code). Tests 1248 + server 119
+green. Working tree clean. The report chat finished at 01:28 (merge b3aa001).
+
+## Decisions made tonight (Umut: change any of them)
+1. The next version's test doc is docs/coop/TESTS_0.17.2.md (private), named for 0.17.2.
+2. The server push counted as covered by "do a full push, release" (it was then blocked by the safety check; not
+   retried).
+3. The release went out without the server push: the form falls back to the zip + GitHub page, run logs wait.
+4. package.ps1's Thunderstore guard looks for the self-updater's own messages instead of the package API address
+   (the update notice reads the version number there; checked both ways).
+
+## Morning todos for Umut
+1. **Push the server** (the report form and run logs need it): say "push on the server" in a chat, or run in
+   C:\Users\Umut\SkulModding\SkulMods: `git subtree push --prefix server/daily skul-daily main`. After ~2 min
+   https://skul.umut-aslan.dev/healthz says ok; then a chat checks /api/reports and the daily API.
+2. **GitHub token on the server** (so tickets become issues by themselves): give the fine-grained token you saved to
+   the server as GITHUB_ISSUES_TOKEN (REPORTS.md says how). Without it the issue board opens the issues with gh.
+3. **Admin token file for the issue board** (REPORTS.md "Status"), so a session can run tools/reports/board.py.
+4. Look at Thunderstore: the package should show 0.17.1 once a reviewer approved it (your message is in the thread).
+5. Next co-op run: the catch-up tests in docs/coop/TESTS_0.17.2.md part A (10 tests; the trace rows tell me the
+   rest when you send the report, or the run logs arrive by themselves once the server is pushed).

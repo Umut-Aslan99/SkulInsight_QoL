@@ -479,8 +479,10 @@ the errors were in (the game's, SkulInsight's or another mod's).
 
 ## Coming next
 
-- **0.16 (this version):** restart room, new daily points and the day's challenges, the settings page in groups, the
-  changelog in the game, runs in your language.
-- **In planning:** online co-op, with matchmaking on the daily run server.
+- **0.17 (this version):** online co-op as an open beta (Steam friends and matchmaking, two players; 3-4 players with
+  Steam friends as an experiment since 0.17.2), the report form in the game.
+- **0.17.x:** co-op fixes from the beta's reports, then 3-4 players through matchmaking too.
+- **0.16:** restart room, new daily points and the day's challenges, the settings page in groups, the changelog in
+  the game, runs in your language.
 - **Next:** the Dark Mirror page. **Later:** skins for skulls from the daily achievements.
 - **Later:** knowledge pages: drop chances, run layout, shops and prices, NPCs, game mechanics; the story in the Codex.

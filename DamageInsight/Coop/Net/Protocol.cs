@@ -19,10 +19,10 @@ public static class Protocol
     /// <summary>Host + 3 (docs/COOP_PLAN.md §12.2: built for 4, tested for 2 first).</summary>
     public const int MaxPlayers = 4;
 
-    /// <summary>What a Steam game takes until co-op phase 4 (3-4 players, after the release; ROADMAP "Not before the
-    /// release"): 2, whatever the hidden setting Coop/MaxPlayers says. Without it a second friend could join from the
-    /// friends list into a 3-player game nobody tested (2026-11-16, Umut's Co-op window showed "Players 1 / 4").</summary>
-    public const int PlayersForNow = 2;
+    /// <summary>What a matchmade game takes: 2 (the server's COOP_MAX_SIZE too). A Steam lobby takes what the setting
+    /// Coop/MaxPlayers says (2-4) since 0.17.2; 3 and 4 are experimental (COOP_LOG 70, docs/coop/FOUR_PLAYERS.md).
+    /// Before, a lobby was held at 2 whatever the setting said (2026-11-16).</summary>
+    public const int MatchmadePlayers = 2;
 
     /// <summary>Ids from here on belong to game packages (states, snapshots, events); below are the session's own.</summary>
     public const byte FirstGameMessage = 32;

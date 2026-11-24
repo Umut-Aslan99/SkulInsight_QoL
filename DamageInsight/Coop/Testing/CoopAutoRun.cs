@@ -23,7 +23,8 @@ internal sealed class CoopAutoRun
 {
     private static readonly object Key = new();
     private readonly MonoBehaviour _host;
-    private readonly int _startChapter, _maxRooms, _fromRoom, _dmLevel;
+    private readonly int _startChapter, _maxRooms, _fromRoom, _dmLevel, _players;
+    private bool _waitLogged;
     private readonly bool _skipStages, _darkMirror, _bossRoute, _byHand;
     // the full skull sweep (FullSweepPlan): the route stays in the run's first room, the bots take nothing and vote
     // for no door (tools/coop/coop-test.py stops the copies when both bots are through their lists)
@@ -48,6 +49,7 @@ internal sealed class CoopAutoRun
         _byHand = !launch.Bot; // a person plays this copy (play-revive-test.cmd: --no-host-bot)
         _doorSeconds = launch.AutoRunDoorSeconds;
         _maxRooms = launch.AutoRunRooms;
+        _players = launch.AutoRunPlayers;
         _fromRoom = launch.AutoRunFrom;
         _fullSweep = launch.Bot && FullSweepPlan.Parse(launch.BotSkulls) != null;
         if (launch.BotAttackPercent > 100f)
@@ -88,6 +90,15 @@ internal sealed class CoopAutoRun
         {
             if (_castleSince < 0)
                 _castleSince = now;
+            // 3-4 copies (COOP_LOG 70): wait until every copy joined (a client can join in the castle only), at most 120 s.
+            int inSession = CoopRuntime.Instance?.Session?.Roster.Count ?? 1;
+            if (inSession < _players && now - _castleSince < 120f)
+                return;
+            if (inSession < _players && !_waitLogged)
+            {
+                _waitLogged = true;
+                Plugin.Log.LogWarning($"[CoopTest] autorun: only {inSession} of {_players} players after 120 s in the castle; the run starts anyway");
+            }
             if (now - _castleSince > 6f && !_done)
                 _host.StartCoroutine(CLeaveCastle(levels, (type == Chapter.Type.HardmodeCastle || _darkMirror ? Chapter.Type.HardmodeChapter1 : Chapter.Type.Chapter1) + (_startChapter - 1)));
             return;
